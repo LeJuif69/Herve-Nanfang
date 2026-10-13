@@ -1,0 +1,528 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   IDENTITÉ VISUELLE — Editorial Premium × African Contemporary × Digital
+   Palette : noir profond · ivoire · or chaud · gris minéral
+   (accent carmin repris de l'affiche « Le Pianobariste »)
+   ============================================================ */
+
+@theme {
+  --color-ink:   #08080a;
+  --color-ink-2: #0e0e12;
+  --color-ink-3: #16161c;
+  --color-ink-4: #1f1f27;
+
+  --color-ivory:   #f5f2ea;
+  --color-ivory-2: #e8e3d6;
+  --color-ivory-3: #d6d0c0;
+
+  --color-gold:   #c6a15b;
+  --color-gold-2: #e0be7c;
+  --color-gold-3: #8a7038;
+
+  --color-mineral:   #9a9aa2;
+  --color-mineral-2: #6e6e78;
+
+  --color-crimson:   #b4122b;
+  --color-crimson-2: #e02040;
+
+  --font-display: 'Instrument Serif', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Space Grotesk Variable', 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+
+  --breakpoint-3xl: 108rem;
+
+  /* Timing curves */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-circ: cubic-bezier(0, 0.55, 0.45, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); filter: blur(4px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0px); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes gold-pulse {
+  0%, 100% { opacity: 0.06; transform: scale(1); }
+  50%       { opacity: 0.12; transform: scale(1.08); }
+}
+
+@keyframes soundbar-dance {
+  0%, 100% { height: 18%; }
+  50%       { height: 95%; }
+}
+
+@keyframes vinyl-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.animate-vinyl {
+  animation: vinyl-spin 12s linear infinite;
+}
+
+.animate-soundbar {
+  animation: soundbar-dance 1s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-vinyl,
+  .animate-soundbar {
+    animation: none !important;
+  }
+}
+
+
+/* ============================================================
+   BASE
+   ============================================================ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at top, rgba(198, 161, 91, 0.08), transparent 30%),
+      var(--color-ink);
+    color: var(--color-ivory);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Zoom réservé aux images éditoriales (class="zoomable").
+     Les logos et visuels décoratifs ne bougent pas au survol. */
+  img.zoomable {
+    transition: transform 0.55s var(--ease-out-expo), filter 0.55s ease;
+  }
+
+  img.zoomable:hover {
+    transform: scale(1.015);
+    filter: saturate(1.05);
+  }
+
+  a, button {
+    transition: color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  /* Scrollbar thématisée */
+  ::-webkit-scrollbar              { width: 6px; }
+  ::-webkit-scrollbar-track        { background: var(--color-ink-2); }
+  ::-webkit-scrollbar-thumb        { background: var(--color-gold-3); border-radius: 0; }
+  ::-webkit-scrollbar-thumb:hover  { background: var(--color-gold); }
+
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-ink);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  /* Les ancres restent lisibles sous l’en-tête fixe. */
+  [id] {
+    scroll-margin-top: 8rem;
+  }
+
+  @media (min-width: 1024px) {
+    [id] {
+      scroll-margin-top: 9rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ============================================================
+   COMPOSANTS
+   ============================================================ */
+@layer components {
+
+  /* ── Filets dorés ─────────────────────────────────────────── */
+  .hairline {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-gold) 55%, transparent),
+      color-mix(in srgb, var(--color-gold) 12%, transparent) 55%,
+      transparent
+    );
+  }
+
+  .hairline-full {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      color-mix(in srgb, var(--color-gold) 45%, transparent),
+      transparent
+    );
+  }
+
+  /* ── Eyebrow — petites capitales espacées ─────────────────── */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  /* ── Texte dégradé or (titres hero) ──────────────────────── */
+  .text-gradient-gold {
+    background: linear-gradient(
+      135deg,
+      var(--color-gold-2) 0%,
+      var(--color-gold) 40%,
+      var(--color-gold-3) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Grain photographique discret ────────────────────────── */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.028) 0, transparent 45%),
+      radial-gradient(circle at 85% 70%, rgba(198,161,91,0.05) 0, transparent 50%);
+  }
+
+  /* ── Spotlight interactif (style Apple / Linear) ────────── */
+  .spotlight-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .spotlight-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    background: radial-gradient(
+      420px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+      rgba(198, 161, 91, 0.12),
+      transparent 70%
+    );
+    z-index: 1;
+  }
+
+  .spotlight-card:hover::before {
+    opacity: 1;
+  }
+
+  .spotlight-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(198, 161, 91, 0.45);
+    mask-image: radial-gradient(
+      280px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+      black 40%,
+      transparent 80%
+    );
+    -webkit-mask-image: radial-gradient(
+      280px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+      black 40%,
+      transparent 80%
+    );
+    z-index: 2;
+  }
+
+  .spotlight-card:hover::after {
+    opacity: 1;
+  }
+
+  @media (hover: none) {
+    .spotlight-card::before,
+    .spotlight-card::after {
+      display: none;
+    }
+  }
+
+  /* ── Motif clavier vertical (Le Pianobariste) ─────────────── */
+  .keys-bg {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0 26px,
+      color-mix(in srgb, var(--color-ivory) 14%, transparent) 26px 27px
+    );
+  }
+
+  /* ── Orbe décoratif pulsé ─────────────────────────────────── */
+  .orb-gold {
+    border-radius: 9999px;
+    background: radial-gradient(circle, var(--color-gold) 0%, transparent 70%);
+    animation: gold-pulse 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* ── Ligne de scan (effet technique) ─────────────────────── */
+  .scan-line::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+    opacity: 0.25;
+    animation: scan-line 6s linear infinite;
+    pointer-events: none;
+  }
+
+  /* ── Soulignement animé (liens éditoriaux) ────────────────── */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  /* ── Boutons ──────────────────────────────────────────────── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 1rem 1.75rem;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease,
+      transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  /* Effet de reflet glissant sur hover */
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    transition: left 0.5s ease;
+  }
+  .btn:hover::before { left: 150%; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+
+  .btn-gold {
+    background: var(--color-gold);
+    color: var(--color-ink);
+  }
+  .btn-gold:hover {
+    background: var(--color-gold-2);
+    box-shadow: 0 8px 24px -8px color-mix(in srgb, var(--color-gold) 50%, transparent);
+  }
+
+  .btn-ghost {
+    border-color: color-mix(in srgb, var(--color-ivory) 30%, transparent);
+    color: var(--color-ivory);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-gold);
+    color: var(--color-gold-2);
+  }
+
+  .btn-dark {
+    border-color: color-mix(in srgb, var(--color-ink) 30%, transparent);
+    color: var(--color-ink);
+  }
+  .btn-dark:hover {
+    border-color: var(--color-ink);
+    background: var(--color-ink);
+    color: var(--color-ivory);
+  }
+
+  /* ========================= HOME PREMIUM ========================= */
+  .home-hero {
+    position: relative;
+    isolation: isolate;
+    background: var(--color-ink);
+  }
+
+  .home-hero__image {
+    filter: saturate(0.9) contrast(1.08) brightness(0.58);
+    transform: scale(1.04);
+  }
+
+  .home-hero__shade {
+    background:
+      linear-gradient(90deg, rgba(8, 8, 10, 0.82) 0%, rgba(8, 8, 10, 0.58) 22%, rgba(8, 8, 10, 0.25) 52%, rgba(8, 8, 10, 0.7) 100%),
+      linear-gradient(180deg, rgba(8, 8, 10, 0.08), rgba(8, 8, 10, 0.68));
+  }
+
+  .home-hero__vignette {
+    background: radial-gradient(circle at 28% 25%, rgba(198, 161, 91, 0.12), transparent 26%);
+  }
+
+  .home-hero__grid {
+    background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: linear-gradient(90deg, transparent, rgba(0,0,0,0.42) 24%, rgba(0,0,0,0.78) 100%);
+    opacity: 0.25;
+  }
+
+  .home-hero__title {
+    text-wrap: balance;
+    text-shadow: 0 0 24px rgba(8, 8, 10, 0.25);
+  }
+
+  .home-manifest {
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .home-manifest__backdrop {
+    background:
+      radial-gradient(circle at 20% 30%, rgba(198, 161, 91, 0.18), transparent 28%),
+      linear-gradient(135deg, rgba(245,242,234,0.96), rgba(245,242,234,0.9));
+  }
+
+  .home-live__collage::before {
+    content: '';
+    position: absolute;
+    inset: 1rem auto auto 1rem;
+    width: 6.5rem;
+    height: 6.5rem;
+    border: 1px solid rgba(198, 161, 91, 0.4);
+    background: rgba(255,255,255,0.02);
+    z-index: 2;
+  }
+
+  .home-live__collage::after {
+    content: '';
+    position: absolute;
+    right: 1.2rem;
+    bottom: 1.2rem;
+    width: 9.5rem;
+    height: 9.5rem;
+    border: 1px solid rgba(198, 161, 91, 0.25);
+    background: rgba(198,161,91,0.05);
+    z-index: 1;
+  }
+
+  /* ================= PILIERS : FONDS D'ÉCRAN THÉMATIQUES =================
+     Chaque pilier a son univers : photo assombrie + motif CSS + chiffre
+     fantôme. La lisibilité est assurée par le voile (JSX) par-dessus. */
+
+  .pillar-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  /* Chiffre fantôme — filigrane du pilier */
+  .pillar-ghost {
+    position: absolute;
+    right: 0.75rem;
+    bottom: -2.25rem;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-size: 10rem;
+    line-height: 1;
+    color: rgba(198, 161, 91, 0.08);
+    -webkit-text-stroke: 1px rgba(198, 161, 91, 0.28);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* TRANSMETTRE — portée musicale (5 lignes par système) */
+  .motif-staff {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(245, 242, 234, 0.09) 0 1px,
+      transparent 1px 10px,
+      rgba(245, 242, 234, 0.09) 10px 11px,
+      transparent 11px 20px,
+      rgba(245, 242, 234, 0.09) 20px 21px,
+      transparent 21px 30px,
+      rgba(245, 242, 234, 0.09) 30px 31px,
+      transparent 31px 40px,
+      rgba(245, 242, 234, 0.09) 40px 41px,
+      transparent 41px 72px
+    );
+  }
+
+  /* AUGMENTER — circuit : nœuds + pistes */
+  .motif-circuit {
+    background-image:
+      radial-gradient(circle, rgba(198, 161, 91, 0.4) 1px, transparent 1.6px),
+      linear-gradient(rgba(198, 161, 91, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(198, 161, 91, 0.1) 1px, transparent 1px);
+    background-size: 46px 46px, 46px 46px, 46px 46px;
+  }
+
+  /* DÉVELOPPER — constellation + barres de croissance */
+  .motif-growth {
+    background-image:
+      radial-gradient(circle, rgba(198, 161, 91, 0.32) 1px, transparent 1.6px),
+      repeating-linear-gradient(
+        to right,
+        rgba(198, 161, 91, 0.12) 0 1px,
+        transparent 1px 28px
+      );
+    background-size: 32px 32px, auto;
+  }
+  .motif-growth::after {
+    content: '';
+    position: absolute;
+    left: -10%;
+    right: -10%;
+    bottom: 18%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(198, 161, 91, 0.55) 60%, transparent);
+    transform: rotate(-12deg);
+    pointer-events: none;
+  }
+}

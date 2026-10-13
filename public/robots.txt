@@ -1,0 +1,32 @@
+# Hervé Nanfang — source canonique de l'écosystème
+# https://hervenanfang.vercel.app
+
+User-agent: *
+Allow: /
+
+Disallow: /api/
+
+# Robots des principaux moteurs et systèmes d'IA génératifs
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://hervenanfang.vercel.app/sitemap.xml
+Host: https://hervenanfang.vercel.app

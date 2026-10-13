@@ -1,0 +1,373 @@
+import portrait from '../assets/about-portrait-yaounde.webp'
+import affiche from '../assets/affiche-pianobariste.webp'
+import { Link } from 'react-router-dom'
+import PageHero from '../components/PageHero'
+import {
+  Body,
+  Btn,
+  ChapterMark,
+  CtaBand,
+  Display,
+  Eyebrow,
+  Lead,
+  Reveal,
+  Rule,
+  Section,
+  SpotlightCard,
+  Stat,
+  Tag,
+} from '../components/ui'
+import { MASTER_IDENTITY, IDENTITY } from '../data/identity'
+import { PILLARS } from '../data/site'
+import { breadcrumbSchema, personSchema } from '../lib/schema'
+import { useSeo } from '../lib/seo'
+
+export default function About() {
+  useSeo({
+    title: 'Hervé Nanfang | Parcours, Musique, MAO, Pédagogie & IA',
+    description:
+      "Hervé Nanfang, musicien, musicologue, pédagogue et ingénieur du son camerounais : création musicale, transmission, MAO et intelligence artificielle.",
+    path: '/a-propos',
+    jsonLd: [
+      personSchema,
+      breadcrumbSchema([
+        { name: 'Accueil', path: '/' },
+        { name: 'À propos', path: '/a-propos' },
+      ]),
+    ],
+  })
+
+  return (
+    <>
+      <PageHero
+        breadcrumb="À propos"
+        eyebrow="Hervé Nanfang"
+        title={
+          <>
+            Artiste-musicien, musicologue,
+            <br />
+            pédagogue & spécialiste IA
+          </>
+        }
+        lead={MASTER_IDENTITY.positionnement.propositionValeur}
+      >
+        <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
+          <Stat value="2007" label="Débuts live" />
+          <Stat value="4" label="Dimensions" />
+          <Stat value="6" label="Marques & projets" />
+          <Stat value="∞" label="Trajectoire" />
+        </div>
+      </PageHero>
+
+      {/* ========================= BIOGRAPHIE ========================= */}
+      <Section tone="dark">
+        <div className="grid gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+          <Reveal>
+            <ChapterMark num="01" label="Biographie" />
+            <div className="mt-8 space-y-7 text-[15px] leading-[1.95] text-ivory/70 md:text-[1.05rem]">
+              {MASTER_IDENTITY.biographie.aPropos.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+              <blockquote className="border-l-2 border-gold/60 pl-6">
+                <p className="font-display text-2xl leading-snug text-gold md:text-3xl">
+                  {MASTER_IDENTITY.concepts.musicienAugmente.principe}
+                </p>
+              </blockquote>
+              <p>{MASTER_IDENTITY.concepts.musicienAugmente.definition}</p>
+            </div>
+
+            {/* Désambiguïsation */}
+            <p className="mt-8 border-l-2 border-white/10 pl-5 text-[0.8rem] leading-relaxed text-ivory/40 italic">
+              {IDENTITY.desambiguisation}
+            </p>
+
+            <Rule className="my-12" />
+
+            {/* Quatre verbes */}
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {PILLARS.map((p) => (
+                <div key={p.verb}>
+                  <p className="font-display text-3xl text-ivory">{p.verb}</p>
+                  <p className="mt-2 text-[0.65rem] uppercase tracking-[0.18em] text-gold/70">
+                    {p.keywords}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          {/* Portrait */}
+          <Reveal delay={120} className="lg:sticky lg:top-32">
+            <figure>
+              <img
+                src={portrait}
+                alt="Portrait d'Hervé Nanfang"
+                width={760}
+                height={1353}
+                loading="lazy"
+                className="zoomable w-full object-cover"
+              />
+              <figcaption className="mt-4 text-[0.68rem] uppercase tracking-[0.18em] text-ivory/40">
+                Portrait · Yaoundé, Cameroun
+              </figcaption>
+            </figure>
+            <div className="mt-8 border border-white/10 p-6">
+              <Eyebrow>Signature</Eyebrow>
+              <p className="mt-4 font-display text-[1.3rem] text-ivory md:text-2xl">
+                Créer. Transmettre. Augmenter. Développer.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-ivory/55">
+                {MASTER_IDENTITY.identite.rolesLine}
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* ========================= TRAJECTOIRE INTELLECTUELLE ========================= */}
+      <Section tone="ink">
+        <Reveal>
+          <ChapterMark num="02" label="Trajectoire intellectuelle" />
+          <div className="mt-7 grid gap-14 lg:grid-cols-[1fr_1fr] lg:items-end">
+            <Display size="md">Sept étapes, une seule logique</Display>
+            <Body className="lg:pb-2">
+              Le parcours d'Hervé Nanfang n'est pas une collection de métiers juxtaposés.
+              C'est une trajectoire cohérente où chaque étape prépare la suivante — de la scène
+              à l'intelligence artificielle, en passant par le son, la connaissance, la pédagogie
+              et la communication.
+            </Body>
+          </div>
+        </Reveal>
+
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {MASTER_IDENTITY.trajectoire.slice(0, 4).map((step, i) => (
+            <Reveal key={step.etape} delay={i * 60}>
+              <Link to={step.to} className="group block h-full">
+                <SpotlightCard className="flex h-full flex-col border-white/10 bg-ink p-7 transition-colors group-hover:border-gold/40">
+                  <span className="font-display text-4xl text-gold/25">{String(i + 1).padStart(2, '0')}</span>
+                  <h3 className="mt-4 font-display text-xl text-ivory group-hover:text-gold-2 transition-colors">
+                    {step.etape}
+                  </h3>
+                  <p className="mt-2 text-[0.68rem] uppercase tracking-[0.15em] text-ivory/40">
+                    {step.resume}
+                  </p>
+                  <Rule className="opacity-20 my-4" />
+                  <p className="text-sm leading-relaxed text-ivory/55 flex-1">{step.apport}</p>
+                </SpotlightCard>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {MASTER_IDENTITY.trajectoire.slice(4).map((step, i) => (
+            <Reveal key={step.etape} delay={(i + 4) * 60}>
+              <Link to={step.to} className="group block h-full">
+                <SpotlightCard className="flex h-full flex-col border-white/10 bg-ink p-7 transition-colors group-hover:border-gold/40">
+                  <span className="font-display text-4xl text-gold/25">{String(i + 5).padStart(2, '0')}</span>
+                  <h3 className="mt-4 font-display text-xl text-ivory group-hover:text-gold-2 transition-colors">
+                    {step.etape}
+                  </h3>
+                  <p className="mt-2 text-[0.68rem] uppercase tracking-[0.15em] text-ivory/40">
+                    {step.resume}
+                  </p>
+                  <Rule className="opacity-20 my-4" />
+                  <p className="text-sm leading-relaxed text-ivory/55 flex-1">{step.apport}</p>
+                </SpotlightCard>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={200}>
+          <p className="mt-10 text-center text-[0.68rem] uppercase tracking-[0.2em] text-ivory/30">
+            Trajectoire — De la scène à l'innovation culturelle
+          </p>
+        </Reveal>
+      </Section>
+
+      {/* ========================= CHRONOLOGIE ========================= */}
+      <Section tone="dark">
+        <Reveal>
+          <ChapterMark num="03" label="Chronologie" />
+          <Display size="md" className="mt-7">
+            Chaque étape a préparé la suivante
+          </Display>
+        </Reveal>
+
+        <ol className="mt-14 border-t border-white/10">
+          {MASTER_IDENTITY.parcours.map((step, i) => (
+            <Reveal key={step.titre} delay={i * 60}>
+              <li className="grid gap-4 border-b border-white/8 py-7 md:grid-cols-[9rem_16rem_1fr] md:gap-8 md:items-start">
+                <span className="font-display text-xl text-gold/70 tabular-nums">{step.annee}</span>
+                <h3 className="font-display text-xl text-ivory leading-snug">{step.titre}</h3>
+                <p className="text-sm leading-relaxed text-ivory/55">{step.detail}</p>
+              </li>
+            </Reveal>
+          ))}
+        </ol>
+
+        <p className="mt-8 text-xs uppercase tracking-[0.18em] text-ivory/30">
+          Chronologie de référence — parcours structuré et validé par les étapes clés du métier et de la transmission.
+        </p>
+      </Section>
+
+      {/* ========================= COMPÉTENCES ========================= */}
+      <Section tone="ink">
+        <Reveal>
+          <ChapterMark num="04" label="Compétences" />
+          <Display size="md" className="mt-7">
+            Une pratique large, structurée par domaines
+          </Display>
+          <Lead className="mt-6 max-w-3xl">
+            Cette combinaison est rare : elle permet de tenir un projet de bout en bout — de la
+            première note à la transmission, jusqu'à sa diffusion numérique et son impact
+            institutionnel.
+          </Lead>
+        </Reveal>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {MASTER_IDENTITY.expertises.map((block, i) => (
+            <Reveal key={block.domaine} delay={i * 70}>
+              <SpotlightCard className="flex h-full flex-col border-white/10 bg-ink p-7">
+                <h3 className="font-display text-2xl text-ivory">{block.domaine}</h3>
+                <Rule className="opacity-30 my-4" />
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {block.items.map((item) => (
+                    <Tag key={item}>{item}</Tag>
+                  ))}
+                </div>
+              </SpotlightCard>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* ========================= IDENTITÉ ARTISTIQUE (AFFICHE) ========================= */}
+      <Section tone="dark">
+        <div className="grid gap-14 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
+          <Reveal>
+            <img
+              src={affiche}
+              alt="Affiche Le Pianobariste™"
+              width={1024}
+              height={1536}
+              loading="lazy"
+              className="zoomable w-full max-w-sm object-cover"
+            />
+          </Reveal>
+          <Reveal delay={120}>
+            <ChapterMark num="05" label="Identité artistique" />
+            <Display size="md" className="mt-7">
+              « I don't perform. I set the mood. »
+            </Display>
+            <Body className="mt-7 max-w-2xl">
+              Le Pianobariste™ n'est pas un pseudonyme : c'est un format, un positionnement et une
+              promesse. Un musicien qui ne se contente pas de jouer des morceaux, mais qui compose
+              l'atmosphère d'un lieu — hôtels, lounges, événements privés — avec la précision d'un
+              métier acquis depuis 2007.
+            </Body>
+            <Body className="mt-5 max-w-2xl">
+              Répertoire international (jazz, bossa, soul, musiques africaines, variétés) adapté
+              en temps réel au contexte, au lieu et au public. Chaque prestation est unique.
+            </Body>
+            <div className="mt-9 flex flex-wrap gap-x-8 gap-y-3 text-[0.68rem] uppercase tracking-[0.2em] text-ivory/45">
+              <span>Live piano</span>
+              <span>Live mood</span>
+              <span>Live experience</span>
+            </div>
+            <div className="mt-10 flex flex-wrap gap-5">
+              <Btn to="/musique" variant="gold">
+                Voir la page Musique
+              </Btn>
+              <Btn to="/contact#booking" variant="ghost">
+                Réserver une prestation
+              </Btn>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* ========================= 6 MARQUES ========================= */}
+      <Section tone="ink">
+        <Reveal>
+          <ChapterMark num="06" label="Marques & projets" />
+          <Display size="md" className="mt-7">
+            Six marques, une même structure
+          </Display>
+          <Body className="mt-6 max-w-2xl">
+            Chaque marque est la cristallisation d'une expertise précise.
+            Ensemble, elles forment l'écosystème A LAIZ PROD — un projet pensé pour durer,
+            s'étendre et créer de la valeur à long terme.
+          </Body>
+        </Reveal>
+
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {MASTER_IDENTITY.marques.map((marque, i) => (
+            <Reveal key={marque.nom} delay={i * 60}>
+              <Link to={marque.to} className="group block h-full">
+                <div className="flex h-full flex-col justify-between border border-white/10 bg-ink p-7 transition-colors group-hover:border-gold/40">
+                  <div>
+                    <p className="font-display text-[0.62rem] uppercase tracking-[0.2em] text-gold/60">
+                      {String(i + 1).padStart(2, '0')}
+                    </p>
+                    <h3 className="mt-3 font-display text-xl text-ivory leading-snug group-hover:text-gold-2 transition-colors">
+                      {marque.nom}
+                    </h3>
+                    <p className="mt-2 text-[0.7rem] uppercase tracking-[0.15em] text-ivory/45">
+                      {marque.role}
+                    </p>
+                  </div>
+                  <div className="mt-7 border-t border-white/5 pt-4">
+                    <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-gold group-hover:text-gold-2 inline-flex items-center gap-1.5">
+                      Découvrir <span>→</span>
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* ========================= INSTITUTIONS ========================= */}
+      <Section tone="dark" tight>
+        <Reveal>
+          <div className="grid gap-10 border border-gold/25 bg-ink-2 p-8 md:grid-cols-[1.4fr_1fr] md:items-center md:p-12">
+            <div>
+              <Eyebrow>Institutions d'enseignement</Eyebrow>
+              <h2 className="mt-5 font-display text-3xl leading-snug text-ivory md:text-4xl">
+                ESAS · ISMA · Racines Musicales Academy®
+              </h2>
+              <p className="mt-5 max-w-xl text-[15px] leading-[1.9] text-ivory/65">
+                Plusieurs années d'enseignement en musicologie, MAO et composition dans les
+                grandes écoles d'art et de musique du Cameroun, complétées par la création
+                de la Racines Musicales Academy® (RMA) et du système Permis de Jouer™.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {MASTER_IDENTITY.enseignement.disciplines.map((d) => (
+                  <Tag key={d}>{d}</Tag>
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col gap-4 md:items-end">
+              <Btn to="/pedagogie" variant="gold">
+                Voir la pédagogie
+              </Btn>
+              <Btn to="/rma" variant="ghost">
+                Découvrir la RMA
+              </Btn>
+            </div>
+          </div>
+        </Reveal>
+      </Section>
+
+      <CtaBand
+        eyebrow="Suite logique"
+        title="Découvrir les projets issus de ce parcours"
+        text="Six marques, cinq familles de projets, une même structure : A LAIZ PROD — production artistique et culturelle."
+        primary={{ label: 'Voir les projets', to: '/projets' }}
+        secondary={{ label: 'Me contacter', to: '/contact' }}
+      />
+    </>
+  )
+}
