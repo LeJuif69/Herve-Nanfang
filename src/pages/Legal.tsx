@@ -16,22 +16,22 @@ const CONTENT: Record<Kind, { title: string; eyebrow: string; path: string; lead
       {
         h: 'Éditeur du site',
         p: [
-          `Le présent site est édité par Hervé Nanfang, artiste-musicien, musicologue, pédagogue et ingénieur du son, exerçant à titre indépendant et via la structure A LAIZ PROD.`,
-          `Contact général : ${SITE.phones.map((phone) => phone.display).join(' · ')} — ${SITE.city}. Contact RMA : ${SITE.emailRma}.`,
-          'Les informations d’immatriculation (numéro de contribuable, registre du commerce, structure juridique exacte) seront complétées avant mise en ligne publique.',
+          `Le présent site est édité par Hervé Nanfang, musicologue, artiste-musicien, pédagogue et ingénieur du son, exerçant au sein de l’écosystème ALAIZ Creative Systems et via la structure de production A LAIZ PROD.`,
+          `Contact général : ${SITE.phones.map((phone) => phone.display).join(' · ')} — ${SITE.city}. Contact académique & RMA : ${SITE.emailRma}.`,
+          'Direction éditoriale et artistique : Hervé Nanfang. Les coordonnées d’immatriculation fiscale (RCCM / numéro de contribuable) sont délivrées sur demande pour toute contractualisation institutionnelle.',
         ],
       },
       {
         h: 'Hébergement',
         p: [
-          "Le site est hébergé par un prestataire à désigner lors de la mise en production. Les coordonnées complètes de l'hébergeur (raison sociale, adresse, téléphone) figureront ici conformément aux obligations d'information.",
+          'Le site est hébergé par Vercel Inc., situé au 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis (plateforme Cloud globale sécurisée avec certificat SSL/TLS haute sécurité). Site officiel : https://vercel.com.',
         ],
       },
       {
-        h: 'Propriété intellectuelle',
+        h: 'Propriété intellectuelle & marques',
         p: [
-          'L’ensemble des contenus de ce site — textes, photographies, affiches, identités visuelles, méthodes pédagogiques, dénominations et marques (notamment Le Pianobariste™, Racines Musicales Academy®, Permis de Jouer™, Musicien Augmenté™) — est protégé par le droit d’auteur et le droit des marques.',
-          'Toute reproduction, représentation, adaptation ou exploitation, totale ou partielle, sans autorisation écrite préalable est interdite.',
+          'L’ensemble des contenus de ce site — textes, méthodes pédagogiques, concepts, photographies, affiches, identités visuelles, publications et marques (notamment Le Pianobariste™, Racines Musicales Academy®, Permis de Jouer™, Musicien Augmenté™, LES ZIKOS®, Tswefap, A LAIZ PROD, A LAIZ Ô PAYS et ALAIZ Creative Systems) — est protégé par le droit d’auteur et les traités internationaux de propriété intellectuelle.',
+          'Toute reproduction, représentation, adaptation ou exploitation, totale ou partielle, sans autorisation écrite préalable d’Hervé Nanfang ou de la structure ALAIZ Creative Systems est formellement interdite.',
         ],
       },
       {

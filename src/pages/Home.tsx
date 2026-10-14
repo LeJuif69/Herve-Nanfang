@@ -106,14 +106,21 @@ export default function Home() {
           <div className="max-w-4xl">
             <Reveal>
               <div className="mb-6 flex flex-wrap items-center gap-3 sm:gap-4 md:gap-5">
-                <img
-                  src="/hn-initials-mark.png"
-                  alt="Monogramme HN — Hervé Nanfang"
-                  width={112}
-                  height={112}
-                  loading="eager"
-                  className="h-20 w-20 shrink-0 object-contain drop-shadow-[0_0_25px_rgba(198,161,91,0.35)] md:h-24 md:w-24"
-                />
+                {/* Écrin de prestige pour le monogramme des initiales HN */}
+                <div className="group relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-2xl border-2 border-gold/50 bg-gradient-to-br from-gold/15 via-ink-2 to-black p-2.5 shadow-[0_0_35px_rgba(198,161,91,0.3)] ring-1 ring-gold/25 backdrop-blur-md transition-all duration-500 hover:scale-105 hover:border-gold hover:shadow-[0_0_50px_rgba(198,161,91,0.55)] md:h-24 md:w-24 md:p-3">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(198,161,91,0.22),transparent_70%)]"
+                  />
+                  <img
+                    src="/hn-initials-mark.png"
+                    alt="Monogramme HN — Hervé Nanfang"
+                    width={112}
+                    height={112}
+                    loading="eager"
+                    className="relative z-10 h-full w-full object-contain drop-shadow-[0_0_12px_rgba(198,161,91,0.4)] transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
                 <span aria-hidden className="hidden h-px w-8 bg-ivory/30 sm:block md:w-12" />
                 <div className="flex items-center gap-2.5">
                   <span className="relative flex h-2 w-2">
@@ -552,15 +559,15 @@ export default function Home() {
           {[
             {
               title: 'Enseignement supérieur',
-              text: 'ESAS · ISMA · autres expériences — formation d’étudiants et d’enseignants.',
+              text: 'ESAS (Lomé) · ISMA (Bénin) · IBA Nkongsamba · IFCPA/CRTV — transmission académique et formation.',
             },
             {
               title: 'Conception pédagogique',
-              text: 'MAO, musicologie, composition, éducation musicale, curricula et évaluation.',
+              text: 'MAO, musicologie appliquée, composition pour l’image, ingénierie de curricula et évaluation.',
             },
             {
               title: 'Systèmes & publications',
-              text: 'Racines Musicales Academy®, Permis de Jouer™, manuels et ressources.',
+              text: 'Racines Musicales Academy® (RMA), Permis de Jouer™ (N1 à N4) et manuel LES ZIKOS®.',
             },
           ].map((item, i) => (
             <Reveal key={item.title} delay={i * 110}>
@@ -688,7 +695,7 @@ export default function Home() {
                 <div className="flex flex-col items-start gap-2 md:items-end">
                   <Tag tone={a.status === 'Publié' ? 'gold' : 'ink'}>{a.status}</Tag>
                   <span className="text-[0.65rem] uppercase tracking-[0.2em] text-ivory/40 md:text-right">
-                    {a.category} · {a.readingTime}
+                    <span className="text-gold/75 font-medium">Hervé Nanfang</span> · {a.readingTime}
                   </span>
                 </div>
               </Link>

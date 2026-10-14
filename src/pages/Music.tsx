@@ -1,6 +1,11 @@
+import { useState } from 'react'
 import affiche from '../assets/affiche-pianobariste.webp'
 import liveBand from '../assets/live-scene-piano.jpeg'
 import PageHero from '../components/PageHero'
+import VideoModal from '../components/VideoModal'
+import RepertoireExplorer from '../components/RepertoireExplorer'
+import AudioStageConsole from '../components/AudioStageConsole'
+import LiveStageVideoTheater from '../components/LiveStageVideoTheater'
 import {
   ArrowLink,
   Body,
@@ -22,16 +27,38 @@ import {
   REPERTOIRE_UNIVERSES,
   STAGE_FORMATS,
   TECHNICAL_STANDARDS,
+  type LivePerformance,
 } from '../data/music'
-import { AUDIO_PLAYLIST } from '../data/audio'
+import { AUDIO_PLAYLIST, type AudioTrack } from '../data/audio'
 import { useAudio } from '../lib/audio-context'
 import { breadcrumbSchema, creativeWorkSchema, musicGroupSchema, serviceSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 
 export default function Music() {
-  const { selectTrack, openPlayer } = useAudio()
+  const {
+    currentTrack,
+    playbackState,
+    togglePlay,
+    selectTrack,
+    openPlayer,
+  } = useAudio()
+
+  const [selectedVideo, setSelectedVideo] = useState<LivePerformance | null>(null)
+  const [audioFilter, setAudioFilter] = useState<string>('all')
 
   const liveTrack = AUDIO_PLAYLIST.find((t) => t.id === 'pianobariste-live') || AUDIO_PLAYLIST[0]
+
+  const filteredTracks = AUDIO_PLAYLIST.filter((track) => {
+    if (audioFilter === 'all') return true
+    if (audioFilter === 'piano') return track.id === 'pianobariste-live'
+    if (audioFilter === 'duo') return track.id === 'duo-acoustique'
+    if (audioFilter === 'patrimoine') return track.id === 'afro-jazz-makossa'
+    if (audioFilter === 'afropop') return track.id === 'afropop-rumba'
+    if (audioFilter === 'poetique') return track.id === 'soul-chanson-poetique'
+    if (audioFilter === 'composition') return track.id === 'composition-theme'
+    if (audioFilter === 'studio') return track.id === 'mao-sound-design' || track.id === 'ia-musique-recherche'
+    return true
+  })
 
   useSeo({
     title: 'Musique | Hervé Nanfang — Piano, Composition & Production',
@@ -61,6 +88,14 @@ export default function Music() {
     ],
   })
 
+  const handleTrackClick = (track: AudioTrack) => {
+    if (currentTrack?.id === track.id) {
+      togglePlay()
+    } else {
+      selectTrack(track, true)
+    }
+  }
+
   return (
     <>
       <PageHero
@@ -71,9 +106,9 @@ export default function Music() {
       >
         <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
           <Stat value="2007" label="Piano-bar live" />
+          <Stat value="440+" label="Titres au répertoire" />
+          <Stat value="10" label="Univers musicaux" />
           <Stat value="03" label="Formats de scène" />
-          <Stat value="04" label="Univers répertoire" />
-          <Stat value="88" label="Touches de concert" />
         </div>
       </PageHero>
 
@@ -134,8 +169,233 @@ export default function Music() {
         </div>
       </Section>
 
+      {/* ========================================================================= */}
+      {/* NOUVEAU MODULE : LA SCÈNE SONORE — ÉCOUTES & ENREGISTREMENTS AUDIO         */}
+      {/* ========================================================================= */}
+      <Section tone="ink" id="enregistrements">
+        <Reveal>
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <ChapterMark num="♫" label="Enregistrements & Audio" />
+              <Display size="md" className="mt-6 max-w-2xl">
+                La Scène Sonore — Écoutes & Extraits de scène
+              </Display>
+              <Lead className="mt-4 max-w-xl">
+                Huit univers de captation et de travail sonore. Choisissez une ambiance pour configurer instantanément la console, auditionner les progressions harmoniques et lancer le lecteur acoustique.
+              </Lead>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={openPlayer}
+                className="inline-flex items-center gap-2 border border-gold/40 bg-gold/10 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-gold hover:bg-gold hover:text-ink transition-colors"
+              >
+                <span className="h-2 w-2 rounded-full bg-gold animate-ping" />
+                <span>Ouvrir le lecteur grand écran</span>
+              </button>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Console Interactive & Bar à Ambiances Sonores */}
+        <Reveal delay={40}>
+          <div className="mt-10">
+            <AudioStageConsole />
+          </div>
+        </Reveal>
+
+        {/* Filtres de catégories audio */}
+        <Reveal delay={60}>
+          <div className="mt-12 flex flex-wrap gap-2 border-b border-white/10 pb-4">
+            {[
+              { id: 'all', label: `Tous les extraits (${AUDIO_PLAYLIST.length})` },
+              { id: 'piano', label: 'Piano-bar & Standards' },
+              { id: 'duo', label: 'Duo Signature' },
+              { id: 'patrimoine', label: 'Afro-Jazz' },
+              { id: 'afropop', label: 'Rumba & Afropop' },
+              { id: 'poetique', label: 'Nocturne & Soul' },
+              { id: 'composition', label: 'Composition Scénique' },
+              { id: 'studio', label: 'Studio & IA' },
+            ].map((cat) => {
+              const isActive = audioFilter === cat.id
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setAudioFilter(cat.id)}
+                  className={`rounded-full px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider transition-all duration-200 ${
+                    isActive
+                      ? 'border border-gold bg-gold text-ink shadow-[0_0_15px_rgba(198,161,91,0.3)]'
+                      : 'border border-white/15 bg-white/5 text-ivory/70 hover:border-gold/40 hover:text-ivory'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              )
+            })}
+          </div>
+        </Reveal>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {filteredTracks.map((track, idx) => {
+            const isThisTrackPlaying = currentTrack?.id === track.id && playbackState === 'playing'
+            const isThisTrackSelected = currentTrack?.id === track.id
+
+            return (
+              <Reveal key={track.id} delay={idx * 60}>
+                <div
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => handleTrackClick(track)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      handleTrackClick(track)
+                    }
+                  }}
+                  className={`group relative flex cursor-pointer flex-col justify-between border p-6 transition-all duration-300 md:p-7 ${
+                    isThisTrackSelected
+                      ? 'border-gold bg-ink-2 shadow-[0_0_25px_rgba(198,161,91,0.22)]'
+                      : 'border-white/10 bg-ink-2/70 hover:border-gold/50 hover:bg-ink-2'
+                  }`}
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-xs text-gold/80">
+                          Piste {String(idx + 1).padStart(2, '0')}
+                        </span>
+                        {track.tempo && (
+                          <span className="rounded bg-white/5 px-2 py-0.5 font-mono text-[0.62rem] text-gold/90 border border-white/10">
+                            {track.tempo}
+                          </span>
+                        )}
+                      </div>
+                      <span className="rounded border border-white/10 bg-ink px-2 py-0.5 text-[0.62rem] uppercase tracking-wider text-ivory/60">
+                        {track.category}
+                      </span>
+                    </div>
+
+                    <h3 className="mt-4 font-display text-2xl text-ivory transition-colors group-hover:text-gold-2">
+                      {track.title}
+                    </h3>
+
+                    {track.mood && (
+                      <p className="mt-1 text-xs font-semibold text-gold/75">
+                        Ambiance : {track.mood}
+                      </p>
+                    )}
+
+                    <p className="mt-2.5 text-xs leading-relaxed text-ivory/65">
+                      {track.description}
+                    </p>
+
+                    {track.sceneContext && (
+                      <div className="mt-3.5 border-l border-gold/30 pl-3">
+                        <p className="text-[0.68rem] italic text-ivory/50">
+                          « {track.sceneContext} »
+                        </p>
+                      </div>
+                    )}
+
+                    {track.instruments && track.instruments.length > 0 && (
+                      <div className="mt-4 flex flex-wrap gap-1.5">
+                        {track.instruments.map((inst) => (
+                          <span
+                            key={inst}
+                            className="rounded bg-white/5 px-2 py-0.5 text-[0.62rem] text-ivory/60"
+                          >
+                            {inst}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="mt-6 flex items-center justify-between border-t border-white/8 pt-4">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`flex h-9 w-9 items-center justify-center rounded-full border transition-transform duration-300 group-hover:scale-105 ${
+                          isThisTrackPlaying
+                            ? 'border-gold bg-gold text-ink'
+                            : 'border-gold/50 bg-gold/10 text-gold'
+                        }`}
+                      >
+                        {isThisTrackPlaying ? (
+                          <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
+                            <rect x="6" y="4" width="4" height="16" />
+                            <rect x="14" y="4" width="4" height="16" />
+                          </svg>
+                        ) : (
+                          <svg className="h-4 w-4 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                            <polygon points="5 3 19 12 5 21 5 3" />
+                          </svg>
+                        )}
+                      </div>
+
+                      <span className="text-xs font-semibold uppercase tracking-wider text-ivory/80 group-hover:text-gold">
+                        {isThisTrackPlaying ? 'Lecture en cours…' : 'Écouter l’extrait de scène'}
+                      </span>
+                    </div>
+
+                    {isThisTrackPlaying ? (
+                      <div className="flex items-end gap-1 h-4">
+                        <span className="w-1 bg-gold animate-[pulse_0.6s_ease-in-out_infinite] h-full" />
+                        <span className="w-1 bg-gold animate-[pulse_0.4s_ease-in-out_infinite] h-3/4" />
+                        <span className="w-1 bg-gold animate-[pulse_0.8s_ease-in-out_infinite] h-1/2" />
+                        <span className="w-1 bg-gold animate-[pulse_0.5s_ease-in-out_infinite] h-full" />
+                      </div>
+                    ) : (
+                      <span className="font-mono text-[0.68rem] text-ivory/40">
+                        {Math.floor(track.duration / 60)}:
+                        {String(track.duration % 60).padStart(2, '0')}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </Reveal>
+            )
+          })}
+        </div>
+
+        {/* Encadré technique : Restitution acoustique & Web Audio API */}
+        <Reveal delay={120}>
+          <div className="mt-12 rounded-xl border border-gold/20 bg-ink-2/60 p-6 md:p-8 backdrop-blur-sm">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="max-w-2xl">
+                <span className="font-mono text-[0.65rem] uppercase tracking-wider text-gold">
+                  Précision acoustique & Expérience en direct
+                </span>
+                <h4 className="mt-1 font-display text-xl text-ivory">
+                  Clavier de concert 88 touches & Restitution temps réel
+                </h4>
+                <p className="mt-2 text-xs leading-relaxed text-ivory/70">
+                  En studio comme sur scène, chaque extrait reflète l’exigence acoustique d'Hervé Nanfang :
+                  toucher lourd à marteaux, harmonisation subtile et diffusion sans distorsion.
+                  Le lecteur intègre une synthèse interactive Web Audio garantissant l'écoute immédiate des progressions harmoniques.
+                </p>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (liveTrack) selectTrack(liveTrack, true)
+                    openPlayer()
+                  }}
+                  className="btn btn-gold whitespace-nowrap px-5 py-2.5 text-xs font-bold uppercase tracking-wider"
+                >
+                  Auditionner le son live ♫
+                </button>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </Section>
+
       {/* 3 Formats de Scène */}
-      <Section tone="ink" id="formats">
+      <Section tone="dark" id="formats">
         <Reveal>
           <ChapterMark num="01" label="Formules de scène" />
           <Display size="md" className="mt-7 max-w-3xl">
@@ -192,13 +452,50 @@ export default function Music() {
         </div>
       </Section>
 
-      {/* Répertoire Vivant par Univers */}
+      {/* ========================================================================= */}
+      {/* NOUVEAU MODULE : CAPTATIONS & VIDÉOS SCÉNIQUES                             */}
+      {/* ========================================================================= */}
+      <Section tone="ink" id="videos-live">
+        <Reveal>
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <ChapterMark num="02" label="Captations & Vidéos" />
+              <Display size="md" className="mt-6 max-w-2xl">
+                Vidéos live — Scène, Jazz & Piano-bar
+              </Display>
+              <Lead className="mt-4 max-w-xl">
+                Découvrez la présence scénique, l’alchimie acoustique et la réactivité en direct d’Hervé Nanfang
+                à travers nos captations de concerts, sessions piano-bar et festivals.
+              </Lead>
+            </div>
+
+            <a
+              href="https://www.youtube.com/@hervenanfang"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 border border-crimson/50 bg-crimson/15 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-crimson-2 hover:bg-crimson hover:text-white transition-colors"
+            >
+              <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+              <span>Chaîne YouTube officielle ↗</span>
+            </a>
+          </div>
+        </Reveal>
+        <Reveal delay={60}>
+          <div className="mt-10">
+            <LiveStageVideoTheater onOpenVideoModal={setSelectedVideo} />
+          </div>
+        </Reveal>
+      </Section>
+
+      {/* Répertoire Vivant par Univers & Catalogue Complet */}
       <Section tone="dark" id="repertoire">
         <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <Reveal>
-            <ChapterMark num="02" label="Répertoire vivant" />
+            <ChapterMark num="03" label="Répertoire vivant" />
             <Display size="md" className="mt-7">
-              Quatre univers stylistiques, une virtuosité transversale
+              Dix univers stylistiques, plus de 440 œuvres maîtrisées
             </Display>
             <Lead className="mt-6 max-w-xl">
               La polyvalence n’est pas un défaut de spécialisation : c’est la noblesse du live.
@@ -244,12 +541,17 @@ export default function Music() {
             </figure>
           </Reveal>
         </div>
+
+        {/* Explorateur Interactif de Répertoire (441 titres) */}
+        <Reveal delay={150}>
+          <RepertoireExplorer />
+        </Reveal>
       </Section>
 
       {/* Fiche Technique & Exigences Professionnelles */}
       <Section tone="ink" id="technique">
         <Reveal>
-          <ChapterMark num="03" label="Exigence & Matériel" />
+          <ChapterMark num="04" label="Exigence & Matériel" />
           <Display size="md" className="mt-7">
             Régie autonome & standards professionnels
           </Display>
@@ -275,7 +577,7 @@ export default function Music() {
       {/* Les Trois Pratiques : Scène, Composition, Studio */}
       <Section tone="dark">
         <Reveal>
-          <ChapterMark num="04" label="Métiers" />
+          <ChapterMark num="05" label="Métiers" />
           <Display size="md" className="mt-7 max-w-3xl">
             Trois pratiques, une même matière : le son
           </Display>
@@ -301,6 +603,12 @@ export default function Music() {
         text="Palaces, lounges, réceptions privées, cocktails de prestige ou galas : formule solo, duo ou formation complète adaptée à votre événement."
         primary={{ label: 'Ouvrir le formulaire de booking', to: '/contact#booking' }}
         secondary={{ label: 'Voir les conférences', to: '/conferences' }}
+      />
+
+      <VideoModal
+        performance={selectedVideo}
+        isOpen={!!selectedVideo}
+        onClose={() => setSelectedVideo(null)}
       />
     </>
   )

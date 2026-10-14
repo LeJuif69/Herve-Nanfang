@@ -34,8 +34,10 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
           </svg>
         </button>
 
-        <div className="flex items-center gap-2.5">
-          <img src="/hn-initials-mark.png" alt="" className="h-7 w-7 object-contain" />
+        <div className="flex items-center gap-3">
+          <div className="relative flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-gold/40 bg-gradient-to-br from-ink-2 to-black p-1 shadow-sm ring-1 ring-gold/20">
+            <img src="/hn-initials-mark.png" alt="" className="h-full w-full object-contain" />
+          </div>
           <div>
             <div className="flex items-center gap-2">
               <span className="font-display text-lg tracking-wide text-ivory">Hervé Nanfang</span>

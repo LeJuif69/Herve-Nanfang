@@ -1,4 +1,5 @@
 import PageHero from '../components/PageHero'
+import InterventionSimulator from '../components/InterventionSimulator'
 import {
   Body,
   Btn,
@@ -15,7 +16,7 @@ import {
   Tag,
 } from '../components/ui'
 import { CONFERENCES, CONFERENCE_AUDIENCES } from '../data/conferences'
-import { breadcrumbSchema, eventSchema, personSchema, serviceSchema } from '../lib/schema'
+import { breadcrumbSchema, conferenceEducationEventSchema, personSchema, serviceSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 
 const PROCESS = [
@@ -39,7 +40,15 @@ export default function Conferences() {
         'Formation et conseil',
       ),
       ...CONFERENCES.map((c) =>
-        eventSchema(`Conférence — ${c.title}`, c.pitch, undefined),
+        conferenceEducationEventSchema({
+          title: c.title,
+          pitch: c.pitch,
+          duration: c.duration,
+          audience: c.audience,
+          objectives: c.objectives,
+          deliverables: c.deliverables,
+          theme: c.theme,
+        }),
       ),
       breadcrumbSchema([
         { name: 'Accueil', path: '/' },
@@ -64,37 +73,97 @@ export default function Conferences() {
         </div>
       </PageHero>
 
-      {/* Thèmes */}
-      <Section tone="dark">
+      {/* Thèmes & Fiches détaillées */}
+      <Section tone="dark" id="themes">
         <Reveal>
-          <ChapterMark num="01" label="Thèmes" />
+          <ChapterMark num="01" label="Fiches d'intervention" />
           <Display size="md" className="mt-7 max-w-3xl">
-            Cinq interventions, un même fil : comprendre avant d’adopter
+            Cinq interventions phares, un même fil : comprendre avant d’adopter
           </Display>
+          <Lead className="mt-4 max-w-2xl">
+            Chaque conférence associe rigueur musicologique, démonstrations en direct et méthodologie concrète
+            pour outiller durablement vos équipes, enseignants et étudiants.
+          </Lead>
         </Reveal>
 
-        <div className="mt-14 grid gap-8 md:grid-cols-2">
+        <div className="mt-14 grid gap-8 lg:grid-cols-2">
           {CONFERENCES.map((c, i) => (
-            <Reveal key={c.title} delay={i * 80}>
-              <Card className="flex h-full flex-col">
-                <Eyebrow>{c.theme}</Eyebrow>
-                <h3 className="mt-5 font-display text-3xl leading-snug text-ivory">« {c.title} »</h3>
-                <Rule className="opacity-40" />
-                <Body className="mt-4 flex-1">{c.pitch}</Body>
-                <div className="mt-7 space-y-3 text-sm">
-                  <p className="text-ivory/50">
-                    <span className="text-gold/70">Public — </span>
-                    {c.audience}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
+            <Reveal key={c.id} delay={i * 80}>
+              <Card className="flex h-full flex-col justify-between border-white/10 bg-ink-2 p-8 transition-all hover:border-gold/50">
+                <div>
+                  <div className="flex items-center justify-between gap-4">
+                    <Eyebrow>{c.theme}</Eyebrow>
+                    <span className="rounded bg-gold/10 border border-gold/30 px-2.5 py-0.5 font-mono text-[0.62rem] text-gold uppercase tracking-wider">
+                      {c.duration}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-4 font-display text-2xl leading-snug text-ivory lg:text-3xl">
+                    « {c.title} »
+                  </h3>
+                  <Rule className="opacity-40" />
+                  <Body className="mt-4 text-xs leading-relaxed text-ivory/70">{c.pitch}</Body>
+
+                  {/* 3 Objectifs pédagogiques */}
+                  <div className="mt-6 border-t border-white/5 pt-4">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-gold/80 mb-2">
+                      Objectifs & Compétences visées :
+                    </p>
+                    <ul className="space-y-2 text-xs text-ivory/75">
+                      {c.objectives.map((obj, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <span className="text-gold font-bold">✓</span>
+                          <span>{obj}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Supports & Livrables */}
+                  <div className="mt-5 border-t border-white/5 pt-4">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-ivory/40 mb-2">
+                      Livrables & Supports remis :
+                    </p>
+                    <ul className="space-y-1 text-xs text-ivory/60">
+                      {c.deliverables.map((del, idx) => (
+                        <li key={idx} className="flex items-center gap-1.5">
+                          <span className="text-gold/60 text-[0.65rem]">✦</span>
+                          <span>{del}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Régie technique */}
+                  <div className="mt-5 rounded-lg border border-white/8 bg-ink p-3 text-[0.68rem] text-ivory/55">
+                    <span className="text-gold font-medium">Besoins régie :</span> {c.techRequirements}
+                  </div>
+                </div>
+
+                <div className="mt-7 border-t border-white/10 pt-4 flex items-center justify-between">
+                  <div className="flex flex-wrap gap-1.5">
                     {c.formats.map((f) => (
                       <Tag key={f}>{f}</Tag>
                     ))}
                   </div>
+
+                  <a
+                    href="#simulateur"
+                    className="text-xs uppercase tracking-wider text-gold hover:text-gold-2 font-bold shrink-0 ml-3"
+                  >
+                    Demander ↗
+                  </a>
                 </div>
               </Card>
             </Reveal>
           ))}
+        </div>
+
+        {/* Simulateur & Cadrage interactif */}
+        <div className="mt-16">
+          <Reveal delay={100}>
+            <InterventionSimulator />
+          </Reveal>
         </div>
       </Section>
 

@@ -1067,6 +1067,11 @@ export const adminStore = {
     }
   },
 
+  syncArticlesFromCode(): void {
+    const freshArticles = getInitialArticles()
+    persistAndBroadcast({ ...currentState, articles: freshArticles })
+  },
+
   resetToDefaults(): void {
     const initial = createInitialState()
     persistAndBroadcast(initial)

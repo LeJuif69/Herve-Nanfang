@@ -180,19 +180,19 @@ export default function AudioPlayer() {
             )}
           </div>
 
-          {/* Message explicatif si la source est en attente du fichier réel */}
-          {!isPlayable && (
-            <div className="mt-3.5 rounded-lg border border-gold/20 bg-gold/5 p-3 text-[0.75rem] text-ivory/75">
+          {/* Note sur la source acoustique ou master en attente */}
+          {currentTrack?.status === 'acoustic_demo' && !currentTrack.src && (
+            <div className="mt-3 rounded-lg border border-gold/30 bg-gold/5 p-2.5 text-[0.72rem] text-ivory/80">
               <div className="flex items-start gap-2">
-                <span className="text-gold shrink-0 mt-0.5">✦</span>
+                <span className="text-gold shrink-0">♫</span>
                 <div>
-                  <p className="font-medium text-gold/90">Master audio attendu</p>
+                  <p className="font-medium text-gold">Aperçu acoustique interactif</p>
                   <p className="mt-0.5 text-ivory/60 leading-normal">
-                    Déposez le fichier{' '}
-                    <code className="text-gold font-mono text-[0.7rem] bg-ink-3 px-1 py-0.5 rounded">
-                      public/audio/{currentTrack?.expectedFile || 'fichier.mp3'}
+                    Synthèse harmonique temps réel. Déposez{' '}
+                    <code className="text-gold font-mono text-[0.68rem] bg-ink-3 px-1 py-0.5 rounded">
+                      public/audio/{currentTrack.expectedFile}
                     </code>{' '}
-                    pour activer l’écoute.
+                    pour activer le master studio.
                   </p>
                 </div>
               </div>

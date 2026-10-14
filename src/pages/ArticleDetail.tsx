@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import PageHero from '../components/PageHero'
+import AuthorSignature from '../components/AuthorSignature'
 import {
   ArrowLink,
   Body,
@@ -63,6 +64,10 @@ export default function ArticleDetail() {
         lead={article.excerpt}
       >
         <div className="flex flex-wrap items-center gap-6 text-[0.65rem] uppercase tracking-[0.2em] text-ivory/40">
+          <span className="flex items-center gap-2 font-medium text-gold">
+            <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+            Par Hervé Nanfang
+          </span>
           <span>Pilier {article.num}</span>
           <span>Lecture {article.readingTime}</span>
           <span>{article.category}</span>
@@ -129,6 +134,9 @@ export default function ArticleDetail() {
                 </ol>
               </>
             )}
+
+            {/* Signature d'auteur officielle */}
+            <AuthorSignature />
 
             <div className="mt-12 border border-white/10 bg-ink-2 p-8">
               <Eyebrow>Angle éditorial</Eyebrow>

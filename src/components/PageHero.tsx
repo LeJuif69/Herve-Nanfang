@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Container, Eyebrow, Lead } from './ui'
 
 /**
@@ -19,6 +19,16 @@ export default function PageHero({
   breadcrumb: string
   children?: ReactNode
 }) {
+  const navigate = useNavigate()
+
+  const handleBack = () => {
+    if (window.history.state && window.history.state.idx > 0) {
+      navigate(-1)
+    } else {
+      navigate('/')
+    }
+  }
+
   return (
     <section className="relative isolate overflow-hidden border-b border-white/8 bg-ink pb-16 pt-32 md:pb-20 md:pt-40">
       {/* Motif clavier — clin d'œil à l'affiche */}
@@ -57,13 +67,39 @@ export default function PageHero({
       />
 
       <Container className="relative">
-        {/* Fil d'Ariane */}
-        <nav aria-label="Fil d'Ariane" className="mb-10 flex items-center gap-3 text-[0.62rem] uppercase tracking-[0.2em] text-ivory/35">
+        {/* Fil d'Ariane avec action de retour */}
+        <nav
+          aria-label="Fil d'Ariane"
+          className="mb-10 flex flex-wrap items-center gap-3 text-[0.65rem] uppercase tracking-[0.2em] text-ivory/40"
+        >
+          <button
+            type="button"
+            onClick={handleBack}
+            className="group inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-gold/5 px-2.5 py-1 font-mono text-[0.62rem] text-gold transition-all duration-200 hover:border-gold hover:bg-gold hover:text-ink active:scale-95 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold"
+            aria-label="Retourner à la page précédente"
+            title="Retourner à la page précédente"
+          >
+            <svg
+              className="h-3 w-3 transition-transform group-hover:-translate-x-0.5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <line x1="19" y1="12" x2="5" y2="12" />
+              <polyline points="12 19 5 12 12 5" />
+            </svg>
+            <span>Retour</span>
+          </button>
+          <span aria-hidden className="text-white/20">|</span>
           <Link to="/" className="transition-colors hover:text-gold">
             Accueil
           </Link>
           <span aria-hidden>/</span>
-          <span className="text-ivory/60">{breadcrumb}</span>
+          <span className="text-ivory/70">{breadcrumb}</span>
         </nav>
 
         <Eyebrow>{eyebrow}</Eyebrow>

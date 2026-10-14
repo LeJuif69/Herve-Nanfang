@@ -1,5 +1,6 @@
-
 import PageHero from '../components/PageHero'
+import PermisDeJouerVisualizer from '../components/PermisDeJouerVisualizer'
+import RMAAuditionForm from '../components/RMAAuditionForm'
 import {
   ArrowLink,
   Body,
@@ -17,7 +18,7 @@ import {
   Tag,
 } from '../components/ui'
 
-import { courseSchema, creativeWorkSchema, breadcrumbSchema, personSchema } from '../lib/schema'
+import { courseSchema, creativeWorkSchema, breadcrumbSchema, permisDeJouerProgramSchema, personSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 
 const AXES = [
@@ -41,55 +42,99 @@ const AXES = [
 const INSTITUTIONS = [
   {
     nom: 'ESAS',
-    full: 'École Supérieure des Arts et du Spectacle',
-    ville: 'Yaoundé, Cameroun',
-    role: 'Intervenant en musicologie, MAO et projets artistiques',
+    full: 'École Supérieure des Arts du Spectacle',
+    ville: 'Lomé, Togo',
+    role: 'Enseignant titulaire depuis 2022 : MAO, musicologie appliquée aux médias visuels et technique de composition musicale.',
   },
   {
     nom: 'ISMA',
-    full: 'Institut Supérieur de Musique et des Arts',
-    ville: 'Cameroun',
-    role: 'Formation instrumentale et direction pédagogique',
+    full: 'Institut Supérieur des Métiers des Arts',
+    ville: 'Bénin',
+    role: 'Enseignant (2022–2026) : contribution à la formation supérieure aux métiers des arts et des technologies du son.',
   },
   {
-    nom: 'RMA',
+    nom: 'IBA Nkongsamba',
+    full: 'Institut des Beaux-Arts de Nkongsamba',
+    ville: 'Nkongsamba, Cameroun',
+    role: 'Enseignant remplaçant en musicologie (2021–2022) : histoire de la musique, analyse d’œuvres, musiques de film, intermédiarité et politiques musicales.',
+  },
+  {
+    nom: 'IFCPA / CRTV',
+    full: 'Institut de Formation et de Conservation du Patrimoine Audiovisuel',
+    ville: 'Yaoundé, Cameroun',
+    role: 'Enseignant vacataire en audiofréquence (2020–2021) : MAO, prise et traitement du son, formes et genres musicaux, travaux dirigés.',
+  },
+  {
+    nom: 'RMA®',
     full: 'Racines Musicales Academy®',
     ville: 'Yaoundé, Cameroun',
-    role: 'Fondateur — formation musicale, Permis de Jouer™, curricula',
+    role: 'Fondateur — conception de curricula, Permis de Jouer™ (N1 à N4), socle RMA-01 (Pulsation & Body) et Programme Vacances Utiles.',
   },
 ]
 
 const VOCATION = [
   {
     label: 'Enseignement supérieur',
-    text: "Cours de musicologie et de MAO, encadrement de projets d'étudiants et accompagnement de mémoires de fin de cycle dans les grandes écoles d'art.",
+    text: "Cours de musicologie, MAO et composition à l'ESAS, à l'ISMA et auprès d'instituts des beaux-arts et d'écoles d'audiovisuel.",
   },
   {
-    label: 'Milieu scolaire',
-    text: 'Éducation musicale, initiation instrumentale, pratiques chorales et éveil artistique destinés aux établissements primaires et secondaires.',
+    label: 'Milieu scolaire & conservatoires',
+    text: 'Éducation musicale, initiation instrumentale, chorales et éveil artistique (Lycée Jean-Tabi, EFB Saint-Hubert, Collège L’Excellence, Arbre à Musique).',
   },
   {
-    label: 'Professionnels',
-    text: 'Formation continue pour enseignants, musiciens et structures souhaitant structurer, moderniser ou faire évoluer leur approche pédagogique.',
+    label: 'Professionnels & enseignants',
+    text: 'Formation continue pour enseignants, musiciens et structures souhaitant structurer, moderniser et fiabiliser leur approche pédagogique.',
   },
 ]
 
 const PUBLICATIONS = [
   {
-    t: 'Méthodes instrumentales',
-    d: "Progression pas à pas, exercices contextualisés, répertoire africain et international choisi pour motiver sans sacrifier l'exigence technique. Format adapté à l'auto-apprentissage encadré.",
+    t: 'LES ZIKOS® — Manuel pédagogique',
+    d: "Ouvrage pédagogique de référence d'environ 68 pages en cours de restructuration éditoriale et graphique : progression par niveaux, harmonisation des notions et exercices pratiques d'apprentissage.",
   },
   {
-    t: 'Manuels de formation musicale',
-    d: 'Lecture, rythme, ear-training et théorie articulés dans une même pédagogie de la compréhension — pas de solfège déconnecté de la pratique instrumentale.',
+    t: 'Permis de Jouer™ — Système de progression N1 à N4',
+    d: "Dispositif pédagogique instrument-agnostique conçu pour rendre lisibles les étapes d'apprentissage, définir des objectifs clairs et valider progressivement les compétences pratiques.",
   },
   {
-    t: 'Ressources pour enseignants',
-    d: "Fiches de cours détaillées, grilles d'évaluation critériées, plans de progression trimestriels et supports numériques prêts à l'emploi.",
+    t: 'RMA-01 — Fondamentaux du Musicien',
+    d: "Socle pédagogique d'initiation et de consolidation : pulsation, coordination corporelle, écoute analytique et repères collectifs (Unité « Pulsation & Body »).",
   },
   {
-    t: 'Guides MAO & IA',
-    d: "Documents de travail accompagnant l'adoption raisonnée des outils numériques et de l'intelligence artificielle dans l'enseignement musical — positionnement et pratique.",
+    t: 'Tswefap — Système d’écriture & patrimoine Batoufam',
+    d: "Projet de documentation linguistique et patrimoniale : constitution d'un corpus, conventions d'écriture et préparation d'un manuel de référence alliant tradition orale et numérique.",
+  },
+  {
+    t: 'Recherches, MAO & Musique à l’image',
+    d: "Fiches de cours spécialisées, guides méthodologiques et communications scientifiques sur l'analyse de musiques de films (Harry Potter, cinéma d'horreur africain, transmédiatisation).",
+  },
+]
+
+const DEV_PROGRAMS = [
+  {
+    num: '01',
+    title: 'Laboratoire de musique à l’image',
+    desc: 'Analyse de bandes originales, fonctions narratives de la musique, initiation au sound design et exercices de composition appliquée à l’image.',
+  },
+  {
+    num: '02',
+    title: 'Atelier MAO et production musicale',
+    desc: 'Parcours pratique autour de la création de maquettes, de l’enregistrement, de l’édition audio, de l’arrangement et de la préparation de projets musicaux.',
+  },
+  {
+    num: '03',
+    title: 'Laboratoire de documentation patrimoniale',
+    desc: 'Méthodes de collecte, de description, de catalogage et de transmission de ressources culturelles (en articulation avec le projet Tswefap).',
+  },
+  {
+    num: '04',
+    title: 'Programme Musicien augmenté',
+    desc: 'Perfectionnement portant sur les outils numériques, l’intelligence artificielle, l’organisation du travail artistique et la production.',
+  },
+  {
+    num: '05',
+    title: 'Ateliers d’écoute et de médiation musicale',
+    desc: 'Séances consacrées à l’écoute guidée, à l’analyse d’œuvres, aux musiques de films et à la découverte contextualisée des patrimoines musicaux.',
   },
 ]
 
@@ -113,11 +158,7 @@ export default function Pedagogy() {
         "Parcours de formation musicale structuré, incluant l'éducation musicale, la MAO et la conception pédagogique.",
         'Racines Musicales Academy®',
       ),
-      courseSchema(
-        'Permis de Jouer™ — progression et certification',
-        "Système de progression et de certification rendant l'apprentissage musical lisible : paliers, objectifs, validation.",
-        'Racines Musicales Academy®',
-      ),
+      permisDeJouerProgramSchema(),
       creativeWorkSchema(
         'Manuels et méthodes pédagogiques',
         'Méthodes instrumentales, manuels de formation musicale et ressources pour enseignants.',
@@ -269,11 +310,11 @@ export default function Pedagogy() {
               </p>
 
               {/* Paliers visuels */}
-              <div className="mt-7 grid grid-cols-4 gap-3">
+              <div className="mt-7 grid grid-cols-4 gap-2.5">
                 {PERMIS_PALIERS.map((p) => (
-                  <div key={p.palier} className="border border-white/10 bg-ink-2 p-3 text-center">
-                    <p className="font-display text-xl text-gold">A{p.palier}</p>
-                    <p className="mt-1 text-[0.6rem] uppercase tracking-wider text-ivory/35">{p.couleur}</p>
+                  <div key={p.palier} className="border border-white/10 bg-ink-2 p-3 text-center rounded-lg">
+                    <p className="font-display text-xl text-gold">Permis {p.palier}</p>
+                    <p className="mt-1 text-[0.6rem] uppercase tracking-wider text-ivory/50">{p.couleur}</p>
                   </div>
                 ))}
               </div>
@@ -283,11 +324,19 @@ export default function Pedagogy() {
                   <Tag key={t}>{t}</Tag>
                 ))}
               </div>
-              <p className="mt-8 text-[0.68rem] uppercase tracking-[0.2em] text-ivory/40">
+              <p className="mt-6 text-[0.68rem] uppercase tracking-[0.2em] text-ivory/40">
                 Une initiative développée par Hervé Nanfang
               </p>
+              <div className="mt-5">
+                <ArrowLink to="/rma#permis-de-jouer">Découvrir les 4 Paliers & Candidatures</ArrowLink>
+              </div>
             </SpotlightCard>
           </Reveal>
+        </div>
+
+        {/* Visualiseur interactif des 4 Paliers du Permis de Jouer */}
+        <div className="mt-16 border-t border-white/10 pt-14" id="permis-de-jouer">
+          <PermisDeJouerVisualizer />
         </div>
       </Section>
 
@@ -319,6 +368,52 @@ export default function Pedagogy() {
               ))}
             </div>
           </Reveal>
+        </div>
+      </Section>
+
+      {/* ====================== PROGRAMMES DE DÉVELOPPEMENT ====================== */}
+      <Section tone="dark" id="programmes-developpement">
+        <Reveal>
+          <ChapterMark num="05" label="Programmes de Développement" />
+          <Display size="md" className="mt-7 max-w-3xl">
+            Cinq laboratoires et programmes à structurer
+          </Display>
+          <Lead className="mt-5 max-w-3xl">
+            Ces programmes prolongent de façon cohérente les compétences du parcours universitaire et de la scène. Ils constituent des pôles de conception et de formation professionnelle continue en cours de structuration.
+          </Lead>
+        </Reveal>
+
+        <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {DEV_PROGRAMS.map((prog, i) => (
+            <Reveal key={prog.num} delay={i * 60}>
+              <SpotlightCard className="flex h-full flex-col border-white/10 bg-ink p-8">
+                <div className="flex items-center justify-between">
+                  <span className="font-display text-2xl text-gold/70">{prog.num}</span>
+                  <Tag tone="gold">Pôle d'innovation</Tag>
+                </div>
+                <h3 className="mt-4 font-display text-2xl text-ivory leading-snug">{prog.title}</h3>
+                <Rule className="opacity-30 my-4" />
+                <p className="text-sm leading-relaxed text-ivory/60 flex-1">{prog.desc}</p>
+              </SpotlightCard>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* ====================== CANDIDATURE & AUDITION PIANO ====================== */}
+      <Section tone="ink" id="audition">
+        <Reveal>
+          <ChapterMark num="06" label="Candidature & Audition" />
+          <Display size="md" className="mt-7">
+            Rejoindre les cursus piano & formation musicale
+          </Display>
+          <Lead className="mt-4 max-w-2xl">
+            Du Permis A (initiation et fondations) au Permis D (professionnalisation et scène), transmettez votre candidature pour une audition d'orientation pédagogique personnalisée.
+          </Lead>
+        </Reveal>
+
+        <div className="mt-12">
+          <RMAAuditionForm />
         </div>
       </Section>
 

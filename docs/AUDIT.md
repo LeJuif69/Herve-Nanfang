@@ -1,6 +1,6 @@
 # Audit éditorial et technique — hervenanfang.vercel.app
 
-*Généré le 13/10/2026 par `npm run audit`.*
+*Généré le 14/10/2026 par `npm run audit`.*
 
 Cet audit analyse la **source** du site : il est reproductible après chaque modification.
 
@@ -17,7 +17,7 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 | Images sans `alt` | 0 sur 10 |
 | Routes absentes du sitemap | 0 |
 | URL du sitemap sans route | 0 |
-| Éléments factuels à confirmer | 8 |
+| Éléments factuels à confirmer | 1 |
 
 ## 2. Métadonnées par page
 
@@ -27,7 +27,7 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 | `Admin` | Administration | Hervé Nanfang | 30 | Espace privé du2019administration du site du2019Hervé Nanfang : conten… | 120 | 1 (balise <h1>) | — |
 | `AI` | IA & Technologie | Hervé Nanfang — Musicien Augmenté | 52 | Musique, MAO, pédagogie et communication digitale : la position d’Herv… | 152 | 1 (PageHero (h1 interne)) | Person, Organization, BreadcrumbList, Course, FAQPage, CreativeWork / Book |
 | `ArticleDetail` | Article introuvable | Hervé Nanfang (valeur dynamique) | 35 | Article introuvable — retour au Journal du Musicien Augmenté d'Hervé N… | 77 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Article |
-| `Conferences` | Conférences | Hervé Nanfang — IA, musique & pédagogie | 53 | Cinq conférences pour écoles, universités et institutions : le musicie… | 137 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service, Event |
+| `Conferences` | Conférences | Hervé Nanfang — IA, musique & pédagogie | 53 | Cinq conférences pour écoles, universités et institutions : le musicie… | 137 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
 | `Contact` | Contact | Hervé Nanfang — Booking, Formation & Conseil | 54 | Booking piano-bar, formation, conférence, collaboration, presse ou con… | 151 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
 | `Culture` | Culture & Recherche | Hervé Nanfang — musicologie | 49 | Musicologie, cultures africaines, patrimoine et transmission orale : c… | 148 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, CreativeWork / Book |
 | `Home` | Hervé Nanfang | Musicien, Musicologue & Musicien Augmenté | 57 | Hervé Nanfang, artiste-musicien camerounais : Piano-Bar, composition, … | 153 | 1 (balise <h1>) | Person, WebSite, Organization, MusicGroup |
@@ -63,14 +63,7 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 
 | # | À fournir | Utilisé dans |
 |---|---|---|
-| 1 | Années exactes d’enseignement à l’ESAS et à l’ISMA, et intitulés des cours dispensés. | Page À propos · chronologie · page Pédagogie |
-| 2 | Liste complète des établissements (universités, conservatoires, écoles) avec années. | Pages À propos et Pédagogie · références institutionnelles |
-| 3 | Titres, éditeurs et années des manuels, méthodes et publications pédagogiques. | Page Pédagogie · JSON-LD Book · kit presse |
-| 4 | Œuvres enregistrées, albums, singles, collaborations, musiques de film ou de publicité. | Page Musique · JSON-LD MusicGroup/CreativeWork · portfolio |
-| 5 | Dates de création et état d’avancement réel de RMA®, Permis de Jouer™, Tswefap, A LAIZ PROD. | Page Projets · statuts affichés |
-| 6 | Hôtels, lounges, institutions et événements où Le Pianobariste™ se produit (noms citables). | Page Musique · preuve commerciale · booking |
-| 7 | Crédits et autorisations de diffusion des photographies professionnelles. | Textes alternatifs · mentions légales · kit presse |
-| 8 | Forme juridique exacte, numéro de contribuable / RCCM, coordonnées de l’hébergeur. | Mentions légales · politique de confidentialité |
+| 1 | Numéro de contribuable / RCCM officiel d’ALAIZ Creative Systems / A LAIZ PROD pour mentions légales. | Mentions légales · politique de confidentialité |
 
 ## 8. Identité numérique — rappel de cohérence
 

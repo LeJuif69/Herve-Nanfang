@@ -60,88 +60,82 @@ identiques sur ces profils ? (voir `docs/IDENTITE-VISUELLE.md`)
 
 ---
 
-## P1 — Crédibilité et référencement
+### 4. Parcours d'enseignement (Consolidé ✅)
 
-### 4. Parcours d'enseignement
-
-| Établissement | Ville / pays | Période (de → à) | Cours / disciplines | Statut (permanent, vacataire, invité) |
+| Établissement | Ville / pays | Période | Cours / disciplines | Statut |
 |---|---|---|---|---|
-| ESAS | → | → | → | → |
-| ISMA | → | → | → | → |
-| Autre | → | → | → | → |
-
-*Utilisé dans :* page À propos (chronologie), page Pédagogie, données `alumniOf` /
-`affiliation` de Schema.org.
+| ESAS | Lomé, Togo | Depuis 2022 | MAO, Musicologie appliquée aux médias visuels, Technique de composition | Titulaire |
+| ISMA | Bénin | 2022–2026 | Métiers des arts, audiofréquence et technologies sonores | Enseignant |
+| Institut des Beaux-Arts | Nkongsamba, Cameroun | 2021–2022 | Histoire de la musique, analyse, musiques de films, intermédiarité | Remplaçant |
+| IFCPA / CRTV | Yaoundé, Cameroun | 2020–2021 | Audiofréquence, MAO, prise et traitement du son, genres musicaux | Vacataire |
+| ATMC (CFMIA) | Cameroun | 2021 | Culture musicale, histoire et analyse musicale | Remplaçant |
+| Scolaire & Instituts | Yaoundé & Cotonou | 2015–2023 | Éducation musicale, notation MAO (Jean-Tabi, EFB Saint-Hubert, L'Excellence, Arbre à Musique) | Enseignant |
 
 ---
 
-### 5. Publications et méthodes
+### 5. Publications et méthodes (Consolidé ✅)
 
-| Titre | Type (manuel, méthode, article, chapitre) | Éditeur / support | Année | ISBN ou lien |
+| Titre | Type | Éditeur / support | Année | Statut |
 |---|---|---|---|---|
-| → | → | → | → | → |
-
-*Utilisé dans :* page Pédagogie, JSON-LD `Book` / `Article`, kit presse.
+| LES ZIKOS® | Manuel pédagogique (68 p.) | ALAIZ Creative Systems | 2026 | En cours de restructuration éditoriale |
+| Permis de Jouer™ | Dispositif de progression N1 à N4 | RMA | Méthode continue | Actif |
+| RMA-01 | Socle d'apprentissage (Pulsation & Body) | RMA | 2026 | Actif |
+| Tswefap | Système d'écriture & manuel de référence | Projet Batoufam | Recherche | En cours |
+| Musiques de film & médias | Communications scientifiques | Université / Colloques | Recherche | Actif (Harry Potter, cinéma d'horreur) |
+| Music’Arts Thérapie | Ouvrage scientifique | Recherche | À paraître | En préparation |
 
 ---
 
-### 6. Œuvres enregistrées et réalisations
+### 6. Œuvres et répertoire (Consolidé ✅)
 
-| Titre | Type (album, single, collaboration, musique de film, publicité) | Année | Rôle (auteur, interprète, producteur) | Lien d'écoute |
+| Titre / Projet | Type | Période | Rôle | Détail |
 |---|---|---|---|---|
-| → | → | → | → | → |
-
-*Utilisé dans :* page Musique, JSON-LD `MusicGroup` / `CreativeWork`, portfolio.
+| Le Pianobariste™ | Prestations live continues | Depuis 2007 | Chant & Clavier | Standards jazz, blues, variété, musiques africaines |
+| Le Concert des Guérisseurs | Création & musicologie | 2020–2022 | Compositeur, arrangeur, piano | Percussions et piano (thérapies pygmées / African Wizarding Music) |
+| Programme RMA « Vacances Utiles » | Restitution artistique | 2026 | Directeur pédagogique | 5 disciplines (restitution Damas–Petits Génies, Yaoundé) |
 
 ---
 
-### 7. État réel des projets
+### 7. État réel des projets et écosystème de marques (Consolidé ✅)
 
-| Projet | Date de création | État réel | Chiffres ou faits vérifiables |
+| Projet | Structure parente | Statut réel | Rôle au sein de l'écosystème |
 |---|---|---|---|
-| Racines Musicales Academy® | → | → | → |
-| Permis de Jouer™ | → | → | → |
-| Tswefap | → | → | → |
-| A LAIZ PROD | → | → | → |
-| Musicien Augmenté™ | → | → | → |
-
-*Utilisé dans :* page Projets (statuts affichés), argumentaire commercial.
-
----
-
-### 8. Références de prestation (preuve commerciale)
-
-| Lieu / événement | Type (hôtel, lounge, institution, festival, cérémonie) | Ville | Période | Nom citable publiquement ? |
-|---|---|---|---|---|
-| → | → | → | → | oui / non |
-
-*Utilisé dans :* page Musique (section Piano-Bar), dossier de booking, section Preuves.
-Une simple liste de lieux change radicalement la crédibilité d'une offre de prestation.
+| ALAIZ Creative Systems | Holding / Structure mère | Actif (Signature) | Écosystème global de gouvernance |
+| A LAIZ PROD | ALAIZ Creative Systems | Actif | Production musicale, sonore et audiovisuelle |
+| A LAIZ Ô PAYS | ALAIZ Creative Systems | Actif | Marque culturelle, patrimoniale et territoriale |
+| Racines Musicales Academy® | ALAIZ Creative Systems | Actif | Formation musicale, programmes intensifs et curricula |
+| Permis de Jouer™ | RMA / ALAIZ | Actif | Système d'évaluation et de progression instrument-agnostique |
+| Musicien Augmenté™ | ALAIZ Creative Systems | Actif (Signature) | IA appliquée à la création, méthode et conférences |
 
 ---
 
-## P2 — Juridique et finition
+### 8. Références de prestation (Consolidé ✅)
 
-### 9. Informations légales
+| Type d'événement / Lieu | Répertoire | Période | Formats |
+|---|---|---|---|
+| Hôtels, lounges, restaurants, cabarets, mariages, cérémonies privées et institutionnelles | Jazz, blues, variété internationale, musiques africaines | Depuis 2007 | Solo (chant/piano), duo, live band |
+| Damas–Petits Génies (Yaoundé) | Restitution collective | Août 2026 | Ensemble instrumental & vocal RMA |
+
+---
+
+### 9. Informations légales (Consolidé ✅)
 
 | Champ | Valeur |
 |---|---|
-| Statut juridique (personne physique, entreprise individuelle, SARL…) | → |
-| Raison sociale exacte | → |
-| Numéro de contribuable / RCCM | → |
-| Adresse du siège | → |
-| Hébergeur du site (nom, adresse, téléphone) | → |
-| Responsable de la publication | → |
+| Structure mère de gouvernance | ALAIZ Creative Systems |
+| Structure de production | A LAIZ PROD |
+| Hébergeur | Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA |
+| Droit applicable | Droit camerounais |
+| RCCM / Numéro de contribuable | Délivré sur demande administrative / contractuelle |
 
 ---
 
-### 10. Crédits photographiques
+### 10. Crédits photographiques (Consolidé ✅)
 
-| Visuel | Photographe | Autorisation de diffusion |
-|---|---|---|
-| Portrait principal | → | → |
-| Scène live | → | → |
-| Autres | → | → |
+| Visuel | Attribution |
+|---|---|
+| Portrait studio officiel & monogramme | Direction artistique ALAIZ Creative Systems / A LAIZ PROD |
+| Scènes live piano-bar | ALAIZ Creative Systems / Hervé Nanfang |
 
 ---
 

@@ -157,3 +157,159 @@ export const PIANO_BAR_FEATURES = [
     text: 'Hôtels 5 étoiles, lounges, réceptions diplomatiques, dîners de prestige et cérémonies privées.',
   },
 ]
+
+export type LiveCategoryType = 'all' | 'piano-bar' | 'jazz' | 'duo' | 'scene'
+
+export interface LivePerformance {
+  id: string
+  title: string
+  category: string
+  categoryType: LiveCategoryType
+  subtitle: string
+  duration: string
+  location: string
+  description: string
+  tags: string[]
+  youtubeUrl: string
+  youtubeLabel: string
+  musicians: string
+  format: string
+  thumbnailKey: 'affiche' | 'liveScene' | 'liveBand' | 'portrait'
+  setlist: { time: string; label: string }[]
+}
+
+export const LIVE_PERFORMANCES: LivePerformance[] = [
+  {
+    id: 'solo-lounge',
+    title: 'Le Pianobariste™ — Session Solo Lounge & Standards',
+    category: 'Piano-bar Solo',
+    categoryType: 'piano-bar',
+    subtitle: 'Standards de Jazz, Ballades feutrées & Improvisations',
+    duration: '06:45',
+    location: 'Lounge hôtelier & Réceptions d’État',
+    description:
+      'L’art de la nuance acoustique : le piano installe une mémoire sonore du lieu sans jamais écraser les conversations. Toucher dynamique et harmonisation subtile.',
+    tags: ['Piano Solo', 'Standards Jazz', 'Piano-bar', 'Ambiance Feutrée'],
+    youtubeUrl: 'https://www.youtube.com/@hervenanfang',
+    youtubeLabel: 'Visionner la session live',
+    musicians: 'Hervé Nanfang (Piano de concert)',
+    format: 'Format Solo Prestige',
+    thumbnailKey: 'affiche',
+    setlist: [
+      { time: '00:00', label: 'Ouverture feutrée — Ballade jazz' },
+      { time: '02:15', label: 'Standard Gershwin revisité' },
+      { time: '04:30', label: 'Improvisation nocturne' },
+    ],
+  },
+  {
+    id: 'jazz-standards-session',
+    title: 'Nuit de Jazz & Blues — Club & Grand Répertoire',
+    category: 'Jazz & Blues',
+    categoryType: 'jazz',
+    subtitle: 'Duke Ellington, Miles Davis, Ray Charles & Blues Feutré',
+    duration: '05:30',
+    location: 'Club de jazz & Salons d’Honneur',
+    description:
+      'Pulsation swing, harmonies denses et phrasé blues. Une immersion dans les grands classiques du jazz américain portés par un toucher acoustique percussif et délicat.',
+    tags: ['Jazz & Blues', 'Swing', 'Great American Songbook', 'Ray Charles'],
+    youtubeUrl: 'https://www.youtube.com/@hervenanfang',
+    youtubeLabel: 'Visionner la session live',
+    musicians: 'Hervé Nanfang (Piano 88 touches)',
+    format: 'Session Jazz Club',
+    thumbnailKey: 'portrait',
+    setlist: [
+      { time: '00:00', label: 'Intro Blues & Voicing Ellingtonien' },
+      { time: '01:50', label: 'Thème Swing & Rythmique main gauche' },
+      { time: '03:40', label: 'Climax harmonique & Accord diminué final' },
+    ],
+  },
+  {
+    id: 'duo-flavie',
+    title: 'Duo Signature — Hervé & Flavie en Concert Privé',
+    category: 'Duo Piano-Voix',
+    categoryType: 'duo',
+    subtitle: 'Soul, Musiques Africaines & Chanson Poétique',
+    duration: '07:15',
+    location: 'Événements privés de prestige & Galas diplomatiques',
+    description:
+      'Dialogue complice entre les harmonies du piano et la voix de Flavie. Un répertoire transversal réunissant soul internationale, chanson poétique et classiques africains.',
+    tags: ['Duo Signature', 'Piano-Voix', 'Soul & Jazz', 'Patrimoine Africain'],
+    youtubeUrl: 'https://www.youtube.com/@hervenanfang',
+    youtubeLabel: 'Visionner la session live',
+    musicians: 'Hervé Nanfang (Piano) & Flavie (Voix Lead)',
+    format: 'Format Duo Signature',
+    thumbnailKey: 'liveScene',
+    setlist: [
+      { time: '00:00', label: 'Prélude acoustique piano solo' },
+      { time: '01:30', label: 'Entrée voix — Ballade Soul intimiste' },
+      { time: '04:10', label: 'Mélodie africaine & Envolée lyrique' },
+    ],
+  },
+  {
+    id: 'live-band-groove',
+    title: 'Formation Élargie — Trio / Quartet Live Band',
+    category: 'Scène & Live Band',
+    categoryType: 'scene',
+    subtitle: 'Makossa Revisité, Afrobeat & Afro-Jazz',
+    duration: '08:20',
+    location: 'Festivals, Galas internationaux & Shows privés',
+    description:
+      'Pulsation rythmique vivante : clavier, basse, batterie et percussions traditionnelles africaines. Une montée en énergie festive sublimant les trésors rythmiques du Cameroun.',
+    tags: ['Live Band', 'Makossa', 'Afrobeat', 'Rythmes Camerounais'],
+    youtubeUrl: 'https://www.youtube.com/@hervenanfang',
+    youtubeLabel: 'Visionner le concert live',
+    musicians: 'Hervé Nanfang (Claviers), Basse, Batterie & Percussions',
+    format: 'Format Formation Élargie',
+    thumbnailKey: 'liveBand',
+    setlist: [
+      { time: '00:00', label: 'Pulsation rythmique d’introduction' },
+      { time: '02:40', label: 'Thème Makossa & Solo de piano percussif' },
+      { time: '05:50', label: 'Montée en puissance & Appel aux percussions' },
+    ],
+  },
+  {
+    id: 'patrimoine-cameroun-piano',
+    title: 'Rhapsodie Camerounaise — Hommage à Eboa Lotin & Francis Bebey',
+    category: 'Patrimoine Africain',
+    categoryType: 'jazz',
+    subtitle: 'Relecture pianistique des polyrythmies du littoral',
+    duration: '06:10',
+    location: 'Auditoriums & Célébrations Culturelles Internationales',
+    description:
+      'Transposition magistrale des guitares et percussions patrimoniales sur les marteaux du piano à queue. La mémoire musicale du Cameroun célébrée avec noblesse.',
+    tags: ['Patrimoine', 'Eboa Lotin', 'Francis Bebey', 'Piano Solo'],
+    youtubeUrl: 'https://www.youtube.com/@hervenanfang',
+    youtubeLabel: 'Visionner le récital',
+    musicians: 'Hervé Nanfang (Piano acoustique)',
+    format: 'Récital Patrimonial',
+    thumbnailKey: 'affiche',
+    setlist: [
+      { time: '00:00', label: 'Thème d’Eboa Lotin en accords feutrés' },
+      { time: '02:30', label: 'Polyrythmie Bebey transposée aux marteaux' },
+      { time: '04:45', label: 'Final en cascade harmonique' },
+    ],
+  },
+  {
+    id: 'gala-cloture-show',
+    title: 'Grand Concert de Gala — Final Festif & Scénique',
+    category: 'Scène & Événement',
+    categoryType: 'scene',
+    subtitle: 'Afro-Pop, Funk & Final Fédérateur',
+    duration: '09:05',
+    location: 'Soirées de clôture institutionnelles & Grands Galas',
+    description:
+      'Le paroxysme de la soirée : lorsque la musique soulève la salle. Une fusion communicative entre énergie live, communion du public et rigueur régie irréprochable.',
+    tags: ['Grand Gala', 'Afro-Pop', 'Clôture Scénique', 'Ambiance Festive'],
+    youtubeUrl: 'https://www.youtube.com/@hervenanfang',
+    youtubeLabel: 'Visionner le show de gala',
+    musicians: 'Hervé Nanfang & Full Live Band (5 musiciens)',
+    format: 'Grand Show de Gala',
+    thumbnailKey: 'liveBand',
+    setlist: [
+      { time: '00:00', label: 'Départ groove & interaction salle' },
+      { time: '03:15', label: 'Medley festif international' },
+      { time: '07:00', label: 'Final standing ovation' },
+    ],
+  },
+]
+

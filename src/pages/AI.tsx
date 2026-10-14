@@ -584,10 +584,11 @@ export default function AI() {
                       {a.excerpt}
                     </p>
                   </div>
-                  <div className="mt-6 border-t border-white/5 pt-3">
+                  <div className="mt-6 border-t border-white/5 pt-3 flex items-center justify-between">
                     <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-gold group-hover:text-gold-2 inline-flex items-center gap-1.5">
-                      Lire l’article complet <span>→</span>
+                      Lire l’article <span>→</span>
                     </span>
+                    <span className="text-[0.6rem] uppercase tracking-wider text-ivory/40">Hervé Nanfang</span>
                   </div>
                 </SpotlightCard>
               </Link>

@@ -4,6 +4,7 @@ import Header from './Header'
 import Footer from './Footer'
 import AudioPlayer from './AudioPlayer'
 import CommandMenu from './CommandMenu'
+import FloatingNavControls from './FloatingNavControls'
 
 /** Remet la page en haut à chaque changement de route (sauf ancres). */
 function ScrollManager() {
@@ -48,6 +49,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <FloatingNavControls />
       <AudioPlayer />
       <CommandMenu />
     </div>

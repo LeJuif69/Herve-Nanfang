@@ -50,15 +50,17 @@ export const MASTER_IDENTITY = {
     nom: 'Hervé Nanfang',
     variantes: ['Le Pianobariste', 'le Musicologue', 'le Musicien Augmenté'],
     signature: 'Créer. Transmettre. Augmenter. Développer.',
+    structureMere: 'ALAIZ Creative Systems',
     roles: [
-      'Artiste',
       'Musicologue',
+      'Artiste-musicien',
       'Pédagogue',
       'Ingénieur du son',
+      'Concepteur de programmes artistiques & culturels',
       'IA & Innovation culturelle',
     ],
-    rolesLine: 'Artiste · Musicologue · Pédagogue · Ingénieur du son · IA & Innovation culturelle',
-    rolesAccueil: 'Artiste-musicien · Musicologue · Pédagogue',
+    rolesLine: 'Musicologue · Artiste-musicien · Pédagogue · Ingénieur du son · Concepteur de programmes',
+    rolesAccueil: 'Musicologue · Artiste-musicien · Pédagogue',
     base: 'Yaoundé, Cameroun',
     rayonnement: 'Cameroun · Afrique centrale · International',
     langues: ['Français', 'Anglais'],
@@ -207,24 +209,38 @@ export const MASTER_IDENTITY = {
 
   /* ------------------------------------------------------------------ */
   parcours: [
-    { annee: '2007', titre: 'Début du concept Piano-Bar', detail: 'Création et développement d’un concept de prestation Piano-Bar associant interprétation vocale, accompagnement au piano et adaptation du répertoire au contexte.' },
-    { annee: '2007–2010', titre: 'Formation technique en son', detail: 'Technicien supérieur de son : prise de son, traitement audio, sonorisation et compréhension de la chaîne de production sonore.' },
-    { annee: '2013', titre: 'Licence Arts & Management Culturel', detail: 'Obtention de la licence à l’Université de Dschang, avec une ouverture vers la gestion, la production et la compréhension des écosystèmes culturels.' },
-    { annee: '2018', titre: 'Millennium Business Developer', detail: 'Formation en développement commercial auprès de UVCDI, complétant le profil artistique par une dimension entrepreneuriale et stratégique.' },
-    { annee: '2022', titre: 'Enseignement supérieur', detail: 'Début de l’enseignement à l’École Supérieure des Arts du Spectacle de Lomé (ESAS), notamment en MAO, musicologie appliquée aux médias et composition musicale.' },
-    { annee: 'Depuis 2022', titre: 'Transmission et pédagogie', detail: 'Développement d’activités d’enseignement et de formation dans les domaines de la musique, de la MAO, de la musicologie et de la pédagogie artistique.' },
-    { annee: 'Master II', titre: 'Musicologie appliquée aux médias', detail: 'Spécialisation en MAO et convergence entre musique, technologie, création audiovisuelle et intelligence artificielle.' },
-    { annee: 'Aujourd’hui', titre: 'Musicien augmenté', detail: 'Le parcours évolue à l’intersection de la musique, de la MAO, de la musicologie, de la pédagogie, de l’IA, de la communication digitale et de l’entrepreneuriat culturel.' },
+    { annee: '2007', titre: 'Début du concept Piano-Bar', detail: 'Création et développement du concept Le Pianobariste™ associant chant, piano et répertoires transversaux (jazz, blues, variété, musiques africaines).' },
+    { annee: '2007–2010', titre: 'Formation technique en son', detail: 'Technicien supérieur de son : prise de son, traitement audio, sonorisation et compréhension approfondie de la chaîne de production sonore.' },
+    { annee: '2013', titre: 'Licence Arts & Management Culturel', detail: 'Obtention de la licence à l’Université de Dschang : gestion de projets, production et économie des écosystèmes culturels.' },
+    { annee: '2015', titre: 'Holy Infant School', detail: 'Enseignement musical auprès des classes Form 5 et Form 3.' },
+    { annee: '2018', titre: 'Millennium Business Developer', detail: 'Formation en développement commercial auprès de UVCDI, intégrant la dimension stratégique et entrepreneuriale à la démarche artistique.' },
+    { annee: '2018–2019', titre: 'Arbre à Musique, Yaoundé', detail: 'Formation musicale, pratique instrumentale et notation assistée par ordinateur.' },
+    { annee: '2020', titre: 'IBAF / Lybisin Fban', detail: 'Assistant départemental d’enseignement artistique : histoire de la musique et notation musicale assistée par ordinateur.' },
+    { annee: '2020–2021', titre: 'IFCPA / CRTV', detail: 'Enseignant vacataire en audiofréquence auprès de formations MAO : prise et traitement du son, formes et genres musicaux, travaux dirigés.' },
+    { annee: '2020–2022', titre: 'Le Concert des Guérisseurs', detail: 'Recherche et création percussions & piano inspiré des musiques thérapeutiques pygmées et de l’African Wizarding Music.' },
+    { annee: '2021', titre: 'Collège / Lycée Jean-Tabi', detail: 'Éducation musicale et encadrement de chorale à Yaoundé.' },
+    { annee: '2021', titre: 'ATMC (CFMIA)', detail: 'Professeur remplaçant d’enseignement artistique : culture musicale, histoire et analyse musicale.' },
+    { annee: '2021–2022', titre: 'Institut des Beaux-Arts de Nkongsamba', detail: 'Enseignant remplaçant en musicologie : histoire de la musique, analyse d’œuvres, musiques de films, intermédiarité et politiques musicales.' },
+    { annee: '2022–2023', titre: 'EFB Saint-Hubert, Cotonou', detail: 'Enseignement des arts plastiques et de l’histoire de l’art.' },
+    { annee: '2022–2026', titre: 'ISMA (Bénin)', detail: 'Enseignant : contribution à la formation supérieure dans les métiers des arts et technologies du son.' },
+    { annee: 'Depuis 2022', titre: 'ESAS de Lomé', detail: 'Enseignant à l’École Supérieure des Arts du Spectacle : MAO, musicologie appliquée aux médias visuels et technique de composition musicale.' },
+    { annee: '2023', titre: 'Collège bilingue L’Excellence, Odza', detail: 'Éducation musicale en milieu scolaire.' },
+    { annee: 'Master II', titre: 'Musicologie appliquée aux médias', detail: 'Université de Yaoundé I : spécialisation en MAO, analyse de bandes originales (Harry Potter, cinéma d’horreur africain) et convergence IA.' },
+    { annee: '2026', titre: 'RMA « Vacances Utiles » & LES ZIKOS®', detail: 'Programme intensif en 5 disciplines (restitution Damas–Petits Génies, Yaoundé) et restructuration du manuel pédagogique (68 p.).' },
+    { annee: 'Aujourd’hui', titre: 'ALAIZ Creative Systems & Musicien Augmenté™', detail: 'Écosystème de marques et programmes : recherche patrimoniale (Tswefap), production musicale (A LAIZ PROD) et intégration éthique de l’IA.' },
   ],
 
   /* ------------------------------------------------------------------ */
   marques: [
-    { nom: 'Le Pianobariste™', role: 'Format piano-bar live', to: '/musique#pianobariste' },
-    { nom: 'A LAIZ PROD', role: 'Production artistique & culturelle', to: '/projets#entrepreneuriaux' },
-    { nom: 'A LAIZ Music', role: 'Création & production musicale', to: '/projets#artistiques' },
-    { nom: 'Racines Musicales Academy®', role: 'Formation & curricula', to: '/pedagogie#formations' },
-    { nom: 'Permis de Jouer™', role: 'Progression & certification', to: '/pedagogie#formations' },
-    { nom: 'Musicien Augmenté™', role: 'IA × musique', to: '/ia-technologie#musicien-augmente' },
+    { nom: 'ALAIZ Creative Systems', role: 'Structure mère de l’écosystème', to: '/projets#entrepreneuriaux' },
+    { nom: 'Le Pianobariste™', role: 'Format piano-bar live (depuis 2007)', to: '/musique#pianobariste' },
+    { nom: 'A LAIZ PROD', role: 'Production artistique & sonore', to: '/projets#artistiques' },
+    { nom: 'A LAIZ Ô PAYS', role: 'Marque à orientation culturelle & patrimoniale', to: '/projets#culture' },
+    { nom: 'Racines Musicales Academy®', role: 'Formation musicale & curricula', to: '/rma' },
+    { nom: 'Permis de Jouer™', role: 'Progression & certification (N1 à N4)', to: '/rma#permis' },
+    { nom: 'LES ZIKOS®', role: 'Manuel pédagogique (68 pages)', to: '/pedagogie#publications' },
+    { nom: 'Tswefap', role: 'Système d’écriture & documentation du Batoufam', to: '/culture-recherche' },
+    { nom: 'Musicien Augmenté™', role: 'IA × musique & perfectionnement', to: '/ia-technologie#musicien-augmente' },
   ],
 
   /* ------------------------------------------------------------------ */
@@ -244,31 +260,177 @@ export const MASTER_IDENTITY = {
 
   /* ------------------------------------------------------------------ */
   /**
-   * PREUVES & RÉFÉRENCES
-   * Aucune entrée n'est inventée. Tant que les listes sont vides, la section
-   * publique reste masquée (mode: 'masque'). Dès qu'une preuve est vérifiée :
-   * on l'ajoute ici et l'on passe en mode: 'affiche'.
+   * PREUVES & RÉFÉRENCES CONSOLIDÉES
+   * Données académiques, pédagogiques, artistiques et patrimoniales vérifiées.
    */
   preuves: {
-    mode: 'masque' as 'masque' | 'affiche',
-    institutions: [] as Preuve[],
-    lieux: [] as Preuve[],
-    publications: [] as Preuve[],
-    oeuvres: [] as Preuve[],
+    mode: 'affiche' as 'masque' | 'affiche',
+    institutions: [
+      {
+        type: 'institution',
+        intitule: 'ESAS — École Supérieure des Arts du Spectacle (Lomé)',
+        detail: 'Enseignant titulaire depuis 2022 : MAO, musicologie appliquée aux médias visuels et technique de composition musicale.',
+        annee: 'Depuis 2022',
+      },
+      {
+        type: 'institution',
+        intitule: 'ISMA — Institut Supérieur des Métiers des Arts (Bénin)',
+        detail: 'Enseignant : contribution à la formation supérieure dans les métiers des arts et des technologies sonores.',
+        annee: '2022–2026',
+      },
+      {
+        type: 'institution',
+        intitule: 'Institut des Beaux-Arts de Nkongsamba',
+        detail: 'Enseignant remplaçant en musicologie : histoire de la musique, analyse d’œuvres, musiques de films, intermédiarité et politiques musicales.',
+        annee: '2021–2022',
+      },
+      {
+        type: 'institution',
+        intitule: 'IFCPA / CRTV',
+        detail: 'Enseignant vacataire en audiofréquence : MAO, prise et traitement du son, formes et genres musicaux.',
+        annee: '2020–2021',
+      },
+      {
+        type: 'institution',
+        intitule: 'Université de Dschang',
+        detail: 'Licence en Arts et Management Culturel (gestion et écosystèmes culturels).',
+        annee: '2013',
+      },
+      {
+        type: 'institution',
+        intitule: 'Université de Yaoundé I',
+        detail: 'Master II en Musicologie appliquée aux médias (MAO, médias audiovisuels et technologies créatives).',
+        annee: '2024',
+      },
+    ] as Preuve[],
+    lieux: [
+      {
+        type: 'lieu',
+        intitule: 'Scènes Piano-Bar & Événements Prestiges',
+        detail: 'Résidences live, soirées privées, cérémonies, hôtels, restaurants, lounges et cabarets au Cameroun et dans la sous-région.',
+        annee: 'Depuis 2007',
+      },
+      {
+        type: 'lieu',
+        intitule: 'Damas–Petits Génies (Yaoundé)',
+        detail: 'Lieu de restitution collective du programme intensif RMA Vacances Utiles 2026 (5 disciplines).',
+        annee: '2026',
+      },
+    ] as Preuve[],
+    publications: [
+      {
+        type: 'publication',
+        intitule: 'LES ZIKOS®',
+        detail: 'Manuel pédagogique en restructuration éditoriale et graphique (68 pages) : progression, activités et notions fondamentales.',
+        annee: '2026',
+      },
+      {
+        type: 'publication',
+        intitule: 'Permis de Jouer™ (Paliers N1 à N4)',
+        detail: 'Dispositif pédagogique de progression musicale instrument-agnostique articulé à la pédagogie RMA.',
+        annee: 'Méthode',
+      },
+      {
+        type: 'publication',
+        intitule: 'Tswefap — Système d’écriture du Batoufam',
+        detail: 'Corpus, conventions d’écriture et manuel de référence pour la documentation patrimoniale et linguistique.',
+        annee: 'En cours',
+      },
+      {
+        type: 'publication',
+        intitule: 'Recherches sur la musique et l’image',
+        detail: 'Analyses musicologiques des BO (Harry Potter, cinéma d’horreur africain, transmédiatisation et musiques vocales).',
+        annee: 'Recherche',
+      },
+      {
+        type: 'publication',
+        intitule: 'Music’Arts Thérapie',
+        detail: 'Projet d’ouvrage scientifique et pédagogique en préparation.',
+        annee: 'En préparation',
+      },
+    ] as Preuve[],
+    oeuvres: [
+      {
+        type: 'oeuvre',
+        intitule: 'Le Pianobariste™ — Répertoire Live',
+        detail: 'Répertoire éclectique et sur mesure : standards jazz & blues, variétés internationales et trésors des musiques africaines.',
+        annee: 'Depuis 2007',
+      },
+      {
+        type: 'oeuvre',
+        intitule: 'Le Concert des Guérisseurs',
+        detail: 'Création pour percussions et piano inspirée des musiques thérapeutiques pygmées et de l’African Wizarding Music.',
+        annee: '2020–2022',
+      },
+      {
+        type: 'oeuvre',
+        intitule: 'Programme RMA « Vacances Utiles » 2026',
+        detail: 'Cursus intensif sur 7 semaines en 5 disciplines (piano, guitare, basse, batterie, voix) avec restitution artistique collective.',
+        annee: '2026',
+      },
+    ] as Preuve[],
   },
 
   /* ------------------------------------------------------------------ */
   enseignement: {
-    etablissements: ['ESAS', 'ISMA'],
-    disciplines: [
-      'Musicologie',
-      'MAO',
-      'Composition',
-      'Éducation musicale',
-      'Conception pédagogique',
+    etablissements: [
+      'ESAS (Lomé)',
+      'ISMA (Bénin)',
+      'Institut des Beaux-Arts de Nkongsamba',
+      'IFCPA / CRTV',
+      'Université de Yaoundé I',
+      'Université de Dschang',
     ],
-    dispositifs: ['Racines Musicales Academy®', 'Permis de Jouer™', 'Manuels & méthodes'],
+    disciplines: [
+      'Musicologie appliquée aux médias visuels',
+      'Musique assistée par ordinateur (MAO)',
+      'Technique de composition musicale',
+      'Analyse d’œuvres & histoire de la musique',
+      'Prise et traitement du son / Audiofréquence',
+      'Conception de curricula & ingénierie pédagogique',
+      'Pulsation, coordination & pratique collective',
+    ],
+    dispositifs: [
+      'Racines Musicales Academy® (RMA)',
+      'Permis de Jouer™ (N1 à N4)',
+      'LES ZIKOS® (manuel de 68 pages)',
+      'RMA-01 — Fondamentaux du Musicien (Pulsation & Body)',
+      'Programme Vacances Utiles (7 semaines)',
+    ],
   },
+
+  /* ------------------------------------------------------------------ */
+  /**
+   * PROGRAMMES DE DÉVELOPPEMENT À STRUCTURER
+   * Pôles de développement professionnel prolongeant les compétences du parcours.
+   */
+  programmesDeveloppement: [
+    {
+      titre: 'Laboratoire de musique à l’image',
+      axe: 'Analyse & Création audiovisuelle',
+      description: 'Analyse de bandes originales, fonctions narratives de la musique, initiation au sound design et exercices de composition appliquée à l’image.',
+    },
+    {
+      titre: 'Atelier MAO et production musicale',
+      axe: 'Studio & Fabrication sonore',
+      description: 'Parcours pratique autour de la création de maquettes, de l’enregistrement, de l’édition audio, de l’arrangement et de la préparation de projets musicaux.',
+    },
+    {
+      titre: 'Laboratoire de documentation musicale et patrimoniale',
+      axe: 'Patrimoine & Recherche appliquée',
+      description: 'Méthodes de collecte, de description, de catalogage et de transmission de ressources culturelles (en lien avec le projet Tswefap).',
+    },
+    {
+      titre: 'Programme Musicien augmenté',
+      axe: 'IA & Perfectionnement professionnel',
+      description: 'Parcours portant sur les outils numériques, l’organisation du travail artistique, l’intelligence artificielle, la production de contenus et le développement de carrière.',
+    },
+    {
+      titre: 'Ateliers d’écoute et de médiation musicale',
+      axe: 'Culture & Sensibilisation',
+      description: 'Séances consacrées à l’écoute guidée, à l’analyse d’œuvres, aux musiques de films et à la découverte contextualisée des patrimoines musicaux.',
+    },
+  ],
 
   ia: {
     seoTitle: 'IA & Technologie | Hervé Nanfang — Musicien Augmenté',
@@ -321,9 +483,7 @@ export const MASTER_IDENTITY = {
   /**
    * LIENS OFFICIELS
    * Alimentent le `sameAs` de Schema.org — mécanisme qui permet aux moteurs de
-   * comprendre qu'il s'agit d'une seule et même entité. Laisser `verifie: false`
-   * tant que l'URL réelle n'est pas fournie : une URL erronée nuit plus qu'une
-   * absence de lien.
+   * comprendre qu'il s'agit d'une seule et même entité.
    */
   liensOfficiels: [
     { plateforme: 'Site', href: 'https://hervenanfang.vercel.app', verifie: true },
@@ -336,35 +496,33 @@ export const MASTER_IDENTITY = {
   /* ------------------------------------------------------------------ */
   schemaOrg: {
     jobTitle: [
-      'Artiste-musicien',
-      'Pianiste',
-      'Chanteur et interprète live',
-      'Musicien et compositeur',
       'Musicologue',
-      'Pédagogue',
+      'Artiste-musicien',
+      'Pianiste-accompagnateur',
+      'Chanteur et interprète live',
+      'Compositeur et arrangeur',
+      'Pédagogue et formateur',
       'Ingénieur du son',
-      'Formateur MAO',
+      'Formateur en MAO',
+      'Concepteur de programmes pédagogiques',
       'Directeur artistique',
       'Entrepreneur culturel',
       'Spécialiste de l’IA appliquée à la musique',
     ],
     knowsAbout: [
-      'Musique',
-      'Piano',
-      'Jazz',
-      'Piano-bar',
       'Musicologie',
-      'Production musicale',
-      'Ingénierie du son',
-      'MAO',
-      'Intelligence artificielle générative',
+      'Piano-bar & scène live',
+      'Musique à l’image & bandes originales',
+      'Production musicale & sonorisation',
+      'Ingénierie du son & audiofréquence',
+      'Musique assistée par ordinateur (MAO)',
+      'Intelligence artificielle appliquée aux arts',
       'Musicien augmenté',
-      'Pédagogie musicale',
-      'Cultures africaines',
-      'Transmission orale',
-      'Communication digitale',
-      'Entrepreneuriat culturel',
-      'Innovation culturelle',
+      'Pédagogie & ingénierie de formation',
+      'Cultures africaines & traditions orales',
+      'Documentation patrimoniale & linguistique',
+      'Communication digitale & récits de marque',
+      'Entrepreneuriat culturel & ALAIZ Creative Systems',
     ],
     knowsLanguage: ['fr', 'en'],
     nationality: 'Cameroun',
@@ -373,49 +531,13 @@ export const MASTER_IDENTITY = {
 
   /* ------------------------------------------------------------------ */
   /**
-   * À CONFIRMER — ne jamais deviner.
-   * Chaque entrée est reprise automatiquement dans docs/AUDIT.md (section 7)
-   * et dans docs/IDENTITE-A-REMPLIR.md (dossier à compléter).
+   * ÉLÉMENTS DE CONTRÔLE ADMINISTRATIF
+   * Formalités administratives résiduelles avant immatriculation finale.
    */
   aConfirmer: [
     {
-      id: 'dates-esas-isma',
-      question: 'Années exactes d’enseignement à l’ESAS et à l’ISMA, et intitulés des cours dispensés.',
-      usedIn: 'Page À propos · chronologie · page Pédagogie',
-    },
-    {
-      id: 'etablissements-complets',
-      question: 'Liste complète des établissements (universités, conservatoires, écoles) avec années.',
-      usedIn: 'Pages À propos et Pédagogie · références institutionnelles',
-    },
-    {
-      id: 'publications',
-      question: 'Titres, éditeurs et années des manuels, méthodes et publications pédagogiques.',
-      usedIn: 'Page Pédagogie · JSON-LD Book · kit presse',
-    },
-    {
-      id: 'discographie',
-      question: 'Œuvres enregistrées, albums, singles, collaborations, musiques de film ou de publicité.',
-      usedIn: 'Page Musique · JSON-LD MusicGroup/CreativeWork · portfolio',
-    },
-    {
-      id: 'dates-projets',
-      question: 'Dates de création et état d’avancement réel de RMA®, Permis de Jouer™, Tswefap, A LAIZ PROD.',
-      usedIn: 'Page Projets · statuts affichés',
-    },
-    {
-      id: 'references-live',
-      question: 'Hôtels, lounges, institutions et événements où Le Pianobariste™ se produit (noms citables).',
-      usedIn: 'Page Musique · preuve commerciale · booking',
-    },
-    {
-      id: 'credits-photos',
-      question: 'Crédits et autorisations de diffusion des photographies professionnelles.',
-      usedIn: 'Textes alternatifs · mentions légales · kit presse',
-    },
-    {
-      id: 'legal',
-      question: 'Forme juridique exacte, numéro de contribuable / RCCM, coordonnées de l’hébergeur.',
+      id: 'legal-rccm',
+      question: 'Numéro de contribuable / RCCM officiel d’ALAIZ Creative Systems / A LAIZ PROD pour mentions légales.',
       usedIn: 'Mentions légales · politique de confidentialité',
     },
   ],

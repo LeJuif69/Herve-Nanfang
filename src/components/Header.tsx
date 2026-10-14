@@ -71,13 +71,16 @@ export default function Header() {
         }`}
       >
         <div className="mx-auto flex max-w-[86rem] items-center justify-between gap-6 px-6 py-4 md:px-10 lg:px-14">
-          <Link to="/" className="group flex items-center gap-3" aria-label="Hervé Nanfang — accueil">
-            <img
-              src="/hn-initials-mark.png"
-              alt=""
-              aria-hidden="true"
-              className="h-9 w-9 shrink-0 object-contain transition-transform group-hover:scale-[1.04]"
-            />
+          <Link to="/" className="group flex items-center gap-3.5" aria-label="Hervé Nanfang — accueil">
+            {/* Écrin du monogramme initiales HN */}
+            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gold/40 bg-gradient-to-br from-ink-2 via-black to-ink p-1.5 shadow-[0_0_15px_rgba(198,161,91,0.2)] ring-1 ring-gold/20 transition-all duration-300 group-hover:scale-105 group-hover:border-gold group-hover:shadow-[0_0_25px_rgba(198,161,91,0.4)]">
+              <img
+                src="/hn-initials-mark.png"
+                alt=""
+                aria-hidden="true"
+                className="h-full w-full object-contain"
+              />
+            </div>
             <span className="leading-none">
               <span className="block font-display text-[1.35rem] tracking-[0.02em] text-ivory md:text-[1.55rem]">
                 Hervé Nanfang
@@ -182,9 +185,19 @@ export default function Header() {
       >
         <div className="mx-auto max-w-xl px-6 pb-12 pt-28 sm:px-9">
           <div className="mb-7 flex items-end justify-between border-b border-white/10 pb-5">
-            <div>
-              <p className="eyebrow text-gold">Hervé Nanfang</p>
-              <h2 className="mt-2 font-display text-3xl text-ivory">Navigation</h2>
+            <div className="flex items-center gap-3.5">
+              <div className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gold/40 bg-gradient-to-br from-ink-2 via-black to-ink p-1.5 shadow-[0_0_15px_rgba(198,161,91,0.2)] ring-1 ring-gold/20">
+                <img
+                  src="/hn-initials-mark.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="h-full w-full object-contain"
+                />
+              </div>
+              <div>
+                <p className="eyebrow text-gold">Hervé Nanfang</p>
+                <h2 className="mt-1 font-display text-2xl text-ivory">Navigation</h2>
+              </div>
             </div>
             <span className="text-[0.62rem] uppercase tracking-[0.2em] text-ivory/35">
               {String(NAV_PRIMARY.length).padStart(2, '0')} rubriques

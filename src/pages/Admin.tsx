@@ -199,6 +199,10 @@ export default function Admin() {
                   showToast(`Fichier « ${res.filename} » uploadé avec succès.`)
                   return res
                 }}
+                onSyncFromCode={() => {
+                  adminStore.syncArticlesFromCode()
+                  showToast('Articles resynchronisés depuis src/data/articles.ts.')
+                }}
               />
             )}
 

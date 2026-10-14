@@ -12,19 +12,19 @@ const SITE_URL = 'https://hervenanfang.vercel.app'
 
 const STATIC_URLS = [
   { loc: '/', changefreq: 'weekly', priority: '1.0' },
-  { loc: '/a-propos', changefreq: 'monthly', priority: '0.9' },
-  { loc: '/musique', changefreq: 'monthly', priority: '0.9' },
+  { loc: '/a-propos', changefreq: 'weekly', priority: '0.9' },
+  { loc: '/musique', changefreq: 'weekly', priority: '0.9' },
   { loc: '/ia-technologie', changefreq: 'weekly', priority: '0.9' },
-  { loc: '/pedagogie', changefreq: 'monthly', priority: '0.8' },
+  { loc: '/pedagogie', changefreq: 'weekly', priority: '0.9' },
   { loc: '/services', changefreq: 'monthly', priority: '0.9' },
-  { loc: '/rma', changefreq: 'monthly', priority: '0.8' },
+  { loc: '/rma', changefreq: 'weekly', priority: '0.9' },
   { loc: '/culture-recherche', changefreq: 'monthly', priority: '0.8' },
   { loc: '/projets', changefreq: 'monthly', priority: '0.9' },
   { loc: '/journal', changefreq: 'weekly', priority: '0.9' },
-  { loc: '/conferences', changefreq: 'monthly', priority: '0.9' },
-  { loc: '/contact', changefreq: 'yearly', priority: '0.8' },
-  { loc: '/mentions-legales', priority: '0.3' },
-  { loc: '/confidentialite', priority: '0.3' },
+  { loc: '/conferences', changefreq: 'weekly', priority: '0.9' },
+  { loc: '/contact', changefreq: 'monthly', priority: '0.8' },
+  { loc: '/mentions-legales', changefreq: 'yearly', priority: '0.3' },
+  { loc: '/confidentialite', changefreq: 'yearly', priority: '0.3' },
 ]
 
 async function publishedSlugs() {
@@ -39,11 +39,13 @@ async function publishedSlugs() {
   return slugs
 }
 
+const today = new Date().toISOString().split('T')[0]
+
 function entry(loc, changefreq, priority) {
-  let xml = `  <url><loc>${SITE_URL}${loc}</loc>`
-  if (changefreq) xml += `<changefreq>${changefreq}</changefreq>`
-  if (priority) xml += `<priority>${priority}</priority>`
-  return `${xml}</url>`
+  let xml = `  <url>\n    <loc>${SITE_URL}${loc}</loc>\n    <lastmod>${today}</lastmod>`
+  if (changefreq) xml += `\n    <changefreq>${changefreq}</changefreq>`
+  if (priority) xml += `\n    <priority>${priority}</priority>`
+  return `${xml}\n  </url>`
 }
 
 const slugs = await publishedSlugs()

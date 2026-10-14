@@ -48,8 +48,10 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSignIn }) => {
       <div className="mx-auto w-full max-w-md">
         {/* Brand mark */}
         <div className="text-center">
-          <Link to="/" className="inline-flex items-center gap-3">
-            <img src="/hn-initials-mark.png" alt="" className="h-12 w-12 object-contain" />
+          <Link to="/" className="group inline-flex items-center gap-3">
+            <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-gold/50 bg-gradient-to-br from-ink-2 via-black to-ink p-2 shadow-[0_0_25px_rgba(198,161,91,0.25)] ring-1 ring-gold/20 transition-all duration-300 group-hover:scale-105 group-hover:border-gold group-hover:shadow-[0_0_35px_rgba(198,161,91,0.45)]">
+              <img src="/hn-initials-mark.png" alt="" className="h-full w-full object-contain" />
+            </div>
           </Link>
           <p className="eyebrow mt-4 text-gold">Espace privé sécurisé</p>
           <h1 className="mt-2 font-display text-4xl text-ivory">Administration</h1>

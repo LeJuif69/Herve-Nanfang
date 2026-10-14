@@ -198,9 +198,9 @@ export default function Journal() {
                   </ArrowLink>
                 </div>
 
-                <div className="mt-3 flex items-center justify-between gap-4 text-[0.62rem] uppercase tracking-[0.18em] text-ivory/40">
-                  <span>{a.category}</span>
-                  <span>{a.readingTime}</span>
+                <div className="mt-3 flex items-center justify-between gap-4 text-[0.62rem] uppercase tracking-[0.18em]">
+                  <span className="font-medium text-gold/80">Par Hervé Nanfang</span>
+                  <span className="text-ivory/40">{a.category} · {a.readingTime}</span>
                 </div>
               </Card>
             </Reveal>

@@ -1,4 +1,6 @@
 import PageHero from '../components/PageHero'
+import PermisDeJouerVisualizer from '../components/PermisDeJouerVisualizer'
+import RMAAuditionForm from '../components/RMAAuditionForm'
 import {
   ArrowLink,
   Body,
@@ -15,7 +17,7 @@ import {
   Stat,
 } from '../components/ui'
 import { SITE } from '../data/site'
-import { breadcrumbSchema, courseSchema, personSchema, serviceSchema } from '../lib/schema'
+import { breadcrumbSchema, courseSchema, permisDeJouerProgramSchema, personSchema, serviceSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 
 const DISCIPLINES = [
@@ -54,53 +56,6 @@ const DISCIPLINES = [
     title: 'Formation musicale',
     desc: 'Solfège, dictée, ear training, harmonie tonale, analyse et culture musicale. Transversal à toutes les disciplines instrumentales de la RMA.',
     levels: ['Tous niveaux'],
-  },
-]
-
-const PERMIS_PALIERS = [
-  {
-    palier: 'Permis A',
-    couleur: 'Blanc',
-    objectif: 'Prendre ses marques',
-    competences: [
-      'Posture et installation correcte',
-      'Lecture des premières notes / premiers accords',
-      'Reproduction de 3 courtes pièces',
-      'Notions de pulsation et de mesure',
-    ],
-  },
-  {
-    palier: 'Permis B',
-    couleur: 'Jaune',
-    objectif: 'Progresser avec méthode',
-    competences: [
-      "Lecture courante sur l'étendue de l'instrument",
-      "Maîtrise d'une gamme pentatonique et diatonique",
-      "Jeu d'une pièce de mémoire avec expression",
-      'Collaboration musicale basique (duo)',
-    ],
-  },
-  {
-    palier: 'Permis C',
-    couleur: 'Orange',
-    objectif: 'Affirmer son identité',
-    competences: [
-      'Improvisation libre sur grille harmonique',
-      "Création d'un arrangement personnel",
-      'Répertoire de 8 pièces maîtrisées',
-      'Transmission : expliquer une notion à un débutant',
-    ],
-  },
-  {
-    palier: 'Permis D',
-    couleur: 'Rouge',
-    objectif: 'Exercer son métier',
-    competences: [
-      'Projet musical complet (live, studio ou pédagogie)',
-      'Répertoire professionnel et répertoire de création',
-      'Masterclass ou récital validé par un jury',
-      'Dossier artistique constitué',
-    ],
   },
 ]
 
@@ -147,6 +102,7 @@ export default function RMA() {
         'Parcours de formation musicale structuré, incluant pratique instrumentale, pédagogie, évolution et patrimoine culturel.',
         'Racines Musicales Academy®',
       ),
+      permisDeJouerProgramSchema(),
       breadcrumbSchema([
         { name: 'Accueil', path: '/' },
         { name: 'Services', path: '/services' },
@@ -233,44 +189,7 @@ export default function RMA() {
 
       {/* ======================== PERMIS DE JOUER ======================== */}
       <Section tone="dark" id="permis-de-jouer">
-        <Reveal>
-          <ChapterMark num="03" label="Permis de Jouer™" />
-          <div className="mt-7 grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <Display size="md">Un système de progression en quatre paliers</Display>
-            <Body className="lg:pb-2">
-              Le Permis de Jouer™ rend l'apprentissage musical lisible pour l'élève, ses
-              parents et l'enseignant. Quatre niveaux, des compétences validées, des objectifs
-              explicites — pas de progression invisible ni d'évaluation arbitraire.
-            </Body>
-          </div>
-        </Reveal>
-
-        <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {PERMIS_PALIERS.map((p, i) => (
-            <Reveal key={p.palier} delay={i * 70}>
-              <div className="relative border border-white/10 bg-ink-2 p-7 h-full">
-                <div className="flex items-baseline justify-between">
-                  <p className="font-display text-2xl text-gold">{p.palier}</p>
-                  <span className="text-[0.6rem] uppercase tracking-widest text-ivory/30 border border-white/10 px-2 py-1">
-                    {p.couleur}
-                  </span>
-                </div>
-                <p className="mt-2 text-[0.7rem] uppercase tracking-[0.15em] text-ivory/45">
-                  {p.objectif}
-                </p>
-                <Rule className="opacity-20 my-5" />
-                <ul className="space-y-3">
-                  {p.competences.map((c) => (
-                    <li key={c} className="flex items-start gap-2.5 text-sm leading-relaxed text-ivory/60">
-                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-gold/60" />
-                      {c}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        <PermisDeJouerVisualizer />
       </Section>
 
       {/* ======================== PROGRAMMES ======================== */}
@@ -354,6 +273,13 @@ export default function RMA() {
             </div>
           </Reveal>
         </div>
+      </Section>
+
+      {/* ======================== CANDIDATURE & AUDITION ======================== */}
+      <Section tone="dark" id="inscriptions">
+        <Reveal>
+          <RMAAuditionForm />
+        </Reveal>
       </Section>
 
       <CtaBand

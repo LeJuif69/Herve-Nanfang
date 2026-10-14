@@ -46,12 +46,12 @@ const AXES = [
 
 const TERRAINS = [
   {
-    place: 'Batoufam',
-    text: 'Patrimoine musical des chefferies, pratiques cérémonielles et dynamiques contemporaines des territoires.',
+    place: 'Tswefap — Batoufam',
+    text: "Développement d'un système d'écriture et de documentation linguistique et patrimoniale consacré au Batoufam : constitution de corpus, conventions d'écriture et manuel de référence.",
   },
   {
-    place: 'Tswefap',
-    text: 'Documentation de pratiques issues de la transmission orale : collecte, archivage, valorisation et médiation.',
+    place: 'Le Concert des Guérisseurs',
+    text: "Création musicologique et concert pour percussions et piano inspiré des musiques thérapeutiques pygmées et de l'African Wizarding Music (jalons documentés 2020-2022).",
   },
 ]
 

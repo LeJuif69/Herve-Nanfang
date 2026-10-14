@@ -29,6 +29,40 @@ export const personSchema: Record<string, unknown> = {
     addressLocality: 'Yaoundé',
     addressCountry: 'CM',
   },
+  alumniOf: [
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'Université de Dschang',
+      description: 'Licence Arts du Spectacle & Management Culturel',
+    },
+  ],
+  hasOccupation: [
+    {
+      '@type': 'Occupation',
+      name: 'Artiste-Musicien & Pianiste Live',
+      description: 'Prestations de piano-bar live de prestige, répertoires internationaux et jazz.',
+    },
+    {
+      '@type': 'Occupation',
+      name: 'Musicologue & Chercheur',
+      description: 'Recherches sur les traditions musicales orales et les polyrythmies du Cameroun.',
+    },
+    {
+      '@type': 'Occupation',
+      name: 'Pédagogue & Directeur d’Académie',
+      description: 'Fondateur de la Racines Musicales Academy® et auteur du Permis de Jouer™.',
+    },
+    {
+      '@type': 'Occupation',
+      name: 'Ingénieur du Son & Producteur MAO',
+      description: 'Prise de son acoustique, mixage audio, composition assistée par ordinateur.',
+    },
+    {
+      '@type': 'Occupation',
+      name: 'Spécialiste IA & Musicien Augmenté™',
+      description: 'Intégration éthique de l’intelligence artificielle générative dans les filières culturelles.',
+    },
+  ],
   worksFor: { '@id': ORG_ID },
   affiliation: MASTER_IDENTITY.marques
     .filter((m) => m.nom.startsWith('A LAIZ') || m.nom.startsWith('Racines'))
@@ -112,6 +146,92 @@ export const eventSchema = (
   performer: { '@id': PERSON_ID },
   eventStatus: 'https://schema.org/EventScheduled',
   location: { '@type': 'Place', name: 'Cameroun' },
+})
+
+export const conferenceEducationEventSchema = (input: {
+  title: string
+  pitch: string
+  duration: string
+  audience: string
+  objectives: string[]
+  deliverables: string[]
+  theme: string
+}): Record<string, unknown> => ({
+  '@context': 'https://schema.org',
+  '@type': 'EducationEvent',
+  name: `Conférence — « ${input.title} »`,
+  alternateName: input.theme,
+  description: input.pitch,
+  teaches: input.objectives,
+  eventAttendanceMode: 'https://schema.org/MixedEventAttendanceMode',
+  eventStatus: 'https://schema.org/EventScheduled',
+  inLanguage: ['fr', 'en'],
+  audience: {
+    '@type': 'Audience',
+    audienceType: input.audience,
+  },
+  performer: {
+    '@id': PERSON_ID,
+    '@type': 'Person',
+    name: 'Hervé Nanfang',
+    jobTitle: 'Artiste-Musicien, Musicologue & Spécialiste IA',
+  },
+  organizer: {
+    '@id': ORG_ID,
+    '@type': 'Organization',
+    name: 'A LAIZ PROD',
+  },
+  offers: {
+    '@type': 'Offer',
+    category: 'Intervention sur mesure',
+    availability: 'https://schema.org/InStock',
+    url: `${SITE.url}/conferences`,
+  },
+  location: {
+    '@type': 'Place',
+    name: 'Cameroun & International (Présentiel ou Visioconférence)',
+  },
+})
+
+export const permisDeJouerProgramSchema = (): Record<string, unknown> => ({
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOccupationalProgram',
+  name: 'Permis de Jouer™ — Système de Progression et Certification Pianistique',
+  description:
+    'Méthode propriétaire structurée en 4 paliers (A: Blanc, B: Jaune, C: Orange, D: Rouge) développée par Hervé Nanfang à la Racines Musicales Academy® (RMA).',
+  educationalCredentialAwarded: 'Permis de Jouer™ (Paliers A, B, C, D)',
+  provider: {
+    '@type': 'EducationalOrganization',
+    name: 'Racines Musicales Academy®',
+    url: `${SITE.url}/rma`,
+    founder: { '@id': PERSON_ID },
+  },
+  hasCourse: [
+    {
+      '@type': 'Course',
+      name: 'Permis A (Ceinture Blanche) — Fondations & Éveil',
+      description: 'Posture, décontraction, lecture en clés de Sol et de Fa, pulsation et 3 pièces de mémoire.',
+      timeToComplete: 'P3M/P6M',
+    },
+    {
+      '@type': 'Course',
+      name: 'Permis B (Ceinture Jaune) — Autonomie & Méthode',
+      description: 'Gammes, déchiffrage à vue, indépendance des mains, nuances et jeu collectif.',
+      timeToComplete: 'P6M/P9M',
+    },
+    {
+      '@type': 'Course',
+      name: 'Permis C (Ceinture Orange) — Expression & Interprétation',
+      description: 'Accords enrichis, polyrythmie africaine, improvisation modale et set de 8 morceaux.',
+      timeToComplete: 'P9M/P12M',
+    },
+    {
+      '@type': 'Course',
+      name: 'Permis D (Ceinture Rouge) — Scène, Studio & Professionnalisation',
+      description: 'Répertoire de scène (25+ morceaux), arrangement, direction musicale et jury professionnel.',
+      timeToComplete: 'P12M/P18M',
+    },
+  ],
 })
 
 export const musicGroupSchema: Record<string, unknown> = {

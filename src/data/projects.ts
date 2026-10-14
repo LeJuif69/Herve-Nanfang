@@ -60,29 +60,33 @@ export const PROJECT_FAMILIES: ProjectFamily[] = [
     projects: [
       {
         title: 'Racines Musicales Academy®',
-        volume: 'RMA',
+        volume: 'RMA · Formation & Curricula',
         description:
-          "Un projet de formation musicale qui relie les pratiques contemporaines et le patrimoine musical africain, avec une exigence de méthode et de suivi.",
-        points: ['Curricula structurés', 'Formation d’enseignants', 'Ouverture patrimoniale'],
-        status: 'En développement',
+          "Un projet de formation musicale qui relie les pratiques contemporaines et le patrimoine musical africain : socle RMA-01 (Pulsation & Body) et programme intensif « Vacances Utiles ».",
+        points: ['Curricula en 5 disciplines', 'Programme Vacances Utiles (7 sem.)', 'Restitution collective Damas–Petits Génies'],
+        status: 'Actif',
         mark: '®',
+        to: '/rma',
       },
       {
         title: 'Permis de Jouer™',
         volume: 'Progression & certification',
         description:
-          "Un système de progression et de certification qui rend l'apprentissage musical lisible : objectifs, paliers, validation, autonomie de l'élève.",
-        points: ['Paliers de progression', 'Certification', 'Instrument-agnostique'],
-        status: 'En développement',
+          "Un système de progression et d'évaluation continue instrument-agnostique organisé en 4 niveaux (N1 à N4) pour rendre l'apprentissage lisible et mesurable.",
+        points: ['Paliers N1 à N4', 'Validation par compétences', 'Instrument-agnostique'],
+        status: 'Actif',
         mark: '™',
+        to: '/rma#permis-de-jouer',
       },
       {
-        title: 'Manuels & méthodes',
-        volume: 'Publications pédagogiques',
+        title: 'LES ZIKOS®',
+        volume: 'Manuel pédagogique · 68 pages',
         description:
-          'Rédaction de manuels, méthodes et ressources pédagogiques destinés aux écoles, conservatoires, centres de formation et enseignants indépendants.',
-        points: ['Manuels', 'Fiches et ressources', 'Supports numériques'],
-        status: 'Actif',
+          'Projet de manuel pédagogique complet en cours de restructuration éditoriale et graphique : progression par unités, lisibilité des notions et activités instrumentales.',
+        points: ['Manuel de 68 pages', 'Progression méthodologique', 'Notions fondamentales & exercices'],
+        status: 'En développement',
+        mark: '®',
+        to: '/pedagogie#publications',
       },
     ],
   },
@@ -102,7 +106,7 @@ export const PROJECT_FAMILIES: ProjectFamily[] = [
         to: '/ia-technologie#musicien-augmente',
       },
       {
-        title: 'Workflows IA',
+        title: 'Workflows IA & Son',
         volume: 'Production & création',
         description:
           "Conception de chaînes de travail intégrant l'IA à chaque étape de la création musicale : idéation, arrangement, analyse, production, post-production.",
@@ -110,12 +114,13 @@ export const PROJECT_FAMILIES: ProjectFamily[] = [
         status: 'Actif',
       },
       {
-        title: 'Outils & plateformes numériques',
-        volume: 'Digital',
+        title: 'Laboratoires & Ateliers',
+        volume: 'Innovation & transmission',
         description:
-          'Développement de solutions numériques pour la formation musicale, la gestion pédagogique et la diffusion culturelle.',
-        points: ['Plateformes', 'Automatisation', 'Données'],
+          'Pôles de conception en musique à l’image, production sonore en MAO, documentation patrimoniale et médiation musicale.',
+        points: ['Musique à l’image', 'MAO avancée', 'Médiation culturelle'],
         status: 'En développement',
+        to: '/pedagogie#programmes-developpement',
       },
     ],
   },
@@ -125,38 +130,46 @@ export const PROJECT_FAMILIES: ProjectFamily[] = [
     intro: 'Recherche, patrimoine, transmission orale et entrepreneuriat culturel.',
     projects: [
       {
-        title: 'A LAIZ PROD',
-        volume: 'Structure mère de production',
+        title: 'ALAIZ Creative Systems',
+        volume: 'Structure mère de l’écosystème',
         description:
-          "La structure qui porte les projets artistiques et culturels : production, organisation, développement de partenariats et de contenus.",
-        points: ['Production', 'Développement', 'Partenariats'],
+          "La structure mère qui articule la production musicale (A LAIZ PROD), l'action culturelle et patrimoniale (A LAIZ Ô PAYS) et la formation musicale (RMA).",
+        points: ['Gouvernance d’écosystème', 'Production & culture', 'Coordination de marques'],
+        status: 'Signature',
+      },
+      {
+        title: 'A LAIZ Ô PAYS',
+        volume: 'Marque culturelle & patrimoniale',
+        description:
+          'Pôle dédié à la valorisation des patrimoines oraux, aux projets territoriaux et à la circulation des expressions artistiques traditionnelles et contemporaines.',
+        points: ['Territoires', 'Patrimoines oraux', 'Projets culturels'],
         status: 'Actif',
       },
       {
         title: 'Tswefap & Batoufam',
-        volume: 'Patrimoine & territoires',
+        volume: 'Documentation linguistique & patrimoniale',
         description:
-          "Documenter et valoriser des pratiques musicales issues de la transmission orale, en lien avec le patrimoine des chefferies.",
-        points: ['Collecte', 'Documentation', 'Valorisation'],
+          "Projet de système d'écriture et de documentation linguistique consacré au Batoufam : constitution de corpus, conventions graphiques et manuel de référence.",
+        points: ['Système d’écriture', 'Corpus linguistique', 'Manuel de référence'],
         status: 'En développement',
-      },
-      {
-        title: 'Recherche & écriture',
-        volume: 'Musicologie',
-        description:
-          'Articles, communications et travaux musicologiques sur les musiques africaines, leur transmission et leurs transformations contemporaines.',
-        points: ['Articles', 'Communications', 'Publications'],
-        status: 'Actif',
         to: '/culture-recherche',
       },
       {
-        title: 'Conseil & stratégie',
-        volume: 'IA · musique · digital · culture',
+        title: 'Le Concert des Guérisseurs',
+        volume: 'Création & musicologie',
         description:
-          "Accompagnement d'institutions culturelles, d'écoles de musique et d'organisations souhaitant intégrer les technologies numériques.",
-        points: ['Diagnostic', 'Feuille de route', 'Formation d’équipes'],
+          'Projet musicologique et concert pour percussions et piano inspiré des musiques thérapeutiques pygmées et de l’African Wizarding Music.',
+        points: ['Piano & percussions', 'Musiques thérapeutiques', 'Médiation & vulgarisation'],
         status: 'Actif',
-        to: '/contact#conseil',
+      },
+      {
+        title: 'Recherche & Musique à l’image',
+        volume: 'Musicologie appliquée',
+        description:
+          'Communications scientifiques et analyses sur les bandes originales de films (Harry Potter, cinéma d’horreur africain, transmédiatisation).',
+        points: ['Conférences', 'Analyses de BO', 'Publications'],
+        status: 'Actif',
+        to: '/conferences',
       },
     ],
   },

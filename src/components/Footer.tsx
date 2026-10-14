@@ -71,8 +71,15 @@ export default function Footer() {
         {/* Colonnes */}
         <div className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <div className="flex items-center gap-3">
-              <img src="/hn-initials-mark.png" alt="" aria-hidden="true" className="h-9 w-9 shrink-0 object-contain" />
+            <div className="flex items-center gap-3.5">
+              <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gold/40 bg-gradient-to-br from-ink-2 via-black to-ink p-1.5 shadow-[0_0_15px_rgba(198,161,91,0.2)] ring-1 ring-gold/20 transition-all duration-300 hover:border-gold hover:shadow-[0_0_25px_rgba(198,161,91,0.4)]">
+                <img
+                  src="/hn-initials-mark.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="h-full w-full object-contain"
+                />
+              </div>
               <span className="font-display text-2xl text-ivory">Hervé Nanfang</span>
             </div>
             <p className="mt-5 text-sm leading-relaxed text-ivory/55">{IDENTITY.bios.court}</p>
@@ -172,13 +179,23 @@ export default function Footer() {
         <p className="pt-6 text-xs leading-relaxed text-ivory/35">{IDENTITY.desambiguisation}</p>
         <div className="flex flex-col gap-4 pt-4 text-[0.68rem] uppercase tracking-[0.16em] text-ivory/35 md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Hervé Nanfang — Tous droits réservés.</p>
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <Link to="/mentions-legales" className="hover:text-gold">
               Mentions légales
             </Link>
             <Link to="/confidentialite" className="hover:text-gold">
               Confidentialité
             </Link>
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="inline-flex items-center gap-1 text-gold/80 transition-colors hover:text-gold focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold"
+              aria-label="Remonter en haut de la page"
+              title="Remonter en haut de la page"
+            >
+              <span>Haut de page</span>
+              <span aria-hidden>↑</span>
+            </button>
             <span className="text-ivory/25">Site canonique : hervenanfang.vercel.app</span>
           </div>
         </div>

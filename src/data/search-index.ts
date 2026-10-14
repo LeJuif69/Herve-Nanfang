@@ -6,11 +6,13 @@
 import { ARTICLES } from './articles'
 import { AUDIO_PLAYLIST, type AudioTrack } from './audio'
 import { CONFERENCES } from './conferences'
+import { ALL_REPERTOIRE_SONGS, REPERTOIRE_CATEGORIES } from './repertoire'
 import { NAV_PRIMARY, PILLARS } from './site'
 
 export type SearchCategory =
   | 'navigation'
   | 'audio'
+  | 'repertoire'
   | 'pedagogie'
   | 'conference'
   | 'article'
@@ -76,6 +78,48 @@ export function buildSearchIndex(): SearchItem[] {
         'morceau',
         'audio',
         'piano',
+        'live',
+      ],
+    })
+  })
+
+  // 2b. Univers du Répertoire du PianoBariste (441 titres)
+  REPERTOIRE_CATEGORIES.forEach((cat) => {
+    items.push({
+      id: `rep-cat-${cat.id}`,
+      title: `${cat.label} (${cat.count} titres)`,
+      subtitle: `Répertoire Le PianoBariste™ · ${cat.description}`,
+      category: 'repertoire',
+      categoryLabel: 'Répertoire Live ♫',
+      to: '/musique#catalogue-complet',
+      keywords: [
+        cat.label.toLowerCase(),
+        cat.description.toLowerCase(),
+        'repertoire',
+        'chanson',
+        'musique',
+        'titres',
+        'pianobariste',
+      ],
+    })
+  })
+
+  // 2c. Chansons du Répertoire consignées
+  ALL_REPERTOIRE_SONGS.forEach((song) => {
+    items.push({
+      id: `rep-song-${song.id}`,
+      title: `${song.title}${song.key ? ` (${song.key})` : ''}`,
+      subtitle: song.artist ? `${song.artist} · ${song.categoryLabel}` : `Arrangement Piano · ${song.categoryLabel}`,
+      category: 'repertoire',
+      categoryLabel: 'Répertoire Live ♫',
+      to: '/musique#catalogue-complet',
+      keywords: [
+        song.title.toLowerCase(),
+        song.artist?.toLowerCase() || '',
+        song.categoryLabel.toLowerCase(),
+        song.key?.toLowerCase() || '',
+        'repertoire',
+        'chanson',
         'live',
       ],
     })

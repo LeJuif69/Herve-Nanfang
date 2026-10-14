@@ -21,6 +21,8 @@ import { MASTER_IDENTITY, IDENTITY } from '../data/identity'
 import { PILLARS } from '../data/site'
 import { breadcrumbSchema, personSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
+import CareerTimeline from '../components/CareerTimeline'
+import PressMediaKit from '../components/PressMediaKit'
 
 export default function About() {
   useSeo({
@@ -51,11 +53,29 @@ export default function About() {
         }
         lead={MASTER_IDENTITY.positionnement.propositionValeur}
       >
-        <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
-          <Stat value="2007" label="Débuts live" />
-          <Stat value="4" label="Dimensions" />
-          <Stat value="6" label="Marques & projets" />
-          <Stat value="∞" label="Trajectoire" />
+        <div className="space-y-6">
+          <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
+            <Stat value="2007" label="Débuts live" />
+            <Stat value="4" label="Dimensions" />
+            <Stat value="6" label="Marques & projets" />
+            <Stat value="∞" label="Trajectoire" />
+          </div>
+          <div className="flex flex-wrap items-center gap-3 pt-2">
+            <a
+              href="#chronologie"
+              className="inline-flex items-center gap-2 border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-ivory/80 transition-colors hover:border-gold/50 hover:text-gold"
+            >
+              <span>Chronologie interactive (2007–2026)</span>
+              <span>↓</span>
+            </a>
+            <a
+              href="#media-kit"
+              className="inline-flex items-center gap-2 border border-gold/40 bg-gold/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-gold-2 transition-colors hover:bg-gold hover:text-ink"
+            >
+              <span>Dossier de Presse & Media Kit</span>
+              <span>↓</span>
+            </a>
+          </div>
         </div>
       </PageHero>
 
@@ -185,30 +205,21 @@ export default function About() {
         </Reveal>
       </Section>
 
-      {/* ========================= CHRONOLOGIE ========================= */}
-      <Section tone="dark">
+      {/* ========================= CHRONOLOGIE INTERACTIVE ========================= */}
+      <Section tone="dark" id="chronologie">
         <Reveal>
-          <ChapterMark num="03" label="Chronologie" />
+          <ChapterMark num="03" label="Chronologie Interactive" />
           <Display size="md" className="mt-7">
-            Chaque étape a préparé la suivante
+            De 2007 à aujourd'hui : chaque étape a préparé la suivante
           </Display>
+          <Lead className="mt-6 max-w-3xl">
+            Du piano-bar acoustique aux scènes de prestige, de l'ingénierie sonore à la fondation de la Racines Musicales Academy® et aux recherches sur le Musicien Augmenté™ : naviguez à travers les jalons structurants du parcours.
+          </Lead>
         </Reveal>
 
-        <ol className="mt-14 border-t border-white/10">
-          {MASTER_IDENTITY.parcours.map((step, i) => (
-            <Reveal key={step.titre} delay={i * 60}>
-              <li className="grid gap-4 border-b border-white/8 py-7 md:grid-cols-[9rem_16rem_1fr] md:gap-8 md:items-start">
-                <span className="font-display text-xl text-gold/70 tabular-nums">{step.annee}</span>
-                <h3 className="font-display text-xl text-ivory leading-snug">{step.titre}</h3>
-                <p className="text-sm leading-relaxed text-ivory/55">{step.detail}</p>
-              </li>
-            </Reveal>
-          ))}
-        </ol>
-
-        <p className="mt-8 text-xs uppercase tracking-[0.18em] text-ivory/30">
-          Chronologie de référence — parcours structuré et validé par les étapes clés du métier et de la transmission.
-        </p>
+        <div className="mt-14">
+          <CareerTimeline />
+        </div>
       </Section>
 
       {/* ========================= COMPÉTENCES ========================= */}
@@ -336,12 +347,10 @@ export default function About() {
             <div>
               <Eyebrow>Institutions d'enseignement</Eyebrow>
               <h2 className="mt-5 font-display text-3xl leading-snug text-ivory md:text-4xl">
-                ESAS · ISMA · Racines Musicales Academy®
+                ESAS · ISMA · IBA Nkongsamba · RMA®
               </h2>
               <p className="mt-5 max-w-xl text-[15px] leading-[1.9] text-ivory/65">
-                Plusieurs années d'enseignement en musicologie, MAO et composition dans les
-                grandes écoles d'art et de musique du Cameroun, complétées par la création
-                de la Racines Musicales Academy® (RMA) et du système Permis de Jouer™.
+                Enseignement supérieur en musicologie appliquée, MAO et composition (ESAS de Lomé, ISMA au Bénin, Institut des Beaux-Arts de Nkongsamba, IFCPA/CRTV), complété par la fondation de la Racines Musicales Academy® (RMA) et du dispositif Permis de Jouer™.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {MASTER_IDENTITY.enseignement.disciplines.map((d) => (
@@ -359,6 +368,23 @@ export default function About() {
             </div>
           </div>
         </Reveal>
+      </Section>
+
+      {/* ========================= DOSSIER DE PRESSE & MEDIA KIT ========================= */}
+      <Section tone="ink" id="media-kit">
+        <Reveal>
+          <ChapterMark num="07" label="Dossier de Presse" />
+          <Display size="md" className="mt-7">
+            Espace Presse & Media Kit Officiel
+          </Display>
+          <Lead className="mt-6 max-w-3xl">
+            Biographies officielles multi-formats (courtes, moyennes, intégrales), fiche synthétique pour programmateurs et photothèque haute définition libres de droits pour journalistes, médias et organisateurs de conférences.
+          </Lead>
+        </Reveal>
+
+        <div className="mt-14">
+          <PressMediaKit />
+        </div>
       </Section>
 
       <CtaBand

@@ -134,9 +134,31 @@ function outputPath(route) {
 }
 
 function sitemapXml(site, paths) {
+  const today = new Date().toISOString().split('T')[0]
+  const priorities = {
+    '/': { p: '1.0', f: 'weekly' },
+    '/conferences': { p: '0.9', f: 'weekly' },
+    '/rma': { p: '0.9', f: 'weekly' },
+    '/pedagogie': { p: '0.9', f: 'weekly' },
+    '/a-propos': { p: '0.9', f: 'weekly' },
+    '/musique': { p: '0.9', f: 'weekly' },
+    '/ia-technologie': { p: '0.9', f: 'weekly' },
+    '/projets': { p: '0.9', f: 'monthly' },
+    '/services': { p: '0.9', f: 'monthly' },
+    '/culture-recherche': { p: '0.8', f: 'monthly' },
+    '/journal': { p: '0.9', f: 'weekly' },
+    '/contact': { p: '0.8', f: 'monthly' },
+    '/mentions-legales': { p: '0.3', f: 'yearly' },
+    '/confidentialite': { p: '0.3', f: 'yearly' },
+  }
+
   const entries = paths.map((path) => {
     const url = `${site.url}${path === '/' ? '/' : path}`
-    return `  <url><loc>${escapeHtml(url)}</loc></url>`
+    const meta = priorities[path] || {
+      p: path.startsWith('/journal/') ? '0.8' : '0.7',
+      f: path.startsWith('/journal/') ? 'monthly' : 'monthly',
+    }
+    return `  <url>\n    <loc>${escapeHtml(url)}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${meta.f}</changefreq>\n    <priority>${meta.p}</priority>\n  </url>`
   })
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join('\n')}\n</urlset>\n`
 }
