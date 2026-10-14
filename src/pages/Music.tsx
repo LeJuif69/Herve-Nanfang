@@ -55,7 +55,9 @@ export default function Music() {
     if (audioFilter === 'patrimoine') return track.id === 'afro-jazz-makossa'
     if (audioFilter === 'afropop') return track.id === 'afropop-rumba'
     if (audioFilter === 'poetique') return track.id === 'soul-chanson-poetique'
-    if (audioFilter === 'composition') return track.id === 'composition-theme'
+    if (audioFilter === 'guerisseurs') return track.id === 'concert-guerisseurs'
+    if (audioFilter === 'cinema') return track.id === 'cinema-narration-visuelle'
+    if (audioFilter === 'composition') return track.id === 'composition-theme' || track.id === 'cinema-narration-visuelle' || track.id === 'concert-guerisseurs'
     if (audioFilter === 'studio') return track.id === 'mao-sound-design' || track.id === 'ia-musique-recherche'
     return true
   })
@@ -215,7 +217,9 @@ export default function Music() {
               { id: 'patrimoine', label: 'Afro-Jazz' },
               { id: 'afropop', label: 'Rumba & Afropop' },
               { id: 'poetique', label: 'Nocturne & Soul' },
-              { id: 'composition', label: 'Composition Scénique' },
+              { id: 'guerisseurs', label: 'Guérisseurs & Thérapie' },
+              { id: 'cinema', label: 'Musique à l’image' },
+              { id: 'composition', label: 'Compositions' },
               { id: 'studio', label: 'Studio & IA' },
             ].map((cat) => {
               const isActive = audioFilter === cat.id

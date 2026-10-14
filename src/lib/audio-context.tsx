@@ -95,6 +95,18 @@ const ACOUSTIC_CHORDS: Record<string, number[][]> = {
     [196.0, 233.1, 293.7, 349.2],        // Gm7
     [130.8, 164.8, 196.0, 261.6],        // C7
   ],
+  'concert-guerisseurs': [
+    [146.8, 220.0, 261.6, 329.6],        // Dm9 (apaisant & mystique)
+    [110.0, 164.8, 220.0, 261.6],        // Am7
+    [174.6, 220.0, 261.6, 329.6],        // Fmaj7
+    [164.8, 196.0, 246.9, 329.6],        // Em7
+  ],
+  'cinema-narration-visuelle': [
+    [130.8, 196.0, 233.1, 311.1],        // Cm(add9) (tension dramatique)
+    [103.8, 155.6, 207.7, 261.6, 311.1], // Abmaj7
+    [174.6, 207.7, 261.6, 349.2],        // Fm9
+    [98.0, 146.8, 196.0, 246.9, 311.1],  // G7(b9)
+  ],
 }
 
 export function AudioProvider({ children }: { children: ReactNode }) {

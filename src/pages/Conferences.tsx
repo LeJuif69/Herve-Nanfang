@@ -28,15 +28,15 @@ const PROCESS = [
 
 export default function Conferences() {
   useSeo({
-    title: 'Conférences | Hervé Nanfang — IA, musique & pédagogie',
+    title: 'Conférences | Hervé Nanfang — IA, musique, cinéma & pédagogie',
     description:
-      "Cinq conférences pour écoles, universités et institutions : le musicien augmenté, de la MAO à l'IA, enseigner la musique à l'ère de l'IA.",
+      "Six conférences de référence pour écoles, universités et institutions : le musicien augmenté, musique à l'image, MAO vers IA, enseigner la musique.",
     path: '/conferences',
     jsonLd: [
       personSchema,
       serviceSchema(
         'Conférences et masterclass',
-        "Interventions sur l'IA appliquée à la musique, la pédagogie musicale, la transformation numérique et la carrière artistique.",
+        "Interventions sur l'IA appliquée à la musique, la musique à l'image, la pédagogie musicale, la transformation numérique et la carrière artistique.",
         'Formation et conseil',
       ),
       ...CONFERENCES.map((c) =>
@@ -63,11 +63,11 @@ export default function Conferences() {
         breadcrumb="Conférences"
         eyebrow="Interventions"
         title="Conférences & Masterclass"
-        lead="Des interventions conçues pour des publics réels : écoles de musique, universités, institutions culturelles, entreprises créatives et organisations professionnelles."
+        lead="Des interventions conçues pour des publics réels : écoles de musique, universités, écoles de cinéma, institutions culturelles et entreprises créatives."
       >
         <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
-          <Stat value="5" label="Thèmes" />
-          <Stat value="3" label="Formats" />
+          <Stat value="06" label="Thèmes majeurs" />
+          <Stat value="03" label="Formats" />
           <Stat value="45–180" label="Minutes" />
           <Stat value="FR/EN" label="Langues" />
         </div>
@@ -78,7 +78,7 @@ export default function Conferences() {
         <Reveal>
           <ChapterMark num="01" label="Fiches d'intervention" />
           <Display size="md" className="mt-7 max-w-3xl">
-            Cinq interventions phares, un même fil : comprendre avant d’adopter
+            Six interventions de référence, un même fil : comprendre avant d’adopter
           </Display>
           <Lead className="mt-4 max-w-2xl">
             Chaque conférence associe rigueur musicologique, démonstrations en direct et méthodologie concrète

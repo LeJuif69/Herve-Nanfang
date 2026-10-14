@@ -10,7 +10,7 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 |---|---|
 | Pages analysées | 16 |
 | Titres SEO hors cible | 0 |
-| Titres tronqués dans Google (> 60 car.) | 0 |
+| Titres tronqués dans Google (> 60 car.) | 1 |
 | Descriptions hors cible | 0 |
 | Pages sans H1 unique | 0 |
 | Liens internes cassés | 0 |
@@ -27,11 +27,11 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 | `Admin` | Administration | Hervé Nanfang | 30 | Espace privé du2019administration du site du2019Hervé Nanfang : conten… | 120 | 1 (balise <h1>) | — |
 | `AI` | IA & Technologie | Hervé Nanfang — Musicien Augmenté | 52 | Musique, MAO, pédagogie et communication digitale : la position d’Herv… | 152 | 1 (PageHero (h1 interne)) | Person, Organization, BreadcrumbList, Course, FAQPage, CreativeWork / Book |
 | `ArticleDetail` | Article introuvable | Hervé Nanfang (valeur dynamique) | 35 | Article introuvable — retour au Journal du Musicien Augmenté d'Hervé N… | 77 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Article |
-| `Conferences` | Conférences | Hervé Nanfang — IA, musique & pédagogie | 53 | Cinq conférences pour écoles, universités et institutions : le musicie… | 137 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
+| `Conferences` | Conférences | Hervé Nanfang — IA, musique, cinéma & pédagogie ✂️ tronqué dans Google | 61 | Six conférences de référence pour écoles, universités et institutions … | 147 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
 | `Contact` | Contact | Hervé Nanfang — Booking, Formation & Conseil | 54 | Booking piano-bar, formation, conférence, collaboration, presse ou con… | 151 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
 | `Culture` | Culture & Recherche | Hervé Nanfang — musicologie | 49 | Musicologie, cultures africaines, patrimoine et transmission orale : c… | 148 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, CreativeWork / Book |
 | `Home` | Hervé Nanfang | Musicien, Musicologue & Musicien Augmenté | 57 | Hervé Nanfang, artiste-musicien camerounais : Piano-Bar, composition, … | 153 | 1 (balise <h1>) | Person, WebSite, Organization, MusicGroup |
-| `Journal` | Journal | Hervé Nanfang — IA, musique & pédagogie | 49 | Le Journal du Musicien Augmenté : sept piliers sur l'IA et la musique,… | 139 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Article |
+| `Journal` | Journal | Hervé Nanfang — IA, musique & pédagogie | 49 | Le Journal du Musicien Augmenté : dix piliers sur l'IA, la musique, la… | 131 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Article |
 | `Legal` | Mentions légales | Hervé Nanfang (valeur dynamique) | 32 | Informations légales du site d'Hervé Nanfang : éditeur, hébergeur, pro… | 128 | 1 (PageHero (h1 interne)) | BreadcrumbList |
 | `Music` | Musique | Hervé Nanfang — Piano, Composition & Production | 57 | Piano-bar live depuis 2007, formats solo, duo et live band, compositio… | 139 | 1 (PageHero (h1 interne)) | MusicGroup, BreadcrumbList, Service, CreativeWork / Book |
 | `NotFound` | Page introuvable | Hervé Nanfang | 32 | La page demandée n’existe pas ou a été déplacée. Accédez aux rubriques… | 156 | 1 (Display as="h1") | — |

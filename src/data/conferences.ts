@@ -119,6 +119,34 @@ export const CONFERENCES: Conference[] = [
     ],
     techRequirements: 'Vidéoprojecteur HDMI, sonorisation, micro sans fil.',
   },
+  {
+    id: 'musique-image-cinema',
+    theme: 'Musique à l’image & Cinéma',
+    title: 'Musique, image et narration : composer pour l’audiovisuel et le cinéma en Afrique',
+    pitch:
+      'De la lecture du scénario au mixage stéréo/5.1 : méthode d’analyse dramaturgique, synchronisation temporelle, écriture thématique et intégration des sonorités patrimoniales africaines dans le cinéma contemporain.',
+    audience:
+      'Écoles de cinéma et audiovisuel (ESAS, ISMA, IBA...), réalisateurs, producteurs, compositeurs de film & monteurs',
+    formats: [
+      'Conférence magistrale (1 h 30)',
+      'Masterclass sur station DAW / table de montage (2–3 h)',
+      'Atelier pratique de scoring live sur extrait filmique',
+    ],
+    duration: '1 h 30 à 1 journée',
+    objectives: [
+      'Analyser la dramaturgie d’une séquence : fonction diégétique vs extradiégétique, thèmes conducteurs (leitmotivs) et silences expressifs.',
+      'Adapter le timing musical aux contraintes du montage : timecode SMPTE, hit points et respirations narratives.',
+      'Intégrer les instruments et polyrythmies patrimoniales sans tomber dans le pastiche hollywoodien ni le folklore figé.',
+      'Gérer la chaîne technique son/image : livraison de stems, mixage musique vs dialogues/bruitages et cadre contractuel de cession de droits audiovisuels.',
+    ],
+    deliverables: [
+      'Fiche technique et méthodologique « Scoring pour le cinéma africain » (PDF).',
+      'Session DAW commentée avec pistes séparées (stems) pour étude de cas.',
+      'Grille contractuelle type de cession de droits pour œuvres audiovisuelles.',
+    ],
+    techRequirements:
+      'Vidéoprojecteur grand écran ou écran LED HDMI avec restitution vidéo fluide, système d’écoute stéréo monitoring professionnel de haute précision, micro HF, clavier de commande MIDI ou piano acoustique.',
+  },
 ]
 
 export const CONFERENCE_AUDIENCES = [
