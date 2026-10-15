@@ -59,7 +59,7 @@ export const NAV_PRIMARY: NavItem[] = [
 export const NAV_SECONDARY: NavItem[] = [
   { label: 'Formations', to: '/pedagogie#formations' },
   { label: 'Publications', to: '/pedagogie#publications' },
-  { label: 'Presse', to: '/contact#presse' },
+  { label: 'Presse & EPK', to: '/presse' },
   { label: 'Booking', to: '/contact#booking' },
 ]
 

@@ -33,6 +33,7 @@ const staticRoutes = [
   '/projets',
   '/journal',
   '/conferences',
+  '/presse',
   '/contact',
   '/mentions-legales',
   '/confidentialite',

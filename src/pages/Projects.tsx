@@ -127,7 +127,12 @@ export default function Projects() {
                     <Tag tone={p.status === 'Signature' ? 'gold' : 'ink'}>{p.status}</Tag>
                   </div>
                   <Rule className="opacity-40" />
-                  <Body className="mt-4 flex-1">{p.description}</Body>
+                  <Body className="mt-4">{p.description}</Body>
+                  {p.synopsis && (
+                    <p className="mt-3 text-xs leading-relaxed text-ivory/45 italic border-l border-gold/20 pl-3">
+                      {p.synopsis.length > 220 ? p.synopsis.slice(0, 220) + '…' : p.synopsis}
+                    </p>
+                  )}
                   <ul className="mt-6 space-y-2">
                     {p.points.map((pt) => (
                       <li key={pt} className="flex items-baseline gap-3 text-sm text-ivory/60">
@@ -136,6 +141,13 @@ export default function Projects() {
                       </li>
                     ))}
                   </ul>
+                  {p.discipline && (
+                    <div className="mt-4">
+                      <span className="rounded border border-gold/20 px-2 py-0.5 text-[0.6rem] uppercase tracking-widest text-gold/60">
+                        {p.discipline}
+                      </span>
+                    </div>
+                  )}
                   {p.to && (
                     <div className="mt-6">
                       <ArrowLink to={p.to}>En savoir plus</ArrowLink>

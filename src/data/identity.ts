@@ -306,15 +306,39 @@ export const MASTER_IDENTITY = {
     lieux: [
       {
         type: 'lieu',
-        intitule: 'Scènes Piano-Bar & Événements Prestiges',
-        detail: 'Résidences live, soirées privées, cérémonies, hôtels, restaurants, lounges et cabarets au Cameroun et dans la sous-région.',
+        intitule: 'Hôtel Hilton Yaoundé',
+        detail: "Salons d'honneur, dîners de gala, cocktails diplomatiques et prestations acoustiques piano solo feutrées.",
         annee: 'Depuis 2007',
       },
       {
         type: 'lieu',
-        intitule: 'Damas–Petits Génies (Yaoundé)',
-        detail: 'Lieu de restitution collective du programme intensif RMA Vacances Utiles 2026 (5 disciplines).',
-        annee: '2026',
+        intitule: 'Djeuga Palace Hôtel (Yaoundé)',
+        detail: "Soirées piano-bar continues, ambiance lounge feutrée et événementiel privé de haut standing.",
+        annee: 'Résidence live',
+      },
+      {
+        type: 'lieu',
+        intitule: 'Hôtel Mont Fébé (Yaoundé)',
+        detail: "Réceptions diplomatiques, dîners d'État et célébrations consulaires avec direction d'ambiance protocolaire.",
+        annee: 'Événements d’État',
+      },
+      {
+        type: 'lieu',
+        intitule: 'Akwa Palace (Douala)',
+        detail: "Grands galas d'affaires, lancements corporate et soirées d'exception en solo et formation live band.",
+        annee: 'Galas corporate',
+      },
+      {
+        type: 'lieu',
+        intitule: 'Espaces Balnéaires & Résidences privées (Kribi)',
+        detail: "Célébrations de mariage d'exception, week-ends corporate et soirées privées en duo ou trio acoustique.",
+        annee: 'Événements VIP',
+      },
+      {
+        type: 'lieu',
+        intitule: 'Espace Damas–Petits Génies (Yaoundé)',
+        detail: 'Scène de restitution collective du programme intensif RMA Vacances Utiles 2026 (5 disciplines instrumentales & vocales).',
+        annee: 'Août 2026',
       },
     ] as Preuve[],
     publications: [

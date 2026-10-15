@@ -17,6 +17,7 @@ import {
   Stat,
 } from '../components/ui'
 import { SITE } from '../data/site'
+import { TESTIMONIALS } from '../data/testimonials'
 import { breadcrumbSchema, courseSchema, permisDeJouerProgramSchema, personSchema, serviceSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 
@@ -61,19 +62,35 @@ const DISCIPLINES = [
 
 const PROGRAMMES = [
   {
-    title: 'Formation musicale individuelle',
-    text: 'Cours hebdomadaires adaptés au niveau, aux objectifs et au rythme de chaque apprenant. Suivi continu avec plan de progression individualisé.',
+    title: 'Cours individuel hebdomadaire',
+    text: 'Piano, chant, guitare, basse ou batterie : cours de 45 min à 1 h, plan de progression personnalisé selon le palier Permis de Jouer™, suivi trimestriel et accès aux ressources pédagogiques RMA.',
     icon: '♩',
+    highlights: [
+      'Studio RMA Yaoundé ou cours à distance (Zoom / WhatsApp)',
+      "Entrée possible tout au long de l'année",
+      'Séance diagnostique gratuite au premier cours',
+    ],
   },
   {
-    title: "Formation d'enseignants",
-    text: "Conception de curriculum, méthodes de progression, outils d'évaluation, pédagogie active et accompagnement de structures éducatives.",
+    title: 'Vacances Utiles — 7 semaines',
+    text: 'Programme intensif estival pour enfants dès 6 ans et adultes débutants : socle RMA-01 (Pulsation & Body), clavier, lecture et restitution collective finale Damas–Petits Génies.',
+    icon: '☀',
+    highlights: [
+      'Module 1 : Pulsation & Body (ancrage rythmique corporel)',
+      'Module 2 : Clavier & lecture de partition',
+      'Module 3 : Culture musicale & répertoire africain',
+      'Livret de progression offert à chaque participant',
+    ],
+  },
+  {
+    title: 'Formation de formateurs',
+    text: "Accompagnement de directions pédagogiques, de conservatoires et d'associations musicales : conception de curricula, outils d'évaluation par compétences, journées pédagogiques et formation continue.",
     icon: '◈',
-  },
-  {
-    title: 'Ateliers & masterclass',
-    text: 'Formats intensifs pour conservatoires, écoles, associations et publics professionnels : thématiques ciblées, durée adaptée, restitution publique.',
-    icon: '⬡',
+    highlights: [
+      'Livraison de grilles, fiches et plans de cours opérationnels',
+      'Disponible en présentiel ou 100 % distanciel',
+      'Partenariats institutionnels et conventions sur mesure',
+    ],
   },
 ]
 
@@ -210,11 +227,63 @@ export default function RMA() {
                   <h3 className="mt-5 font-display text-xl text-ivory leading-snug">{p.title}</h3>
                   <Rule className="opacity-30 my-5" />
                   <p className="text-sm leading-relaxed text-ivory/60">{p.text}</p>
+                  {'highlights' in p && (p as { title: string; text: string; icon: string; highlights: string[] }).highlights && (
+                    <ul className="mt-5 space-y-2">
+                      {(p as { title: string; text: string; icon: string; highlights: string[] }).highlights.map((h) => (
+                        <li key={h} className="flex items-start gap-2 text-xs text-ivory/50">
+                          <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-gold/50" />
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
                 <div className="mt-8 border-t border-white/5 pt-5">
                   <ArrowLink to="/contact#formation">Demander ce programme</ArrowLink>
                 </div>
               </SpotlightCard>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* ======================== TÉMOIGNAGES ======================== */}
+      <Section tone="dark" id="temoignages">
+        <Reveal>
+          <ChapterMark num="05" label="Témoignages" />
+          <Display size="md" className="mt-7 max-w-3xl">
+            Ce que disent les élèves et partenaires de la RMA
+          </Display>
+          <Lead className="mt-4 max-w-2xl">
+            Élèves adultes, enfants, musiciens professionnels et responsables pédagogiques — ils témoignent de leur parcours au sein de la Racines Musicales Academy®.
+          </Lead>
+        </Reveal>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {TESTIMONIALS.map((t, i) => (
+            <Reveal key={t.id} delay={i * 70}>
+              <div className="flex h-full flex-col border border-white/10 bg-ink-2 p-7">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/20 font-display text-sm font-semibold text-gold">
+                    {t.initials}
+                  </div>
+                  <div>
+                    <p className="font-display text-base text-ivory">{t.name}</p>
+                    <p className="mt-0.5 text-[0.66rem] uppercase tracking-[0.15em] text-ivory/50">{t.discipline}</p>
+                  </div>
+                </div>
+                {t.palier && (
+                  <span className="mt-4 inline-block self-start rounded border border-gold/30 bg-gold/10 px-2.5 py-0.5 text-[0.6rem] font-semibold uppercase tracking-widest text-gold">
+                    {t.palier}
+                  </span>
+                )}
+                <blockquote className="mt-5 flex-1 border-l-2 border-gold/30 pl-4 text-sm italic leading-relaxed text-ivory/65">
+                  « {t.body} »
+                </blockquote>
+                <div className="mt-5 border-t border-white/8 pt-4">
+                  <p className="text-[0.62rem] text-ivory/40">{t.role} · {t.location}</p>
+                </div>
+              </div>
             </Reveal>
           ))}
         </div>

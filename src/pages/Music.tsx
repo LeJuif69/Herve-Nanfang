@@ -24,6 +24,7 @@ import {
 } from '../components/ui'
 import {
   MUSIC_SECTIONS,
+  PRESTIGE_VENUES,
   REPERTOIRE_UNIVERSES,
   STAGE_FORMATS,
   TECHNICAL_STANDARDS,
@@ -457,13 +458,58 @@ export default function Music() {
       </Section>
 
       {/* ========================================================================= */}
-      {/* NOUVEAU MODULE : CAPTATIONS & VIDÉOS SCÉNIQUES                             */}
+      {/* RÉFÉRENCES & LIEUX DE PRESTIGE                                            */}
       {/* ========================================================================= */}
-      <Section tone="ink" id="videos-live">
+      <Section tone="ink" id="lieux-prestige">
         <Reveal>
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <ChapterMark num="02" label="Captations & Vidéos" />
+              <ChapterMark num="02" label="Références & Scènes" />
+              <Display size="md" className="mt-6 max-w-2xl">
+                Lieux & Résidences de prestige
+              </Display>
+              <Lead className="mt-4 max-w-xl">
+                Depuis 2007, Le Pianobariste™ s'est installé dans les adresses hôtelières, les salons diplomatiques et les événements les plus exigeants du Cameroun et d'Afrique centrale.
+              </Lead>
+            </div>
+            <div className="border border-gold/30 bg-gold/5 px-4 py-2.5 rounded text-xs font-mono text-gold">
+              <span>✦ Présence scénique vérifiée</span>
+            </div>
+          </div>
+        </Reveal>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {PRESTIGE_VENUES.map((v, i) => (
+            <Reveal key={v.name} delay={i * 70}>
+              <div className="flex h-full flex-col justify-between border border-white/10 bg-ink-2/90 p-7 hover:border-gold/40 transition-colors">
+                <div>
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="rounded border border-gold/30 bg-gold/10 px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider text-gold">
+                      {v.badge}
+                    </span>
+                    <span className="text-[0.65rem] text-ivory/40 uppercase tracking-wider font-mono">
+                      {v.city}
+                    </span>
+                  </div>
+                  <h3 className="mt-4 font-display text-xl text-ivory">{v.name}</h3>
+                  <p className="mt-1 text-xs text-gold/80 font-medium">{v.category}</p>
+                  <Rule className="my-4 opacity-20" />
+                  <p className="text-xs leading-relaxed text-ivory/65">{v.context}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* ========================================================================= */}
+      {/* CAPTATIONS & VIDÉOS SCÉNIQUES                                             */}
+      {/* ========================================================================= */}
+      <Section tone="dark" id="videos-live">
+        <Reveal>
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <ChapterMark num="03" label="Captations & Vidéos" />
               <Display size="md" className="mt-6 max-w-2xl">
                 Vidéos live — Scène, Jazz & Piano-bar
               </Display>
@@ -497,7 +543,7 @@ export default function Music() {
       <Section tone="dark" id="repertoire">
         <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <Reveal>
-            <ChapterMark num="03" label="Répertoire vivant" />
+            <ChapterMark num="04" label="Répertoire vivant" />
             <Display size="md" className="mt-7">
               Dix univers stylistiques, plus de 440 œuvres maîtrisées
             </Display>
@@ -555,7 +601,7 @@ export default function Music() {
       {/* Fiche Technique & Exigences Professionnelles */}
       <Section tone="ink" id="technique">
         <Reveal>
-          <ChapterMark num="04" label="Exigence & Matériel" />
+          <ChapterMark num="05" label="Exigence & Matériel" />
           <Display size="md" className="mt-7">
             Régie autonome & standards professionnels
           </Display>
@@ -581,7 +627,7 @@ export default function Music() {
       {/* Les Trois Pratiques : Scène, Composition, Studio */}
       <Section tone="dark">
         <Reveal>
-          <ChapterMark num="05" label="Métiers" />
+          <ChapterMark num="06" label="Métiers" />
           <Display size="md" className="mt-7 max-w-3xl">
             Trois pratiques, une même matière : le son
           </Display>

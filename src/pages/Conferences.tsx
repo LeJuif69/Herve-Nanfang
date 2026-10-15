@@ -28,7 +28,7 @@ const PROCESS = [
 
 export default function Conferences() {
   useSeo({
-    title: 'Conférences | Hervé Nanfang — IA, musique, cinéma & pédagogie',
+    title: 'Conférences & Masterclass | Hervé Nanfang — IA & Musique',
     description:
       "Six conférences de référence pour écoles, universités et institutions : le musicien augmenté, musique à l'image, MAO vers IA, enseigner la musique.",
     path: '/conferences',

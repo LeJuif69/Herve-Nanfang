@@ -22,6 +22,7 @@ const STATIC_URLS = [
   { loc: '/projets', changefreq: 'monthly', priority: '0.9' },
   { loc: '/journal', changefreq: 'weekly', priority: '0.9' },
   { loc: '/conferences', changefreq: 'weekly', priority: '0.9' },
+  { loc: '/presse', changefreq: 'weekly', priority: '0.8' },
   { loc: '/contact', changefreq: 'monthly', priority: '0.8' },
   { loc: '/mentions-legales', changefreq: 'yearly', priority: '0.3' },
   { loc: '/confidentialite', changefreq: 'yearly', priority: '0.3' },

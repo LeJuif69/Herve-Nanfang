@@ -313,3 +313,56 @@ export const LIVE_PERFORMANCES: LivePerformance[] = [
   },
 ]
 
+export interface PrestigeVenue {
+  name: string
+  category: string
+  city: string
+  context: string
+  badge: string
+}
+
+export const PRESTIGE_VENUES: PrestigeVenue[] = [
+  {
+    name: "Hôtel Hilton Yaoundé",
+    category: "Palace 5 Étoiles & Lounges VIP",
+    city: "Yaoundé, Cameroun",
+    context: "Prestations acoustiques piano solo, soirées jazz feutrées, cocktails diplomatiques et dîners de gala d'État.",
+    badge: "Piano-bar & Gala",
+  },
+  {
+    name: "Djeuga Palace Hôtel",
+    category: "Hôtel de Prestige & Bar Lounge",
+    city: "Yaoundé, Cameroun",
+    context: "Atmosphère feutrée en piano solo et duo live, accompagnement musical continu pour clientèles d'affaires et réceptions privées.",
+    badge: "Lounge & Soirée",
+  },
+  {
+    name: "Hôtel Mont Fébé",
+    category: "Salons d'Honneur & Sommets Diplomatiques",
+    city: "Yaoundé, Cameroun",
+    context: "Cérémonies officielles, réceptions diplomatiques et dîners d'État avec direction d'ambiance et respect scrupuleux du protocole.",
+    badge: "Protocole & État",
+  },
+  {
+    name: "Akwa Palace",
+    category: "Palace Historique & Événements Corporate",
+    city: "Douala, Cameroun",
+    context: "Grands galas d'entreprises, soirées privées de prestige et lancements de marques en format solo et live band élargi.",
+    badge: "Corporate & Prestige",
+  },
+  {
+    name: "Espaces Balnéaires & Résidences de Kribi",
+    category: "Célébrations d'Exception & Mariages VIP",
+    city: "Kribi, Cameroun",
+    context: "Mariages de haut standing, réceptions privées en bord d'océan et formats festifs en duo piano-voix ou trio acoustique.",
+    badge: "Célébrations Privées",
+  },
+  {
+    name: "Espace Damas–Petits Génies",
+    category: "Scène de Restitution Artistique RMA",
+    city: "Yaoundé, Cameroun",
+    context: "Concert de clôture du programme intensif Vacances Utiles : ensemble instrumental, percussions, solistes et chorale.",
+    badge: "Transmission RMA",
+  },
+]
+

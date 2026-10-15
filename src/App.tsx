@@ -31,6 +31,7 @@ const Projects = lazy(() => import('./pages/Projects'))
 const Journal = lazy(() => import('./pages/Journal'))
 const ArticleDetail = lazy(() => import('./pages/ArticleDetail'))
 const Conferences = lazy(() => import('./pages/Conferences'))
+const Press = lazy(() => import('./pages/Press'))
 const Contact = lazy(() => import('./pages/Contact'))
 const Legal = lazy(() => import('./pages/Legal'))
 const NotFound = lazy(() => import('./pages/NotFound'))
@@ -56,6 +57,7 @@ export default function App() {
               <Route path="/journal" element={<Journal />} />
               <Route path="/journal/:slug" element={<ArticleDetail />} />
               <Route path="/conferences" element={<Conferences />} />
+              <Route path="/presse" element={<Press />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/mentions-legales" element={<Legal kind="mentions" />} />
               <Route path="/confidentialite" element={<Legal kind="confidentialite" />} />
