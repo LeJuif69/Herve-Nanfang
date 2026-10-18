@@ -1,6 +1,6 @@
 # Audit éditorial et technique — hervenanfang.vercel.app
 
-*Généré le 15/10/2026 par `npm run audit`.*
+*Généré le 16/10/2026 par `npm run audit`.*
 
 Cet audit analyse la **source** du site : il est reproductible après chaque modification.
 

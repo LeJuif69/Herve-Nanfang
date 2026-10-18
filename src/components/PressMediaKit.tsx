@@ -21,7 +21,7 @@ export interface BioOption {
 export interface PressVisual {
   id: string
   title: string
-  category: 'portrait' | 'scene' | 'affiche'
+  category: 'portrait' | 'scene' | 'affiche' | 'logo'
   categoryLabel: string
   dimensions: string
   weight: string
@@ -33,6 +33,19 @@ export interface PressVisual {
 }
 
 export const PRESS_VISUALS: PressVisual[] = [
+  {
+    id: 'vis-logo',
+    title: 'Monogramme & Logo Officiel HN (Or brossé, Clavier & Étoile)',
+    category: 'logo',
+    categoryLabel: 'Identité & Logo HD',
+    dimensions: '1024 × 1024 px (Format Carré HD)',
+    weight: '458 Ko (PNG Détouré Transparent)',
+    src: '/hn-initials-mark.png',
+    masterSrc: '/hn-logo-master.png',
+    credit: '© Hervé Nanfang — Identité Visuelle Officielle',
+    description: 'Logo officiel de la marque Hervé Nanfang : synthèse du piano acoustique, de l’architecture du son et de l’étoile d’horizon international.',
+    recommendedUsage: 'Affiches, programmes de concerts, dossiers de presse, bannières médias et génériques vidéo',
+  },
   {
     id: 'vis-1',
     title: 'Portrait Éditorial Officiel — Yaoundé',
@@ -413,7 +426,7 @@ export default function PressMediaKit() {
                         d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                       />
                     </svg>
-                    <span>Ouvrir / Télécharger HD (WebP)</span>
+                    <span>{vis.category === 'logo' ? 'Ouvrir / Télécharger PNG' : 'Ouvrir / Télécharger HD (WebP)'}</span>
                   </a>
 
                   {vis.masterSrc && (
@@ -424,7 +437,7 @@ export default function PressMediaKit() {
                       download
                       className="inline-flex w-full items-center justify-center gap-2 border border-white/20 bg-white/5 py-2 text-[0.68rem] font-semibold uppercase tracking-wider text-ivory/80 transition-colors hover:border-gold/50 hover:text-gold"
                     >
-                      <span>Télécharger Master Print (JPG 4 Mo)</span>
+                      <span>{vis.category === 'logo' ? 'Télécharger Master PNG (1024px)' : 'Télécharger Master Print (JPG 4 Mo)'}</span>
                       <span>↓</span>
                     </a>
                   )}

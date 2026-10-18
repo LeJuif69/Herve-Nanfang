@@ -1,9 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" fill="#08080A"/>
-  <rect x="3.5" y="5.5" width="25" height="21" fill="none" stroke="#C6A15B" stroke-opacity="0.5"/>
-  <path d="M9.5 5.5v21M15 5.5v21M20.5 5.5v21" stroke="#C6A15B" stroke-opacity="0.35"/>
-  <rect x="6" y="5.5" width="2.6" height="13" fill="#C6A15B"/>
-  <rect x="11.5" y="5.5" width="2.6" height="13" fill="#C6A15B"/>
-  <rect x="17" y="5.5" width="2.6" height="13" fill="#C6A15B"/>
-  <rect x="22.5" y="5.5" width="2.6" height="13" fill="#C6A15B"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="14" fill="#08080A"/>
+  <rect width="64" height="64" rx="14" stroke="#C6A15B" stroke-opacity="0.3" stroke-width="1.5"/>
+  
+  <!-- H stem left -->
+  <path d="M14 16h6v32h-6z" fill="#E8D1A0"/>
+  <path d="M12 16h10M12 48h10" stroke="#E8D1A0" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- H to N curved bridge / arch -->
+  <path d="M11 34c8-3 18-3 26 8" stroke="#C6A15B" stroke-width="2.5" stroke-linecap="round"/>
+  
+  <!-- Piano keys descending -->
+  <path d="M23 35v11M26 36v12M29 38v12M32 40v12M35 43v10" stroke="#C6A15B" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- N diagonal & right stem -->
+  <path d="M25 24l19 22V18h4v28c0 3-3 4-6 2L24 23z" fill="#C6A15B"/>
+  <path d="M46 18h6" stroke="#C6A15B" stroke-width="2" stroke-linecap="round"/>
+  <path d="M42 48c4 1 8-1 10-3" stroke="#C6A15B" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- 4-point star -->
+  <path d="M52 30c0-3 1-5 3-5 2 0 3 2 3 5 0 3-1 5-3 5-2 0-3-2-3-5z" fill="#FFEBBF"/>
+  <path d="M50 30h10M55 25v10" stroke="#FFEBBF" stroke-width="1.2" stroke-linecap="round"/>
 </svg>
