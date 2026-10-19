@@ -378,7 +378,7 @@ export default function About() {
             Espace Presse & Media Kit Officiel
           </Display>
           <Lead className="mt-6 max-w-3xl">
-            Biographies officielles multi-formats (courtes, moyennes, intégrales), fiche synthétique pour programmateurs et photothèque haute définition libres de droits pour journalistes, médias et organisateurs de conférences.
+            Biographies officielles multi-formats (courtes, moyennes, intégrales), fiche synthétique pour programmateurs et photothèque haute définition avec autorisation d'utilisation éditoriale pour journalistes, médias et organisateurs de conférences.
           </Lead>
         </Reveal>
 

@@ -1,6 +1,6 @@
 # Audit éditorial et technique — hervenanfang.vercel.app
 
-*Généré le 16/10/2026 par `npm run audit`.*
+*Généré le 19/10/2026 par `npm run audit`.*
 
 Cet audit analyse la **source** du site : il est reproductible après chaque modification.
 
@@ -36,7 +36,7 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 | `Music` | Musique | Hervé Nanfang — Piano, Composition & Production | 57 | Piano-bar live depuis 2007, formats solo, duo et live band, compositio… | 139 | 1 (PageHero (h1 interne)) | MusicGroup, BreadcrumbList, Service, CreativeWork / Book |
 | `NotFound` | Page introuvable | Hervé Nanfang | 32 | La page demandée n’existe pas ou a été déplacée. Accédez aux rubriques… | 156 | 1 (Display as="h1") | — |
 | `Pedagogy` | Pédagogie & Recherche | Hervé Nanfang | 37 | Enseignement supérieur, conception de curricula, musicologie africaine… | 159 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Course, CreativeWork / Book |
-| `Press` | Presse & EPK | Hervé Nanfang — kit officiel | 43 | Dossier de presse et Electronic Press Kit (EPK) officiel d'Hervé Nanfa… | 155 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList |
+| `Press` | Presse & Médias | Hervé Nanfang — Espace officiel & EPK | 55 | Espace officiel de presse d’Hervé Nanfang : présentation de référence,… | 164 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList |
 | `Projects` | Projets & Marques | Hervé Nanfang — A LAIZ PROD | 47 | Projets musicaux, pédagogiques, numériques et culturels d’Hervé Nanfan… | 158 | 1 (PageHero (h1 interne)) | Person, Organization, BreadcrumbList, CreativeWork / Book |
 | `RMA` | RMA — Racines Musicales Academy® | Hervé Nanfang | 48 | Racines Musicales Academy® : formation musicale, pédagogie, Permis de … | 161 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service, Course |
 | `Services` | Services | Hervé Nanfang — live, formation & conseil | 52 | Piano live Le Pianobariste™, production studio, conférences sur l'IA e… | 152 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
