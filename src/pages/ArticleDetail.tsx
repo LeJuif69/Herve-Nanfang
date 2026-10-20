@@ -14,14 +14,16 @@ import {
   Section,
   Tag,
 } from '../components/ui'
-import { ARTICLES, ARTICLE_CHAIN } from '../data/articles'
+import { ARTICLE_CHAIN } from '../data/articles'
 import { articleSchema, breadcrumbSchema, personSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
+import { useLiveArticle, useLiveArticles } from '../lib/useLiveContent'
 import NotFound from './NotFound'
 
 export default function ArticleDetail() {
   const { slug } = useParams()
-  const article = ARTICLES.find((a) => a.slug === slug)
+  const article = useLiveArticle(slug)
+  const allArticles = useLiveArticles()
 
   useSeo({
     title: article ? article.seoTitle : 'Article introuvable | Hervé Nanfang',
@@ -52,7 +54,7 @@ export default function ArticleDetail() {
 
   if (!article) return <NotFound />
 
-  const others = ARTICLES.filter((a) => a.slug !== article.slug).slice(0, 3)
+  const others = allArticles.filter((a) => a.slug !== article.slug).slice(0, 3)
   const published = article.status === 'Publié'
 
   return (

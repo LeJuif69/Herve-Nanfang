@@ -15,11 +15,12 @@ import {
   Stat,
   Tag,
 } from '../components/ui'
-import { ARTICLE_CHAIN, ARTICLES, CATEGORIES, JOURNAL_AGENDA, JOURNAL_SERIES } from '../data/articles'
+import { ARTICLE_CHAIN, CATEGORIES, JOURNAL_AGENDA, JOURNAL_SERIES } from '../data/articles'
 import { IDENTITY } from '../data/identity'
 import { SITE } from '../data/site'
 import { articleSchema, breadcrumbSchema, personSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
+import { useLiveArticles } from '../lib/useLiveContent'
 
 const STATUS_TONE: Record<string, 'gold' | 'ink'> = {
   Publié: 'gold',
@@ -29,6 +30,7 @@ const STATUS_TONE: Record<string, 'gold' | 'ink'> = {
 
 export default function Journal() {
   const [category, setCategory] = useState('Toutes')
+  const articles = useLiveArticles()
 
   useSeo({
     title: 'Journal | Hervé Nanfang — IA, musique & pédagogie',
@@ -37,7 +39,7 @@ export default function Journal() {
     path: '/journal',
     jsonLd: [
       personSchema,
-      ...ARTICLES.map((a) =>
+      ...articles.map((a) =>
         articleSchema({
           title: a.title,
           description: a.seoDescription,
@@ -54,8 +56,8 @@ export default function Journal() {
   })
 
   const filtered = useMemo(
-    () => (category === 'Toutes' ? ARTICLES : ARTICLES.filter((a) => a.category === category)),
-    [category],
+    () => (category === 'Toutes' ? articles : articles.filter((a) => a.category === category)),
+    [category, articles],
   )
 
   return (
@@ -67,7 +69,7 @@ export default function Journal() {
         lead="Analyses, méthodes et prises de position sur la musique, l'intelligence artificielle, la pédagogie, le cinéma et la culture. Dix piliers éditoriaux fondateurs."
       >
         <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
-          <Stat value={String(ARTICLES.length).padStart(2, '0')} label="Piliers publiés" />
+          <Stat value={String(articles.length).padStart(2, '0')} label="Piliers publiés" />
           <Stat value="09" label="Catégories" />
           <Stat value="04" label="Séries" />
           <Stat value="1×" label="Par mois (objectif)" />

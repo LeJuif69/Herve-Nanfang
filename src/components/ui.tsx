@@ -181,7 +181,7 @@ export function ArrowLink({
   )
 }
 
-/** Apparition douce au défilement (respecte prefers-reduced-motion) */
+/** Apparition douce au défilement (SSR & Googlebot friendly, respecte prefers-reduced-motion) */
 export function Reveal({
   children,
   delay = 0,
@@ -192,15 +192,25 @@ export function Reveal({
   className?: string
 }) {
   const ref = useRef<HTMLDivElement>(null)
-  const [shown, setShown] = useState(false)
+  // Visible par défaut pour le SSR (Node.js) et l'indexation par Googlebot
+  const [shown, setShown] = useState(true)
 
   useEffect(() => {
     const node = ref.current
     if (!node) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setShown(true)
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (/bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)) return
+
+    // Vérifie si l'élément se trouve déjà dans le viewport initial au chargement
+    const rect = node.getBoundingClientRect()
+    const inInitialViewport = rect.top < window.innerHeight && rect.bottom > 0
+    if (inInitialViewport) {
       return
     }
+
+    // Pour les éléments sous la ligne de flottaison, activation de l'effet d'apparition au défilement
+    setShown(false)
+
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -208,7 +218,7 @@ export function Reveal({
           obs.disconnect()
         }
       },
-      { threshold: 0.08, rootMargin: '0px 0px -6% 0px' },
+      { threshold: 0.08, rootMargin: '0px 0px -4% 0px' },
     )
     obs.observe(node)
     return () => obs.disconnect()
@@ -217,12 +227,12 @@ export function Reveal({
   return (
     <div
       ref={ref}
-      className={`transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+      className={`transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
         shown
           ? 'translate-y-0 opacity-100 [filter:blur(0px)]'
           : 'translate-y-8 opacity-0 [filter:blur(4px)]'
       } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ transitionDelay: shown ? `${delay}ms` : '0ms' }}
     >
       {children}
     </div>

@@ -23,8 +23,10 @@ import { breadcrumbSchema, personSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 import CareerTimeline from '../components/CareerTimeline'
 import PressMediaKit from '../components/PressMediaKit'
+import { useLiveMedia } from '../lib/useLiveContent'
 
 export default function About() {
+  const portraitMedia = useLiveMedia('med-about-portrait', portrait, 50, 28)
   useSeo({
     title: 'Hervé Nanfang | Parcours, Musique, MAO, Pédagogie & IA',
     description:
@@ -120,11 +122,12 @@ export default function About() {
           <Reveal delay={120} className="lg:sticky lg:top-32">
             <figure>
               <img
-                src={portrait}
-                alt="Portrait d'Hervé Nanfang"
+                src={portraitMedia.url || portrait}
+                alt={portraitMedia.alt || "Portrait d'Hervé Nanfang"}
                 width={760}
                 height={1353}
                 loading="lazy"
+                style={portraitMedia.style}
                 className="zoomable w-full object-cover"
               />
               <figcaption className="mt-4 text-[0.68rem] uppercase tracking-[0.18em] text-ivory/40">

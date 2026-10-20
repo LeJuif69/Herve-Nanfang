@@ -27,6 +27,7 @@ import { ARTICLES } from '../data/articles'
 import { PROJECT_FAMILIES } from '../data/projects'
 import { personSchema, websiteSchema, organizationSchema, musicGroupSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
+import { useLiveMedia } from '../lib/useLiveContent'
 
 const DISCIPLINES = [
   'Musique',
@@ -68,6 +69,7 @@ const ROLES = [
 export default function Home() {
   const { openPlayer } = useAudio()
   const [roleIndex, setRoleIndex] = useState(0)
+  const livePianoMedia = useLiveMedia('med-live-piano', liveScene, 50, 20)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -467,12 +469,13 @@ export default function Home() {
           <Reveal delay={120}>
             <figure className="relative overflow-hidden">
               <img
-                src={liveScene}
-                alt="Hervé Nanfang au clavier en prestation live — visage visible"
+                src={livePianoMedia.url || liveScene}
+                alt={livePianoMedia.alt || "Hervé Nanfang au clavier en prestation live — visage visible"}
                 width={1400}
                 height={783}
                 loading="lazy"
-                className="zoomable w-full object-cover object-[50%_20%]"
+                style={livePianoMedia.style}
+                className="zoomable w-full object-cover"
               />
               <figcaption className="absolute bottom-0 left-0 bg-ink/85 px-5 py-3 text-[0.68rem] uppercase tracking-[0.2em] text-ivory/70 backdrop-blur">
                 Live piano · Live mood · Live experience
