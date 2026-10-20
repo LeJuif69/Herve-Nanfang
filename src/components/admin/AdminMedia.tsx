@@ -205,6 +205,15 @@ export const AdminMedia: React.FC<AdminMediaProps> = ({
                   <img
                     src={item.url}
                     alt={item.altText || item.filename}
+                    onError={(e) => {
+                      const target = e.currentTarget
+                      const fallback = `/images/${encodeURIComponent(item.filename)}`
+                      if (target.src !== fallback && !target.src.endsWith(fallback)) {
+                        target.src = fallback
+                      } else {
+                        target.src = '/og-image.jpg'
+                      }
+                    }}
                     className="h-full w-full object-cover transition-transform group-hover:scale-105"
                   />
                 ) : (

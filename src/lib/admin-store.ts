@@ -381,6 +381,78 @@ function getInitialSettings(): AdminSettings {
   }
 }
 
+function readFileAsDataUrl(file: File): Promise<string> {
+  return new Promise((resolve) => {
+    if (typeof FileReader === 'undefined') {
+      resolve(`/images/${encodeURIComponent(file.name)}`)
+      return
+    }
+    const reader = new FileReader()
+    reader.onload = () => resolve(reader.result as string)
+    reader.onerror = () => resolve(`/images/${encodeURIComponent(file.name)}`)
+    reader.readAsDataURL(file)
+  })
+}
+
+function resolveValidMediaUrl(url: string | undefined, filename?: string): string {
+  if (!url) return '/images/portrait.webp'
+  if (url.startsWith('blob:')) {
+    if (filename) return `/images/${encodeURIComponent(filename)}`
+    return '/images/portrait.webp'
+  }
+  return url
+}
+
+function sanitizeLoadedState(state: AdminState): AdminState {
+  if (!state) return state
+  let hasChanges = false
+
+  const media = (state.media || []).map((m) => {
+    if (m.url && m.url.startsWith('blob:')) {
+      hasChanges = true
+      return {
+        ...m,
+        url: resolveValidMediaUrl(m.url, m.filename || m.path),
+      }
+    }
+    return m
+  })
+
+  const articles = (state.articles || []).map((a) => {
+    if (a.coverImage && a.coverImage.startsWith('blob:')) {
+      hasChanges = true
+      return { ...a, coverImage: resolveValidMediaUrl(a.coverImage) }
+    }
+    return a
+  })
+
+  const projects = (state.projects || []).map((p) => {
+    if (p.coverImage && p.coverImage.startsWith('blob:')) {
+      hasChanges = true
+      return { ...p, coverImage: resolveValidMediaUrl(p.coverImage) }
+    }
+    return p
+  })
+
+  const services = (state.services || []).map((s) => {
+    if (s.coverImage && s.coverImage.startsWith('blob:')) {
+      hasChanges = true
+      return { ...s, coverImage: resolveValidMediaUrl(s.coverImage) }
+    }
+    return s
+  })
+
+  const sanitized = { ...state, media, articles, projects, services }
+  if (hasChanges && typeof localStorage !== 'undefined') {
+    try {
+      localStorage.setItem(LOCAL_STORE_KEY, JSON.stringify(sanitized))
+    } catch {
+      // ignore
+    }
+  }
+  return sanitized
+}
+
 function createInitialState(): AdminState {
   return {
     articles: getInitialArticles(),
@@ -402,7 +474,7 @@ let currentState: AdminState = (() => {
       if (saved) {
         const parsed = JSON.parse(saved)
         if (parsed.articles && parsed.projects) {
-          return parsed
+          return sanitizeLoadedState(parsed)
         }
       }
     }
@@ -928,8 +1000,12 @@ export const adminStore = {
     }
 
     if (!publicUrl) {
-      // Local fallback: generate a usable object URL or data URL
-      publicUrl = URL.createObjectURL(file)
+      // Local fallback: stocker sous format Data URL pérenne (survit aux rafraîchissements de page)
+      try {
+        publicUrl = await readFileAsDataUrl(file)
+      } catch {
+        publicUrl = `/images/${encodeURIComponent(file.name)}`
+      }
     }
 
     const newMedia: AdminMedia = {

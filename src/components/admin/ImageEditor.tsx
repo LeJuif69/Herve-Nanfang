@@ -194,6 +194,12 @@ export const ImageEditor: React.FC<ImageEditorProps> = ({
                       src={url}
                       alt={alt || 'Aperçu'}
                       draggable={false}
+                      onError={(e) => {
+                        const target = e.currentTarget
+                        if (target.src !== '/og-image.jpg') {
+                          target.src = '/og-image.jpg'
+                        }
+                      }}
                       className="h-full w-full select-none object-cover"
                       style={{ objectPosition: positionCss, transform: `scale(${zoom})` }}
                     />
@@ -270,7 +276,21 @@ export const ImageEditor: React.FC<ImageEditorProps> = ({
                       }`}
                     >
                       <div className="aspect-[4/3] w-full overflow-hidden bg-ink">
-                        <img src={m.url} alt={m.altText} className="h-full w-full object-cover" loading="lazy" />
+                        <img
+                          src={m.url}
+                          alt={m.altText}
+                          onError={(e) => {
+                            const target = e.currentTarget
+                            const fallback = `/images/${encodeURIComponent(m.filename)}`
+                            if (target.src !== fallback && !target.src.endsWith(fallback)) {
+                              target.src = fallback
+                            } else {
+                              target.src = '/og-image.jpg'
+                            }
+                          }}
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                        />
                       </div>
                       <div className="bg-ink p-2">
                         <p className="truncate text-[0.65rem] text-ivory/75">{m.filename}</p>
