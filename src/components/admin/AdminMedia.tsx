@@ -195,7 +195,13 @@ export const AdminMedia: React.FC<AdminMediaProps> = ({
             Aucun fichier trouvé.
           </div>
         ) : (
-          filtered.map((item) => (
+          filtered.map((item) => {
+            const isPortrait = (item.height || 1000) > (item.width || 800)
+            const defaultPosY = item.defaultPositionY ?? (isPortrait ? 20 : 50)
+            const defaultPosX = item.defaultPositionX ?? 50
+            const posCss = `${defaultPosX}% ${defaultPosY}%`
+
+            return (
             <div
               key={item.id}
               className="group flex flex-col justify-between overflow-hidden border border-white/10 bg-ink-2 transition-all hover:border-gold/60"
@@ -205,6 +211,7 @@ export const AdminMedia: React.FC<AdminMediaProps> = ({
                   <img
                     src={item.url}
                     alt={item.altText || item.filename}
+                    style={{ objectPosition: posCss }}
                     onError={(e) => {
                       const target = e.currentTarget
                       const fallback = `/images/${encodeURIComponent(item.filename)}`
@@ -292,7 +299,8 @@ export const AdminMedia: React.FC<AdminMediaProps> = ({
                 </div>
               </div>
             </div>
-          ))
+            )
+          })
         )}
       </div>
 
