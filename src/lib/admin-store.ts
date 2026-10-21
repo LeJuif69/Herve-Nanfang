@@ -5,7 +5,7 @@ import { CONFERENCES } from '../data/conferences'
 import { MUSIC_SECTIONS } from '../data/music'
 import { SITE } from '../data/site'
 import { MASTER_IDENTITY } from '../data/identity'
-import type {
+import {
   AdminArticle,
   AdminMedia,
   AdminMessage,
@@ -17,6 +17,7 @@ import type {
   AdminTrack,
   ContentStatus,
 } from './admin-types'
+import generatedUploadsMedia from './generated-uploads-media.json'
 
 const LOCAL_STORE_KEY = 'hn_admin_store_v1'
 
@@ -164,6 +165,7 @@ function getInitialTracks(): AdminTrack[] {
 
 function getInitialMedia(): AdminMedia[] {
   return [
+    ...(generatedUploadsMedia as unknown as AdminMedia[]),
     {
       id: 'med-01-portrait',
       bucket: 'public-media',
