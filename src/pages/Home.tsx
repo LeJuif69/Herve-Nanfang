@@ -725,12 +725,12 @@ export default function Home() {
             <div>
               <Eyebrow>Conférences & Masterclass</Eyebrow>
               <Display size="md" className="mt-6">
-                Cinq thèmes pour les institutions, écoles et organisations
+                Six thèmes pour les institutions, écoles et organisations
               </Display>
               <Body className="mt-6 max-w-xl">
                 « Le musicien augmenté » · « De la MAO à l’IA » · « Enseigner la musique à l’ère de
                 l’intelligence artificielle » · « Construire sa carrière musicale à l’ère digitale »
-                · « Le musicien comme marque ».
+                · « Le musicien comme marque » · « Musique, image et narration (cinéma) ».
               </Body>
             </div>
             <div className="flex flex-wrap gap-4 lg:justify-end">

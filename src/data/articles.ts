@@ -754,6 +754,93 @@ export const ARTICLES: Article[] = [
     seoDescription:
       'Découvrez le Permis de Jouer™ par Hervé Nanfang : pédagogie musicale en 4 paliers (N1-N4), pulsation corporelle et compétences réelles à la RMA.',
   },
+  {
+    slug: 'musicien-marque-recit',
+    num: '11',
+    category: 'Communication digitale',
+    title: 'Le musicien et sa marque : pourquoi le récit précède le logo',
+    excerpt:
+      'Avant l’identité visuelle, les shootings photo et les logos, il y a une proposition de valeur artistique. Comment bâtir une marque musicale d’autorité, authentique et durable, ancrée dans une trajectoire réelle.',
+    readingTime: '8 min',
+    status: 'Publié',
+    audience:
+      'Artistes indépendants, musiciens de scène, porteurs de projets culturels et structures qui cherchent à clarifier leur proposition de valeur.',
+    linkedConcept: { label: 'Conseil & Stratégie de marque', to: '/services#strategie-digitale' },
+    outline: [
+      'L’illusion du graphisme : le logo n’est pas la marque',
+      'La proposition de valeur artistique : ce qui vous rend irremplaçable',
+      'L’extraction du récit de trajectoire : la sincérité comme autorité',
+      'La méthode des biographies gigognes : 20, 50, 90 et 150 mots',
+      'L’IA comme scribe discipliné, jamais comme auteur de votre voix',
+      '« Un savoir qui ne circule pas n’existe pas » : passer à l’action',
+    ],
+    body: [
+      {
+        heading: 'L’illusion du graphisme : le logo n’est pas la marque',
+        paragraphs: [
+          'Dans le milieu artistique, un réflexe tenace consiste à commencer par la fin. Dès qu’un projet musical émerge ou qu’un artiste décide de se professionnaliser, l’énergie et les maigres budgets disponibles sont immédiatement investis dans un shooting photo glamour, un logo vectoriel stylisé et la commande d’une identité graphique. C’est une erreur de diagnostic classique : on confond le vêtement avec le corps qui le porte.',
+          'Un logo n’est qu’un marqueur de reconnaissance visuelle ; il n’a jamais convaincu un programmateur de festival d’engager un groupe, ni un auditeur d’écouter un album avec attention. L’identité visuelle sert à identifier ce qui existe déjà. Si le propos artistique est flou, si la proposition de valeur est absente, le plus beau design du monde ne fera qu’emballer du vide avec élégance.',
+          'Dans un écosystème culturel saturé de sollicitations numériques, ce n’est pas celui qui crie le plus fort ou qui a les filtres les plus soignés qui construit une audience fidèle. C’est celui dont le récit résonne avec une vérité vécue, une cohérence et une intention claire.',
+        ],
+      },
+      {
+        heading: 'La proposition de valeur artistique : ce qui vous rend irremplaçable',
+        paragraphs: [
+          'Le vocabulaire du marketing rebute souvent les artistes, et pour de bonnes raisons lorsqu’il est utilisé de manière opportuniste. Pourtant, la notion de « proposition de valeur » est profondément saine lorsqu’on la ramène à son essence : qu’est-ce qui fait qu’on vous appelle vous, précisément vous, plutôt qu’un autre ?',
+          'La virtuosité technique ne suffit pas. Il y aura toujours un pianiste qui joue plus vite, un chanteur doté d’un demi-ton de tessiture supplémentaire ou un arrangeur maîtrisant un plug-in plus récent. Ce qui fonde votre valeur, c’est votre signature globale : la couleur de votre répertoire, l’atmosphère que vous êtes capable d’installer dans une salle, votre grille de lecture du monde et la mémoire sonore que vous laissez après une prestation.',
+          'C’est exactement le principe sur lequel j’ai bâti Le Pianobariste™ depuis 2007 : non pas vendre « une prestation de piano », mais offrir une régulation d’ambiance, une élégance feutrée et une adaptation en temps réel à l’énergie d’un lieu de prestige. Lorsque cette promesse est limpide, le prix cesse d’être une variable d’ajustement et devient la contrepartie d’une autorité reconnue.',
+        ],
+      },
+      {
+        heading: 'L’extraction du récit de trajectoire : la sincérité comme autorité',
+        paragraphs: [
+          'Le véritable storytelling ne s’invente pas dans une session de remue-méninges artificielle : il s’extrait avec rigueur de la trajectoire réelle du musicien. Votre histoire n’a pas besoin d’artifices héroïques ; elle a besoin d’être ordonnée avec lucidité.',
+          'Vos singularités géographiques, vos bifurcations de carrière, vos doutes surmontés et vos fidélités esthétiques sont vos actifs les plus précieux. Mon ancrage camerounais, ma pratique du piano-bar dans les nuits de Yaoundé, mes recherches musicologiques sur les musiques traditionnelles et ma fascination pour l’ingénierie sonore ne sont pas des activités dispersées : elles sont les étapes cohérentes d’une même recherche de sens.',
+          'Lorsque vous assumez la totalité de votre parcours — sans cacher les terrains d’où vous venez —, vous devenez inattaquable et inimitable. Personne ne peut cloner une trajectoire vécue. C’est là que réside l’autorité naturelle d’un créateur.',
+        ],
+      },
+      {
+        heading: 'La méthode des biographies gigognes : 20, 50, 90 et 150 mots',
+        paragraphs: [
+          'Sur le plan opérationnel, l’incapacité à formuler son récit se traduit souvent par l’envoi de dossiers indigestes : des biographies de trois pages racontant chaque kermesse d’enfance dans un style grandiloquent. Les programmateurs, journalistes et directeurs artistiques n’ont pas le temps de tamiser votre texte pour y trouver une pépite.',
+          'Pour y remédier, j’enseigne et j’applique la méthode des biographies gigognes, articulée en quatre calibres stricts :',
+          '• 20 mots (La Signature) : Pour les bas de page, les profils de réseaux sociaux et les cartels d’exposition. Une phrase tranchante qui pose le métier et la singularité.',
+          '• 50 mots (Le Pitch d’intervenant) : Pour les livrets de festival, les présentations de conférence ou les présentations de tables rondes.',
+          '• 90 mots (La Notice programmateur) : Le format roi des dossiers de presse et des demandes de subventions culturelles, reliant trajectoire, esthétique et projet actuel.',
+          '• 150 mots (Le Dossier d’autorité) : Une présentation développée pour les entretiens de presse écrite, les portraits institutionnels et les dossiers de partenariat.',
+          'Chacun de ces formats doit contenir le même noyau de valeur, décliné avec une densité adaptée au contexte de lecture.',
+        ],
+      },
+      {
+        heading: 'L’IA comme scribe discipliné, jamais comme auteur de votre voix',
+        paragraphs: [
+          'L’intelligence artificielle générative peut apporter une aide précieuse dans la formalisation de ces supports, à condition d’en verrouiller fermement l’usage. Si vous tapez dans un modèle de langage : « Écris-moi une biographie d’artiste inspirante », vous obtiendrez un concentré de clichés sirupeux truffé d’adjectifs dithyrambiques (« virtuose aux doigts d’or », « pont magique entre tradition et modernité ») qui détruira instantanément votre crédibilité professionnelle.',
+          'La bonne pratique consiste à utiliser l’IA comme un miroir et un scribe contraint : vous lui injectez vos faits bruts, vos dates vérifiées, vos intentions explicites et vos anecdotes réelles, en lui imposant un calibre de mots et un ton sobre. Vous récupérez une structure, puis vous reprenez impérativement la plume pour réinjecter votre voix, votre souffle et votre rythme oral.',
+          'L’IA ne doit jamais remplacer l’introspection de l’artiste. Elle n’est là que pour abattre la corvée de mise en page afin de vous rendre plus vite à vos instruments.',
+        ],
+      },
+      {
+        heading: '« Un savoir qui ne circule pas n’existe pas » : passer à l’action',
+        paragraphs: [
+          'Certains artistes continuent de percevoir la communication comme une compromission indigne, préférant se draper dans le mythe romantique du génie maudit attendant d’être découvert par miracle. C’est une posture confortable mais stérile. Un savoir qui ne circule pas n’existe pas. Une musique qui ne rencontre pas d’oreilles ne nourrit ni l’âme du public ni le réfrigérateur du créateur.',
+          'Prendre la parole avec dignité, structurer un récit clair, soigner ses supports et définir sa marque d’artiste n’est pas un acte d’arrogance commerciale : c’est un acte de politesse et de respect envers ceux qui cherchent précisément ce que vous avez à offrir.',
+          'C’est tout le sens de l’accompagnement que nous déployons aujourd’hui au sein d’ALAIZ et à travers nos prestations de conseil en stratégie de marque culturelle : outiller les musiciens et les institutions pour qu’ils soient maîtres de leur voix, souverains dans leur propos et durables dans leur économie.',
+        ],
+      },
+    ],
+    keywords: [
+      'personal branding musicien',
+      'récit de marque artistique',
+      'dossier de presse artiste',
+      'storytelling musique',
+      'stratégie digitale artiste',
+      'Hervé Nanfang conseil marque',
+      'biographie d’artiste',
+    ],
+    seoTitle: 'Le musicien et sa marque : le récit précède le logo',
+    seoDescription:
+      'Pourquoi le récit précède le logo pour un artiste indépendant : méthode de positionnement, proposition de valeur et autorité par Hervé Nanfang.',
+  },
 ]
 
 export const ARTICLE_CHAIN = [
@@ -822,11 +909,11 @@ export const JOURNAL_AGENDA: JournalEntry[] = [
   },
   {
     date: 'Prochainement',
-    category: 'Communication digitale',
-    title: 'Le musicien et sa marque : pourquoi le récit précède le logo',
+    category: 'Entrepreneuriat',
+    title: 'Modèles économiques du live en Afrique centrale : sortir du cachet précaire',
     excerpt:
-      'Avant l’identité visuelle, il y a une proposition de valeur. Méthode de positionnement pour les artistes.',
-    slug: 'musicien-marque-recit',
+      'Structurer ses résidences, tarifer la valeur d’atmosphère et contractualiser les prestations événementielles.',
+    slug: 'economie-live-afrique-centrale',
   },
   {
     date: 'Prochainement',
@@ -843,5 +930,5 @@ export const JOURNAL_AGENDA: JournalEntry[] = [
     excerpt:
       'Retour d’expérience sans promotion : ce qui tient, ce qui déçoit, ce qui est dangereux.',
     slug: 'cinq-outils-ia',
-  }
+  },
 ]

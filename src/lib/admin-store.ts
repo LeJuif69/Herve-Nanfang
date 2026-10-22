@@ -62,6 +62,16 @@ const INITIAL_SERVICES: AdminService[] = [
     position: 4,
     updatedAt: new Date().toISOString(),
   },
+  {
+    id: 'srv-5',
+    title: 'Conseil & Stratégie de marque culturelle',
+    text: 'Accompagnement d’artistes et d’institutions : diagnostic d’autorité, storytelling de trajectoire, conception de dossiers de presse d’élite et workflows de contenu assistés par IA.',
+    tags: ['Stratégie de marque', 'Storytelling', 'Communication digitale'],
+    to: '/services#strategie-digitale',
+    status: 'Actif',
+    position: 5,
+    updatedAt: new Date().toISOString(),
+  },
 ]
 
 function getInitialArticles(): AdminArticle[] {
