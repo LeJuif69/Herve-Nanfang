@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import PageHero from '../components/PageHero'
 import PressKit from '../components/PressKit'
 import SocialButtons from '../components/SocialButtons'
@@ -53,6 +53,15 @@ export default function Contact() {
   const [form, setForm] = useState<FormState>(EMPTY)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [submitted, setSubmitted] = useState(false)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hash = window.location.hash.replace('#', '')
+      if (CONTACT_ROUTES.some((r) => r.id === hash)) {
+        setForm((f) => ({ ...f, route: hash }))
+      }
+    }
+  }, [])
 
   useSeo({
     title: 'Contact | Hervé Nanfang — Booking, Formation & Conseil',

@@ -15,6 +15,13 @@ export type ServiceTier = {
   cta?: string
 }
 
+export type CaseStudy = {
+  title: string
+  context: string
+  deliverable: string
+  to?: string
+}
+
 export type ServiceOffering = {
   id: string
   icon: string
@@ -25,6 +32,8 @@ export type ServiceOffering = {
   tiers: ServiceTier[]
   /** Conditions générales communes à la famille */
   conditions: string[]
+  /** Réalisations ou études de cas vérifiables associées */
+  cases?: CaseStudy[]
   contactLabel: string
   contactTo: string
 }
@@ -264,6 +273,86 @@ export const SERVICE_OFFERINGS: ServiceOffering[] = [
     ],
     contactLabel: "S'inscrire à la RMA",
     contactTo: "/rma#inscriptions",
+  },
+  {
+    id: "strategie-digitale",
+    icon: "🧭",
+    family: "Stratégie & Communication",
+    title: "Conseil & Stratégie de marque culturelle",
+    tagline: "Architecture de marque, récit d'autorité et diffusion : « Un savoir qui ne circule pas n’existe pas »",
+    description:
+      "Accompagnement stratégique et opérationnel pour artistes, ensembles, institutions culturelles et créateurs. Définition du positionnement, extraction du récit authentique, conception du dossier de presse d'autorité et structuration de workflows de publication assistés par IA sans perte d'identité.",
+    tiers: [
+      {
+        label: "Diagnostic & Positionnement",
+        subtitle: "Artiste solo · Projet émergent · Rebranding",
+        duration: "1 à 2 semaines",
+        price: "Sur devis",
+        features: [
+          "Audit d'empreinte numérique et analyse de la perception actuelle",
+          "Clarification de la proposition de valeur et signature artistique unique",
+          "Identification des cibles prioritaires (programmateurs, institutions, public)",
+          "Livrable : Feuille de route stratégique & axes de différenciation (PDF)",
+        ],
+      },
+      {
+        label: "Récit de Marque & Dossier d'Autorité",
+        subtitle: "Artiste confirmé · Collectif · Sortie d'album",
+        duration: "2 à 3 semaines",
+        price: "Sur devis",
+        highlight: true,
+        features: [
+          "Rédaction du récit fondateur (storytelling appuyé sur la trajectoire réelle)",
+          "Biographies calibrées multi-formats (20, 50, 90, 150 mots)",
+          "Dossier de presse haut de gamme (EPK textuel et structure visuelle)",
+          "Ligne éditoriale et angles de prise de parole pour réseaux sociaux",
+          "Prompts et modèles IA sur mesure pour vos rédactions futures",
+        ],
+        cta: "Recommandé pour sorties & tournées",
+      },
+      {
+        label: "Accompagnement de Structure",
+        subtitle: "École de musique · Festival · Label · Institution",
+        duration: "Mission mensuelle ou projet",
+        price: "Sur devis",
+        features: [
+          "Architecture de communication globale de l'écosystème culturel",
+          "Stratégie de lancement et campagnes d'inscriptions ou de billetterie",
+          "Formation de l'équipe aux outils numériques et à l'IA générative",
+          "Mise en place d'un calendrier éditorial pérenne et autonome",
+          "Livrable : Manuel de communication opérationnel sur mesure",
+        ],
+      },
+    ],
+    conditions: [
+      "Entretien préalable de cadrage de 30 minutes offert pour valider vos objectifs.",
+      "Devis personnalisé détaillé remis sous 48 heures ouvrées.",
+      "Délai indicatif : 1 à 3 semaines selon formule ; calendrier arrêté contractuellement.",
+      "Transmission de méthodes et modèles réutilisables garantissant votre autonomie.",
+      "Disponible en distanciel (visio / partage d'outils) ou en présentiel (Yaoundé & Afrique centrale).",
+    ],
+    cases: [
+      {
+        title: "ALAIZ Creative Systems",
+        context: "Architecture de marque globale reliant production sonore (A LAIZ PROD), médiation patrimoniale (A LAIZ Ô PAYS) et formation (RMA).",
+        deliverable: "Plateforme de marque multi-entités, gouvernance éditoriale et charte de positionnement unifiée.",
+        to: "/projets",
+      },
+      {
+        title: "Racines Musicales Academy®",
+        context: "Lancement d'une académie de musique enracinée dans le patrimoine africain et connectée aux pratiques contemporaines.",
+        deliverable: "Récit de lancement, supports de rentrée, campagnes Vacances Utiles et kit de notoriété locale.",
+        to: "/rma",
+      },
+      {
+        title: "Musicien Augmenté™",
+        context: "Création d'un territoire d'autorité combinant pratique instrumentale d'excellence et prospective technologique sur l'IA.",
+        deliverable: "Manifeste d'autorité, série éditoriale du Journal et référencement naturel d'expert.",
+        to: "/ia-technologie",
+      },
+    ],
+    contactLabel: "Demander un accompagnement",
+    contactTo: "/contact#conseil",
   },
 ]
 

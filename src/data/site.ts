@@ -150,8 +150,8 @@ export const CONTACT_ROUTES: ContactRoute[] = [
   },
   {
     id: 'conseil',
-    label: 'Conseil',
-    detail: 'IA · musique · digital · culture',
-    text: 'Accompagner une organisation dans l’adoption des outils numériques et de l’IA.',
+    label: 'Conseil & Marque',
+    detail: 'Stratégie · Récit de marque · Digital & IA',
+    text: 'Accompagner un artiste, un ensemble ou une organisation culturelle dans son positionnement, son récit de marque et sa stratégie digitale.',
   },
 ]

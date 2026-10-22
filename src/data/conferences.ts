@@ -116,6 +116,7 @@ export const CONFERENCES: Conference[] = [
     deliverables: [
       'Cahier d’exercices « Architecture de marque musicale ».',
       'Structure type d’un dossier de presse d’artiste haut de gamme.',
+      'Passerelle d’application : passer à l’action via notre offre d’accompagnement Conseil & Marque (/services#strategie-digitale).',
     ],
     techRequirements: 'Vidéoprojecteur HDMI, sonorisation, micro sans fil.',
   },

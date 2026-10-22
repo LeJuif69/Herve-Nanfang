@@ -43,9 +43,9 @@ const PROCESS = [
 
 export default function Services() {
   useSeo({
-    title: 'Services | Hervé Nanfang — live, formation & conseil',
+    title: 'Services | Hervé Nanfang — live, production, marque & conseil',
     description:
-      "Piano live Le Pianobariste™, production studio, conférences sur l'IA et formations RMA : toutes les prestations d'Hervé Nanfang avec modalités et devis.",
+      "Piano live Le Pianobariste™, production studio, stratégie de marque culturelle, conférences sur l'IA et formations RMA : toutes les prestations d'Hervé Nanfang avec modalités et devis.",
     path: '/services',
     jsonLd: [
       personSchema,
@@ -58,6 +58,11 @@ export default function Services() {
         'Production musicale & ingénierie du son',
         "Composition, arrangement, mixage, mastering et musique à l'image pour artistes et audiovisuel.",
         'Production musicale',
+      ),
+      serviceSchema(
+        'Stratégie de marque culturelle & communication digitale',
+        "Conseil en positionnement, récit de marque, dossier de presse d'autorité et workflows éditoriaux assistés par IA.",
+        'Conseil et communication',
       ),
       serviceSchema(
         'Conférences & Masterclass',
@@ -82,10 +87,10 @@ export default function Services() {
         breadcrumb="Services"
         eyebrow="Créer · Transmettre · Augmenter"
         title="Des prestations pensées pour la création, la transmission et la transformation"
-        lead="Piano live, production musicale, conférences, formations RMA et conseil sur l'IA : chaque service s'appuie sur le même principe — clarifier le besoin, protéger l'intention artistique et donner du sens au dispositif."
+        lead="Piano live, production musicale, conseil en stratégie de marque, conférences et formations RMA : chaque service s'appuie sur le même principe — clarifier le besoin, protéger l'intention artistique et donner du sens au dispositif."
       >
         <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
-          <Stat value="04" label="Familles de services" />
+          <Stat value="05" label="Familles de services" />
           <Stat value="2007" label="Piano live depuis" />
           <Stat value="440+" label="Titres répertoire" />
           <Stat value="Sur devis" label="Tarification" />
@@ -175,6 +180,44 @@ export default function Services() {
               </ul>
             </div>
           </Reveal>
+
+          {/* Études de cas et réalisations concrètes si disponibles */}
+          {offering.cases && offering.cases.length > 0 && (
+            <Reveal delay={140}>
+              <div className="mt-10 border border-gold/30 bg-gold/5 p-6 md:p-8">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <p className="eyebrow text-gold">Études de cas & Réalisations réelles</p>
+                  <span className="text-[0.62rem] uppercase tracking-wider text-ivory/40">
+                    Preuves concrètes dans l'écosystème
+                  </span>
+                </div>
+                <div className="mt-6 grid gap-6 md:grid-cols-3">
+                  {offering.cases.map((c) => (
+                    <div
+                      key={c.title}
+                      className="flex flex-col justify-between border border-white/10 bg-ink-2/80 p-5 transition-colors hover:border-gold/40"
+                    >
+                      <div>
+                        <p className="font-display text-lg text-ivory">{c.title}</p>
+                        <p className="mt-2 text-xs leading-relaxed text-ivory/60">{c.context}</p>
+                        <div className="mt-4 border-t border-white/8 pt-3">
+                          <p className="text-[0.62rem] font-semibold uppercase tracking-wider text-gold/80">
+                            Livrable clé :
+                          </p>
+                          <p className="mt-1 text-xs text-ivory/75">{c.deliverable}</p>
+                        </div>
+                      </div>
+                      {c.to && (
+                        <div className="mt-5 border-t border-white/5 pt-3">
+                          <ArrowLink to={c.to}>Consulter la référence</ArrowLink>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          )}
         </Section>
       ))}
 
