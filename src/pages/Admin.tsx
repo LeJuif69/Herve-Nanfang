@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { adminAuth } from '../lib/admin-auth'
 import { adminStore } from '../lib/admin-store'
 import { useSeo } from '../lib/seo'
-import type { AdminArticle, AdminMedia, AdminProject, AdminService, AdminSettings, AdminState, AdminTalk, AdminTrack, AuthSession, SocialPost } from '../lib/admin-types'
+import type { AdminArticle, AdminMedia, AdminProject, AdminService, AdminSettings, AdminState, AdminTalk, AdminTrack, AuthSession, PublicationMetrics, SocialPost } from '../lib/admin-types'
 import { AdminHeader } from '../components/admin/AdminHeader'
 import { AdminSidebar } from '../components/admin/AdminSidebar'
 import { AdminOverview } from '../components/admin/AdminOverview'
@@ -191,11 +191,23 @@ export default function Admin() {
                 onSavePublication={async (post: SocialPost) => {
                   return await adminStore.savePublication(post)
                 }}
-                onValidatePublication={async (id: string) => {
-                  return await adminStore.validatePublication(id)
+                onValidatePublication={async (id: string, reviewer?: string, comment?: string) => {
+                  return await adminStore.approvePublication(id, reviewer, comment)
+                }}
+                onRejectPublication={async (id: string, reason: string, reviewer?: string) => {
+                  return await adminStore.rejectPublication(id, reason, reviewer)
+                }}
+                onSchedulePublication={async (id: string, scheduledFor?: string) => {
+                  return await adminStore.schedulePublication(id, scheduledFor)
+                }}
+                onRevokeApproval={async (id: string, reason?: string) => {
+                  return await adminStore.revokeApproval(id, reason)
                 }}
                 onMarkAsPublished={async (id: string) => {
-                  await adminStore.markPublicationAsPublished(id)
+                  return await adminStore.markPublicationAsPublished(id)
+                }}
+                onUpdateMetrics={async (id: string, metrics: PublicationMetrics) => {
+                  await adminStore.updatePublicationMetrics(id, metrics)
                 }}
                 onDeletePublication={async (id: string) => {
                   await adminStore.deletePublication(id)

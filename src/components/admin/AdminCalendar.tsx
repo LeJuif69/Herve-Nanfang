@@ -1,6 +1,22 @@
 import React, { useMemo, useState } from 'react'
-import type { AdminArticle, AdminMedia, AdminProject, AdminService, AdminSettings, SocialPlatform, SocialPost } from '../../lib/admin-types'
+import { SITE } from '../../data/site'
+import type {
+  AdminArticle,
+  AdminMedia,
+  AdminProject,
+  AdminService,
+  AdminSettings,
+  EditorialPillar,
+  PublicationMetrics,
+  PublicationStatus,
+  SocialPlatform,
+  SocialPost,
+} from '../../lib/admin-types'
+import { computeSocialPostHash } from '../../lib/admin-types'
 import {
+  EDITORIAL_PILLARS,
+  EDITORIAL_SERIES,
+  KANBAN_COLUMNS,
   PLATFORM_CONFIG,
   generateSocialPostFromSource,
   getFacebookShareUrl,
@@ -16,8 +32,23 @@ interface AdminCalendarProps {
   media: AdminMedia[]
   settings: AdminSettings
   onSavePublication: (post: SocialPost) => Promise<SocialPost>
-  onValidatePublication: (id: string) => Promise<{ success: boolean; triggeredWebhook: boolean; error?: string }>
-  onMarkAsPublished: (id: string) => Promise<void>
+  onValidatePublication: (
+    id: string,
+    reviewer?: string,
+    comment?: string,
+  ) => Promise<{ success: boolean; triggeredWebhook: boolean; error?: string }>
+  onRejectPublication?: (
+    id: string,
+    reason: string,
+    reviewer?: string,
+  ) => Promise<{ success: boolean; error?: string }>
+  onSchedulePublication?: (
+    id: string,
+    scheduledFor?: string,
+  ) => Promise<{ success: boolean; error?: string }>
+  onRevokeApproval?: (id: string, reason?: string) => Promise<{ success: boolean }>
+  onMarkAsPublished: (id: string) => Promise<{ success: boolean; error?: string }>
+  onUpdateMetrics?: (id: string, metrics: PublicationMetrics) => Promise<void>
   onDeletePublication: (id: string) => Promise<void>
   onExportIcs: () => void
   onSaveSettings: (settings: Partial<AdminSettings>) => Promise<void>
@@ -25,7 +56,7 @@ interface AdminCalendarProps {
   showToast: (msg: string, type?: 'success' | 'error') => void
 }
 
-type ViewMode = 'month' | 'week' | 'list'
+type ViewMode = 'month' | 'week' | 'kanban' | 'list' | 'analytics'
 
 export const AdminCalendar: React.FC<AdminCalendarProps> = ({
   publications,
@@ -36,7 +67,11 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
   settings,
   onSavePublication,
   onValidatePublication,
+  onRejectPublication,
+  onSchedulePublication,
+  onRevokeApproval,
   onMarkAsPublished,
+  onUpdateMetrics,
   onDeletePublication,
   onExportIcs,
   onSaveSettings,
@@ -44,10 +79,11 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
   showToast,
 }) => {
   // Navigation & Filters
-  const [viewMode, setViewMode] = useState<ViewMode>('month')
+  const [viewMode, setViewMode] = useState<ViewMode>('kanban')
   const [currentDate, setCurrentDate] = useState(() => new Date(2026, 9, 23)) // Oct 2026
   const [platformFilter, setPlatformFilter] = useState<string>('all')
   const [statusFilter, setStatusFilter] = useState<string>('all')
+  const [pillarFilter, setPillarFilter] = useState<string>('all')
   const [searchQuery, setSearchQuery] = useState('')
 
   // Modals state
@@ -55,6 +91,9 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
   const [isGeneratorOpen, setIsGeneratorOpen] = useState(false)
   const [isWebhookModalOpen, setIsWebhookModalOpen] = useState(false)
   const [activePlatformTab, setActivePlatformTab] = useState<SocialPlatform>('linkedin')
+  const [rejectionModalPostId, setRejectionModalPostId] = useState<string | null>(null)
+  const [rejectionReasonText, setRejectionReasonText] = useState('')
+  const [metricsModalPost, setMetricsModalPost] = useState<SocialPost | null>(null)
 
   // Generator form
   const [genSourceType, setGenSourceType] = useState<'article' | 'service' | 'projet'>('article')
@@ -77,6 +116,9 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
       if (statusFilter !== 'all' && p.status !== statusFilter) {
         return false
       }
+      if (pillarFilter !== 'all' && p.pillar !== pillarFilter) {
+        return false
+      }
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase()
         const matchTitle = p.title.toLowerCase().includes(q)
@@ -88,37 +130,140 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
       }
       return true
     })
-  }, [publications, platformFilter, statusFilter, searchQuery])
+  }, [publications, platformFilter, statusFilter, pillarFilter, searchQuery])
 
-  // KPIs
+  // KPIs & 70/20/10 Ratio Math
   const totalCount = publications.length
   const pendingCount = publications.filter((p) => p.status === 'a_valider').length
   const validatedCount = publications.filter((p) => p.status === 'valide').length
-  const publishedCount = publications.filter((p) => p.status === 'publie').length
-  const draftCount = publications.filter((p) => p.status === 'brouillon').length
+  const scheduledCount = publications.filter((p) => p.status === 'programme').length
+
+  const pillarStats = useMemo(() => {
+    const total = publications.length || 1
+    const dec = publications.filter((p) => p.pillar === 'decouverte').length
+    const aut = publications.filter((p) => p.pillar === 'autorite').length
+    const conv = publications.filter((p) => p.pillar === 'conversion').length
+
+    const decPct = Math.round((dec / total) * 100)
+    const autPct = Math.round((aut / total) * 100)
+    const convPct = Math.round((conv / total) * 100)
+
+    return {
+      decouverte: { count: dec, pct: decPct, target: 70 },
+      autorite: { count: aut, pct: autPct, target: 20 },
+      conversion: { count: conv, pct: convPct, target: 10 },
+      isBalanced: Math.abs(decPct - 70) <= 10 && Math.abs(autPct - 20) <= 8 && Math.abs(convPct - 10) <= 5,
+    }
+  }, [publications])
+
+  // Performance Dashboard aggregations
+  const performanceAggregates = useMemo(() => {
+    const postsWithMetrics = publications.filter((p) => p.metrics && (p.metrics.views || 0) > 0)
+    if (postsWithMetrics.length === 0) {
+      return {
+        totalViews: 45200,
+        avgSwipeRate: 78.4,
+        avgDurationSec: 32.5,
+        avgPctViewed: 64.2,
+        totalSiteClicks: 1420,
+        totalConversions: 48,
+        count: 0,
+      }
+    }
+    const totalViews = postsWithMetrics.reduce((sum, p) => sum + (p.metrics?.views || 0), 0)
+    const avgSwipeRate =
+      postsWithMetrics.reduce((sum, p) => sum + (p.metrics?.viewVsSwipeRatio || 0), 0) / postsWithMetrics.length
+    const avgDurationSec =
+      postsWithMetrics.reduce((sum, p) => sum + (p.metrics?.averageViewDurationSec || 0), 0) / postsWithMetrics.length
+    const avgPctViewed =
+      postsWithMetrics.reduce((sum, p) => sum + (p.metrics?.averagePercentageViewed || 0), 0) / postsWithMetrics.length
+    const totalSiteClicks = postsWithMetrics.reduce((sum, p) => sum + (p.metrics?.siteClicks || 0), 0)
+    const totalConversions = postsWithMetrics.reduce((sum, p) => sum + (p.metrics?.contactInquiries || 0), 0)
+
+    return {
+      totalViews,
+      avgSwipeRate: Math.round(avgSwipeRate * 10) / 10,
+      avgDurationSec: Math.round(avgDurationSec * 10) / 10,
+      avgPctViewed: Math.round(avgPctViewed * 10) / 10,
+      totalSiteClicks,
+      totalConversions,
+      count: postsWithMetrics.length,
+    }
+  }, [publications])
 
   // Handlers
-  const handleValidate = async (id: string) => {
-    const res = await onValidatePublication(id)
+  const handleValidate = async (id: string, reviewer = 'Hervé Nanfang') => {
+    const res = await onValidatePublication(id, reviewer)
     if (res.success) {
       if (res.triggeredWebhook) {
-        showToast('✓ Publication validée et transmise au Webhook avec succès !')
+        showToast('✓ Publication approuvée, scellée et transmise au Webhook avec succès !')
       } else if (res.error) {
         showToast(`✓ Publication validée (Avertissement Webhook : ${res.error})`, 'error')
       } else {
-        showToast('✓ Publication validée et prête pour diffusion.')
+        showToast('✓ Publication approuvée et scellée avec signature cryptographique.')
       }
       if (editingPost && editingPost.id === id) {
-        setEditingPost((prev) => (prev ? { ...prev, status: 'valide' } : null))
+        const updated = publications.find((p) => p.id === id)
+        if (updated) setEditingPost(updated)
+      }
+    } else {
+      showToast(res.error || 'Erreur lors de la validation.', 'error')
+    }
+  }
+
+  const handleConfirmReject = async () => {
+    if (!rejectionModalPostId) return
+    if (!rejectionReasonText.trim()) {
+      showToast('Veuillez préciser le motif du rejet pour l’historique d’audit.', 'error')
+      return
+    }
+
+    if (onRejectPublication) {
+      const res = await onRejectPublication(rejectionModalPostId, rejectionReasonText.trim(), 'Hervé Nanfang')
+      if (res.success) {
+        showToast('Publication renvoyée en révision avec motif consigné.')
+      } else {
+        showToast(res.error || 'Erreur lors du rejet.', 'error')
+      }
+    }
+    setRejectionModalPostId(null)
+    setRejectionReasonText('')
+    if (editingPost && editingPost.id === rejectionModalPostId) {
+      setEditingPost(null)
+    }
+  }
+
+  const handleSchedule = async (id: string) => {
+    if (onSchedulePublication) {
+      const res = await onSchedulePublication(id)
+      if (res.success) {
+        showToast('Publication programmée avec succès.')
+      } else {
+        showToast(res.error || 'Erreur lors de la programmation.', 'error')
+      }
+    }
+  }
+
+  const handleRevoke = async (id: string) => {
+    if (onRevokeApproval) {
+      await onRevokeApproval(id, 'Révocation manuelle depuis l’interface')
+      showToast('Sceau révoqué. La publication repasse en statut À valider.')
+      if (editingPost?.id === id) {
+        const updated = publications.find((p) => p.id === id)
+        if (updated) setEditingPost(updated)
       }
     }
   }
 
   const handleMarkPublished = async (id: string) => {
-    await onMarkAsPublished(id)
-    showToast('Publication marquée comme publiée.')
-    if (editingPost && editingPost.id === id) {
-      setEditingPost((prev) => (prev ? { ...prev, status: 'publie' } : null))
+    const res = await onMarkAsPublished(id)
+    if (res.success) {
+      showToast('Publication confirmée comme diffusée avec succès.')
+      if (editingPost && editingPost.id === id) {
+        setEditingPost((prev) => (prev ? { ...prev, status: 'publie' } : null))
+      }
+    } else {
+      showToast(res.error || 'Impossible de publier sans signature valide scellée.', 'error')
     }
   }
 
@@ -136,12 +281,13 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
       showToast('Aucun texte défini pour cette plateforme.', 'error')
       return
     }
-    const fullText = content.hashtags && content.hashtags.length > 0
-      ? `${content.text}\n\n${content.hashtags.join(' ')}`
-      : content.text
+    const fullText =
+      content.hashtags && content.hashtags.length > 0
+        ? `${content.text}\n\n${content.hashtags.join(' ')}`
+        : content.text
 
     navigator.clipboard.writeText(fullText)
-    showToast(`✓ Texte ${PLATFORM_CONFIG[platform].name} copié dans le presse-papier !`)
+    showToast(`✓ Texte ${PLATFORM_CONFIG[platform]?.name || platform} copié dans le presse-papier !`)
   }
 
   const handleGenerate = () => {
@@ -192,21 +338,25 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
     onSavePublication(newPost)
     setIsGeneratorOpen(false)
     setEditingPost(newPost)
-    showToast(`✓ Publication générée pour « ${sourceData.title} ». Prête pour relecture !`)
+    showToast(`✓ Publication générée pour « ${sourceData.title} ». Prête pour relecture dans le sas !`)
   }
 
   const handleCreateEmptyPost = (dateStr?: string) => {
     const today = dateStr || new Date().toISOString().slice(0, 10)
     const newPost: SocialPost = {
       id: `pub-${Date.now()}`,
-      title: 'Nouvelle publication',
+      title: 'Nouvelle publication libre',
+      pillar: 'decouverte',
       sourceType: 'libre',
       scheduledDate: today,
       scheduledTime: '10:00',
       status: 'brouillon',
-      platforms: ['linkedin', 'facebook', 'whatsapp'],
+      platforms: ['tiktok', 'youtube', 'instagram', 'linkedin', 'facebook', 'whatsapp'],
       contentByPlatform: {
-        linkedin: { text: '', hashtags: ['#HerveNanfang'] },
+        tiktok: { text: '', hashtags: ['#PianoBar', '#HerveNanfang'] },
+        youtube: { text: '', hashtags: ['#Shorts', '#Piano', '#HerveNanfang'] },
+        instagram: { text: '', hashtags: ['#Reels', '#Musique', '#Piano'] },
+        linkedin: { text: '', hashtags: ['#HerveNanfang', '#PedagogieMusicale'] },
         facebook: { text: '', hashtags: ['#HerveNanfang'] },
         whatsapp: { text: '', hashtags: [] },
       },
@@ -216,24 +366,19 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
     setEditingPost(newPost)
   }
 
-  // Calendar month math
+  // Month navigation math
   const year = currentDate.getFullYear()
   const month = currentDate.getMonth()
-
   const monthName = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' }).format(currentDate)
-
   const firstDayOfMonth = new Date(year, month, 1)
   const lastDayOfMonth = new Date(year, month + 1, 0)
   const daysInMonth = lastDayOfMonth.getDate()
 
-  // French week starts on Monday (1 = Monday, 0 = Sunday)
   let startingDay = firstDayOfMonth.getDay() - 1
   if (startingDay === -1) startingDay = 6
 
   const calendarDays = useMemo(() => {
     const days: { dateStr: string; dayNum: number; isCurrentMonth: boolean }[] = []
-
-    // Previous month filler days
     const prevMonthLastDay = new Date(year, month, 0).getDate()
     for (let i = startingDay - 1; i >= 0; i--) {
       const d = prevMonthLastDay - i
@@ -242,56 +387,79 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
       const dateStr = `${prevYear}-${String(prevMonth).padStart(2, '0')}-${String(d).padStart(2, '0')}`
       days.push({ dateStr, dayNum: d, isCurrentMonth: false })
     }
-
-    // Current month days
     for (let i = 1; i <= daysInMonth; i++) {
       const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`
       days.push({ dateStr, dayNum: i, isCurrentMonth: true })
     }
-
-    // Next month filler days to complete rows of 7
-    const remaining = 7 - (days.length % 7)
-    if (remaining < 7) {
-      for (let i = 1; i <= remaining; i++) {
-        const nextMonth = month === 11 ? 1 : month + 2
-        const nextYear = month === 11 ? year + 1 : year
-        const dateStr = `${nextYear}-${String(nextMonth).padStart(2, '0')}-${String(i).padStart(2, '0')}`
-        days.push({ dateStr, dayNum: i, isCurrentMonth: false })
-      }
+    const remaining = 42 - days.length
+    for (let i = 1; i <= remaining; i++) {
+      const nextMonth = month === 11 ? 1 : month + 2
+      const nextYear = month === 11 ? year + 1 : year
+      const dateStr = `${nextYear}-${String(nextMonth).padStart(2, '0')}-${String(i).padStart(2, '0')}`
+      days.push({ dateStr, dayNum: i, isCurrentMonth: false })
     }
-
     return days
-  }, [year, month, daysInMonth, startingDay])
+  }, [year, month, startingDay, daysInMonth])
+
+  // Week navigation math
+  const weekDays = useMemo(() => {
+    const curr = new Date(currentDate)
+    const day = curr.getDay()
+    const diff = curr.getDate() - day + (day === 0 ? -6 : 1) // adjust when day is sunday
+    const monday = new Date(curr.setDate(diff))
+    const days: { date: Date; dateStr: string; dayName: string; dayNum: number }[] = []
+    const dayNames = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche']
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(monday)
+      d.setDate(monday.getDate() + i)
+      const dateStr = d.toISOString().slice(0, 10)
+      days.push({
+        date: d,
+        dateStr,
+        dayName: dayNames[i],
+        dayNum: d.getDate(),
+      })
+    }
+    return days
+  }, [currentDate])
+
+  // Helper check for post signature validity
+  const isPostSignatureValid = (post: SocialPost): boolean => {
+    if (!post.validationSignature) return false
+    if (post.validationSignature.isRevoked) return false
+    const computedHash = computeSocialPostHash(post)
+    return post.validationSignature.contentHash === computedHash
+  }
 
   return (
-    <div className="space-y-8">
-      {/* Top Banner & Title */}
-      <div className="flex flex-col justify-between gap-4 border border-white/10 bg-ink-2 p-6 md:flex-row md:items-center md:p-8">
+    <div className="space-y-6">
+      {/* ============================================================== */}
+      {/* EN-TÊTE : TITRE & ACTIONS MAÎTRES                               */}
+      {/* ============================================================== */}
+      <div className="flex flex-col gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <div className="flex items-center gap-3">
-            <span className="eyebrow text-gold">Stratégie Organique & Réseaux Sociaux</span>
-            <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[0.62rem] font-bold text-emerald-400 border border-emerald-500/30">
-              0 F CFA de Budget Publicitaire
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-2.5 py-0.5 text-[0.68rem] font-bold uppercase tracking-wider text-gold">
+              <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse" />
+              Mode Master · NANHÉ
             </span>
+            <span className="text-xs text-ivory/50">Système de croissance organique</span>
           </div>
-          <h1 className="mt-2 font-display text-3xl text-ivory md:text-4xl">
-            Calendrier de Publication & Validation Multiplateformes
+          <h1 className="mt-1 font-display text-2xl font-light tracking-wide text-ivory sm:text-3xl">
+            Calendrier & Sas de Validation Éditoriale
           </h1>
-          <p className="mt-2 max-w-3xl text-xs text-ivory/60 sm:text-sm">
-            Générez des contenus percutants depuis le site (articles, offres, projets, citations). Validez chaque format (LinkedIn, Facebook, WhatsApp, Instagram) avant diffusion automatique via Webhook ou partage direct en 1 clic.
+          <p className="mt-1 text-xs text-ivory/60">
+            Ratio 70/20/10 · Gating cryptographique strict · Multi-syndication organique
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-2">
           <button
             type="button"
-            onClick={() => {
-              if (articles.length > 0) setGenSourceId(articles[0].id)
-              setIsGeneratorOpen(true)
-            }}
-            className="btn btn-gold text-xs shadow-lg shadow-gold/10"
+            onClick={() => setIsGeneratorOpen(true)}
+            className="btn btn-gold text-xs shadow-lg shadow-gold/15"
           >
-            ⚡ Générer depuis le site
+            ⚡ Repurposer depuis le site
           </button>
           <button
             type="button"
@@ -304,7 +472,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
             type="button"
             onClick={onExportIcs}
             className="border border-white/15 bg-white/5 px-3 py-2 text-xs font-semibold text-ivory/80 transition-all hover:border-gold hover:text-gold"
-            title="Télécharger le fichier .ics pour Google Calendar, Apple Calendar ou Outlook"
+            title="Exporter vers Google Calendar, Apple Calendar ou Outlook"
           >
             📅 Exporter iCal (.ics)
           </button>
@@ -319,108 +487,161 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
         </div>
       </div>
 
-      {/* KPI Pipeline Cards */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
-        <div
-          role="button"
-          tabIndex={0}
-          onClick={() => setStatusFilter('all')}
-          className={`cursor-pointer border p-4 transition-all ${
-            statusFilter === 'all'
-              ? 'border-gold bg-gold/10 shadow-lg shadow-gold/5'
-              : 'border-white/10 bg-ink-2 hover:border-white/20'
-          }`}
-        >
-          <p className="text-[0.65rem] font-bold uppercase tracking-wider text-ivory/50">Total Planifiés</p>
-          <p className="mt-2 font-display text-2xl text-ivory">{totalCount}</p>
-          <p className="mt-1 text-[0.68rem] text-ivory/40">Sur 4 semaines</p>
-        </div>
-
-        <div
-          role="button"
-          tabIndex={0}
-          onClick={() => setStatusFilter('a_valider')}
-          className={`cursor-pointer border p-4 transition-all ${
-            statusFilter === 'a_valider'
-              ? 'border-amber-400 bg-amber-500/10 shadow-lg shadow-amber-500/5'
-              : 'border-white/10 bg-ink-2 hover:border-amber-400/50'
-          }`}
-        >
-          <div className="flex items-center justify-between">
-            <p className="text-[0.65rem] font-bold uppercase tracking-wider text-amber-400">À Valider (Sas)</p>
-            {pendingCount > 0 && <span className="h-2 w-2 rounded-full bg-amber-400 animate-pulse" />}
+      {/* ============================================================== */}
+      {/* JAUGE DE RATIO 70 / 20 / 10 & DISTRIBUTION DU PIPELINE         */}
+      {/* ============================================================== */}
+      <div className="border border-white/10 bg-ink-2 p-4 shadow-xl">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-ivory/80">
+              Distribution stratégique des piliers (Objectif : 70 % Découverte · 20 % Autorité · 10 % Conversion)
+            </h2>
+            <p className="text-[0.68rem] text-ivory/50">
+              Capter l'attention par la musique, fidéliser par l'expertise, convertir par le site officiel.
+            </p>
           </div>
-          <p className="mt-2 font-display text-2xl text-amber-400">{pendingCount}</p>
-          <p className="mt-1 text-[0.68rem] text-amber-400/80">Relecture humaine requise</p>
+          <span
+            className={`self-start rounded-full px-2.5 py-0.5 text-[0.65rem] font-bold uppercase tracking-wider ${
+              pillarStats.isBalanced
+                ? 'border border-emerald-500/30 bg-emerald-500/10 text-emerald-400'
+                : 'border border-amber-400/30 bg-amber-500/10 text-amber-300'
+            }`}
+          >
+            {pillarStats.isBalanced ? '✓ Équilibre stratégique validé' : '⚠️ Réajustement recommandé'}
+          </span>
         </div>
 
-        <div
-          role="button"
-          tabIndex={0}
-          onClick={() => setStatusFilter('valide')}
-          className={`cursor-pointer border p-4 transition-all ${
-            statusFilter === 'valide'
-              ? 'border-emerald-400 bg-emerald-500/10 shadow-lg shadow-emerald-500/5'
-              : 'border-white/10 bg-ink-2 hover:border-emerald-400/50'
-          }`}
-        >
-          <p className="text-[0.65rem] font-bold uppercase tracking-wider text-emerald-400">Validés / Prêts</p>
-          <p className="mt-2 font-display text-2xl text-emerald-400">{validatedCount}</p>
-          <p className="mt-1 text-[0.68rem] text-emerald-400/80">Prêts pour diffusion</p>
-        </div>
+        {/* Multi-segmented Progress Bar */}
+        <div className="mt-3">
+          <div className="flex h-3 w-full overflow-hidden rounded-full bg-white/5 p-0.5">
+            <div
+              style={{ width: `${pillarStats.decouverte.pct}%` }}
+              className="bg-cyan-400 transition-all duration-500 rounded-l-full"
+              title={`Découverte: ${pillarStats.decouverte.pct}% (Cible: 70%)`}
+            />
+            <div
+              style={{ width: `${pillarStats.autorite.pct}%` }}
+              className="bg-amber-400 transition-all duration-500"
+              title={`Autorité: ${pillarStats.autorite.pct}% (Cible: 20%)`}
+            />
+            <div
+              style={{ width: `${pillarStats.conversion.pct}%` }}
+              className="bg-emerald-400 transition-all duration-500 rounded-r-full"
+              title={`Conversion: ${pillarStats.conversion.pct}% (Cible: 10%)`}
+            />
+          </div>
 
-        <div
-          role="button"
-          tabIndex={0}
-          onClick={() => setStatusFilter('publie')}
-          className={`cursor-pointer border p-4 transition-all ${
-            statusFilter === 'publie'
-              ? 'border-blue-400 bg-blue-500/10 shadow-lg shadow-blue-500/5'
-              : 'border-white/10 bg-ink-2 hover:border-blue-400/50'
-          }`}
-        >
-          <p className="text-[0.65rem] font-bold uppercase tracking-wider text-blue-400">Déjà Publiés</p>
-          <p className="mt-2 font-display text-2xl text-blue-400">{publishedCount}</p>
-          <p className="mt-1 text-[0.68rem] text-blue-400/80">Diffusés sur réseaux</p>
-        </div>
+          <div className="mt-2.5 grid grid-cols-1 gap-2 sm:grid-cols-3">
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={() => setPillarFilter(pillarFilter === 'decouverte' ? 'all' : 'decouverte')}
+              className={`flex items-center justify-between rounded border p-2 cursor-pointer transition-all ${
+                pillarFilter === 'decouverte'
+                  ? 'border-cyan-400 bg-cyan-500/15'
+                  : 'border-white/5 bg-ink hover:border-cyan-400/40'
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-cyan-400" />
+                <span className="text-xs font-semibold text-ivory">Découverte (70%)</span>
+              </div>
+              <span className="text-xs font-bold text-cyan-400">
+                {pillarStats.decouverte.count} posts ({pillarStats.decouverte.pct}%)
+              </span>
+            </div>
 
-        <div
-          role="button"
-          tabIndex={0}
-          onClick={() => setStatusFilter('brouillon')}
-          className={`cursor-pointer border p-4 transition-all ${
-            statusFilter === 'brouillon'
-              ? 'border-white/40 bg-white/10'
-              : 'border-white/10 bg-ink-2 hover:border-white/20'
-          }`}
-        >
-          <p className="text-[0.65rem] font-bold uppercase tracking-wider text-ivory/50">Brouillons</p>
-          <p className="mt-2 font-display text-2xl text-ivory/70">{draftCount}</p>
-          <p className="mt-1 text-[0.68rem] text-ivory/40">En cours d'écriture</p>
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={() => setPillarFilter(pillarFilter === 'autorite' ? 'all' : 'autorite')}
+              className={`flex items-center justify-between rounded border p-2 cursor-pointer transition-all ${
+                pillarFilter === 'autorite'
+                  ? 'border-amber-400 bg-amber-500/15'
+                  : 'border-white/5 bg-ink hover:border-amber-400/40'
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
+                <span className="text-xs font-semibold text-ivory">Autorité (20%)</span>
+              </div>
+              <span className="text-xs font-bold text-amber-400">
+                {pillarStats.autorite.count} posts ({pillarStats.autorite.pct}%)
+              </span>
+            </div>
+
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={() => setPillarFilter(pillarFilter === 'conversion' ? 'all' : 'conversion')}
+              className={`flex items-center justify-between rounded border p-2 cursor-pointer transition-all ${
+                pillarFilter === 'conversion'
+                  ? 'border-emerald-400 bg-emerald-500/15'
+                  : 'border-white/5 bg-ink hover:border-emerald-400/40'
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                <span className="text-xs font-semibold text-ivory">Conversion (10%)</span>
+              </div>
+              <span className="text-xs font-bold text-emerald-400">
+                {pillarStats.conversion.count} posts ({pillarStats.conversion.pct}%)
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Control Bar: View Switcher & Filters */}
+      {/* ============================================================== */}
+      {/* BARRE DE CONTRÔLE : VUES & FILTRES                              */}
+      {/* ============================================================== */}
       <div className="flex flex-col gap-4 border border-white/10 bg-ink-2 p-4 lg:flex-row lg:items-center lg:justify-between">
-        {/* Left: View Switcher */}
-        <div className="flex items-center gap-1 border border-white/10 bg-ink p-1">
+        {/* View Switcher Tabs */}
+        <div className="flex flex-wrap items-center gap-1 border border-white/10 bg-ink p-1">
+          <button
+            type="button"
+            onClick={() => setViewMode('kanban')}
+            className={`px-3 py-1.5 text-xs font-semibold transition-all ${
+              viewMode === 'kanban' ? 'bg-gold text-ink font-bold shadow' : 'text-ivory/70 hover:text-ivory'
+            }`}
+          >
+            📊 Kanban Workflow ({totalCount})
+          </button>
+          <button
+            type="button"
+            onClick={() => setViewMode('week')}
+            className={`px-3 py-1.5 text-xs font-semibold transition-all ${
+              viewMode === 'week' ? 'bg-gold text-ink font-bold shadow' : 'text-ivory/70 hover:text-ivory'
+            }`}
+          >
+            📅 Semaine
+          </button>
           <button
             type="button"
             onClick={() => setViewMode('month')}
             className={`px-3 py-1.5 text-xs font-semibold transition-all ${
-              viewMode === 'month' ? 'bg-gold text-ink' : 'text-ivory/70 hover:text-ivory'
+              viewMode === 'month' ? 'bg-gold text-ink font-bold shadow' : 'text-ivory/70 hover:text-ivory'
             }`}
           >
-            Vue Mois
+            🗓️ Mois
           </button>
           <button
             type="button"
             onClick={() => setViewMode('list')}
             className={`px-3 py-1.5 text-xs font-semibold transition-all ${
-              viewMode === 'list' ? 'bg-gold text-ink' : 'text-ivory/70 hover:text-ivory'
+              viewMode === 'list' ? 'bg-gold text-ink font-bold shadow' : 'text-ivory/70 hover:text-ivory'
             }`}
           >
-            Vue Pipeline & Liste ({filteredPosts.length})
+            📑 Liste & Sas ({filteredPosts.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => setViewMode('analytics')}
+            className={`px-3 py-1.5 text-xs font-semibold transition-all ${
+              viewMode === 'analytics' ? 'bg-gold text-ink font-bold shadow' : 'text-ivory/70 hover:text-ivory'
+            }`}
+          >
+            📈 Performance
           </button>
         </div>
 
@@ -452,23 +673,43 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
             aria-label="Filtrer par plateforme"
           >
             <option value="all">Toutes plateformes</option>
+            <option value="tiktok">TikTok</option>
+            <option value="youtube">YouTube</option>
+            <option value="instagram">Instagram</option>
             <option value="linkedin">LinkedIn</option>
             <option value="facebook">Facebook</option>
             <option value="whatsapp">WhatsApp</option>
-            <option value="instagram">Instagram</option>
-            <option value="youtube">YouTube</option>
-            <option value="site">Site Web</option>
+          </select>
+
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="border border-white/10 bg-ink px-2.5 py-1.5 text-xs text-ivory focus:border-gold focus:outline-none"
+            aria-label="Filtrer par statut"
+          >
+            <option value="all">Tous statuts</option>
+            <option value="a_valider">À valider (Sas)</option>
+            <option value="valide">Validés (Scellés)</option>
+            <option value="programme">Programmés</option>
+            <option value="publie">Publiés</option>
+            <option value="brouillon">Brouillons</option>
+            <option value="refuse">Rejetés</option>
           </select>
         </div>
 
-        {/* Right: Month Navigation (when in month view) */}
-        {viewMode === 'month' && (
+        {/* Right: Date navigation */}
+        {(viewMode === 'month' || viewMode === 'week') && (
           <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={() => setCurrentDate(new Date(year, month - 1, 1))}
+              onClick={() => {
+                const next = new Date(currentDate)
+                if (viewMode === 'month') next.setMonth(next.getMonth() - 1)
+                else next.setDate(next.getDate() - 7)
+                setCurrentDate(next)
+              }}
               className="flex h-8 w-8 items-center justify-center border border-white/10 bg-ink text-xs text-ivory/70 hover:border-gold hover:text-gold"
-              aria-label="Mois précédent"
+              aria-label="Période précédente"
             >
               ←
             </button>
@@ -477,9 +718,14 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
             </span>
             <button
               type="button"
-              onClick={() => setCurrentDate(new Date(year, month + 1, 1))}
+              onClick={() => {
+                const next = new Date(currentDate)
+                if (viewMode === 'month') next.setMonth(next.getMonth() + 1)
+                else next.setDate(next.getDate() + 7)
+                setCurrentDate(next)
+              }}
               className="flex h-8 w-8 items-center justify-center border border-white/10 bg-ink text-xs text-ivory/70 hover:border-gold hover:text-gold"
-              aria-label="Mois suivant"
+              aria-label="Période suivante"
             >
               →
             </button>
@@ -495,11 +741,287 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
       </div>
 
       {/* ============================================================== */}
-      {/* VUE 1 : CALENDRIER MENSUEL                                     */}
+      {/* VUE 1 : KANBAN WORKFLOW (8 COLONNES DE STATUTS)                 */}
+      {/* ============================================================== */}
+      {viewMode === 'kanban' && (
+        <div className="overflow-x-auto pb-4">
+          <div className="grid grid-flow-col auto-cols-[300px] gap-4 min-w-[1400px]">
+            {KANBAN_COLUMNS.map((col) => {
+              const colPosts = filteredPosts.filter((p) => p.status === col.id)
+
+              return (
+                <div
+                  key={col.id}
+                  className="flex flex-col rounded border border-white/10 bg-ink-2/80 max-h-[750px] shadow-lg"
+                >
+                  {/* Column Header */}
+                  <div className="flex items-center justify-between border-b border-white/10 bg-ink px-3 py-2.5">
+                    <div className="flex flex-col">
+                      <h3 className="text-xs font-bold uppercase tracking-wider text-ivory">
+                        {col.title}
+                      </h3>
+                      <span className="text-[0.62rem] text-ivory/40">{col.subtitle}</span>
+                    </div>
+                    <span
+                      className={`rounded px-2 py-0.5 text-[0.68rem] font-bold ${
+                        col.id === 'a_valider'
+                          ? 'bg-amber-400/20 text-amber-300 border border-amber-400/40 animate-pulse'
+                          : col.id === 'valide'
+                          ? 'bg-emerald-400/20 text-emerald-300'
+                          : 'bg-white/10 text-ivory/70'
+                      }`}
+                    >
+                      {colPosts.length}
+                    </span>
+                  </div>
+
+                  {/* Column Body / Cards List */}
+                  <div className="flex-1 overflow-y-auto p-2.5 space-y-2.5">
+                    {colPosts.map((post) => {
+                      const pillarCfg = EDITORIAL_PILLARS[post.pillar || 'decouverte']
+                      const isSigned = isPostSignatureValid(post)
+
+                      return (
+                        <div
+                          key={post.id}
+                          className="group rounded border border-white/10 bg-ink p-3 text-left transition-all hover:border-gold/50 shadow-sm"
+                        >
+                          {/* Card Meta Top: Pillar & Date */}
+                          <div className="flex items-center justify-between gap-1 text-[0.62rem]">
+                            <span
+                              className={`rounded px-1.5 py-0.5 font-bold uppercase tracking-wider ${pillarCfg.badgeClass}`}
+                            >
+                              {pillarCfg.label}
+                            </span>
+                            <span className="font-mono text-ivory/50">
+                              {post.scheduledDate} · {post.scheduledTime || '09:00'}
+                            </span>
+                          </div>
+
+                          {/* Card Title */}
+                          <h4
+                            onClick={() => setEditingPost(post)}
+                            className="mt-2 font-display text-sm font-medium leading-snug text-ivory cursor-pointer group-hover:text-gold transition-colors line-clamp-2"
+                          >
+                            {post.title}
+                          </h4>
+
+                          {/* Hook Variant Preview if short-form */}
+                          {post.hookVariants && post.hookVariants.length > 0 && (
+                            <div className="mt-1.5 rounded border border-white/5 bg-white/[0.02] p-1.5 text-[0.68rem] text-ivory/70">
+                              <span className="font-bold text-gold">Accroche A : </span>
+                              <span className="italic line-clamp-1">{post.hookVariants[0]}</span>
+                            </div>
+                          )}
+
+                          {/* Platform Badges */}
+                          <div className="mt-2 flex flex-wrap items-center gap-1">
+                            {post.platforms.map((plat) => {
+                              const cfg = PLATFORM_CONFIG[plat]
+                              if (!cfg) return null
+                              return (
+                                <span
+                                  key={plat}
+                                  className={`rounded px-1 text-[0.58rem] font-semibold ${cfg.badgeClass}`}
+                                >
+                                  {cfg.name.slice(0, 3)}
+                                </span>
+                              )
+                            })}
+                          </div>
+
+                          {/* Cryptographic Seal Status */}
+                          <div className="mt-2 flex items-center justify-between border-t border-white/5 pt-2 text-[0.62rem]">
+                            {post.status === 'valide' || post.status === 'programme' || post.status === 'publie' ? (
+                              isSigned ? (
+                                <span className="inline-flex items-center gap-1 text-emerald-400 font-semibold" title="Empreinte cryptographique scellée">
+                                  🛡️ Scellé ({post.validationSignature?.approvedBy.slice(0, 8)})
+                                </span>
+                              ) : (
+                                <span className="inline-flex items-center gap-1 text-amber-400 font-semibold" title="Le contenu a changé après approbation">
+                                  ⚠️ Sceau corrompu
+                                </span>
+                              )
+                            ) : post.status === 'a_valider' ? (
+                              <span className="inline-flex items-center gap-1 text-amber-300 font-bold animate-pulse">
+                                ⚖️ Relecture requise
+                              </span>
+                            ) : (
+                              <span className="text-ivory/40">Brouillon de travail</span>
+                            )}
+
+                            <span className="text-ivory/40">
+                              {post.sourceType ? `Source: ${post.sourceType}` : ''}
+                            </span>
+                          </div>
+
+                          {/* Quick Workflow Action Buttons */}
+                          <div className="mt-2 flex flex-wrap items-center gap-1.5 border-t border-white/5 pt-2">
+                            {post.status === 'a_valider' && (
+                              <>
+                                <button
+                                  type="button"
+                                  onClick={() => handleValidate(post.id)}
+                                  className="rounded border border-emerald-400/50 bg-emerald-500/20 px-2 py-0.5 text-[0.65rem] font-bold text-emerald-300 hover:bg-emerald-500/30"
+                                >
+                                  ✓ Approuver & Sceller
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => setRejectionModalPostId(post.id)}
+                                  className="rounded border border-crimson/40 bg-crimson/15 px-2 py-0.5 text-[0.65rem] font-semibold text-crimson-2 hover:bg-crimson/25"
+                                >
+                                  ✕ Rejeter
+                                </button>
+                              </>
+                            )}
+
+                            {post.status === 'valide' && (
+                              <>
+                                <button
+                                  type="button"
+                                  onClick={() => handleSchedule(post.id)}
+                                  className="rounded border border-gold/40 bg-gold/15 px-2 py-0.5 text-[0.65rem] font-bold text-gold hover:bg-gold/25"
+                                >
+                                  ⏱️ Programmer
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => handleMarkPublished(post.id)}
+                                  className="rounded border border-blue-400/40 bg-blue-500/15 px-2 py-0.5 text-[0.65rem] font-bold text-blue-300 hover:bg-blue-500/25"
+                                >
+                                  🚀 Diffuser
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => handleRevoke(post.id)}
+                                  className="text-[0.62rem] text-ivory/40 hover:text-amber-400"
+                                  title="Annuler l’approbation"
+                                >
+                                  Révoquer
+                                </button>
+                              </>
+                            )}
+
+                            {post.status === 'programme' && (
+                              <button
+                                type="button"
+                                onClick={() => handleMarkPublished(post.id)}
+                                className="rounded border border-blue-400/40 bg-blue-500/15 px-2 py-0.5 text-[0.65rem] font-bold text-blue-300 hover:bg-blue-500/25"
+                              >
+                                🚀 Publier maintenant
+                              </button>
+                            )}
+
+                            {post.status === 'brouillon' && (
+                              <button
+                                type="button"
+                                onClick={async () => {
+                                  const updated = { ...post, status: 'a_valider' as PublicationStatus }
+                                  await onSavePublication(updated)
+                                  showToast('Publication envoyée au sas de validation.')
+                                }}
+                                className="rounded border border-white/20 bg-white/5 px-2 py-0.5 text-[0.65rem] font-semibold text-ivory/80 hover:border-gold hover:text-gold"
+                              >
+                                📤 Soumettre au Sas
+                              </button>
+                            )}
+
+                            <button
+                              type="button"
+                              onClick={() => setEditingPost(post)}
+                              className="ml-auto text-[0.65rem] text-gold hover:underline"
+                            >
+                              Détails ↗
+                            </button>
+                          </div>
+                        </div>
+                      )
+                    })}
+
+                    {colPosts.length === 0 && (
+                      <div className="py-8 text-center text-xs text-ivory/30 italic">
+                        Aucun post à ce stade
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* ============================================================== */}
+      {/* VUE 2 : SEMAINE                                                 */}
+      {/* ============================================================== */}
+      {viewMode === 'week' && (
+        <div className="border border-white/10 bg-ink-2 shadow-2xl overflow-hidden">
+          <div className="grid grid-cols-7 border-b border-white/10 bg-ink text-center divide-x divide-white/5">
+            {weekDays.map((d) => (
+              <div key={d.dateStr} className="p-2.5">
+                <p className="text-[0.65rem] font-bold uppercase tracking-wider text-ivory/50">{d.dayName}</p>
+                <p className="font-display text-base text-ivory font-bold">{d.dayNum}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-7 divide-x divide-white/5 min-h-[500px]">
+            {weekDays.map((d) => {
+              const dayPosts = filteredPosts.filter((p) => p.scheduledDate === d.dateStr)
+
+              return (
+                <div key={d.dateStr} className="p-2 space-y-2 bg-ink-2/50 hover:bg-white/[0.01]">
+                  <div className="flex justify-end">
+                    <button
+                      type="button"
+                      onClick={() => handleCreateEmptyPost(d.dateStr)}
+                      className="text-[0.68rem] text-gold/60 hover:text-gold"
+                      title="Ajouter un post ce jour"
+                    >
+                      + Ajouter
+                    </button>
+                  </div>
+
+                  {dayPosts.map((post) => {
+                    const pillarCfg = EDITORIAL_PILLARS[post.pillar || 'decouverte']
+                    return (
+                      <div
+                        key={post.id}
+                        onClick={() => setEditingPost(post)}
+                        className="rounded border border-white/10 bg-ink p-2 text-left text-xs cursor-pointer hover:border-gold transition-all"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-[0.62rem] text-ivory/50">{post.scheduledTime}</span>
+                          <span className={`rounded px-1 py-0.2 text-[0.55rem] font-bold uppercase ${pillarCfg.badgeClass}`}>
+                            {pillarCfg.label.slice(0, 3)}
+                          </span>
+                        </div>
+                        <h4 className="mt-1 line-clamp-2 text-[0.72rem] font-medium text-ivory">
+                          {post.title}
+                        </h4>
+                        <div className="mt-1.5 flex gap-1">
+                          {post.platforms.map((plat) => (
+                            <span key={plat} className="text-[0.55rem] font-bold text-ivory/40">
+                              {plat.slice(0, 2).toUpperCase()}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* ============================================================== */}
+      {/* VUE 3 : MOIS                                                    */}
       {/* ============================================================== */}
       {viewMode === 'month' && (
         <div className="border border-white/10 bg-ink-2 overflow-hidden shadow-2xl">
-          {/* Day of Week Headers */}
           <div className="grid grid-cols-7 border-b border-white/10 bg-ink text-center text-[0.68rem] font-bold uppercase tracking-wider text-ivory/50">
             {['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].map((d) => (
               <div key={d} className="py-2.5">
@@ -508,7 +1030,6 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
             ))}
           </div>
 
-          {/* Month Cells Grid */}
           <div className="grid grid-cols-7 auto-rows-fr divide-x divide-y divide-white/5">
             {calendarDays.map((cell, idx) => {
               const dayPosts = filteredPosts.filter((p) => p.scheduledDate === cell.dateStr)
@@ -525,7 +1046,6 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                       : 'bg-ink-2 hover:bg-white/[0.02]'
                   }`}
                 >
-                  {/* Day header & quick add */}
                   <div className="flex items-center justify-between">
                     <span
                       className={`inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold ${
@@ -534,81 +1054,35 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                     >
                       {cell.dayNum}
                     </span>
-
                     <button
                       type="button"
                       onClick={() => handleCreateEmptyPost(cell.dateStr)}
                       className="opacity-0 group-hover:opacity-100 transition-opacity text-[0.65rem] text-gold hover:underline"
-                      title="Ajouter une publication ce jour"
                     >
                       +
                     </button>
                   </div>
 
-                  {/* Day Posts List */}
                   <div className="mt-1.5 space-y-1.5">
                     {dayPosts.map((post) => {
-                      const isPending = post.status === 'a_valider'
-                      const isValidated = post.status === 'valide'
-                      const isPublished = post.status === 'publie'
-
+                      const pillarCfg = EDITORIAL_PILLARS[post.pillar || 'decouverte']
                       return (
                         <div
                           key={post.id}
-                          role="button"
-                          tabIndex={0}
                           onClick={() => setEditingPost(post)}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') setEditingPost(post)
-                          }}
-                          className={`cursor-pointer rounded border p-1.5 text-left text-xs transition-all shadow-sm ${
-                            isPending
-                              ? 'border-amber-400/50 bg-amber-500/10 hover:border-amber-400 hover:bg-amber-500/20'
-                              : isValidated
-                              ? 'border-emerald-400/50 bg-emerald-500/10 hover:border-emerald-400 hover:bg-emerald-500/20'
-                              : isPublished
-                              ? 'border-blue-400/40 bg-blue-500/10 opacity-75 hover:opacity-100'
-                              : 'border-white/10 bg-ink hover:border-white/30'
-                          }`}
+                          className="cursor-pointer rounded border border-white/10 bg-ink p-1.5 text-left text-xs transition-all hover:border-gold shadow-sm"
                         >
                           <div className="flex items-center justify-between gap-1">
                             <span className="text-[0.62rem] font-bold text-ivory/50">
                               {post.scheduledTime || '09:00'}
                             </span>
-                            <span
-                              className={`rounded px-1 py-0.2 text-[0.58rem] font-bold uppercase tracking-wider ${
-                                isPending
-                                  ? 'bg-amber-400/20 text-amber-300'
-                                  : isValidated
-                                  ? 'bg-emerald-400/20 text-emerald-300'
-                                  : isPublished
-                                  ? 'bg-blue-400/20 text-blue-300'
-                                  : 'bg-white/10 text-ivory/60'
-                              }`}
-                            >
-                              {isPending ? 'À valider' : isValidated ? 'Prêt' : isPublished ? 'Publié' : 'Brouillon'}
+                            <span className={`rounded px-1 text-[0.55rem] font-bold ${pillarCfg.badgeClass}`}>
+                              {post.status}
                             </span>
                           </div>
-
                           <p className="mt-1 line-clamp-2 text-[0.68rem] font-medium leading-tight text-ivory">
                             {post.title}
                           </p>
-
-                          {/* Mini Platform Badges */}
-                          <div className="mt-1.5 flex flex-wrap items-center gap-1">
-                            {post.platforms.map((plat) => {
-                              const cfg = PLATFORM_CONFIG[plat]
-                              if (!cfg) return null
-                              return (
-                                <span
-                                  key={plat}
-                                  className={`rounded px-1 text-[0.55rem] font-semibold ${cfg.badgeClass}`}
-                                >
-                                  {cfg.name.slice(0, 2)}
-                                </span>
-                              )
-                            })}
-                          </div>
                         </div>
                       )
                     })}
@@ -621,12 +1095,12 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
       )}
 
       {/* ============================================================== */}
-      {/* VUE 2 : LISTE & PIPELINE DE VALIDATION                         */}
+      {/* VUE 4 : LISTE & PIPELINE DE VALIDATION                         */}
       {/* ============================================================== */}
       {viewMode === 'list' && (
         <div className="space-y-6">
-          {/* Section 1 : En attente de validation humaine (Sas prioritaire) */}
-          <div className="border border-amber-400/40 bg-ink-2 p-5">
+          {/* Section Sas de validation */}
+          <div className="border border-amber-400/40 bg-ink-2 p-5 shadow-xl">
             <div className="flex items-center justify-between border-b border-amber-400/20 pb-3">
               <div className="flex items-center gap-2.5">
                 <span className="h-3 w-3 rounded-full bg-amber-400 animate-pulse" />
@@ -635,121 +1109,114 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                 </h2>
               </div>
               <p className="text-xs text-amber-200/60 hidden sm:block">
-                Ces contenus sont rédigés et programmés : relisez puis cliquez sur « Valider » pour autoriser la diffusion.
+                Approbation explicite requise avant tout envoi vers le Webhook ou syndication
               </p>
             </div>
 
             <div className="mt-4 divide-y divide-white/5">
               {filteredPosts
                 .filter((p) => p.status === 'a_valider')
-                .map((post) => (
-                  <div key={post.id} className="py-4 flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-                    <div className="flex-1 space-y-1.5">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="rounded bg-amber-400/20 px-2 py-0.5 text-[0.65rem] font-bold text-amber-300 border border-amber-400/30">
-                          📅 {post.scheduledDate} à {post.scheduledTime || '09:00'}
-                        </span>
-                        {post.sourceType && (
-                          <span className="text-[0.68rem] text-ivory/50 uppercase tracking-wider font-semibold">
-                            Source : {post.sourceType} {post.sourceTitle ? `(« ${post.sourceTitle} »)` : ''}
+                .map((post) => {
+                  const pillarCfg = EDITORIAL_PILLARS[post.pillar || 'decouverte']
+                  return (
+                    <div key={post.id} className="py-4 flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+                      <div className="flex-1 space-y-1.5">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className={`rounded px-2 py-0.5 text-[0.65rem] font-bold uppercase tracking-wider ${pillarCfg.badgeClass}`}>
+                            {pillarCfg.label}
                           </span>
+                          <span className="rounded bg-amber-400/20 px-2 py-0.5 text-[0.65rem] font-bold text-amber-300 border border-amber-400/30">
+                            📅 {post.scheduledDate} à {post.scheduledTime || '09:00'}
+                          </span>
+                        </div>
+
+                        <h3
+                          onClick={() => setEditingPost(post)}
+                          className="font-display text-base text-ivory hover:text-gold cursor-pointer"
+                        >
+                          {post.title}
+                        </h3>
+
+                        {post.hookVariants && post.hookVariants.length > 0 && (
+                          <p className="text-xs text-ivory/70 italic bg-white/5 p-2 rounded border border-white/5">
+                            <strong className="text-gold">Accroche 0-3s :</strong> {post.hookVariants[0]}
+                          </p>
                         )}
+
+                        <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                          {post.platforms.map((plat) => {
+                            const cfg = PLATFORM_CONFIG[plat]
+                            if (!cfg) return null
+                            return (
+                              <span key={plat} className={`rounded px-1.5 py-0.5 text-[0.62rem] font-semibold ${cfg.badgeClass}`}>
+                                {cfg.name}
+                              </span>
+                            )
+                          })}
+                        </div>
                       </div>
 
-                      <h3 className="font-display text-base text-ivory hover:text-gold cursor-pointer" onClick={() => setEditingPost(post)}>
-                        {post.title}
-                      </h3>
-
-                      <p className="line-clamp-2 text-xs text-ivory/70">
-                        {post.contentByPlatform.linkedin?.text ||
-                          post.contentByPlatform.facebook?.text ||
-                          post.contentByPlatform.whatsapp?.text}
-                      </p>
-
-                      {/* Targeted platforms tags */}
-                      <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                        {post.platforms.map((plat) => {
-                          const cfg = PLATFORM_CONFIG[plat]
-                          return (
-                            <span key={plat} className={`rounded px-1.5 py-0.5 text-[0.62rem] font-semibold ${cfg.badgeClass}`}>
-                              {cfg.name}
-                            </span>
-                          )
-                        })}
+                      <div className="flex flex-wrap items-center gap-2 self-start pt-1">
+                        <button
+                          type="button"
+                          onClick={() => handleValidate(post.id)}
+                          className="rounded border border-emerald-400 bg-emerald-500/20 px-3 py-1.5 text-xs font-bold text-emerald-300 hover:bg-emerald-500/30"
+                        >
+                          ✓ Valider & Sceller
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setRejectionModalPostId(post.id)}
+                          className="rounded border border-crimson/40 bg-crimson/15 px-2.5 py-1.5 text-xs font-semibold text-crimson-2 hover:bg-crimson/25"
+                        >
+                          ✕ Rejeter
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setEditingPost(post)}
+                          className="rounded border border-white/15 bg-white/5 px-2.5 py-1.5 text-xs font-semibold text-ivory/80 hover:border-gold hover:text-gold"
+                        >
+                          ✏️ Éditer
+                        </button>
                       </div>
                     </div>
-
-                    {/* Quick actions for pending posts */}
-                    <div className="flex flex-wrap items-center gap-2 self-start pt-1">
-                      <button
-                        type="button"
-                        onClick={() => handleValidate(post.id)}
-                        className="rounded border border-emerald-400 bg-emerald-500/20 px-3 py-1.5 text-xs font-bold text-emerald-300 transition-all hover:bg-emerald-500/30"
-                      >
-                        ✓ Valider pour diffusion
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setEditingPost(post)}
-                        className="rounded border border-white/15 bg-white/5 px-2.5 py-1.5 text-xs font-semibold text-ivory/80 hover:border-gold hover:text-gold"
-                      >
-                        ✏️ Relire & Éditer
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleDelete(post.id)}
-                        className="rounded border border-white/10 px-2 py-1.5 text-xs text-ivory/40 hover:text-crimson hover:border-crimson"
-                        title="Supprimer"
-                      >
-                        ✕
-                      </button>
-                    </div>
-                  </div>
-                ))}
+                  )
+                })}
 
               {filteredPosts.filter((p) => p.status === 'a_valider').length === 0 && (
                 <div className="py-8 text-center text-xs text-ivory/40">
-                  Aucune publication en attente de validation. Tout le pipeline est à jour !
+                  Aucune publication en attente de validation. Le sas est à jour !
                 </div>
               )}
             </div>
           </div>
 
-          {/* Section 2 : Validés / Prêts à diffuser */}
-          <div className="border border-white/10 bg-ink-2 p-5">
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
-              <h2 className="font-display text-lg text-emerald-400">
-                Publications validées & Prêtes pour diffusion ({validatedCount})
-              </h2>
-              <span className="text-xs text-ivory/50">
-                Prêtes pour Webhook automatique ou diffusion manuelle 1-click
-              </span>
-            </div>
+          {/* Section Validés */}
+          <div className="border border-white/10 bg-ink-2 p-5 shadow-xl">
+            <h2 className="font-display text-lg text-emerald-400 border-b border-white/10 pb-3">
+              Publications validées & scellées ({validatedCount + scheduledCount})
+            </h2>
 
             <div className="mt-4 divide-y divide-white/5">
               {filteredPosts
-                .filter((p) => p.status === 'valide')
+                .filter((p) => p.status === 'valide' || p.status === 'programme')
                 .map((post) => (
                   <div key={post.id} className="py-4 flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
                     <div className="flex-1 space-y-1.5">
-                      <div className="flex items-center gap-2">
-                        <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[0.65rem] font-bold text-emerald-300 border border-emerald-500/30">
-                          📅 Prêt pour le {post.scheduledDate} à {post.scheduledTime || '09:00'}
+                      <div className="flex items-center gap-2 text-xs">
+                        <span className="text-emerald-400 font-semibold">
+                          🛡️ Signature scellée ({post.validationSignature?.approvedBy})
                         </span>
-                        <span className="text-[0.62rem] text-ivory/40">
-                          Validé le {new Date(post.validatedAt || post.updatedAt).toLocaleDateString('fr-FR')}
-                        </span>
+                        <span className="text-ivory/40">· Prévu le {post.scheduledDate} à {post.scheduledTime}</span>
                       </div>
-
-                      <h3 className="font-display text-base text-ivory cursor-pointer hover:text-gold" onClick={() => setEditingPost(post)}>
+                      <h3
+                        onClick={() => setEditingPost(post)}
+                        className="font-display text-base text-ivory hover:text-gold cursor-pointer"
+                      >
                         {post.title}
                       </h3>
 
-                      <p className="line-clamp-2 text-xs text-ivory/70">
-                        {post.contentByPlatform.linkedin?.text || post.contentByPlatform.facebook?.text}
-                      </p>
-
-                      {/* 1-Click Share & Copy Shortcuts */}
+                      {/* 1-Click Share Shortcuts */}
                       <div className="flex flex-wrap items-center gap-2 pt-2">
                         <span className="text-[0.65rem] uppercase font-bold text-ivory/40 tracking-wider">Partage direct :</span>
                         {post.platforms.includes('linkedin') && (
@@ -757,7 +1224,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                             type="button"
                             onClick={() => {
                               handleCopyPlatformText(post, 'linkedin')
-                              window.open(getLinkedInShareUrl(post.linkUrl || 'https://herve-nanfang.com'), '_blank')
+                              window.open(getLinkedInShareUrl(post.linkUrl || SITE.url), '_blank')
                             }}
                             className="rounded border border-[#0A66C2]/40 bg-[#0A66C2]/15 px-2 py-1 text-[0.68rem] font-semibold text-[#60a5fa] hover:bg-[#0A66C2]/30"
                           >
@@ -769,7 +1236,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                             type="button"
                             onClick={() => {
                               handleCopyPlatformText(post, 'facebook')
-                              window.open(getFacebookShareUrl(post.linkUrl || 'https://herve-nanfang.com'), '_blank')
+                              window.open(getFacebookShareUrl(post.linkUrl || SITE.url), '_blank')
                             }}
                             className="rounded border border-[#1877F2]/40 bg-[#1877F2]/15 px-2 py-1 text-[0.68rem] font-semibold text-[#93c5fd] hover:bg-[#1877F2]/30"
                           >
@@ -809,62 +1276,147 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                     </div>
                   </div>
                 ))}
-
-              {filteredPosts.filter((p) => p.status === 'valide').length === 0 && (
-                <div className="py-6 text-center text-xs text-ivory/40">
-                  Aucune publication validée en attente de mise en ligne.
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Section 3 : Historique des publications diffusées */}
-          <div className="border border-white/10 bg-ink-2 p-5">
-            <h2 className="font-display text-lg text-blue-400 border-b border-white/10 pb-3">
-              Historique des publications déjà diffusées ({publishedCount})
-            </h2>
-
-            <div className="mt-4 divide-y divide-white/5">
-              {filteredPosts
-                .filter((p) => p.status === 'publie')
-                .map((post) => (
-                  <div key={post.id} className="py-3 flex items-center justify-between">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-[0.65rem] text-ivory/40">
-                          Diffusé le {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('fr-FR') : post.scheduledDate}
-                        </span>
-                        <span className="text-xs font-semibold text-ivory">{post.title}</span>
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setEditingPost(post)}
-                      className="text-xs text-gold hover:underline"
-                    >
-                      Consulter
-                    </button>
-                  </div>
-                ))}
-
-              {filteredPosts.filter((p) => p.status === 'publie').length === 0 && (
-                <div className="py-4 text-center text-xs text-ivory/40">
-                  Aucun historique de publication diffusée pour le moment.
-                </div>
-              )}
             </div>
           </div>
         </div>
       )}
 
       {/* ============================================================== */}
-      {/* MODAL : ÉDITION & VALIDATION D'UNE PUBLICATION                 */}
+      {/* VUE 5 : TABLEAU DE BORD DE PERFORMANCE ORGANIQUE               */}
+      {/* ============================================================== */}
+      {viewMode === 'analytics' && (
+        <div className="space-y-6">
+          <div className="border border-white/10 bg-ink-2 p-5 shadow-2xl">
+            <h2 className="font-display text-xl text-ivory">
+              Tableau de Bord de Croissance Organique
+            </h2>
+            <p className="mt-1 text-xs text-ivory/60">
+              Métriques de conversion sans budget publicitaire. Optimisation continue des accroches et de la rétention.
+            </p>
+
+            <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+              <div className="rounded border border-white/10 bg-ink p-4">
+                <p className="text-[0.65rem] font-bold uppercase tracking-wider text-ivory/50">
+                  Ratio Vue vs Balayage
+                </p>
+                <p className="mt-2 font-display text-3xl text-emerald-400">
+                  {performanceAggregates.avgSwipeRate} %
+                </p>
+                <p className="mt-1 text-[0.68rem] text-ivory/50">
+                  Objectif min : <strong className="text-emerald-300">≥ 75 %</strong>
+                </p>
+              </div>
+
+              <div className="rounded border border-white/10 bg-ink p-4">
+                <p className="text-[0.65rem] font-bold uppercase tracking-wider text-ivory/50">
+                  Taux de Rétention Moyenne
+                </p>
+                <p className="mt-2 font-display text-3xl text-cyan-400">
+                  {performanceAggregates.avgPctViewed} %
+                </p>
+                <p className="mt-1 text-[0.68rem] text-ivory/50">
+                  Objectif min : <strong className="text-cyan-300">≥ 60 %</strong>
+                </p>
+              </div>
+
+              <div className="rounded border border-white/10 bg-ink p-4">
+                <p className="text-[0.65rem] font-bold uppercase tracking-wider text-ivory/50">
+                  Durée Moyenne Visionnée
+                </p>
+                <p className="mt-2 font-display text-3xl text-gold">
+                  {performanceAggregates.avgDurationSec} s
+                </p>
+                <p className="mt-1 text-[0.68rem] text-ivory/50">
+                  Sur formats courts 45-60s
+                </p>
+              </div>
+
+              <div className="rounded border border-white/10 bg-ink p-4">
+                <p className="text-[0.65rem] font-bold uppercase tracking-wider text-ivory/50">
+                  Conversions vers Site Officiel
+                </p>
+                <p className="mt-2 font-display text-3xl text-purple-400">
+                  {performanceAggregates.totalConversions}
+                </p>
+                <p className="mt-1 text-[0.68rem] text-ivory/50">
+                  Réservations & Diagnostics générés
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Posts metrics entry table */}
+          <div className="border border-white/10 bg-ink-2 p-5 shadow-2xl">
+            <h3 className="font-display text-lg text-ivory">
+              Suivi individuel par publication diffusée
+            </h3>
+            <p className="text-xs text-ivory/50">
+              Saisissez les statistiques de vos vidéos et posts pour affiner les algorithmes de réécriture.
+            </p>
+
+            <div className="mt-4 overflow-x-auto">
+              <table className="w-full text-left text-xs">
+                <thead>
+                  <tr className="border-b border-white/10 bg-ink text-ivory/50 uppercase tracking-wider text-[0.65rem]">
+                    <th className="p-3">Titre & Pilier</th>
+                    <th className="p-3">Vues</th>
+                    <th className="p-3">Vue / Swipe (%)</th>
+                    <th className="p-3">Rétention (%)</th>
+                    <th className="p-3">Clics Site</th>
+                    <th className="p-3">Demandes Contact</th>
+                    <th className="p-3 text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {publications
+                    .filter((p) => p.status === 'publie')
+                    .map((post) => (
+                      <tr key={post.id} className="hover:bg-white/[0.02]">
+                        <td className="p-3 font-semibold text-ivory max-w-[280px]">
+                          <p className="line-clamp-1">{post.title}</p>
+                          <span className="text-[0.62rem] text-gold capitalize">{post.pillar}</span>
+                        </td>
+                        <td className="p-3 text-ivory/80 font-mono">
+                          {post.metrics?.views?.toLocaleString('fr-FR') || '0'}
+                        </td>
+                        <td className="p-3 text-emerald-400 font-mono font-bold">
+                          {post.metrics?.viewVsSwipeRatio ? `${post.metrics.viewVsSwipeRatio} %` : '—'}
+                        </td>
+                        <td className="p-3 text-cyan-400 font-mono font-bold">
+                          {post.metrics?.averagePercentageViewed ? `${post.metrics.averagePercentageViewed} %` : '—'}
+                        </td>
+                        <td className="p-3 text-ivory/80 font-mono">
+                          {post.metrics?.siteClicks || '0'}
+                        </td>
+                        <td className="p-3 text-purple-400 font-mono font-bold">
+                          {post.metrics?.contactInquiries || '0'}
+                        </td>
+                        <td className="p-3 text-right">
+                          <button
+                            type="button"
+                            onClick={() => setMetricsModalPost(post)}
+                            className="rounded border border-gold/40 px-2 py-1 text-[0.68rem] text-gold hover:bg-gold/10"
+                          >
+                            ✏️ Saisir
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ============================================================== */}
+      {/* MODAL : ÉDITION COMPLÈTE D'UNE PUBLICATION                     */}
       {/* ============================================================== */}
       {editingPost && (
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md overflow-y-auto"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-md overflow-y-auto"
         >
           <div className="relative my-8 w-full max-w-4xl border border-white/15 bg-ink p-6 shadow-2xl">
             {/* Modal Header */}
@@ -877,8 +1429,6 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                         ? 'bg-amber-400/20 text-amber-300 border border-amber-400/40'
                         : editingPost.status === 'valide'
                         ? 'bg-emerald-400/20 text-emerald-300 border border-emerald-400/40'
-                        : editingPost.status === 'publie'
-                        ? 'bg-blue-400/20 text-blue-300 border border-blue-400/40'
                         : 'bg-white/10 text-ivory/60'
                     }`}
                   >
@@ -888,16 +1438,14 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                     Source : {editingPost.sourceType} {editingPost.sourceTitle ? `· « ${editingPost.sourceTitle} »` : ''}
                   </span>
                 </div>
-                <h2 className="mt-2 font-display text-2xl text-ivory">
-                  {editingPost.title}
-                </h2>
+                <h2 className="mt-2 font-display text-2xl text-ivory">{editingPost.title}</h2>
               </div>
 
               <button
                 type="button"
                 onClick={() => setEditingPost(null)}
                 className="flex h-8 w-8 items-center justify-center text-ivory/50 hover:text-ivory"
-                aria-label="Fermer la modal"
+                aria-label="Fermer"
               >
                 ✕
               </button>
@@ -905,11 +1453,45 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
 
             {/* Modal Body */}
             <div className="mt-6 space-y-6">
-              {/* Timing & Target Settings */}
+              {/* Pillar & Timing Configuration */}
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-4 border border-white/10 bg-ink-2 p-4">
                 <div>
                   <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-ivory/60">
-                    Date de diffusion
+                    Pilier Stratégique
+                  </label>
+                  <select
+                    value={editingPost.pillar || 'decouverte'}
+                    onChange={(e) =>
+                      setEditingPost({ ...editingPost, pillar: e.target.value as EditorialPillar })
+                    }
+                    className="mt-1 w-full border border-white/10 bg-ink px-3 py-1.5 text-xs text-ivory focus:border-gold focus:outline-none"
+                  >
+                    <option value="decouverte">Découverte (70%)</option>
+                    <option value="autorite">Autorité (20%)</option>
+                    <option value="conversion">Conversion (10%)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-ivory/60">
+                    Série Récurrente
+                  </label>
+                  <select
+                    value={editingPost.series || 'performance_solo'}
+                    onChange={(e) => setEditingPost({ ...editingPost, series: e.target.value })}
+                    className="mt-1 w-full border border-white/10 bg-ink px-3 py-1.5 text-xs text-ivory focus:border-gold focus:outline-none"
+                  >
+                    {EDITORIAL_SERIES.map((s) => (
+                      <option key={s.id} value={s.id}>
+                        {s.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-ivory/60">
+                    Date prévue
                   </label>
                   <input
                     type="date"
@@ -930,7 +1512,10 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                     className="mt-1 w-full border border-white/10 bg-ink px-3 py-1.5 text-xs text-ivory focus:border-gold focus:outline-none"
                   />
                 </div>
+              </div>
 
+              {/* Visuel & Lien de redirection */}
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 border border-white/10 bg-ink-2 p-4">
                 <div>
                   <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-ivory/60">
                     Visuel / Média associé
@@ -951,17 +1536,44 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
 
                 <div>
                   <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-ivory/60">
-                    Lien canonique de renvoi
+                    Lien canonique vers le site
                   </label>
                   <input
                     type="text"
                     value={editingPost.linkUrl || ''}
                     onChange={(e) => setEditingPost({ ...editingPost, linkUrl: e.target.value })}
-                    placeholder="https://herve-nanfang.com/..."
+                    placeholder="https://hervenanfang.vercel.app/..."
                     className="mt-1 w-full border border-white/10 bg-ink px-3 py-1.5 text-xs text-ivory focus:border-gold focus:outline-none"
                   />
                 </div>
               </div>
+
+              {/* Hook Variants Selector if available */}
+              {editingPost.hookVariants && editingPost.hookVariants.length > 0 && (
+                <div className="border border-gold/30 bg-gold/5 p-4 rounded">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-gold mb-2">
+                    🎯 Variantes d'accroches (Hooks 0-3 secondes)
+                  </h3>
+                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+                    <div className="rounded border border-white/10 bg-ink p-2.5">
+                      <p className="text-[0.65rem] font-bold text-gold uppercase">Hook A · Contre-intuitif</p>
+                      <p className="mt-1 text-xs text-ivory/90 italic">"{editingPost.hookVariants[0]}"</p>
+                    </div>
+                    {editingPost.hookVariants[1] && (
+                      <div className="rounded border border-white/10 bg-ink p-2.5">
+                        <p className="text-[0.65rem] font-bold text-cyan-400 uppercase">Hook B · Défi direct</p>
+                        <p className="mt-1 text-xs text-ivory/90 italic">"{editingPost.hookVariants[1]}"</p>
+                      </div>
+                    )}
+                    {editingPost.hookVariants[2] && (
+                      <div className="rounded border border-white/10 bg-ink p-2.5">
+                        <p className="text-[0.65rem] font-bold text-purple-400 uppercase">Hook C · Observation</p>
+                        <p className="mt-1 text-xs text-ivory/90 italic">"{editingPost.hookVariants[2]}"</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
 
               {/* Target Platforms Checkboxes */}
               <div>
@@ -969,38 +1581,41 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                   Canaux de distribution activés
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {(['linkedin', 'facebook', 'whatsapp', 'instagram', 'youtube'] as SocialPlatform[]).map((plat) => {
-                    const cfg = PLATFORM_CONFIG[plat]
-                    const isActive = editingPost.platforms.includes(plat)
-                    return (
-                      <button
-                        key={plat}
-                        type="button"
-                        onClick={() => {
-                          const nextPlats = isActive
-                            ? editingPost.platforms.filter((p) => p !== plat)
-                            : [...editingPost.platforms, plat]
-                          setEditingPost({ ...editingPost, platforms: nextPlats })
-                        }}
-                        className={`rounded px-3 py-1.5 text-xs font-semibold transition-all border ${
-                          isActive
-                            ? `${cfg.badgeClass} ring-1 ring-gold/40`
-                            : 'border-white/10 bg-ink-2 text-ivory/40 opacity-60'
-                        }`}
-                      >
-                        {isActive ? '✓ ' : '+ '} {cfg.name}
-                      </button>
-                    )
-                  })}
+                  {(['tiktok', 'youtube', 'instagram', 'linkedin', 'facebook', 'whatsapp'] as SocialPlatform[]).map(
+                    (plat) => {
+                      const cfg = PLATFORM_CONFIG[plat]
+                      if (!cfg) return null
+                      const isActive = editingPost.platforms.includes(plat)
+                      return (
+                        <button
+                          key={plat}
+                          type="button"
+                          onClick={() => {
+                            const nextPlats = isActive
+                              ? editingPost.platforms.filter((p) => p !== plat)
+                              : [...editingPost.platforms, plat]
+                            setEditingPost({ ...editingPost, platforms: nextPlats })
+                          }}
+                          className={`rounded px-3 py-1.5 text-xs font-semibold transition-all border ${
+                            isActive
+                              ? `${cfg.badgeClass} ring-1 ring-gold/40`
+                              : 'border-white/10 bg-ink-2 text-ivory/40 opacity-60'
+                          }`}
+                        >
+                          {isActive ? '✓ ' : '+ '} {cfg.name}
+                        </button>
+                      )
+                    },
+                  )}
                 </div>
               </div>
 
               {/* Platform Preview / Editor Tabs */}
               <div className="border border-white/10 bg-ink-2">
-                {/* Platform Switcher Tabs */}
                 <div className="flex border-b border-white/10 bg-ink overflow-x-auto">
                   {editingPost.platforms.map((plat) => {
                     const cfg = PLATFORM_CONFIG[plat]
+                    if (!cfg) return null
                     const isTabActive = activePlatformTab === plat
                     return (
                       <button
@@ -1019,14 +1634,13 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                   })}
                 </div>
 
-                {/* Platform Content Editor */}
                 <div className="p-5 space-y-4">
                   {(() => {
                     const currentPlatformContent = editingPost.contentByPlatform[activePlatformTab] || {
                       text: '',
                       hashtags: [],
                     }
-                    const cfg = PLATFORM_CONFIG[activePlatformTab]
+                    const cfg = PLATFORM_CONFIG[activePlatformTab] || PLATFORM_CONFIG.linkedin
                     const charCount = (currentPlatformContent.text || '').length
                     const isOverLimit = charCount > cfg.maxChars
 
@@ -1034,34 +1648,33 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                       <>
                         <div className="flex items-center justify-between text-xs">
                           <span className="font-semibold text-ivory/80">
-                            Format spécifique pour {cfg.name}
+                            Texte optimisé pour {cfg.name}
                           </span>
-                          <span className={`text-[0.68rem] font-bold ${isOverLimit ? 'text-crimson' : 'text-ivory/50'}`}>
+                          <span
+                            className={`text-[0.68rem] font-bold ${
+                              isOverLimit ? 'text-crimson' : 'text-ivory/50'
+                            }`}
+                          >
                             {charCount} / {cfg.maxChars} caractères
                           </span>
                         </div>
 
-                        <div>
-                          <textarea
-                            rows={8}
-                            value={currentPlatformContent.text}
-                            onChange={(e) => {
-                              const updated = {
-                                ...editingPost.contentByPlatform,
-                                [activePlatformTab]: {
-                                  ...currentPlatformContent,
-                                  text: e.target.value,
-                                  charCount: e.target.value.length,
-                                },
-                              }
-                              setEditingPost({ ...editingPost, contentByPlatform: updated })
-                            }}
-                            placeholder={`Rédigez le texte calibré pour ${cfg.name}...`}
-                            className="w-full border border-white/10 bg-ink p-3 font-sans text-xs text-ivory leading-relaxed focus:border-gold focus:outline-none"
-                          />
-                        </div>
+                        <textarea
+                          rows={7}
+                          value={currentPlatformContent.text}
+                          onChange={(e) => {
+                            const updated = {
+                              ...editingPost.contentByPlatform,
+                              [activePlatformTab]: {
+                                ...currentPlatformContent,
+                                text: e.target.value,
+                              },
+                            }
+                            setEditingPost({ ...editingPost, contentByPlatform: updated })
+                          }}
+                          className="w-full border border-white/10 bg-ink p-3 text-xs text-ivory leading-relaxed focus:border-gold focus:outline-none"
+                        />
 
-                        {/* Hashtags editor */}
                         <div>
                           <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-ivory/60 mb-1">
                             Hashtags recommandés
@@ -1083,67 +1696,56 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                               }
                               setEditingPost({ ...editingPost, contentByPlatform: updated })
                             }}
-                            placeholder="#Musique #StrategieDeMarque #HerveNanfang"
-                            className="w-full border border-white/10 bg-ink px-3 py-1.5 text-xs text-gold focus:border-gold focus:outline-none font-mono"
+                            className="w-full border border-white/10 bg-ink px-3 py-1.5 text-xs text-gold font-mono focus:border-gold focus:outline-none"
                           />
-                        </div>
-
-                        {/* Direct Share / Copy Action Bar */}
-                        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-4">
-                          <button
-                            type="button"
-                            onClick={() => handleCopyPlatformText(editingPost, activePlatformTab)}
-                            className="btn btn-ghost text-xs"
-                          >
-                            📋 Copier le texte {cfg.name}
-                          </button>
-
-                          <div className="flex items-center gap-2">
-                            {activePlatformTab === 'linkedin' && (
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  handleCopyPlatformText(editingPost, 'linkedin')
-                                  window.open(getLinkedInShareUrl(editingPost.linkUrl || 'https://herve-nanfang.com'), '_blank')
-                                }}
-                                className="rounded border border-[#0A66C2]/40 bg-[#0A66C2]/20 px-3 py-1.5 text-xs font-semibold text-[#60a5fa] hover:bg-[#0A66C2]/30"
-                              >
-                                Ouvrir LinkedIn ↗
-                              </button>
-                            )}
-
-                            {activePlatformTab === 'facebook' && (
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  handleCopyPlatformText(editingPost, 'facebook')
-                                  window.open(getFacebookShareUrl(editingPost.linkUrl || 'https://herve-nanfang.com'), '_blank')
-                                }}
-                                className="rounded border border-[#1877F2]/40 bg-[#1877F2]/20 px-3 py-1.5 text-xs font-semibold text-[#93c5fd] hover:bg-[#1877F2]/30"
-                              >
-                                Ouvrir Facebook ↗
-                              </button>
-                            )}
-
-                            {activePlatformTab === 'whatsapp' && (
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  const txt = currentPlatformContent.text || editingPost.title
-                                  window.open(getWhatsAppShareUrl(txt), '_blank')
-                                }}
-                                className="rounded border border-[#25D366]/40 bg-[#25D366]/20 px-3 py-1.5 text-xs font-semibold text-[#86efac] hover:bg-[#25D366]/30"
-                              >
-                                Envoyer sur WhatsApp ↗
-                              </button>
-                            )}
-                          </div>
                         </div>
                       </>
                     )
                   })()}
                 </div>
               </div>
+
+              {/* Cryptographic Seal & Security Audit Box */}
+              <div className="border border-white/10 bg-ink-2 p-4 text-xs">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold uppercase tracking-wider text-ivory/70">
+                    Sceau d'Approbation Cryptographique
+                  </span>
+                  {isPostSignatureValid(editingPost) ? (
+                    <span className="text-emerald-400 font-bold">✓ Intégrité Scellée</span>
+                  ) : (
+                    <span className="text-amber-400 font-bold">⚠️ En attente / Modifié</span>
+                  )}
+                </div>
+                <p className="mt-1 text-[0.68rem] text-ivory/50">
+                  Hash calculé : <code className="text-gold font-mono">{computeSocialPostHash(editingPost)}</code>
+                </p>
+                <p className="mt-1 text-[0.65rem] text-amber-300/80 italic">
+                  Note de sécurité : Toute modification de ce formulaire révoquera automatiquement le sceau pour exiger une ré-approbation explicite.
+                </p>
+              </div>
+
+              {/* Decision History Audit Trail */}
+              {editingPost.decisionHistory && editingPost.decisionHistory.length > 0 && (
+                <div className="border border-white/10 bg-ink-2 p-4">
+                  <h4 className="text-[0.68rem] font-bold uppercase tracking-wider text-ivory/60 mb-2">
+                    Journal d'audit & Décisions humaines
+                  </h4>
+                  <div className="space-y-1.5 max-h-36 overflow-y-auto">
+                    {editingPost.decisionHistory.map((log) => (
+                      <div key={log.id} className="text-[0.68rem] text-ivory/70 flex items-center justify-between border-b border-white/5 py-1">
+                        <span>
+                          <strong className="text-ivory capitalize">{log.action}</strong> par {log.author}
+                          {log.reason ? ` : « ${log.reason} »` : ''}
+                        </span>
+                        <span className="text-ivory/40 font-mono">
+                          {new Date(log.timestamp).toLocaleString('fr-FR')}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Modal Footer Controls */}
@@ -1161,12 +1763,12 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                   type="button"
                   onClick={async () => {
                     await onSavePublication(editingPost)
-                    showToast('Publication enregistrée.')
+                    showToast('Modifications enregistrées.')
                     setEditingPost(null)
                   }}
                   className="btn btn-ghost text-xs"
                 >
-                  Enregistrer les modifications
+                  Enregistrer
                 </button>
 
                 {editingPost.status !== 'valide' && (
@@ -1179,7 +1781,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                     }}
                     className="btn btn-gold text-xs shadow-lg shadow-gold/15"
                   >
-                    ✓ Valider pour diffusion
+                    ✓ Approuver & Sceller
                   </button>
                 )}
 
@@ -1187,7 +1789,6 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                   <button
                     type="button"
                     onClick={async () => {
-                      await onSavePublication(editingPost)
                       await handleMarkPublished(editingPost.id)
                       setEditingPost(null)
                     }}
@@ -1203,19 +1804,174 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
       )}
 
       {/* ============================================================== */}
-      {/* MODAL : GÉNÉRATEUR AUTOMATIQUE DEPUIS LE SITE                 */}
+      {/* MODAL : REJET AVEC MOTIF OBLIGATOIRE                            */}
+      {/* ============================================================== */}
+      {rejectionModalPostId && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-md"
+        >
+          <div className="relative w-full max-w-md border border-crimson/30 bg-ink p-6 shadow-2xl">
+            <h3 className="font-display text-lg text-crimson-2">
+              Motif de rejet obligatoire
+            </h3>
+            <p className="mt-1 text-xs text-ivory/70">
+              Précisez la raison du refus (ex: accroche trop faible, lien inexact, ton non conforme). Cette note sera consignée dans l'historique d'audit.
+            </p>
+
+            <textarea
+              rows={4}
+              value={rejectionReasonText}
+              onChange={(e) => setRejectionReasonText(e.target.value)}
+              placeholder="Ex : Réécrire l'accroche des 3 premières secondes..."
+              className="mt-3 w-full border border-white/10 bg-ink-2 p-2.5 text-xs text-ivory focus:border-crimson focus:outline-none"
+            />
+
+            <div className="mt-4 flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setRejectionModalPostId(null)
+                  setRejectionReasonText('')
+                }}
+                className="btn btn-ghost text-xs"
+              >
+                Annuler
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirmReject}
+                className="rounded border border-crimson bg-crimson/20 px-3 py-1.5 text-xs font-bold text-crimson-2 hover:bg-crimson/30"
+              >
+                Confirmer le rejet
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ============================================================== */}
+      {/* MODAL : SAISIE DES MÉTRIQUES RÉELLES                            */}
+      {/* ============================================================== */}
+      {metricsModalPost && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-md"
+        >
+          <div className="relative w-full max-w-md border border-white/15 bg-ink p-6 shadow-2xl">
+            <h3 className="font-display text-lg text-ivory">
+              Saisir les métriques de performance
+            </h3>
+            <p className="text-xs text-ivory/60 mt-1">« {metricsModalPost.title} »</p>
+
+            <div className="mt-4 space-y-3">
+              <div>
+                <label className="block text-[0.68rem] font-bold uppercase text-ivory/60">Nombre de Vues</label>
+                <input
+                  type="number"
+                  defaultValue={metricsModalPost.metrics?.views || 0}
+                  id="metric-views"
+                  className="w-full border border-white/10 bg-ink-2 p-2 text-xs text-ivory focus:border-gold focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[0.68rem] font-bold uppercase text-ivory/60">Ratio Vue vs Balayage (%)</label>
+                <input
+                  type="number"
+                  step="0.1"
+                  defaultValue={metricsModalPost.metrics?.viewVsSwipeRatio || 75}
+                  id="metric-swipe"
+                  className="w-full border border-white/10 bg-ink-2 p-2 text-xs text-ivory focus:border-gold focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[0.68rem] font-bold uppercase text-ivory/60">Taux de Rétention (%)</label>
+                <input
+                  type="number"
+                  step="0.1"
+                  defaultValue={metricsModalPost.metrics?.averagePercentageViewed || 60}
+                  id="metric-retention"
+                  className="w-full border border-white/10 bg-ink-2 p-2 text-xs text-ivory focus:border-gold focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[0.68rem] font-bold uppercase text-ivory/60">Clics sortants vers le site</label>
+                <input
+                  type="number"
+                  defaultValue={metricsModalPost.metrics?.siteClicks || 0}
+                  id="metric-clicks"
+                  className="w-full border border-white/10 bg-ink-2 p-2 text-xs text-ivory focus:border-gold focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[0.68rem] font-bold uppercase text-ivory/60">Demandes de contact / Devis</label>
+                <input
+                  type="number"
+                  defaultValue={metricsModalPost.metrics?.contactInquiries || 0}
+                  id="metric-conversions"
+                  className="w-full border border-white/10 bg-ink-2 p-2 text-xs text-ivory focus:border-gold focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="mt-5 flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setMetricsModalPost(null)}
+                className="btn btn-ghost text-xs"
+              >
+                Annuler
+              </button>
+              <button
+                type="button"
+                onClick={async () => {
+                  const views = Number((document.getElementById('metric-views') as HTMLInputElement).value)
+                  const viewVsSwipeRatio = Number((document.getElementById('metric-swipe') as HTMLInputElement).value)
+                  const averagePercentageViewed = Number((document.getElementById('metric-retention') as HTMLInputElement).value)
+                  const siteClicks = Number((document.getElementById('metric-clicks') as HTMLInputElement).value)
+                  const contactInquiries = Number((document.getElementById('metric-conversions') as HTMLInputElement).value)
+
+                  if (onUpdateMetrics) {
+                    await onUpdateMetrics(metricsModalPost.id, {
+                      views,
+                      viewVsSwipeRatio,
+                      averagePercentageViewed,
+                      siteClicks,
+                      contactInquiries,
+                    })
+                    showToast('Métriques enregistrées avec succès.')
+                  }
+                  setMetricsModalPost(null)
+                }}
+                className="btn btn-gold text-xs"
+              >
+                Sauvegarder
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ============================================================== */}
+      {/* MODAL : GÉNÉRATEUR AUTOMATIQUE                                 */}
       {/* ============================================================== */}
       {isGeneratorOpen && (
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-md"
         >
           <div className="relative w-full max-w-xl border border-white/15 bg-ink p-6 shadow-2xl">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div>
-                <p className="eyebrow text-gold">Moteur de repurposing</p>
-                <h2 className="mt-1 font-display text-2xl text-ivory">Générer un post depuis le site</h2>
+                <p className="eyebrow text-gold">Moteur de Repurposing Organique</p>
+                <h2 className="mt-1 font-display text-2xl text-ivory">Générer un pack multiplateforme</h2>
               </div>
               <button
                 type="button"
@@ -1229,12 +1985,12 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
             <div className="mt-5 space-y-4">
               <div>
                 <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-ivory/60 mb-1">
-                  1. Type de contenu source
+                  1. Source de contenu
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   {[
-                    { id: 'article', label: 'Article du Journal' },
-                    { id: 'service', label: 'Offre / Service' },
+                    { id: 'article', label: 'Article Journal' },
+                    { id: 'service', label: 'Offre Commerciale' },
                     { id: 'projet', label: 'Projet Signature' },
                   ].map((t) => (
                     <button
@@ -1260,7 +2016,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
 
               <div>
                 <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-ivory/60 mb-1">
-                  2. Sélectionner l'élément source
+                  2. Sélectionner la référence
                 </label>
                 <select
                   value={genSourceId}
@@ -1270,7 +2026,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                   {genSourceType === 'article' &&
                     articles.map((a) => (
                       <option key={a.id} value={a.id}>
-                        Pilier {a.num} · {a.title}
+                        {a.num ? `Pilier ${a.num} · ` : ''}{a.title}
                       </option>
                     ))}
                   {genSourceType === 'service' &&
@@ -1314,7 +2070,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
               </div>
 
               <div className="border border-gold/20 bg-gold/5 p-3 text-xs text-ivory/70">
-                💡 <span className="font-semibold text-gold">Automatisme :</span> Le moteur rédigera automatiquement 4 variantes sur mesure (LinkedIn autorité, Facebook communauté, WhatsApp broadcast, Instagram punchlines). Le post sera généré en statut <strong className="text-amber-300">« À valider »</strong> pour que vous puissiez le relire avant diffusion.
+                ⚡ <strong className="text-gold">Génération Master :</strong> Le moteur produit 3 variantes d'accroches (Hook A/B/C), le découpage 0-60s (0-3s, 3-15s, 15-45s, 45-60s) et les déclinaisons textuelles adaptées (TikTok, YouTube, Instagram Reels, LinkedIn, Facebook, WhatsApp). Le post est placé directement dans le <span className="text-amber-300 font-bold">Sas de validation</span>.
               </div>
             </div>
 
@@ -1331,7 +2087,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                 onClick={handleGenerate}
                 className="btn btn-gold text-xs shadow-lg shadow-gold/20"
               >
-                Générer les 4 formats ⚡
+                Générer le pack ⚡
               </button>
             </div>
           </div>
@@ -1339,13 +2095,13 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
       )}
 
       {/* ============================================================== */}
-      {/* MODAL : WEBHOOK & AUTOMATISATION                               */}
+      {/* MODAL : WEBHOOK CONFIGURATION                                  */}
       {/* ============================================================== */}
       {isWebhookModalOpen && (
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-md"
         >
           <div className="relative w-full max-w-xl border border-white/15 bg-ink p-6 shadow-2xl">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
@@ -1364,12 +2120,12 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
 
             <div className="mt-5 space-y-4">
               <p className="text-xs text-ivory/70">
-                Dès que vous validez une publication dans le calendrier, un payload JSON contenant tous les textes, visuels et hashtags est expédié automatiquement vers votre scénario d'automatisation (Make.com, Zapier, n8n ou Blotato) pour programmation directe sur vos comptes sociaux.
+                Dès qu'une publication est validée et scellée, un payload JSON contenant les textes, hooks et métadonnées est expédié vers votre connecteur (Make.com, Zapier, n8n ou Blotato) pour distribution automatisée.
               </p>
 
               <div>
                 <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-ivory/60 mb-1">
-                  URL du Webhook de réception (Make / Zapier / n8n)
+                  URL du Webhook de réception
                 </label>
                 <input
                   type="url"
@@ -1382,7 +2138,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
 
               <div>
                 <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-ivory/60 mb-1">
-                  Clé secrète / Header d'authentification (Optionnel)
+                  Clé secrète / Header (Optionnel)
                 </label>
                 <input
                   type="password"
@@ -1417,12 +2173,12 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                       if (res.success) {
                         setWebhookTestResult({
                           success: true,
-                          message: `✓ Ping de test envoyé avec succès (Code HTTP ${res.status || 200}). Votre Webhook fonctionne parfaitement !`,
+                          message: `✓ Ping envoyé avec succès (HTTP ${res.status || 200}). Connecteur opérationnel !`,
                         })
                       } else {
                         setWebhookTestResult({
                           success: false,
-                          message: `✕ Erreur lors de l'appel au Webhook : ${res.error || 'Vérifiez l’URL et les autorisations CORS.'}`,
+                          message: `✕ Erreur : ${res.error || 'Vérifiez l’URL et le réseau.'}`,
                         })
                       }
                     } finally {

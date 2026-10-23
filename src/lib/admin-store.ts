@@ -20,8 +20,9 @@ import {
 } from './admin-types'
 import generatedUploadsMedia from './generated-uploads-media.json'
 import { INITIAL_PUBLICATIONS, exportPublicationsToIcs } from './social-generator'
+import { computeSocialPostHash, DecisionLog, PublicationMetrics } from './admin-types'
 
-const LOCAL_STORE_KEY = 'hn_admin_store_v2'
+const LOCAL_STORE_KEY = 'hn_admin_store_v3'
 
 const INITIAL_SERVICES: AdminService[] = [
   {
@@ -789,7 +790,8 @@ function sanitizeLoadedState(state: AdminState): AdminState {
   })
 
   let publications = state.publications
-  if (!publications || publications.length === 0) {
+  const needsMasterRefresh = !publications || publications.length === 0 || publications.some((p: any) => !p.pillar || p.sourceSlug === "musicien-et-sa-marque-recit-precede-logo")
+  if (needsMasterRefresh) {
     publications = INITIAL_PUBLICATIONS
     hasChanges = true
   }
@@ -1515,14 +1517,59 @@ export const adminStore = {
   },
 
   // -------------------------------------------------------------
-  // CALENDRIER DE PUBLICATION & DIFFUSION MULTIPLATEFORMES
   // -------------------------------------------------------------
-  async savePublication(post: SocialPost): Promise<SocialPost> {
+  // CALENDRIER DE PUBLICATION & DIFFUSION MULTIPLATEFORMES — MODE MASTER
+  // -------------------------------------------------------------
+  async savePublication(post: SocialPost, authorName = 'Hervé Nanfang'): Promise<SocialPost> {
     const index = currentState.publications.findIndex((p) => p.id === post.id)
     const nextPublications = [...currentState.publications]
-    const updatedPost: SocialPost = {
+    const existingPost = index >= 0 ? currentState.publications[index] : null
+
+    const currentHash = computeSocialPostHash(post)
+    const nowIso = new Date().toISOString()
+
+    let updatedPost: SocialPost = {
       ...post,
-      updatedAt: new Date().toISOString(),
+      updatedAt: nowIso,
+    }
+
+    // RÈGLE D'INVALIDATION STRICTE :
+    // Si la publication était déjà approuvée ('valide' ou 'programme') et qu'un élément
+    // substantiel a été modifié (titre, date, heure, plateformes, textes, lien, média),
+    // l'approbation précédente est RÉVOQUÉE et le statut retombe à 'a_valider'.
+    if (existingPost && (existingPost.status === 'valide' || existingPost.status === 'programme')) {
+      const priorHash = existingPost.validationSignature?.contentHash
+      if (priorHash && priorHash !== currentHash) {
+        const invalidationLog: DecisionLog = {
+          id: `log-${Date.now()}-inval`,
+          action: 'invalidation',
+          timestamp: nowIso,
+          author: authorName,
+          reason: 'Modification d’éléments substantiels post-approbation : nouvelle validation humaine exigée.',
+          contentHash: currentHash,
+        }
+
+        updatedPost.status = 'a_valider'
+        updatedPost.validationSignature = {
+          approvedBy: existingPost.validationSignature?.approvedBy || authorName,
+          approvedAt: existingPost.validationSignature?.approvedAt || nowIso,
+          contentHash: priorHash,
+          isRevoked: true,
+          revokedAt: nowIso,
+          revocationReason: 'Contenu modifié après signature',
+        }
+        updatedPost.decisionHistory = [invalidationLog, ...(updatedPost.decisionHistory || [])]
+      }
+    } else if (existingPost && existingPost.status !== 'valide' && existingPost.status !== 'programme') {
+      const modLog: DecisionLog = {
+        id: `log-${Date.now()}-mod`,
+        action: 'modification',
+        timestamp: nowIso,
+        author: authorName,
+        reason: 'Mise à jour des contenus ou paramètres',
+        contentHash: currentHash,
+      }
+      updatedPost.decisionHistory = [modLog, ...(updatedPost.decisionHistory || [])]
     }
 
     if (index >= 0) {
@@ -1532,53 +1579,50 @@ export const adminStore = {
     }
 
     persistAndBroadcast({ ...currentState, publications: nextPublications })
-
-    if (isSupabaseConfigured && supabase) {
-      try {
-        await supabase.from('publications').upsert({
-          id: updatedPost.id,
-          title: updatedPost.title,
-          source_type: updatedPost.sourceType,
-          source_slug: updatedPost.sourceSlug,
-          source_title: updatedPost.sourceTitle,
-          scheduled_date: updatedPost.scheduledDate,
-          scheduled_time: updatedPost.scheduledTime,
-          status: updatedPost.status,
-          platforms: updatedPost.platforms,
-          content_by_platform: updatedPost.contentByPlatform,
-          media_url: updatedPost.mediaUrl,
-          link_url: updatedPost.linkUrl,
-          cta_label: updatedPost.ctaLabel,
-          target_audience: updatedPost.targetAudience,
-          validated_at: updatedPost.validatedAt,
-          published_at: updatedPost.publishedAt,
-          notes: updatedPost.notes,
-          updated_at: updatedPost.updatedAt,
-        })
-      } catch (err) {
-        console.warn('Supabase publication save error:', err)
-      }
-    }
-
     return updatedPost
   },
 
-  async validatePublication(
+  async approvePublication(
     id: string,
+    approver = 'Hervé Nanfang',
+    notes?: string,
   ): Promise<{ success: boolean; triggeredWebhook: boolean; error?: string }> {
     const post = currentState.publications.find((p) => p.id === id)
     if (!post) {
       return { success: false, triggeredWebhook: false, error: 'Publication introuvable.' }
     }
 
-    const validatedPost: SocialPost = {
-      ...post,
-      status: 'valide',
-      validatedAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
+    const currentHash = computeSocialPostHash(post)
+    const nowIso = new Date().toISOString()
+
+    const approvalLog: DecisionLog = {
+      id: `log-${Date.now()}-appr`,
+      action: 'approbation',
+      timestamp: nowIso,
+      author: approver,
+      reason: notes || 'Approbation explicite du contenu pour mise en ligne multiplateforme',
+      contentHash: currentHash,
     }
 
-    await this.savePublication(validatedPost)
+    const approvedPost: SocialPost = {
+      ...post,
+      status: 'valide',
+      validatedAt: nowIso,
+      rejectionReason: undefined,
+      validationSignature: {
+        approvedBy: approver,
+        approvedAt: nowIso,
+        contentHash: currentHash,
+        isRevoked: false,
+      },
+      decisionHistory: [approvalLog, ...(post.decisionHistory || [])],
+      updatedAt: nowIso,
+    }
+
+    const index = currentState.publications.findIndex((p) => p.id === id)
+    const nextPublications = [...currentState.publications]
+    nextPublications[index] = approvedPost
+    persistAndBroadcast({ ...currentState, publications: nextPublications })
 
     // Trigger Webhook if configured
     let triggeredWebhook = false
@@ -1596,10 +1640,11 @@ export const adminStore = {
               : {}),
           },
           body: JSON.stringify({
-            event: 'publication.validated',
-            timestamp: new Date().toISOString(),
-            source: 'herve-nanfang.com/admin',
-            post: validatedPost,
+            event: 'publication.approved',
+            timestamp: nowIso,
+            source: 'hervenanfang.vercel.app/admin',
+            approvedBy: approver,
+            post: approvedPost,
           }),
         })
 
@@ -1620,18 +1665,188 @@ export const adminStore = {
     }
   },
 
-  async markPublicationAsPublished(id: string): Promise<void> {
+  async rejectPublication(
+    id: string,
+    reason: string,
+    author = 'Hervé Nanfang',
+  ): Promise<{ success: boolean; error?: string }> {
     const post = currentState.publications.find((p) => p.id === id)
-    if (!post) return
+    if (!post) return { success: false, error: 'Publication introuvable.' }
+
+    const nowIso = new Date().toISOString()
+    const rejectionLog: DecisionLog = {
+      id: `log-${Date.now()}-rej`,
+      action: 'refus',
+      timestamp: nowIso,
+      author,
+      reason: reason || 'Révision demandée avant publication',
+    }
+
+    const rejectedPost: SocialPost = {
+      ...post,
+      status: 'refuse',
+      rejectionReason: reason,
+      validationSignature: post.validationSignature ? { ...post.validationSignature, isRevoked: true } : undefined,
+      decisionHistory: [rejectionLog, ...(post.decisionHistory || [])],
+      updatedAt: nowIso,
+    }
+
+    const index = currentState.publications.findIndex((p) => p.id === id)
+    const nextPublications = [...currentState.publications]
+    nextPublications[index] = rejectedPost
+    persistAndBroadcast({ ...currentState, publications: nextPublications })
+
+    return { success: true }
+  },
+
+  async schedulePublication(
+    id: string,
+    scheduledDate?: string,
+    scheduledTime?: string,
+    author = 'Hervé Nanfang',
+  ): Promise<{ success: boolean; error?: string }> {
+    const post = currentState.publications.find((p) => p.id === id)
+    if (!post) return { success: false, error: 'Publication introuvable.' }
+
+    const currentHash = computeSocialPostHash(post)
+    const sig = post.validationSignature
+
+    // SÉCURITÉ STRICTE : Programmation impossible sans signature valide et non révoquée
+    if (!sig || sig.isRevoked || sig.contentHash !== currentHash) {
+      return {
+        success: false,
+        error: 'Programmation bloquée : une approbation humaine valide et non révoquée est strictement obligatoire.',
+      }
+    }
+
+    const nowIso = new Date().toISOString()
+    const scheduleLog: DecisionLog = {
+      id: `log-${Date.now()}-sched`,
+      action: 'programmation',
+      timestamp: nowIso,
+      author,
+      reason: `Programmation confirmée pour le ${scheduledDate || post.scheduledDate} à ${scheduledTime || post.scheduledTime}`,
+      contentHash: currentHash,
+    }
+
+    const scheduledPost: SocialPost = {
+      ...post,
+      scheduledDate: scheduledDate || post.scheduledDate,
+      scheduledTime: scheduledTime || post.scheduledTime,
+      status: 'programme',
+      decisionHistory: [scheduleLog, ...(post.decisionHistory || [])],
+      updatedAt: nowIso,
+    }
+
+    const index = currentState.publications.findIndex((p) => p.id === id)
+    const nextPublications = [...currentState.publications]
+    nextPublications[index] = scheduledPost
+    persistAndBroadcast({ ...currentState, publications: nextPublications })
+
+    return { success: true }
+  },
+
+  async markPublicationAsPublished(id: string, author = 'Hervé Nanfang'): Promise<{ success: boolean; error?: string }> {
+    const post = currentState.publications.find((p) => p.id === id)
+    if (!post) return { success: false, error: 'Publication introuvable.' }
+
+    const currentHash = computeSocialPostHash(post)
+    const sig = post.validationSignature
+
+    // VERROU DE SÉCURITÉ ABSOLU :
+    // "Critère d'acceptation principal : un contenu peut être préparé automatiquement,
+    // mais il est techniquement impossible de le publier tant qu'une approbation humaine valide n'a pas été enregistrée."
+    if (!sig || sig.isRevoked || sig.contentHash !== currentHash) {
+      return {
+        success: false,
+        error: 'Publication bloquée : approbation humaine manquante, révoquée ou invalidée par une modification.',
+      }
+    }
+
+    const nowIso = new Date().toISOString()
+    const pubLog: DecisionLog = {
+      id: `log-${Date.now()}-pub`,
+      action: 'publication',
+      timestamp: nowIso,
+      author,
+      reason: 'Diffusion multiplateforme confirmée',
+      contentHash: currentHash,
+    }
 
     const publishedPost: SocialPost = {
       ...post,
       status: 'publie',
-      publishedAt: new Date().toISOString(),
+      publishedAt: nowIso,
+      decisionHistory: [pubLog, ...(post.decisionHistory || [])],
+      updatedAt: nowIso,
+    }
+
+    const index = currentState.publications.findIndex((p) => p.id === id)
+    const nextPublications = [...currentState.publications]
+    nextPublications[index] = publishedPost
+    persistAndBroadcast({ ...currentState, publications: nextPublications })
+
+    return { success: true }
+  },
+
+  async revokeApproval(
+    id: string,
+    reason = 'Annulation manuelle de l’approbation',
+    author = 'Hervé Nanfang',
+  ): Promise<{ success: boolean; error?: string }> {
+    const post = currentState.publications.find((p) => p.id === id)
+    if (!post) return { success: false, error: 'Publication introuvable.' }
+
+    const nowIso = new Date().toISOString()
+    const revLog: DecisionLog = {
+      id: `log-${Date.now()}-rev`,
+      action: 'invalidation',
+      timestamp: nowIso,
+      author,
+      reason,
+    }
+
+    const revokedPost: SocialPost = {
+      ...post,
+      status: 'a_valider',
+      validationSignature: post.validationSignature
+        ? {
+            ...post.validationSignature,
+            isRevoked: true,
+            revokedAt: nowIso,
+            revocationReason: reason,
+          }
+        : undefined,
+      decisionHistory: [revLog, ...(post.decisionHistory || [])],
+      updatedAt: nowIso,
+    }
+
+    const index = currentState.publications.findIndex((p) => p.id === id)
+    const nextPublications = [...currentState.publications]
+    nextPublications[index] = revokedPost
+    persistAndBroadcast({ ...currentState, publications: nextPublications })
+
+    return { success: true }
+  },
+
+  async updatePublicationMetrics(id: string, metrics: PublicationMetrics): Promise<void> {
+    const post = currentState.publications.find((p) => p.id === id)
+    if (!post) return
+
+    const updatedPost: SocialPost = {
+      ...post,
+      metrics: {
+        ...(post.metrics || {}),
+        ...metrics,
+        lastUpdated: new Date().toISOString(),
+      },
       updatedAt: new Date().toISOString(),
     }
 
-    await this.savePublication(publishedPost)
+    const index = currentState.publications.findIndex((p) => p.id === id)
+    const nextPublications = [...currentState.publications]
+    nextPublications[index] = updatedPost
+    persistAndBroadcast({ ...currentState, publications: nextPublications })
   },
 
   async deletePublication(id: string): Promise<void> {
@@ -1650,7 +1865,6 @@ export const adminStore = {
   exportCalendarIcs(): string {
     return exportPublicationsToIcs(currentState.publications)
   },
-
   async triggerWebhookTest(
     targetUrl: string,
     secret?: string,

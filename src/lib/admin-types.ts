@@ -191,12 +191,30 @@ export interface AdminMessage {
 }
 
 // -------------------------------------------------------------
-// CALENDRIER ÉDITORIAL & MULTIPLATEFORMES
+// CALENDRIER ÉDITORIAL & CROISSANCE ORGANIQUE — MODE MASTER
 // -------------------------------------------------------------
 
-export type SocialPlatform = 'linkedin' | 'facebook' | 'instagram' | 'whatsapp' | 'youtube' | 'site'
+export type EditorialPillar = 'decouverte' | 'autorite' | 'conversion'
 
-export type PublicationStatus = 'brouillon' | 'a_valider' | 'valide' | 'publie' | 'archive'
+export type SocialPlatform =
+  | 'linkedin'
+  | 'facebook'
+  | 'instagram'
+  | 'whatsapp'
+  | 'youtube'
+  | 'tiktok'
+  | 'site'
+
+export type PublicationStatus =
+  | 'idees'
+  | 'brouillon'
+  | 'a_valider'
+  | 'valide'
+  | 'programme'
+  | 'publie'
+  | 'refuse'
+  | 'erreur'
+  | 'archive'
 
 export interface PlatformContent {
   text: string
@@ -204,26 +222,116 @@ export interface PlatformContent {
   charCount?: number
 }
 
+export interface DecisionLog {
+  id: string
+  action:
+    | 'creation'
+    | 'modification'
+    | 'soumission'
+    | 'approbation'
+    | 'refus'
+    | 'programmation'
+    | 'publication'
+    | 'invalidation'
+    | 'erreur'
+  timestamp: string
+  author: string
+  reason?: string
+  contentHash?: string
+}
+
+export interface ValidationSignature {
+  approvedBy: string
+  approvedAt: string
+  contentHash: string
+  isRevoked?: boolean
+  revokedAt?: string
+  revocationReason?: string
+}
+
+export interface PublicationMetrics {
+  views?: number
+  reach?: number
+  /** % de spectateurs ayant choisi de regarder plutôt que de swiper (YouTube Shorts / Reels) */
+  viewVsSwipeRatio?: number
+  /** Durée moyenne de visionnage en secondes */
+  averageViewDurationSec?: number
+  /** Pourcentage moyen de la vidéo regardé */
+  averagePercentageViewed?: number
+  likes?: number
+  comments?: number
+  shares?: number
+  saves?: number
+  subscribersGained?: number
+  siteClicks?: number
+  contactInquiries?: number
+  lastUpdated?: string
+}
+
+export interface ConnectorStatus {
+  provider: 'manuel' | 'webhook' | 'metricool'
+  status: 'idle' | 'pending' | 'success' | 'failed'
+  externalId?: string
+  lastSyncAt?: string
+  errorMessage?: string
+}
+
 export interface SocialPost {
   id: string
   title: string
+  pillar: EditorialPillar
+  series?: string
+  campaign?: string
   sourceType: 'article' | 'service' | 'projet' | 'citation' | 'musique' | 'masterclass' | 'libre'
   sourceSlug?: string
   sourceTitle?: string
+  isOriginalCreation?: boolean
   scheduledDate: string // YYYY-MM-DD
   scheduledTime: string // HH:mm
   status: PublicationStatus
   platforms: SocialPlatform[]
   contentByPlatform: Partial<Record<SocialPlatform, PlatformContent>>
+  hookVariants?: string[]
   mediaUrl?: string
   linkUrl?: string
   ctaLabel?: string
   targetAudience?: string
+  validationSignature?: ValidationSignature
+  decisionHistory?: DecisionLog[]
+  rejectionReason?: string
+  metrics?: PublicationMetrics
+  connectorStatus?: ConnectorStatus
   validatedAt?: string
   publishedAt?: string
   notes?: string
   createdAt: string
   updatedAt: string
+}
+
+/**
+ * Calcule une empreinte de contenu déterministe pour la signature de validation.
+ * Si un élément substantiel (texte, média, date, heure, plateformes, lien) change,
+ * le hash change et invalide l'approbation précédente.
+ */
+export function computeSocialPostHash(post: Pick<SocialPost, 'title' | 'scheduledDate' | 'scheduledTime' | 'platforms' | 'contentByPlatform' | 'mediaUrl' | 'linkUrl'>): string {
+  const norm = {
+    title: (post.title || '').trim(),
+    date: post.scheduledDate,
+    time: post.scheduledTime || '09:00',
+    platforms: [...(post.platforms || [])].sort(),
+    media: (post.mediaUrl || '').trim(),
+    link: (post.linkUrl || '').trim(),
+    texts: Object.keys(post.contentByPlatform || {})
+      .sort()
+      .map((k) => `${k}:${(post.contentByPlatform[k as SocialPlatform]?.text || '').trim()};tags:${(post.contentByPlatform[k as SocialPlatform]?.hashtags || []).join(',')}`),
+  }
+  const str = JSON.stringify(norm)
+  let hash = 0
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i)
+    hash |= 0
+  }
+  return 'sig_' + Math.abs(hash).toString(36)
 }
 
 export interface AdminSettings {
