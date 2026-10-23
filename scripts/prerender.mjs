@@ -1,5 +1,5 @@
 import { PassThrough } from 'node:stream'
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { cp, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import React from 'react'
 import { renderToPipeableStream } from 'react-dom/server'
@@ -181,11 +181,41 @@ try {
   const articleRoutes = ARTICLES.map((article) => `/journal/${article.slug}`)
   const routes = [...staticRoutes, ...articleRoutes]
 
+  // Correspondance des imports d'actifs de dev (/src/assets/...) vers les fichiers hashés de prod (/assets/...)
+  const assetMap = {}
+  try {
+    const manifestRaw = await readFile(resolve(dist, '.vite', 'manifest.json'), 'utf8')
+    const manifest = JSON.parse(manifestRaw)
+    for (const [key, val] of Object.entries(manifest)) {
+      if (val.file) {
+        assetMap[`/${key}`] = `/${val.file}`
+      }
+    }
+  } catch (err) {
+    console.warn('Vite manifest not loaded:', err.message)
+  }
+
+  // Copie de sécurité absolue : garantit que /src/assets/* renvoie toujours 200 en prod statique
+  try {
+    await cp(resolve(root, 'src', 'assets'), resolve(dist, 'src', 'assets'), { recursive: true })
+  } catch (err) {
+    console.warn('Could not copy src/assets to dist/src/assets:', err.message)
+  }
+
+  function rewriteAssetUrls(str) {
+    let result = str
+    for (const [srcUrl, distUrl] of Object.entries(assetMap)) {
+      result = result.replaceAll(srcUrl, distUrl)
+    }
+    return result
+  }
+
   for (const route of routes) {
     const { markup, seo } = await renderRoute(App, SeoContext, route)
+    const processedMarkup = rewriteAssetUrls(markup)
     const html = injectHead(template, pageHead(seo, SITE)).replace(
       '<div id="root"></div>',
-      `<div id="root">${markup}</div>`,
+      `<div id="root">${processedMarkup}</div>`,
     )
     const destination = outputPath(route)
     await mkdir(dirname(destination), { recursive: true })
@@ -193,9 +223,10 @@ try {
   }
 
   const notFound = await renderRoute(App, SeoContext, '/not-found')
+  const notFoundMarkup = rewriteAssetUrls(notFound.markup)
   const notFoundHtml = injectHead(template, pageHead(notFound.seo, SITE)).replace(
     '<div id="root"></div>',
-    `<div id="root">${notFound.markup}</div>`,
+    `<div id="root">${notFoundMarkup}</div>`,
   )
   await writeFile(resolve(dist, '404.html'), notFoundHtml, 'utf8')
 

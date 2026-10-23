@@ -128,6 +128,11 @@ export default function About() {
                 height={1353}
                 loading="lazy"
                 style={portraitMedia.style}
+                onError={(e) => {
+                  if (!e.currentTarget.src.includes('/images/about-portrait-yaounde.webp')) {
+                    e.currentTarget.src = '/images/about-portrait-yaounde.webp'
+                  }
+                }}
                 className="zoomable w-full object-cover"
               />
               <figcaption className="mt-4 text-[0.68rem] uppercase tracking-[0.18em] text-ivory/40">
@@ -266,6 +271,11 @@ export default function About() {
               width={1024}
               height={1536}
               loading="lazy"
+              onError={(e) => {
+                if (!e.currentTarget.src.includes('/images/affiche-pianobariste.webp')) {
+                  e.currentTarget.src = '/images/affiche-pianobariste.webp'
+                }
+              }}
               className="zoomable w-full max-w-sm object-cover"
             />
           </Reveal>

@@ -62,9 +62,9 @@ export function useLiveMedia(
   const state = useAdminState()
   const found = state.media?.find((m) => m.id === mediaId || m.path.includes(mediaId))
 
-  let url = found?.url || fallbackUrl || ''
+  let url = (found?.url && found.url.trim() !== '') ? found.url : (fallbackUrl || '')
   if (url.startsWith('blob:')) {
-    url = found?.filename ? `/images/${encodeURIComponent(found.filename)}` : fallbackUrl || ''
+    url = found?.filename ? `/images/${encodeURIComponent(found.filename)}` : (fallbackUrl || '')
   }
   const alt = found?.altText || ''
   const posX = found?.defaultPositionX ?? found?.focalX ?? fallbackX

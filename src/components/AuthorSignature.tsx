@@ -20,6 +20,11 @@ export default function AuthorSignature() {
               alt="Hervé Nanfang"
               className="h-full w-full rounded-full object-cover object-top filter grayscale contrast-125 transition-all duration-500 hover:filter-none"
               loading="lazy"
+              onError={(e) => {
+                if (!e.currentTarget.src.includes('/images/portrait.webp')) {
+                  e.currentTarget.src = '/images/portrait.webp'
+                }
+              }}
             />
           </div>
           <div

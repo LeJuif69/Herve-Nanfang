@@ -126,6 +126,11 @@ export default function Music() {
                 width={1024}
                 height={1536}
                 loading="lazy"
+                onError={(e) => {
+                  if (!e.currentTarget.src.includes('/images/affiche-pianobariste.webp')) {
+                    e.currentTarget.src = '/images/affiche-pianobariste.webp'
+                  }
+                }}
                 className="zoomable shadow-2xl rounded-sm object-cover"
               />
               <div
@@ -581,6 +586,11 @@ export default function Music() {
                   width={1400}
                   height={783}
                   loading="lazy"
+                  onError={(e) => {
+                    if (!e.currentTarget.src.includes('/images/live-band.webp')) {
+                      e.currentTarget.src = '/images/live-band.webp'
+                    }
+                  }}
                   className="zoomable w-full object-cover"
                 />
               </div>

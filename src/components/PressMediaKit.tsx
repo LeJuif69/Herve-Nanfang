@@ -327,6 +327,20 @@ export function PressVisualsGallery() {
                 src={vis.src}
                 alt={vis.title}
                 loading="lazy"
+                onError={(e) => {
+                  const fallbackMap: Record<string, string> = {
+                    'vis-logo': '/hn-initials-mark.png',
+                    'vis-1': '/images/about-portrait-yaounde.webp',
+                    'vis-2': '/images/affiche-pianobariste.webp',
+                    'vis-3': '/images/live-scene-piano.jpeg',
+                    'vis-4': '/images/live-band.webp',
+                    'vis-5': '/images/portrait.webp',
+                  }
+                  const fb = fallbackMap[vis.id]
+                  if (fb && e.currentTarget.src !== fb && !e.currentTarget.src.endsWith(fb)) {
+                    e.currentTarget.src = fb
+                  }
+                }}
                 className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
               />
               <span className="absolute top-3 left-3 rounded-full border border-white/20 bg-ink/80 px-2.5 py-0.5 text-[0.62rem] font-mono uppercase tracking-wider text-ivory backdrop-blur-sm">

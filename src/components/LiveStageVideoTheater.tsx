@@ -79,6 +79,12 @@ export default function LiveStageVideoTheater({ onOpenVideoModal }: LiveStageVid
             <img
               src={THUMBNAIL_MAP[activePerformance.thumbnailKey] || affiche}
               alt={activePerformance.title}
+              onError={(e) => {
+                const fb = `/images/${activePerformance.thumbnailKey === 'liveScene' ? 'live-scene-piano.jpeg' : activePerformance.thumbnailKey === 'liveBand' ? 'live-band.webp' : activePerformance.thumbnailKey === 'portrait' ? 'portrait.webp' : 'affiche-pianobariste.webp'}`
+                if (e.currentTarget.src !== fb && !e.currentTarget.src.endsWith(fb)) {
+                  e.currentTarget.src = fb
+                }
+              }}
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-85 group-hover:opacity-100"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
@@ -220,6 +226,12 @@ export default function LiveStageVideoTheater({ onOpenVideoModal }: LiveStageVid
                   <img
                     src={THUMBNAIL_MAP[perf.thumbnailKey] || affiche}
                     alt={perf.title}
+                    onError={(e) => {
+                      const fb = `/images/${perf.thumbnailKey === 'liveScene' ? 'live-scene-piano.jpeg' : perf.thumbnailKey === 'liveBand' ? 'live-band.webp' : perf.thumbnailKey === 'portrait' ? 'portrait.webp' : 'affiche-pianobariste.webp'}`
+                      if (e.currentTarget.src !== fb && !e.currentTarget.src.endsWith(fb)) {
+                        e.currentTarget.src = fb
+                      }
+                    }}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />

@@ -95,6 +95,11 @@ export default function Home() {
           width={1600}
           height={900}
           loading="eager"
+          onError={(e) => {
+            if (!e.currentTarget.src.includes('/images/live-scene-piano.jpeg')) {
+              e.currentTarget.src = '/images/live-scene-piano.jpeg'
+            }
+          }}
           className="home-hero__image absolute inset-0 h-full w-full object-cover object-center"
         />
         <div aria-hidden className="home-hero__shade absolute inset-0" />
@@ -208,6 +213,11 @@ export default function Home() {
                 width={760}
                 height={1353}
                 loading="lazy"
+                onError={(e) => {
+                  if (!e.currentTarget.src.includes('/images/portrait.webp')) {
+                    e.currentTarget.src = '/images/portrait.webp'
+                  }
+                }}
                 className="zoomable h-[540px] w-full object-cover object-[50%_15%]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/15 to-transparent" />
@@ -389,6 +399,11 @@ export default function Home() {
                 width={760}
                 height={1353}
                 loading="lazy"
+                onError={(e) => {
+                  if (!e.currentTarget.src.includes('/images/portrait.webp')) {
+                    e.currentTarget.src = '/images/portrait.webp'
+                  }
+                }}
                 className="zoomable w-full object-cover"
               />
               <div
@@ -475,6 +490,11 @@ export default function Home() {
                 height={783}
                 loading="lazy"
                 style={livePianoMedia.style}
+                onError={(e) => {
+                  if (!e.currentTarget.src.includes('/images/live-scene-piano.jpeg')) {
+                    e.currentTarget.src = '/images/live-scene-piano.jpeg'
+                  }
+                }}
                 className="zoomable w-full object-cover"
               />
               <figcaption className="absolute bottom-0 left-0 bg-ink/85 px-5 py-3 text-[0.68rem] uppercase tracking-[0.2em] text-ivory/70 backdrop-blur">
