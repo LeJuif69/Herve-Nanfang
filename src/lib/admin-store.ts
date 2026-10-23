@@ -16,8 +16,10 @@ import {
   AdminTalk,
   AdminTrack,
   ContentStatus,
+  SocialPost,
 } from './admin-types'
 import generatedUploadsMedia from './generated-uploads-media.json'
+import { INITIAL_PUBLICATIONS, exportPublicationsToIcs } from './social-generator'
 
 const LOCAL_STORE_KEY = 'hn_admin_store_v2'
 
@@ -786,7 +788,13 @@ function sanitizeLoadedState(state: AdminState): AdminState {
     return s
   })
 
-  const sanitized = { ...state, media, articles, projects, services }
+  let publications = state.publications
+  if (!publications || publications.length === 0) {
+    publications = INITIAL_PUBLICATIONS
+    hasChanges = true
+  }
+
+  const sanitized = { ...state, media, articles, projects, services, publications }
   if (hasChanges && typeof localStorage !== 'undefined') {
     try {
       localStorage.setItem(LOCAL_STORE_KEY, JSON.stringify(sanitized))
@@ -806,6 +814,7 @@ function createInitialState(): AdminState {
     tracks: getInitialTracks(),
     media: getInitialMedia(),
     messages: getInitialMessages(),
+    publications: INITIAL_PUBLICATIONS,
     settings: getInitialSettings(),
     lastSyncAt: new Date().toISOString(),
   }
@@ -1501,6 +1510,190 @@ export const adminStore = {
         await supabase.from('messages').delete().eq('id', id)
       } catch (err) {
         console.warn('Supabase message delete error:', err)
+      }
+    }
+  },
+
+  // -------------------------------------------------------------
+  // CALENDRIER DE PUBLICATION & DIFFUSION MULTIPLATEFORMES
+  // -------------------------------------------------------------
+  async savePublication(post: SocialPost): Promise<SocialPost> {
+    const index = currentState.publications.findIndex((p) => p.id === post.id)
+    const nextPublications = [...currentState.publications]
+    const updatedPost: SocialPost = {
+      ...post,
+      updatedAt: new Date().toISOString(),
+    }
+
+    if (index >= 0) {
+      nextPublications[index] = updatedPost
+    } else {
+      nextPublications.unshift(updatedPost)
+    }
+
+    persistAndBroadcast({ ...currentState, publications: nextPublications })
+
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from('publications').upsert({
+          id: updatedPost.id,
+          title: updatedPost.title,
+          source_type: updatedPost.sourceType,
+          source_slug: updatedPost.sourceSlug,
+          source_title: updatedPost.sourceTitle,
+          scheduled_date: updatedPost.scheduledDate,
+          scheduled_time: updatedPost.scheduledTime,
+          status: updatedPost.status,
+          platforms: updatedPost.platforms,
+          content_by_platform: updatedPost.contentByPlatform,
+          media_url: updatedPost.mediaUrl,
+          link_url: updatedPost.linkUrl,
+          cta_label: updatedPost.ctaLabel,
+          target_audience: updatedPost.targetAudience,
+          validated_at: updatedPost.validatedAt,
+          published_at: updatedPost.publishedAt,
+          notes: updatedPost.notes,
+          updated_at: updatedPost.updatedAt,
+        })
+      } catch (err) {
+        console.warn('Supabase publication save error:', err)
+      }
+    }
+
+    return updatedPost
+  },
+
+  async validatePublication(
+    id: string,
+  ): Promise<{ success: boolean; triggeredWebhook: boolean; error?: string }> {
+    const post = currentState.publications.find((p) => p.id === id)
+    if (!post) {
+      return { success: false, triggeredWebhook: false, error: 'Publication introuvable.' }
+    }
+
+    const validatedPost: SocialPost = {
+      ...post,
+      status: 'valide',
+      validatedAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    }
+
+    await this.savePublication(validatedPost)
+
+    // Trigger Webhook if configured
+    let triggeredWebhook = false
+    let webhookError: string | undefined = undefined
+
+    const webhookUrl = currentState.settings.webhookUrl
+    if (webhookUrl && webhookUrl.trim().startsWith('http')) {
+      try {
+        const response = await fetch(webhookUrl.trim(), {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            ...(currentState.settings.webhookSecret
+              ? { 'X-HN-Webhook-Secret': currentState.settings.webhookSecret }
+              : {}),
+          },
+          body: JSON.stringify({
+            event: 'publication.validated',
+            timestamp: new Date().toISOString(),
+            source: 'herve-nanfang.com/admin',
+            post: validatedPost,
+          }),
+        })
+
+        if (response.ok) {
+          triggeredWebhook = true
+        } else {
+          webhookError = `Webhook a retourné le code HTTP ${response.status}`
+        }
+      } catch (err) {
+        webhookError = err instanceof Error ? err.message : 'Échec d’appel réseau Webhook'
+      }
+    }
+
+    return {
+      success: true,
+      triggeredWebhook,
+      error: webhookError,
+    }
+  },
+
+  async markPublicationAsPublished(id: string): Promise<void> {
+    const post = currentState.publications.find((p) => p.id === id)
+    if (!post) return
+
+    const publishedPost: SocialPost = {
+      ...post,
+      status: 'publie',
+      publishedAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    }
+
+    await this.savePublication(publishedPost)
+  },
+
+  async deletePublication(id: string): Promise<void> {
+    const nextPublications = currentState.publications.filter((p) => p.id !== id)
+    persistAndBroadcast({ ...currentState, publications: nextPublications })
+
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from('publications').delete().eq('id', id)
+      } catch (err) {
+        console.warn('Supabase publication delete error:', err)
+      }
+    }
+  },
+
+  exportCalendarIcs(): string {
+    return exportPublicationsToIcs(currentState.publications)
+  },
+
+  async triggerWebhookTest(
+    targetUrl: string,
+    secret?: string,
+  ): Promise<{ success: boolean; status?: number; error?: string }> {
+    try {
+      const samplePost = currentState.publications[0] || {
+        id: 'test-sample',
+        title: 'Publication de test Webhook',
+        scheduledDate: new Date().toISOString().slice(0, 10),
+        scheduledTime: '10:00',
+        status: 'valide',
+        platforms: ['linkedin', 'facebook', 'whatsapp'],
+        contentByPlatform: {
+          linkedin: {
+            text: 'Test de transmission automatisée depuis la plateforme Hervé Nanfang.',
+            hashtags: ['#Test', '#HerveNanfang'],
+          },
+        },
+      }
+
+      const res = await fetch(targetUrl.trim(), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(secret ? { 'X-HN-Webhook-Secret': secret } : {}),
+        },
+        body: JSON.stringify({
+          event: 'test.ping',
+          timestamp: new Date().toISOString(),
+          environment: 'production',
+          sender: 'Hervé Nanfang Admin Engine',
+          samplePost,
+        }),
+      })
+
+      if (res.ok) {
+        return { success: true, status: res.status }
+      }
+      return { success: false, status: res.status, error: `Le serveur a répondu ${res.status} ${res.statusText}` }
+    } catch (err) {
+      return {
+        success: false,
+        error: err instanceof Error ? err.message : 'Erreur de connexion (CORS ou réseau)',
       }
     }
   },

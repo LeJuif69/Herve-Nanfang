@@ -24,6 +24,8 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
   const newMessages = state.messages.filter((m) => m.status === 'nouveau').length
   const totalMedia = state.media.length
   const totalServices = state.services.length
+  const pendingPublications = (state.publications || []).filter((p) => p.status === 'a_valider').length
+  const totalPublications = (state.publications || []).length
 
   const recentMessages = state.messages.slice(0, 4)
 
@@ -44,8 +46,15 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
         <div className="flex flex-wrap items-center gap-3">
           <button
             type="button"
+            onClick={() => onSelectTab('calendar')}
+            className="btn btn-gold text-xs shadow-lg shadow-gold/15"
+          >
+            📅 Calendrier de publication
+          </button>
+          <button
+            type="button"
             onClick={onOpenNewArticle}
-            className="btn btn-gold text-xs"
+            className="btn btn-ghost text-xs"
           >
             + Nouvel article
           </button>
@@ -60,7 +69,32 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
       </div>
 
       {/* KPI Cards Grid */}
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+        {/* Calendrier & Réseaux */}
+        <div
+          role="button"
+          tabIndex={0}
+          onClick={() => onSelectTab('calendar')}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') onSelectTab('calendar')
+          }}
+          className={`group cursor-pointer border p-5 transition-all ${
+            pendingPublications > 0
+              ? 'border-amber-400/50 bg-amber-500/10 hover:border-amber-400'
+              : 'border-white/10 bg-ink-2 hover:border-gold/60 hover:bg-ink-3'
+          }`}
+        >
+          <div className="flex items-center justify-between">
+            <span className="text-[0.68rem] font-bold uppercase tracking-wider text-amber-400">Diffusion Réseaux</span>
+            <span className="text-xs text-gold">→</span>
+          </div>
+          <p className="mt-3 font-display text-3xl text-ivory">
+            {pendingPublications} <span className="text-base text-ivory/40">/ {totalPublications}</span>
+          </p>
+          <p className="mt-1 text-xs text-amber-300">
+            {pendingPublications > 0 ? `${pendingPublications} à valider (sas)` : 'Planning à jour'}
+          </p>
+        </div>
         {/* Articles */}
         <div
           role="button"

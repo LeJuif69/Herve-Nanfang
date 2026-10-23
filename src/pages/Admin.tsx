@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 import { adminAuth } from '../lib/admin-auth'
 import { adminStore } from '../lib/admin-store'
 import { useSeo } from '../lib/seo'
-import type { AdminArticle, AdminMedia, AdminProject, AdminService, AdminSettings, AdminState, AdminTalk, AdminTrack, AuthSession } from '../lib/admin-types'
+import type { AdminArticle, AdminMedia, AdminProject, AdminService, AdminSettings, AdminState, AdminTalk, AdminTrack, AuthSession, SocialPost } from '../lib/admin-types'
 import { AdminHeader } from '../components/admin/AdminHeader'
 import { AdminSidebar } from '../components/admin/AdminSidebar'
 import { AdminOverview } from '../components/admin/AdminOverview'
 import { AdminArticles } from '../components/admin/AdminArticles'
+import { AdminCalendar } from '../components/admin/AdminCalendar'
 import { AdminProjects } from '../components/admin/AdminProjects'
 import { AdminServices } from '../components/admin/AdminServices'
 import { AdminMusic } from '../components/admin/AdminMusic'
@@ -125,6 +126,7 @@ export default function Admin() {
 
   const unreadMessagesCount = state.messages.filter((m) => m.status === 'nouveau').length
   const publishedArticlesCount = state.articles.filter((a) => a.status === 'Publié').length
+  const pendingPublicationsCount = (state.publications || []).filter((p) => p.status === 'a_valider').length
 
   return (
     <main className="min-h-screen bg-ink text-ivory">
@@ -150,6 +152,7 @@ export default function Admin() {
           unreadMessagesCount={unreadMessagesCount}
           publishedArticlesCount={publishedArticlesCount}
           totalArticlesCount={state.articles.length}
+          pendingPublicationsCount={pendingPublicationsCount}
           projectsCount={state.projects.length}
           mediaCount={state.media.length}
           isOpenMobile={isMobileNavOpen}
@@ -174,6 +177,49 @@ export default function Admin() {
                 }}
                 onOpenNewArticle={() => setActiveTab('articles')}
                 onOpenNewProject={() => setActiveTab('projects')}
+              />
+            )}
+
+            {activeTab === 'calendar' && (
+              <AdminCalendar
+                publications={state.publications || []}
+                articles={state.articles}
+                services={state.services}
+                projects={state.projects}
+                media={state.media}
+                settings={state.settings}
+                onSavePublication={async (post: SocialPost) => {
+                  return await adminStore.savePublication(post)
+                }}
+                onValidatePublication={async (id: string) => {
+                  return await adminStore.validatePublication(id)
+                }}
+                onMarkAsPublished={async (id: string) => {
+                  await adminStore.markPublicationAsPublished(id)
+                }}
+                onDeletePublication={async (id: string) => {
+                  await adminStore.deletePublication(id)
+                }}
+                onExportIcs={() => {
+                  const ics = adminStore.exportCalendarIcs()
+                  const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' })
+                  const url = URL.createObjectURL(blob)
+                  const a = document.createElement('a')
+                  a.href = url
+                  a.download = `herve-nanfang-calendrier-editorial-${new Date().toISOString().slice(0, 10)}.ics`
+                  document.body.appendChild(a)
+                  a.click()
+                  document.body.removeChild(a)
+                  URL.revokeObjectURL(url)
+                  showToast('✓ Calendrier iCal (.ics) téléchargé avec succès.')
+                }}
+                onSaveSettings={async (settingsUpdates: Partial<AdminSettings>) => {
+                  await adminStore.updateSettings(settingsUpdates)
+                }}
+                onTestWebhook={async (url: string, secret?: string) => {
+                  return await adminStore.triggerWebhookTest(url, secret)
+                }}
+                showToast={showToast}
               />
             )}
 

@@ -190,6 +190,42 @@ export interface AdminMessage {
   createdAt: string
 }
 
+// -------------------------------------------------------------
+// CALENDRIER ÉDITORIAL & MULTIPLATEFORMES
+// -------------------------------------------------------------
+
+export type SocialPlatform = 'linkedin' | 'facebook' | 'instagram' | 'whatsapp' | 'youtube' | 'site'
+
+export type PublicationStatus = 'brouillon' | 'a_valider' | 'valide' | 'publie' | 'archive'
+
+export interface PlatformContent {
+  text: string
+  hashtags: string[]
+  charCount?: number
+}
+
+export interface SocialPost {
+  id: string
+  title: string
+  sourceType: 'article' | 'service' | 'projet' | 'citation' | 'musique' | 'masterclass' | 'libre'
+  sourceSlug?: string
+  sourceTitle?: string
+  scheduledDate: string // YYYY-MM-DD
+  scheduledTime: string // HH:mm
+  status: PublicationStatus
+  platforms: SocialPlatform[]
+  contentByPlatform: Partial<Record<SocialPlatform, PlatformContent>>
+  mediaUrl?: string
+  linkUrl?: string
+  ctaLabel?: string
+  targetAudience?: string
+  validatedAt?: string
+  publishedAt?: string
+  notes?: string
+  createdAt: string
+  updatedAt: string
+}
+
 export interface AdminSettings {
   siteName: string
   tagline: string
@@ -203,6 +239,9 @@ export interface AdminSettings {
   seoTitle: string
   metaDescription: string
   socialLinks: { platform: string; href: string; verified: boolean }[]
+  webhookUrl?: string
+  webhookSecret?: string
+  autoWebhookOnValidation?: boolean
   updatedAt: string
 }
 
@@ -214,6 +253,7 @@ export interface AdminState {
   tracks: AdminTrack[]
   media: AdminMedia[]
   messages: AdminMessage[]
+  publications: SocialPost[]
   settings: AdminSettings
   lastSyncAt?: string
 }
@@ -228,3 +268,4 @@ export interface AuthSession {
   mode: 'supabase' | 'local'
   expiresAt?: string
 }
+
