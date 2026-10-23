@@ -1,4 +1,4 @@
-import portrait from '../assets/about-portrait-yaounde.webp'
+import portrait from '../assets/portrait.webp'
 import affiche from '../assets/affiche-pianobariste.webp'
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
@@ -120,23 +120,23 @@ export default function About() {
 
           {/* Portrait */}
           <Reveal delay={120} className="lg:sticky lg:top-32">
-            <figure>
+            <figure className="relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
               <img
-                src={portraitMedia.url || portrait}
-                alt={portraitMedia.alt || "Portrait d'Hervé Nanfang"}
-                width={760}
-                height={1353}
+                src={portraitMedia.url || '/images/shooting-pro-officiel.webp'}
+                alt={portraitMedia.alt || "Portrait officiel d’Hervé Nanfang"}
+                width={1280}
+                height={853}
                 loading="lazy"
                 style={portraitMedia.style}
                 onError={(e) => {
-                  if (!e.currentTarget.src.includes('/images/about-portrait-yaounde.webp')) {
-                    e.currentTarget.src = '/images/about-portrait-yaounde.webp'
+                  if (!e.currentTarget.src.includes('/images/shooting-pro-officiel.webp')) {
+                    e.currentTarget.src = '/images/shooting-pro-officiel.webp'
                   }
                 }}
                 className="zoomable w-full object-cover"
               />
               <figcaption className="mt-4 text-[0.68rem] uppercase tracking-[0.18em] text-ivory/40">
-                Portrait · Yaoundé, Cameroun
+                Portrait officiel · Yaoundé, Cameroun
               </figcaption>
             </figure>
             <div className="mt-8 border border-white/10 p-6">

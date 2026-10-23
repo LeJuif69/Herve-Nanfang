@@ -100,7 +100,7 @@ export default function Home() {
               e.currentTarget.src = '/images/live-scene-piano.jpeg'
             }
           }}
-          className="home-hero__image absolute inset-0 h-full w-full object-cover object-center"
+          className="home-hero__image absolute inset-0 h-full w-full object-cover object-[50%_18%] md:object-[50%_18%]"
         />
         <div aria-hidden className="home-hero__shade absolute inset-0" />
         <div aria-hidden className="home-hero__vignette absolute inset-0" />
@@ -208,17 +208,17 @@ export default function Home() {
           <Reveal>
             <figure className="home-live__collage relative overflow-hidden rounded-[1.75rem] border border-white/8 bg-ink-2">
               <img
-                src={portrait}
-                alt="Portrait d'Hervé Nanfang en tenue de scène — visage visible"
-                width={760}
-                height={1353}
+                src="/images/hero-duo-live.webp"
+                alt="Hervé Nanfang au piano avec Flavie au chant lors d’une prestation live"
+                width={1248}
+                height={832}
                 loading="lazy"
                 onError={(e) => {
-                  if (!e.currentTarget.src.includes('/images/portrait.webp')) {
-                    e.currentTarget.src = '/images/portrait.webp'
+                  if (!e.currentTarget.src.includes('/images/hero-duo-live.webp')) {
+                    e.currentTarget.src = '/images/hero-duo-live.webp'
                   }
                 }}
-                className="zoomable h-[540px] w-full object-cover object-[50%_15%]"
+                className="zoomable h-[540px] w-full object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/15 to-transparent" />
               <figcaption className="absolute bottom-0 left-0 right-0 flex justify-between gap-4 border-t border-white/10 bg-ink/60 px-5 py-4 text-[0.62rem] uppercase tracking-[0.2em] text-ivory/70 backdrop-blur-sm">
