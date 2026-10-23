@@ -19,7 +19,7 @@ import {
 } from './admin-types'
 import generatedUploadsMedia from './generated-uploads-media.json'
 
-const LOCAL_STORE_KEY = 'hn_admin_store_v1'
+const LOCAL_STORE_KEY = 'hn_admin_store_v2'
 
 const INITIAL_SERVICES: AdminService[] = [
   {
@@ -721,6 +721,16 @@ function sanitizeLoadedState(state: AdminState): AdminState {
   }
 
   const media = (state.media || []).map((m) => {
+    if (m.id === 'med-about-portrait' && m.url && m.url.includes('about-portrait-yaounde')) {
+      hasChanges = true
+      return {
+        ...m,
+        url: '/images/shooting-pro-officiel.webp',
+        path: 'shooting-pro-officiel.webp',
+        filename: 'shooting-pro-officiel.webp',
+        altText: 'Portrait officiel d’Hervé Nanfang en costume d’apparat et chemise dorée',
+      }
+    }
     if (m.url && m.url.startsWith('blob:')) {
       hasChanges = true
       return {
@@ -804,11 +814,13 @@ function createInitialState(): AdminState {
 let currentState: AdminState = (() => {
   try {
     if (typeof localStorage !== 'undefined') {
-      const saved = localStorage.getItem(LOCAL_STORE_KEY)
+      const saved = localStorage.getItem(LOCAL_STORE_KEY) || localStorage.getItem('hn_admin_store_v1')
       if (saved) {
         const parsed = JSON.parse(saved)
         if (parsed.articles && parsed.projects) {
-          return sanitizeLoadedState(parsed)
+          const sanitized = sanitizeLoadedState(parsed)
+          localStorage.setItem(LOCAL_STORE_KEY, JSON.stringify(sanitized))
+          return sanitized
         }
       }
     }
