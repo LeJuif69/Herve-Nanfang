@@ -156,17 +156,17 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
     }
   }, [publications])
 
-  // Performance Dashboard aggregations
+  // Performance Dashboard aggregations (Calculées sur données saisies)
   const performanceAggregates = useMemo(() => {
     const postsWithMetrics = publications.filter((p) => p.metrics && (p.metrics.views || 0) > 0)
     if (postsWithMetrics.length === 0) {
       return {
-        totalViews: 45200,
-        avgSwipeRate: 78.4,
-        avgDurationSec: 32.5,
-        avgPctViewed: 64.2,
-        totalSiteClicks: 1420,
-        totalConversions: 48,
+        totalViews: 0,
+        avgSwipeRate: 0,
+        avgDurationSec: 0,
+        avgPctViewed: 0,
+        totalSiteClicks: 0,
+        totalConversions: 0,
         count: 0,
       }
     }
@@ -196,11 +196,11 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
     const res = await onValidatePublication(id, reviewer)
     if (res.success) {
       if (res.triggeredWebhook) {
-        showToast('✓ Publication approuvée, scellée et transmise au Webhook avec succès !')
+        showToast('✓ Publication approuvée (empreinte SHA-256 scellée) et transmise au Webhook !')
       } else if (res.error) {
         showToast(`✓ Publication validée (Avertissement Webhook : ${res.error})`, 'error')
       } else {
-        showToast('✓ Publication approuvée et scellée avec signature cryptographique.')
+        showToast('✓ Publication approuvée avec empreinte SHA-256 d’intégrité scellée.')
       }
       if (editingPost && editingPost.id === id) {
         const updated = publications.find((p) => p.id === id)
@@ -889,8 +889,9 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                                   type="button"
                                   onClick={() => handleMarkPublished(post.id)}
                                   className="rounded border border-blue-400/40 bg-blue-500/15 px-2 py-0.5 text-[0.65rem] font-bold text-blue-300 hover:bg-blue-500/25"
+                                  title="Confirmer la publication manuelle sur vos réseaux"
                                 >
-                                  🚀 Diffuser
+                                  ✓ Déclarer diffusé
                                 </button>
                                 <button
                                   type="button"
@@ -908,8 +909,9 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                                 type="button"
                                 onClick={() => handleMarkPublished(post.id)}
                                 className="rounded border border-blue-400/40 bg-blue-500/15 px-2 py-0.5 text-[0.65rem] font-bold text-blue-300 hover:bg-blue-500/25"
+                                title="Confirmer la publication manuelle sur vos réseaux"
                               >
-                                🚀 Publier maintenant
+                                ✓ Déclarer diffusé
                               </button>
                             )}
 
@@ -1263,8 +1265,9 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                         type="button"
                         onClick={() => handleMarkPublished(post.id)}
                         className="rounded border border-blue-400 bg-blue-500/20 px-3 py-1.5 text-xs font-bold text-blue-300 hover:bg-blue-500/30"
+                        title="Déclarer la publication diffusée manuellement"
                       >
-                        Marquer comme publié ✓
+                        Confirmer diffusion manuelle ✓
                       </button>
                       <button
                         type="button"
@@ -1347,23 +1350,30 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
 
           {/* Posts metrics entry table */}
           <div className="border border-white/10 bg-ink-2 p-5 shadow-2xl">
-            <h3 className="font-display text-lg text-ivory">
-              Suivi individuel par publication diffusée
-            </h3>
-            <p className="text-xs text-ivory/50">
-              Saisissez les statistiques de vos vidéos et posts pour affiner les algorithmes de réécriture.
-            </p>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-white/10 pb-3">
+              <div>
+                <h3 className="font-display text-lg text-ivory">
+                  Suivi individuel par publication diffusée
+                </h3>
+                <p className="text-xs text-ivory/50">
+                  Saisie manuelle des statistiques observées sur chaque réseau pour affiner la stratégie éditoriale.
+                </p>
+              </div>
+              <div className="rounded border border-amber-400/30 bg-amber-500/10 px-3 py-1.5 text-[0.68rem] text-amber-200">
+                ℹ️ <strong>Réseaux sans API directe</strong> · Données issues exclusivement de la saisie manuelle.
+              </div>
+            </div>
 
             <div className="mt-4 overflow-x-auto">
               <table className="w-full text-left text-xs">
                 <thead>
-                  <tr className="border-b border-white/10 bg-ink text-ivory/50 uppercase tracking-wider text-[0.65rem]">
+                  <tr className="border-b border-white/10 bg-ink text-ivory/50 uppercase tracking-wider text-[0.62rem]">
                     <th className="p-3">Titre & Pilier</th>
-                    <th className="p-3">Vues</th>
-                    <th className="p-3">Vue / Swipe (%)</th>
-                    <th className="p-3">Rétention (%)</th>
-                    <th className="p-3">Clics Site</th>
-                    <th className="p-3">Demandes Contact</th>
+                    <th className="p-3">Vues <span className="text-gold font-normal">[Saisie manuelle]</span></th>
+                    <th className="p-3">Vue / Swipe (%) <span className="text-gold font-normal">[Saisie manuelle]</span></th>
+                    <th className="p-3">Rétention (%) <span className="text-gold font-normal">[Saisie manuelle]</span></th>
+                    <th className="p-3">Clics Site <span className="text-gold font-normal">[Saisie manuelle]</span></th>
+                    <th className="p-3">Demandes Contact <span className="text-gold font-normal">[Saisie manuelle]</span></th>
                     <th className="p-3 text-right">Action</th>
                   </tr>
                 </thead>
@@ -1705,23 +1715,23 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                 </div>
               </div>
 
-              {/* Cryptographic Seal & Security Audit Box */}
+              {/* Cryptographic Integrity Checksum & Audit Box */}
               <div className="border border-white/10 bg-ink-2 p-4 text-xs">
                 <div className="flex items-center justify-between">
                   <span className="font-bold uppercase tracking-wider text-ivory/70">
-                    Sceau d'Approbation Cryptographique
+                    Empreinte d'intégrité SHA-256 (Anti-altération)
                   </span>
                   {isPostSignatureValid(editingPost) ? (
-                    <span className="text-emerald-400 font-bold">✓ Intégrité Scellée</span>
+                    <span className="text-emerald-400 font-bold">✓ Intégrité Scellée (SHA-256)</span>
                   ) : (
                     <span className="text-amber-400 font-bold">⚠️ En attente / Modifié</span>
                   )}
                 </div>
                 <p className="mt-1 text-[0.68rem] text-ivory/50">
-                  Hash calculé : <code className="text-gold font-mono">{computeSocialPostHash(editingPost)}</code>
+                  Empreinte calculée : <code className="text-gold font-mono">{computeSocialPostHash(editingPost)}</code>
                 </p>
                 <p className="mt-1 text-[0.65rem] text-amber-300/80 italic">
-                  Note de sécurité : Toute modification de ce formulaire révoquera automatiquement le sceau pour exiger une ré-approbation explicite.
+                  Note d'architecture : Cette empreinte SHA-256 sert de garde-fou d'intégrité pour détecter toute altération ultérieure (texte, visuel, créneau). Elle ne constitue pas une signature asymétrique PKI. Toute modification révoque immédiatement l'approbation.
                 </p>
               </div>
 
@@ -1781,7 +1791,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                     }}
                     className="btn btn-gold text-xs shadow-lg shadow-gold/15"
                   >
-                    ✓ Approuver & Sceller
+                    ✓ Approuver & Sceller (SHA-256)
                   </button>
                 )}
 
@@ -1793,8 +1803,9 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                       setEditingPost(null)
                     }}
                     className="rounded border border-blue-400 bg-blue-500/20 px-4 py-2 text-xs font-bold text-blue-300 hover:bg-blue-500/30"
+                    title="Déclarer la publication diffusée manuellement sur vos réseaux"
                   >
-                    Marquer comme publié ✓
+                    Confirmer diffusion manuelle ✓
                   </button>
                 )}
               </div>

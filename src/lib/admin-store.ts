@@ -789,11 +789,46 @@ function sanitizeLoadedState(state: AdminState): AdminState {
     return s
   })
 
-  let publications = state.publications
-  const needsMasterRefresh = !publications || publications.length === 0 || publications.some((p: any) => !p.pillar || p.sourceSlug === "musicien-et-sa-marque-recit-precede-logo")
-  if (needsMasterRefresh) {
+  let publications: SocialPost[] = []
+  if (!state.publications || state.publications.length === 0) {
     publications = INITIAL_PUBLICATIONS
     hasChanges = true
+  } else {
+    // Migration non destructive : préserver scrupuleusement les publications de l'utilisateur
+    publications = state.publications.map((p: any) => {
+      let changed = false
+      const post = { ...p }
+
+      // 1. Déduction intelligente du pilier manquant
+      if (!post.pillar) {
+        if (post.sourceType === 'service') {
+          post.pillar = 'conversion'
+        } else if (post.sourceType === 'musique' || post.sourceType === 'projet') {
+          post.pillar = 'decouverte'
+        } else {
+          post.pillar = 'autorite'
+        }
+        changed = true
+      }
+
+      // 2. Correction du slug historique si rencontré
+      if (post.sourceSlug === 'musicien-et-sa-marque-recit-precede-logo') {
+        post.sourceSlug = 'musicien-marque-recit'
+        if (post.linkUrl && post.linkUrl.includes('musicien-et-sa-marque-recit-precede-logo')) {
+          post.linkUrl = post.linkUrl.replace('musicien-et-sa-marque-recit-precede-logo', 'musicien-marque-recit')
+        }
+        changed = true
+      }
+
+      // 3. Initialisation des tableaux requis
+      if (!Array.isArray(post.decisionHistory)) {
+        post.decisionHistory = []
+        changed = true
+      }
+
+      if (changed) hasChanges = true
+      return post as SocialPost
+    })
   }
 
   const sanitized = { ...state, media, articles, projects, services, publications }
@@ -825,7 +860,22 @@ function createInitialState(): AdminState {
 let currentState: AdminState = (() => {
   try {
     if (typeof localStorage !== 'undefined') {
-      const saved = localStorage.getItem(LOCAL_STORE_KEY) || localStorage.getItem('hn_admin_store_v1')
+      // Sauvegarde défensive automatique avant toute migration de version
+      const existingV2 = localStorage.getItem('hn_admin_store_v2')
+      if (existingV2 && !localStorage.getItem('hn_admin_store_backup_v2')) {
+        try {
+          localStorage.setItem('hn_admin_store_backup_v2', existingV2)
+          console.info('[PERSISTANCE SÉCURISÉE] Sauvegarde automatique de hn_admin_store_v2 effectuée.')
+        } catch {
+          // ignore
+        }
+      }
+
+      const saved =
+        localStorage.getItem(LOCAL_STORE_KEY) ||
+        localStorage.getItem('hn_admin_store_v2') ||
+        localStorage.getItem('hn_admin_store_v1')
+
       if (saved) {
         const parsed = JSON.parse(saved)
         if (parsed.articles && parsed.projects) {
@@ -835,8 +885,8 @@ let currentState: AdminState = (() => {
         }
       }
     }
-  } catch {
-    // ignore
+  } catch (err) {
+    console.warn('[ADMIN-STORE] Erreur lors de la lecture du stockage local:', err)
   }
   return createInitialState()
 })()
@@ -876,12 +926,13 @@ export const adminStore = {
     if (!isSupabaseConfigured || !supabase) return false
 
     try {
-      const [artRes, prjRes, msgRes, medRes, setRes] = await Promise.all([
+      const [artRes, prjRes, msgRes, medRes, setRes, pubRes] = await Promise.all([
         supabase.from('articles').select('*').order('pillar_number', { ascending: true }),
         supabase.from('projects').select('*').order('position', { ascending: true }),
         supabase.from('messages').select('*').order('created_at', { ascending: false }),
         supabase.from('media').select('*').order('created_at', { ascending: false }),
         supabase.from('site_settings').select('*'),
+        supabase.from('publications').select('*').order('scheduled_date', { ascending: false }),
       ])
 
       let updated = false
@@ -996,6 +1047,45 @@ export const adminStore = {
         }
       }
 
+      if (pubRes && pubRes.data && pubRes.data.length > 0) {
+        const remotePubs: SocialPost[] = pubRes.data.map((row: any) => ({
+          id: row.id,
+          title: row.title,
+          pillar: row.pillar,
+          series: row.series,
+          campaign: row.campaign,
+          sourceType: row.source_type,
+          sourceSlug: row.source_slug,
+          sourceTitle: row.source_title,
+          isOriginalCreation: row.is_original_creation,
+          scheduledDate: row.scheduled_date,
+          scheduledTime: row.scheduled_time || '09:00',
+          status: row.status,
+          platforms: row.platforms || [],
+          contentByPlatform: row.content_by_platform || {},
+          hookVariants: row.hook_variants || [],
+          mediaUrl: row.media_url,
+          linkUrl: row.link_url,
+          ctaLabel: row.cta_label,
+          targetAudience: row.target_audience,
+          validationSignature: row.validation_signature,
+          decisionHistory: row.decision_history || [],
+          metrics: row.metrics || {},
+          rejectionReason: row.rejection_reason,
+          connectorStatus: row.connector_status || {},
+          notes: row.notes,
+          publishedAt: row.published_at,
+          createdAt: row.created_at || row.updated_at || new Date().toISOString(),
+          updatedAt: row.updated_at || new Date().toISOString(),
+        }))
+
+        // Merge non-destructif : remote prend la priorité, conservation des publications locales non encore envoyées
+        const remoteIds = new Set(remotePubs.map((p) => p.id))
+        const localOnly = (next.publications || []).filter((p) => !remoteIds.has(p.id))
+        next.publications = [...remotePubs, ...localOnly]
+        updated = true
+      }
+
       next.lastSyncAt = new Date().toISOString()
       persistAndBroadcast(next)
       return updated
@@ -1094,9 +1184,54 @@ export const adminStore = {
         updated_at: new Date().toISOString(),
       })
 
+      // 4. Publications (calendrier & validation P0)
+      let seededPublicationsCount = 0
+      if (currentState.publications && currentState.publications.length > 0) {
+        try {
+          const pubRows = currentState.publications.map((p) => ({
+            id: p.id,
+            title: p.title,
+            pillar: p.pillar,
+            series: p.series,
+            campaign: p.campaign,
+            source_type: p.sourceType,
+            source_slug: p.sourceSlug,
+            source_title: p.sourceTitle,
+            is_original_creation: Boolean(p.isOriginalCreation),
+            scheduled_date: p.scheduledDate,
+            scheduled_time: p.scheduledTime,
+            status: p.status,
+            platforms: p.platforms,
+            content_by_platform: p.contentByPlatform,
+            hook_variants: p.hookVariants || [],
+            media_url: p.mediaUrl,
+            link_url: p.linkUrl,
+            cta_label: p.ctaLabel,
+            target_audience: p.targetAudience,
+            validation_signature: p.validationSignature,
+            decision_history: p.decisionHistory,
+            metrics: p.metrics,
+            rejection_reason: p.rejectionReason,
+            connector_status: p.connectorStatus,
+            notes: p.notes,
+            published_at: p.publishedAt,
+            updated_at: p.updatedAt,
+          }))
+
+          const { error: pubErr } = await supabase.from('publications').upsert(pubRows, { onConflict: 'id' })
+          if (pubErr) {
+            console.warn('[ADMIN-STORE SUPABASE] Table publications non encore migrée ou erreur RLS :', pubErr)
+          } else {
+            seededPublicationsCount = pubRows.length
+          }
+        } catch (pubEx) {
+          console.warn('[ADMIN-STORE SUPABASE] Skip publication seed :', pubEx)
+        }
+      }
+
       return {
         success: true,
-        count: articlesRows.length + projectsRows.length,
+        count: articlesRows.length + projectsRows.length + seededPublicationsCount,
       }
     } catch (err) {
       return {
@@ -1533,10 +1668,10 @@ export const adminStore = {
       updatedAt: nowIso,
     }
 
-    // RÈGLE D'INVALIDATION STRICTE :
+    // RÈGLE D'INVALIDATION STRICTE (AUDIT P0) :
     // Si la publication était déjà approuvée ('valide' ou 'programme') et qu'un élément
     // substantiel a été modifié (titre, date, heure, plateformes, textes, lien, média),
-    // l'approbation précédente est RÉVOQUÉE et le statut retombe à 'a_valider'.
+    // l'approbation précédente est AUTOMATIQUEMENT RÉVOQUÉE et le statut retombe à 'a_valider'.
     if (existingPost && (existingPost.status === 'valide' || existingPost.status === 'programme')) {
       const priorHash = existingPost.validationSignature?.contentHash
       if (priorHash && priorHash !== currentHash) {
@@ -1545,7 +1680,7 @@ export const adminStore = {
           action: 'invalidation',
           timestamp: nowIso,
           author: authorName,
-          reason: 'Modification d’éléments substantiels post-approbation : nouvelle validation humaine exigée.',
+          reason: 'Modification substantielle post-approbation : sceau révoqué, ré-approbation humaine requise.',
           contentHash: currentHash,
         }
 
@@ -1579,6 +1714,44 @@ export const adminStore = {
     }
 
     persistAndBroadcast({ ...currentState, publications: nextPublications })
+
+    // Persistance durable Supabase (P0)
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from('publications').upsert({
+          id: updatedPost.id,
+          title: updatedPost.title,
+          pillar: updatedPost.pillar,
+          series: updatedPost.series,
+          campaign: updatedPost.campaign,
+          source_type: updatedPost.sourceType,
+          source_slug: updatedPost.sourceSlug,
+          source_title: updatedPost.sourceTitle,
+          is_original_creation: Boolean(updatedPost.isOriginalCreation),
+          scheduled_date: updatedPost.scheduledDate,
+          scheduled_time: updatedPost.scheduledTime,
+          status: updatedPost.status,
+          platforms: updatedPost.platforms,
+          content_by_platform: updatedPost.contentByPlatform,
+          hook_variants: updatedPost.hookVariants || [],
+          media_url: updatedPost.mediaUrl,
+          link_url: updatedPost.linkUrl,
+          cta_label: updatedPost.ctaLabel,
+          target_audience: updatedPost.targetAudience,
+          validation_signature: updatedPost.validationSignature,
+          decision_history: updatedPost.decisionHistory,
+          metrics: updatedPost.metrics,
+          rejection_reason: updatedPost.rejectionReason,
+          connector_status: updatedPost.connectorStatus,
+          notes: updatedPost.notes,
+          published_at: updatedPost.publishedAt,
+          updated_at: updatedPost.updatedAt,
+        })
+      } catch (err) {
+        console.warn('[ADMIN-STORE SUPABASE] Avertissement écriture publication :', err)
+      }
+    }
+
     return updatedPost
   },
 
@@ -1619,12 +1792,9 @@ export const adminStore = {
       updatedAt: nowIso,
     }
 
-    const index = currentState.publications.findIndex((p) => p.id === id)
-    const nextPublications = [...currentState.publications]
-    nextPublications[index] = approvedPost
-    persistAndBroadcast({ ...currentState, publications: nextPublications })
+    await this.savePublication(approvedPost, approver)
 
-    // Trigger Webhook if configured
+    // Déclenchement du Webhook d'automatisation si configuré
     let triggeredWebhook = false
     let webhookError: string | undefined = undefined
 
@@ -1691,11 +1861,7 @@ export const adminStore = {
       updatedAt: nowIso,
     }
 
-    const index = currentState.publications.findIndex((p) => p.id === id)
-    const nextPublications = [...currentState.publications]
-    nextPublications[index] = rejectedPost
-    persistAndBroadcast({ ...currentState, publications: nextPublications })
-
+    await this.savePublication(rejectedPost, author)
     return { success: true }
   },
 
@@ -1708,14 +1874,54 @@ export const adminStore = {
     const post = currentState.publications.find((p) => p.id === id)
     if (!post) return { success: false, error: 'Publication introuvable.' }
 
+    const targetDate = scheduledDate || post.scheduledDate
+    const targetTime = scheduledTime || post.scheduledTime
+    const isSlotChanged = targetDate !== post.scheduledDate || targetTime !== post.scheduledTime
+
+    // RÈGLE AUDIT CORRECTIF CRITIQUE (P0) :
+    // Si le créneau change par rapport à l'approbation antérieure, celle-ci est caduque.
+    // Le contenu repasse immédiatement en révision (a_valider).
+    if (isSlotChanged) {
+      const nowIso = new Date().toISOString()
+      const invalidationLog: DecisionLog = {
+        id: `log-${Date.now()}-slot-mod`,
+        action: 'invalidation',
+        timestamp: nowIso,
+        author,
+        reason: `Créneau modifié de (${post.scheduledDate} à ${post.scheduledTime}) vers (${targetDate} à ${targetTime}) : ré-approbation humaine exigée.`,
+      }
+      const reRevisionPost: SocialPost = {
+        ...post,
+        scheduledDate: targetDate,
+        scheduledTime: targetTime,
+        status: 'a_valider',
+        validationSignature: post.validationSignature
+          ? {
+              ...post.validationSignature,
+              isRevoked: true,
+              revokedAt: nowIso,
+              revocationReason: 'Créneau modifié post-approbation',
+            }
+          : undefined,
+        decisionHistory: [invalidationLog, ...(post.decisionHistory || [])],
+        updatedAt: nowIso,
+      }
+
+      await this.savePublication(reRevisionPost, author)
+      return {
+        success: false,
+        error: `Le créneau a été modifié pour le ${targetDate} à ${targetTime}. Le contenu a été replacé dans le sas de révision pour validation.`,
+      }
+    }
+
+    // Vérifier l'empreinte SHA-256 sur le contenu exact
     const currentHash = computeSocialPostHash(post)
     const sig = post.validationSignature
 
-    // SÉCURITÉ STRICTE : Programmation impossible sans signature valide et non révoquée
     if (!sig || sig.isRevoked || sig.contentHash !== currentHash) {
       return {
         success: false,
-        error: 'Programmation bloquée : une approbation humaine valide et non révoquée est strictement obligatoire.',
+        error: 'Programmation impossible : l’empreinte SHA-256 ne correspond pas à une approbation scellée valide.',
       }
     }
 
@@ -1725,41 +1931,38 @@ export const adminStore = {
       action: 'programmation',
       timestamp: nowIso,
       author,
-      reason: `Programmation confirmée pour le ${scheduledDate || post.scheduledDate} à ${scheduledTime || post.scheduledTime}`,
+      reason: `Programmation validée pour diffusion le ${post.scheduledDate} à ${post.scheduledTime}`,
       contentHash: currentHash,
     }
 
     const scheduledPost: SocialPost = {
       ...post,
-      scheduledDate: scheduledDate || post.scheduledDate,
-      scheduledTime: scheduledTime || post.scheduledTime,
       status: 'programme',
       decisionHistory: [scheduleLog, ...(post.decisionHistory || [])],
       updatedAt: nowIso,
     }
 
-    const index = currentState.publications.findIndex((p) => p.id === id)
-    const nextPublications = [...currentState.publications]
-    nextPublications[index] = scheduledPost
-    persistAndBroadcast({ ...currentState, publications: nextPublications })
-
+    await this.savePublication(scheduledPost, author)
     return { success: true }
   },
 
-  async markPublicationAsPublished(id: string, author = 'Hervé Nanfang'): Promise<{ success: boolean; error?: string }> {
+  async markPublicationAsPublished(
+    id: string,
+    author = 'Hervé Nanfang',
+    mode: 'manuel' | 'webhook' = 'manuel',
+  ): Promise<{ success: boolean; error?: string }> {
     const post = currentState.publications.find((p) => p.id === id)
     if (!post) return { success: false, error: 'Publication introuvable.' }
 
     const currentHash = computeSocialPostHash(post)
     const sig = post.validationSignature
 
-    // VERROU DE SÉCURITÉ ABSOLU :
-    // "Critère d'acceptation principal : un contenu peut être préparé automatiquement,
-    // mais il est techniquement impossible de le publier tant qu'une approbation humaine valide n'a pas été enregistrée."
+    // CONTRÔLE DE SÉCURITÉ ABSOLU :
+    // Impossible de publier si l'empreinte SHA-256 ne correspond pas à l'approbation humaine enregistrée.
     if (!sig || sig.isRevoked || sig.contentHash !== currentHash) {
       return {
         success: false,
-        error: 'Publication bloquée : approbation humaine manquante, révoquée ou invalidée par une modification.',
+        error: 'Publication bloquée : contenu non scellé ou altéré par rapport à la version approuvée.',
       }
     }
 
@@ -1769,7 +1972,7 @@ export const adminStore = {
       action: 'publication',
       timestamp: nowIso,
       author,
-      reason: 'Diffusion multiplateforme confirmée',
+      reason: mode === 'webhook' ? 'Diffusion transmise au webhook automatisé' : 'Partage manuel exécuté par l’administrateur',
       contentHash: currentHash,
     }
 
@@ -1777,15 +1980,16 @@ export const adminStore = {
       ...post,
       status: 'publie',
       publishedAt: nowIso,
+      connectorStatus: {
+        provider: mode,
+        status: 'success',
+        lastSyncAt: nowIso,
+      },
       decisionHistory: [pubLog, ...(post.decisionHistory || [])],
       updatedAt: nowIso,
     }
 
-    const index = currentState.publications.findIndex((p) => p.id === id)
-    const nextPublications = [...currentState.publications]
-    nextPublications[index] = publishedPost
-    persistAndBroadcast({ ...currentState, publications: nextPublications })
-
+    await this.savePublication(publishedPost, author)
     return { success: true }
   },
 
@@ -1821,11 +2025,7 @@ export const adminStore = {
       updatedAt: nowIso,
     }
 
-    const index = currentState.publications.findIndex((p) => p.id === id)
-    const nextPublications = [...currentState.publications]
-    nextPublications[index] = revokedPost
-    persistAndBroadcast({ ...currentState, publications: nextPublications })
-
+    await this.savePublication(revokedPost, author)
     return { success: true }
   },
 
@@ -1843,10 +2043,7 @@ export const adminStore = {
       updatedAt: new Date().toISOString(),
     }
 
-    const index = currentState.publications.findIndex((p) => p.id === id)
-    const nextPublications = [...currentState.publications]
-    nextPublications[index] = updatedPost
-    persistAndBroadcast({ ...currentState, publications: nextPublications })
+    await this.savePublication(updatedPost)
   },
 
   async deletePublication(id: string): Promise<void> {

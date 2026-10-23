@@ -1,3 +1,5 @@
+import { sha256 } from './sha256'
+
 export type ContentStatus = 'Publié' | 'En cours' | 'Planifié' | 'Brouillon' | 'Archivé'
 
 export interface ArticleBodySection {
@@ -309,9 +311,12 @@ export interface SocialPost {
 }
 
 /**
- * Calcule une empreinte de contenu déterministe pour la signature de validation.
- * Si un élément substantiel (texte, média, date, heure, plateformes, lien) change,
- * le hash change et invalide l'approbation précédente.
+ * Calcule une empreinte d'intégrité SHA-256 déterministe pour le contenu de la publication.
+ * Si un élément substantiel (titre, date, heure, plateformes, textes, médias, lien) change,
+ * l'empreinte SHA-256 change immédiatement, ce qui invalide l'approbation précédente.
+ *
+ * NOTE AUDIT : Cette empreinte assure la détection des altérations et la traçabilité.
+ * Elle ne constitue pas une signature cryptographique asymétrique à clé privée.
  */
 export function computeSocialPostHash(post: Pick<SocialPost, 'title' | 'scheduledDate' | 'scheduledTime' | 'platforms' | 'contentByPlatform' | 'mediaUrl' | 'linkUrl'>): string {
   const norm = {
@@ -326,12 +331,7 @@ export function computeSocialPostHash(post: Pick<SocialPost, 'title' | 'schedule
       .map((k) => `${k}:${(post.contentByPlatform[k as SocialPlatform]?.text || '').trim()};tags:${(post.contentByPlatform[k as SocialPlatform]?.hashtags || []).join(',')}`),
   }
   const str = JSON.stringify(norm)
-  let hash = 0
-  for (let i = 0; i < str.length; i++) {
-    hash = (hash << 5) - hash + str.charCodeAt(i)
-    hash |= 0
-  }
-  return 'sig_' + Math.abs(hash).toString(36)
+  return 'sha256:' + sha256(str)
 }
 
 export interface AdminSettings {
@@ -373,7 +373,8 @@ export interface AuthSession {
     fullName?: string
     role: 'admin'
   }
-  mode: 'supabase' | 'local'
-  expiresAt?: string
+  mode: 'supabase' | 'local' | 'emergency'
+  expiresAt: string
+  sessionToken?: string
 }
 
