@@ -44,7 +44,7 @@ export const PROJECT_FAMILIES: ProjectFamily[] = [
         discipline: 'Musique live',
       },
       {
-        title: 'A LAIZ Music',
+        title: 'Alaiz Music',
         volume: 'Création & production',
         description:
           "Composition, arrangement et production musicale pour des projets d'artistes, des institutions et des contenus audiovisuels.",
@@ -167,14 +167,14 @@ export const PROJECT_FAMILIES: ProjectFamily[] = [
         title: 'Alaiz Creative System',
         volume: "Structure mère et plateforme de production",
         description:
-          "La structure mère qui articule la production musicale, l'ingénierie créative, l'action culturelle et patrimoniale (A LAIZ Ô PAYS) et la formation musicale (RMA).",
+          "La structure mère qui articule la production musicale, l'ingénierie créative, la valorisation patrimoniale et la formation musicale (RMA).",
         points: ["Gouvernance d'écosystème", 'Production musicale & créative', 'Coordination de marques'],
         status: 'Signature',
         discipline: 'Entrepreneuriat culturel',
       },
       {
-        title: 'A LAIZ Ô PAYS',
-        volume: 'Marque culturelle & patrimoniale',
+        title: 'Alaiz Patrimoine',
+        volume: 'Pôle culturel & valorisation patrimoniale',
         description:
           'Pôle dédié à la valorisation des patrimoines oraux, aux projets territoriaux et à la circulation des expressions artistiques traditionnelles et contemporaines.',
         points: ['Territoires', 'Patrimoines oraux', 'Projets culturels'],

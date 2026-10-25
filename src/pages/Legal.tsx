@@ -30,7 +30,7 @@ const CONTENT: Record<Kind, { title: string; eyebrow: string; path: string; lead
       {
         h: 'Propriété intellectuelle & marques',
         p: [
-          'L’ensemble des contenus de ce site — textes, méthodes pédagogiques, concepts, photographies, affiches, identités visuelles, publications et marques (notamment Le Pianobariste™, Racines Musicales Academy®, Permis de Jouer™, Musicien Augmenté™, LES ZIKOS®, Tswefap, Alaiz Creative System et A LAIZ Ô PAYS) — est protégé par le droit d’auteur et les traités internationaux de propriété intellectuelle.',
+          'L’ensemble des contenus de ce site — textes, méthodes pédagogiques, concepts, photographies, affiches, identités visuelles, publications et marques (notamment Le Pianobariste™, Racines Musicales Academy®, Permis de Jouer™, Musicien Augmenté™, LES ZIKOS®, Tswefap, Alaiz Creative System, Alaiz Music et Alaiz Patrimoine) — est protégé par le droit d’auteur et les traités internationaux de propriété intellectuelle.',
           'Toute reproduction, représentation, adaptation ou exploitation, totale ou partielle, sans autorisation écrite préalable d’Hervé Nanfang ou de la structure Alaiz Creative System est formellement interdite.',
         ],
       },

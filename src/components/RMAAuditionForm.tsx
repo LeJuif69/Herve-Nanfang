@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { SITE } from '../data/site'
+import { adminStore } from '../lib/admin-store'
 
 export default function RMAAuditionForm() {
   const [discipline, setDiscipline] = useState('Piano classique, jazz & musiques actuelles')
@@ -11,6 +12,8 @@ export default function RMAAuditionForm() {
   const [email, setEmail] = useState('')
   const [musicalGoals, setMusicalGoals] = useState('')
   const [isSuccess, setIsSuccess] = useState(false)
+  const [isSending, setIsSending] = useState(false)
+  const [sendError, setSendError] = useState('')
   const [isCopied, setIsCopied] = useState(false)
 
   const summary = `CANDIDATURE & AUDITION — RACINES MUSICALES ACADEMY®
@@ -26,9 +29,38 @@ Objectifs & motivations :
 ${musicalGoals || 'Non renseigné'}
 --------------------------------------------------`
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    setIsSuccess(true)
+    if (isSending) return
+    setIsSending(true)
+    setSendError('')
+
+    const bodyContent = [
+      `[CANDIDATURE AUDITION RMA]`,
+      `Discipline : ${discipline}`,
+      `Profil : ${profile}`,
+      `Palier visé : ${targetPalier}`,
+      `Format : ${format}`,
+      `Objectifs : ${musicalGoals || 'Non renseigné'}`,
+    ].join('\n')
+
+    const res = await adminStore.addIncomingMessage({
+      name: fullName,
+      email: email,
+      phone: phone,
+      route: 'formation',
+      place: format,
+      body: bodyContent,
+    })
+
+    setIsSending(false)
+    if (res.ok) {
+      setIsSuccess(true)
+    } else {
+      setSendError(
+        "L’envoi direct n’a pas abouti. Votre candidature n'a pas pu être transmise au serveur : réessayez ou envoyez-la directement par WhatsApp."
+      )
+    }
   }
 
   const handleCopy = () => {
@@ -233,6 +265,23 @@ ${musicalGoals || 'Non renseigné'}
             />
           </div>
 
+          {sendError && (
+            <div className="md:col-span-2 rounded-xl border border-crimson/50 bg-crimson/10 p-4 text-xs text-crimson-2 space-y-2">
+              <p>{sendError}</p>
+              <div className="pt-2">
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline text-xs uppercase tracking-wider font-bold py-2 px-4 inline-flex items-center gap-2"
+                >
+                  <span>Envoyer ma fiche par WhatsApp direct</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+          )}
+
           <div className="md:col-span-2 flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10">
             <span className="text-xs text-ivory/50">
               Session d'audition gratuite sans engagement avant inscription.
@@ -240,9 +289,10 @@ ${musicalGoals || 'Non renseigné'}
 
             <button
               type="submit"
-              className="btn btn-gold text-xs uppercase tracking-wider font-bold py-3.5 px-8 w-full sm:w-auto"
+              disabled={isSending}
+              className="btn btn-gold text-xs uppercase tracking-wider font-bold py-3.5 px-8 w-full sm:w-auto disabled:opacity-50"
             >
-              Envoyer ma candidature d'audition ↗
+              {isSending ? 'Transmission en cours…' : 'Envoyer ma candidature d\'audition ↗'}
             </button>
           </div>
         </form>

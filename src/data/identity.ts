@@ -232,9 +232,10 @@ export const MASTER_IDENTITY = {
 
   /* ------------------------------------------------------------------ */
   marques: [
-    { nom: 'Alaiz Creative System', role: 'Structure mère de l’écosystème & production créative', to: '/projets#culture' },
+    { nom: 'Alaiz Creative System', role: 'Structure mère de l’écosystème & production créative', to: '/projets' },
     { nom: 'Le Pianobariste™', role: 'Format piano-bar live (depuis 2007)', to: '/musique#pianobariste' },
-    { nom: 'A LAIZ Ô PAYS', role: 'Marque à orientation culturelle & patrimoniale', to: '/projets#culture' },
+    { nom: 'Alaiz Music', role: 'Création & production musicale', to: '/musique' },
+    { nom: 'Alaiz Patrimoine', role: 'Pôle culturel & valorisation patrimoniale', to: '/projets' },
     { nom: 'Racines Musicales Academy®', role: 'Formation musicale & curricula', to: '/rma' },
     { nom: 'Permis de Jouer™', role: 'Progression & certification (N1 à N4)', to: '/rma#permis' },
     { nom: 'LES ZIKOS®', role: 'Manuel pédagogique (68 pages)', to: '/pedagogie#publications' },

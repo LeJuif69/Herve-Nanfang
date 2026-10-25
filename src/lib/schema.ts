@@ -65,7 +65,7 @@ export const personSchema: Record<string, unknown> = {
   ],
   worksFor: { '@id': ORG_ID },
   affiliation: MASTER_IDENTITY.marques
-    .filter((m) => m.nom.startsWith('A LAIZ') || m.nom.startsWith('Racines'))
+    .filter((m) => m.nom.startsWith('Alaiz') || m.nom.startsWith('Racines'))
     .map((m) => ({ '@type': 'Organization', name: m.nom })),
   // sameAs : uniquement les liens officiels vérifiés (une URL erronée nuit
   // plus qu'une absence de lien). Voir `liensOfficiels` dans identity.ts.

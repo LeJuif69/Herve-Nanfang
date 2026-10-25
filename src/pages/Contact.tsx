@@ -53,6 +53,8 @@ export default function Contact() {
   const [form, setForm] = useState<FormState>(EMPTY)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [sendError, setSendError] = useState('')
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.location.hash) {
@@ -118,11 +120,14 @@ export default function Contact() {
     return Object.keys(e).length === 0
   }
 
-  function onSubmit(ev: React.FormEvent) {
+  async function onSubmit(ev: React.FormEvent) {
     ev.preventDefault()
+    if (sending) return
     if (form.honey) return // piège anti-robot
     if (!validate()) return
-    void adminStore.addIncomingMessage({
+    setSending(true)
+    setSendError('')
+    const res = await adminStore.addIncomingMessage({
       name: form.name,
       email: form.email,
       organization: form.organization || undefined,
@@ -132,7 +137,14 @@ export default function Contact() {
       place: form.place || undefined,
       body: form.message,
     })
-    setSubmitted(true)
+    setSending(false)
+    if (res.ok) {
+      setSubmitted(true)
+    } else {
+      setSendError(
+        'L’envoi n’a pas abouti. Votre demande n’a pas été reçue : réessayez, ou envoyez-la directement par WhatsApp ci-dessous.',
+      )
+    }
   }
 
   const inputCls = (name: string) =>
@@ -206,14 +218,14 @@ export default function Contact() {
 
             {submitted ? (
               <div className="mt-10 border border-gold/40 bg-ink-2 p-8">
-                <Eyebrow>Demande préparée</Eyebrow>
+                <Eyebrow>Demande reçue</Eyebrow>
                 <p className="mt-4 font-display text-2xl text-ivory">
-                  Merci {form.name.split(' ')[0]}. Votre demande est prête.
+                  Merci {form.name.split(' ')[0]}. Votre demande a bien été reçue.
                 </p>
                 <Body className="mt-4">
-                  Le site ne stocke ni n’envoie cette demande. Choisissez un numéro pour ouvrir
-                  WhatsApp avec le message prérempli, puis relisez-le et envoyez-le depuis
-                  l’application. Les données ne sont transmises à WhatsApp/Meta qu’après cet envoi.
+                  Elle est enregistrée et sera traitée sous 48 h environ. Pour une demande urgente,
+                  vous pouvez aussi l’envoyer par WhatsApp (les données sont alors également
+                  traitées par WhatsApp/Meta).
                 </Body>
                 <div className="mt-7 flex flex-wrap gap-4">
                   {whatsappHrefs.map((link) => (
@@ -371,16 +383,22 @@ export default function Contact() {
                     onChange={(e) => setForm({ ...form, consent: e.target.checked })}
                   />
                   <span>
-                    J’accepte que ces informations soient utilisées pour traiter ma demande. Si
-                    j’envoie le message par WhatsApp, mes données seront également traitées par
+                    J’accepte que ces informations soient enregistrées et utilisées pour traiter ma
+                    demande. Si j’utilise WhatsApp, mes données seront également traitées par
                     WhatsApp/Meta selon leur politique de confidentialité.
                     {errors.consent && <span className="mt-1 block text-xs text-crimson-2">{errors.consent}</span>}
                   </span>
                 </label>
 
+                {sendError && (
+                  <p role="alert" className="border border-crimson/50 bg-crimson/10 px-4 py-3 text-sm text-crimson-2">
+                    {sendError}
+                  </p>
+                )}
+
                 <div className="flex flex-wrap items-center gap-5">
-                  <button type="submit" className="btn btn-gold">
-                    Préparer la demande
+                  <button type="submit" className="btn btn-gold" disabled={sending} aria-busy={sending}>
+                    {sending ? 'Envoi en cours…' : 'Envoyer la demande'}
                   </button>
                   <a
                     href={whatsappHrefs[0].href}
