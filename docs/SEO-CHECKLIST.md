@@ -27,7 +27,7 @@ Implémentées dans `src/lib/schema.ts` et injectées page par page.
 |---|---|---|
 | `Person` | toutes les pages | `name`, `alternateName` (Le Pianobariste), `jobTitle`, `description`, `image`, `url`, `sameAs`, `knowsAbout`, `knowsLanguage`, `worksFor`, `affiliation`, `address` |
 | `WebSite` | accueil | éditeur et sujet = Person |
-| `Organization` | accueil, projets, IA | A LAIZ PROD, `founder` → Person |
+| `Organization` | accueil, projets, IA | Alaiz Creative System, `founder` → Person |
 | `MusicGroup` | accueil, musique | Le Pianobariste, `member` → Person |
 | `Service` | musique, conférences, contact | prestation piano-bar, production, conférences |
 | `Course` | pédagogie | formation musicale & MAO, Permis de Jouer™ |

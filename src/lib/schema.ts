@@ -77,9 +77,9 @@ export const organizationSchema: Record<string, unknown> = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': ORG_ID,
-  name: 'Alaiz Creative Systems',
+  name: 'Alaiz Creative System',
   description:
-    'Structure de production artistique et culturelle fondée par Hervé Nanfang : production musicale, événementiel, conseil en technologies créatives.',
+    'Structure de production artistique, culturelle et technologique fondée par Hervé Nanfang : production musicale, événementiel, conseil en technologies créatives.',
   url: SITE.url,
   founder: { '@id': PERSON_ID },
   location: { '@type': 'Place', name: 'Yaoundé, Cameroun' },
@@ -179,7 +179,7 @@ export const conferenceEducationEventSchema = (input: {
   organizer: {
     '@id': ORG_ID,
     '@type': 'Organization',
-    name: 'A LAIZ PROD',
+    name: 'Alaiz Creative System',
   },
   offers: {
     '@type': 'Offer',

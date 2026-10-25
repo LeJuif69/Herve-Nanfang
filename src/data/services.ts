@@ -333,8 +333,8 @@ export const SERVICE_OFFERINGS: ServiceOffering[] = [
     ],
     cases: [
       {
-        title: "ALAIZ Creative Systems",
-        context: "Architecture de marque globale reliant production sonore (A LAIZ PROD), médiation patrimoniale (A LAIZ Ô PAYS) et formation (RMA).",
+        title: "Alaiz Creative System",
+        context: "Architecture de marque globale reliant production sonore et créative, médiation patrimoniale (A LAIZ Ô PAYS) et formation (RMA).",
         deliverable: "Plateforme de marque multi-entités, gouvernance éditoriale et charte de positionnement unifiée.",
         to: "/projets",
       },

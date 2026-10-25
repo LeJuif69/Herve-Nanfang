@@ -50,7 +50,7 @@ export const MASTER_IDENTITY = {
     nom: 'Hervé Nanfang',
     variantes: ['Le Pianobariste', 'le Musicologue', 'le Musicien Augmenté'],
     signature: 'Créer. Transmettre. Augmenter. Développer.',
-    structureMere: 'ALAIZ Creative Systems',
+    structureMere: 'Alaiz Creative System',
     roles: [
       'Musicologue',
       'Artiste-musicien',
@@ -227,14 +227,13 @@ export const MASTER_IDENTITY = {
     { annee: '2023', titre: 'Collège bilingue L’Excellence, Odza', detail: 'Éducation musicale en milieu scolaire.' },
     { annee: 'Master II', titre: 'Musicologie appliquée aux médias', detail: 'Université de Yaoundé I : spécialisation en MAO, analyse de bandes originales (Harry Potter, cinéma d’horreur africain) et convergence IA.' },
     { annee: '2026', titre: 'RMA « Vacances Utiles » & LES ZIKOS®', detail: 'Programme intensif en 5 disciplines (restitution Damas–Petits Génies, Yaoundé) et restructuration du manuel pédagogique (68 p.).' },
-    { annee: 'Aujourd’hui', titre: 'ALAIZ Creative Systems & Musicien Augmenté™', detail: 'Écosystème de marques et programmes : recherche patrimoniale (Tswefap), production musicale (A LAIZ PROD) et intégration éthique de l’IA.' },
+    { annee: 'Aujourd’hui', titre: 'Alaiz Creative System & Musicien Augmenté™', detail: 'Écosystème de marques et programmes : recherche patrimoniale (Tswefap), production musicale et créative (Alaiz Creative System) et intégration éthique de l’IA.' },
   ],
 
   /* ------------------------------------------------------------------ */
   marques: [
-    { nom: 'ALAIZ Creative Systems', role: 'Structure mère de l’écosystème', to: '/projets#entrepreneuriaux' },
+    { nom: 'Alaiz Creative System', role: 'Structure mère de l’écosystème & production créative', to: '/projets#culture' },
     { nom: 'Le Pianobariste™', role: 'Format piano-bar live (depuis 2007)', to: '/musique#pianobariste' },
-    { nom: 'A LAIZ PROD', role: 'Production artistique & sonore', to: '/projets#artistiques' },
     { nom: 'A LAIZ Ô PAYS', role: 'Marque à orientation culturelle & patrimoniale', to: '/projets#culture' },
     { nom: 'Racines Musicales Academy®', role: 'Formation musicale & curricula', to: '/rma' },
     { nom: 'Permis de Jouer™', role: 'Progression & certification (N1 à N4)', to: '/rma#permis' },
@@ -546,7 +545,7 @@ export const MASTER_IDENTITY = {
       'Cultures africaines & traditions orales',
       'Documentation patrimoniale & linguistique',
       'Communication digitale & récits de marque',
-      'Entrepreneuriat culturel & ALAIZ Creative Systems',
+      'Entrepreneuriat culturel & Alaiz Creative System',
     ],
     knowsLanguage: ['fr', 'en'],
     nationality: 'Cameroun',
@@ -561,7 +560,7 @@ export const MASTER_IDENTITY = {
   aConfirmer: [
     {
       id: 'legal-rccm',
-      question: 'Numéro de contribuable / RCCM officiel d’ALAIZ Creative Systems / A LAIZ PROD pour mentions légales.',
+      question: 'Numéro de contribuable / RCCM officiel d’Alaiz Creative System pour mentions légales.',
       usedIn: 'Mentions légales · politique de confidentialité',
     },
   ],
