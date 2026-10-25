@@ -345,11 +345,77 @@ export default function RMA() {
       </Section>
 
       {/* ======================== CANDIDATURE & AUDITION ======================== */}
-      <Section tone="dark" id="inscriptions">
-        <Reveal>
-          <RMAAuditionForm />
-        </Reveal>
-      </Section>
+      <div id="audition" className="scroll-mt-20">
+        <Section tone="dark" id="inscriptions">
+          <Reveal>
+            <div className="mb-10 border border-gold/30 bg-gradient-to-br from-gold/15 via-ink-2 to-ink p-7 md:p-9 shadow-2xl">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-white/10 pb-4">
+                <div>
+                  <p className="eyebrow text-gold font-mono">✦ Méthode Permis de Jouer™</p>
+                  <h3 className="mt-1 font-display text-2xl md:text-3xl text-ivory">
+                    Séance Diagnostique & Positionnement par Paliers
+                  </h3>
+                </div>
+                <div className="rounded border border-gold/40 bg-gold/20 px-3 py-1.5 text-xs font-mono text-gold self-start sm:self-auto">
+                  15 min offertes · Studio RMA Damas ou Visio
+                </div>
+              </div>
+
+              <p className="mt-4 text-xs md:text-sm leading-relaxed text-ivory/70 max-w-3xl">
+                Avant toute inscription à l'académie, chaque élève (enfant ou adulte) bénéficie d'une séance diagnostique gratuite.
+                Nous évaluons l'oreille musicale, la mémoire mélodique et la pulsation pour recommander le palier adapté :
+              </p>
+
+              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {[
+                  {
+                    code: 'N1',
+                    label: 'Éveil & Ancrage',
+                    focus: 'Pulsation corporelle, frappe, repérage des touches et décontraction.',
+                    target: 'Débutant absolu dès 6 ans & adultes',
+                  },
+                  {
+                    code: 'N2',
+                    label: 'Autonomie Clavier',
+                    focus: 'Lecture de partition, triades fondamentales, jeu à deux mains synchrone.',
+                    target: '1 à 2 ans de pratique ou autodidacte',
+                  },
+                  {
+                    code: 'N3',
+                    label: 'Harmonie & Comping',
+                    focus: 'Accords 7e/9e, voicings jazz, cadences Makossa / Afrobeat, comping vocal.',
+                    target: 'Musicien souhaitant jouer en groupe',
+                  },
+                  {
+                    code: 'N4',
+                    label: 'Scène & Performance',
+                    focus: 'Improvisation, réactivité live, studio, arrangements et identité artistique.',
+                    target: 'Objectif semi-pro ou professionnel',
+                  },
+                ].map((p) => (
+                  <div key={p.code} className="rounded border border-white/10 bg-ink p-4 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-xs font-bold text-gold bg-gold/15 px-2 py-0.5 rounded border border-gold/30">
+                          Palier {p.code}
+                        </span>
+                        <span className="text-[0.62rem] text-ivory/40 uppercase tracking-wider font-mono">Permis™</span>
+                      </div>
+                      <h4 className="mt-3 font-display text-lg text-ivory">{p.label}</h4>
+                      <p className="mt-2 text-[0.72rem] leading-relaxed text-ivory/65">{p.focus}</p>
+                    </div>
+                    <div className="mt-4 pt-3 border-t border-white/5">
+                      <p className="text-[0.65rem] italic text-gold/80">Cible : {p.target}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <RMAAuditionForm />
+          </Reveal>
+        </Section>
+      </div>
 
       <CtaBand
         eyebrow="RMA • Transmission"

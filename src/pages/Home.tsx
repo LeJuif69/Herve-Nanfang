@@ -701,6 +701,42 @@ export default function Home() {
           </div>
         </Reveal>
 
+        {/* Spotlight Essai de Référence */}
+        {(() => {
+          const featuredArticle = ARTICLES.find((a) => a.slug === 'musicien-marque-recit') || ARTICLES[10]
+          if (!featuredArticle) return null
+          return (
+            <Reveal delay={80}>
+              <div className="mt-10 border border-gold/35 bg-gradient-to-br from-gold/15 via-ink-2 to-ink p-7 md:p-9 shadow-2xl">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <span className="rounded border border-gold/40 bg-gold/25 px-2.5 py-1 font-mono text-[0.68rem] font-bold text-gold uppercase tracking-wider">
+                    ✦ À la une · Stratégie & Trajectoire
+                  </span>
+                  <span className="text-[0.68rem] text-ivory/50 font-mono">
+                    Pilier {featuredArticle.num} · Lecture {featuredArticle.readingTime}
+                  </span>
+                </div>
+                <h3 className="mt-4 font-display text-2xl md:text-3xl text-ivory leading-snug">
+                  <Link to={`/journal/${featuredArticle.slug}`} className="hover:text-gold transition-colors">
+                    {featuredArticle.title}
+                  </Link>
+                </h3>
+                <p className="mt-3 text-sm md:text-[0.95rem] leading-relaxed text-ivory/70 max-w-3xl">
+                  {featuredArticle.excerpt}
+                </p>
+                <div className="mt-6 flex flex-wrap items-center gap-5">
+                  <Btn to={`/journal/${featuredArticle.slug}`} variant="gold">
+                    Lire l’essai complet →
+                  </Btn>
+                  <span className="text-xs italic text-gold/80">
+                    « Le logo n’est pas la marque. L'art précède le visuel. »
+                  </span>
+                </div>
+              </div>
+            </Reveal>
+          )
+        })()}
+
         <div className="mt-14 divide-y divide-white/8 border-y border-white/8">
           {ARTICLES.slice(0, 4).map((a, i) => (
             <Reveal key={a.slug} delay={i * 70}>

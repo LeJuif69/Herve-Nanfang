@@ -946,6 +946,372 @@ Téléphone : ${SITE.phones[0]?.display ?? ''}`,
     createdAt: SEED_DATE,
     updatedAt: SEED_DATE,
   },
+
+  // ---------------------------------------------------------------
+  // 11. DÉCOUVERTE (70 %) — Défi Clavier & Harmonie Makossa
+  // ---------------------------------------------------------------
+  {
+    id: 'pub-11-defis-makossa-piano',
+    title: 'Vidéo courte · Défi Clavier : Reharmoniser un thème Makossa au piano solo',
+    pillar: 'decouverte',
+    series: 'Défis Claviers & Comparaisons de styles',
+    sourceType: 'musique',
+    sourceSlug: 'afro-jazz-makossa',
+    sourceTitle: 'Reharmonisation Makossa & Jazz Solo',
+    isOriginalCreation: true,
+    scheduledDate: '2026-11-23',
+    scheduledTime: '18:00',
+    status: 'a_valider',
+    platforms: ['youtube', 'tiktok', 'instagram', 'facebook'],
+    hookVariants: [
+      'Comment faire sonner une ligne de basse Makossa à la main gauche sans étouffer la mélodie ?',
+      'Le secret des tensions jazz sur une cadence camerounaise traditionnelle.',
+      'Reharmoniser un thème populaire en 45 secondes au piano solo.',
+    ],
+    mediaUrl: '/images/live-scene-piano.jpeg',
+    linkUrl: siteUrl('/musique'),
+    ctaLabel: 'Écouter le répertoire',
+    targetAudience: 'Pianistes, musiciens curieux, mélomanes d’Afro-jazz',
+    contentByPlatform: {
+      youtube: {
+        text: `Défi Clavier : Reharmoniser une ligne de basse Makossa au piano solo. 🎹✨
+
+Regardez comment la main gauche installe la pulsation ternaire pendant que la main droite ouvre les voicings modernes.
+
+Découvrez l'univers musical complet : ${siteUrl('/musique')}`,
+        hashtags: ['#Shorts', '#PianoSolo', '#Makossa', '#AfroJazz', '#HerveNanfang'],
+      },
+      tiktok: {
+        text: `Comment enrichir une cadence Makossa au piano en 3 voicings simples. Tu préfères la version roots ou la version reharmonisée ? 🎹🔥`,
+        hashtags: ['#PianoTok', '#AfricanMusic', '#JazzPiano', '#HerveNanfang'],
+      },
+      instagram: {
+        text: `La basse chante, l'accord respire. 🎹
+Quand le patrimoine rythmique camerounais rencontre la liberté harmonique du jazz.
+
+Écoutez mes sessions live sur le site officiel : lien en bio.`,
+        hashtags: ['#Pianobariste', '#Makossa', '#JazzCameroun', '#HerveNanfang'],
+      },
+      facebook: {
+        text: `Défi Clavier : Reharmoniser un classique Makossa au piano solo. Une exploration entre racine rythmique et liberté harmonique.
+
+🔗 ${siteUrl('/musique')}`,
+        hashtags: ['#HerveNanfang', '#PianoLive', '#Cameroun'],
+      },
+    },
+    decisionHistory: [
+      { id: 'log-11', action: 'creation', timestamp: SEED_DATE, author: 'Système Master', reason: 'Format court Découverte 70%' },
+    ],
+    notes: 'Enregistrement live solo au piano à programmer.',
+    createdAt: SEED_DATE,
+    updatedAt: SEED_DATE,
+  },
+
+  // ---------------------------------------------------------------
+  // 12. DÉCOUVERTE (70 %) — L’art de la nuance piano-bar
+  // ---------------------------------------------------------------
+  {
+    id: 'pub-12-pianobariste-nuances',
+    title: 'Performance · L’art de la nuance : jouer feutré sans perdre la rondeur sonore',
+    pillar: 'decouverte',
+    series: 'Le Pianobariste™ Live (Piano solo & ambiance)',
+    sourceType: 'service',
+    sourceSlug: 'pianobariste',
+    sourceTitle: 'Le Pianobariste™ — Art de la Nuance',
+    isOriginalCreation: true,
+    scheduledDate: '2026-11-26',
+    scheduledTime: '19:30',
+    status: 'a_valider',
+    platforms: ['instagram', 'linkedin', 'facebook'],
+    hookVariants: [
+      'Jouer fort est facile. Jouer pianissimo avec une présence magnétique est un art.',
+      'Pourquoi le volume sonore d’un piano-bar ne doit jamais entrer en concurrence avec les conversations.',
+    ],
+    mediaUrl: '/images/hero-duo-live.webp',
+    linkUrl: siteUrl('/services#pianobariste'),
+    ctaLabel: 'Découvrir les formats live',
+    targetAudience: 'Directeurs d’hôtels, organisateurs de réceptions, amateurs de musique feutrée',
+    contentByPlatform: {
+      linkedin: {
+        text: `Dans un hôtel de prestige ou un lounge privé, le musicien ne joue pas pour s'imposer, mais pour habiller l'espace.
+
+L'art du piano-bar repose sur une discipline sonore exigeante :
+• conserver le sustain et la rondeur sans jamais saturer la pièce ;
+• laisser le public converser sans effort ;
+• créer une présence enveloppante plutôt qu'un spectacle envahissant.
+
+Depuis 2007, c'est cette charte d'élégance acoustique que je défends à travers Le Pianobariste™.
+
+👉 ${siteUrl('/services#pianobariste')}`,
+        hashtags: ['#Hospitality', '#Luxe', '#PianoBar', '#HerveNanfang'],
+      },
+      instagram: {
+        text: `Le pianissimo n'est pas un manque d'énergie : c'est une intention feutrée. 🎹🥂
+Ambiance piano-bar pour vos salons et événements exclusifs.
+
+Lien en bio pour découvrir les formules de scène.`,
+        hashtags: ['#Pianobariste', '#LoungeMusic', '#LuxuryLiving', '#HerveNanfang'],
+      },
+      facebook: {
+        text: `L'art du piano-bar : habiller le lieu sans jamais écraser les conversations. Plus de 440 titres au répertoire pour sublimer vos soirées.
+
+🔗 ${siteUrl('/services#pianobariste')}`,
+        hashtags: ['#HerveNanfang', '#PianoLive', '#Prestige'],
+      },
+    },
+    decisionHistory: [
+      { id: 'log-12', action: 'creation', timestamp: SEED_DATE, author: 'Système Master', reason: 'Format prestige piano-bar 70%' },
+    ],
+    notes: 'Met en valeur la charte acoustique de non-agression sonore.',
+    createdAt: SEED_DATE,
+    updatedAt: SEED_DATE,
+  },
+
+  // ---------------------------------------------------------------
+  // 13. DÉCOUVERTE (70 %) — Pulsation 12/8 d’Afrique Centrale
+  // ---------------------------------------------------------------
+  {
+    id: 'pub-13-polyrythmie-12-8',
+    title: 'Pédagogie · La pulsation 12/8 d’Afrique centrale expliquée aux pianistes',
+    pillar: 'decouverte',
+    series: 'Pédagogie & Méthode Permis de Jouer™',
+    sourceType: 'article',
+    sourceSlug: 'methode-permis-de-jouer-pedagogie-musicale',
+    sourceTitle: 'La méthode Permis de Jouer™ — Pulsation & Ancrage',
+    isOriginalCreation: true,
+    scheduledDate: '2026-11-30',
+    scheduledTime: '12:00',
+    status: 'a_valider',
+    platforms: ['youtube', 'tiktok', 'facebook', 'whatsapp'],
+    hookVariants: [
+      'Si vous comptez « 1-2-3-4 », vous ratez complètement le swing africain.',
+      'Pourquoi le corps doit intégrer le ternaire avant que les doigts ne touchent le clavier.',
+    ],
+    mediaUrl: '/images/02-eleves-musique.jpg',
+    linkUrl: siteUrl('/rma'),
+    ctaLabel: 'Découvrir la méthode',
+    targetAudience: 'Étudiants en musique, pianistes, professeurs de formation musicale',
+    contentByPlatform: {
+      youtube: {
+        text: `Comprendre la pulsation 12/8 d'Afrique centrale en 60 secondes. 🥁🎹
+
+La méthode Permis de Jouer™ commence toujours par l'ancrage corporel avant la partition.
+
+Découvrez l'académie RMA et nos ateliers : ${siteUrl('/rma')}`,
+        hashtags: ['#Shorts', '#PedagogieMusicale', '#Rythme', '#RMA', '#HerveNanfang'],
+      },
+      tiktok: {
+        text: `Arrêtez de mentaliser le 12/8 ! Voici l'exercice corporel qu'on enseigne aux élèves à la RMA. Tu le ressens ? 🥁✨`,
+        hashtags: ['#LearnOnTikTok', '#PianoLesson', '#Rhythm', '#HerveNanfang'],
+      },
+      facebook: {
+        text: `La pulsation corporelle avant l'abstraction graphique. Pourquoi l'apprentissage du rythme en Afrique commence par les pieds et la voix avant le solfège théorique.
+
+🔗 ${siteUrl('/rma')}`,
+        hashtags: ['#PermisDeJouer', '#Pedagogie', '#HerveNanfang'],
+      },
+      whatsapp: {
+        text: `*Atelier Rythme & Clavier | Racines Musicales Academy*
+
+La pulsation 12/8 et l'ancrage corporel : comment débloquer son groove en quelques séances.
+
+👉 ${siteUrl('/rma')}
+
+Répondez pour réserver une séance diagnostique gratuite pour vous ou votre enfant.`,
+        hashtags: [],
+      },
+    },
+    decisionHistory: [
+      { id: 'log-13', action: 'creation', timestamp: SEED_DATE, author: 'Système Master', reason: 'Pédagogie active découverte 70%' },
+    ],
+    notes: 'Exercice pratique de frappe corporelle filmable au studio RMA Damas.',
+    createdAt: SEED_DATE,
+    updatedAt: SEED_DATE,
+  },
+
+  // ---------------------------------------------------------------
+  // 14. DÉCOUVERTE (70 %) — Sound Design Hybride Batoufam
+  // ---------------------------------------------------------------
+  {
+    id: 'pub-14-sound-design-batoufam',
+    title: 'Production · Sound Design : De la cithare traditionnelle au pad cinématique',
+    pillar: 'decouverte',
+    series: 'Démonstrations MAO & Sound Design',
+    sourceType: 'projet',
+    sourceSlug: 'ingenierie-sonore-production',
+    sourceTitle: 'Transformation sonore hybride et patrimoine',
+    isOriginalCreation: true,
+    scheduledDate: '2026-12-04',
+    scheduledTime: '18:00',
+    status: 'a_valider',
+    platforms: ['youtube', 'tiktok', 'instagram', 'linkedin'],
+    hookVariants: [
+      'Comment transformer un instrument patrimonial en texture sonore pour film de science-fiction ?',
+      'Le sound design africain ne s’arrête pas aux percussions : exploration de timbres harmoniques rares.',
+    ],
+    mediaUrl: '/images/shooting-pro-officiel.webp',
+    linkUrl: siteUrl('/ia-technologie'),
+    ctaLabel: 'Explorer la recherche',
+    targetAudience: 'Compositeurs de musique à l’image, réalisateurs, producteurs sonores',
+    contentByPlatform: {
+      youtube: {
+        text: `Sound Design Hybride : Traiter un instrument patrimonial de l'Ouest-Cameroun avec des résonateurs et de la synthèse granulaire. 🎛️🎻
+
+Une approche contemporaine où le son traditionnel devient matière cinématique d'avant-garde.
+
+Découvrez mes projets d'ingénierie et d'IA : ${siteUrl('/ia-technologie')}`,
+        hashtags: ['#Shorts', '#SoundDesign', '#MusicProducer', '#Synthesizer', '#HerveNanfang'],
+      },
+      tiktok: {
+        text: `On a samplé un instrument traditionnel camerounais et voici ce que ça donne après traitement granulaire. Le résultat est incroyable ! 🎧🚀`,
+        hashtags: ['#ProducerTok', '#SoundDesign', '#AfroFuturism', '#HerveNanfang'],
+      },
+      instagram: {
+        text: `Quand le bois ancestral rencontre le grain numérique. 🎛️🌌
+Création de banques de textures hybrides pour le cinéma et la production musicale.
+
+Projets de production sonore : lien en bio.`,
+        hashtags: ['#SoundDesign', '#CinematicMusic', '#HerveNanfang'],
+      },
+      linkedin: {
+        text: `L'Afrique possède un réservoir infini de timbres acoustiques non encore documentés dans les banques de sons industrielles mondiales.
+
+À travers mes travaux de production et de sound design, j'explore comment l'échantillonnage soigné d'instruments traditionnels enrichit les paysages sonores de l'audiovisuel contemporain.
+
+👉 ${siteUrl('/ia-technologie')}`,
+        hashtags: ['#SoundDesign', '#IndustriesCulturelles', '#Innovation', '#HerveNanfang'],
+      },
+    },
+    decisionHistory: [
+      { id: 'log-14', action: 'creation', timestamp: SEED_DATE, author: 'Système Master', reason: 'Démonstration MAO & recherche 70%' },
+    ],
+    notes: 'Idéal pour valoriser l’expertise d’ingénierie du son et de production.',
+    createdAt: SEED_DATE,
+    updatedAt: SEED_DATE,
+  },
+
+  // ---------------------------------------------------------------
+  // 15. AUTORITÉ (20 %) — Musique à l’image & Cinéma Africain
+  // ---------------------------------------------------------------
+  {
+    id: 'pub-15-musique-image-cinema',
+    title: 'Article · Musique à l’image : composer pour raconter ce que la caméra tait',
+    pillar: 'autorite',
+    series: 'Le Journal du Musicien Augmenté™',
+    sourceType: 'article',
+    sourceSlug: 'musique-a-l-image-cinema-africain',
+    sourceTitle: 'Musique à l’image : composer, narrer et transmettre dans le cinéma africain',
+    scheduledDate: '2026-12-08',
+    scheduledTime: '08:30',
+    status: 'a_valider',
+    platforms: ['linkedin', 'facebook', 'whatsapp'],
+    hookVariants: [
+      'La musique de film n’est pas un fond sonore : elle est le sous-texte psychologique des personnages.',
+      'Pourquoi le cinéma africain contemporain a besoin de compositeurs formés à la narration thématique.',
+    ],
+    mediaUrl: '/images/shooting-pro-officiel.webp',
+    linkUrl: siteUrl('/journal/musique-a-l-image-cinema-africain'),
+    ctaLabel: 'Lire l’article',
+    targetAudience: 'Cinéastes, producteurs audiovisuels, compositeurs, cinéphiles',
+    contentByPlatform: {
+      linkedin: {
+        text: `Dans une œuvre cinématographique, ce que l'œil perçoit ne représente que la moitié de l'émotion. La musique prend en charge l'invisible : le doute, la mémoire, le danger imminent ou l'espoir silencieux.
+
+Dans mon article dédié à la musique à l'image dans le cinéma africain, j'analyse :
+• le rôle narratif du leitmotiv et du timbre culturel ;
+• le piège du remplissage sonore continu versus la puissance dramaturgique du silence ;
+• les exigences techniques de synchronisation et de spatialisation pour les diffuseurs internationaux.
+
+👉 ${siteUrl('/journal/musique-a-l-image-cinema-africain')}`,
+        hashtags: ['#CinemaAfricain', '#MusiqueALImage', '#FilmScoring', '#HerveNanfang'],
+      },
+      facebook: {
+        text: `Composer pour le cinéma : raconter ce que la caméra ne montre pas. Réflexion sur l'évolution de la bande originale dans le cinéma africain contemporain.
+
+🔗 ${siteUrl('/journal/musique-a-l-image-cinema-africain')}`,
+        hashtags: ['#HerveNanfang', '#Cinema', '#Composition'],
+      },
+      whatsapp: {
+        text: `*Musique à l'image : composer pour le cinéma africain*
+
+La narration musicale au service de l'émotion cinématographique.
+
+👉 ${siteUrl('/journal/musique-a-l-image-cinema-africain')}
+
+Bonne lecture à partager aux passionnés du 7e art.`,
+        hashtags: [],
+      },
+    },
+    decisionHistory: [
+      { id: 'log-15', action: 'creation', timestamp: SEED_DATE, author: 'Système Master', reason: 'Publication autorité article n°09 vérifié' },
+    ],
+    notes: 'Source : src/data/articles.ts (slug musique-a-l-image-cinema-africain).',
+    createdAt: SEED_DATE,
+    updatedAt: SEED_DATE,
+  },
+
+  // ---------------------------------------------------------------
+  // 16. CONVERSION (10 %) — Auditions Diagnostiques RMA
+  // ---------------------------------------------------------------
+  {
+    id: 'pub-16-audition-rma-diagnostic',
+    title: 'Formation · Auditions & Diagnostics RMA : Évaluer l’oreille et la pulsation en 15 min',
+    pillar: 'conversion',
+    series: 'Pédagogie & Méthode Permis de Jouer™',
+    sourceType: 'service',
+    sourceSlug: 'rma',
+    sourceTitle: 'Séance Diagnostique Gratuite RMA',
+    scheduledDate: '2026-12-11',
+    scheduledTime: '10:00',
+    status: 'a_valider',
+    platforms: ['whatsapp', 'facebook', 'instagram'],
+    hookVariants: [
+      'Votre enfant a-t-il l’oreille musicale ? Réservez une séance diagnostique gratuite de 15 minutes.',
+      'Avant de choisir un instrument, identifiez le profil rythmique et auditif précis de l’élève.',
+    ],
+    mediaUrl: '/images/02-eleves-musique.jpg',
+    linkUrl: siteUrl('/rma#audition'),
+    ctaLabel: 'Réserver un créneau d’audition',
+    targetAudience: 'Parents d’élèves, adultes débutants, jeunes talents à Yaoundé',
+    contentByPlatform: {
+      whatsapp: {
+        text: `*Racines Musicales Academy | Séances Diagnostiques Offertes* 🎹✨
+
+Vous souhaitez inscrire votre enfant ou débuter la musique ?
+À la RMA, nous ne commençons jamais par imposer un instrument sans diagnostic.
+
+En 15 minutes :
+1. Test de discrimination auditive (hauteur et mémoire mélodique).
+2. Test de pulsation corporelle et coordination.
+3. Recommandation personnalisée de palier Permis de Jouer™ (N1 à N4).
+
+Prenez rendez-vous directement en ligne :
+👉 ${siteUrl('/rma#audition')}
+
+Ou contactez-nous au : ${SITE.phones[0]?.display ?? '+237 694 72 34 92'}`,
+        hashtags: [],
+      },
+      facebook: {
+        text: `Avant de débuter le piano, le chant ou la batterie : découvrez le profil auditif et rythmique de votre enfant lors d'une séance diagnostique gratuite de 15 minutes au studio RMA Damas.
+
+🔗 ${siteUrl('/rma#audition')}`,
+        hashtags: ['#RMA', '#CoursDeMusique', '#Yaounde', '#HerveNanfang'],
+      },
+      instagram: {
+        text: `Chaque enfant apprend la musique différemment. 🎹🎼
+À la RMA, notre diagnostic en 15 minutes permet de construire un parcours d'épanouissement sur-mesure.
+
+Lien en bio pour réserver votre séance diagnostique au studio RMA.`,
+        hashtags: ['#PermisDeJouer', '#MusiqueEnfants', '#Yaounde', '#HerveNanfang'],
+      },
+    },
+    decisionHistory: [
+      { id: 'log-16', action: 'creation', timestamp: SEED_DATE, author: 'Système Master', reason: 'Format conversion RMA 10%' },
+    ],
+    notes: 'Lien direct vers l’ancre du formulaire d’audition /rma#audition.',
+    createdAt: SEED_DATE,
+    updatedAt: SEED_DATE,
+  },
 ]
 
 /**

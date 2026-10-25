@@ -46,6 +46,7 @@ export default function Music() {
 
   const [selectedVideo, setSelectedVideo] = useState<LivePerformance | null>(null)
   const [audioFilter, setAudioFilter] = useState<string>('all')
+  const [selectedScenario, setSelectedScenario] = useState<'cocktail' | 'gala' | 'concert'>('cocktail')
 
   const liveTrack = AUDIO_PLAYLIST.find((t) => t.id === 'pianobariste-live') || AUDIO_PLAYLIST[0]
 
@@ -460,6 +461,112 @@ export default function Music() {
             </Reveal>
           ))}
         </div>
+
+        {/* ========================================================================= */}
+        {/* SIMULATEUR DE FORMULE LIVE & RECOMMANDATION ACOUSTIQUE                    */}
+        {/* ========================================================================= */}
+        <Reveal delay={120}>
+          <div className="mt-14 border border-gold/30 bg-gradient-to-br from-gold/10 via-ink-2 to-ink p-7 md:p-10 shadow-2xl">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-white/10 pb-5">
+              <div>
+                <p className="eyebrow text-gold font-mono">✦ Guide Décisionnel Organisateur</p>
+                <h3 className="mt-1 font-display text-2xl md:text-3xl text-ivory">
+                  Simulateur de Formule Événementielle
+                </h3>
+              </div>
+              <p className="text-xs text-ivory/60 max-w-sm">
+                Sélectionnez la typologie de votre événement pour identifier instantanément le format sonore et le répertoire adaptés.
+              </p>
+            </div>
+
+            {/* Selectors */}
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+              {[
+                { id: 'cocktail', label: '🍸 Cocktail & Lounge', sub: 'Ambiance feutrée, conversations' },
+                { id: 'gala', label: '👑 Dîner de Gala & Cérémonie', sub: 'Montée progressive, prestige' },
+                { id: 'concert', label: '🎉 Soirée Festive / Concert', sub: 'Rythmes entraînants, danse' },
+              ].map((s) => (
+                <button
+                  key={s.id}
+                  type="button"
+                  onClick={() => setSelectedScenario(s.id as any)}
+                  className={`text-left p-4 rounded border transition-all ${
+                    selectedScenario === s.id
+                      ? 'border-gold bg-gold/20 shadow-[0_0_20px_rgba(198,161,91,0.25)]'
+                      : 'border-white/10 bg-ink hover:border-gold/40'
+                  }`}
+                >
+                  <p className="text-sm font-bold text-ivory">{s.label}</p>
+                  <p className="text-xs text-ivory/50 mt-1">{s.sub}</p>
+                </button>
+              ))}
+            </div>
+
+            {/* Recommendation details */}
+            <div className="mt-6 border border-white/10 bg-ink/80 p-6">
+              {selectedScenario === 'cocktail' && (
+                <div className="grid gap-6 md:grid-cols-[1.2fr_0.8fr] md:items-center">
+                  <div>
+                    <span className="rounded bg-gold/20 text-gold px-2.5 py-0.5 text-[0.65rem] font-bold uppercase tracking-wider border border-gold/30">
+                      Recommandation : Session Lounge Piano Solo (2 h)
+                    </span>
+                    <h4 className="mt-2 font-display text-xl text-ivory">Élégance acoustique et présence feutrée</h4>
+                    <p className="mt-2 text-xs leading-relaxed text-ivory/70">
+                      Piano solo intimiste. Plus de 440 titres explorant le jazz feutré, la bossa nova subtile et les ballades francophones & internationales.
+                      Garantie acoustique : volume modéré permettant à vos invités d'échanger sans forcer la voix.
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-3 md:items-end">
+                    <Btn to="/contact?formula=lounge#booking" variant="gold" className="w-full md:w-auto text-center justify-center">
+                      Réserver la formule Lounge →
+                    </Btn>
+                    <span className="text-[0.65rem] text-ivory/40">Piano fourni sur demande si le lieu n'est pas équipé</span>
+                  </div>
+                </div>
+              )}
+
+              {selectedScenario === 'gala' && (
+                <div className="grid gap-6 md:grid-cols-[1.2fr_0.8fr] md:items-center">
+                  <div>
+                    <span className="rounded bg-gold/20 text-gold px-2.5 py-0.5 text-[0.65rem] font-bold uppercase tracking-wider border border-gold/30">
+                      Recommandation : Soirée Prestige (3 à 4 h) · Solo ou Duo Voix-Piano
+                    </span>
+                    <h4 className="mt-2 font-display text-xl text-ivory">Montée en intensité et grands standards</h4>
+                    <p className="mt-2 text-xs leading-relaxed text-ivory/70">
+                      Accompagnement dynamique du cocktail d'accueil jusqu'au dessert. Répertoire enrichi de soul poétique, afropop acoustique et reprises personnalisées à la demande des hôtes.
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-3 md:items-end">
+                    <Btn to="/contact?formula=prestige#booking" variant="gold" className="w-full md:w-auto text-center justify-center">
+                      Réserver la formule Prestige →
+                    </Btn>
+                    <span className="text-[0.65rem] text-ivory/40">Idéal pour mariages d'exception et dîners protocolaires</span>
+                  </div>
+                </div>
+              )}
+
+              {selectedScenario === 'concert' && (
+                <div className="grid gap-6 md:grid-cols-[1.2fr_0.8fr] md:items-center">
+                  <div>
+                    <span className="rounded bg-gold/20 text-gold px-2.5 py-0.5 text-[0.65rem] font-bold uppercase tracking-wider border border-gold/30">
+                      Recommandation : Programme Live Band (Set 45 à 90 min)
+                    </span>
+                    <h4 className="mt-2 font-display text-xl text-ivory">Énergie scénique, Afrobeat & Makossa festif</h4>
+                    <p className="mt-2 text-xs leading-relaxed text-ivory/70">
+                      Claviers, basse, batterie, voix et cuivres invités. Un show calibré pour clore un festival, une convention d'entreprise ou une grande fête privée avec une énergie communicative.
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-3 md:items-end">
+                    <Btn to="/contact?formula=liveband#booking" variant="gold" className="w-full md:w-auto text-center justify-center">
+                      Réserver le Live Band →
+                    </Btn>
+                    <span className="text-[0.65rem] text-ivory/40">Fiche technique et rider fournis sur mesure</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </Reveal>
       </Section>
 
       {/* ========================================================================= */}
