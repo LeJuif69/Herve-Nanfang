@@ -18,6 +18,7 @@ import { CONTACT_ROUTES, SITE } from '../data/site'
 import { breadcrumbSchema, personSchema, serviceSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 import { adminStore } from '../lib/admin-store'
+import { formatAttributionTag } from '../lib/utm-tracker'
 
 type FormState = {
   name: string
@@ -127,6 +128,8 @@ export default function Contact() {
     if (!validate()) return
     setSending(true)
     setSendError('')
+    const tag = formatAttributionTag()
+    const fullBody = tag ? `${tag}\n\n${form.message.trim()}` : form.message.trim()
     const res = await adminStore.addIncomingMessage({
       name: form.name,
       email: form.email,
@@ -135,7 +138,7 @@ export default function Contact() {
       route: form.route,
       eventDate: form.date || undefined,
       place: form.place || undefined,
-      body: form.message,
+      body: fullBody,
     })
     setSending(false)
     if (res.ok) {

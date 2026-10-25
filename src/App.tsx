@@ -4,10 +4,13 @@ import Layout from './components/Layout'
 import { AudioProvider } from './lib/audio-context'
 import { CommandMenuProvider } from './lib/command-menu-context'
 
-// Gestion de la compatibilité des URLs avec hash (#/admin)
+import { captureTrafficAttribution } from './lib/utm-tracker'
+
+// Gestion de la compatibilité des URLs avec hash (#/admin) et capture des UTM
 function HashAdminRedirect() {
   const navigate = useNavigate()
   useEffect(() => {
+    captureTrafficAttribution()
     if (typeof window !== 'undefined') {
       const hash = window.location.hash
       if (hash === '#/admin' || hash === '#admin' || hash.startsWith('#/admin')) {

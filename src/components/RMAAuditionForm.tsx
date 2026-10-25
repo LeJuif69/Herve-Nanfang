@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { SITE } from '../data/site'
 import { adminStore } from '../lib/admin-store'
+import { formatAttributionTag } from '../lib/utm-tracker'
 
 export default function RMAAuditionForm() {
   const [discipline, setDiscipline] = useState('Piano classique, jazz & musiques actuelles')
@@ -35,8 +36,11 @@ ${musicalGoals || 'Non renseigné'}
     setIsSending(true)
     setSendError('')
 
+    const tag = formatAttributionTag()
+    const headerLines = tag ? [tag, '[CANDIDATURE AUDITION RMA]'] : ['[CANDIDATURE AUDITION RMA]']
+
     const bodyContent = [
-      `[CANDIDATURE AUDITION RMA]`,
+      ...headerLines,
       `Discipline : ${discipline}`,
       `Profil : ${profile}`,
       `Palier visé : ${targetPalier}`,
