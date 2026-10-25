@@ -620,47 +620,7 @@ function getInitialMedia(): AdminMedia[] {
 }
 
 function getInitialMessages(): AdminMessage[] {
-  return [
-    {
-      id: 'msg-1',
-      name: 'Direction Culturelle Hilton Yaoundé',
-      email: 'events@hiltonyaounde.example',
-      organization: 'Hilton Yaoundé',
-      phone: '+237 699 00 11 22',
-      route: 'booking',
-      eventDate: '2026-11-20',
-      place: 'Yaoundé · Salle panoramique',
-      body: 'Bonjour Maître Nanfang, nous souhaitons planifier une série de soirées Piano-Bar Signature pour le lancement de notre nouvelle programmation artistique.',
-      status: 'nouveau',
-      internalNotes: 'Demande prioritaire — recontacter par WhatsApp.',
-      createdAt: new Date(Date.now() - 3600000 * 4).toISOString(),
-    },
-    {
-      id: 'msg-2',
-      name: 'Conservatoire National des Arts',
-      email: 'pedagogie@cna-arts.example',
-      organization: 'Conservatoire Régional',
-      phone: '+33 6 12 34 56 78',
-      route: 'formation',
-      eventDate: '2026-12-05',
-      place: 'Paris / Visio',
-      body: 'Proposition de masterclass de 3h sur l’approche « Musicien Augmenté™ » et l’intégration de l’IA dans les programmes de MAO.',
-      status: 'en_cours',
-      internalNotes: 'Programme envoyé par email.',
-      createdAt: new Date(Date.now() - 86400000 * 2).toISOString(),
-    },
-    {
-      id: 'msg-3',
-      name: 'Revue Cultures & Médias Africains',
-      email: 'redaction@cma-journal.example',
-      organization: 'Magazine Électronique',
-      route: 'presse',
-      body: 'Demande d’interview approfondie sur la transition MAO -> IA et les enjeux de la souveraineté culturelle musicale.',
-      status: 'traite',
-      internalNotes: 'Interview calée pour fin octobre.',
-      createdAt: new Date(Date.now() - 86400000 * 5).toISOString(),
-    },
-  ]
+  return []
 }
 
 function getInitialSettings(): AdminSettings {
@@ -831,7 +791,15 @@ function sanitizeLoadedState(state: AdminState): AdminState {
     })
   }
 
-  const sanitized = { ...state, media, articles, projects, services, publications }
+  // 4. Nettoyage automatique des messages de démonstration
+  const messages = (state.messages || []).filter(
+    (m: AdminMessage) => m.id !== 'msg-1' && m.id !== 'msg-2' && m.id !== 'msg-3' && !m.email.endsWith('.example')
+  )
+  if (messages.length !== (state.messages || []).length) {
+    hasChanges = true
+  }
+
+  const sanitized = { ...state, media, articles, projects, services, publications, messages }
   if (hasChanges && typeof localStorage !== 'undefined') {
     try {
       localStorage.setItem(LOCAL_STORE_KEY, JSON.stringify(sanitized))
