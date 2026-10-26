@@ -397,10 +397,10 @@ export default function AI() {
                   </span>
                 </div>
                 <h3 className="mt-3 font-display text-2xl leading-snug text-ivory md:text-3xl">
-                  IA & droits d’auteur dans la musique africaine : ce que les créateurs camerounais doivent comprendre
+                  IA et droit d’auteur : ce que les créateurs camerounais doivent savoir
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ivory/70">
-                  Décryptage à l’issue des Rencontres Musicales Africaines (REMA) : Loi n° 2000/011, Accord de Bangui (OAPI), protection des patrimoines oraux face aux pillages et statut juridique réel des œuvres co-créées avec l’IA.
+                  Par Hervé Nanfang (Yaoundé) : Loi n° 2000/011, cadre OAPI, protection du travail en studio MAO et méthode concrète du Musicien Augmenté.
                 </p>
               </div>
               <div className="shrink-0">
