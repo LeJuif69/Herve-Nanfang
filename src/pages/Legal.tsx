@@ -50,44 +50,54 @@ const CONTENT: Record<Kind, { title: string; eyebrow: string; path: string; lead
   },
   confidentialite: {
     title: 'Politique de confidentialité',
-    eyebrow: 'Données personnelles',
+    eyebrow: 'Données personnelles & Cookies',
     path: '/confidentialite',
-    lead: 'Ce site collecte le minimum de données nécessaires, dans un but explicite, sans revente ni profilage publicitaire.',
+    lead: 'Ce site protège vos données personnelles et vous informe en toute transparence sur les traitements appliqués, les formulaires de contact et la diffusion publicitaire.',
     blocks: [
       {
         h: 'Données collectées',
         p: [
-          'Formulaire de contact : nom, email, structure, téléphone (facultatif), motif, date et lieu envisagés, message. Le site ne les transmet pas à un serveur et ne les stocke pas.',
-          'Lettre d’information : l’adresse saisie est incluse dans un message WhatsApp prérempli. Elle n’est transmise qu’après envoi volontaire du message et n’est pas enregistrée par le site.',
-          'Mesure d’audience : aucune donnée n’est exploitée à des fins publicitaires. Si un outil de mesure est activé, il sera paramétré de manière respectueuse de la vie privée et documenté ici.',
+          'Formulaires de contact et d’audition RMA : nom, adresse email, numéro de téléphone, organisation, objet de la demande et message. Ces données sont collectées exclusivement pour traiter et répondre à vos sollicitations artistiques, pédagogiques et professionnelles.',
+          'Navigation et attribution : des paramètres anonymes d’attribution de trafic (UTM) peuvent être temporairement conservés en mémoire de session pour analyser l’efficacité des canaux de communication de l’artiste.',
         ],
       },
       {
-        h: 'Base légale et durée',
+        h: 'Publicité en ligne & Cookies Google AdSense',
         p: [
-          'Le traitement repose sur le consentement de la personne (case à cocher du formulaire) et sur l’intérêt légitime à répondre à une demande professionnelle.',
-          'Les données saisies restent en mémoire de la page jusqu’à sa fermeture ou son rechargement. Le site ne conserve pas les demandes. Les messages envoyés par WhatsApp relèvent des conditions et paramètres de ce service.',
+          'Le site fait appel à des régies et partenaires publicitaires tiers, notamment Google AdSense, pour diffuser des annonces sur certaines pages éditoriales (Journal).',
+          'Des fournisseurs tiers, y compris Google, utilisent des cookies pour diffuser des annonces pertinentes en fonction des visites antérieures d’un internaute sur le présent site web ou sur d’autres sites internet.',
+          'Grâce aux cookies publicitaires, Google et ses partenaires adaptent les annonces diffusées auprès des visiteurs en fonction de leur navigation sur vos sites et/ou d’autres sites du web.',
+          'Vous pouvez désactiver la personnalisation des annonces à tout moment en consultant les Paramètres des annonces Google (https://adssettings.google.com) ou en visitant le portail interprofessionnel www.aboutads.info.',
         ],
       },
       {
-        h: 'Destinataires et sous-traitants',
+        h: 'Base légale et durée de conservation',
         p: [
-          'Le site ne transmet pas les demandes à un serveur tiers. Si vous choisissez d’envoyer le message prérempli, son contenu est traité par WhatsApp/Meta selon leurs conditions et leur politique de confidentialité.',
-          'Aucun transfert à des fins commerciales n’est réalisé par le site.',
+          'Le traitement des demandes de contact repose sur votre consentement explicite ainsi que sur l’intérêt légitime à vous fournir un devis, un diagnostic ou un échange de cadrage artistique.',
+          'Les demandes enregistrées via les formulaires sont conservées pendant la durée nécessaire au suivi de la relation professionnelle ou archivées conformément aux obligations administratives.',
+        ],
+      },
+      {
+        h: 'Destinataires et hébergement sécurisé',
+        p: [
+          'Les messages sont enregistrés dans l’infrastructure de base de données sécurisée du site (Supabase) avec politiques d’accès strictes (Row Level Security). Seule l’équipe de gestion d’Hervé Nanfang y a accès.',
+          'Aucune donnée personnelle n’est vendue, louée ou cédée à des tiers à des fins de prospection commerciale extérieure.',
+          'Les échanges engagés volontairement via WhatsApp relèvent des conditions d’utilisation et de la politique de confidentialité de WhatsApp / Meta.',
         ],
       },
       {
         h: 'Vos droits',
         p: [
-          'Vous pouvez demander l’accès, la rectification, la limitation ou la suppression de vos données, ainsi que le retrait de votre consentement, en contactant l’éditeur via les coordonnées indiquées sur la page Contact.',
+          'Conformément à la réglementation sur la protection des données, vous disposez d’un droit d’accès, de rectification, de portabilité, de limitation et de suppression de vos informations personnelles.',
+          'Pour exercer ces droits, vous pouvez contacter l’éditeur à tout moment via l’adresse email officielle : racinesmusicalesacademy@gmail.com.',
           'Une réponse sera apportée dans un délai maximum de trente jours.',
         ],
       },
       {
-        h: 'Sécurité',
+        h: 'Sécurité des données',
         p: [
-          'Le site est conçu avec une séparation entre espace public et espace d’administration, une authentification pour les contenus éditoriaux et des règles d’accès restrictives sur la base de données (Row Level Security).',
-          'Les validations de formulaires et de téléversements sont appliquées côté serveur lors de la mise en production.',
+          'L’ensemble des transferts de données bénéficie du protocole HTTPS sécurisé avec chiffrement SSL/TLS.',
+          'L’espace d’administration est isolé, protégé par double authentification et contrôle d’intégrité.',
         ],
       },
     ],

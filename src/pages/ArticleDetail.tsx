@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import AuthorSignature from '../components/AuthorSignature'
+import AdSenseUnit from '../components/AdSenseUnit'
 import {
   ArrowLink,
   Body,
@@ -136,6 +137,9 @@ export default function ArticleDetail() {
                 </ol>
               </>
             )}
+
+            {/* Encart publicitaire AdSense officiel */}
+            <AdSenseUnit />
 
             {/* Signature d'auteur officielle */}
             <AuthorSignature />
