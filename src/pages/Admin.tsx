@@ -15,6 +15,7 @@ import { AdminMedia as AdminMediaView } from '../components/admin/AdminMedia'
 import { AdminMessages } from '../components/admin/AdminMessages'
 import { AdminSettingsView } from '../components/admin/AdminSettings'
 import { AdminLogin } from '../components/admin/AdminLogin'
+import { AdminOutreach } from '../components/admin/AdminOutreach'
 
 export default function Admin() {
   useSeo({
@@ -178,6 +179,10 @@ export default function Admin() {
                 onOpenNewArticle={() => setActiveTab('articles')}
                 onOpenNewProject={() => setActiveTab('projects')}
               />
+            )}
+
+            {activeTab === 'outreach' && (
+              <AdminOutreach showToast={showToast} />
             )}
 
             {activeTab === 'calendar' && (
