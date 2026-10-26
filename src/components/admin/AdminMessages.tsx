@@ -14,6 +14,7 @@ const ROUTE_LABELS: Record<string, string> = {
   collaboration: 'Collaboration Artistique',
   presse: 'Presse & Média',
   conseil: 'Conseil & Stratégie',
+  lead_journal: 'Lead Journal / Guide Privé',
 }
 
 export const AdminMessages: React.FC<AdminMessagesProps> = ({

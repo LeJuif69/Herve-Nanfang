@@ -1,12 +1,13 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
+import JournalLeadMagnet from '../components/JournalLeadMagnet'
+import AdSenseUnit from '../components/AdSenseUnit'
 import {
   ArrowLink,
   Body,
   Card,
   ChapterMark,
-  CtaBand,
   Display,
   Eyebrow,
   Reveal,
@@ -17,7 +18,6 @@ import {
 } from '../components/ui'
 import { ARTICLE_CHAIN, CATEGORIES, JOURNAL_AGENDA, JOURNAL_SERIES } from '../data/articles'
 import { IDENTITY } from '../data/identity'
-import { SITE } from '../data/site'
 import { articleSchema, breadcrumbSchema, personSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 import { useLiveArticles } from '../lib/useLiveContent'
@@ -258,13 +258,20 @@ export default function Journal() {
         </div>
       </Section>
 
-      <CtaBand
-        eyebrow="Le Journal du Musicien Augmenté"
-        title="Recevoir les prochains articles"
-        text="Une lettre occasionnelle : nouvelles analyses, méthodes et retours d'expérience."
-        primary={{ label: 'Demander l’inscription sur WhatsApp', href: `https://wa.me/${SITE.phones[0].whatsapp}?text=${encodeURIComponent('Je souhaite recevoir la lettre du Journal du Musicien Augmenté.')}` }}
-        secondary={{ label: 'Interviews & presse', to: '/contact#presse' }}
-      />
+      {/* ===== SECTION CAPTURE PROSPECTS / ÉDITION PRIVÉE ===== */}
+      <Section tone="dark">
+        <Reveal>
+          <div className="max-w-4xl mx-auto">
+            <JournalLeadMagnet
+              sourceArticle="Page Sommaire du Journal"
+              className="my-6"
+            />
+            <div className="mt-8">
+              <AdSenseUnit />
+            </div>
+          </div>
+        </Reveal>
+      </Section>
     </>
   )
 }

@@ -3,6 +3,8 @@ import PageHero from '../components/PageHero'
 import AuthorSignature from '../components/AuthorSignature'
 import AdSenseUnit from '../components/AdSenseUnit'
 import ArticleShareBar from '../components/ArticleShareBar'
+import PillarConversionCta from '../components/PillarConversionCta'
+import JournalLeadMagnet from '../components/JournalLeadMagnet'
 import {
   ArrowLink,
   Body,
@@ -198,12 +200,25 @@ export default function ArticleDetail() {
               </>
             )}
 
+            {/* Bloc de conversion stratégique ciblé selon le pilier de l'article */}
+            <PillarConversionCta
+              category={article.category}
+              articleNum={article.num}
+              articleTitle={article.title}
+            />
+
             {/* Carte de diffusion et de partage sur les plateformes vérifiées */}
             <ArticleShareBar
               variant="card"
               title={article.title}
               excerpt={article.excerpt}
               slug={article.slug}
+            />
+
+            {/* Boîte de capture Lead Magnet — Les Carnets Privés du Musicien Augmenté */}
+            <JournalLeadMagnet
+              sourceArticle={`Article ${article.num} : ${article.title}`}
+              className="my-10"
             />
 
             {/* Encart publicitaire AdSense officiel */}

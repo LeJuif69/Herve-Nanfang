@@ -121,16 +121,18 @@ export function trackAdEvent(eventName: string, params: Record<string, unknown> 
  * Enregistre une conversion prospect (Lead) — très important pour Meta & Google Ads
  */
 export function trackLeadConversion(
-  source: 'contact' | 'rma_audition' | 'whatsapp',
+  source: 'contact' | 'rma_audition' | 'whatsapp' | 'newsletter_signup' | 'lead_magnet',
   details: {
     category?: string
     route?: string
     value?: number
+    interest?: string
+    [key: string]: unknown
   } = {},
 ): void {
   trackAdEvent('Lead', {
     content_category: details.category || source,
-    content_name: details.route || source,
+    content_name: details.route || details.interest || source,
     currency: 'XAF',
     value: details.value || 0,
     source,
