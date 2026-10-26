@@ -66,6 +66,7 @@ function pageHead(seo, site) {
     `<meta property="og:image" content="${escapeHtml(image)}">`,
     '<meta property="og:image:width" content="1200">',
     '<meta property="og:image:height" content="630">',
+    `<meta property="og:image:alt" content="${escapeHtml(seo.title)}">`,
     '<meta name="twitter:card" content="summary_large_image">',
     `<meta name="twitter:title" content="${escapeHtml(seo.title)}">`,
     `<meta name="twitter:description" content="${escapeHtml(seo.description)}">`,

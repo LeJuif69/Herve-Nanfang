@@ -4,7 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#08080A" />
+
+    <!-- Performance & Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+
+    <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -17,6 +26,7 @@
       content="Musicien, musicologue, pédagogue et ingénieur du son, Hervé Nanfang est spécialiste de l'IA appliquée à la musique, à la pédagogie et aux industries culturelles."
     />
     <meta name="author" content="Hervé Nanfang" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href="https://hervenanfang.vercel.app/" />
 
     <!-- Open Graph -->
@@ -30,6 +40,9 @@
     />
     <meta property="og:url" content="https://hervenanfang.vercel.app/" />
     <meta property="og:image" content="https://hervenanfang.vercel.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Hervé Nanfang — Créer · Transmettre · Augmenter · Développer" />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -53,6 +66,36 @@
         "image": "https://hervenanfang.vercel.app/og-image.jpg",
         "jobTitle": "Artiste-musicien, musicologue et pédagogue",
         "description": "Hervé Nanfang est un artiste-musicien, musicologue, pianiste-chanteur, ingénieur du son et pédagogue camerounais. Il développe des projets à la croisée de la musique, de la MAO, de l'intelligence artificielle, de la communication digitale et de l'entrepreneuriat culturel.",
+        "nationality": {
+          "@type": "Country",
+          "name": "Cameroun"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Yaoundé",
+          "addressCountry": "CM"
+        },
+        "alumniOf": [
+          {
+            "@type": "CollegeOrUniversity",
+            "name": "Université de Dschang",
+            "description": "Licence Arts du Spectacle & Management Culturel"
+          }
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Alaiz Creative System"
+        },
+        "affiliation": [
+          {
+            "@type": "Organization",
+            "name": "Alaiz Creative System"
+          },
+          {
+            "@type": "Organization",
+            "name": "Racines Musicales Academy®"
+          }
+        ],
         "knowsAbout": [
           "Musique",
           "Piano",
@@ -67,10 +110,6 @@
           "Cultures africaines"
         ],
         "knowsLanguage": ["fr", "en"],
-        "affiliation": {
-          "@type": "Organization",
-          "name": "Alaiz Creative Systems"
-        },
         "sameAs": [
           "https://www.facebook.com/herve.nanfang.officiel/",
           "https://www.youtube.com/@hervenanfang",
@@ -81,8 +120,16 @@
     </script>
     <meta name="prerender-head-end" content="true" />
 
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6623797864465522" crossorigin="anonymous"></script>
+    <!-- Google AdSense : Chargement optimisé après le premier rendu -->
+    <script>
+      window.addEventListener('load', function () {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6623797864465522';
+        s.crossOrigin = 'anonymous';
+        document.head.appendChild(s);
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>
