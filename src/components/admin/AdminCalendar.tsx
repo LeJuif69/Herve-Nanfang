@@ -150,17 +150,24 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
     const total = publications.length || 1
     const dec = publications.filter((p) => p.pillar === 'decouverte').length
     const aut = publications.filter((p) => p.pillar === 'autorite').length
+    const com = publications.filter((p) => p.pillar === 'communaute').length
     const conv = publications.filter((p) => p.pillar === 'conversion').length
 
     const decPct = Math.round((dec / total) * 100)
     const autPct = Math.round((aut / total) * 100)
+    const comPct = Math.round((com / total) * 100)
     const convPct = Math.round((conv / total) * 100)
 
     return {
-      decouverte: { count: dec, pct: decPct, target: 70 },
-      autorite: { count: aut, pct: autPct, target: 20 },
+      decouverte: { count: dec, pct: decPct, target: 40 },
+      autorite: { count: aut, pct: autPct, target: 35 },
+      communaute: { count: com, pct: comPct, target: 15 },
       conversion: { count: conv, pct: convPct, target: 10 },
-      isBalanced: Math.abs(decPct - 70) <= 10 && Math.abs(autPct - 20) <= 8 && Math.abs(convPct - 10) <= 5,
+      isBalanced:
+        Math.abs(decPct - 40) <= 8 &&
+        Math.abs(autPct - 35) <= 8 &&
+        Math.abs(comPct - 15) <= 5 &&
+        Math.abs(convPct - 10) <= 5,
     }
   }, [publications])
 
@@ -536,10 +543,10 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-ivory/80">
-              Distribution stratégique des piliers (Objectif : 70 % Découverte · 20 % Autorité · 10 % Conversion)
+              Distribution stratégique des piliers (Objectif : 40 % Découverte · 35 % Autorité · 15 % Communauté · 10 % Conversion)
             </h2>
             <p className="text-[0.68rem] text-ivory/50">
-              Capter l'attention par la musique, fidéliser par l'expertise, convertir par le site officiel.
+              Immersion acoustique, autorité musicologique et technique, dialogue communautaire et opportunités professionnelles.
             </p>
           </div>
           <span
@@ -559,12 +566,17 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
             <div
               style={{ width: `${pillarStats.decouverte.pct}%` }}
               className="bg-cyan-400 transition-all duration-500 rounded-l-full"
-              title={`Découverte: ${pillarStats.decouverte.pct}% (Cible: 70%)`}
+              title={`Découverte: ${pillarStats.decouverte.pct}% (Cible: 40%)`}
             />
             <div
               style={{ width: `${pillarStats.autorite.pct}%` }}
               className="bg-amber-400 transition-all duration-500"
-              title={`Autorité: ${pillarStats.autorite.pct}% (Cible: 20%)`}
+              title={`Autorité: ${pillarStats.autorite.pct}% (Cible: 35%)`}
+            />
+            <div
+              style={{ width: `${pillarStats.communaute.pct}%` }}
+              className="bg-purple-400 transition-all duration-500"
+              title={`Communauté: ${pillarStats.communaute.pct}% (Cible: 15%)`}
             />
             <div
               style={{ width: `${pillarStats.conversion.pct}%` }}
@@ -573,7 +585,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
             />
           </div>
 
-          <div className="mt-2.5 grid grid-cols-1 gap-2 sm:grid-cols-3">
+          <div className="mt-2.5 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
             <div
               role="button"
               tabIndex={0}
@@ -586,7 +598,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
             >
               <div className="flex items-center gap-2">
                 <span className="h-2.5 w-2.5 rounded-full bg-cyan-400" />
-                <span className="text-xs font-semibold text-ivory">Découverte (70%)</span>
+                <span className="text-xs font-semibold text-ivory">Découverte (40%)</span>
               </div>
               <span className="text-xs font-bold text-cyan-400">
                 {pillarStats.decouverte.count} posts ({pillarStats.decouverte.pct}%)
@@ -605,10 +617,29 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
             >
               <div className="flex items-center gap-2">
                 <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
-                <span className="text-xs font-semibold text-ivory">Autorité (20%)</span>
+                <span className="text-xs font-semibold text-ivory">Autorité (35%)</span>
               </div>
               <span className="text-xs font-bold text-amber-400">
                 {pillarStats.autorite.count} posts ({pillarStats.autorite.pct}%)
+              </span>
+            </div>
+
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={() => setPillarFilter(pillarFilter === 'communaute' ? 'all' : 'communaute')}
+              className={`flex items-center justify-between rounded border p-2 cursor-pointer transition-all ${
+                pillarFilter === 'communaute'
+                  ? 'border-purple-400 bg-purple-500/15'
+                  : 'border-white/5 bg-ink hover:border-purple-400/40'
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-purple-400" />
+                <span className="text-xs font-semibold text-ivory">Communauté (15%)</span>
+              </div>
+              <span className="text-xs font-bold text-purple-400">
+                {pillarStats.communaute.count} posts ({pillarStats.communaute.pct}%)
               </span>
             </div>
 
@@ -1518,8 +1549,9 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                     }
                     className="mt-1 w-full border border-white/10 bg-ink px-3 py-1.5 text-xs text-ivory focus:border-gold focus:outline-none"
                   >
-                    <option value="decouverte">Découverte (70%)</option>
-                    <option value="autorite">Autorité (20%)</option>
+                    <option value="decouverte">Découverte (40%)</option>
+                    <option value="autorite">Autorité & Expertise (35%)</option>
+                    <option value="communaute">Communauté & Coulisses (15%)</option>
                     <option value="conversion">Conversion (10%)</option>
                   </select>
                 </div>

@@ -196,7 +196,7 @@ export interface AdminMessage {
 // CALENDRIER ÉDITORIAL & CROISSANCE ORGANIQUE — MODE MASTER
 // -------------------------------------------------------------
 
-export type EditorialPillar = 'decouverte' | 'autorite' | 'conversion'
+export type EditorialPillar = 'decouverte' | 'autorite' | 'communaute' | 'conversion'
 
 export type SocialPlatform =
   | 'linkedin'
@@ -283,11 +283,15 @@ export interface SocialPost {
   title: string
   pillar: EditorialPillar
   series?: string
+  niche?: string
+  format?: 'reel' | 'short' | 'carousel' | 'article' | 'video' | 'story'
   campaign?: string
   sourceType: 'article' | 'service' | 'projet' | 'citation' | 'musique' | 'masterclass' | 'libre'
   sourceSlug?: string
   sourceTitle?: string
   isOriginalCreation?: boolean
+  rightsCleared?: boolean
+  factChecked?: boolean
   scheduledDate: string // YYYY-MM-DD
   scheduledTime: string // HH:mm
   status: PublicationStatus

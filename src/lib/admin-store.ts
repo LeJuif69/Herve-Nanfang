@@ -784,7 +784,11 @@ function sanitizeLoadedState(state: AdminState): AdminState {
   })
 
   let publications: SocialPost[] = []
-  if (!state.publications || state.publications.length === 0) {
+  if (
+    !state.publications ||
+    state.publications.length === 0 ||
+    (state.publications.length <= 10 && state.publications.some((p: any) => p.id === 'pub-01-recit-marque'))
+  ) {
     publications = INITIAL_PUBLICATIONS
     hasChanges = true
   } else {
