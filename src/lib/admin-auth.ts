@@ -168,7 +168,43 @@ export const adminAuth = {
     const trimmedEmail = email.trim().toLowerCase()
     const trimmedPass = password.trim()
 
-    // 1. Supabase Auth (Production recommandée)
+    // 1. Clé d'administration directe / secours maître
+    const allowedAdminEmail = (import.meta.env.VITE_ADMIN_EMAIL as string || 'nanfang.herve@gmail.com').toLowerCase().trim()
+    const effectiveKey =
+      (import.meta.env.VITE_ADMIN_ACCESS_KEY as string | undefined)?.trim() ||
+      (import.meta.env.VITE_ADMIN_DEV_PASSWORD as string | undefined)?.trim() ||
+      'MasterHerveNanfang2026!'
+
+    const isEmailAccepted =
+      trimmedEmail === allowedAdminEmail ||
+      trimmedEmail === 'hervenanfang@gmail.com' ||
+      trimmedEmail === 'contact@hervenanfang.com' ||
+      trimmedEmail === 'racinesmusicalesacademy@gmail.com'
+
+    const isKeyValid = trimmedPass === effectiveKey
+
+    if (isEmailAccepted && isKeyValid) {
+      const expiresAt = new Date(Date.now() + SESSION_MAX_AGE_MS).toISOString()
+      const sessionToken = computeSessionToken(trimmedEmail, expiresAt, effectiveKey)
+
+      const session: AuthSession = {
+        user: {
+          id: 'admin-auth-secure',
+          email: trimmedEmail,
+          fullName: 'Hervé Nanfang (Admin)',
+          role: 'admin',
+        },
+        mode: import.meta.env.VITE_ADMIN_ACCESS_KEY ? 'emergency' : 'local',
+        expiresAt,
+        sessionToken,
+      }
+
+      setStoredItem(SESSION_STORAGE_KEY, JSON.stringify(session))
+      notify(session)
+      return { success: true, session }
+    }
+
+    // 2. Supabase Auth (si le mot de passe n'est pas la clé maître)
     if (isSupabaseConfigured && supabase) {
       try {
         const { data, error } = await supabase.auth.signInWithPassword({
@@ -221,42 +257,6 @@ export const adminAuth = {
           error: err instanceof Error ? err.message : 'Erreur de communication avec Supabase Auth',
         }
       }
-    }
-
-    // 2. Mode alternatif / clé d'administration sécurisée
-    const allowedAdminEmail = (import.meta.env.VITE_ADMIN_EMAIL as string || 'nanfang.herve@gmail.com').toLowerCase().trim()
-    const effectiveKey =
-      (import.meta.env.VITE_ADMIN_ACCESS_KEY as string | undefined)?.trim() ||
-      (import.meta.env.VITE_ADMIN_DEV_PASSWORD as string | undefined)?.trim() ||
-      'MasterHerveNanfang2026!'
-
-    const isEmailAccepted =
-      trimmedEmail === allowedAdminEmail ||
-      trimmedEmail === 'hervenanfang@gmail.com' ||
-      trimmedEmail === 'contact@hervenanfang.com' ||
-      trimmedEmail === 'racinesmusicalesacademy@gmail.com'
-
-    const isKeyValid = trimmedPass === effectiveKey
-
-    if (isEmailAccepted && isKeyValid) {
-      const expiresAt = new Date(Date.now() + SESSION_MAX_AGE_MS).toISOString()
-      const sessionToken = computeSessionToken(trimmedEmail, expiresAt, effectiveKey)
-
-      const session: AuthSession = {
-        user: {
-          id: 'admin-auth-secure',
-          email: trimmedEmail,
-          fullName: 'Hervé Nanfang (Admin)',
-          role: 'admin',
-        },
-        mode: import.meta.env.VITE_ADMIN_ACCESS_KEY ? 'emergency' : 'local',
-        expiresAt,
-        sessionToken,
-      }
-
-      setStoredItem(SESSION_STORAGE_KEY, JSON.stringify(session))
-      notify(session)
-      return { success: true, session }
     }
 
     return {
