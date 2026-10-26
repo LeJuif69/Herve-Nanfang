@@ -350,6 +350,15 @@ export interface AdminSettings {
   webhookUrl?: string
   webhookSecret?: string
   autoWebhookOnValidation?: boolean
+  // Publicité & Pixels
+  promoBannerEnabled?: boolean
+  promoBannerCampaign?: 'rma' | 'pianobariste' | 'custom'
+  promoBannerCustomText?: string
+  promoBannerCustomCta?: string
+  promoBannerCustomUrl?: string
+  metaPixelId?: string
+  googleAdsId?: string
+  googleAnalyticsId?: string
   updatedAt: string
 }
 

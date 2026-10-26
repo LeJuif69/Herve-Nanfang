@@ -641,6 +641,8 @@ function getInitialSettings(): AdminSettings {
       href: l.href,
       verified: l.verifie,
     })),
+    promoBannerEnabled: true,
+    promoBannerCampaign: 'rma',
     updatedAt: new Date().toISOString(),
   }
 }

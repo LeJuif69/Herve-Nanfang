@@ -255,6 +255,143 @@ export const AdminSettingsView: React.FC<AdminSettingsProps> = ({
           </div>
         </div>
 
+        {/* Publicité & Pixels de Suivi */}
+        <div className="border border-white/10 bg-ink-2 p-6 space-y-6">
+          <div>
+            <p className="eyebrow text-gold">4. Publicité, Bannière Promotionnelle & Pixels</p>
+            <p className="text-xs text-ivory/60 mt-1">
+              Gérez l’affichage du bandeau promotionnel du site et configurez vos identifiants publicitaires Meta (Facebook/Instagram) et Google.
+            </p>
+          </div>
+
+          {/* Bandeau promo du site */}
+          <div className="rounded border border-white/10 bg-ink p-4 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <label className="flex items-center gap-2 text-sm font-semibold text-ivory cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={form.promoBannerEnabled ?? true}
+                    onChange={(e) => setForm({ ...form, promoBannerEnabled: e.target.checked })}
+                    className="h-4 w-4 accent-[#c6a15b]"
+                  />
+                  Activer la bannière promotionnelle en haut du site
+                </label>
+                <p className="text-xs text-ivory/50 mt-0.5 ml-6">
+                  Affiche une annonce élégante et cliquable sur toutes les pages publiques du site.
+                </p>
+              </div>
+            </div>
+
+            {(form.promoBannerEnabled ?? true) && (
+              <div className="space-y-4 pt-2 border-t border-white/10">
+                <div>
+                  <label className="block text-xs font-semibold text-ivory/70 mb-1">
+                    Campagne mise en avant
+                  </label>
+                  <select
+                    value={form.promoBannerCampaign || 'rma'}
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        promoBannerCampaign: e.target.value as 'rma' | 'pianobariste' | 'custom',
+                      })
+                    }
+                    className="w-full border border-white/20 bg-ink-2 px-3 py-2 text-xs text-ivory focus:border-gold focus:outline-none"
+                  >
+                    <option value="rma">🎓 15 Auditions Gratuites Diagnostic RMA (Pédagogie & Élèves)</option>
+                    <option value="pianobariste">✨ Le Pianobariste™ — Réservations & Simulateur 2026 (Cocktails & Galas)</option>
+                    <option value="custom">✍️ Annonce personnalisée sur mesure</option>
+                  </select>
+                </div>
+
+                {form.promoBannerCampaign === 'custom' && (
+                  <div className="grid gap-3 sm:grid-cols-3 bg-ink-2 p-3 rounded border border-white/5">
+                    <div className="sm:col-span-3">
+                      <label className="block text-[11px] font-semibold text-ivory/70 mb-1">
+                        Texte de l'annonce *
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Ex: Masterclass exceptionnelle de piano à Douala"
+                        value={form.promoBannerCustomText || ''}
+                        onChange={(e) => setForm({ ...form, promoBannerCustomText: e.target.value })}
+                        className="w-full border border-white/20 bg-ink px-3 py-1.5 text-xs text-ivory focus:border-gold focus:outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-semibold text-ivory/70 mb-1">
+                        Texte du bouton CTA
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Ex: S'inscrire"
+                        value={form.promoBannerCustomCta || ''}
+                        onChange={(e) => setForm({ ...form, promoBannerCustomCta: e.target.value })}
+                        className="w-full border border-white/20 bg-ink px-3 py-1.5 text-xs text-ivory focus:border-gold focus:outline-none"
+                      />
+                    </div>
+                    <div className="sm:col-span-2">
+                      <label className="block text-[11px] font-semibold text-ivory/70 mb-1">
+                        Lien de redirection
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Ex: /contact ou https://..."
+                        value={form.promoBannerCustomUrl || ''}
+                        onChange={(e) => setForm({ ...form, promoBannerCustomUrl: e.target.value })}
+                        className="w-full border border-white/20 bg-ink px-3 py-1.5 text-xs text-ivory focus:border-gold focus:outline-none"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Configuration des Pixels Publicitaires */}
+          <div className="rounded border border-white/10 bg-ink p-4 space-y-4">
+            <h4 className="text-sm font-semibold text-ivory">Pixels Publicitaires & Événements de Conversion</h4>
+            <p className="text-xs text-ivory/50">
+              Ces identifiants activent le suivi des conversions (visites, consultations d'offres et soumissions de formulaires) pour vos campagnes payantes.
+            </p>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="block text-xs font-semibold text-ivory/70">
+                  Meta Pixel ID (Facebook & Instagram Ads)
+                  <input
+                    type="text"
+                    placeholder="Ex: 123456789012345"
+                    value={form.metaPixelId || ''}
+                    onChange={(e) => setForm({ ...form, metaPixelId: e.target.value })}
+                    className="mt-1.5 w-full border border-white/20 bg-ink-2 px-3 py-2 font-mono text-xs text-ivory placeholder:text-ivory/30 focus:border-gold focus:outline-none"
+                  />
+                </label>
+                <p className="text-[11px] text-ivory/40 mt-1">
+                  Disponible dans Meta Events Manager (Gestionnaire d'événements).
+                </p>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-ivory/70">
+                  Google Ads / Google Tag ID
+                  <input
+                    type="text"
+                    placeholder="Ex: AW-123456789 ou G-XXXXXXX"
+                    value={form.googleAdsId || ''}
+                    onChange={(e) => setForm({ ...form, googleAdsId: e.target.value })}
+                    className="mt-1.5 w-full border border-white/20 bg-ink-2 px-3 py-2 font-mono text-xs text-ivory placeholder:text-ivory/30 focus:border-gold focus:outline-none"
+                  />
+                </label>
+                <p className="text-[11px] text-ivory/40 mt-1">
+                  Identifiant de balise Google Ads ou Google Analytics 4.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Action button */}
         <div className="flex items-center justify-between border-t border-white/10 pt-4">
           <div>
@@ -272,7 +409,7 @@ export const AdminSettingsView: React.FC<AdminSettingsProps> = ({
 
       {/* Cloud & Supabase Sync Section */}
       <div className="border border-white/10 bg-ink-2 p-6">
-        <p className="eyebrow text-gold">4. Synchronisation Base de Données Cloud</p>
+        <p className="eyebrow text-gold">5. Synchronisation Base de Données Cloud</p>
         <div className="mt-3 flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
           <div>
             <p className="font-display text-xl text-ivory">Connexion Supabase</p>
@@ -315,7 +452,7 @@ export const AdminSettingsView: React.FC<AdminSettingsProps> = ({
 
       {/* Backup & Restore */}
       <div className="border border-white/10 bg-ink-2 p-6">
-        <p className="eyebrow text-gold">5. Sauvegarde & Restauration Intégrale</p>
+        <p className="eyebrow text-gold">6. Sauvegarde & Restauration Intégrale</p>
         <p className="mt-2 text-xs text-ivory/60">
           Téléchargez un instantané complet de toutes les données du site (articles, projets, services, messages, médias) sous forme de fichier JSON sécurisé.
         </p>

@@ -587,6 +587,132 @@ Tél/WhatsApp : +237 6 78 57 15 28`
         </div>
       </div>
 
+      {/* SECTION 3 : CAMPAGNES PUBLICITAIRES SPONSORISÉES (META & GOOGLE ADS) */}
+      <div className="rounded-xl border border-white/10 bg-ink-2 p-6 space-y-6">
+        <div className="border-b border-white/10 pb-4">
+          <h3 className="font-serif text-xl font-bold text-ivory">
+            3. Publicités Sponsorisées Payantes (Meta Ads & Google Ads)
+          </h3>
+          <p className="text-xs text-ivory/60 mt-1">
+            Lancez des annonces sponsorisées à fort rendement avec des pages d'atterrissage pré-configurées et les balises de conversion actives.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {/* Campagne Ads RMA */}
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-mono text-amber-400 uppercase">
+                Meta Ads (Facebook / Instagram)
+              </span>
+              <span className="text-xs text-ivory/50">Budget conseillé : 3 000 à 5 000 FCFA/j</span>
+            </div>
+
+            <h4 className="font-semibold text-ivory">Campagne Sponsorisée « 15 Auditions Diagnostic RMA »</h4>
+
+            <div className="space-y-1.5 text-xs text-ivory/70">
+              <p><strong className="text-ivory">Audience cible :</strong> Cameroun (Douala, Yaoundé) + diaspora.</p>
+              <p><strong className="text-ivory">Intérêts :</strong> Piano, Claviers, Musique jazz, Chorales, Théorie musicale africaine.</p>
+              <p><strong className="text-ivory">Objectif publicitaire :</strong> Prospects (Leads) avec le Meta Pixel.</p>
+            </div>
+
+            <div className="space-y-2 pt-2 border-t border-white/10">
+              <label className="block text-[11px] font-mono text-ivory/50 uppercase">
+                Lien de destination avec tag publicitaire (UTM) :
+              </label>
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  readOnly
+                  value="https://hervenanfang.vercel.app/rma?utm_source=meta_ads&utm_medium=cpc&utm_campaign=audition_rma_fev2026#audition"
+                  className="flex-1 rounded border border-white/10 bg-ink px-2.5 py-1.5 font-mono text-xs text-amber-300 select-all"
+                />
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleCopyText(
+                      'https://hervenanfang.vercel.app/rma?utm_source=meta_ads&utm_medium=cpc&utm_campaign=audition_rma_fev2026#audition',
+                      'Lien sponsorisé RMA',
+                    )
+                  }
+                  className="rounded border border-white/20 bg-white/5 px-3 py-1.5 text-xs text-ivory hover:bg-white/10 transition shrink-0"
+                >
+                  Copier
+                </button>
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <a
+                href="https://adsmanager.facebook.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:underline"
+              >
+                <span>Ouvrir Meta Ads Manager</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Campagne Ads Pianobariste */}
+          <div className="rounded-lg border border-gold/30 bg-gold/5 p-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="rounded bg-gold/20 px-2 py-0.5 text-xs font-mono text-gold uppercase">
+                Google & Meta Ads B2B
+              </span>
+              <span className="text-xs text-ivory/50">Budget conseillé : 5 000 à 10 000 FCFA/j</span>
+            </div>
+
+            <h4 className="font-semibold text-ivory">Campagne Sponsorisée « Pianobariste™ Événements & Galas »</h4>
+
+            <div className="space-y-1.5 text-xs text-ivory/70">
+              <p><strong className="text-ivory">Audience cible :</strong> Décideurs 30-65 ans à Douala, Yaoundé, Kribi.</p>
+              <p><strong className="text-ivory">Intérêts :</strong> Hôtellerie de luxe, Mariages haut de gamme, Clubs d’affaires, Salons.</p>
+              <p><strong className="text-ivory">Mots-clés Google :</strong> <em>pianiste mariage cameroun, animation cocktail douala, pianiste jazz</em>.</p>
+            </div>
+
+            <div className="space-y-2 pt-2 border-t border-white/10">
+              <label className="block text-[11px] font-mono text-ivory/50 uppercase">
+                Lien de destination avec tag publicitaire (UTM) :
+              </label>
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  readOnly
+                  value="https://hervenanfang.vercel.app/musique?utm_source=meta_ads&utm_medium=cpc&utm_campaign=pianobariste_2026"
+                  className="flex-1 rounded border border-white/10 bg-ink px-2.5 py-1.5 font-mono text-xs text-gold select-all"
+                />
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleCopyText(
+                      'https://hervenanfang.vercel.app/musique?utm_source=meta_ads&utm_medium=cpc&utm_campaign=pianobariste_2026',
+                      'Lien sponsorisé Pianobariste',
+                    )
+                  }
+                  className="rounded border border-white/20 bg-white/5 px-3 py-1.5 text-xs text-ivory hover:bg-white/10 transition shrink-0"
+                >
+                  Copier
+                </button>
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <a
+                href="https://ads.google.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:underline"
+              >
+                <span>Ouvrir Google Ads</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Modal Ajout Etablissement */}
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">

@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { NAV_PRIMARY, NAV_SECONDARY, SITE } from '../data/site'
 import { useCommandMenu } from '../lib/command-menu-context'
 import ScrollProgress from './ScrollProgress'
+import PromoBanner from './PromoBanner'
 
 export default function Header() {
   const { openCommandMenu } = useCommandMenu()
@@ -39,6 +40,7 @@ export default function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
+      <PromoBanner />
       <ScrollProgress />
       {/* Bandeau secondaire */}
       <div

@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { SITE } from '../data/site'
 import { adminStore } from '../lib/admin-store'
 import { formatAttributionTag } from '../lib/utm-tracker'
+import { trackLeadConversion } from '../lib/ad-pixels'
 
 export default function RMAAuditionForm() {
   const [discipline, setDiscipline] = useState('Piano classique, jazz & musiques actuelles')
@@ -59,6 +60,7 @@ ${musicalGoals || 'Non renseigné'}
 
     setIsSending(false)
     if (res.ok) {
+      trackLeadConversion('rma_audition', { category: 'RMA Audition', route: discipline })
       setIsSuccess(true)
     } else {
       setSendError(

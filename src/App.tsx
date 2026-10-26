@@ -5,12 +5,14 @@ import { AudioProvider } from './lib/audio-context'
 import { CommandMenuProvider } from './lib/command-menu-context'
 
 import { captureTrafficAttribution } from './lib/utm-tracker'
+import { initAdPixels } from './lib/ad-pixels'
 
-// Gestion de la compatibilité des URLs avec hash (#/admin) et capture des UTM
+// Gestion de la compatibilité des URLs avec hash (#/admin), capture des UTM et pixels
 function HashAdminRedirect() {
   const navigate = useNavigate()
   useEffect(() => {
     captureTrafficAttribution()
+    initAdPixels()
     if (typeof window !== 'undefined') {
       const hash = window.location.hash
       if (hash === '#/admin' || hash === '#admin' || hash.startsWith('#/admin')) {

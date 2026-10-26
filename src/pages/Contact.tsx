@@ -19,6 +19,7 @@ import { breadcrumbSchema, personSchema, serviceSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 import { adminStore } from '../lib/admin-store'
 import { formatAttributionTag } from '../lib/utm-tracker'
+import { trackLeadConversion } from '../lib/ad-pixels'
 
 type FormState = {
   name: string
@@ -142,6 +143,7 @@ export default function Contact() {
     })
     setSending(false)
     if (res.ok) {
+      trackLeadConversion('contact', { route: form.route, category: 'Contact Form' })
       setSubmitted(true)
     } else {
       setSendError(
