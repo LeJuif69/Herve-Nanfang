@@ -125,7 +125,7 @@ export default function ArticleDetail() {
 
       <Section tone="dark">
         <div className="grid gap-14 lg:grid-cols-[1fr_18rem] lg:items-start">
-          <Reveal>
+          <div className="min-w-0">
             {!published && (
               <div className="mb-10 border border-gold/30 bg-ink-2 p-6">
                 <p className="eyebrow text-gold">Article {article.status.toLowerCase()}</p>
@@ -228,10 +228,10 @@ export default function ArticleDetail() {
                 <span className="link-underline eyebrow text-gold">Retour au Journal</span>
               </Link>
             </div>
-          </Reveal>
+          </div>
 
           {/* Colonne latérale */}
-          <Reveal delay={120} className="lg:sticky lg:top-32">
+          <div className="lg:sticky lg:top-32">
             <div className="space-y-8">
               {/* Module de partage en barre latérale */}
               <ArticleShareBar
@@ -287,7 +287,7 @@ export default function ArticleDetail() {
                 </div>
               </div>
             </div>
-          </Reveal>
+          </div>
         </div>
       </Section>
 

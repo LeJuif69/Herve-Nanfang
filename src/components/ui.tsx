@@ -213,12 +213,12 @@ export function Reveal({
 
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting || entry.intersectionRatio > 0) {
           setShown(true)
           obs.disconnect()
         }
       },
-      { threshold: 0.08, rootMargin: '0px 0px -4% 0px' },
+      { threshold: 0, rootMargin: '0px 0px 50px 0px' },
     )
     obs.observe(node)
     return () => obs.disconnect()
