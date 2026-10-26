@@ -33,9 +33,9 @@ export default function Journal() {
   const articles = useLiveArticles()
 
   useSeo({
-    title: 'Journal | Hervé Nanfang — IA, musique & pédagogie',
+    title: 'Journal | Hervé Nanfang — Musicologie, piano-bar, pédagogie & technologie',
     description:
-      "Le Journal du Musicien Augmenté : douze piliers sur l'IA, la musique, la pédagogie, le cinéma africain et l'entrepreneuriat culturel.",
+      'Le Journal d’Hervé Nanfang : musicologie africaine, piano-bar, méthode Permis de Jouer™, ingénierie sonore, cinéma africain, entrepreneuriat et Musicien Augmenté™.',
     path: '/journal',
     jsonLd: [
       personSchema,
@@ -65,14 +65,14 @@ export default function Journal() {
       <PageHero
         breadcrumb="Journal"
         eyebrow="Le Journal du Musicien Augmenté"
-        title="Réfléchir à ce que la technologie fait à la musique — et à nous."
-        lead="Analyses, méthodes et prises de position sur la musique, l'intelligence artificielle, la pédagogie, le cinéma et la culture. Douze piliers éditoriaux fondateurs."
+        title="Pratiques, savoirs musicologiques et métiers de la musique."
+        lead="Analyses ethnomusicologiques, retours d’expérience de scène, pédagogie du clavier, ingénierie sonore et économie du métier d’artiste. La publication de référence d’Hervé Nanfang."
       >
         <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
-          <Stat value={String(articles.length).padStart(2, '0')} label="Piliers publiés" />
-          <Stat value="09" label="Catégories" />
-          <Stat value="04" label="Séries" />
-          <Stat value="1×" label="Par mois (objectif)" />
+          <Stat value={String(articles.length).padStart(2, '0')} label="Articles publiés" />
+          <Stat value="08" label="Piliers d’expertise" />
+          <Stat value="04" label="Formats d’analyse" />
+          <Stat value="1×" label="Par quinzaine" />
         </div>
       </PageHero>
 
