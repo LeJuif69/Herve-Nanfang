@@ -22,7 +22,7 @@ import generatedUploadsMedia from './generated-uploads-media.json'
 import { INITIAL_PUBLICATIONS, exportPublicationsToIcs } from './social-generator'
 import { computeSocialPostHash, DecisionLog, PublicationMetrics } from './admin-types'
 
-const LOCAL_STORE_KEY = 'hn_admin_store_v3'
+const LOCAL_STORE_KEY = 'hn_admin_store_v4'
 
 const INITIAL_SERVICES: AdminService[] = [
   {
@@ -728,13 +728,34 @@ function sanitizeLoadedState(state: AdminState): AdminState {
   }
 
   const initialArticles = getInitialArticles()
+  const initialArticlesMap = new Map(initialArticles.map((art) => [art.slug, art] as const))
   const existingArticleSlugs = new Set((state.articles || []).map((a) => a.slug))
   const articles = (state.articles || []).map((a) => {
-    if (a.coverImage && a.coverImage.startsWith('blob:')) {
+    let art = a
+    if (art.coverImage && art.coverImage.startsWith('blob:')) {
       hasChanges = true
-      return { ...a, coverImage: resolveValidMediaUrl(a.coverImage) }
+      art = { ...art, coverImage: resolveValidMediaUrl(art.coverImage) }
     }
-    return a
+    const sourceArt = initialArticlesMap.get(art.slug)
+    if (sourceArt && sourceArt.body) {
+      const bodyDiffers = !art.body || art.body.length !== sourceArt.body.length
+      if (bodyDiffers) {
+        hasChanges = true
+        art = {
+          ...art,
+          title: sourceArt.title,
+          excerpt: sourceArt.excerpt,
+          readingTime: sourceArt.readingTime,
+          audience: sourceArt.audience,
+          outline: sourceArt.outline,
+          body: sourceArt.body,
+          keywords: sourceArt.keywords,
+          seoTitle: sourceArt.seoTitle,
+          seoDescription: sourceArt.seoDescription,
+        }
+      }
+    }
+    return art
   })
 
   // Fusionner automatiquement tout nouvel article publié dans le code source

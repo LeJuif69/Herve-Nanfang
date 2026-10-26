@@ -47,19 +47,20 @@ export function useLiveArticles(): AdminArticle[] {
     const live = liveBySlug.get(source.slug)
     if (!live) return source
 
-    const usesSourceBody = !live.body?.length
+    const hasSourceBody = Boolean(source.body && source.body.length > 0)
     return {
-      ...source,
       ...live,
-      readingTime: usesSourceBody ? source.readingTime : live.readingTime,
-      audience:
-        live.audience && live.audience !== 'Musiciens et professionnels'
-          ? live.audience
-          : source.audience,
-      outline: live.outline?.length ? live.outline : source.outline,
-      body: live.body?.length ? live.body : source.body,
-      keywords: live.keywords?.length ? live.keywords : source.keywords,
-      linkedConcept: source.linkedConcept,
+      ...source,
+      coverImage: live.coverImage || source.coverImage || '/og-image.jpg',
+      coverPositionX: live.coverPositionX ?? source.coverPositionX,
+      coverPositionY: live.coverPositionY ?? source.coverPositionY,
+      status: live.status || source.status,
+      readingTime: hasSourceBody ? source.readingTime : (live.readingTime || source.readingTime),
+      audience: source.audience || live.audience,
+      outline: source.outline?.length ? source.outline : (live.outline || []),
+      body: hasSourceBody ? source.body : live.body,
+      keywords: source.keywords?.length ? source.keywords : (live.keywords || []),
+      linkedConcept: source.linkedConcept || live.linkedConcept,
     }
   })
 
