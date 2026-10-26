@@ -79,6 +79,7 @@ function pageHead(seo, site) {
   if (process.env.VITE_BING_SITE_VERIFICATION) {
     tags.push(`<meta name="msvalidate.01" content="${escapeHtml(process.env.VITE_BING_SITE_VERIFICATION.trim())}">`)
   }
+  tags.push('<meta name="yandex-verification" content="2fa82dd48c4067fa">')
   const schemas = seo.jsonLd ? (Array.isArray(seo.jsonLd) ? seo.jsonLd : [seo.jsonLd]) : []
   for (const schema of schemas) {
     const json = JSON.stringify(schema).replace(/</g, '\\u003c')
