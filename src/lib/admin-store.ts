@@ -727,6 +727,8 @@ function sanitizeLoadedState(state: AdminState): AdminState {
     }
   }
 
+  const initialArticles = getInitialArticles()
+  const existingArticleSlugs = new Set((state.articles || []).map((a) => a.slug))
   const articles = (state.articles || []).map((a) => {
     if (a.coverImage && a.coverImage.startsWith('blob:')) {
       hasChanges = true
@@ -734,6 +736,15 @@ function sanitizeLoadedState(state: AdminState): AdminState {
     }
     return a
   })
+
+  // Fusionner automatiquement tout nouvel article publié dans le code source
+  for (const initArt of initialArticles) {
+    if (!existingArticleSlugs.has(initArt.slug)) {
+      articles.push(initArt)
+      existingArticleSlugs.add(initArt.slug)
+      hasChanges = true
+    }
+  }
 
   const projects = (state.projects || []).map((p) => {
     if (p.coverImage && p.coverImage.startsWith('blob:')) {

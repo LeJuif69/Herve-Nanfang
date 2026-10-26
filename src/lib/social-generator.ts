@@ -1,4 +1,5 @@
 import {
+  AdminArticle,
   DecisionLog,
   EditorialPillar,
   PublicationStatus,
@@ -325,6 +326,365 @@ Répondez directement à ce message pour réserver un créneau ou échanger.`
   }
 
   return postDraft
+}
+
+/**
+ * Décale une date YYYY-MM-DD d'un certain nombre de jours de manière sûre
+ */
+export function addDaysToDateStr(baseDateStr: string, days: number): string {
+  try {
+    const parts = baseDateStr.split('-').map(Number)
+    if (parts.length === 3 && parts[0] && parts[1] && parts[2]) {
+      const d = new Date(parts[0], parts[1] - 1, parts[2])
+      d.setDate(d.getDate() + days)
+      const year = d.getFullYear()
+      const month = String(d.getMonth() + 1).padStart(2, '0')
+      const day = String(d.getDate()).padStart(2, '0')
+      return `${year}-${month}-${day}`
+    }
+  } catch {
+    // fallback
+  }
+  return baseDateStr
+}
+
+/**
+ * Recyclage automatique de contenu en 5 formats complémentaires (Étape 4 de la croissance) :
+ * 1. J+0 : LinkedIn — Analyse de fond, déconstruction d'idées reçues et débat d'autorité
+ * 2. J+1 : Facebook — Résumé concret, leçons de terrain et partage communautaire
+ * 3. J+2 : Instagram / Threads — Carrousel pédagogique découpé en 5 diapositives prêtes à monter
+ * 4. J+3 : TikTok / Shorts / Reels — Script vidéo vertical minuté de 60s (Hook 0-3s, Démo 3-20s, Révélation 20-45s, CTA 45-60s)
+ * 5. J+4 : WhatsApp — Note d'atelier intime & relance conversationnelle directe
+ */
+export function generateArticleRepurposingPack(
+  article: AdminArticle,
+  startDateStr?: string,
+): SocialPost[] {
+  const baseDate = startDateStr || new Date().toISOString().slice(0, 10)
+  const fullUrl = siteUrl(`/journal/${article.slug}`)
+  const outlinePoints = (article.outline && article.outline.length > 0)
+    ? article.outline.slice(0, 4)
+    : [
+        'Le diagnostic : ce qui échoue dans les approches habituelles',
+        'La méthode de terrain développée à Yaoundé',
+        'Ce qu’il faut mettre en place dès aujourd’hui',
+      ]
+
+  const firstSectionHeading = article.body?.[0]?.heading || 'Le constat de départ'
+  const firstSectionExcerpt = article.body?.[0]?.paragraphs?.[0] || article.excerpt
+  const secondSectionHeading = article.body?.[1]?.heading || 'La démarche concrète'
+  const secondSectionExcerpt = article.body?.[1]?.paragraphs?.[0] || ''
+
+  const baseTags = (article.keywords && article.keywords.length > 0)
+    ? article.keywords.slice(0, 4).map((k) => `#${k.replace(/[^a-zA-Z0-9À-ÿ]/g, '')}`)
+    : ['#Musique', '#Innovation', '#Pedagogie']
+
+  const commonDecisionLog = (formatName: string): DecisionLog => ({
+    id: `log-pack-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+    action: 'creation',
+    timestamp: new Date().toISOString(),
+    author: 'Assistant Croissance (Pack Recyclage)',
+    reason: `Génération automatique du format ${formatName} depuis l'article « ${article.title} »`,
+  })
+
+  // -------------------------------------------------------------
+  // FORMAT 1 (J+0) : LINKEDIN — Analyse de fond & Débat d'Autorité
+  // -------------------------------------------------------------
+  const dateJ0 = addDaysToDateStr(baseDate, 0)
+  const utmLinkedIn = `${fullUrl}?utm_source=linkedin&utm_medium=social&utm_campaign=journal-repurpose`
+  const linkedinHook = `Pourquoi la majorité des créateurs et institutions contournent-ils encore ce problème fondamental ?`
+  const linkedinBody = `${linkedinHook}
+
+Dans mon article approfondi sur ${article.category ? `la ${article.category.toLowerCase()}` : 'le secteur musical'} :
+« ${article.title} »
+
+${article.excerpt}
+
+Trois constats émergent de la pratique de terrain :
+${outlinePoints.map((pt, i) => `${i + 1}. ${pt}`).join('\n')}
+
+L'expertise ne réside pas dans l'empilement d'outils, mais dans la clarté du geste et la souveraineté du créateur.
+
+👉 Retrouvez l’analyse complète et la méthodologie détaillée sur le Journal :
+${utmLinkedIn}
+
+Quelle est votre expérience sur ce point précis ? Partagez vos observations en commentaire.`
+
+  const postLinkedIn: SocialPost = {
+    id: `repurpose-${article.slug}-linkedin-${Date.now()}`,
+    title: `[Campagne J+0 · LinkedIn] ${article.title}`,
+    pillar: 'autorite',
+    series: 'Le Journal du Musicien Augmenté™',
+    sourceType: 'article',
+    sourceSlug: article.slug,
+    sourceTitle: article.title,
+    scheduledDate: dateJ0,
+    scheduledTime: '08:30',
+    status: 'a_valider',
+    platforms: ['linkedin'],
+    hookVariants: [
+      linkedinHook,
+      `« ${article.title} » — Ce que la réalité du terrain impose de clarifier :`,
+      `Pourquoi tant de démarches échouent avant même d'avoir été comprises ?`,
+    ],
+    contentByPlatform: {
+      linkedin: {
+        text: linkedinBody,
+        hashtags: ['#Musicologie', '#CreationAfricaine', '#HerveNanfang', ...baseTags],
+        charCount: linkedinBody.length,
+      },
+    },
+    mediaUrl: article.coverImage || '/images/shooting-pro-officiel.webp',
+    linkUrl: utmLinkedIn,
+    ctaLabel: 'Lire l’article complet',
+    targetAudience: article.audience || 'Professionnels, chercheurs, créateurs et porteurs de projets culturels',
+    decisionHistory: [commonDecisionLog('LinkedIn Analyse')],
+    notes: 'Format 1/5 du Pack Recyclage. Ciblé réseau professionnel, discussion et autorité de marque.',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  }
+
+  // -------------------------------------------------------------
+  // FORMAT 2 (J+1) : FACEBOOK — Vulgarisation pratique & Communauté
+  // -------------------------------------------------------------
+  const dateJ1 = addDaysToDateStr(baseDate, 1)
+  const utmFacebook = `${fullUrl}?utm_source=facebook&utm_medium=social&utm_campaign=journal-repurpose`
+  const fbHook = `🎵 « ${article.title} » : ce qu'il faut en retenir sans jargon.`
+  const fbBody = `${fbHook}
+
+${article.excerpt}
+
+Si vous créez, composez ou enseignez la musique, voici 3 leçons directes issues de la pratique à Yaoundé :
+
+✅ 1. ${outlinePoints[0] || 'Clarifier l’intention avant la technologie'}
+✅ 2. ${outlinePoints[1] || 'Construire sur des bases solides et vérifiées'}
+✅ 3. ${outlinePoints[2] || 'Rester maître de sa voix et de son patrimoine'}
+
+Le guide complet (${article.readingTime || '5 min'} de lecture) est accessible en libre accès :
+🔗 ${utmFacebook}
+
+N’hésitez pas à taguer un ami musicien ou arrangeur que ce sujet concerne !`
+
+  const postFacebook: SocialPost = {
+    id: `repurpose-${article.slug}-facebook-${Date.now() + 1}`,
+    title: `[Campagne J+1 · Facebook] ${article.title}`,
+    pillar: 'autorite',
+    series: 'Le Journal du Musicien Augmenté™',
+    sourceType: 'article',
+    sourceSlug: article.slug,
+    sourceTitle: article.title,
+    scheduledDate: dateJ1,
+    scheduledTime: '12:30',
+    status: 'a_valider',
+    platforms: ['facebook'],
+    hookVariants: [
+      fbHook,
+      `Vous êtes créateur ou passionné ? Ce sujet vous concerne directement :`,
+      `Ce que personne ne vous dit clairement sur « ${article.title} »`,
+    ],
+    contentByPlatform: {
+      facebook: {
+        text: fbBody,
+        hashtags: ['#HerveNanfang', '#MusiqueCameroun', '#Culture', ...baseTags.slice(0, 2)],
+        charCount: fbBody.length,
+      },
+    },
+    mediaUrl: article.coverImage || '/images/shooting-pro-officiel.webp',
+    linkUrl: utmFacebook,
+    ctaLabel: 'Lire l’article',
+    targetAudience: 'Mélomanes, élèves, musiciens locaux et diaspora',
+    decisionHistory: [commonDecisionLog('Facebook Synthèse')],
+    notes: 'Format 2/5 du Pack Recyclage. Style pédagogique direct, favorisant le partage.',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  }
+
+  // -------------------------------------------------------------
+  // FORMAT 3 (J+2) : INSTAGRAM & THREADS — Carrousel Pédagogique 5 Slides
+  // -------------------------------------------------------------
+  const dateJ2 = addDaysToDateStr(baseDate, 2)
+  const utmInstagram = `${fullUrl}?utm_source=instagram&utm_medium=social&utm_campaign=journal-repurpose`
+  const carouselBody = `[CARROUSEL PÉDAGOGIQUE 5 SLIDES — À EXPORTER VIA CANVA / FIGMA]
+
+👉 SLIDE 1 (Couverture / Titre Choc) :
+« ${article.title} »
+Sous-titre : Ce que 20 ans d'expérience musicale et technique m'ont appris.
+Visuel : Hervé Nanfang en studio / portrait avec titre contrasté.
+
+👉 SLIDE 2 (Le problème souvent ignoré) :
+« ${firstSectionHeading} »
+${firstSectionExcerpt ? firstSectionExcerpt.slice(0, 220) + '…' : article.excerpt.slice(0, 220) + '…'}
+
+👉 SLIDE 3 (La réalité du terrain) :
+« ${secondSectionHeading} »
+${secondSectionExcerpt ? secondSectionExcerpt.slice(0, 220) + '…' : 'Pourquoi les recettes préfabriquées ne résistent pas à la réalité de nos répertoires.'}
+
+👉 SLIDE 4 (Les 3 règles d’or) :
+1. ${outlinePoints[0] || 'L’intention artistique précède l’outil'}
+2. ${outlinePoints[1] || 'La rigueur d’écoute avant la quantité'}
+3. ${outlinePoints[2] || 'La préservation de la souveraineté créative'}
+
+👉 SLIDE 5 (Appel à l'action & Réflexion) :
+« Enregistrez ce post pour y revenir plus tard. »
+Lien vers l'analyse intégrale dans la bio :
+${utmInstagram}
+
+---
+Légende Instagram :
+Savez-vous vraiment ce qui se joue derrière « ${article.title} » ?
+Balayez vers la gauche pour découvrir les 5 clés décortiquées ⏩
+Commentez « GUIDE » ou cliquez sur le lien en bio pour lire l'article complet.`
+
+  const postInstagram: SocialPost = {
+    id: `repurpose-${article.slug}-carousel-${Date.now() + 2}`,
+    title: `[Campagne J+2 · Carrousel 5 Slides] ${article.title}`,
+    pillar: 'autorite',
+    series: 'Le Journal du Musicien Augmenté™',
+    sourceType: 'article',
+    sourceSlug: article.slug,
+    sourceTitle: article.title,
+    scheduledDate: dateJ2,
+    scheduledTime: '17:45',
+    status: 'a_valider',
+    platforms: ['instagram'],
+    hookVariants: [
+      `Balayez pour comprendre ce qui change tout dans : « ${article.title} »`,
+      `5 diapositives pour maîtriser ce que la plupart ignorent :`,
+      `Ne faites plus cette erreur avant d’avoir lu ces 5 slides :`,
+    ],
+    contentByPlatform: {
+      instagram: {
+        text: carouselBody,
+        hashtags: ['#CarrouselPédagogique', '#HerveNanfang', '#MusiqueYaounde', ...baseTags],
+        charCount: carouselBody.length,
+      },
+    },
+    mediaUrl: article.coverImage || '/images/shooting-pro-officiel.webp',
+    linkUrl: utmInstagram,
+    ctaLabel: 'Enregistrer le carrousel',
+    targetAudience: 'Créateurs visuels, jeunes artistes, communauté Instagram',
+    decisionHistory: [commonDecisionLog('Carrousel Instagram 5 Slides')],
+    notes: 'Format 3/5 du Pack Recyclage. Conçu pour maximiser les enregistrements (saves) et le temps passé par diapositive.',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  }
+
+  // -------------------------------------------------------------
+  // FORMAT 4 (J+3) : TIKTOK / SHORTS / REELS — Script Vidéo 60 Secondes
+  // -------------------------------------------------------------
+  const dateJ3 = addDaysToDateStr(baseDate, 3)
+  const utmShorts = `${fullUrl}?utm_source=youtube&utm_medium=social&utm_campaign=journal-repurpose`
+  const videoScript = `[SCRIPT VIDÉO VERTICALE 60 SECONDES — FACE CAMÉRA / PIANO / ÉCRAN MAO]
+
+⏱️ 00:00 – 00:03 | L'ACCROCHE (ARRÊT DE SCROLL) :
+(Face caméra, regard direct ou main posée sur un clavier éteint)
+« Si vous pensez que ${article.title.toLowerCase().slice(0, 40)}… est juste une question technique, vous passez à côté de l'essentiel. Écoutez bien ça. »
+
+⏱️ 00:03 – 00:20 | LA DÉMONSTRATION / LE CONTRASTE :
+(Plan serré sur le clavier ou l'ordinateur)
+« Regardez la différence entre ce que tout le monde fait machinalement... (jouer ou montrer une courte manipulation)
+Et ce qui se passe quand on applique la méthode juste : (jouer ou montrer le résultat sonore propre). »
+
+⏱️ 00:20 – 00:45 | LA RÉVÉLATION CONTRE-INTUITIVE :
+« Pourquoi cette différence ? Parce que :
+1. ${outlinePoints[0] || 'L’intention doit être tranchée dès la première seconde.'}
+2. ${outlinePoints[1] || 'La technique est au service du récit, jamais l’inverse.'}
+C’est ce que j’ai résumé dans mon guide complet de cette semaine. »
+
+⏱️ 00:45 – 01:00 | L'APPEL À L'ACTION (CTA) :
+« Ne perdez plus des mois sur de fausses pistes. Le lien complet est sur hervenanfang.vercel.app dans le Journal.
+Abonnez-vous pour la prochaine démonstration au piano ! »`
+
+  const postVideo: SocialPost = {
+    id: `repurpose-${article.slug}-video-${Date.now() + 3}`,
+    title: `[Campagne J+3 · Vidéo 60s] ${article.title}`,
+    pillar: 'decouverte',
+    series: 'Démonstrations MAO & Sound Design',
+    sourceType: 'article',
+    sourceSlug: article.slug,
+    sourceTitle: article.title,
+    scheduledDate: dateJ3,
+    scheduledTime: '18:15',
+    status: 'a_valider',
+    platforms: ['tiktok', 'youtube', 'instagram'],
+    hookVariants: [
+      `Si vous pensez que c'est juste un détail technique, écoutez bien ça.`,
+      `Regardez ce qui arrive quand on ignore cette règle fondamentale :`,
+      `L'erreur que 9 musiciens sur 10 commettent encore sans le savoir :`,
+    ],
+    contentByPlatform: {
+      tiktok: { text: videoScript, hashtags: ['#MusicTok', '#PianoCameroun', '#HerveNanfang'], charCount: videoScript.length },
+      youtube: { text: videoScript, hashtags: ['#Shorts', '#Pedagogie', '#HerveNanfang'], charCount: videoScript.length },
+      instagram: { text: videoScript, hashtags: ['#Reels', '#PianoLife', '#HerveNanfang'], charCount: videoScript.length },
+    },
+    mediaUrl: article.coverImage || '/images/shooting-pro-officiel.webp',
+    linkUrl: utmShorts,
+    ctaLabel: 'Voir la démonstration',
+    targetAudience: 'Utilisateurs de formats courts, apprentis musiciens, curieux',
+    decisionHistory: [commonDecisionLog('Vidéo Verticale 60s')],
+    notes: 'Format 4/5 du Pack Recyclage. Script minuté 60s pour capturer de la découverte organique (pilier 70%).',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  }
+
+  // -------------------------------------------------------------
+  // FORMAT 5 (J+4) : WHATSAPP — Statut & Note d'Atelier (Relance Intime)
+  // -------------------------------------------------------------
+  const dateJ4 = addDaysToDateStr(baseDate, 4)
+  const utmWhatsApp = `${fullUrl}?utm_source=whatsapp&utm_medium=social&utm_campaign=journal-repurpose`
+  const whatsappBody = `*Hervé Nanfang | Note d'atelier & retour d'expérience*
+
+En publiant cette semaine sur :
+« *${article.title}* »
+plusieurs confrères et élèves m'ont posé cette question :
+_« Par quoi commencer concrètement quand on n'a ni grand studio ni budget publicitaire ? »_
+
+Ma réponse reste la même depuis 20 ans :
+1️⃣ Travailler son intention avant de chercher la visibilité.
+2️⃣ Construire un contenu solide qui fait référence.
+3️⃣ Rester accessible et rigoureux dans ses échanges.
+
+L'analyse intégrale est en ligne sur mon Journal :
+👉 ${utmWhatsApp}
+
+Et vous, comment abordez-vous cette question dans vos créations ?
+Répondez directement à ce statut pour échanger.`
+
+  const postWhatsApp: SocialPost = {
+    id: `repurpose-${article.slug}-whatsapp-${Date.now() + 4}`,
+    title: `[Campagne J+4 · WhatsApp Échange] ${article.title}`,
+    pillar: 'autorite',
+    series: 'Le Journal du Musicien Augmenté™',
+    sourceType: 'article',
+    sourceSlug: article.slug,
+    sourceTitle: article.title,
+    scheduledDate: dateJ4,
+    scheduledTime: '10:00',
+    status: 'a_valider',
+    platforms: ['whatsapp'],
+    hookVariants: [
+      `Une note d'atelier personnelle sur « ${article.title} »`,
+      `Ce que plusieurs retours m'ont poussé à clarifier :`,
+      `La question que tout le monde pose en privé :`,
+    ],
+    contentByPlatform: {
+      whatsapp: {
+        text: whatsappBody,
+        hashtags: [],
+        charCount: whatsappBody.length,
+      },
+    },
+    mediaUrl: article.coverImage || '/images/shooting-pro-officiel.webp',
+    linkUrl: utmWhatsApp,
+    ctaLabel: 'Échanger sur WhatsApp',
+    targetAudience: 'Contacts directs, élèves RMA, clients réguliers, partenaires de Yaoundé et Douala',
+    decisionHistory: [commonDecisionLog('WhatsApp Statut & Broadcast')],
+    notes: 'Format 5/5 du Pack Recyclage. Relance conversationnelle intime à J+4 pour déclencher des messages entrants.',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  }
+
+  return [postLinkedIn, postFacebook, postInstagram, postVideo, postWhatsApp]
 }
 
 const SEED_DATE = '2026-10-23T09:00:00Z'
