@@ -2108,12 +2108,11 @@ export const ARTICLES: Article[] = [
     status: 'Publié',
     audience: "Artistes indépendants, créateurs de contenu, labels et directeurs artistiques",
     outline: [
-      "1. Le piège de la dépendance algorithmique : pourquoi Spotify ne sauvera pas votre carrière",
-      "2. Devenir son propre média : la puissance d’une plateforme propriétaire",
-      "3. « Créer · Transmettre · Augmenter · Développer » : la boussole de positionnement",
-      "4. Construire un portefeuille de preuves de confiance inattaquables",
-      "5. Ce que je n’ai pas encore résolu",
-      "6. Sources et références"
+      "1. La scène immersive : « J’ai fait 50 000 écoutes sur Spotify ! »",
+      "2. Le diagnostic : le mirage des métriques de vanité",
+      "3. L’explication stratégique : la loi des 1 000 vrais fans",
+      "4. La décision professionnelle : bâtir un écosystème de marque souverain",
+      "5. La transmission : la liberté de créer selon ses propres règles"
 ],
     linkedConcept: {
       label: "Manifeste Artistique",
@@ -2121,44 +2120,45 @@ export const ARTICLES: Article[] = [
     },
     body: [
       {
-            "heading": "1. Le piège de la dépendance algorithmique : pourquoi Spotify ne sauvera pas votre carrière",
+            "heading": "1. La scène immersive : « J’ai fait 50 000 écoutes sur Spotify ! »",
             "paragraphs": [
-                  "Le récit promotionnel distillé par les géants du streaming musical depuis une décennie promettait l'eldorado : une démocratisation totale où n'importe quel créateur de Yaoundé ou de Bamako pouvait conquérir la planète d'un simple clic sur DistroKid.",
-                  "La réalité économique brute de 2026 est diamétralement opposée :\n- Avec un taux de rémunération moyen oscillant entre 0,003 $ et 0,004 $ par stream, un artiste indépendant doit générer plus de 300 000 écoutes chaque mois pour espérer toucher l'équivalent d'un salaire modeste.\n- Pire encore : les algorithmes de recommandation favorisent des formats ultra-standardisés — des introductions de moins de 15 secondes sans solo d'instrument, des refrains immédiats et une compression dynamique agressive calibrée pour les petits haut-parleurs de smartphone.",
-                  "En acceptant de formater sa création pour plaire à une intelligence artificielle de curation de playlist, le musicien s'auto-censure et détruit ce qui constituait son trésor le plus précieux : **sa singularité stylistique**.",
-                  "Bâtir sa notoriété sur les réseaux sociaux d'un tiers sans posséder son propre canal direct est l'équivalent de construire un château de luxe sur un terrain dont vous ne possédez pas le titre de propriété : le propriétaire de l'algorithme peut modifier les règles de distribution du jour au lendemain et vous rendre invisible."
+                  "Un après-midi au studio, un jeune chanteur et claviériste talentueux entre dans mon bureau avec un large sourire. Il me tend son smartphone pour me montrer ses tableaux de bord : un de ses singles a franchi les 50 000 streams sur Spotify, et une courte vidéo a dépassé les 100 000 vues sur TikTok. Pour lui, le doute n’est plus permis : sa carrière est lancée, le succès est imminent.",
+                  "Je le félicite sincèrement pour cette visibilité, puis je lui pose trois questions simples : Combien de ces auditeurs connaissent ton nom complet et l’histoire de ta musique ? Combien viendront payer une place de concert si tu annonces une date en salle la semaine prochaine à Yaoundé ? Et combien as-tu réellement perçu sur ton compte à la fin du mois ?",
+                  "Le silence qui suit est révélateur. Le décompte financier affiche à peine une poignée de dollars, et il est incapable de contacter directement une seule de ces personnes pour les inviter à un événement."
             ]
       },
       {
-            "heading": "2. Devenir son propre média : la puissance d’une plateforme propriétaire",
+            "heading": "2. Le diagnostic : le mirage des métriques de vanité",
             "paragraphs": [
-                  "Face à cette précarité algorithmique, la seule stratégie d'émancipation durable consiste à transformer sa démarche artistique en un **écosystème de marque propriétaire**.",
-                  "C'est le fondement de la stratégie que j'ai déployée à travers cette plateforme numérique [Hervé Nanfang](/) :\n- **Un site web indépendant et souverain** : Votre site est votre ambassade permanente dans le monde. C'est le seul endroit sur internet où aucun algorithme ne filtre votre message, où aucune publicité parasite ne distrait votre visiteur et où vous maîtrisez l'intégralité du récit esthétique.\n- **Le Journal de réflexion comme preuve d'autorité** : En publiant des articles de fond sur la musicologie, l'acoustique, la pédagogie et l'éthique technologique, l'artiste démontre son expertise bien au-delà d'un simple extrait de 30 secondes sur TikTok. Vous ne quémandez pas l'attention : vous attirez des partenaires institutionnels, des programmateurs exigeants et des commanditaires de haut niveau.\n- **La relation directe par email et messagerie (Zero-Party Data)** : Posséder les coordonnées de contact directes de 1 000 mélomanes engagés et de 200 décideurs culturels a infiniment plus de valeur commerciale que d'afficher 100 000 abonnés passifs sur Instagram dont 95 % ne verront jamais vos publications."
+                  "Le diagnostic de l’économie numérique contemporaine met à nu une fracture douloureuse pour les créateurs :",
+                  "L’illusion des chiffres : Les plateformes de streaming et les réseaux sociaux ont habitué les artistes à courir après des métriques de vanité (vues, likes, streams passifs) qui enrichissent les géants technologiques sans nourrir le musicien.",
+                  "La confiscation de l’audience : Sur les réseaux sociaux et les plateformes de streaming, vous ne possédez rien. L’auditeur n’est pas votre public : c’est le client de la plateforme. Si l’algorithme décide de modifier ses paramètres de recommandation, votre visibilité peut s’effondrer brutalement du jour au lendemain.",
+                  "Le formatage créatif : Pour complaire aux algorithmes de rétention, les créateurs raccourcissent les introductions, éliminent les solos instrumentaux et uniformisent leurs mixages. En voulant plaire à la machine, ils détruisent ce qui faisait leur singularité."
             ]
       },
       {
-            "heading": "3. « Créer · Transmettre · Augmenter · Développer » : la boussole de positionnement",
+            "heading": "3. L’explication stratégique : la loi des 1 000 vrais fans",
             "paragraphs": [
-                  "Une marque artistique forte se reconnaît à la clarté de sa promesse. Lorsque le public pense à Hervé Nanfang, il n'associe pas un simple exécutant de clavier, mais un ensemble cohérent de 4 engagements incarnés :\n- **Créer** : Des œuvres originales, des musiques de film, des arrangements métissés qui honorent le patrimoine africain en dialogue avec le monde.\n- **Transmettre** : Une école de transmission vivante ([Racines Musicales Academy®](/rma)) et une méthode d'émancipation harmonique ([Permis de Jouer™](/pedagogie#permis-de-jouer)).\n- **Augmenter** : Une appropriation lucide des technologies de pointe (MAO, spatialisation, expérimentation rigoureuse de l'IA) sans aliénation de la conscience humaine.\n- **Développer** : Une structuration entrepreneuriale rigoureuse, des partenariats éthiques et un développement culturel durable en Afrique.",
-                  "Cette polyphonie de compétences ne dilue pas l'image de marque : elle la renforce. Elle crée un rempart infranchissable contre la banalisation industrielle."
+                  "Comme l’a théorisé Kevin Kelly dans son essai fondateur 1,000 True Fans : pour vivre dignement de son art, un créateur indépendant n’a pas besoin de millions d’écoutes anonymes. Il a besoin d’une communauté engagée de passionnés qui apprécient sa vision, achètent ses billets de concert, suivent ses formations et soutiennent directement son travail.",
+                  "Bâtir sa notoriété sur les réseaux sociaux d’un tiers sans posséder son propre canal direct est l’équivalent de bâtir une villa sur un terrain dont on ne possède pas le titre foncier.",
+                  "La valeur de la relation directe avec le public : Posséder un canal de contact direct (adresses de diffusion, correspondances professionnelles) avec des programmateurs de festivals, des hôteliers de prestige et des mélomanes fidèles offre une puissance économique et une indépendance infiniment supérieures à une masse d’abonnés passifs sur les réseaux."
             ]
       },
       {
-            "heading": "4. Construire un portefeuille de preuves de confiance inattaquables",
+            "heading": "4. La décision professionnelle : bâtir un écosystème de marque souverain",
             "paragraphs": [
-                  "Dans un univers numérique saturé de promesses creuses et de faux profils dopés aux followers achetés, ce que recherchent les directeurs de festivals, les hôteliers de luxe et les institutions culturelles, c'est la **preuve de confiance** :\n- **Les archives documentées** : Proposer sur son site des captations audio réelles, sans retouches artificielles de pitch, captées lors de résidences et de concerts publics.\n- **Le dossier de presse et le kit média institutionnel** : Un dossier téléchargeable en haute résolution avec biographie officielle vérifiée, photos de presse professionnelles et spécifications techniques de régie ([Kit Média](/press-kit)).\n- **La transparence des engagements et des mentions légales** : Respect des droits d'auteur, clarté des mentions juridiques et réputation d'intégrité dans le respect des horaires et des contrats."
+                  "Pour s’affranchir de la précarité algorithmique, nous appliquons une stratégie en 4 piliers au sein d’ALAIZ Creative Systems et d’[HN Marque](/projets) :",
+                  "1. Un site web propriétaire comme ambassade permanente : Votre plateforme officielle est le seul lieu où aucun algorithme ne filtre votre propos, où aucune publicité concurrente ne distrait l’auditeur et où vous maîtrisez l’intégralité du récit esthétique.",
+                  "2. Le Journal d’autorité intellectuelle : En publiant des articles de fond sur la musicologie, l’acoustique, la pédagogie et l’éthique technologique, l’artiste démontre son expertise bien au-delà d’un extrait éphémère. Vous attirez des partenaires institutionnels, des programmateurs exigeants et des commanditaires de haut niveau.",
+                  "3. La boussole des 4 verbes d’action : Figer un positionnement clair que le public peut identifier instantanément : Créer · Transmettre · Augmenter · Développer.",
+                  "4. La diversification des flux de revenus : Ne pas dépendre d’une source unique. Articuler son activité entre le spectacle vivant ([Le Pianobariste](/services#pianobariste)), la formation musicale ([Racines Musicales Academy®](/rma)), la production de studio et le conseil."
             ]
       },
       {
-            "heading": "5. Ce que je n’ai pas encore résolu",
+            "heading": "5. La transmission : la liberté de créer selon ses propres règles",
             "paragraphs": [
-                  "Les arbitrages quotidiens dans la conduite d'une marque artistique singulière :\n- Quel temps allouer à la rédaction et à la stratégie de publication numérique sans empiéter sur les heures indispensables de travail d'instrument et de composition pure au piano ?\n- Comment concilier l'élégance sobre d'un positionnement haut de gamme avec la nécessité de toucher un public jeune et populaire sur les canaux de messagerie instantanée ?\n- Comment maintenir l'indépendance éditoriale totale du Journal face à des sollicitations commerciales croissantes de marques de logiciels et d'instruments ?"
-            ]
-      },
-      {
-            "heading": "6. Sources et références",
-            "paragraphs": [
-                  "- **Godin, Seth** (2018). *This Is Marketing: You Can't Be Seen Until You Learn to See*. Portfolio / Penguin. Principes du marketing de permission et de la tribu culturelle.\n- **Kelly, Kevin** (2008). *1,000 True Fans*. Essay published on The Technium. Théorie fondatrice de l'indépendance créative à l'ère numérique.\n- **OMPI / WIPO** (2023). *Marques et propriété intellectuelle dans les industries créatives*. Genève: Organisation Mondiale de la Propriété Intellectuelle.\n- **Nanfang, Hervé** (2026). *Plateforme officielle et charte de marque*. [hervenanfang.vercel.app](/), Yaoundé."
+                  "Une marque artistique forte n’est pas un artifice publicitaire : c’est un bouclier d’indépendance.",
+                  "L’artiste souverain ne quémande pas l’attention d’un algorithme : il construit patiemment un actif culturel durable, fondé sur la confiance, la rigueur et l’excellence. Pour découvrir notre manifeste artistique et nos projets d’innovation, consultez notre [page À propos](/a-propos)."
             ]
       }
 ],
@@ -2184,12 +2184,11 @@ export const ARTICLES: Article[] = [
     status: 'Publié',
     audience: "Réalisateurs, producteurs de cinéma, compositeurs et monteurs son",
     outline: [
-      "1. La musique comme subconscient du film : dire ce que l’image ne peut montrer",
-      "2. Sortir du piège du folklorisme : traiter l’organologie africaine comme un instrument noble",
-      "3. La dramaturgie du silence : savoir quand s’effacer devant le dialogue et le bruitage",
-      "4. La méthode de travail avec le réalisateur : du script au mixage final (re-recording)",
-      "5. Ce que je n’ai pas encore résolu",
-      "6. Sources et références"
+      "1. La scène immersive : « Mets-nous une musique africaine qui bouge ! »",
+      "2. Le diagnostic : le piège du pléonasme et de la folklorisation",
+      "3. L’explication scientifique : la musique comme subconscient du récit",
+      "4. La décision professionnelle : le protocole de composition à l’image",
+      "5. La transmission : l’humilité du compositeur"
 ],
     linkedConcept: {
       label: "Composition & B.O.",
@@ -2197,45 +2196,46 @@ export const ARTICLES: Article[] = [
     },
     body: [
       {
-            "heading": "1. La musique comme subconscient du film : dire ce que l’image ne peut montrer",
+            "heading": "1. La scène immersive : « Mets-nous une musique africaine qui bouge ! »",
             "paragraphs": [
-                  "Le grand compositeur français Maurice Jaubert formulait dès les années 1930 cette vérité immuable : « Le rôle de la musique de film n'est pas de faire un double emploi avec l'image, mais d'exprimer ce que les yeux ne peuvent pas voir. »",
-                  "Si un personnage pleure à l'écran, le compositeur débutant a le réflexe immédiat de plaquer des accords mineurs de violons larmoyants pour forcer l'émotion du spectateur. Ce procédé — que les professionnels d'Hollywood appellent avec dédain le *Mickey-Mousing* — est une agression esthétique : il traite le spectateur comme un enfant à qui l'on doit dicter ses larmes.",
-                  "Au cinéma, la musique doit jouer le rôle de contrepoint psychologique. Si une scène montre un repas de famille en apparence festif, mais qu'un secret destructeur est sur le point d'éclater, ce n'est pas la joie des rires que la musique doit accompagner : c'est la menace invisible qui rôde sous la nappe. Une note de basse obstinée et dissonante, tenue au piano ou sur un tambour sourd, suffit à glacer l'atmosphère bien avant que le dialogue ne révèle le drame."
+                  "Note éditoriale : Cette analyse s’appuie sur mes travaux de recherche en Master II à l’Université de Yaoundé I (consacrés à l’analyse de bandes originales et à l’intermédialité), ainsi que sur mes cours de composition pour l’écran dispensés à l’Institut des Beaux-Arts de Nkongsamba et à l’[ESAS de Lomé](https://esas-togo.com).",
+                  "Dans une salle de montage exiguë à Yaoundé, la monteuse et le réalisateur me font visionner le premier bout à bout d’un long-métrage indépendant. La scène est dramatique : la nuit tombe sur une cour familiale, deux frères s’observent en silence après une révélation déchirante, la tension est palpable.",
+                  "Pourtant, sur la piste témoin du logiciel de montage, résonne une nappe frénétique de djembés rapides et de percussions agitées, téléchargée à la hâte sur une banque de sons en ligne. Le réalisateur se tourne vers moi, enthousiaste : « Hervé, ici il nous faut quelque chose de puissant, une musique africaine traditionnelle qui bouge pour dynamiser la séquence ! »",
+                  "Cette demande illustre le plus grand malentendu de la musique à l’image en Afrique : croire que le rôle d’une bande originale est de décorer l’écran ou de meubler le silence à coup d’exotisme rythmique."
             ]
       },
       {
-            "heading": "2. Sortir du piège du folklorisme : traiter l’organologie africaine comme un instrument noble",
+            "heading": "2. Le diagnostic : le piège du pléonasme et de la folklorisation",
             "paragraphs": [
-                  "Le cinéma africain et les productions internationales tournées sur le continent ont trop souvent souffert d'une approche réductrice de la bande originale : dès qu'un plan montre un paysage de savane ou une rue de village, on superpose mécaniquement un djembé rapide ou une flûte pastorale pentatonique.",
-                  "Cette paresse musicale relève du cliché néocolonial. Les instruments de notre patrimoine — qu'il s'agisse de la harpe-cithare **mvet** des Fang-Beti, du **balafon mendzang**, du **ngoni** sahélien ou de la **sanza** pygmée — ne sont pas des curiosités exotiques pour bandes-annonces : ce sont des chefs-d'œuvre de lutherie chargés d'une dramaturgie symbolique immense.",
-                  "Dans mes compositions pour l'image :\n- **Intégrer le timbre brut sans fard** : Enregistrer le grincement de la corde de boyau du mvet, le cliquetis des résonateurs en calebasse du balafon avec des micros statiques à petite membrane placés au plus près de la matière.\n- **Dialoguer avec l’orchestre de cordes contemporain** : Faire dialoguer une phrase modale de balafon avec un quatuor à cordes occidental frotté *sul ponticello* (près du chevalet) crée une tension dramatique saisissante, d'une modernité absolue, qui arrache l'instrument à la boîte du musée pour le projeter dans le cinéma mondial."
+                  "Le diagnostic de cette fausse piste met en lumière deux écueils majeurs :",
+                  "Le pléonasme audio-visuel (Mickey-Mousing culturel) : Vouloir forcer l’action par un rythme galopant alors que le jeu des comédiens repose sur la retenue et le doute intérieur détruit la tension dramatique. Le spectateur est agressé par une contradiction sensorielle.",
+                  "La réduction folklorique des timbres : Les instruments du patrimoine africain (mvet, balafon mendzang, sanza, flûte peule) sont trop souvent cantonnés à un rôle d’illustration pittoresque. On les utilise comme des vignettes postales sonores au lieu de les considérer comme de véritables instruments d’orchestre capables de porter une dramaturgie psychologique moderne."
             ]
       },
       {
-            "heading": "3. La dramaturgie du silence : savoir quand s’effacer devant le dialogue et le bruitage",
+            "heading": "3. L’explication scientifique : la musique comme subconscient du récit",
             "paragraphs": [
-                  "Le test ultime de maturité d'un compositeur pour l'image n'est pas ce qu'il écrit, mais ce qu'il a le courage de ne pas composer. Dans un film de 90 minutes, une musique continue du début à la fin fatigue le nerf auditif du spectateur et détruit l'impact émotionnel des moments cruciaux.",
-                  "Le réalisateur et le monteur sonore travaillent avec trois éléments sonores :\n1. Les paroles et dialogues des acteurs.\n2. Le sound design et les bruits d'ambiance (le bruissement du vent dans les manguiers, le moteur d'un taxi, le silence lourd d'une chambre d'hôpital).\n3. La musique originale.",
-                  "Si le sound design est d'une grande puissance évocatrice, la musique doit se taire. Elle ne doit intervenir que lorsque le dialogue et le bruitage ne suffisent plus à traduire le vertige intérieur du personnage. L'arrivée de la musique après dix minutes de silence pur provoque un choc esthétique décuplé."
+                  "Comme l’a théorisé le musicologue Michel Chion dans L’Audio-vision : la musique au cinéma n’a pas pour fonction de doubler ce que l’œil perçoit déjà. Elle doit révéler la valeur ajoutée : ce que l’image ne peut pas montrer.",
+                  "Le contrepoint psychologique : Si l’image montre le calme avant la tempête, la musique doit instiller l’inquiétude invisible.",
+                  "La noblesse acoustique des timbres endogènes : Le son d’un mvet (harpe-cithare des Fang-Beti) n’est pas qu’une corde pincée : c’est une vibration riche en harmoniques impaires, avec le grincement organique de la calebasse résonnatrice. Utilisé en notes isolées, ralenties et spatialisées avec une réverbération sombre, le mvet possède une puissance d’angoisse dramatique bien plus terrifiante que n’importe quelle section de violons hollywoodiens."
             ]
       },
       {
-            "heading": "4. La méthode de travail avec le réalisateur : du script au mixage final (re-recording)",
+            "heading": "4. La décision professionnelle : le protocole de composition à l’image",
             "paragraphs": [
-                  "Collaborer avec un metteur en scène exige une grande humilité et une discipline de communication rigoureuse :\n- **Ne jamais parler en langage solfégique abstrait** : Dire à un réalisateur « j'ai mis un accord de Fa dièse mineur 7 quinte bémol avec un retard de quarte » ne sert à rien. Il faut lui parler en termes de dramaturgie narrative : « ici, la musique apporte un sentiment de doute, une hésitation morale, une nostalgie amère ».\n- **Le temps de la maquette (mockup orchestrale)** : Grâce aux outils modernes de la [MAO et du studio numérique](/services#studio), composer des maquettes précises synchronisées à l'image au format vidéo 24 images/seconde dans Cubase pour valider les intentions dramatiques avant l'enregistrement des musiciens réels.\n- **Le respect des fréquences lors du mixage cinéma** : La musique ne doit jamais entrer en collision fréquentielle avec la piste des voix des acteurs (les dialogues doivent rester intelligibles à 100 % sous peine de rejet par le public et les diffuseurs de télévision)."
+                  "Pour concevoir une partition qui serve l’œuvre sans la dénaturer, nous appliquons un protocole rigoureux en 4 étapes au sein d’[Alaiz Music](/services#studio) :",
+                  "1. Écouter d’abord le film sans musique : Faire une session complète en ne laissant ouverts que les dialogues et le sound design brut (le vent dans les toitures en tôle, les bruits de pas sur la terre rouge, les moteurs lointains). Si le silence et les bruits réels suffisent à faire monter l’émotion, la musique doit s’effacer.",
+                  "2. Définir la fenêtre d’entrée chirurgicale : La musique ne doit pas couler d’un bout à l’autre de la scène. Elle doit entrer à la seconde précise où le dialogue ne suffit plus, sur un regard ou une respiration, et disparaître avant la résolution dramatique pour laisser le choc frapper à nu.",
+                  "3. Le mariage hybride des matières sonores : Faire dialoguer un balafon traditionnel — joué avec des mailloches douces et dépouillé de son échelle pentatonique convenue — avec des textures synthétiques modulaires ou un violoncelle acoustique frotté près du chevalet (sul ponticello). On arrache ainsi l’instrument traditionnel au cliché folklorique pour le hisser au rang de matière cinématographique universelle.",
+                  "4. Le respect fréquentiel du mixage cinéma (re-recording) : En studio de mixage, appliquer une égalisation chirurgicale soustractive sur la musique entre 800 Hz et 2,5 kHz. C’est la zone sacrée de l’intelligibilité des voix des acteurs. Une superbe mélodie qui masque une syllabe de dialogue est une faute professionnelle."
             ]
       },
       {
-            "heading": "5. Ce que je n’ai pas encore résolu",
+            "heading": "5. La transmission : l’humilité du compositeur",
             "paragraphs": [
-                  "Les défis actuels de la création musicale pour l'écran en Afrique francophone :\n- Comment convaincre les producteurs indépendants d'allouer un budget décent à la création musicale originale plutôt que de piller des musiques libres de droits sur internet à la dernière minute du montage ?\n- Quel cadre contractuel équitable mettre en place pour préserver les droits d'auteur des compositeurs africains face aux contrats de commande forfaitaires (*buy-out*) imposés par certaines plateformes de vidéo à la demande internationales ?\n- Comment développer des orchestres de cordes locaux de niveau symphonique à Yaoundé pour enregistrer nos bandes originales sans dépendre d'enregistrements externalisés en Europe de l'Est ?"
-            ]
-      },
-      {
-            "heading": "6. Sources et références",
-            "paragraphs": [
-                  "- **Chion, Michel** (1990). *L'Audio-vision : son et image au cinéma*. Paris: Éditions Nathan. Théorie fondatrice de la valeur ajoutée et de l'écoute cinématographique.\n- **Morricone, Ennio & De Rosa, Alessandro** (2018). *Ma musique, ma vie*. Paris: Éditions Séguier. Entretiens sur la dramaturgie, le silence et le timbre dans la musique de film.\n- **Diawara, Manthia** (1992). *African Cinema: Politics and Culture*. Indiana University Press. Histoire et esthétique de l'image cinématographique sur le continent africain.\n- **Nanfang, Hervé** (2024). *Dramaturgie sonore et timbres patrimoniaux dans la narration visuelle contemporaine*. Essai d'atelier [HN Marque](/services#studio), Yaoundé."
+                  "Composer pour le cinéma africain exige une discipline d’effacement.",
+                  "Le compositeur n’écrit pas pour son propre album ni pour faire étalage de sa virtuosité : il se met au service d’une vision narrative.",
+                  "Le plus grand compliment qu’un réalisateur puisse faire à une partition originale n’est pas : « Ta musique s’entend partout », mais : « Grâce à ta musique, on comprend enfin ce que les personnages ressentaient au fond d’eux-mêmes ». Pour découvrir nos créations pour l’écran et nos extraits de bandes originales, consultez la [section Musique & B.O.](/musique)."
             ]
       }
 ],
