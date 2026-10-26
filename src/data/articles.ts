@@ -55,7 +55,7 @@ export const ARTICLES: Article[] = [
       'Après la MAO, l’IA : comment les musiciens peuvent évoluer sans perdre leur identité',
     excerpt:
       'La MAO n’a pas supprimé le musicien. Elle a transformé ce qu’il devait savoir faire. L’IA ouvre une nouvelle étape : celle où le musicien doit apprendre à collaborer avec la machine sans lui abandonner son jugement, sa culture et sa voix.',
-    readingTime: '7 min',
+    readingTime: '6 min',
     status: 'Publié',
     audience:
       'Musiciens professionnels et semi-professionnels, enseignants, étudiants avancés — toute personne qui sent que son métier change.',
@@ -65,8 +65,10 @@ export const ARTICLES: Article[] = [
       'L’IA et le déplacement de la décision',
       'L’identité artistique',
       'La délégation maîtrisée',
-      'La méthode en cinq étapes',
-      'Le concept de Musicien Augmenté™',
+      'Une méthode en cinq étapes',
+      'Musicien Augmenté™ : ma proposition',
+      'Ce que je n’ai pas encore résolu',
+      'Sources et références',
     ],
     body: [
       {
@@ -119,6 +121,21 @@ export const ARTICLES: Article[] = [
           'Pour approfondir la question juridique et la titularité des droits d’auteur au Cameroun (Loi n° 2000/011, Accord de Bangui OAPI), lire l’analyse complète : [IA et droits d’auteur dans la musique africaine : guide pour les créateurs](/journal/ia-droits-auteur-musique-africaine).',
         ],
       },
+      {
+        heading: 'Ce que je n’ai pas encore résolu',
+        paragraphs: [
+          'Je ne sais pas encore à partir de quel seuil d’assistance algorithmique un jeune musicien risque d’atrophier son oreille interne et sa capacité d’orchestration spontanée. Quand la machine propose immédiatement des textures harmonisées et léchées, l’effort patient d’apprentissage de l’harmonie, de la polyrythmie et du contrepoint peut sembler superflu à celui qui débute.',
+          'Je ne sais pas non plus comment les modèles économiques de demain distingueront l’écoute d’une création humaine singulière du flux infini de fonds sonores synthétiques. Ces questions restent ouvertes ; c’est précisément pourquoi le rôle du formateur et de l’éducateur musical devient plus critique que jamais.',
+        ],
+      },
+      {
+        heading: 'Sources et références',
+        paragraphs: [
+          'Repères historiques de la MAO : l’adoption universelle de la norme MIDI (1983) et l’émergence des premiers séquenceurs audionumériques intégrés (Cubase, Pro Tools) ont posé les jalons de la redistribution des compétences d’ingénierie vers le compositeur.',
+          'Évolution technologique : l’arrivée des transformateurs audio neuronaux et des modèles de diffusion sonore déplace la frontière entre exécution technique instrumentale et décision esthétique de direction artistique.',
+          'Cadre d’action : pour une méthode pas-à-pas de transition professionnelle, consulter notre manifeste [Musicien Augmenté™](/ia-technologie#manifeste) ainsi que notre analyse sur [le statut des œuvres co-créées au Cameroun](/journal/ia-droits-auteur-musique-africaine).',
+        ],
+      },
     ],
     keywords: ['IA et musique', 'MAO', 'musicien augmenté', 'adoption IA musicien'],
     seoTitle: "Après la MAO, l’IA : adopter l’IA sans perdre son identité",
@@ -131,7 +148,7 @@ export const ARTICLES: Article[] = [
     title: 'L’IA va-t-elle remplacer les musiciens ?',
     excerpt:
       'L’IA peut automatiser certaines tâches et fragiliser des revenus, mais elle ne transforme pas tous les métiers musicaux de la même manière. Pour comprendre le risque, il faut regarder le travail réel, pas répondre par un slogan.',
-    readingTime: '8 min',
+    readingTime: '7 min',
     status: 'Publié',
     audience:
       'Musiciens inquiets, institutions culturelles, parents et étudiants qui cherchent une réponse argumentée plutôt qu’un slogan.',
@@ -142,6 +159,8 @@ export const ARTICLES: Article[] = [
       'La valeur se déplace, sans garantie de transfert',
       'Photographie et streaming : des analogies limitées',
       'Agir sans croire aux recettes miracles',
+      'Ce que je n’ai pas encore résolu',
+      'Sources et références',
     ],
     body: [
       {
@@ -186,6 +205,21 @@ export const ARTICLES: Article[] = [
           'Sur la question de la protection du patrimoine musical africain et des recours juridiques prévus par l’OAPI et la législation camerounaise, découvrez notre dossier : [Intelligence artificielle et droits d’auteur dans la musique africaine](/journal/ia-droits-auteur-musique-africaine).',
         ],
       },
+      {
+        heading: 'Ce que je n’ai pas encore résolu',
+        paragraphs: [
+          'Je ne sais pas encore comment les créateurs indépendants d’Afrique subsaharienne pourront rivaliser en visibilité sur les plateformes de streaming lorsque celles-ci pousseront massivement des morceaux 100 % synthétiques sans redevances d’auteurs à reverser. Si les algorithmes de recommandation favorisent des flux de fond à coût zéro, la découvrabilité de nos artistes s’en trouvera mécaniquement asphyxiée.',
+          'Je ne sais pas non plus quelle forme concrète prendra la négociation collective face aux multinationales du numérique pour les compositeurs qui n’ont pas de label international. Cette réponse ne pourra pas être individuelle : elle exigera des sociétés de gestion et des organisations d’artistes profondément modernisées.',
+        ],
+      },
+      {
+        heading: 'Sources et références',
+        paragraphs: [
+          'Études économiques et syndicales : rapports de la CISAC (Confédération Internationale des Sociétés d’Auteurs et Compositeurs) et de la SACEM sur l’impact économique de l’IA générative dans les industries musicales.',
+          'Sociologie du travail artistique : Pierre-Michel Menger, Le Travail créateur (Gallimard/Seuil) sur la sur-sélection, le paradoxe du talent et les asymétries de gains face aux ruptures d’outils.',
+          'Poursuivre la réflexion : examiner [les sept thèses du manifeste](/ia-technologie#manifeste) et notre guide juridique sur [la protection des droits au Cameroun et OAPI](/journal/ia-droits-auteur-musique-africaine).',
+        ],
+      },
     ],
     keywords: ['IA remplace musiciens', 'avenir musicien', 'musique et intelligence artificielle'],
     seoTitle: "L’IA va-t-elle remplacer les musiciens ? — analyse",
@@ -198,7 +232,7 @@ export const ARTICLES: Article[] = [
     title: 'Musicien augmenté : définition, enjeux et perspectives',
     excerpt:
       'Musicien Augmenté™ ne désigne ni un logiciel ni une promesse de productivité illimitée. C’est un cadre pour utiliser l’IA afin d’étendre les capacités du musicien sans lui retirer le jugement, la responsabilité ou la relation au public.',
-    readingTime: '5 min',
+    readingTime: '6 min',
     status: 'Publié',
     audience:
       'Décideurs culturels, directions pédagogiques et musiciens qui veulent un cadre clair avant d’investir du temps ou du budget.',
@@ -208,7 +242,9 @@ export const ARTICLES: Article[] = [
       'Quatre axes : temps, analyse, exploration, diffusion',
       'Ce que « Musicien Augmenté™ » n’est pas',
       'Cinq principes de travail',
-      'Une définition à éprouver',
+      'Un cadre à éprouver, pas un dogme',
+      'Ce que je n’ai pas encore résolu',
+      'Sources et références',
     ],
     body: [
       {
@@ -251,6 +287,22 @@ export const ARTICLES: Article[] = [
           'Pour évaluer un usage, trois questions suffisent à commencer : quelle capacité cherche-t-on à étendre ? Quelle décision reste sous la responsabilité du musicien ? Peut-il encore vérifier, modifier ou refuser le résultat ? Si ces réponses sont floues, on ne sait pas encore si l’outil augmente la pratique ou crée une dépendance.',
         ],
       },
+      {
+        heading: 'Ce que je n’ai pas encore résolu',
+        paragraphs: [
+          'Je ne sais pas encore comment concevoir des grilles d’évaluation académiques équitables pour les étudiants en conservatoire ou en université lorsque l’assistance de l’IA intervient dans leurs travaux d’orchestration ou d’arrangement. À quel moment précis une proposition harmonique générée par un algorithme cesse-t-elle d’être une béquille pour devenir l’expression d’une compétence acquise par l’étudiant ?',
+          'Je ne sais pas non plus comment empêcher le concept de « musicien augmenté » d’être dévoyé en simple argument marketing par des éditeurs de logiciels ou des formations opportunistes promettant de transformer n’importe qui en virtuose en 48 heures. Protéger l’intégrité éthique et pédagogique de cette démarche reste un défi quotidien.',
+        ],
+      },
+      {
+        heading: 'Sources et références',
+        paragraphs: [
+          'Cadre fondamental : découvrez l’intégralité des principes dans le [Manifeste du Musicien Augmenté™](/ia-technologie#manifeste) et nos [formats d’accompagnement et masterclasses](/ia-technologie#formats).',
+          'Sémiologie et philosophie de la musique : Nicolas Meeùs, Sémiologie musicale (Sorbonne Université), sur la distinction fondamentale entre signaux acoustiques et intention signifiante dans l’acte musical.',
+          'Recherche et informatique musicale : travaux de l’IRCAM (Institut de Recherche et Coordination Acoustique/Musique) sur l’environnement OpenMusic et la composition assistée par ordinateur (CAO), précurseurs historiques de l’augmentation créative.',
+          'Droit et propriété intellectuelle : pour une mise en application juridique sur les créations assistées au Cameroun, lire notre guide sur [les droits d’auteur et l’IA en Afrique](/journal/ia-droits-auteur-musique-africaine).',
+        ],
+      },
     ],
     keywords: ['musicien augmenté', 'IA musique', 'Musicien Augmenté'],
     seoTitle: "Musicien augmenté : définition, enjeux et perspectives",
@@ -270,10 +322,12 @@ export const ARTICLES: Article[] = [
     linkedConcept: { label: 'Le Pianobariste™', to: '/musique#pianobariste' },
     outline: [
       'Le direct comme épreuve de vérité',
-      'Préparation assistée : répétitions, setlists, arrangements',
-      'Le risque de la perfection sans présence',
-      'Définir sa propre ligne rouge',
-      'Évaluer l’outil à l’aune de l’expérience live',
+      'Préparer avec l’IA, jouer avec discernement',
+      'Le risque d’une perfection sans présence',
+      'Définir sa ligne rouge avant la prestation',
+      'La technologie au service de l’expérience live',
+      'Ce que je n’ai pas encore résolu',
+      'Sources et références',
     ],
     body: [
       {
@@ -315,6 +369,21 @@ export const ARTICLES: Article[] = [
           'Le Musicien Augmenté™ ne cherche donc pas à automatiser la scène. Il cherche à employer les outils avec discernement pour mieux servir l’expérience musicale. Mon critère final est simple : l’interprète doit pouvoir écouter, adapter et interrompre l’assistance sans perdre la maîtrise de la prestation. Dans ce contexte, une technologie utile est celle qu’on peut aussi retirer.',
         ],
       },
+      {
+        heading: 'Ce que je n’ai pas encore résolu',
+        paragraphs: [
+          'Je ne sais pas encore comment garantir la fiabilité absolue des systèmes d’assistance algorithmique en temps réel dans les conditions réelles de nos scènes en Afrique subsaharienne : instabilité de la tension électrique, micro-coupures de courant, chaleur tropicale éprouvant les composants et absence fréquente de connectivité stable. La rusticité et l’autonomie d’un instrument acoustique restent pour l’instant inégalées.',
+          'Je ne sais pas non plus jusqu’à quel point le public des lieux d’exception acceptera la présence invisible d’outils d’optimisation sonore avant d’avoir le sentiment que la fragilité précieuse de l’instant vivant lui a été dérobée. La frontière entre perfection technique et froideur mécanique reste un arbitrage subjectif permanent.',
+        ],
+      },
+      {
+        heading: 'Sources et références',
+        paragraphs: [
+          'Pratique de scène et régulation d’atmosphère : retrouvez la philosophie du jeu direct développée depuis 2007 dans notre démarche [Le Pianobariste™](/musique#pianobariste).',
+          'Suivi de partition et interaction temps réel : recherches d’Arshia Cont et de l’équipe MuTant (IRCAM / Inria) sur Antescofo, système précurseur de synchronisation intelligente entre interprète humain et machine sur scène.',
+          'Éthique de la présence vivante : pour approfondir la distinction entre exécution mécanique et relation située, consulter notre analyse [L’IA va-t-elle remplacer les musiciens ?](/journal/ia-va-t-elle-remplacer-les-musiciens).',
+        ],
+      },
     ],
     keywords: ['IA musique live', 'concert technologie', 'piano-bar'],
     seoTitle: "IA et musique live : ce que la technologie ne remplace pas",
@@ -327,17 +396,19 @@ export const ARTICLES: Article[] = [
     title: '5 façons dont un musicien peut utiliser l’IA dans sa carrière',
     excerpt:
       'Des usages concrets, immédiatement applicables : création, communication, organisation, facturation, veille. Sans gadget, sans dépendance.',
-    readingTime: '10 min',
+    readingTime: '8 min',
     status: 'Publié',
     audience:
       'Musiciens indépendants, intermittents et jeunes professionnels qui gèrent seuls leur activité.',
     linkedConcept: { label: 'Formats de formation', to: '/ia-technologie#formats' },
     outline: [
       '1. Idéation musicale et sortie du blocage',
-      '2. Communication et contenu (le bon dosage)',
+      '2. Communication et contenu : le bon dosage',
       '3. Organisation, planning, contrats et factures',
       '4. Veille et recherche sur son marché',
       '5. Formation continue personnalisée',
+      'Ce que je n’ai pas encore résolu',
+      'Sources et références',
     ],
     body: [
       {
@@ -375,6 +446,22 @@ export const ARTICLES: Article[] = [
           'L’IA devient un tuteur disponible en permanence, capable d’expliquer un concept théorique complexe avec des analogies sur mesure. Ce compagnonnage intellectuel accélère l’assimilation, à condition de toujours valider la théorie par la pratique concrète sur l’instrument.',
         ],
       },
+      {
+        heading: 'Ce que je n’ai pas encore résolu',
+        paragraphs: [
+          'Je ne sais pas encore comment préserver les artistes indépendants du surmenage mental provoqué par l’illusion d’une productivité sans limite. Parce que l’IA permet d’écrire plus de courriers, de générer plus de visuels et de tester plus de pistes en une matinée, le risque est grand de s’épuiser dans une course effrénée au contenu au détriment du repos intérieur indispensable à la gestation d’une œuvre sincère.',
+          'Je ne sais pas non plus comment les plateformes de distribution réagiront à long terme face à l’avalanche de contenus semi-automatisés soumis par des millions de créateurs. Quand tout le monde publie dix fois plus, l’attention du public ne grandit pas pour autant : elle se fragmente.',
+        ],
+      },
+      {
+        heading: 'Sources et références',
+        paragraphs: [
+          'Pratiques d’organisation et formation : découvrez nos [formats d’accompagnement et masterclasses](/ia-technologie#formats) ainsi que nos services de [conseil stratégique pour artistes](/services).',
+          'Conditions juridiques des générateurs : conditions d’utilisation et politiques de propriété intellectuelle des plateformes d’IA générative (Suno AI, Udio, OpenAI Audio API), documentant les clauses de cession et les restrictions commerciales.',
+          'Entrepreneuriat culturel : David Hesmondhalgh, The Cultural Industries (SAGE Publications), sur les tensions entre autonomie créative et impératifs de rentabilité dans les carrières artistiques indépendantes.',
+          'Protection légale en Afrique : pour comprendre la valeur patrimoniale et contractuelle de vos maquettes, lire notre dossier sur [les droits d’auteur au Cameroun et OAPI](/journal/ia-droits-auteur-musique-africaine).',
+        ],
+      },
     ],
     keywords: ['IA musicien carrière', 'outils IA musique', 'productivité musicien'],
     seoTitle: "5 façons d’utiliser l’IA dans sa carrière de musicien",
@@ -387,7 +474,7 @@ export const ARTICLES: Article[] = [
     title: 'IA, MAO et création musicale : vers une nouvelle génération de musiciens',
     excerpt:
       'Deux vagues technologiques, un même mouvement : l’outil se rapproche de la décision créative. Ce que cela exige des musiciens qui arrivent maintenant.',
-    readingTime: '13 min',
+    readingTime: '7 min',
     status: 'Publié',
     audience:
       'Écoles de musique, enseignants en MAO, étudiants et musiciens qui construisent leur pratique aujourd’hui.',
@@ -397,7 +484,9 @@ export const ARTICLES: Article[] = [
       '2005 : la distribution devient gratuite',
       '2023 : la décision créative est assistée',
       'Ce qu’une école doit enseigner en plus, désormais',
-      'Préparer la quatrième vague',
+      'Préparer la quatrième vague : l’hybridation live',
+      'Ce que je n’ai pas encore résolu',
+      'Sources et références',
     ],
     body: [
       {
@@ -435,6 +524,22 @@ export const ARTICLES: Article[] = [
           'C’est précisément la mission du Musicien Augmenté™ : préserver l’âme vivante de l’artiste au cœur des révolutions technologiques.',
         ],
       },
+      {
+        heading: 'Ce que je n’ai pas encore résolu',
+        paragraphs: [
+          'Je ne sais pas encore à quel rythme nos instituts de formation musicale en Afrique centrale pourront réviser leurs programmes pédagogiques sans se heurter à la lenteur des validations administratives ministérielles. Le décalage entre la vitesse d’apparition des plugins génératifs neuronaux et l’inertie des cursus officiels risque de fabriquer des promotions entières formées à des métiers déjà bouleversés.',
+          'Je ne sais pas non plus comment financer durablement l’équipement informatique de pointe et les connexions haut débit nécessaires aux étudiants de nos terroirs pour qu’ils ne subissent pas une nouvelle fracture numérique face aux académies occidentales.',
+        ],
+      },
+      {
+        heading: 'Sources et références',
+        paragraphs: [
+          'Pédagogie et transmission : découvrez les cursus et masterclasses de la [Racines Musicales Academy® (RMA)](/rma) et notre cycle [Formations & MAO](/pedagogie#formations).',
+          'Histoire des technologies musicales : Paul Théberge, Any Sound You Can Imagine: Making Music/Consuming Technology (Wesleyan University Press), sur l’émergence du home-studio et la numérisation des pratiques musicales.',
+          'Pionniers de la MAO : documentation historique sur la spécification MIDI 1.0 (1983) et l’écosystème Steinberg Cubase / Digidesign Pro Tools ayant façonné quarante ans d’enregistrement audionumérique.',
+          'Manifeste fondateur : pour les principes directeurs de l’artiste face aux outils récents, consulter le [Manifeste Musicien Augmenté™](/ia-technologie#manifeste).',
+        ],
+      },
     ],
     keywords: ['MAO et IA', 'création musicale IA', 'nouvelle génération musiciens'],
     seoTitle: "IA, MAO et création musicale : la nouvelle génération",
@@ -447,7 +552,7 @@ export const ARTICLES: Article[] = [
     title: 'Pourquoi les musiciens africains doivent comprendre l’intelligence artificielle',
     excerpt:
       "Ne pas comprendre l'IA, c'est accepter que d'autres modélisent et monétisent nos cultures. Une question de souveraineté autant que de technique.",
-    readingTime: '11 min',
+    readingTime: '7 min',
     status: 'Publié',
     audience:
       'Institutions culturelles africaines, artistes, chercheurs, ministères et organisations professionnelles.',
@@ -457,6 +562,8 @@ export const ARTICLES: Article[] = [
       'Représentation, biais et patrimoine absent',
       'Opportunité : documenter, publier, protéger',
       'Souveraineté culturelle et outils locaux',
+      'Ce que je n’ai pas encore résolu',
+      'Sources et références',
     ],
     body: [
       {
@@ -487,6 +594,22 @@ export const ARTICLES: Article[] = [
           'La technologie doit servir la résonance de nos voix, la célébration de nos racines et l’émancipation économique de nos créateurs. C’est le sens même de notre engagement au Cameroun et sur tout le continent.',
         ],
       },
+      {
+        heading: 'Ce que je n’ai pas encore résolu',
+        paragraphs: [
+          'Je ne sais pas encore comment surmonter la dépendance structurelle de nos pays à l’égard des serveurs de calcul (data centers) hébergés exclusivement en Amérique du Nord, en Europe et en Asie. Parler de souveraineté culturelle reste un vœu pieux tant que nos artistes doivent envoyer leurs enregistrements de Makossa ou de Bikutsi transiter par des infrastructures étrangères pour être analysés ou modélisés.',
+          'Je ne sais pas non plus comment réconcilier le statut communautaire et sacré de certains rituels musicaux traditionnels africains avec la logique marchande et privative du droit d’auteur international. Certaines mémoires orales refusent d’être réduites à des fichiers de données exploitables, et ce refus mérite d’être entendu avec le plus grand respect.',
+        ],
+      },
+      {
+        heading: 'Sources et références',
+        paragraphs: [
+          'Rapports internationaux : UNESCO, Re|Shaping Policies for Creativity (Rapport mondial sur la diversité des expressions culturelles à l’ère numérique) et travaux sur l’éthique de l’intelligence artificielle en Afrique.',
+          'Événements professionnels panafricains : rencontres professionnelles des [REMA 2026 à Ouagadougou](https://www.remameeting.com/rema-2026/), table ronde sur l’IA et la protection de la musique africaine.',
+          'Musicologie et patrimoine : Simha Arom, Polyphonies et polyrythmies d’Afrique centrale : structure et méthodologie (Éditions de la Villette / CNRS), référence fondamentale pour la formalisation musicologique de nos rythmes.',
+          'Droit positif applicable : analyse de la loi camerounaise n° 2000/011 et du rôle de l’OAPI dans notre guide [IA et droit d’auteur : ce que les créateurs camerounais doivent savoir](/journal/ia-droits-auteur-musique-africaine).',
+        ],
+      },
     ],
     keywords: ['IA Afrique musique', 'musiciens africains IA', 'souveraineté culturelle'],
     seoTitle: "Pourquoi les musiciens africains doivent comprendre l’IA",
@@ -513,6 +636,7 @@ export const ARTICLES: Article[] = [
       'La parole comme arme politique et ses réceptions',
       'Héritage global, hip-hop conscient et mouvements sociaux',
       'Conclusion : transcendance et patrimoine universel',
+      'Ce que je n’ai pas encore résolu',
       'Bibliographie et sources académiques de référence',
     ],
     body: [
@@ -591,6 +715,13 @@ export const ARTICLES: Article[] = [
         ],
       },
       {
+        heading: 'Ce que je n’ai pas encore résolu',
+        paragraphs: [
+          'Je ne sais pas encore comment transmettre la dimension viscérale, politique et corporelle de l’Afrobeat originel à une génération d’étudiants façonnée par l’écoute fragmentée de micro-boucles sur TikTok. Faire ressentir la nécessité physique d’un ostinato de vingt minutes et le courage civique d’une parole sans concession exige une déconstruction patiente de nos réflexes de consommation rapide.',
+          'Je ne sais pas non plus comment protéger l’héritage polyrythmique de Tony Allen et Fela Kuti contre sa standardisation algorithmique par des banques de samples numériques commerciales qui en dépouillent la pulsation humaine sans jamais en rétribuer les ayant-droits ou les créateurs africains.',
+        ],
+      },
+      {
         heading: 'Bibliographie et sources académiques de référence',
         paragraphs: [
           'Sources primaires :\n• Idowu, M. K. (1986). Fela: Why Blackman Carry Shit. Kaduna : Opinion Media / Lynx Communications.\n• Allen, T. & Veal, M. (2013). Tony Allen: An Autobiography of the Master Drummer of Afrobeat. Durham : Duke University Press.',
@@ -619,7 +750,7 @@ export const ARTICLES: Article[] = [
     title: 'Musique à l’image : composer, narrer et transmettre dans le cinéma africain',
     excerpt:
       'La musique de film ne comble pas le silence : elle structure la narration, guide le regard et révèle l’invisible. Analyse des fonctions musicales de l’écran, de la dramaturgie de Harry Potter aux codes du cinéma africain contemporain.',
-    readingTime: '11 min',
+    readingTime: '8 min',
     status: 'Publié',
     audience:
       'Réalisateurs, compositeurs, étudiants en audiovisuel, musicologues et passionnés de bandes originales.',
@@ -630,6 +761,8 @@ export const ARTICLES: Article[] = [
       'Dramaturgie, tension et symbolique dans le cinéma africain',
       'De la partition à la MAO : sound design, textures et hybridations',
       'Vers une écriture cinématographique africaine souveraine',
+      'Ce que je n’ai pas encore résolu',
+      'Sources et références',
     ],
     body: [
       {
@@ -671,6 +804,22 @@ export const ARTICLES: Article[] = [
           'Bâtir une école africaine de musique à l’image est l’un des grands chantiers de notre génération. Cela implique de maîtriser l’histoire du cinéma mondial, de maîtriser l’ingénierie sonore en studio, et par-dessus tout, de puiser avec fierté dans la grammaire sonore de nos terroirs pour offrir au monde des narrations visuelles inoubliables.',
         ],
       },
+      {
+        heading: 'Ce que je n’ai pas encore résolu',
+        paragraphs: [
+          'Je ne sais pas encore comment convaincre les producteurs de cinéma indépendant en Afrique centrale d’allouer une part digne de leur budget à la création musicale originale plutôt que de piocher dans des catalogues de musiques libres de droits impersonnelles. Tant que la bande originale sera considérée comme la variable d’ajustement budgétaire finale, l’éclosion de signatures sonores fortes restera un combat isolé.',
+          'Je ne sais pas non plus comment normaliser la formation technique des réalisateurs à l’écoute dramaturgique. Le dialogue entre le cinéaste et le compositeur souffre encore d’un déficit de vocabulaire commun, obligeant le musicien à décoder des intuitions floues plutôt qu’à construire une véritable dramaturgie sonore concertée.',
+        ],
+      },
+      {
+        heading: 'Sources et références',
+        paragraphs: [
+          'Théorie et sémiologie audiovisuelle : Michel Chion, L’Audio-vision : son et image au cinéma (Armand Colin), ouvrage fondateur sur la valeur ajoutée du son et l’écoute acousmatique.',
+          'Analyse thématique et leitmotiv : recherche de Master II (Hervé Nanfang) sur l’architecture musicale de John Williams et l’évolution dramaturgique dans les adaptations cinématographiques.',
+          'Histoire du cinéma africain : archives du FESPACO (Festival Panafricain du Cinéma et de la Télévision de Ouagadougou) et études de Manthia Diawara sur l’esthétique des cinémas d’Afrique noire.',
+          'Pratique de terrain et recherche : découvrez nos travaux au carrefour de la recherche et de la création sur notre page [Culture & Recherche](/culture-recherche).',
+        ],
+      },
     ],
     keywords: [
       'musique de film africaine',
@@ -691,7 +840,7 @@ export const ARTICLES: Article[] = [
     title: 'La méthode Permis de Jouer™ : réinventer l’apprentissage musical',
     excerpt:
       'Pourquoi tant d’élèves abandonnent-ils le piano après deux ans de solfège déconnecté ? Retour sur les fondements du Permis de Jouer™ et la pédagogie RMA : pulsation corporelle, compétences réelles et paliers N1 à N4.',
-    readingTime: '9 min',
+    readingTime: '7 min',
     status: 'Publié',
     audience:
       'Enseignants de musique, directeurs d’écoles et de conservatoires, parents et musiciens autodidactes.',
@@ -702,6 +851,8 @@ export const ARTICLES: Article[] = [
       'L’architecture des 4 Paliers (N1 à N4) : rendre le progrès mesurable',
       'L’évaluation bienveillante par compétences réelles de scène',
       'L’autonomie durable : former des musiciens qui ne s’arrêtent jamais',
+      'Ce que je n’ai pas encore résolu',
+      'Sources et références',
     ],
     body: [
       {
@@ -743,6 +894,22 @@ export const ARTICLES: Article[] = [
           'Un musicien autonome est capable d’entendre un morceau à la radio, d’en repérer la tonalité, d’en déduire la grille harmonique et de se l’approprier à son piano pour le réinventer à sa façon. C’est là que réside la véritable liberté musicale : quand la rigueur technique se met au service de la joie pure de jouer.',
         ],
       },
+      {
+        heading: 'Ce que je n’ai pas encore résolu',
+        paragraphs: [
+          'Je ne sais pas encore comment étendre à grande échelle les sessions d’éveil corporel et rythmique RMA-01 dans des classes surchargées de nos écoles primaires et secondaires publiques au Cameroun sans diluer l’écoute tactile individualisée indispensable à chaque apprenant. Le passage de petits groupes d’atelier à des cohortes de cinquante élèves reste un défi logistique majeur.',
+          'Je ne sais pas non plus comment faire évoluer les attentes de certains parents, encore conditionnés par le modèle colonial du conservatoire classique, qui exigent de voir leur enfant déchiffrer une partition papier dès le premier mois sous peine de juger l’enseignement « pas sérieux », au détriment de l’oreille et de la pulsation vécue.',
+        ],
+      },
+      {
+        heading: 'Sources et références',
+        paragraphs: [
+          'Cadre pédagogique officiel : découvrez l’architecture d’enseignement et les paliers d’apprentissage au sein de la [Racines Musicales Academy® (RMA)](/rma).',
+          'Pédagogies actives et motricité : Émile Jaques-Dalcroze, Le Rythme, la musique et l’éducation (Foetisch), référence sur l’eurythmie et le rôle central du corps dans la perception du tempo.',
+          'Anthropologie du rythme : Simha Arom, Polyphonies et polyrythmies d’Afrique centrale (CNRS Éditions), sur l’acquisition de la pulsation périodique dans les traditions orales africaines.',
+          'Manuel de pratique instrumentale : méthode LES ZIKOS® et livret du Permis de Jouer™ (Hervé Nanfang), déposés pour la formation pianistique moderne en Afrique centrale.',
+        ],
+      },
     ],
     keywords: [
       'méthode Permis de Jouer',
@@ -763,7 +930,7 @@ export const ARTICLES: Article[] = [
     title: 'Le musicien et sa marque : pourquoi le récit précède le logo',
     excerpt:
       'Avant l’identité visuelle, les shootings photo et les logos, il y a une proposition de valeur artistique. Comment bâtir une marque musicale d’autorité, authentique et durable, ancrée dans une trajectoire réelle.',
-    readingTime: '8 min',
+    readingTime: '7 min',
     status: 'Publié',
     audience:
       'Artistes indépendants, musiciens de scène, porteurs de projets culturels et structures qui cherchent à clarifier leur proposition de valeur.',
@@ -775,6 +942,8 @@ export const ARTICLES: Article[] = [
       'La méthode des biographies gigognes : 20, 50, 90 et 150 mots',
       'L’IA comme scribe discipliné, jamais comme auteur de votre voix',
       '« Un savoir qui ne circule pas n’existe pas » : passer à l’action',
+      'Ce que je n’ai pas encore résolu',
+      'Sources et références',
     ],
     body: [
       {
@@ -827,6 +996,22 @@ export const ARTICLES: Article[] = [
           'Certains artistes continuent de percevoir la communication comme une compromission indigne, préférant se draper dans le mythe romantique du génie maudit attendant d’être découvert par miracle. C’est une posture confortable mais stérile. Un savoir qui ne circule pas n’existe pas. Une musique qui ne rencontre pas d’oreilles ne nourrit ni l’âme du public ni le réfrigérateur du créateur.',
           'Prendre la parole avec dignité, structurer un récit clair, soigner ses supports et définir sa marque d’artiste n’est pas un acte d’arrogance commerciale : c’est un acte de politesse et de respect envers ceux qui cherchent précisément ce que vous avez à offrir.',
           'C’est tout le sens de l’accompagnement que nous déployons aujourd’hui au sein d’ALAIZ et à travers nos prestations de conseil en stratégie de marque culturelle : outiller les musiciens et les institutions pour qu’ils soient maîtres de leur voix, souverains dans leur propos et durables dans leur économie.',
+        ],
+      },
+      {
+        heading: 'Ce que je n’ai pas encore résolu',
+        paragraphs: [
+          'Je ne sais pas encore comment aider les artistes à résister à la tyrannie des vanity metrics (nombre d’abonnés, de likes et de vues éphémères) sans qu’ils aient le sentiment de s’exclure du marché actuel. Bâtir une réputation de fond exige des années de constance, alors que les algorithmes des plateformes poussent quotidiennement à la surenchère superficielle.',
+          'Je ne sais pas non plus comment résoudre la contradiction vécue par nombre d’artistes d’Afrique centrale qui ont un immense talent scénique et une culture phénoménale, mais éprouvent une pudeur paralysante à l’idée d’assumer publiquement leur valeur financière et de négocier des cachets à la hauteur de leur rang.',
+        ],
+      },
+      {
+        heading: 'Sources et références',
+        paragraphs: [
+          'Stratégie et accompagnement : découvrez notre pôle de conseil pour créateurs et institutions sur [Services & Conseil stratégique](/services#strategie-digitale).',
+          'Marketing de l’authenticité : Seth Godin, All Marketers Are Liars / Tell Stories (Portfolio Penguin) et Donald Miller, Building a StoryBrand (HarperCollins Leadership), sur la primauté de la clarté du récit sur le slogan publicitaire.',
+          'Trajectoire et positionnement : pour une mise en pratique concrète de cette démarche biographique, consulter la page [À propos d’Hervé Nanfang](/a-propos) et notre répertoire d’œuvres [Musique & Scène](/musique).',
+          'Cadre juridique : pour lier marque personnelle et protection de vos créations intellectuelles au Cameroun, lire notre dossier sur [le droit d’auteur et l’IA](/journal/ia-droits-auteur-musique-africaine).',
         ],
       },
     ],
