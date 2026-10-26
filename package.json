@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build && node scripts/prerender.mjs && node scripts/submit-indexnow.mjs --auto",
     "preview": "vite preview",
-    "test": "vite-node scripts/test-distribution-system.mjs",
+    "test": "npx vite-node scripts/test-distribution-system.mjs",
     "typecheck": "tsc --noEmit",
     "generate:sitemap": "node scripts/generate-sitemap.mjs",
     "submit:indexnow": "node scripts/submit-indexnow.mjs",
