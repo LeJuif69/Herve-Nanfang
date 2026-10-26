@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import AuthorSignature from '../components/AuthorSignature'
 import AdSenseUnit from '../components/AdSenseUnit'
+import ArticleShareBar from '../components/ArticleShareBar'
 import {
   ArrowLink,
   Body,
@@ -136,6 +137,15 @@ export default function ArticleDetail() {
               </div>
             )}
 
+            {/* Barre de partage discrète en tête d'article */}
+            <ArticleShareBar
+              variant="inline"
+              title={article.title}
+              excerpt={article.excerpt}
+              slug={article.slug}
+              className="mb-10"
+            />
+
             {article.body ? (
               <article className="space-y-12">
                 {article.body.map((section) => (
@@ -185,6 +195,14 @@ export default function ArticleDetail() {
               </>
             )}
 
+            {/* Carte de diffusion et de partage sur les plateformes vérifiées */}
+            <ArticleShareBar
+              variant="card"
+              title={article.title}
+              excerpt={article.excerpt}
+              slug={article.slug}
+            />
+
             {/* Encart publicitaire AdSense officiel */}
             <AdSenseUnit />
 
@@ -215,6 +233,14 @@ export default function ArticleDetail() {
           {/* Colonne latérale */}
           <Reveal delay={120} className="lg:sticky lg:top-32">
             <div className="space-y-8">
+              {/* Module de partage en barre latérale */}
+              <ArticleShareBar
+                variant="sidebar"
+                title={article.title}
+                excerpt={article.excerpt}
+                slug={article.slug}
+              />
+
               <div className="border border-white/10 p-6">
                 <p className="eyebrow text-ivory/40">À qui s’adresse cet article</p>
                 <p className="mt-3 text-sm leading-relaxed text-ivory/65">{article.audience}</p>
