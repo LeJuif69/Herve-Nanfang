@@ -199,7 +199,39 @@ export const PLATFORM_CONFIG: Record<
     iconPath:
       'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z',
   },
+  newsletter: {
+    name: 'Newsletter (Email)',
+    color: '#F59E0B',
+    bgColor: 'bg-amber-500/15',
+    borderColor: 'border-amber-500/40',
+    badgeClass: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+    maxChars: 15000,
+    iconPath:
+      'M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z',
+  },
+  medium: {
+    name: 'Medium (Syndication)',
+    color: '#00AB6C',
+    bgColor: 'bg-[#00AB6C]/15',
+    borderColor: 'border-[#00AB6C]/40',
+    badgeClass: 'bg-[#00AB6C]/20 text-[#6ee7b7] border-[#00AB6C]/40',
+    maxChars: 25000,
+    iconPath:
+      'M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z',
+  },
+  press: {
+    name: 'Presse & Médias (Tribune)',
+    color: '#8B5CF6',
+    bgColor: 'bg-purple-500/15',
+    borderColor: 'border-purple-500/40',
+    badgeClass: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
+    maxChars: 10000,
+    iconPath:
+      'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z',
+  },
 }
+
+export * from './campaign-distribution'
 
 /**
  * URL canonique : toujours dérivée de SITE.url (src/data/site.ts).

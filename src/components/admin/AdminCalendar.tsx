@@ -24,6 +24,7 @@ import {
   getLinkedInShareUrl,
   getWhatsAppShareUrl,
 } from '../../lib/social-generator'
+import { CampaignDistributionModal } from './CampaignDistributionModal'
 
 interface AdminCalendarProps {
   publications: SocialPost[]
@@ -48,7 +49,7 @@ interface AdminCalendarProps {
     scheduledFor?: string,
   ) => Promise<{ success: boolean; error?: string }>
   onRevokeApproval?: (id: string, reason?: string) => Promise<{ success: boolean }>
-  onMarkAsPublished: (id: string) => Promise<{ success: boolean; error?: string }>
+  onMarkAsPublished: (id: string, proof?: { proofUrl?: string; note?: string }) => Promise<{ success: boolean; error?: string }>
   onUpdateMetrics?: (id: string, metrics: PublicationMetrics) => Promise<void>
   onDeletePublication: (id: string) => Promise<void>
   onExportIcs: () => void
@@ -90,6 +91,11 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
   // Modals state
   const [editingPost, setEditingPost] = useState<SocialPost | null>(null)
   const [isGeneratorOpen, setIsGeneratorOpen] = useState(false)
+  const [isCampaignDistributionOpen, setIsCampaignDistributionOpen] = useState(false)
+  const [distributionArticleId, setDistributionArticleId] = useState<string>('')
+  const [proofModalPost, setProofModalPost] = useState<SocialPost | null>(null)
+  const [proofUrlInput, setProofUrlInput] = useState<string>('')
+  const [proofNoteInput, setProofNoteInput] = useState<string>('')
   const [isWebhookModalOpen, setIsWebhookModalOpen] = useState(false)
   const [activePlatformTab, setActivePlatformTab] = useState<SocialPlatform>('linkedin')
   const [rejectionModalPostId, setRejectionModalPostId] = useState<string | null>(null)
@@ -270,13 +276,37 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
     }
   }
 
-  const handleMarkPublished = async (id: string) => {
-    const res = await onMarkAsPublished(id)
+  const handleMarkPublished = async (id: string, proof?: { proofUrl?: string; note?: string }) => {
+    const post = publications.find((p) => p.id === id) || (editingPost?.id === id ? editingPost : null)
+    if (!proof && post) {
+      setProofModalPost(post)
+      setProofUrlInput(post.publicationProof?.proofUrl || '')
+      setProofNoteInput(post.publicationProof?.note || '')
+      return
+    }
+
+    const res = await onMarkAsPublished(id, proof)
     if (res.success) {
-      showToast('Publication confirmée comme diffusée avec succès.')
+      showToast('✓ Publication confirmée comme diffusée avec preuve enregistrée.')
       if (editingPost && editingPost.id === id) {
-        setEditingPost((prev) => (prev ? { ...prev, status: 'publie' } : null))
+        setEditingPost((prev) =>
+          prev
+            ? {
+                ...prev,
+                status: 'publie',
+                publicationProof: proof
+                  ? {
+                      proofUrl: proof.proofUrl,
+                      note: proof.note,
+                      publishedAt: new Date().toISOString(),
+                      verifiedBy: 'Hervé Nanfang',
+                    }
+                  : prev.publicationProof,
+              }
+            : null,
+        )
       }
+      setProofModalPost(null)
     } else {
       showToast(res.error || 'Impossible de publier sans signature valide scellée.', 'error')
     }
@@ -490,17 +520,21 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
             Calendrier & Sas de Validation Éditoriale
           </h1>
           <p className="mt-1 text-xs text-ivory/60">
-            Ratio 70/20/10 · Gating cryptographique strict · Multi-syndication organique
+            Ratio 40/35/15/10 · Distribution multicanal J0–J14 · Sas de validation scellé SHA-256
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
           <button
             type="button"
-            onClick={() => setIsGeneratorOpen(true)}
-            className="btn btn-gold text-xs shadow-lg shadow-gold/15"
+            onClick={() => {
+              setDistributionArticleId(articles[0]?.id || '')
+              setIsCampaignDistributionOpen(true)
+            }}
+            className="btn btn-gold text-xs shadow-lg shadow-gold/20 flex items-center gap-1.5"
+            title="Lancer le générateur de distribution multicanal (10 formats éditoriaux de J0 à J14)"
           >
-            ⚡ Repurposer depuis le site
+            📢 Campagne Multicanal (J0–J14)
           </button>
           <button
             type="button"
@@ -2687,6 +2721,109 @@ Auteur : Hervé Nanfang (Système de Croissance NANHÉ)
                   Fermer
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ============================================================== */}
+      {/* MODAL : GÉNÉRATEUR DE DISTRIBUTION MULTICANAL J0–J14            */}
+      {/* ============================================================== */}
+      <CampaignDistributionModal
+        isOpen={isCampaignDistributionOpen}
+        onClose={() => setIsCampaignDistributionOpen(false)}
+        articles={articles}
+        initialArticleId={distributionArticleId}
+        onSchedulePosts={async (posts) => {
+          for (const p of posts) {
+            await onSavePublication(p)
+          }
+        }}
+        showToast={showToast}
+      />
+
+      {/* ============================================================== */}
+      {/* MODAL : PREUVE DE PUBLICATION CERTIFIÉE (CONTRÔLE HUMAIN STRICT) */}
+      {/* ============================================================== */}
+      {proofModalPost && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-md"
+        >
+          <div className="relative w-full max-w-lg border border-white/15 bg-ink p-6 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+              <div>
+                <p className="eyebrow text-gold">Contrôle de diffusion & Preuve</p>
+                <h2 className="mt-1 font-display text-xl text-ivory">Attester la publication</h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => setProofModalPost(null)}
+                className="text-ivory/40 hover:text-ivory"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="mt-4 space-y-3 text-xs">
+              <p className="text-ivory/70">
+                Conformément aux exigences de rigueur éditoriale, aucun contenu ne peut être déclaré publié sans attestation humaine ou preuve de diffusion effective :
+              </p>
+              <div className="border border-white/10 bg-ink-2 p-3 font-mono text-[0.72rem] text-gold">
+                « {proofModalPost.title} »
+              </div>
+
+              <div>
+                <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-ivory/60 mb-1">
+                  URL de publication publique (Preuve de diffusion directe)
+                </label>
+                <input
+                  type="url"
+                  placeholder="https://www.linkedin.com/posts/... ou https://facebook.com/..."
+                  value={proofUrlInput}
+                  onChange={(e) => setProofUrlInput(e.target.value)}
+                  className="w-full border border-white/10 bg-ink-2 p-2 text-xs text-ivory focus:border-gold focus:outline-none font-mono"
+                />
+                <span className="text-[0.65rem] text-ivory/40 mt-0.5 block">
+                  Collez le lien direct vers le post publié sur la plateforme.
+                </span>
+              </div>
+
+              <div>
+                <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-ivory/60 mb-1">
+                  Note d'attestation ou numéro de récépissé
+                </label>
+                <input
+                  type="text"
+                  placeholder="Ex : Diffusé manuellement le 26/10/2026 à 15h30"
+                  value={proofNoteInput}
+                  onChange={(e) => setProofNoteInput(e.target.value)}
+                  className="w-full border border-white/10 bg-ink-2 p-2 text-xs text-ivory focus:border-gold focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="mt-6 flex items-center justify-end gap-2 border-t border-white/10 pt-4">
+              <button
+                type="button"
+                onClick={() => setProofModalPost(null)}
+                className="btn btn-ghost text-xs"
+              >
+                Annuler
+              </button>
+              <button
+                type="button"
+                onClick={async () => {
+                  await handleMarkPublished(proofModalPost.id, {
+                    proofUrl: proofUrlInput.trim(),
+                    note: proofNoteInput.trim() || 'Attestation manuelle par l’administrateur',
+                  })
+                }}
+                className="btn btn-gold text-xs shadow-lg shadow-gold/20"
+              >
+                ✓ Confirmer la publication avec preuve
+              </button>
             </div>
           </div>
         </div>

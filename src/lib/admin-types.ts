@@ -206,9 +206,19 @@ export type SocialPlatform =
   | 'youtube'
   | 'tiktok'
   | 'site'
+  | 'newsletter'
+  | 'medium'
+  | 'press'
 
 export type PublicationStatus =
-  | 'idees'
+  // Statuts canoniques conformes au cahier des charges
+  | 'draft'
+  | 'pending_review'
+  | 'approved'
+  | 'scheduled'
+  | 'published'
+  | 'failed'
+  // Alias de rétrocompatibilité existants dans le store
   | 'brouillon'
   | 'a_valider'
   | 'valide'
@@ -217,11 +227,87 @@ export type PublicationStatus =
   | 'refuse'
   | 'erreur'
   | 'archive'
+  | 'idees'
+
+/**
+ * Normalise n'importe quel statut vers l'un des 6 statuts canoniques obligatoires
+ */
+export function normalizePublicationStatus(
+  status: PublicationStatus,
+): 'draft' | 'pending_review' | 'approved' | 'scheduled' | 'published' | 'failed' {
+  switch (status) {
+    case 'draft':
+    case 'brouillon':
+    case 'idees':
+    case 'archive':
+      return 'draft'
+    case 'pending_review':
+    case 'a_valider':
+      return 'pending_review'
+    case 'approved':
+    case 'valide':
+      return 'approved'
+    case 'scheduled':
+    case 'programme':
+      return 'scheduled'
+    case 'published':
+    case 'publie':
+      return 'published'
+    case 'failed':
+    case 'erreur':
+    case 'refuse':
+    default:
+      return 'failed'
+  }
+}
 
 export interface PlatformContent {
   text: string
   hashtags: string[]
   charCount?: number
+  subject?: string
+  previewText?: string
+  targetMedium?: string
+  canonicalUrl?: string
+}
+
+export interface PublicationProof {
+  proofUrl?: string
+  publishedAt?: string
+  verifiedBy?: string
+  note?: string
+  externalId?: string
+}
+
+export type CampaignAssetType =
+  | 'editorial_summary'
+  | 'linkedin'
+  | 'facebook'
+  | 'whatsapp_status'
+  | 'video_script'
+  | 'pedagogical_carousel'
+  | 'newsletter'
+  | 'medium_syndication'
+  | 'press_pitch'
+
+export interface CampaignAsset {
+  type: CampaignAssetType
+  title: string
+  platform: SocialPlatform
+  dayOffset: number // 0, 1, 3, 5, 7, 10, 14
+  dayLabel: 'J0' | 'J1' | 'J3' | 'J5' | 'J7' | 'J10' | 'J14'
+  targetDate: string
+  targetTime: string
+  pillar: EditorialPillar
+  content: string
+  characterCount: number
+  hashtags: string[]
+  canonicalUrl: string
+  utmUrl: string
+  notes?: string
+  requiresProof?: boolean
+  subject?: string
+  previewText?: string
 }
 
 export interface DecisionLog {
@@ -284,8 +370,11 @@ export interface SocialPost {
   pillar: EditorialPillar
   series?: string
   niche?: string
-  format?: 'reel' | 'short' | 'carousel' | 'article' | 'video' | 'story'
+  format?: 'reel' | 'short' | 'carousel' | 'article' | 'video' | 'story' | string
   campaign?: string
+  campaignId?: string
+  campaignDay?: 'J0' | 'J1' | 'J3' | 'J5' | 'J7' | 'J10' | 'J14' | string
+  utmParams?: Record<string, string>
   sourceType: 'article' | 'service' | 'projet' | 'citation' | 'musique' | 'masterclass' | 'libre'
   sourceSlug?: string
   sourceTitle?: string
@@ -303,6 +392,7 @@ export interface SocialPost {
   ctaLabel?: string
   targetAudience?: string
   validationSignature?: ValidationSignature
+  publicationProof?: PublicationProof
   decisionHistory?: DecisionLog[]
   rejectionReason?: string
   metrics?: PublicationMetrics

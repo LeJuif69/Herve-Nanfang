@@ -1958,6 +1958,7 @@ export const adminStore = {
     id: string,
     author = 'Hervé Nanfang',
     mode: 'manuel' | 'webhook' = 'manuel',
+    proof?: { proofUrl?: string; note?: string },
   ): Promise<{ success: boolean; error?: string }> {
     const post = currentState.publications.find((p) => p.id === id)
     if (!post) return { success: false, error: 'Publication introuvable.' }
@@ -1980,7 +1981,10 @@ export const adminStore = {
       action: 'publication',
       timestamp: nowIso,
       author,
-      reason: mode === 'webhook' ? 'Diffusion transmise au webhook automatisé' : 'Partage manuel exécuté par l’administrateur',
+      reason:
+        mode === 'webhook'
+          ? 'Diffusion transmise au webhook automatisé'
+          : `Partage certifié par l’administrateur${proof?.proofUrl ? ` (Preuve: ${proof.proofUrl})` : ''}`,
       contentHash: currentHash,
     }
 
@@ -1988,6 +1992,18 @@ export const adminStore = {
       ...post,
       status: 'publie',
       publishedAt: nowIso,
+      publicationProof: proof
+        ? {
+            proofUrl: proof.proofUrl,
+            note: proof.note,
+            publishedAt: nowIso,
+            verifiedBy: author,
+          }
+        : post.publicationProof || {
+            verifiedBy: author,
+            publishedAt: nowIso,
+            note: mode === 'webhook' ? 'Confirmation webhook certifiée' : 'Attestation manuelle par l’administrateur',
+          },
       connectorStatus: {
         provider: mode,
         status: 'success',

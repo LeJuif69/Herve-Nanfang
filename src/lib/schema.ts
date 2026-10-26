@@ -266,21 +266,54 @@ export const articleSchema = (input: {
   slug: string
   section: string
   status: string
-}): Record<string, unknown> => ({
-  '@context': 'https://schema.org',
-  '@type': 'Article',
-  headline: input.title,
-  description: input.description,
-  articleSection: input.section,
-  inLanguage: 'fr',
-  url: `${SITE.url}/journal/${input.slug}`,
-  mainEntityOfPage: `${SITE.url}/journal/${input.slug}`,
-  author: { '@id': PERSON_ID },
-  publisher: { '@id': PERSON_ID },
-  ...(input.status === 'Publié'
-    ? { datePublished: '2026-01-01' }
-    : { creativeWorkStatus: input.status }),
-})
+  datePublished?: string
+  dateModified?: string
+  image?: string
+  authorName?: string
+}): Record<string, unknown> => {
+  const pubDate = input.datePublished || '2026-10-23'
+  const modDate = input.dateModified || pubDate
+  const imageUrl = input.image
+    ? input.image.startsWith('http')
+      ? input.image
+      : `${SITE.url}${input.image.startsWith('/') ? input.image : `/${input.image}`}`
+    : `${SITE.url}/images/shooting-pro-officiel.webp`
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: input.title,
+    description: input.description,
+    articleSection: input.section,
+    inLanguage: 'fr-FR',
+    url: `${SITE.url}/journal/${input.slug}`,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${SITE.url}/journal/${input.slug}`,
+    },
+    image: imageUrl,
+    author: {
+      '@type': 'Person',
+      '@id': PERSON_ID,
+      name: input.authorName || 'Hervé Nanfang',
+      url: SITE.url,
+      jobTitle: 'Artiste-Pianiste, Musicologue & Ingénieur Sonore',
+    },
+    publisher: {
+      '@type': 'Organization',
+      '@id': ORG_ID,
+      name: 'Alaiz Creative System',
+      url: SITE.url,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE.url}/favicon.svg`,
+      },
+    },
+    datePublished: pubDate,
+    dateModified: modDate,
+    ...(input.status === 'Publié' ? {} : { creativeWorkStatus: input.status }),
+  }
+}
 
 export const breadcrumbSchema = (items: { name: string; path: string }[]) => ({
   '@context': 'https://schema.org',

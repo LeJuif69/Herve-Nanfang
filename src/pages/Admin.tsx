@@ -208,8 +208,8 @@ export default function Admin() {
                 onRevokeApproval={async (id: string, reason?: string) => {
                   return await adminStore.revokeApproval(id, reason)
                 }}
-                onMarkAsPublished={async (id: string) => {
-                  return await adminStore.markPublicationAsPublished(id)
+                onMarkAsPublished={async (id: string, proof?: { proofUrl?: string; note?: string }) => {
+                  return await adminStore.markPublicationAsPublished(id, 'Hervé Nanfang', 'manuel', proof)
                 }}
                 onUpdateMetrics={async (id: string, metrics: PublicationMetrics) => {
                   await adminStore.updatePublicationMetrics(id, metrics)
@@ -266,6 +266,7 @@ export default function Admin() {
                   adminStore.syncArticlesFromCode()
                   showToast('Articles resynchronisés depuis src/data/articles.ts.')
                 }}
+                showToast={showToast}
               />
             )}
 

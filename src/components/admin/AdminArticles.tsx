@@ -4,6 +4,8 @@ import { CATEGORIES } from '../../data/articles'
 import type { AdminArticle, AdminMedia, ContentStatus } from '../../lib/admin-types'
 import { ImageEditor, type ImageEditorValue } from './ImageEditor'
 import { ImageField } from './ImageField'
+import { CampaignDistributionModal } from './CampaignDistributionModal'
+import { adminStore } from '../../lib/admin-store'
 
 interface AdminArticlesProps {
   articles: AdminArticle[]
@@ -13,6 +15,7 @@ interface AdminArticlesProps {
   onToggleStatus: (id: string) => Promise<ContentStatus>
   onUploadMedia: (file: File, meta: { altText: string; caption?: string; tags?: string[] }) => Promise<AdminMedia>
   onSyncFromCode?: () => void
+  showToast?: (msg: string, type?: 'success' | 'error') => void
 }
 
 const EMPTY_ARTICLE: AdminArticle = {
@@ -48,6 +51,7 @@ export const AdminArticles: React.FC<AdminArticlesProps> = ({
   onToggleStatus,
   onUploadMedia,
   onSyncFromCode,
+  showToast,
 }) => {
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<string>('Tous')
@@ -58,6 +62,7 @@ export const AdminArticles: React.FC<AdminArticlesProps> = ({
   const [modalTab, setModalTab] = useState<'general' | 'content' | 'seo'>('general')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isImageEditorOpen, setIsImageEditorOpen] = useState(false)
+  const [distributingArticleId, setDistributingArticleId] = useState<string | null>(null)
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null)
   const [exportArticle, setExportArticle] = useState<AdminArticle | null>(null)
   const [copiedCode, setCopiedCode] = useState(false)
@@ -414,6 +419,14 @@ export const AdminArticles: React.FC<AdminArticlesProps> = ({
                         title="Exporter le code TypeScript pour articles.ts"
                       >
                         Code TS
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setDistributingArticleId(article.id)}
+                        className="border border-gold/40 bg-gold/15 px-2 py-1 text-[0.68rem] font-bold text-gold hover:bg-gold hover:text-ink transition-all shadow-sm"
+                        title="Lancer le générateur de distribution multicanal (10 formats)"
+                      >
+                        Distribuer ⚡
                       </button>
                       <Link
                         to={`/journal/${article.slug}`}
@@ -1116,6 +1129,20 @@ export const AdminArticles: React.FC<AdminArticlesProps> = ({
           }}
         />
       )}
+
+      {/* Générateur de Distribution Multicanal pour cet article */}
+      <CampaignDistributionModal
+        isOpen={Boolean(distributingArticleId)}
+        onClose={() => setDistributingArticleId(null)}
+        articles={articles}
+        initialArticleId={distributingArticleId || undefined}
+        onSchedulePosts={async (posts) => {
+          for (const p of posts) {
+            await adminStore.savePublication(p)
+          }
+        }}
+        showToast={showToast || ((msg) => alert(msg))}
+      />
     </div>
   )
 }
