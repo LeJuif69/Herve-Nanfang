@@ -385,6 +385,32 @@ export default function AI() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal delay={200}>
+          <div className="mt-14 rounded-xl border border-gold/30 bg-ink-2/90 p-8 shadow-2xl">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div className="max-w-3xl">
+                <div className="flex items-center gap-3">
+                  <span className="inline-block h-2 w-2 rounded-full bg-gold" />
+                  <span className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-gold">
+                    Enquête & Cadre Juridique Africain
+                  </span>
+                </div>
+                <h3 className="mt-3 font-display text-2xl leading-snug text-ivory md:text-3xl">
+                  IA & droits d’auteur dans la musique africaine : ce que les créateurs camerounais doivent comprendre
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ivory/70">
+                  Décryptage à l’issue des Rencontres Musicales Africaines (REMA) : Loi n° 2000/011, Accord de Bangui (OAPI), protection des patrimoines oraux face aux pillages et statut juridique réel des œuvres co-créées avec l’IA.
+                </p>
+              </div>
+              <div className="shrink-0">
+                <Btn to="/journal/ia-droits-auteur-musique-africaine" variant="gold">
+                  Lire l’analyse juridique →
+                </Btn>
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </Section>
 
       {/* ======================= CE QUE C'EST / N'EST PAS ======================= */}

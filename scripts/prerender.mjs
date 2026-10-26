@@ -233,11 +233,9 @@ try {
   const publishedRoutes = ARTICLES
     .filter((article) => article.status === 'Publié')
     .map((article) => `/journal/${article.slug}`)
-  await writeFile(
-    resolve(dist, 'sitemap.xml'),
-    sitemapXml(SITE, [...staticRoutes, ...publishedRoutes]),
-    'utf8',
-  )
+  const xml = sitemapXml(SITE, [...staticRoutes, ...publishedRoutes])
+  await writeFile(resolve(dist, 'sitemap.xml'), xml, 'utf8')
+  await writeFile(resolve(root, 'public', 'sitemap.xml'), xml, 'utf8')
 
   console.log(`Prerendered ${routes.length} routes and 404.html; sitemap contains ${staticRoutes.length + publishedRoutes.length} URLs.`)
 } finally {

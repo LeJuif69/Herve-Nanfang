@@ -21,6 +21,51 @@ import { useSeo } from '../lib/seo'
 import { useLiveArticle, useLiveArticles } from '../lib/useLiveContent'
 import NotFound from './NotFound'
 
+function renderFormattedText(text: string) {
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g
+  const parts: (string | React.ReactNode)[] = []
+  let lastIndex = 0
+  let match: RegExpExecArray | null
+
+  while ((match = linkRegex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index))
+    }
+    const label = match[1]
+    const url = match[2]
+    if (url.startsWith('/')) {
+      parts.push(
+        <Link
+          key={match.index}
+          to={url}
+          className="text-gold underline decoration-gold/50 underline-offset-4 transition-colors hover:text-gold-2 hover:decoration-gold font-medium"
+        >
+          {label}
+        </Link>
+      )
+    } else {
+      parts.push(
+        <a
+          key={match.index}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gold underline decoration-gold/50 underline-offset-4 transition-colors hover:text-gold-2 hover:decoration-gold font-medium"
+        >
+          {label}
+        </a>
+      )
+    }
+    lastIndex = match.index + match[0].length
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex))
+  }
+
+  return parts.length > 0 ? parts : text
+}
+
 export default function ArticleDetail() {
   const { slug } = useParams()
   const article = useLiveArticle(slug)
@@ -100,7 +145,9 @@ export default function ArticleDetail() {
                     </h2>
                     <div className="space-y-6 text-[1.02rem] leading-[1.95] text-ivory/75">
                       {section.paragraphs.map((paragraph, paragraphIndex) => (
-                        <p key={`${section.heading}-${paragraphIndex}`}>{paragraph}</p>
+                        <p key={`${section.heading}-${paragraphIndex}`}>
+                          {renderFormattedText(paragraph)}
+                        </p>
                       ))}
                     </div>
                   </section>
