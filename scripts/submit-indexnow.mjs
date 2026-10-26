@@ -72,16 +72,21 @@ const payload = JSON.stringify({
 
 try {
   console.log(`📡 Soumission de ${urls.length} URL à IndexNow (${host})...`)
-  const res = await fetch('https://api.indexnow.org/IndexNow', {
+  const res = await fetch('https://api.indexnow.org/indexnow', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json; charset=utf-8' },
     body: payload,
   })
 
   if (res.ok || res.status === 200 || res.status === 202) {
-    console.log(`🚀 IndexNow succès : HTTP ${res.status} ${res.statusText} — ${urls.length} URL transmises aux moteurs de recherche.`)
+    console.log(`🚀 IndexNow succès : HTTP ${res.status} ${res.statusText} — ${urls.length} URL transmises aux moteurs de recherche. Note : la soumission signale les URL mais l'indexation finale relève de chaque moteur.`)
   } else {
-    console.warn(`⚠️  IndexNow a retourné : HTTP ${res.status} ${res.statusText}`)
+    const errorBody = await res.text()
+    if (res.status === 403) {
+      console.warn(`⚠️  IndexNow clé non autorisée (HTTP 403 Forbidden). Pour activer IndexNow : générez ou associez cette clé dans Bing Webmaster Tools pour ${host} et définissez la variable d’environnement INDEXNOW_KEY dans Vercel.`)
+    } else {
+      console.warn(`⚠️  IndexNow a retourné : HTTP ${res.status} ${res.statusText} — ${errorBody}`)
+    }
     if (!isAutoMode) process.exit(1)
   }
 } catch (err) {

@@ -1,0 +1,49 @@
+# Hervé Nanfang — Portfolio & Écosystème Professionnel
+
+> Ressource complémentaire expérimentale (llms.txt) destinée à faciliter la contextualisation et la compréhension du site officiel d’Hervé Nanfang par les systèmes d’information et assistants d'IA. Ce document ne constitue pas une garantie d'indexation ou de citation automatique.
+
+## Identité & Positionnement
+- **Nom public :** Hervé Nanfang
+- **Signature artistique :** Le Pianobariste
+- **Positionnement :** Créer · Transmettre · Augmenter · Développer
+- **Métiers & Rôles :** Musicologue, Artiste-musicien (piano-bar et scène live depuis 2007), Pédagogue, Ingénieur du son, Concepteur de programmes pédagogiques, Spécialiste de l'intelligence artificielle appliquée à la musique et aux industries culturelles.
+- **Localisation :** Yaoundé, Cameroun
+- **Structures associées :** Alaiz Creative System, Racines Musicales Academy® (RMA)
+- **Site officiel canonique :** https://hervenanfang.vercel.app/
+
+## Les Quatre Dimensions
+1. **Créer (Musique · Son · Live) :** Piano-bar live, composition, arrangements, sonorisation et ingénierie sonore acoustique et numérique.
+2. **Transmettre (Pédagogie · Recherche · Culture) :** Recherche ethnomusicologique sur les polyrythmies du Cameroun, ingénierie de formation, méthode du Permis de Jouer™.
+3. **Augmenter (IA · Technologie · Innovation) :** Méthode du Musicien Augmenté™, intégration éthique de l'IA générative dans les processus de composition, de mixage et d'éducation musicale sans remplacement de la sensibilité humaine.
+4. **Développer (Digital & Entrepreneuriat) :** Récits de marque pour créateurs africains, structuration de projets culturels durables et communication digitale.
+
+## Pages Clés du Site
+- [Accueil](https://hervenanfang.vercel.app/) : Présentation générale, trajectoire et scène sonore.
+- [À propos](https://hervenanfang.vercel.app/a-propos) : Biographie vérifiée, parcours du clavier à l'innovation, formations et distinctions.
+- [Musique](https://hervenanfang.vercel.app/musique) : Activité live (Le Pianobariste), répertoire international et jazz, MAO et ingénierie sonore.
+- [Pédagogie](https://hervenanfang.vercel.app/pedagogie) : Programmes de formation, méthode d'apprentissage du piano, transmission des savoirs.
+- [Services](https://hervenanfang.vercel.app/services) : Prestations live, formation professionnelle, conseil en IA culturelle et production.
+- [RMA — Racines Musicales Academy®](https://hervenanfang.vercel.app/rma) : Académie de musique, cursus et formulaire d'audition.
+- [IA & Technologie](https://hervenanfang.vercel.app/ia-technologie) : Démarche du Musicien Augmenté™, cas d'usage éthiques de l'IA dans l'art musical.
+- [Culture & Recherche](https://hervenanfang.vercel.app/culture-recherche) : Travaux musicologiques, patrimoine oral et traditions musicales camerounaises.
+- [Projets](https://hervenanfang.vercel.app/projets) : Réalisations et initiatives structurantes portées par Alaiz Creative System.
+- [Journal](https://hervenanfang.vercel.app/journal) : Réflexions de fond, analyses techniques et articles de recherche.
+- [Conférences](https://hervenanfang.vercel.app/conferences) : Interventions publiques, masterclasses et keynotes sur l'IA et la culture.
+- [Presse & Kit média](https://hervenanfang.vercel.app/presse) : Biographie officielle, revue de presse et ressources médias vérifiées.
+- [Contact](https://hervenanfang.vercel.app/contact) : Parcours de contact pour booking, formation, conférences et partenariats.
+- [Mentions Légales](https://hervenanfang.vercel.app/mentions-legales) : Cadre légal et propriété intellectuelle.
+- [Politique de Confidentialité](https://hervenanfang.vercel.app/confidentialite) : Protection des données personnelles.
+
+## Journal du Musicien Augmenté — Articles Publiés
+1. [Après la MAO, l'IA : la nouvelle frontière du musicien](https://hervenanfang.vercel.app/journal/apres-la-mao-lia)
+2. [L'IA va-t-elle remplacer les musiciens ?](https://hervenanfang.vercel.app/journal/ia-va-t-elle-remplacer-les-musiciens)
+3. [Qu'est-ce qu'un musicien augmenté ?](https://hervenanfang.vercel.app/journal/musicien-augmente-definition)
+4. [L'intelligence artificielle et la musique live](https://hervenanfang.vercel.app/journal/ia-et-musique-live)
+5. [5 façons dont l'IA transforme la carrière des créateurs](https://hervenanfang.vercel.app/journal/5-facons-ia-carriere-musicien)
+6. [IA et MAO : vers une nouvelle créativité musicale](https://hervenanfang.vercel.app/journal/ia-mao-creation-musicale)
+7. [Les musiciens africains face à la révolution de l'IA](https://hervenanfang.vercel.app/journal/musiciens-africains-et-ia)
+8. [Fela Kuti et l'Afrobeat : révolution musicale et politique](https://hervenanfang.vercel.app/journal/fela-kuti-afrobeat-revolution-musicale-politique)
+9. [La musique à l'image dans le cinéma africain](https://hervenanfang.vercel.app/journal/musique-a-l-image-cinema-africain)
+10. [La méthode du Permis de Jouer™ : réinventer la pédagogie du piano](https://hervenanfang.vercel.app/journal/methode-permis-de-jouer-pedagogie-musicale)
+11. [Faire de sa musique une marque et un récit](https://hervenanfang.vercel.app/journal/musicien-marque-recit)
+12. [IA et droit d’auteur : ce que les créateurs camerounais doivent savoir](https://hervenanfang.vercel.app/journal/ia-droits-auteur-musique-africaine)

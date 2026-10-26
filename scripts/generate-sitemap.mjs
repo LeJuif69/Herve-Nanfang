@@ -11,21 +11,21 @@ const root = process.cwd()
 const SITE_URL = 'https://hervenanfang.vercel.app'
 
 const STATIC_URLS = [
-  { loc: '/', changefreq: 'weekly', priority: '1.0' },
-  { loc: '/a-propos', changefreq: 'weekly', priority: '0.9' },
-  { loc: '/musique', changefreq: 'weekly', priority: '0.9' },
-  { loc: '/ia-technologie', changefreq: 'weekly', priority: '0.9' },
-  { loc: '/pedagogie', changefreq: 'weekly', priority: '0.9' },
-  { loc: '/services', changefreq: 'monthly', priority: '0.9' },
-  { loc: '/rma', changefreq: 'weekly', priority: '0.9' },
-  { loc: '/culture-recherche', changefreq: 'monthly', priority: '0.8' },
-  { loc: '/projets', changefreq: 'monthly', priority: '0.9' },
-  { loc: '/journal', changefreq: 'weekly', priority: '0.9' },
-  { loc: '/conferences', changefreq: 'weekly', priority: '0.9' },
-  { loc: '/presse', changefreq: 'weekly', priority: '0.8' },
-  { loc: '/contact', changefreq: 'monthly', priority: '0.8' },
-  { loc: '/mentions-legales', changefreq: 'yearly', priority: '0.3' },
-  { loc: '/confidentialite', changefreq: 'yearly', priority: '0.3' },
+  '/',
+  '/a-propos',
+  '/musique',
+  '/ia-technologie',
+  '/pedagogie',
+  '/services',
+  '/rma',
+  '/culture-recherche',
+  '/projets',
+  '/journal',
+  '/conferences',
+  '/presse',
+  '/contact',
+  '/mentions-legales',
+  '/confidentialite',
 ]
 
 async function publishedSlugs() {
@@ -42,19 +42,16 @@ async function publishedSlugs() {
 
 const today = new Date().toISOString().split('T')[0]
 
-function entry(loc, changefreq, priority) {
-  let xml = `  <url>\n    <loc>${SITE_URL}${loc}</loc>\n    <lastmod>${today}</lastmod>`
-  if (changefreq) xml += `\n    <changefreq>${changefreq}</changefreq>`
-  if (priority) xml += `\n    <priority>${priority}</priority>`
-  return `${xml}\n  </url>`
+function entry(loc) {
+  return `  <url>\n    <loc>${SITE_URL}${loc}</loc>\n    <lastmod>${today}</lastmod>\n  </url>`
 }
 
 const slugs = await publishedSlugs()
 const lines = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-  ...STATIC_URLS.map((u) => entry(u.loc, u.changefreq, u.priority)),
-  ...slugs.map((s) => entry(`/journal/${s}`, undefined, '0.8')),
+  ...STATIC_URLS.map((u) => entry(u)),
+  ...slugs.map((s) => entry(`/journal/${s}`)),
   '</urlset>',
   '',
 ]
