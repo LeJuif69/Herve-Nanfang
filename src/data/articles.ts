@@ -1543,14 +1543,11 @@ export const ARTICLES: Article[] = [
     status: 'Publié',
     audience: "Pianistes amateurs, instrumentistes débutants, chanteurs et enseignants",
     outline: [
-      "1. Le paradoxe de l’élève bloqué : pourquoi le modèle académique traditionnel décourage",
-      "2. Écouter avant de toucher : la cartographie de la basse et de la pulsation",
-      "3. Les trois piliers de l’accord : fondamentale, tierce et quinte comme repères tactiles",
-      "4. La méthode du chiffrage fonctionnel et la conduite des voix (Voice Leading)",
-      "5. Le chant-accompagné : synchroniser souffle, diction et main gauche métronomique",
-      "6. Les 4 verbes appliqués à l’apprentissage du clavier",
-      "7. Ce que je n’ai pas encore résolu",
-      "8. Sources et références"
+      "1. La scène immersive : le complexe de la fausse note",
+      "2. Le diagnostic : la surcharge cognitive du débutant",
+      "3. L’explication harmonique : la musique comme géométrie physique",
+      "4. La décision pédagogique : la progression du Permis de Jouer™",
+      "5. La transmission : rendre l’élève souverain"
 ],
     linkedConcept: {
       label: "Le Permis de Jouer™",
@@ -1558,61 +1555,46 @@ export const ARTICLES: Article[] = [
     },
     body: [
       {
-            "heading": "1. Le paradoxe de l’élève bloqué : pourquoi le modèle académique traditionnel décourage",
+            "heading": "1. La scène immersive : le complexe de la fausse note",
             "paragraphs": [
-                  "Chaque semaine à Yaoundé et dans mes ateliers en ligne, je rencontre des pianistes amateurs — et parfois des musiciens ayant trois à cinq ans de pratique en conservatoire privé — incapables d'accompagner un ami qui chante une mélodie simple ou de transposer un cantique d’un ton vers le bas sans partition. Ils connaissent les figures de notes, savent déchiffrer avec lenteur une sonatine de Clementi, mais dès que la feuille de papier disparaît du pupitre, la main droite se fige et la main gauche cherche désespérément une fondamentale rassurante.",
-                  "Ce blocage n'est pas un défaut de talent : c'est la conséquence directe d'une hiérarchie pédagogique inversée. Durant plus d'un siècle, l'enseignement classique occidental a imposé le déchiffrage visuel avant la structuration auditive. Or, dans les traditions musicales orales africaines — comme l'a documenté le musicologue ghanéen [J.H. Kwabena Nketia](https://www.jstor.org/stable/850550) dans *The Music of Africa* —, la musique se vit d'abord par le corps et l'oreille avant toute tentative de formalisation graphique.",
-                  "À la [Racines Musicales Academy® (RMA)](/rma), nous avons conçu le cursus [Permis de Jouer™](/pedagogie#permis-de-jouer) pour déverrouiller ce réflexe. L'objectif premier d'un accompagnateur n'est pas de reproduire un texte figé, mais de bâtir un tapis harmonique souple sur lequel la voix d'un interprète peut s'épanouir en toute sécurité acoustique."
+                  "Note éditoriale : Cette scène rassemble plusieurs situations vécues lors de nos ateliers d’initiation et de perfectionnement au clavier à Yaoundé. Les circonstances ont été adaptées pour illustrer la méthode du [Permis de Jouer™](/pedagogie#permis-de-jouer).",
+                  "Un samedi matin dans nos ateliers à Yaoundé, un adulte d’une quarantaine d’années s’assoit devant le piano de scène. Il a suivi deux ans de cours particuliers dans son adolescence. Devant lui, pas de partition. On lui demande simplement d’accompagner une mélodie de trois notes fredonnée par un voisin d’atelier.",
+                  "Immédiatement, ses épaules se haussent, ses poignets se raidissent, et ses doigts hésitent au-dessus des touches blanches comme s’ils s’apprêtaient à toucher un câble sous tension. Il finit par lâcher : « Je ne peux pas, je n’ai pas la feuille. Et puis, je n’ai jamais eu l’oreille musicale. »",
+                  "Cette phrase, je l’ai entendue des centaines de fois. Elle illustre le traumatisme d’un enseignement initial qui a confondu la lecture d’un code graphique avec la musique elle-même."
             ]
       },
       {
-            "heading": "2. Écouter avant de toucher : la cartographie de la basse et de la pulsation",
+            "heading": "2. Le diagnostic : la surcharge cognitive du débutant",
             "paragraphs": [
-                  "Avant même de poser les dix doigts sur les 88 touches du clavier, le musicien accompagnateur doit pratiquer ce que Pierre Schaeffer et les chercheurs de l'[IRCAM](https://www.ircam.fr) appellent « l'écoute réduite » : isoler les composantes structurelles du flux sonore.",
-                  "Pour toute chanson populaire, qu'il s'agisse d'un standard de jazz, d'une ballade de piano-bar ou d'un chant traditionnel arrangé, l'exercice d'écoute active se décompose en trois strates impératives :\n- **La pulsation corporelle (le beat)** : Battre le temps du pied ou frapper sur la cuisse pour intérioriser le tempo métronomique sans dépendre d'un clic extérieur.\n- **La ligne de basse (root motion)** : Identifier la note la plus grave à chaque changement de mesure. La basse donne le nom de l'accord (le degré harmonique). Si vous entendez que la basse descend d'un demi-ton ou saute d'une quarte ascendante, vous possédez 80 % de la trajectoire harmonique.\n- **Le caractère majeur ou mineur (la tierce)** : Écouter si l'accord sonne lumineux (tierce majeure) ou mélancolique/fermé (tierce mineure).",
-                  "En réduisant l'écoute à ces deux repères — fondamentale et couleur de la tierce —, l'élève s'affranchit du vertige des accords compliqués. Un accord de Do majeur n'est pas une énigme théorique : c'est un point de gravité acoustique identifiable en une fraction de seconde par n'importe quelle oreille entraînée."
+                  "Le diagnostic ne révèle aucun défaut d’aptitude auditive, mais une surcharge cognitive inversée :",
+                  "On a demandé à cet élève de traiter simultanément quatre informations complexes : déchiffrer deux clés (sol et fa), mémoriser les altérations à la clé, contrôler la motricité fine de dix doigts indépendants, et compter le rythme de façon abstraite.",
+                  "En bloquant son attention sur le papier, on a court-circuité son écoute naturelle. Pourtant, dans la vie courante, cette même personne reconnaît instantanément la voix d’un proche au téléphone parmi mille autres : son oreille fonctionne parfaitement."
             ]
       },
       {
-            "heading": "3. Les trois piliers de l’accord : fondamentale, tierce et quinte comme repères tactiles",
+            "heading": "3. L’explication harmonique : la musique comme géométrie physique",
             "paragraphs": [
-                  "Au clavier, l'apprentissage des triades ne doit pas être appris par listes abstraites (Do-Mi-Sol, Ré-Fa-La...), mais par repères géométriques sur le clavier physique.",
-                  "Chaque accord triadique est un triangle de trois touches. Dans la méthode [Permis de Jouer™](/pedagogie#permis-de-jouer), nous enseignons aux élèves à visualiser les formes :\n- **L'accord parfait majeur** : 4 demi-tons (tierce majeure) puis 3 demi-tons (tierce mineure). Forme stable et brillante.\n- **L'accord parfait mineur** : 3 demi-tons (tierce mineure) puis 4 demi-tons (tierce majeure). Forme introspective.\n- **L'accord de septième dominante** : La porte d'entrée de toute tension musicale qui appelle une résolution vers le premier degré (cadence parfaite V - I).",
-                  "Au lieu d'apprendre 24 positions isolées, l'élève apprend la translation spatiale : la main conserve la même voûte musculaire et se déplace latéralement sur le clavier. Dès la deuxième séance, un adulte débutant est capable d'enchaîner le cycle des quatre accords magiques (I - V - vi - IV, par exemple C - G - Am - F) qui soutient plus de 500 chansons populaires mondiales."
+                  "Dans la méthode que nous enseignons à la [Racines Musicales Academy®](/rma), l’harmonie n’est pas une énigme théorique, c’est une relation physique et acoustique inspirée de l’écoute réduite théorisée à l’[IRCAM](https://www.ircam.fr) :",
+                  "La fondamentale donne l’ancrage : Tout accord repose sur une note racine qui dicte le centre de gravité. Si la basse monte d’une quarte ou descend d’une quinte, le cerveau perçoit un mouvement de tension ou de repos.",
+                  "La tierce définit la lumière : L’oreille n’a besoin que d’une seule note pour savoir si l’accord est majeur (ouvert, lumineux) ou mineur (introspectif, sombre).",
+                  "Le « saut de grenouille » vs le Voice Leading : Le défaut majeur du débutant autodidacte est de déplacer tout son avant-bras pour jouer chaque accord dans sa position fondamentale. Cette gymnastique casse le tempo et produit un son heurté."
             ]
       },
       {
-            "heading": "4. La méthode du chiffrage fonctionnel et la conduite des voix (Voice Leading)",
+            "heading": "4. La décision pédagogique : la progression du Permis de Jouer™",
             "paragraphs": [
-                  "Le défaut le plus courant chez le pianiste débutant est ce que j'appelle « le syndrome du saut de grenouille » : jouer chaque accord à l'état fondamental en déplaçant tout le bras d'un bout à l'autre du clavier (passer de Do majeur au centre à Fa majeur à l'aigu, puis redescendre à Sol majeur). Le son est haché, les silences involontaires polluent la mélodie, et la fatigue musculaire s'installe.",
-                  "La véritable élégance d'un accompagnement réside dans la **conduite des voix** (le *Voice Leading*, théorisé dans les traités d'harmonie classique et enseigné au [Berklee College of Music](https://www.berklee.edu)) :\n- Maintenir les notes communes entre deux accords successifs sous les mêmes doigts.\n- Ne déplacer les autres doigts que d'un demi-ton ou d'un ton entier.\n- Répartir le rôle des mains : la **main gauche** s'occupe de la racine fondamentale (et éventuellement de la quinte pour donner de l'assise), tandis que la **main droite** réalise des renversements compacts (état fondamental, premier renversement, deuxième renversement) dans la zone centrale du clavier (entre C3 et C5).",
-                  "Grâce à cette répartition, le clavier cesse d'être une surface chaotique pour devenir un pupitre de cordes vocales qui murmurent sous vos mains avec fluidité."
+                  "La méthode déverrouille l’accompagnateur en 4 gestes méthodiques :",
+                  "1. Écouter la basse d’abord : L’élève retire ses mains du clavier. On écoute la chanson. Il frappe le tempo du pied et chante uniquement la ligne de basse avec sa voix. Dès qu’il peut chanter la basse, sa main gauche sait exactement où appuyer.",
+                  "2. Le chiffrage américain fonctionnel : Remplacer le déchiffrage de portées par des repères universels (C, G, Am, F) enseignés au [Berklee College of Music](https://www.berklee.edu). La grille devient une carte routière simple, lisible en un coup d’œil.",
+                  "3. La règle de l’économie de mouvement : La main droite apprend à utiliser les renversements d’accords pour garder les notes communes sous les mêmes doigts. Pour passer de Do majeur (C) à Fa majeur (F), un seul doigt bouge d’un demi-ton, un autre d’un ton entier. Le bras ne saute plus : il respire dans un espace compact de cinq touches.",
+                  "4. La synchronisation avec la voix : Travailler par paliers. D’abord poser l’accord une seule fois par mesure sur le premier temps, laisser résonner sur la pédale de sustain, et chanter le texte par-dessus. Introduire le rythme au clavier seulement lorsque le larynx est libéré."
             ]
       },
       {
-            "heading": "5. Le chant-accompagné : synchroniser souffle, diction et main gauche métronomique",
+            "heading": "5. La transmission : rendre l’élève souverain",
             "paragraphs": [
-                  "Accompagner un autre chanteur est un exercice d'altérité et d'écoute empathique ; s'accompagner soi-même en chantant est un exercice de dissociation psychomotrice. Beaucoup d'élèves chantent juste a cappella et jouent leurs accords en rythme lorsqu'ils sont silencieux, mais s'effondrent dès qu'ils tentent de conjuguer les deux.",
-                  "Pour lever cette barrière neurologique, nous procédons en 4 paliers d'indépendance éprouvés :\n1. **Palier 1 : La nappe statique.** Plaquer l'accord au premier temps de chaque mesure et le laisser résonner sur la pédale sustain pendant que vous parlez le texte de la chanson à voix haute, en calquant la prosodie parlée sur le tempo.\n2. **Palier 2 : Le chant murmuré sur basse seule.** La main gauche joue la fondamentale sur les temps 1 et 3, la voix fredonne sans texte pour fixer la justesse intervallique.\n3. **Palier 3 : Le chiffrage rythmé.** Introduire une pulsation régulière de la main droite (noires ou croches balancées) sans ornementation mélodique pour servir d'horloge interne au larynx.\n4. **Palier 4 : La respiration partagée.** Apprendre à anticiper la prise d'air du chanteur. Ne jamais jouer un accord lourd au moment précis où le diaphragme prend son souffle. L'accord doit se poser soit avant, soit après la reprise de respiration.",
-                  "Ce travail de dissociation fait l'objet de masterclasses dédiées au sein de notre [programme de formation vocale et instrumentale](/pedagogie)."
-            ]
-      },
-      {
-            "heading": "6. Les 4 verbes appliqués à l’apprentissage du clavier",
-            "paragraphs": [
-                  "Le modèle méthodologique qui guide ma démarche artistique s'applique intégralement à la pédagogie du clavier :\n- **Créer** : Dès la première semaine, encourager l'élève à inventer une séquence de trois accords et une mélodie vocale improvisée. Ne pas attendre cinq ans de solfège pour autoriser l'acte créateur.\n- **Transmettre** : Expliquer ce que l'on joue à un pair. L'élève qui reformule pourquoi une cadence fonctionne valide définitivement son intégration auditive.\n- **Augmenter** : Utiliser des outils audionumériques modernes (applications d'analyse de spectre, boîtes à rythmes virtuelles, enregistreurs de poche) pour écouter son propre jeu avec le recul d'un producteur en studio.\n- **Développer** : Structurer une discipline quotidienne d'immersion (15 minutes d'écoute ciblée et 20 minutes de pratique au clavier valent mieux que trois heures désordonnées le dimanche soir)."
-            ]
-      },
-      {
-            "heading": "7. Ce que je n’ai pas encore résolu",
-            "paragraphs": [
-                  "Malgré plus de quinze années d'enseignement et d'ateliers menés auprès de publics d'horizons variés, certaines questions pédagogiques demeurent ouvertes et continuent de nourrir mes recherches :\n- Comment accélérer l'intériorisation des rythmes ternaires complexes (6/8, 12/8 asymétriques du bikutsi et du makossa) chez des apprenants adultes dont l'oreille a été exclusivement formatée par la musique pop binaire occidentale ?\n- Quel est le seuil optimal d'introduction de la notation sur portée traditionnelle sans recréer l'inhibition visuelle chez des musiciens ayant développé une formidable mémoire d'oreille ?\n- Comment évaluer objectivement l'émotion et l'intention communicative d'un jeu pianistique sans tomber dans la subjectivité arbitraire du professeur ?"
-            ]
-      },
-      {
-            "heading": "8. Sources et références",
-            "paragraphs": [
-                  "- **Nketia, J.H. Kwabena** (1974). *The Music of Africa*. New York: W.W. Norton & Company. Analyse des structures harmoniques et des repères d'oralité dans la musique africaine.\n- **Schaeffer, Pierre** (1966). *Traité des objets musicaux : essai interdisciplines*. Paris: Éditions du Seuil. Théorie de l'écoute acousmatique et réduite.\n- **Sloboda, John A.** (1985). *The Musical Mind: The Cognitive Psychology of Music*. Oxford University Press. Neurosciences de l'acquisition instrumentale et de la dissociation motrice.\n- **Nanfang, Hervé** (2024). *Le Permis de Jouer™ : méthode d'émancipation harmonique pour claviers modernes*. Document de recherche pédagogique, [Racines Musicales Academy®](/rma), Yaoundé.\n- **Dalcroze, Émile Jaques** (1921). *Le Rythme, la musique et l'éducation*. Lausanne: Foetisch Frères. Pédagogie du mouvement corporel comme fondement de la pulsation musicale."
+                  "La véritable victoire pédagogique ne se mesure pas au nombre de mesures déchiffrées sans faute, mais à l’instant précis où l’élève relève la tête, sourit, et commence à chanter en s’accompagnant lui-même.",
+                  "La musique redevient ce qu’elle n’aurait jamais dû cesser d’être : un jeu d’expression, d’intimité et de partage. Retrouvez notre programme d’initiation pratique dans la section [Permis de Jouer™](/pedagogie#permis-de-jouer)."
             ]
       }
 ],
@@ -1639,14 +1621,11 @@ export const ARTICLES: Article[] = [
     status: 'Publié',
     audience: "Professeurs de musique, directeurs d’écoles, parents et passionnés",
     outline: [
-      "1. L’illusion de la méthode universelle : pourquoi tout dogme pédagogique sclérose le musicien",
-      "2. L’oralité comme moteur pédagogique premier : apprendre par imprégnation corporelle",
-      "3. La partition comme outil de relecture, non comme point de départ",
-      "4. La pédagogie par projet à la RMA : de l’idée brute au premier concert public",
-      "5. Former des créateurs souverains, non des exécutants dociles",
-      "6. Créer · Transmettre · Augmenter · Développer : le fil directeur de l’éducateur",
-      "7. Ce que je n’ai pas encore résolu",
-      "8. Sources et références"
+      "1. La scène immersive : le face-à-face des deux intelligences",
+      "2. Le diagnostic : le piège du dogme pédagogique",
+      "3. L’explication scientifique : la polyphonie cognitive du cerveau musical",
+      "4. La décision pédagogique : l’hybridation vivante à la RMA",
+      "5. La transmission : former des créateurs libres"
 ],
     linkedConcept: {
       label: "Racines Musicales Academy®",
@@ -1654,58 +1633,47 @@ export const ARTICLES: Article[] = [
     },
     body: [
       {
-            "heading": "1. L’illusion de la méthode universelle : pourquoi tout dogme pédagogique sclérose le musicien",
+            "heading": "1. La scène immersive : le face-à-face des deux intelligences",
             "paragraphs": [
-                  "Le monde de l'enseignement musical est traversé de guerres de tranchées aussi stériles qu'anciennes : d'un côté, les partisans d'un académisme rigoriste où rien n'existe sans partition d'orchestre ; de l'autre, les chantres de l'autodidaxie pure, persuadés que l'analyse théorique tue la spontanéité de l'émotion.",
-                  "Ces deux postures partagent la même erreur fondamentale : confondre le protocole avec la musique elle-même. La musique est un phénomène vibratoire, expressif et social bien antérieur à l'invention de la portée d'Arezzo ou aux logiciels d'enregistrement DAW.",
-                  "Lorsque j'ai fondé la [Racines Musicales Academy® (RMA)](/rma), j'ai constaté le gâchis humain causé par les méthodes uniques. Des jeunes instrumentistes au sens rythmique prodigieux, capables de retenir un solo complexe après une seule écoute, étaient catalogués comme « en difficulté » simplement parce qu'ils butaient sur la lecture à vue d'une clé de fa. Inversement, d'excellents lecteurs de notes perdaient tous leurs moyens dès qu'on leur demandait d'improviser un riff de blues sur trois accords. Notre mission d'éducateur consiste à faire dialoguer ces deux intelligences, jamais à en sacrifier une au nom d'un dogme institutionnel."
+                  "Note éditoriale : Cette réflexion s’inspire des parcours croisés d’élèves observés au Collège Jean-Tabi, à l’Arbre à Musique et lors des sessions RMA « Vacances Utiles » à Yaoundé.",
+                  "Dans une salle de répétition d’ensemble, deux jeunes musiciens de 15 ans partagent le même espace :",
+                  "Le premier a étudié le violon et le piano classique pendant six ans. Devant une partition de Mozart, ses doigts exécutent les traits avec une rigueur métronomique. Mais dès qu’on lui retire le pupitre et qu’on lui demande de jouer un groove de soul sur trois accords, son regard se fige dans le vide, incapable d’improviser une note.",
+                  "Le second n’a jamais ouvert un manuel de solfège. Il a grandi au village, bercé par les rythmes du bikutsi et du gospel à l’église. Il est capable de reproduire n’importe quelle ligne mélodique après l’avoir entendue une seule fois sur un téléphone. En revanche, il ignore comment nommer ce qu’il joue et se sent inférieur dès qu’un document écrit circule.",
+                  "Face à ces deux adolescents, l’enseignement traditionnel commet l’erreur de décréter que le premier est « musicien » et que le second n’est qu’un « amateur d’oreille »."
             ]
       },
       {
-            "heading": "2. L’oralité comme moteur pédagogique premier : apprendre par imprégnation corporelle",
+            "heading": "2. Le diagnostic : le piège du dogme pédagogique",
             "paragraphs": [
-                  "Dans les cultures d'Afrique subsaharienne, l'enfant n'apprend pas la musique comme une discipline isolée : il l'absorbe au sein du village lors des danses rituelles, des fêtes agraires et des veillées contées. Le rythme n'est pas pensé comme une fraction mathématique (4/4 ou 6/8) ; il est ressenti dans la marche, la respiration et la scansion des proverbes.",
-                  "Comme le souligne le cadre de l'[UNESCO sur l'Éducation Artistique et Culturelle](https://www.unesco.org/fr/education), la valorisation des pédagogies endogènes est indispensable à la sauvegarde de la diversité créative. Dans ma pratique d'enseignement :\n- **Le corps est le premier métronome** : Avant d'aborder une phrase rythmique au clavier, nous la marchons dans la pièce. Si le bassin et les pieds ne sont pas stables, les doigts ne le seront jamais.\n- **La scansion vocale devance le doigté** : Tout ce qui peut être chanté ou onomatopéisé (les syllabes mnémotechniques des tambours africains) peut être transféré instantanément sur l'instrument.\n- **La mémorisation aurale muscle la neuroplasticité** : Mémoriser une grille harmonique d'oreille développe une mémoire de travail bien plus durable que le déchiffrage mécanique d'un papier."
+                  "Le diagnostic révèle une séparation artificielle qui appauvrit la transmission :",
+                  "L’académisme occidental a sacralisé l’œil au détriment de l’oreille, créant des interprètes précis mais parfois privés d’autonomie créative.",
+                  "L’oralité pure, lorsqu’elle est privée de tout repère analytique, bride la capacité de l’artiste à communiquer avec des orchestres internationaux ou à fixer ses œuvres dans la durée."
             ]
       },
       {
-            "heading": "3. La partition comme outil de relecture, non comme point de départ",
+            "heading": "3. L’explication scientifique : la polyphonie cognitive du cerveau musical",
             "paragraphs": [
-                  "Il ne s'agit nullement de rejeter la notation écrite. La partition occidentale et les grilles de jazz sont des outils admirables d'archivage, de communication d'orchestre et de voyage temporel : elles permettent à un musicien camerounais de 2026 de dialoguer avec Jean-Sébastien Bach ou Bill Evans.",
-                  "Mais la partition doit être remise à sa juste place : c'est un aide-mémoire, une carte routière, pas le paysage. Le compositeur et pédagogue suisse Émile Jaques-Dalcroze l'avait déjà formulé : « L'étude de la théorie musicale ne devrait commencer qu'après que l'enfant a expérimenté physiquement et émotivement les sons. »",
-                  "Dans notre approche [Permis de Jouer™](/pedagogie#permis-de-jouer) :\n1. L'élève écoute et chante d'abord.\n2. Il reproduit et trouve les chemins tactiles sur l'instrument.\n3. Il analyse les tensions et résolutions harmoniques.\n4. Enfin, et seulement à ce stade, il découvre la notation graphique correspondante. La notation devient alors une confirmation lumineuse de ce qu'il maîtrise déjà, et non un obstacle anxiogène."
+                  "Les neurosciences cognitives contemporaines confirment ce que les traditions africaines savent d’instinct : la mémoire musicale s’élabore par trois circuits neuronaux complémentaires :",
+                  "1. Le circuit auditif et proprioceptif : L’empreinte corporelle du rythme (dans le bassin, la respiration et la marche, selon les principes reconnus par l’[UNESCO](https://www.unesco.org/fr/education)).",
+                  "2. Le circuit moteur et tactile : Les sensations musculaires de la main sur l’instrument.",
+                  "3. Le circuit analytique et symbolique : La représentation spatiale et graphique des hauteurs de notes.",
+                  "Vouloir commencer par le symbole abstrait (la partition) avant d’avoir développé le ressenti corporel et aurale est une aberration physiologique."
             ]
       },
       {
-            "heading": "4. La pédagogie par projet à la RMA : de l’idée brute au premier concert public",
+            "heading": "4. La décision pédagogique : l’hybridation vivante à la RMA",
             "paragraphs": [
-                  "On n'apprend pas à nager en lisant un manuel au bord du bassin ; on n'apprend pas la musique en enchaînant des exercices de Hanon ou de Czerny coupés de tout contexte artistique.",
-                  "À la [Racines Musicales Academy®](/rma), chaque module d'apprentissage s'organise autour d'un **projet d'incarnation réel** :\n- **Le mini-récital de piano-bar** : Dès le troisième mois, l'élève prépare un set de trois titres qu'il doit interpréter devant ses pairs, en gérant le trac, la présentation micro et la balance sonore.\n- **L'enregistrement en conditions studio** : L'apprenant passe une session devant le micro dans notre studio partenaire, écoute ses prises au casque et découvre l'importance de la précision de placement et de la dynamique de frappe.\n- **La co-création d'ensemble** : Les pianistes jouent avec des chanteurs, des bassistes et des percussionnistes traditionnels, apprenant la négociation de l'espace sonore et le respect de la parole musicale de l'autre."
+                  "Au sein de la [Racines Musicales Academy® (RMA)](/rma), nous refusons d’enfermer l’élève dans un camp :",
+                  "1. L’oralité et le chant d’abord : Tout ce qui doit être joué au clavier ou à la guitare doit pouvoir être scandé à la voix avec des onomatopées rythmiques (tcha-ku-tcha). Si le corps ne le porte pas, les doigts ne l’exprimeront jamais.",
+                  "2. La partition comme confirmation, non comme départ : L’apprenant découvre la notation sur portée après avoir maîtrisé le son et l’accord sous ses doigts. La note écrite ne lui fait plus peur : elle vient simplement lui confirmer ce que son oreille sait déjà.",
+                  "3. La pédagogie par projet d’ensemble : Dans nos sessions intensives (comme le stage Vacances Utiles avec restitution publique à Damas–Petits Génies), les élèves montent sur scène en duo ou en groupe dès le premier mois. C’est l’écoute mutuelle sur scène qui forge le véritable musicien."
             ]
       },
       {
-            "heading": "5. Former des créateurs souverains, non des exécutants dociles",
+            "heading": "5. La transmission : former des créateurs libres",
             "paragraphs": [
-                  "Le test ultime de la réussite d'un pédagogue n'est pas le nombre d'élèves capables de répéter servilement ses propres gestes, mais le nombre d'élèves devenus capables de se passer de lui.",
-                  "Former un musicien souverain implique de lui donner les outils d'une écoute critique autonome :\n- **L'analyse comparative** : Écouter trois versions différentes du même standard (par Nina Simone, Ray Charles et une reprise moderne afro-soul) et disséquer les choix d'harmonisation, de tempo et d'intention vocale.\n- **Le droit à l'erreur féconde** : Une « fausse note » n'est souvent qu'une note de passage mal résolue. Enseigner à l'élève comment rattraper une note inattendue par un glissement d'un demi-ton transforme la panique en invention jazzistique.\n- **L'éthique de la transmission** : Dès qu'un élève franchit un cap, il est invité à devenir le tuteur d'un nouvel arrivant. Transmettre une notion oblige à clarifier ses propres représentations mentales."
-            ]
-      },
-      {
-            "heading": "6. Créer · Transmettre · Augmenter · Développer : le fil directeur de l’éducateur",
-            "paragraphs": [
-                  "Cette philosophie d'enseignement s'articule directement sur les 4 verbes fondamentaux de mon identité artistique :\n- **Créer** : Développer l'imaginaire sonore propre de l'élève avant de formater sa technique.\n- **Transmettre** : Honorer les racines patrimoniales camerounaises tout en intégrant le langage universel de l'harmonie.\n- **Augmenter** : Démystifier les outils contemporains (MAO, boucliers sonores, analyseurs de pitch) pour en faire des alliés de travail.\n- **Développer** : Préparer l'apprenant aux réalités professionnelles du métier de musicien (gestion du temps, santé auditive, communication et respect des engagements contractuels)."
-            ]
-      },
-      {
-            "heading": "7. Ce que je n’ai pas encore résolu",
-            "paragraphs": [
-                  "La pédagogie vivante est une remise en question permanente :\n- Comment maintenir le niveau d'exigence et de profondeur de l'écoute à une époque où la consommation musicale s'est fragmentée en formats de 15 secondes sur les réseaux sociaux ?\n- Quel modèle économique viable inventer en Afrique centrale pour offrir une formation instrumentale d'excellence à des jeunes issus de milieux défavorisés sans dépendre exclusivement du mécénat privé ?\n- Comment codifier la transmission des micro-inflexions expressives propres au chant traditionnel béti ou bamiléké sans les figer dans un académisme qui leur ferait perdre leur sève ?"
-            ]
-      },
-      {
-            "heading": "8. Sources et références",
-            "paragraphs": [
-                  "- **Freire, Paulo** (1970). *Pédagogie des opprimés*. Paris: Maspero. Fondement philosophique de l'apprentissage comme acte de libération et de conscientisation.\n- **UNESCO** (2006). *Feuille de route pour l'éducation artistique*. Conférence mondiale de Lisbonne.\n- **Willems, Edgar** (1954). *L'Éducation musicale nouvelle*. Paris: Éditions Pro Musica. Primauté de l'ouïe et de l'instinct rythmique sur la théorie.\n- **Nanfang, Hervé** (2025). *Manifeste pour une pédagogie musicale polyphonique à la Racines Musicales Academy®*. Document interne, Yaoundé.\n- **Swanwick, Keith** (1994). *Musical Knowledge: Intuition, Analysis and Music Education*. London: Routledge."
+                  "Enseigner la musique ne consiste pas à fabriquer des clones d’un maître ou des exécutants mécaniques.",
+                  "C’est donner à chaque élève les clés de son émancipation : la rigueur de l’harmonie universelle alliée à la vitalité des racines de notre terre. Pour découvrir notre pédagogie complète, explorez le [programme RMA](/rma) et le manuel pédagogique [LES ZIKOS®](/pedagogie#publications)."
             ]
       }
 ],
@@ -1909,13 +1877,11 @@ export const ARTICLES: Article[] = [
     status: 'Publié',
     audience: "Ingénieurs du son live, régisseurs, musiciens de scène et organisateurs de concerts",
     outline: [
-      "1. Le pacte de la sonorisation : la physique du son face à la psychologie des musiciens",
-      "2. La structure de gain : le fondement d’un signal propre et sans souffle",
-      "3. Les retours de scène (Wedges vs In-Ears) : donner du confort pour calmer le volume",
-      "4. L’égalisation soustractive : faire de la place plutôt que gonfler les fréquences",
-      "5. Le protocole méthodique en 7 étapes chronométrées",
-      "6. Ce que je n’ai pas encore résolu",
-      "7. Sources et références"
+      "1. La scène immersive : l’épreuve du compte à rebours",
+      "2. Le diagnostic : observer avant d’agir",
+      "3. L’explication scientifique : pourquoi les problèmes s’enchaînent",
+      "4. La décision professionnelle : le protocole d’arbitrage",
+      "5. La transmission : ce que le métier nous enseigne"
 ],
     linkedConcept: {
       label: "Ingénierie du son",
@@ -1923,51 +1889,44 @@ export const ARTICLES: Article[] = [
     },
     body: [
       {
-            "heading": "1. Le pacte de la sonorisation : la physique du son face à la psychologie des musiciens",
+            "heading": "1. La scène immersive : l’épreuve du compte à rebours",
             "paragraphs": [
-                  "Le moment de la balance (le *soundcheck*) est l'instant le plus délicat de toute journée de concert. La fatigue des trajets s'accumule, le stress du spectacle monte, et le temps imparti fond généralement comme neige au soleil en raison des retards d'installation.",
-                  "Dans la majorité des concerts en Afrique centrale — des salles polyvalentes de Yaoundé aux scènes en plein air de Douala —, l'ingénieur du son est confronté à des environnements acoustiques difficiles : plafonds en tôle réverbérante, murs nus sans traitement absorbant, variations de tension électrique et systèmes de diffusion hétéroclites.",
-                  "Faire une balance professionnelle ne consiste pas à « faire cracher les baffles ». C'est un exercice de calme méthodologique où chaque intervenant doit respecter un ordre rigoureux. Lorsque le batteur joue son solo alors que l'ingénieur calibre le micro du chanteur, la balance est déjà en péril. La sonorisation est d'abord une éthique de coopération avant d'être une console de mixage."
+                  "Note éditoriale : Cette scène rassemble plusieurs situations représentatives rencontrées dans la pratique professionnelle du live. Les circonstances ont été adaptées pour illustrer la méthode de hiérarchisation des priorités en régie.",
+                  "Il est 18h40 dans une grande salle événementielle de Yaoundé. Le concert débute à 20h00. Les musiciens viennent d’arriver après deux heures de route, la fatigue est palpable, et l’équipe de [régie sonore](/services#studio) n’a pas encore validé la chaîne de diffusion. Au moment de mettre sous tension les périphériques, l’indicateur de tension de la régie affiche des oscillations instables autour de 180 V. Sur le plateau, chacun s’impatiente : le batteur veut accorder ses fûts, le claviériste branche son synthétiseur, et l’organisateur demande si les portes peuvent ouvrir à l’heure.",
+                  "Le réflexe classique face à l’urgence est de vouloir tout régler en même temps : crier sur le plateau, monter les volumes au hasard et espérer que le matériel « tienne ». C’est précisément là que l’accident technique ou humain survient."
             ]
       },
       {
-            "heading": "2. La structure de gain : le fondement d’un signal propre et sans souffle",
+            "heading": "2. Le diagnostic : observer avant d’agir",
             "paragraphs": [
-                  "La règle fondamentale de l'électroacoustique enseignée par l'[AES (Audio Engineering Society)](https://www.aes.org) s'énonce en trois mots : **structure de gain**.",
-                  "Chaque maillon de la chaîne audio (le préampli micro, les bus de sommation de la console, les processeurs de dynamique, les filtres d'enceintes et les amplificateurs de puissance) possède une plage de fonctionnement optimale :\n- Si le gain d'entrée (*gain staging*) est réglé trop bas, l'ingénieur sera obligé de pousser le fader général et les amplificateurs à fond, ce qui remontera le bruit de fond électronique (le souffle insupportable dans les silences).\n- Si le gain d'entrée est trop haut, le préampli sature dès que le batteur frappe fort ou que la chanteuse crie dans un moment d'émotion, produisant une distorsion harmonique agressive et irréversible.",
-                  "La procédure immuable :\n1. Régler le potentiomètre de gain d'entrée (*Gain/Trim*) en demandant au musicien de jouer au niveau le plus fort prévu pendant le concert (*fortissimo* réel).\n2. Caler le niveau crête entre -18 dBFS et -12 dBFS sur une console numérique moderne (ou autour de 0 VU sur une console analogique).\n3. Conserver ainsi une marge de sécurité (*headroom*) de 12 à 18 dB pour encaisser sans distorsion les pointes d'énergie spontanées du direct."
+                  "Face à cette situation, l’ingénieur du son doit poser un diagnostic méthodique sans céder à la panique :",
+                  "Sur le plan électrique : Une tension anormale n’est pas un simple désagrément sonore, c’est un risque potentiel d’échauffement ou de mise en sécurité d’appareils. Si de nombreuses alimentations à découpage modernes (SMPS) tolèrent de larges plages (100–240 V), certains amplificateurs de puissance traditionnels ou équipements analogiques réagissent mal aux sous-tensions prolongées.",
+                  "Sur le plan acoustique : La salle est vide, les murs en béton et le sol carrelé créent un champ réverbéré important qui se réduira lorsque le public entrera.",
+                  "Sur le plan humain : Les artistes stressés ont besoin de repères stables. Leur demander de jouer fort dans le désordre ne produit que de la fatigue auditive."
             ]
       },
       {
-            "heading": "3. Les retours de scène (Wedges vs In-Ears) : donner du confort pour calmer le volume",
+            "heading": "3. L’explication scientifique : pourquoi les problèmes s’enchaînent",
             "paragraphs": [
-                  "La cause principale du volume excessif sur une scène n'est pas le public : ce sont les musiciens qui ne s'entendent pas dans leurs retours de scène. Si un chanteur ne perçoit pas distinctement sa voix, son premier réflexe est de crier à l'ingénieur du son : « Plus fort dans mon retour ! ». Si le batteur ne sent pas la basse, il frappe plus fort sur ses fûts, obligeant les claviers et les guitares à monter leurs amplis d'un cran. C'est l'escalade mortelle vers le mur de bruit.",
-                  "Pour briser ce cercle vicieux :\n- **L’égalisation préventive des retours (bains de pied / wedges)** : Avant même que les artistes ne montent sur scène, l'ingénieur du son doit « sonner la scène » (*ring out*). Monter le micro de chant principal jusqu'à l'amorce d'un larsen, identifier précisément la fréquence qui siffle à l'aide d'un analyseur de spectre RTA, et l'atténuer de 3 à 6 dB avec un égaliseur paramétrique ou graphique 31 bandes. Répéter l'opération sur 3 ou 4 fréquences critiques. Le gain avant larsen (*Gain Before Feedback*) augmente instantanément de plusieurs décibels.\n- **La transition vers les écouteurs intra-auriculaires (In-Ear Monitors)** : À la RMA et dans nos prestations événementielles d'envergure, nous favorisons l'usage des In-Ears. Isoler les oreilles des musiciens du bruit ambiant permet de baisser drastiquement le volume général sur le plateau et d'offrir à la façade un son pur, débarrassé de la pollution sonore des enceintes de retour qui repissent dans les micros voix."
+                  "Le larsen (effet Larsen) n’est pas une fatalité magique : comme l’enseignent les standards de l’[AES (Audio Engineering Society)](https://www.aes.org), c’est une boucle de rétroaction acoustique positive qui survient lorsque le gain de la boucle (micro -> console -> retour -> micro) atteint ou dépasse l’unité à une phase donnée.",
+                  "Si le chanteur ne s’entend pas distinctement, le réflexe instinctif est de monter le fader de retour. Mais chaque micro de chant possède un diagramme polaire (cardioïde, supercardioïde) avec des angles morts de réjection maximale (180° pour une cardioïde, 126° pour une supercardioïde). Si le retour de scène (le wedge) est mal orienté par rapport à l’arrière du micro, la marge de gain avant accrochage (Gain Before Feedback) s’effondre immédiatement, quelle que soit la qualité de l’égalisation."
             ]
       },
       {
-            "heading": "4. L’égalisation soustractive : faire de la place plutôt que gonfler les fréquences",
+            "heading": "4. La décision professionnelle : le protocole d’arbitrage",
             "paragraphs": [
-                  "Le réflexe du débutant sur une table de mixage est d'ajouter des fréquences : booster les basses à 80 Hz pour donner de la rondeur, gonfler les aigus à 10 kHz pour donner de l'éclat. En procédant ainsi, la console accumule de l'énergie thermique, les amplificateurs s'essoufflent et le mixage devient confus.",
-                  "La règle d'or de l'ingénieur du son professionnel est l'**égalisation soustractive** :\n- **Activer systématiquement le filtre coupe-bas (High-Pass Filter à 80 ou 100 Hz)** sur toutes les pistes vocales, cuivres, guitares et claviers d'accompagnement. Aucune voix humaine ne produit d'information musicale utile en dessous de 80 Hz : couper ces infra-basses élimine les bruits de manipulation du micro, les vibrations de plancher et les souffles de vent.\n- **Nettoyer la zone de boue (250 Hz - 400 Hz)** : Cette plage fréquentielle est le dépotoir où s'accumulent la résonance du corps de la guitare, le bas-médium du piano, la caisse du tom basse et la réverbération de la pièce. En retirant 2 à 3 dB avec une largeur de bande moyenne (*Q* = 1.4), le mixage s'aère instantanément sans perdre de puissance.\n- **Dégager la clarté (2 kHz - 5 kHz)** : Creuser légèrement les instruments d'accompagnement dans cette zone pour créer une fenêtre naturelle où la voix du chanteur vient se poser comme un joyau dans son écrin."
+                  "La décision se hiérarchise en 4 priorités non négociables :",
+                  "1. La sécurité électrique d’abord : Faire constater immédiatement l’anomalie de tension par le responsable technique du lieu ou un électricien qualifié. Ne jamais brancher la régie sur une ligne partagée avec des charges inductives lourdes (climatiseurs, groupes froids de traiteurs). L’onduleur (de technologie On-Line à double conversion, correctement dimensionné pour la puissance d’appel de la régie de mixage) sert de bouclier de protection pour les processeurs numériques, mais ne remplace pas une alimentation secteur conforme et une terre vérifiée.",
+                  "2. Le placement géométrique avant les boutons : Avant de toucher au moindre égaliseur, vérifier l’alignement physique. Positionner le retour de scène exactement dans l’axe de réjection du micro du chanteur. Éloigner les micros voix des façades et veiller à ce que les batteurs ne pointent pas leurs retours vers les overheads.",
+                  "3. Le calage préventif des retours : L’égalisation ne crée pas de miracle acoustique, mais permet de raboter les résonances modales prédominantes de l’espace scène. En montant progressivement le niveau jusqu’au seuil critique, on identifie avec précision la première fréquence qui entre en résonance pour lui appliquer une atténuation chirurgicale à facteur Q étroit, sans dénaturer le timbre général de la voix.",
+                  "4. La structure de gain rigoureuse (Gain Staging) : Comme nous l’appliquons dans la démarche du [Musicien Augmenté™](/ia-technologie#musicien-augmente), régler le potentiomètre de gain (Trim) d’entrée pour que les crêtes les plus fortes oscillent autour de -18 à -12 dBFS sur une console numérique. Cela préserve la marge de sécurité indispensable pour absorber l’énergie décuplée que le musicien déploiera naturellement devant le public par rapport à la répétition."
             ]
       },
       {
-            "heading": "5. Le protocole méthodique en 7 étapes chronométrées",
+            "heading": "5. La transmission : ce que le métier nous enseigne",
             "paragraphs": [
-                  "Pour boucler une balance impeccable en moins de 45 minutes, nous appliquons un protocole rigoureux :\n1. **Étape 1 : Ligne et micros muets (Line Check)** : Vérifier que chaque câble fonctionne, que le patch de scène correspond à la feuille de patch et que l'alimentation fantôme +48V est activée uniquement sur les micros statiques et boîtes de direct actives (DI).\n2. **Étape 2 : Batterie et percussions** : Grosse caisse (assise sub et point d'impact), caisse claire, charleston, toms, puis frappe d'ensemble du batteur pour vérifier la cohérence de phase.\n3. **Étape 3 : La basse** : Ligne directe DI et/ou micro d'ampli. Verrouiller la symbiose entre grosse caisse et ligne de basse (la pulsation sacrée).\n4. **Étape 4 : Claviers et instruments harmoniques** : Stéréo panoramiquée (L/R), vérification des niveaux d'échantillons ou de simulation d'amplis.\n5. **Étape 5 : Voix solistes et chœurs** : Réglage du gain, coupe-bas, égalisation fine et calibrage des effets de réverbération/délai (en coupant les effets dans les retours pour ne pas noyer l'intonation du chanteur).\n6. **Étape 6 : Morceau test complet** : Le groupe joue un extrait représentatif (couplet doux puis refrain puissant). L'ingénieur affine l'équilibre global de la façade en se déplaçant dans la salle.\n7. **Étape 7 : Sauvegarde numérique de la scène** : Enregistrer la configuration sur la console pour être capable de la rappeler en deux secondes le soir du concert."
-            ]
-      },
-      {
-            "heading": "6. Ce que je n’ai pas encore résolu",
-            "paragraphs": [
-                  "Les défis persistants du terrain en sonorisation live :\n- Comment stabiliser l'alimentation électrique dans des lieux événementiels où les chutes de tension sous 180 V menacent de rebooter les consoles numériques en plein milieu d'une chanson ?\n- Quel compromis trouver face à des musiciens de culture d'orchestre traditionnel qui refusent les écouteurs In-Ear et exigent des volumes de retour de scène supérieurs à 105 dB SPL au détriment de leur santé auditive ?\n- Comment modéliser rapidement l'acoustique de chapiteaux et salles sous tentes plastiques sans matériel de mesure lourd lors d'installations en moins de deux heures ?"
-            ]
-      },
-      {
-            "heading": "7. Sources et références",
-            "paragraphs": [
-                  "- **Davis, Don & Davis, Carolyn** (1997). *Sound System Engineering*. Focal Press / Audio Engineering Society ([AES](https://www.aes.org)). La bible de la conception et du calibrage de systèmes électroacoustiques.\n- **Audio Engineering Society (AES)**. *Recommended Practice for Live Sound Level Measurement and Hearing Conservation*. New York: AES Standards.\n- **Yamaha Corporation** (2020). *Sound Reinforcement Handbook* (by Gary Davis & Ralph Jones). Hal Leonard.\n- **Nanfang, Hervé** (2025). *Cahier des charges de régie son et fiches techniques de production live*. Documents techniques internes [HN Marque](/services#studio), Yaoundé."
+                  "La réussite d’une balance sonore ne dépend pas du nombre de décibels envoyés, mais de la clarté de la hiérarchisation.",
+                  "Savoir dire avec calme à un organisateur : « Nous vérifions la conformité de la ligne électrique avant d’allumer les amplificateurs » n’est pas une perte de temps : c’est la marque d’un professionnel. Retrouvez nos fiches techniques et cahiers des charges de scène sur notre [page de contact et devis régie](/contact)."
             ]
       }
 ],
@@ -1994,13 +1953,11 @@ export const ARTICLES: Article[] = [
     status: 'Publié',
     audience: "Beatmakers, compositeurs indépendants, ingénieurs du son et podcasteurs",
     outline: [
-      "1. L’illusion du matériel magique : la pièce colore 50 % de ce que vous entendez",
-      "2. Ne confondez pas isolation phonique et traitement acoustique",
-      "3. Le placement des enceintes et du point d’écoute : la règle géométrique",
-      "4. Les bass traps et les panneaux absorbants faits maison : la priorité aux basses",
-      "5. La vérité sur les logiciels de correction de pièce (Sonarworks, Dirac)",
-      "6. Ce que je n’ai pas encore résolu",
-      "7. Sources et références"
+      "1. La scène immersive : le paradoxe du matériel haut de gamme",
+      "2. Le diagnostic : distinguer la source de l’environnement",
+      "3. L’explication scientifique : pourquoi les basses fréquences résistent",
+      "4. La décision professionnelle : la démarche progressive par étapes",
+      "5. La transmission : l’humilité face aux lois acoustiques"
 ],
     linkedConcept: {
       label: "Studio & Production",
@@ -2008,53 +1965,45 @@ export const ARTICLES: Article[] = [
     },
     body: [
       {
-            "heading": "1. L’illusion du matériel magique : la pièce colore 50 % de ce que vous entendez",
+            "heading": "1. La scène immersive : le paradoxe du matériel haut de gamme",
             "paragraphs": [
-                  "Combien de jeunes compositeurs et beatmakers de Yaoundé et Douala viennent me voir en me disant : « Hervé, j'ai acheté un micro Neumann ou Shure SM7B et la dernière carte son Universal Audio, mais mes mixages sonnent toujours carton, mes basses bavent dans les voitures et mes voix sonnent lointaines » ?",
-                  "La réponse est presque toujours la même : ils enregistrent et mixent dans une pièce rectangulaire ou cubique de 12 m², carrelée au sol, avec des fenêtres sans rideaux épais et des murs en béton nu.",
-                  "Lorsqu'un chanteur émet un son devant une membrane de micro, le micro capte deux choses :\n1. Le son direct qui sort de sa bouche (en ligne droite, 1 milliseconde).\n2. Les centaines d'échos et de réflexions primaires qui rebondissent sur les murs, le plafond et le sol avant de frapper la membrane 10 à 30 millisecondes plus tard.",
-                  "Ces réflexions retardées créent ce que les acousticiens appellent le **filtrage en peigne (comb filtering)** : certaines fréquences s'annulent mutuellement, tandis que d'autres sont gonflées artificiellement de 10 à 15 dB. Vous pouvez posséder le meilleur convertisseur analogique-numérique de la planète : il enregistrera fidèlement le son catastrophique de votre pièce. Traiter sa pièce est le premier investissement rentable d'un producteur."
+                  "Note éditoriale : Cette analyse s’appuie sur plusieurs années d’expérience au sein du [studio Alaiz Creative System](/services#studio) et en ateliers de formation à la [Racines Musicales Academy®](/rma) à Yaoundé. Les situations décrites condensent les écueils récurrents rencontrés lors de l’aménagement d’espaces de création avec des moyens maîtrisés.",
+                  "C’est un scénario récurrent : un jeune producteur talentueux investit l’intégralité de son budget dans un microphone statique réputé à large membrane et des moniteurs de studio de référence. Il installe son matériel dans une pièce disponible de son domicile — souvent une pièce rectangulaire de 10 à 14 m², carrelée au sol, aux parois en maçonnerie lisse et dotée d’une baie vitrée.",
+                  "Dès les premières prises de voix et les premiers mixages, la déception apparaît : les voix manquent de présence directe, une dureté désagréable persiste dans le haut-médium, et les lignes de basse sont instables — certaines notes disparaissent complètement tandis que d’autres résonnent de façon assourdissante. La première tentation est d’incriminer le microphone, de changer de carte son ou d’acheter des plugins de traitement vocal sophistiqués."
             ]
       },
       {
-            "heading": "2. Ne confondez pas isolation phonique et traitement acoustique",
+            "heading": "2. Le diagnostic : distinguer la source de l’environnement",
             "paragraphs": [
-                  "C'est la confusion la plus tenace chez les créateurs :\n- **L’isolation phonique (insonorisation)** a pour but d'empêcher les bruits extérieurs d'entrer (les klaxons de la rue, la pluie sur la toiture, les voisins) et d'empêcher votre son de sortir. Elle requiert de la **masse lourde** (doubles murs de béton, portes blindées isophoniques, planchers flottants sur plots résilients, principe de la boîte dans la boîte). Elle coûte très cher et nécessite de gros travaux de maçonnerie.\n- **Le traitement acoustique** a pour but d'améliorer la qualité du son **à l'intérieur** de la pièce où vous vous trouvez, en contrôlant les réflexions, l'écho flottant (*flutter echo*) et les résonances stationnaires de basse fréquence.",
-                  "Bonne nouvelle : si vous ne pouvez pas transformer votre chambre en bunker insonorisé, vous pouvez en revanche transformer son acoustique intérieure avec un budget très raisonnable en utilisant des matériaux disponibles localement."
+                  "L’erreur de diagnostic consiste à attribuer au maillon électroacoustique (le microphone ou l’enceinte) ce qui relève de la physique du lieu :",
+                  "Le temps de réverbération (RT60) déséquilibré : Une pièce aux surfaces dures et parallèles génère des réflexions précoces intenses qui interfèrent avec le front d’onde direct.",
+                  "Les ondes stationnaires (modes propres) : Entre deux murs parallèles, les ondes dont la demi-longueur d’onde correspond à la distance entre parois créent des nœuds (silences partiels) et des ventres de pression (bosses acoustiques).",
+                  "L’illusion du microphone parfait : Un microphone statique très sensible et à réponse étendue capte le champ réverbéré de la pièce avec une fidélité d’autant plus cruelle que celle-ci est dégradée."
             ]
       },
       {
-            "heading": "3. Le placement des enceintes et du point d’écoute : la règle géométrique",
+            "heading": "3. L’explication scientifique : pourquoi les basses fréquences résistent",
             "paragraphs": [
-                  "Avant de dépenser un seul franc CFA en mousse ou en panneaux, la première optimisation acoustique est totalement gratuite : c'est le placement spatial de votre mobilier.",
-                  "Dans une pièce rectangulaire :\n- **Orientez votre bureau dans le sens de la longueur** : Les enceintes doivent tirer le son vers la dimension la plus longue de la pièce pour laisser aux ondes graves de la place avant de rebondir sur le mur arrière.\n- **La règle des 38 % de Wes Lachot** : Placez votre chaise de telle sorte que vos oreilles se situent à environ 38 % de la longueur totale de la pièce mesurée depuis le mur avant. C'est statistiquement la zone où les modes propres de résonance (les ondes stationnaires qui créent des creux et des bosses dans les basses) sont les plus équilibrés. Ne vous asseyez jamais exactement au centre géométrique (50 %) de la pièce : c'est le nœud où les basses disparaissent complètement !\n- **Le triangle équilatéral** : Vos deux enceintes de monitoring et votre tête doivent former un triangle équilatéral parfait. Les tweeters (haut-parleurs d'aigus) doivent pointer précisément vers vos oreilles et se trouver à la même hauteur que vos conduits auditifs.\n- **Décoller les enceintes des coins** : Ne collez jamais des moniteurs de studio contre les murs ou dans les coins de la pièce, sous peine de déclencher l'effet de proximité acoustique (*boundary loading*) qui gonfle artificiellement les basses de 6 à 9 dB."
+                  "La longueur d’onde d’un son est inversement proportionnelle à sa fréquence (lambda = c / f). À 1 000 Hz, la longueur d’onde est d’environ 34 cm : un matériau absorbant poreux de quelques centimètres d’épaisseur peut freiner efficacement la vitesse des particules d’air.",
+                  "À 60 Hz, la longueur d’onde atteint 5,7 mètres. Les amortir par de la simple friction poreuse exigerait des épaisseurs de laine minérale colossales.",
+                  "C’est pourquoi prétendre éliminer les modes stationnaires graves avec quatre simples panneaux de coin est une illusion physique : les panneaux poreux denses agissent principalement sur le médium et le haut du spectre, et n’apportent qu’une atténuation partielle sur le bas-médium, laissant les fréquences inférieures à 100 Hz largement tributaires des dimensions fondamentales de la pièce et de dispositifs résonnants spécifiques (résonateurs de Helmholtz, membranes accordées)."
             ]
       },
       {
-            "heading": "4. Les bass traps et les panneaux absorbants faits maison : la priorité aux basses",
+            "heading": "4. La décision professionnelle : la démarche progressive par étapes",
             "paragraphs": [
-                  "Les petites mousses alvéolées grises à bas prix vendues sur internet sont une illusion commerciale : elles n'absorbent que l'extrême aigu (au-dessus de 4 kHz). En recouvrant entièrement vos murs de ces mousses fines, vous rendez votre pièce étouffante et mate sans avoir résolu le vrai problème du studio : le chaos des basses fréquences (entre 40 Hz et 250 Hz).",
-                  "La vraie solution repose sur l'absorption à haute densité :\n- **Fabriquer des Bass Traps de coin** : Les basses fréquences ont la particularité physique de s'accumuler dans les angles dièdres et trièdres (les 4 coins verticaux de la pièce où deux murs se rejoignent, et les jonctions mur-plafond). En fabriquant des cadres en bois remplis de laine de roche ou de laine de verre à haute densité (au moins 50 à 70 kg/m³) de 10 à 15 cm d'épaisseur, recouverts d'un tissu respirant en coton, vous créez des pièges à basses d'une efficacité redoutable pour une fraction du prix industriel.\n- **Traiter les points de première réflexion (la technique du miroir)** : Asseyez-vous au point d'écoute. Demandez à un ami de faire glisser un miroir le long du mur latéral gauche à hauteur d'enceinte. Dès que vous voyez le reflet de l'enceinte gauche dans le miroir, marquez l'emplacement : c'est le point de première réflexion. Placez-y un panneau absorbant large bande. Faites de même sur le mur droit et sur le plafond (au-dessus de votre tête, pour créer un « nuage acoustique »)."
+                  "Pour un créateur disposant de ressources limitées, la stratégie ne consiste pas à promettre une acoustique de régie symphonique, mais à minimiser les erreurs les plus pénalisantes selon une méthode étapiste :",
+                  "Étape 0 — L’optimisation spatiale gratuite : Disposer le poste d’écoute dans le sens de la longueur de la pièce pour éloigner le mur arrière. Former un triangle équilatéral précis entre la tête et les deux moniteurs d’écoute. Éviter d’installer son fauteuil exactement au centre géométrique de la pièce (zone où l’annulation des modes axiaux est maximale).",
+                  "Étape 1 — Maîtriser les premières réflexions : Selon les guides pratiques documentés par [Sound on Sound](https://www.soundonsound.com), poser des panneaux absorbants larges (laines minérales denses d’au moins 8 à 10 cm d’épaisseur montées sur châssis respirants) aux points de réflexion spéculaire primaire (murs latéraux gauche et droite déterminés à la méthode du miroir, et plafond entre l’auditeur et les enceintes). Cela assainit l’image stéréo et réduit l’écho flottant (flutter echo).",
+                  "Étape 2 — L’apport des bass traps de coins : Installer des pièges absorbants les plus épais possibles dans les angles dièdres où la pression acoustique s’accumule. Même s’ils ne résolvent pas l’intégralité du sous-grave, ils améliorent la définition temporelle du bas-médium.",
+                  "Étape 3 — Le pragmatisme du choix de microphone : Dans un espace imparfaitement traité, un microphone dynamique de qualité bien choisi (à directivité resserrée, utilisé près de la source avec un bon filtre anti-pop) enregistrera souvent un meilleur rapport son direct / son réfléchi qu’un statique haut de gamme trop ouvert aux bruits de pièce."
             ]
       },
       {
-            "heading": "5. La vérité sur les logiciels de correction de pièce (Sonarworks, Dirac)",
+            "heading": "5. La transmission : l’humilité face aux lois acoustiques",
             "paragraphs": [
-                  "De nombreux créateurs pensent aujourd'hui qu'un micro de mesure et un logiciel de correction numérique (type Dirac Live ou SoundID Reference) dispensent de traiter physiquement la pièce.",
-                  "C'est une erreur scientifique majeure :\n- Un logiciel peut corriger l'égalisation en fréquence d'une enceinte, mais **il ne peut pas modifier le domaine temporel de votre pièce**. Si votre pièce a une réverbération de 800 millisecondes sur 100 Hz, le logiciel aura beau atténuer cette fréquence à la sortie de l'enceinte, la note de basse continuera de résonner dans la pièce pendant près d'une seconde après s'être tue !\n- Pousser un logiciel à compenser un creux acoustique de 12 dB (dû à une annulation de phase physique) va surcharger l'amplificateur de votre enceinte, qui distordra sans combler le vide sonore.",
-                  "La démarche saine : traiter d'abord la pièce physiquement pour obtenir un temps de réverbération (*RT60*) stable et homogène (autour de 0,2 à 0,3 seconde sur tout le spectre), puis appliquer une légère calibration numérique de finition pour raboter les derniers résidus."
-            ]
-      },
-      {
-            "heading": "6. Ce que je n’ai pas encore résolu",
-            "paragraphs": [
-                  "Les problématiques matérielles que nous continuons de tester :\n- Comment fabriquer des panneaux acoustiques performants à partir de fibres végétales locales renouvelables (écorces, fibres de coco, bambou tissé) pour remplacer la laine minérale importée sans risque d'irritation respiratoire ?\n- Quelles solutions passives légères proposer à des artistes locataires qui ne peuvent pas percer les murs de leur appartement pour accrocher des panneaux lourds ?\n- Comment maintenir une température de travail viable dans un home studio calfeutré sans climatiseur bruyant lors des périodes de forte chaleur tropicale ?"
-            ]
-      },
-      {
-            "heading": "7. Sources et références",
-            "paragraphs": [
-                  "- **Everest, F. Alton & Pohlmann, Ken C.** (2015). *Master Handbook of Acoustics* (6th Edition). McGraw-Hill Education. La référence mondiale de l'acoustique architecturale et de studio.\n- **Lachot, Wes** (2001). *The 38% Rule for Monitor and Listening Position Placement*. Wes Lachot Design Group Research.\n- **Sound on Sound Magazine** (2000-2026). *Studio SOS Series: Practical Room Acoustics Guides*. Cambridge: SOS Publications.\n- **Nanfang, Hervé** (2026). *Guide d'aménagement acoustique pour studios de production créative*. [Ateliers HN Marque](/services#studio), Yaoundé."
+                  "L’acoustique est une science d’équilibre et de compromis, non de gadgets marketing.",
+                  "Mieux vaut une pièce imparfaite mais dont on connaît intimement les défauts — en s’appuyant sur des écoutes comparatives au casque et sur des morceaux de référence connus — qu’un home studio saturé de mousses inefficaces. Pour approfondir le calibrage d’écoute et la chaîne audio, consultez nos [programmes de formation en MAO et studio](/pedagogie)."
             ]
       }
 ],
@@ -2080,13 +2029,11 @@ export const ARTICLES: Article[] = [
     status: 'Publié',
     audience: "Musiciens professionnels, intermittents, managers d’artistes et clients corporate",
     outline: [
-      "1. Le grand malentendu : « Vous n’avez joué que deux heures ! »",
-      "2. L’anatomie du travail invisible : les 10 heures cachées derrière 1 heure de scène",
-      "3. L’amortissement du matériel de pointe et les charges professionnelles",
-      "4. Comment rédiger un devis professionnel inattaquable",
-      "5. Sortir du cachet précaire : l’écosystème de la valeur pérenne",
-      "6. Ce que je n’ai pas encore résolu",
-      "7. Sources et références"
+      "1. La scène immersive : « Vous ne jouez que deux heures ! »",
+      "2. Le diagnostic : la confusion entre présence et valeur",
+      "3. L’explication économique : l’anatomie des 15 heures invisibles",
+      "4. La décision professionnelle : structurer un devis inattaquable",
+      "5. La transmission : la dignité du métier d’artiste"
 ],
     linkedConcept: {
       label: "Entrepreneuriat & Devis",
@@ -2094,53 +2041,48 @@ export const ARTICLES: Article[] = [
     },
     body: [
       {
-            "heading": "1. Le grand malentendu : « Vous n’avez joué que deux heures ! »",
+            "heading": "1. La scène immersive : « Vous ne jouez que deux heures ! »",
             "paragraphs": [
-                  "C'est la remarque la plus fréquente que reçoit un musicien professionnel lors de la négociation d'une prestation événementielle ou d'un concert d'hôtel : « Pourquoi demandez-vous cette somme pour simplement jouer du piano pendant deux heures assis sur une banquette ? »",
-                  "Ce malentendu repose sur une myopie économique profonde : confondre le **temps d'exécution final** avec la **valeur globale du service rendu**.",
-                  "Si un chirurgien met vingt minutes pour suturer une artère vitale, personne ne conteste son honoraire sous prétexte qu'il n'a opéré que vingt minutes : chacun comprend que l'on rémunère dix ans d'études médicales, la précision chirurgicale de ses mains et la garantie que le patient survivra à l'opération.",
-                  "Dans la musique vivante, le mécanisme est rigoureusement identique. Lorsque je me produis pour une soirée de prestige ou une conférence internationale avec [HN Marque](/services), la prestation ne commence pas au premier accord posé sur le piano : elle est l'aboutissement d'un immense continent de travail invisible que l'artiste doit impérativement intégrer dans son modèle de facturation."
+                  "Note éditoriale : Cette scène rassemble plusieurs négociations représentatives vécues auprès d’agences événementielles, de directions d’hôtels et d’organisateurs d’événements à Yaoundé et Douala. Elle illustre la réalité économique du métier d’artiste indépendant en Afrique centrale.",
+                  "Dans un bureau de direction à Yaoundé, un organisateur d’événement parcourt la proposition tarifaire d’une prestation de piano-bar live. Il lève les yeux, mi-surpris, mi-amusé, et prononce cette phrase que chaque musicien professionnel a entendue au moins une fois dans sa carrière : « Mais Hervé, vous demandez cette somme pour seulement deux heures de présence assis sur une banquette ? Mon service comptable ne comprend pas un tel taux horaire ! »",
+                  "Cette objection n’est pas nécessairement malveillante. Elle traduit une illusion d’optique fréquente chez les commanditaires : confondre l’acte d’exécution final visible avec la totalité du service rendu.",
+                  "Quand un horloger répare un mécanisme ancien en dix minutes d’un coup de pince précis, personne ne conteste son tarif sous prétexte qu’il n’a travaillé que dix minutes : chacun comprend qu’on rémunère vingt ans de pratique, l’outillage spécialisé et la certitude que l’horloge ne s’arrêtera pas le lendemain."
             ]
       },
       {
-            "heading": "2. L’anatomie du travail invisible : les 10 heures cachées derrière 1 heure de scène",
+            "heading": "2. Le diagnostic : la confusion entre présence et valeur",
             "paragraphs": [
-                  "Pour 1 heure de musique fluide, sans fausse note et parfaitement adaptée à l'atmosphère d'un lieu, voici la réalité comptable des heures réellement engagées :\n- **L’apprentissage et le répertoire (15 ans d'actif)** : La mémoire d'un répertoire de plus de 400 titres jouables à la demande sans hésitation.\n- **La préparation spécifique de l’événement (3 à 6 heures)** : L'écoute des demandes particulières du client, la recherche de tonalités, les arrangements personnalisés, l'écriture de grilles harmoniques.\n- **Les répétitions d'ensemble (4 à 8 heures)** : Si la prestation implique un duo, un trio ou des invités, caler les démarrages, les nuances et les conclusions.\n- **La logistique et le transport (3 à 4 heures)** : Chargement du piano de scène, des pieds lourds, du câblage, du système d'amplification, déplacement à travers les embouteillages de la ville, déchargement et installation 2 heures avant l'arrivée du public.\n- **La balance acoustique et la veille (1 heure)** : Vérifier que chaque fréquence est calée, que l'alimentation électrique est protégée par un onduleur régulé.\n- **Le temps d’attente protocolaire (2 à 3 heures)** : L'artiste est présent en tenue de scène, disponible, mobilisé psychologiquement, même si le discours officiel de l'organisateur a deux heures de retard sur le programme initial.\n- **Le démontage nocturne et le retour (2 heures)** : Remballer le matériel dans le noir, sécuriser les connectiques et rentrer au petit matin.",
-                  "Une prestation de 2 heures mobilise en réalité entre 15 et 25 heures de travail effectif d'un professionnel hautement qualifié."
+                  "Le diagnostic de cette incompréhension repose sur trois décalages de perception :",
+                  "L’oubli de la chaîne préparatoire : L’organisateur ne voit que les 120 minutes où les doigts touchent les touches sous les projecteurs. Il ignore les 15 heures de préparation en amont.",
+                  "La garantie de tranquillité : En réalité, le client n’achète pas seulement des notes de musique : il achète une assurance tous risques pour son événement. Il paie pour être certain que l’artiste arrivera deux heures en avance, que le son sera d’une élégance irréprochable, que le répertoire s’adaptera en temps réel aux réactions de la salle et qu’aucun faux pas protocolaire ne viendra troubler ses invités.",
+                  "Le piège de la complaisance : Trop de musiciens, par timidité ou urgence financière, acceptent des cachets bradés « de la main à la main » sans devis ni facture. En agissant ainsi, ils entretiennent l’idée que la musique est un passe-temps gratuit et s’enferment dans une précarité sans lendemain."
             ]
       },
       {
-            "heading": "3. L’amortissement du matériel de pointe et les charges professionnelles",
+            "heading": "3. L’explication économique : l’anatomie des 15 heures invisibles",
             "paragraphs": [
-                  "Jouer de la musique à un niveau d'excellence implique des investissements en capital matériel que le client oublie souvent d'estimer :\n- Un piano de scène professionnel, des enceintes de sonorisation haute fidélité, des micros de chant haut de gamme, des pieds stables, des câbles blindés Neutrik et des valises de vol capitonnées représentent un investissement de plusieurs millions de FCFA.\n- Ce matériel subit l'usure du transport, les chocs thermiques, l'humidité et les risques de surtension électrique fréquents.\n- Si le musicien ne provisionne pas une part d'amortissement (15 à 20 % de son tarif brut) pour le renouvellement, l'entretien et l'assurance de son parc instrumental, il s'appauvrit à chaque concert qu'il donne.",
-                  "À cela s'ajoutent les charges de structure : hébergement du site internet de portfolio, forfaits de communication, comptabilité, impôts d'entreprise et formation continue. Pratiquer des tarifs au rabais ne relève pas de la modestie : c'est une condamnation à la disparition économique à moyen terme."
+                  "Comme le documentent les rapports du [Bureau International du Travail (OIT)](https://www.ilo.org) et les analyses du [REMA (Réseau des Événements et Marchés de la Musique en Afrique)](https://remasummit.com), le coût d’une prestation musicale en direct se décompose en charges bien réelles :",
+                  "L’actif immatériel (le répertoire) : Maîtriser plus de 400 titres de jazz, soul, variété et classiques camerounais sans partition requiert des milliers d’heures de répétition et d’apprentissage accumulées depuis 2007.",
+                  "Le travail préparatoire spécifique (3 à 5 heures) : L’échange avec le client, le choix de la tonalité adaptée aux voix, la réharmonisation de morceaux demandés sur-mesure.",
+                  "La logistique et la sécurité technique (4 à 5 heures) : Le chargement d’un piano de scène lourd, de pieds de haute stabilité, de câbles blindés Neutrik, d’un système de diffusion et d’un onduleur régulé ; le transport à travers la circulation urbaine ; le déchargement et le calage deux heures avant l’ouverture des portes.",
+                  "L’amortissement du capital matériel : Le matériel professionnel subit l’humidité, la poussière et les vibrations du transport. Sans une provision d’amortissement de 15 à 20 % sur chaque cachet pour renouveler et entretenir le parc, l’artiste s’appauvrit à chaque concert.",
+                  "Les temps d’attente protocolaires (2 heures) : L’artiste est en tenue de scène, concentré et mobilisé, même si le discours officiel accuse un retard d’une heure sur le programme."
             ]
       },
       {
-            "heading": "4. Comment rédiger un devis professionnel inattaquable",
+            "heading": "4. La décision professionnelle : structurer un devis inattaquable",
             "paragraphs": [
-                  "Le manque de professionnalisme dans la formalisation commerciale est le premier facteur qui décrédibilise les artistes auprès des directions d'entreprises, des ambassades et des agences événementielles. Dire « donnez-moi ce que vous voulez » ou envoyer un simple message WhatsApp avec un chiffre brut sans détail garantit d'être sous-payé.",
-                  "Un devis professionnel sous la signature d'une marque artistique doit comporter :\n1. **L’en-tête juridique complet** : Raison sociale, numéro d'enregistrement ou identifiant fiscal, coordonnées bancaires officielles, email professionnel.\n2. **La ventilation claire des lignes de service** :\n   - Ligne 1 : *Direction artistique, conception du programme et arrangements sur-mesure*.\n   - Ligne 2 : *Prestation scénique en direct (préciser la durée effective et les tranches horaires)*.\n   - Ligne 3 : *Mise à disposition du matériel technique haut de gamme (piano, amplification, retours)*.\n   - Ligne 4 : *Régie logistique, déplacement et temps de calage acoustique préalable*.\n3. **Les conditions de paiement strictes** : Acompte obligatoire de 50 % à la signature du devis pour bloquer la date sur l'agenda, solde réglé le jour même de la prestation avant le début du set ou à 48 heures maximum.\n4. **La clause d’annulation et de force majeure** : Définir clairement que tout acompte reste acquis en cas d'annulation unilatérale par le client à moins de 14 jours de l'événement."
+                  "Pour transformer une négociation informelle en un accord professionnel respecté, nous appliquons chez [HN Marque](/services) une méthode rigoureuse :",
+                  "1. La ventilation du devis en 4 lignes distinctes : Ligne 1 : Direction artistique, conception du programme et arrangements sur-mesure. Ligne 2 : Prestation scénique directe (précisant la plage horaire ferme d’intervention). Ligne 3 : Mise à disposition et amortissement du matériel électroacoustique de pointe. Ligne 4 : Régie technique, logistique de transport et calage acoustique préalable.",
+                  "2. L’acompte obligatoire de 50 % : Aucune date n’est bloquée sur l’agenda sans le versement préalable de l’acompte à la signature du devis. C’est l’engagement réciproque qui protège l’artiste d’une annulation de dernière minute.",
+                  "3. Le cadre juridique et les droits d’auteur : Rappeler systématiquement dans les conditions générales l’obligation légale de la déclaration des œuvres et du respect de la législation en vigueur ([Loi camerounaise 2000/011 du MINAC](http://www.minac.gov.cm))."
             ]
       },
       {
-            "heading": "5. Sortir du cachet précaire : l’écosystème de la valeur pérenne",
+            "heading": "5. La transmission : la dignité du métier d’artiste",
             "paragraphs": [
-                  "Comme je l'ai partagé lors des rencontres du [REMA (Réseau des Événements et Marchés de la Musique en Afrique)](https://remasummit.com), l'Afrique francophone doit opérer une révolution copernicienne dans la perception de ses créateurs.",
-                  "Le modèle du cachet d'un soir « de la main à la main » maintient les musiciens dans une précarité systémique qui les empêche d'investir dans leurs carrières, de cotiser pour leur retraite ou de financer l'éducation de leurs enfants.",
-                  "Pour construire une stabilité durable :\n- **Diversifier ses sources de revenus** : Ne pas dépendre du seul live. Articuler son activité autour de la transmission ([Racines Musicales Academy®](/rma)), de la production en studio ([HN Marque](/services#studio)), des conférences et du conseil en ingénierie de marque.\n- **Créer des résidences pérennes** : Négocier avec les établissements hôteliers des contrats mensuels ou annuels avec engagement de fréquence plutôt que des dates isolées au coup par coup.\n- **Faire respecter les droits d’auteur** : Déclarer systématiquement ses œuvres auprès des organismes de gestion collective et exiger des organisateurs de festivals la prise en charge des redevances d'exécution publique conformément à la législation en vigueur ([Loi 2000/011 au Cameroun](http://www.minac.gov.cm))."
-            ]
-      },
-      {
-            "heading": "6. Ce que je n’ai pas encore résolu",
-            "paragraphs": [
-                  "Les questions stratégiques qui demeurent au cœur de mes réflexions :\n- Comment éradiquer la concurrence déloyale d'amateurs non déclarés qui cassent les prix du marché du live sans assumer aucune charge technique ni garantie professionnelle ?\n- Quel cadre juridique et fiscal simplifié proposer aux législateurs d'Afrique subsaharienne pour encourager la formalisation des intermittents du spectacle sans les écraser sous des taxes inadaptées à la saisonnalité du spectacle ?\n- Comment convaincre les institutions bancaires locales d'octroyer des lignes de crédit et des financements de matériel aux entreprises culturelles artistiques ?"
-            ]
-      },
-      {
-            "heading": "7. Sources et références",
-            "paragraphs": [
-                  "- **Bureau International du Travail (OIT)** (2020). *Le travail décent dans le secteur des arts et de la culture*. Genève: Publications de l'OIT.\n- **REMA** (2024). *Rapport sur l'économie de la musique vivante en Afrique de l'Ouest et Centrale*. Ouagadougou / Yaoundé.\n- **Ministère des Arts et de la Culture du Cameroun (MINAC)**. *Loi n° 2000/011 du 19 décembre 2000 relative au droit d'auteur et aux droits voisins*.\n- **Nanfang, Hervé** (2025). *Entreprendre dans la musique en Afrique : méthode de gestion, devisage et viabilité financière*. Conférence professionnelle, Yaoundé."
+                  "Savoir défendre ses tarifs n’est pas une question d’orgueil, c’est un acte de salubrité professionnelle pour toute la filière culturelle africaine.",
+                  "Quand un musicien apprend à chiffrer précisément son travail invisible et à le présenter avec clarté, il cesse d’être perçu comme un mendiant de cachet précaire : il devient un partenaire culturel respecté, garant de la réussite d’un événement d’exception. Pour échanger sur vos projets ou solliciter un cadrage technique, consultez notre [page de contact et de devis officiel](/contact)."
             ]
       }
 ],
