@@ -30,9 +30,42 @@ export function useAdminState(): AdminState {
  */
 export function useLiveArticles(): AdminArticle[] {
   const state = useAdminState()
-  return state.articles && state.articles.length > 0
-    ? state.articles
-    : (ARTICLES as unknown as AdminArticle[])
+  const sourceArticles = ARTICLES as unknown as AdminArticle[]
+  const liveArticles = state.articles ?? []
+  if (liveArticles.length === 0) return sourceArticles
+
+  const liveBySlug = new Map<string, AdminArticle>(
+    liveArticles.map((article) => [article.slug, article] as const),
+  )
+  const sourceSlugs = new Set(sourceArticles.map((article) => article.slug))
+
+  // Supabase currently supplies article metadata but not the long-form body,
+  // audience, outline or linked concept. Keep those authored fields from the
+  // source catalogue so a client-side refresh does not replace the full article
+  // with the short plan-only fallback after hydration.
+  const mergedSourceArticles = sourceArticles.map((source) => {
+    const live = liveBySlug.get(source.slug)
+    if (!live) return source
+
+    const usesSourceBody = !live.body?.length
+    return {
+      ...source,
+      ...live,
+      readingTime: usesSourceBody ? source.readingTime : live.readingTime,
+      audience:
+        live.audience && live.audience !== 'Musiciens et professionnels'
+          ? live.audience
+          : source.audience,
+      outline: live.outline?.length ? live.outline : source.outline,
+      body: live.body?.length ? live.body : source.body,
+      keywords: live.keywords?.length ? live.keywords : source.keywords,
+      linkedConcept: source.linkedConcept,
+    }
+  })
+
+  // Preserve additional articles created only in the admin database.
+  const additionalLiveArticles = liveArticles.filter((article) => !sourceSlugs.has(article.slug))
+  return [...mergedSourceArticles, ...additionalLiveArticles]
 }
 
 /**

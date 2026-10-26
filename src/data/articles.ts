@@ -850,7 +850,7 @@ export const ARTICLES: Article[] = [
     title: 'IA et droit d’auteur : ce que les créateurs camerounais doivent savoir',
     excerpt:
       'Quand un générateur produit une boucle propre en quelques secondes, la première réaction est souvent l’admiration. La seconde devrait être une question : qui a décidé de ce qu’elle contient ? Et à qui profitent les revenus qu’elle produira ?',
-    readingTime: '7 min',
+    readingTime: '5 min',
     status: 'Publié',
     audience:
       'Auteurs, compositeurs, arrangeurs et producteurs d’ici, qu’ils travaillent à Yaoundé, Douala ou ailleurs, et qui veulent que leur musique compte bien au-delà de nos frontières.',
@@ -862,21 +862,22 @@ export const ARTICLES: Article[] = [
       'Le débat se tient aussi chez nous',
       'Ce que je n’ai pas encore résolu',
       'Le Musicien Augmenté',
+      'Sources et références',
     ],
     body: [
       {
         heading: 'Le problème',
         paragraphs: [
-          'Les modèles génératifs apprennent à partir de quantités énormes d’enregistrements. Une partie de ces enregistrements vient de nos répertoires : chants, rythmes, langues, pratiques de scène. Ils sont souvent utilisés sans autorisation, sans attribution et sans rémunération.',
-          'Le risque n’est donc pas seulement technique. Il est économique et culturel. Un rythme né dans une communauté peut être réutilisé, transformé et vendu sans que personne n’en tire quoi que ce soit.',
+          'Les modèles génératifs reposent sur de vastes corpus de données. Dans la musique, cela pose des questions concrètes sur les enregistrements, les compositions, les interprétations et les traditions musicales mobilisés : quelles sources ont été utilisées, sous quelles conditions, avec quelles autorisations et quelles possibilités d’attribution ou de rémunération ? Les réponses varient selon les systèmes et ne sont pas toujours transparentes.',
+          'Le risque n’est donc pas seulement technique. Il est économique et culturel. Lorsqu’un élément musical lié à une communauté ou à un répertoire ancien nourrit un produit commercial, il importe de distinguer les œuvres identifiables, les enregistrements, les interprétations et les expressions du folklore, car les droits et règles d’utilisation ne sont pas nécessairement les mêmes.',
         ],
       },
       {
         heading: 'Ce que disent les textes',
         paragraphs: [
-          'Au Cameroun, le cadre de référence est la loi n° 2000/011 du 19 décembre 2000 relative au droit d’auteur et aux droits voisins, appliquée dans le cadre régional de l’OAPI (Organisation Africaine de la Propriété Intellectuelle). Ce texte pose le principe fondamental selon lequel l’auteur est une personne physique, tout en envisageant à son article 7 le cas de la personne qui conçoit une œuvre et en déclenche la réalisation par un procédé automatique.',
-          'Pour consulter l’intégralité des textes législatifs nationaux, référez-vous au [texte officiel du ministère camerounais des Arts et de la Culture (MINAC)](https://www.minac.gov.cm/fr/documentation/textes-et-lois/droit-dauteur-et-droits-voisins).',
-          'À ma connaissance, ces textes ne règlent pas encore dans le détail toutes les subtilités d’une musique générée avec le concours d’une machine moderne. Cette zone grise demande une lecture juridique attentive par des spécialistes de la propriété intellectuelle.',
+          'Au Cameroun, le texte national de référence est la loi n° 2000/011 du 19 décembre 2000 relative au droit d’auteur et aux droits voisins. Son article 7 définit l’auteur comme une personne physique qui crée une œuvre et vise aussi la personne physique qui a conçu une œuvre et déclenché sa réalisation par un procédé automatique. Le Cameroun appartient par ailleurs à l’OAPI (Organisation Africaine de la Propriété Intellectuelle), mais les règles applicables à un cas précis doivent être examinées à partir des textes pertinents, de leur champ d’application et des faits.',
+          'Le texte officiel est publié par le ministère camerounais des Arts et de la Culture (MINAC) : [consulter la loi n° 2000/011 du 19 décembre 2000 relative au droit d’auteur et aux droits voisins](https://minac.gov.cm/fr/documentation/textes-et-lois/droit-dauteur-et-droits-voisins).',
+          'La loi de 2000 ne règle pas à elle seule, dans le détail, toutes les configurations de musique produite avec les outils génératifs actuels. Les questions d’apport humain, de données d’entraînement et de droits sur les éléments préexistants exigent d’examiner les textes applicables et, lorsqu’il y a un enjeu commercial, de demander un avis spécialisé.',
           'Ma lecture de praticien est la suivante : si aucun choix humain n’intervient (conception, consigne, sélection, arrangement, validation), la protection classique est difficile à défendre. Si en revanche un musicien conçoit l’œuvre, oriente le résultat, retravaille les pistes et valide l’esthétique finale, son apport humain est beaucoup plus solide. La question centrale devient donc la preuve et la traçabilité de votre processus créatif.',
         ],
       },
@@ -892,7 +893,7 @@ export const ARTICLES: Article[] = [
       {
         heading: 'Le débat se tient aussi chez nous',
         paragraphs: [
-          'Les grandes décisions sur l’IA et la musique se prennent souvent dans des capitales lointaines. Pourtant, les répertoires qui nourrissent ces modèles viennent de chez nous. Si nous voulons peser sur les règles, il faut documenter nos pratiques, nommer nos besoins et participer aux débats qui nous concernent, dans nos rencontres professionnelles continentales (à l’image des débats aux REMA) comme ailleurs.',
+          'Les débats internationaux sur l’IA et la musique doivent aussi être suivis par les créateurs africains. Le Forum IA organisé en marge des [REMA 2026](https://www.remameeting.com/rema-2026/) à Ouagadougou a, par exemple, abordé les possibilités offertes par l’IA et les questions de droit d’auteur et de rémunération. Pour peser sur les règles, il faut documenter nos pratiques, nommer nos besoins et participer aux discussions professionnelles, au Cameroun comme ailleurs.',
           'Un créateur camerounais qui maîtrise ses outils et ses droits n’a rien à envier à un producteur parisien. Il a simplement besoin d’un cadre clair, et de la discipline de le mettre en pratique.',
         ],
       },
@@ -908,6 +909,15 @@ export const ARTICLES: Article[] = [
         paragraphs: [
           'La démarche que je défends s’appelle le Musicien Augmenté™. Elle consiste à utiliser les outils pour accélérer l’expérimentation, tout en gardant le jugement musical, le choix esthétique et la responsabilité de ce qui est publié.',
           'Concrètement, la machine propose, le musicien dispose. Il écarte la majorité des propositions, garde ce qui a du sens, et y apporte ce que l’algorithme ne sait pas faire seul : l’intention, la culture, la subtilité polyrythmique et l’histoire du morceau.',
+        ],
+      },
+      {
+        heading: 'Sources et références',
+        paragraphs: [
+          'Texte juridique camerounais : la loi n° 2000/011 du 19 décembre 2000 relative au droit d’auteur et aux droits voisins, publiée par le ministère des Arts et de la Culture (MINAC). Les articles 3 et 7 sont notamment utiles pour examiner les notions d’œuvre, de folklore et d’auteur. [Consulter le texte officiel du MINAC](https://minac.gov.cm/fr/documentation/textes-et-lois/droit-dauteur-et-droits-voisins).',
+          'Actualité : Burkina24 a rendu compte du Forum IA tenu le 22 octobre 2026 à Ouagadougou dans le cadre des REMA, consacré notamment à la création musicale, à la propriété intellectuelle et à la rémunération des créateurs. Ce reportage documente les échanges de l’événement ; il ne constitue pas une interprétation du droit camerounais. [Lire le reportage de Burkina24 du 23 octobre 2026](https://burkina24.com/2026/10/23/rema-2026-intelligence-artificielle-et-droits-dauteur-les-defis-de-la-creation-musicale-africaine/).',
+          'Contexte de l’événement : le site officiel des REMA présente l’édition 2026 et le forum consacré à l’IA et à la création musicale. [Consulter la page officielle des REMA 2026](https://www.remameeting.com/rema-2026/).',
+          'Portée de l’article : cette publication est informative et ne constitue pas un avis juridique. La réponse applicable à une œuvre précise dépend notamment des contributions humaines, des contrats, des éléments préexistants et des textes en vigueur. Pour une exploitation commerciale ou un litige, prenez conseil auprès d’un professionnel qualifié en propriété intellectuelle.',
         ],
       },
     ],
