@@ -24,17 +24,8 @@ function parseArgKey() {
   return ''
 }
 
-const key = (process.env.INDEXNOW_KEY ?? parseArgKey()).trim()
-
-if (!key) {
-  if (isAutoMode) {
-    console.log('ℹ️  [IndexNow] INDEXNOW_KEY non configuré — soumission automatique ignorée.')
-    process.exit(0)
-  }
-  console.error('❌ INDEXNOW_KEY manquant. Définissez INDEXNOW_KEY dans .env.local ou sur Vercel.')
-  console.error('👉 Pour générer une clé : https://www.bing.com/indexnow/getstarted')
-  process.exit(1)
-}
+const DEFAULT_KEY = 'e7d7bc0a9f824b619dc8456209ef48bc'
+const key = (process.env.INDEXNOW_KEY || parseArgKey() || DEFAULT_KEY).trim()
 
 const host = 'hervenanfang.vercel.app'
 

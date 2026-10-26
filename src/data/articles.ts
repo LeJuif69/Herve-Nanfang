@@ -1,7 +1,7 @@
 /**
  * Le Journal du Musicien Augmenté — série fondatrice « Après la MAO, l'IA »
  * ============================================================================
- * Sept piliers SEO. Chaque pilier porte :
+ * Douze piliers SEO. Chaque pilier porte :
  *   • un angle éditorial assumé (pas un résumé d'outils) ;
  *   • un plan structuré ;
  *   • un public identifié (`audience`) ;
@@ -1133,7 +1133,7 @@ export const ARTICLE_CHAIN = [
   {
     num: '3',
     label: 'Les autres piliers',
-    detail: 'Dix articles pour approfondir',
+    detail: 'Douze articles pour approfondir',
     to: '/journal',
   },
   {

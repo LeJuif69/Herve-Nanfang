@@ -625,7 +625,7 @@ export default function AI() {
         <Reveal delay={140}>
           <div className="mt-12 flex flex-wrap items-center gap-6">
             <Btn to="/journal" variant="ghost">
-              Lire les sept piliers
+              Lire les douze piliers du Journal
             </Btn>
             <span className="text-[0.68rem] uppercase tracking-[0.2em] text-ivory/40">
               Série « Après la MAO, l’IA »

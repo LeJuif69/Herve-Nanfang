@@ -35,7 +35,7 @@ export default function Journal() {
   useSeo({
     title: 'Journal | Hervé Nanfang — IA, musique & pédagogie',
     description:
-      "Le Journal du Musicien Augmenté : dix piliers sur l'IA, la musique, la pédagogie, le cinéma africain et l'entrepreneuriat culturel.",
+      "Le Journal du Musicien Augmenté : douze piliers sur l'IA, la musique, la pédagogie, le cinéma africain et l'entrepreneuriat culturel.",
     path: '/journal',
     jsonLd: [
       personSchema,
@@ -66,7 +66,7 @@ export default function Journal() {
         breadcrumb="Journal"
         eyebrow="Le Journal du Musicien Augmenté"
         title="Réfléchir à ce que la technologie fait à la musique — et à nous."
-        lead="Analyses, méthodes et prises de position sur la musique, l'intelligence artificielle, la pédagogie, le cinéma et la culture. Dix piliers éditoriaux fondateurs."
+        lead="Analyses, méthodes et prises de position sur la musique, l'intelligence artificielle, la pédagogie, le cinéma et la culture. Douze piliers éditoriaux fondateurs."
       >
         <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
           <Stat value={String(articles.length).padStart(2, '0')} label="Piliers publiés" />

@@ -267,7 +267,7 @@ export default function ArticleDetail() {
                 <p className="eyebrow text-ivory/40">Series</p>
                 <p className="mt-3 font-display text-xl text-ivory">Après la MAO, l’IA</p>
                 <p className="mt-2 text-sm text-ivory/55">
-                  Sept piliers pour comprendre la transformation en cours.
+                  Douze piliers pour comprendre la transformation en cours.
                 </p>
                 <div className="mt-5">
                   <Btn to="/journal" variant="ghost" className="w-full justify-center">

@@ -2557,9 +2557,47 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                 <p>
                   Chaque publication recyclée intègre des paramètres UTM stricts (<code className="text-gold">utm_source=linkedin|facebook|instagram|youtube|whatsapp</code>, <code className="text-gold">utm_medium=social</code>, <code className="text-gold">utm_campaign=journal-repurpose</code>).
                 </p>
-                <p className="text-amber-200/80 bg-amber-400/10 border border-amber-400/20 p-2 rounded">
-                  ⚠️ <strong>Conformité Google AdSense & Search Console :</strong> Tout le trafic généré repose sur l’intérêt éditorial réel et le bouche-à-oreille qualifié. Aucun outil d'automatisation de clic ou bot artificiel n'est employé, garantissant la sécurité du compte éditeur.
+              </div>
+
+              {/* 5. Données d'Audience Réelles (Search Console & GA4) */}
+              <div className="border border-white/10 bg-ink-2 p-4 space-y-3">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-gold flex items-center gap-1.5">
+                    <span>05</span> Données d'Audience Réelles (Google Search Console & GA4)
+                  </h3>
+                  <span className="text-[0.65rem] bg-gold/10 text-gold border border-gold/30 px-2 py-0.5 rounded-full font-bold">
+                    Données Certifiées GSC
+                  </span>
+                </div>
+                <p className="text-[0.72rem] text-ivory/70">
+                  Conformément aux exigences de rigueur éditoriale, aucune métrique de trafic n’est simulée ou calculée artificiellement. Les impressions, clics réels et requêtes proviennent exclusivement de vos consoles officielles :
                 </p>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  <a
+                    href="https://search.google.com/search-console"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border border-white/20 bg-black/40 px-3 py-1.5 text-xs text-ivory/90 hover:border-gold hover:text-gold flex items-center gap-1.5"
+                  >
+                    <span>🔍</span> Google Search Console (Rapport de Performance) ↗
+                  </a>
+                  <a
+                    href="https://analytics.google.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border border-white/20 bg-black/40 px-3 py-1.5 text-xs text-ivory/90 hover:border-gold hover:text-gold flex items-center gap-1.5"
+                  >
+                    <span>📈</span> Google Analytics 4 (Événements & Visites) ↗
+                  </a>
+                  <a
+                    href="https://www.bing.com/webmasters"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border border-white/20 bg-black/40 px-3 py-1.5 text-xs text-ivory/90 hover:border-gold hover:text-gold flex items-center gap-1.5"
+                  >
+                    <span>🌐</span> Bing Webmaster Tools (IndexNow) ↗
+                  </a>
+                </div>
               </div>
 
               {/* Action buttons */}
@@ -2595,9 +2633,10 @@ Auteur : Hervé Nanfang (Système de Croissance NANHÉ)
 - Samedi : Statut conversationnel direct (WhatsApp)
 - Dimanche : Revue Search Console & Ajustements
 
-## 4. Traçabilité UTM
+## 4. Traçabilité UTM & Intégrité
 - Paramètres : utm_source, utm_medium=social, utm_campaign=journal-repurpose
-- Conformité : 100% trafic organique qualifié (zéro faux clics)`
+- Conformité : 100% trafic organique qualifié (zéro faux clics, zéro bot)
+- Mesures d'audience : Issues exclusivement de Google Search Console et Google Analytics 4`
                     navigator.clipboard.writeText(mdReport)
                     setCopiedReport(true)
                     setTimeout(() => setCopiedReport(false), 2000)
