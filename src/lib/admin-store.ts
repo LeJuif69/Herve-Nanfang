@@ -643,7 +643,7 @@ function getInitialSettings(): AdminSettings {
     })),
     promoBannerEnabled: true,
     promoBannerCampaign: 'rma',
-    googleAdsId: 'G-DNH9G3SF7F',
+    googleAdsId: 'G-DMHQK0ELNX',
     webhookUrl: 'https://hervenanfang.app.n8n.cloud/webhook/publication-approved',
     updatedAt: new Date().toISOString(),
   }
@@ -841,14 +841,15 @@ function sanitizeLoadedState(state: AdminState): AdminState {
 
   // 5. Initialisation du Webhook n8n et de Google Analytics 4 si non définis
   const currentWebhook = state.settings?.webhookUrl?.trim()
-  const currentGoogleTag = state.settings?.googleAdsId?.trim()
+  const rawGoogleTag = state.settings?.googleAdsId?.trim()
+  const currentGoogleTag = (!rawGoogleTag || rawGoogleTag === 'G-DNH9G3SF7F') ? 'G-DMHQK0ELNX' : rawGoogleTag
   const settings = {
     ...getInitialSettings(),
     ...(state.settings || {}),
-    googleAdsId: currentGoogleTag || 'G-DNH9G3SF7F',
+    googleAdsId: currentGoogleTag,
     webhookUrl: currentWebhook || 'https://hervenanfang.app.n8n.cloud/webhook/publication-approved',
   }
-  if (!currentWebhook || !currentGoogleTag) {
+  if (!currentWebhook || rawGoogleTag !== currentGoogleTag) {
     hasChanges = true
   }
 
