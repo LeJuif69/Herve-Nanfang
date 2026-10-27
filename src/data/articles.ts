@@ -2349,18 +2349,18 @@ export const ARTICLES: Article[] = [
     slug: 'traduire-tradition-orale-au-clavier-rythmes-camerounais',
     num: '25',
     category: 'Musicologie & Patrimoine',
-    title: 'Traduire la tradition orale au clavier : musicologie appliquée des rythmes camerounais (du Bikutsi au Tswefap de Batoufam)',
+    title: 'Traduire la tradition orale au clavier : rythmes camerounais, langues tonales et transmission',
     excerpt:
-      'La culture musicale africaine n’est ni un décor folklorique ni une simple boucle de percussions : c’est une architecture sonore de haute précision. Méthode musicologique et pratique pianistique pour transposer les polyrythmies camerounaises — du Bikutsi au Tswefap de Batoufam — sur les 88 touches sans trahir l’esprit de la tradition orale.',
+      'La culture musicale africaine n’est ni un décor folklorique ni une simple boucle de percussions : c’est une architecture sonore et linguistique de haute précision. Méthode musicologique et pratique pianistique pour aborder les polyrythmies camerounaises (Bikutsi), comprendre l’impact des langues tonales (comme le Tswefap de Batoufam) et transmettre au clavier sans trahir l’esprit de la tradition orale.',
     readingTime: '15 min',
     status: 'Publié',
     audience:
-      'Pianistes, claviéristes, compositeurs, étudiants en musicologie et arrangeurs désireux d’interpréter et d’orchestrer les répertoires oraux camerounais avec rigueur ethnomusicologique et liberté instrumentale.',
+      'Pianistes, claviéristes, compositeurs, étudiants en musicologie et arrangeurs désireux d’interpréter et d’orchestrer les répertoires oraux camerounais avec rigueur ethnomusicologique, respect des langues locales et liberté instrumentale.',
     linkedConcept: { label: 'Culture & Recherche', to: '/culture-recherche' },
     outline: [
       '1. Le piano comme instrument de transcription vivante, pas comme moule d’assimilation',
       '2. De la forêt du Centre au Mvet : l’assise 6/8 et 12/8 du Bikutsi au clavier',
-      '3. Les hautes terres de l’Ouest : décoder la métrique du Tswefap et les danses de Batoufam',
+      '3. Le Tswefap : langue, oralité et enjeux de l’écriture',
       '4. La question harmonique : pourquoi les voicings en quartes respectent les langues tonales',
       '5. L’approche pédagogique à la Racines Musicales Academy® et les paliers du Permis de Jouer™',
       '6. Ce que je n’ai pas encore résolu',
@@ -2370,7 +2370,7 @@ export const ARTICLES: Article[] = [
       {
         heading: '1. Le piano comme instrument de transcription vivante, pas comme moule d’assimilation',
         paragraphs: [
-          'Aborder les musiques de tradition orale africaines au clavier soulève un paradoxe historique et acoustique immédiat. Le piano acoustique moderne est l’héritier par excellence du tempérament égal occidental, conçu pour moduler dans les vingt-quatre tonalités et faire résonner des empilements de tierces majeures et mineures. Les répertoires camerounais traditionnels — qu’il s’agisse du Bikutsi des forêts du Sud, du Makossa du littoral, du Mangambeu des Grassfields ou du Tswefap des chefferies Bamiléké — sont quant à eux nés de voix non tempérées, de cloches asymétriques et de tambours parlants profondément ancrés dans les inflexions des langues tonales.',
+          'Aborder les musiques de tradition orale africaines au clavier soulève un paradoxe historique et acoustique immédiat. Le piano acoustique moderne est l’héritier par excellence du tempérament égal occidental, conçu pour moduler dans les vingt-quatre tonalités et faire résonner des empilements de tierces majeures et mineures. Les répertoires camerounais traditionnels — qu’il s’agisse du Bikutsi des forêts du Sud, du Makossa du littoral ou des danses cérémonielles des chefferies des Grassfields — sont quant à eux nés de voix non tempérées, de cloches asymétriques et de tambours parlants profondément ancrés dans les inflexions des langues tonales.',
           'L’erreur la plus fréquente des pianistes formés au conservatoire classique ou au jazz standard consiste à plaquer des grilles harmoniques fonctionnelles (cadences II-V-I ou anatoles simplistes) sur des mélodies modales africaines. Ce réflexe dénature instantanément l’énergie percussive du chant : il transforme un rituel d’une extraordinaire complexité rythmique en une variété exotique édulcorée. Le piano ne doit jamais être un rouleau compresseur qui aplatit les subtilités du terroir dans le moule harmonique européen.',
           'Dans ma pratique de chercheur et de musicien de scène depuis 2007, je considère au contraire le piano comme un laboratoire acoustique d’une plasticité incomparable. Avec ses 88 touches, ses cordes percutées par des marteaux et sa tessiture couvrant sept octaves, le piano est le seul instrument capable de faire dialoguer sous les dix doigts l’ostinato imperturbable de la cloche, les variations polyrythmiques du tambour-maître et les répons polyphoniques du chœur.',
         ],
@@ -2384,17 +2384,17 @@ export const ARTICLES: Article[] = [
         ],
       },
       {
-        heading: '3. Les hautes terres de l’Ouest : décoder la métrique du Tswefap et les danses de Batoufam',
+        heading: '3. Le Tswefap : langue, oralité et enjeux de l’écriture',
         paragraphs: [
-          'Lors de mes travaux d’enquête musicologique et de captation de terrain à la chefferie de Batoufam (département du Koung-Khi, Région de l’Ouest-Cameroun), j’ai longuement documenté les structures rythmiques du *Tswefap* et des danses rituelles associées aux dignitaires et aux sociétés coutumières Bamiléké.',
-          'La métrique du Tswefap se distingue par un phénomène d’hémiole continue et imbriquée : au sein d’une même grande mesure ternaire, le tambour-maître et la cloche double (*kwa*) superposent en permanence une division par deux et une division par trois. Les danseurs marquent au sol des pas en triolets tandis que leurs torses et leurs épaules ondulent sur une division binaire syncopée. Cette ambivalence métrique produit une sensation d’apesanteur rythmique où le tempo semble accélérer ou flotter sans que la pulsation réelle ne bouge d’un millième de seconde.',
-          'Au clavier, retranscrire le Tswefap exige une indépendance cérébrale et digitale totale. La main gauche maintient la cloche fondamentale sur une pulsation ternaire de 12/8, tandis que la main droite exécute des motifs mélodiques en doubles croches binaires, en déplaçant délibérément les accents sur les temps faibles. C’est exactement cette polyrythmie que nous enseignons à la [Racines Musicales Academy®](/rma) : le pianiste ne doit plus penser en termes de mesures fermées, mais en cycles d’énergie circulaire qui s’enroulent les uns autour des autres.',
+          'Dans mes travaux de recherche menés à Batoufam (département du Koung-Khi, Région de l’Ouest-Cameroun), une distinction scientifique fondamentale s’impose avec rigueur : il ne faut jamais confondre une structure musicale et une langue. Le Tswefap n’est pas un rythme, un style ou un genre de danse ; c’est une langue bamiléké parlée à Batoufam, étudiée pour sa phonologie riche, sa grammaire et son système tonal complexe.',
+          'Mon engagement sur le terrain concerne notamment la documentation et les enjeux liés à l’institutionnalisation de l’écriture du Tswefap. Passer de la transmission purement orale à une forme écrite codifiée est un défi linguistique et patrimonial majeur, qui exige de recueillir les récits d’anciens avec humilité, sans inventer arbitrairement de règles orthographiques et sans prétendre que ce travail de longue haleine est achevé.',
+          'Quel est alors le lien entre la langue Tswefap et la musique ? Ce lien s’exprime à travers la prosodie, les hauteurs relatives de la voix parlée et les chants rituels de la chefferie. Dans les langues tonales, la parole porte déjà en elle une courbe mélodique naturelle. Le piano peut aider le musicologue à repérer ces inflexions de hauteur et à dialoguer avec le chant, mais le clavier ne constitue en aucun cas un système d’écriture de la langue. Ce chantier capital fera d’ailleurs l’objet d’une étude autonome dédiée à la langue Tswefap, à sa mémoire et à ses enjeux de transmission.',
         ],
       },
       {
         heading: '4. La question harmonique : pourquoi les voicings en quartes respectent les langues tonales',
         paragraphs: [
-          'La question centrale de l’harmonisation au piano des répertoires camerounais réside dans le rapport indissoluble entre musique et linguistique. Dans les langues tonales africaines (qu’il s’agisse de l’Ewondo, du Duala, du Ghomala’ ou du Fe’fe’), le sens même d’un mot change selon que la syllabe est prononcée sur un ton haut, moyen ou bas. La ligne mélodique n’est jamais arbitraire : elle épouse fidèlement la courbe intonative de la phrase parlée.',
+          'La question centrale de l’harmonisation au piano des répertoires camerounais réside dans le rapport indissoluble entre musique et linguistique. Dans les langues tonales africaines (qu’il s’agisse du Tswefap, de l’Ewondo, du Duala, du Ghomala’ ou du Fe’fe’), le sens même d’un mot dépend de la hauteur de son ton (ton haut, moyen, bas, montant ou descendant). La ligne mélodique d’un chant n’est jamais arbitraire : elle épouse fidèlement la courbe intonative de la phrase énoncée.',
           'Lorsqu’un arrangeur plaque un accord majeur traditionnel comportant une tierce majeure très présente, cette tierce peut entrer en conflit violent avec le ton moyen ou bas de la voix, donnant à l’auditeur locuteur la sensation troublante d’une erreur de prononciation ou d’un contre-sens poétique. C’est pourquoi les empilements de tierces classiques sont si souvent inadaptés.',
           'La solution musicologique que je préconise et développe au sein de ma démarche de création consiste à privilégier l’harmonie quartale (voicings construits par empilement de quartes justes et de quintes) ainsi que les accords suspendus (*sus2* et *sus4*). Ces structures harmoniques ouvertes ne saturent pas l’espace spectral. Elles laissent flotter une indétermination modale qui permet à la voix soliste ou au chœur d’exprimer pleinement ses micro-inflexions sans être corsetée par une tonalité rigide. C’est l’alliance naturelle entre la liberté du jazz modal contemporain et la pureté archaïque des traditions orales.',
         ],
@@ -2414,9 +2414,9 @@ export const ARTICLES: Article[] = [
       {
         heading: '6. Ce que je n’ai pas encore résolu',
         paragraphs: [
-          'Malgré des années de recherches et de pratique sur scène, plusieurs chantiers musicologiques restent pour moi des défis ouverts :',
-          'Je ne sais pas encore comment retranscrire fidèlement sur partition solfégique les micro-variations de placement temporel (*micro-timing*) que réalisent intuitivement les maîtres tambours de Batoufam. Dès qu’on tente de figer ces inflexions dans une mesure à 12/8 sur papier, on perd la respiration élastique du groove vivant.',
-          'Je me heurte également aux limites mécaniques du tempérament égal du piano face aux échelles musicales non tempérées des instruments à cordes traditionnels (comme le *Mvet* ou l’arc musical). Trouver comment marier la pureté brute de ces intervalles ancestraux avec un instrument à accord fixe sans tomber dans le compromis artificiel reste une quête quotidienne.',
+          'Malgré des années de recherches et de pratique sur scène, plusieurs chantiers musicologiques et linguistiques restent pour moi des défis ouverts :',
+          'Je cherche encore la meilleure passerelle pédagogique pour expliquer à de jeunes élèves la relation entre la notation musicale sur partition et la transcription des tons linguistiques d’une langue comme le Tswefap. Ce sont deux systèmes d’écriture différents qui tentent de capter une même réalité vivante.',
+          'Je me heurte également aux limites mécaniques du tempérament égal du piano face aux échelles musicales non tempérées des instruments traditionnels (comme le *Mvet* ou l’arc musical). Trouver comment marier la pureté brute de ces intervalles ancestraux avec un instrument à accord fixe sans tomber dans le compromis artificiel reste une quête quotidienne.',
         ],
       },
       {
@@ -2431,18 +2431,17 @@ export const ARTICLES: Article[] = [
       },
     ],
     keywords: [
-      'rythmes traditionnels camerounais piano musicologie',
-      'jouer le bikutsi au piano',
-      'musique bamiléké batoufam tswefap',
-      'polyrythmie africaine transcription clavier',
-      'harmonie quartale langues tonales',
+      'rythmes camerounais piano musicologie',
+      'langue tswefap batoufam oralite',
+      'transcription bikutsi clavier',
+      'langues tonales harmonie africaine',
       'Hervé Nanfang musicologue',
       'Racines Musicales Academy',
       'Permis de Jouer piano',
     ],
-    seoTitle: 'Rythmes camerounais au piano : du Bikutsi au Tswefap',
+    seoTitle: 'Tradition orale au piano : rythmes camerounais et langues',
     seoDescription:
-      'Comment transcrire et jouer les rythmes camerounais (Bikutsi, Tswefap de Batoufam) au piano sans trahir la tradition orale ? Analyse et méthode par Hervé Nanfang.',
+      'Musicologie et piano par Hervé Nanfang : transcrire le Bikutsi, respecter le système tonal des langues orales (Tswefap) et transmettre sans trahir l’oralité.',
   },
 ]
 

@@ -149,7 +149,7 @@ RÈGLES D'ENCODAGE :
 Avant de déployer un nouvel article sur Vercel, valide cette checklist :
 
 1. [ ] **Preuve d'expérience vécue (E-E-A-T)** : L'article contient-il au moins un retour d'expérience terrain réel et non-reproductible par une IA générique ?
-2. [ ] **Rigueur terminologique** : Les notions musicales, acoustiques, rythmiques (Bikutsi, Tswefap, cadence) ou juridiques (OAPI, droits voisins) sont-elles exactes ?
+2. [ ] **Rigueur terminologique** : Les notions musicales, acoustiques, rythmiques (Bikutsi, Makossa) et linguistiques (langue Tswefap et système tonal de Batoufam) ou juridiques (OAPI) sont-elles scrupuleusement distinguées et exactes ?
 3. [ ] **Maillage interne bidirectionnel** : L'article pointe-t-il vers 2 pages piliers du site, ET un ancien article a-t-il été mis à jour pour pointer vers ce nouvel article ?
 4. [ ] **Validation du SSG Node** : Le build (`npm run build`) génère-t-il bien le fichier HTML statique dans `dist/` avec `<title>`, `<meta description>` et `sitemap.xml` mis à jour ?
 5. [ ] **Indexation & Recette** : La page répond-elle en HTTP 200, les blocs de conversion (*Carnets Privés*, devis ou RMA) sont-ils visibles, et l'URL a-t-elle été soumise à Google Search Console ?
@@ -163,6 +163,6 @@ Avant de déployer un nouvel article sur Vercel, valide cette checklist :
 | **01** | **Pédagogie** | *Apprendre le piano à l'âge adulte : pourquoi la méthode classique échoue et comment progresser par paliers certifiés* | `apprendre le piano adulte méthode structurée` | Info / Conversion -> `/pedagogie#permis-de-jouer` |
 | **02** | **Piano-Bar** | *Animation musicale piano-bar de prestige au Cameroun : les critères d'excellence pour un événement corporate ou un mariage* | `pianiste événementiel mariage corporate Yaoundé Douala` | Commerciale -> `/services#piano-bar` |
 | **03** | **IA & Droit** | *IA générative et droit d'auteur musical en Afrique (OAPI & Cameroun) : protéger ses œuvres avec le cadre Musicien Augmenté™* | `droit auteur musique intelligence artificielle Afrique OAPI` | Info / Autorité -> `/ia-technologie#manifeste` |
-| **04** | **Musicologie** | *Traduire la tradition orale au clavier : musicologie appliquée des rythmes camerounais (du Bikutsi au Tswefap de Batoufam)* | `rythmes traditionnels camerounais piano musicologie` | Éducative / Marque -> `/musique#repertoire` |
+| **04** | **Musicologie** | *Traduire la tradition orale au clavier : rythmes camerounais, langues tonales et transmission* | `rythmes camerounais piano langues tonales` | Éducative / Marque -> `/culture-recherche` |
 | **05** | **Studio MAO** | *Production musicale hybride chez Alaiz Music : marier prise de son acoustique, MAO et outils IA sans perdre son identité* | `production musicale hybride MAO acoustique Afrique` | Commerciale -> `/services#studio` |
 | **06** | **Économie** | *L'économie du musicien en Afrique francophone : bâtir un modèle hybride durable entre scène, enseignement et production* | `vivre de la musique en Afrique modèle économique` | Stratégique -> `/contact` |
