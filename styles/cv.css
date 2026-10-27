@@ -1,0 +1,705 @@
+/* ==========================================================================
+   HERVÉ NANFANG — INTERNATIONAL CURRICULUM VITAE
+   Precision Editorial Stylesheet — Strictly 2 Pages A4 (Zero Spillage)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap');
+
+:root {
+  --bg-main: #f5f3ee;
+  --bg-card: #efede7;
+  --border-card: #c8c6c0;
+  --bg-dark: #111318;
+  --bg-dark-card: #171a20;
+  --border-dark: #3d4048;
+  --gold: #c9a227;
+  --gold-glow: rgba(201, 162, 39, 0.2);
+  --bronze: #806b32;
+  --text-dark: #111318;
+  --text-muted: #4a4d54;
+  --text-light: #f5f3ee;
+  --text-light-muted: #b0b4bc;
+  --font-heading: 'Cinzel', 'Times New Roman', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+html, body {
+  background-color: #d8d5cd;
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  font-size: 6.8pt;
+  line-height: 1.18;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, p, ul, ol, li {
+  margin: 0;
+  padding: 0;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+/* Page Container: Exactly 210mm x 297mm */
+.page {
+  width: 210mm;
+  height: 297mm;
+  max-height: 297mm;
+  margin: 0 auto;
+  background-color: var(--bg-main);
+  position: relative;
+  overflow: hidden;
+  padding: 6mm 10mm 5mm 10mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  page-break-after: always;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.page:last-child {
+  page-break-after: auto;
+}
+
+@media print {
+  body {
+    background: none;
+    margin: 0;
+    padding: 0;
+  }
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    box-shadow: none;
+    border: none;
+  }
+}
+
+/* Top Accent Bar */
+.top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3mm;
+  background: linear-gradient(90deg, #997415 0%, #c9a227 40%, #e6cb6c 70%, #997415 100%);
+}
+
+/* International Kicker */
+.kicker {
+  font-size: 5.8pt;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-top: 1mm;
+  margin-bottom: 1mm;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.kicker::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 1.2px;
+  background-color: var(--gold);
+}
+
+/* Header Grid */
+.header-grid {
+  display: grid;
+  grid-template-columns: 1fr 24mm;
+  gap: 3mm;
+  align-items: center;
+  border-bottom: 1px solid var(--border-card);
+  padding-bottom: 1.5mm;
+  margin-bottom: 1.2mm;
+}
+
+.identity-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.name-container {
+  display: flex;
+  align-items: baseline;
+  gap: 2.5mm;
+  margin-bottom: 0.5mm;
+}
+
+.name-title {
+  font-family: var(--font-heading);
+  font-size: 16pt;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--text-dark);
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.name-title span {
+  color: var(--gold);
+}
+
+.role-headline {
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--text-dark);
+  letter-spacing: 0.01em;
+  margin-bottom: 0.3mm;
+}
+
+.role-subline {
+  font-size: 6.4pt;
+  font-weight: 600;
+  color: var(--bronze);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.8mm;
+}
+
+.location-badge {
+  font-size: 6.2pt;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 1mm;
+}
+
+.location-badge .tag {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* Contact 2x2 Grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6mm 2mm;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 3.5px;
+  font-size: 6.2pt;
+  color: var(--text-dark);
+  text-decoration: none;
+}
+
+.contact-icon {
+  width: 10px;
+  height: 10px;
+  border-radius: 1.5px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 5pt;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.contact-label {
+  font-weight: 700;
+  color: var(--bronze);
+  margin-right: 2px;
+}
+
+/* Candidate Photo Frame */
+.photo-frame {
+  width: 23mm;
+  height: 28mm;
+  border-radius: 2px;
+  border: 1.5px solid var(--gold);
+  padding: 1px;
+  background-color: #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  justify-self: end;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 1px;
+  display: block;
+}
+
+/* Section Header */
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 1mm;
+  margin-bottom: 0.8mm;
+  position: relative;
+}
+
+.section-num {
+  font-family: var(--font-heading);
+  font-size: 6.6pt;
+  font-weight: 700;
+  color: var(--gold);
+  background-color: rgba(201, 162, 39, 0.12);
+  padding: 0.5px 3px;
+  border-radius: 1.5px;
+  line-height: 1.1;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 7.2pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  white-space: nowrap;
+}
+
+.section-line {
+  flex-grow: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border-card) 0%, rgba(200, 198, 192, 0.2) 100%);
+}
+
+/* 01: Profile & Value Proposition Grid */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2mm;
+  margin-bottom: 1mm;
+}
+
+.profile-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 2px;
+  padding: 1.4mm 1.8mm;
+  font-size: 6.3pt;
+  line-height: 1.2;
+  color: var(--text-dark);
+}
+
+.profile-card p + p {
+  margin-top: 0.6mm;
+}
+
+.vp-panel {
+  background-color: var(--bg-dark);
+  border: 1px solid var(--border-dark);
+  border-top: 1.8px solid var(--gold);
+  border-radius: 2px;
+  padding: 1.4mm 1.8mm;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.vp-head {
+  font-family: var(--font-heading);
+  font-size: 6.2pt;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.5mm;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.vp-body {
+  font-size: 6.1pt;
+  line-height: 1.18;
+  color: #dcded8;
+}
+
+.vp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin-top: 0.8mm;
+}
+
+.vp-tag {
+  font-size: 5.4pt;
+  font-weight: 600;
+  background-color: var(--bg-dark-card);
+  border: 1px solid #333842;
+  color: var(--gold);
+  padding: 0.5px 3px;
+  border-radius: 1.5px;
+}
+
+/* 02: 4 Expertise Pillars */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5mm;
+  margin-bottom: 1mm;
+}
+
+.pillar-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-top: 1.6px solid var(--gold);
+  border-radius: 2px;
+  padding: 1.1mm 1.5mm;
+}
+
+.pillar-title {
+  font-size: 6.4pt;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.3mm;
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
+}
+
+.pillar-desc {
+  font-size: 5.7pt;
+  color: var(--text-muted);
+  line-height: 1.15;
+}
+
+/* 03: 2x3 Competencies Grid (A to F) */
+.comp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1mm 1.8mm;
+  margin-bottom: 1mm;
+}
+
+.comp-card {
+  background-color: #fcfbfa;
+  border: 1px solid var(--border-card);
+  border-radius: 1.5px;
+  padding: 0.9mm 1.4mm;
+}
+
+.comp-head {
+  font-size: 6.3pt;
+  font-weight: 700;
+  color: var(--bronze);
+  margin-bottom: 0.2mm;
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
+}
+
+.comp-head .cat-letter {
+  color: var(--gold);
+  font-weight: 800;
+}
+
+.comp-items {
+  font-size: 5.8pt;
+  color: var(--text-dark);
+  line-height: 1.15;
+}
+
+/* 04: Professional Experience Entries */
+.exp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9mm;
+  margin-bottom: 1mm;
+}
+
+.exp-entry {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-left: 2px solid var(--gold);
+  border-radius: 1.5px;
+  padding: 1mm 1.6mm;
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.2mm;
+}
+
+.exp-role {
+  font-size: 6.8pt;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.exp-date {
+  font-size: 5.9pt;
+  font-weight: 700;
+  color: var(--gold);
+  background-color: rgba(201, 162, 39, 0.12);
+  padding: 0.5px 3px;
+  border-radius: 1.5px;
+  white-space: nowrap;
+}
+
+.exp-org {
+  font-size: 6.2pt;
+  font-weight: 600;
+  color: var(--bronze);
+  margin-bottom: 0.3mm;
+}
+
+.exp-bullets {
+  list-style: none;
+}
+
+.exp-bullets li {
+  position: relative;
+  padding-left: 6px;
+  font-size: 5.8pt;
+  color: var(--text-dark);
+  line-height: 1.15;
+}
+
+.exp-bullets li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* Soundwave Vector Box */
+.soundwave-box {
+  width: 100%;
+  margin: 0.6mm 0 0.5mm 0;
+  padding: 0 1mm;
+}
+
+/* Footer */
+.page-footer {
+  border-top: 1px solid var(--border-card);
+  padding-top: 0.9mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 5.7pt;
+  color: var(--text-muted);
+}
+
+.footer-left {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 3.5px;
+}
+
+.footer-left .gold-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: var(--gold);
+}
+
+.footer-page-num {
+  font-family: var(--font-heading);
+  font-size: 6.4pt;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+/* ================= PAGE 2 STYLES ================= */
+
+.page-2-kicker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-card);
+  padding-bottom: 0.9mm;
+  margin-bottom: 1.1mm;
+}
+
+.page-2-kicker .name-mini {
+  font-family: var(--font-heading);
+  font-size: 8.2pt;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-dark);
+  text-transform: uppercase;
+}
+
+.page-2-kicker .page-tag {
+  font-size: 5.9pt;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+}
+
+/* Additional Management (3 Cards) */
+.mgmt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4mm;
+  margin-bottom: 1mm;
+}
+
+.mgmt-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 1.5px;
+  padding: 1mm 1.4mm;
+}
+
+.mgmt-org {
+  font-size: 6.4pt;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.2mm;
+}
+
+.mgmt-role {
+  font-size: 5.9pt;
+  font-weight: 600;
+  color: var(--bronze);
+  margin-bottom: 0.2mm;
+}
+
+.mgmt-desc {
+  font-size: 5.6pt;
+  color: var(--text-muted);
+  line-height: 1.14;
+}
+
+/* Education (2x2 Grid with gold left border) */
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1mm 1.8mm;
+  margin-bottom: 1mm;
+}
+
+.edu-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-left: 2px solid var(--gold);
+  border-radius: 1.5px;
+  padding: 1mm 1.5mm;
+}
+
+.edu-degree {
+  font-size: 6.5pt;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.15mm;
+}
+
+.edu-spec {
+  font-size: 5.9pt;
+  font-weight: 600;
+  color: var(--bronze);
+}
+
+.edu-inst {
+  font-size: 5.6pt;
+  color: var(--text-muted);
+}
+
+/* 07: Large Dark Executive Panel */
+.ai-panel {
+  background-color: var(--bg-dark);
+  border: 1px solid var(--border-dark);
+  border-top: 1.8px solid var(--gold);
+  border-radius: 2px;
+  padding: 1.2mm 1.8mm;
+  margin-bottom: 1mm;
+  color: var(--text-light);
+}
+
+.ai-panel-title {
+  font-family: var(--font-heading);
+  font-size: 6.6pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8mm;
+  display: flex;
+  align-items: center;
+  gap: 3.5px;
+}
+
+.ai-inner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1mm 1.6mm;
+}
+
+.ai-inner-card {
+  background-color: var(--bg-dark-card);
+  border: 1px solid var(--border-dark);
+  border-radius: 1.5px;
+  padding: 0.9mm 1.3mm;
+}
+
+.ai-card-title {
+  font-size: 6.2pt;
+  font-weight: 700;
+  color: #eed68a;
+  margin-bottom: 0.2mm;
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
+}
+
+.ai-card-body {
+  font-size: 5.7pt;
+  color: #cfd2d8;
+  line-height: 1.15;
+}
+
+/* 08: Languages & International Availability */
+.lang-avail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 1.6mm;
+  margin-bottom: 0.8mm;
+}
+
+.lang-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-left: 2px solid var(--gold);
+  border-radius: 1.5px;
+  padding: 1mm 1.5mm;
+}
+
+.lang-title {
+  font-size: 6.3pt;
+  font-weight: 700;
+  color: var(--bronze);
+  margin-bottom: 0.3mm;
+}
+
+.lang-item {
+  font-size: 5.8pt;
+  color: var(--text-dark);
+  line-height: 1.16;
+}

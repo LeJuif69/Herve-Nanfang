@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{CANDIDATE_NAME}} — {{PAGE_TITLE}}</title>
+  <link rel="stylesheet" href="../styles/cv.css">
+  <style>
+    /* Inline SVG soundwave styling */
+    .soundwave-svg {
+      width: 100%;
+      height: 22px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== PAGE 1 ==================== -->
+  <section class="page" id="page-1">
+    <div class="top-bar"></div>
+
+    <div>
+      <div class="kicker">{{KICKER_TEXT}}</div>
+
+      <!-- Header Grid -->
+      <header class="header-grid">
+        <div class="identity-block">
+          <div class="name-container">
+            <h1 class="name-title">{{NAME_HTML}}</h1>
+          </div>
+          <div class="role-headline">{{HEADLINE_ROLE}}</div>
+          <div class="role-subline">{{HEADLINE_SUBLINE}}</div>
+          <div class="location-badge">
+            <span class="tag">📍 LOCATION:</span> {{LOCATION_TEXT}}
+          </div>
+
+          <!-- 2x2 Contact Grid -->
+          <div class="contact-grid">
+            <a href="mailto:{{CONTACT_EMAIL}}" class="contact-item">
+              <span class="contact-icon">✉</span>
+              <span><strong class="contact-label">EMAIL:</strong>{{CONTACT_EMAIL}}</span>
+            </a>
+            <a href="tel:+237682180266" class="contact-item">
+              <span class="contact-icon">✆</span>
+              <span><strong class="contact-label">PHONE/WA:</strong>{{CONTACT_PHONE}}</span>
+            </a>
+            <a href="https://{{CONTACT_LINKEDIN}}" target="_blank" class="contact-item">
+              <span class="contact-icon">in</span>
+              <span><strong class="contact-label">LINKEDIN:</strong>{{CONTACT_LINKEDIN}}</span>
+            </a>
+            <a href="{{CONTACT_PORTFOLIO}}" target="_blank" class="contact-item">
+              <span class="contact-icon">🌐</span>
+              <span><strong class="contact-label">PORTFOLIO:</strong>{{CONTACT_PORTFOLIO_SHORT}}</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Framed Candidate Photo -->
+        <div class="photo-frame">
+          <img src="{{PHOTO_SRC}}" alt="Hervé Nanfang">
+        </div>
+      </header>
+
+      <!-- 01 PROFESSIONAL PROFILE & VALUE PROPOSITION -->
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2 class="section-title">PROFESSIONAL PROFILE</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="profile-grid">
+        <div class="profile-card">
+          {{PROFILE_TEXT_HTML}}
+        </div>
+        <div class="vp-panel">
+          <div>
+            <div class="vp-head">
+              <span>★</span>
+              <span>{{VP_TITLE}}</span>
+            </div>
+            <div class="vp-body">
+              {{VP_BODY_HTML}}
+            </div>
+          </div>
+          <div class="vp-tags">
+            {{VP_TAGS_HTML}}
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 CORE EXPERTISE PILLARS -->
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2 class="section-title">CORE EXPERTISE PILLARS</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-title"><span>✦</span> AI &amp; Music Data</div>
+          <div class="pillar-desc">AI audio evaluation, dataset annotation, audio classification, critical acoustic assessment, human-in-the-loop QA.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-title"><span>✦</span> Musicology &amp; Analysis</div>
+          <div class="pillar-desc">Score &amp; harmonic analysis, ethnomusicology, music history, rhythm/tempo taxonomy, critical listening methodology.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-title"><span>✦</span> Audio &amp; Production</div>
+          <div class="pillar-desc">Multitrack recording, studio &amp; live mixing, signal flow, microphone techniques, DAW engineering, acoustic quality.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-title"><span>✦</span> Education &amp; MAO</div>
+          <div class="pillar-desc">Curriculum architecture (RMA), higher-ed lecturing (ESAS), computer-assisted music (MAO), competency-based training.</div>
+        </div>
+      </div>
+
+      <!-- 03 CORE COMPETENCIES & TECHNICAL DOMAINS (A to F) -->
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2 class="section-title">CORE COMPETENCIES &amp; TECHNICAL DOMAINS</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-head"><span class="cat-letter">A. </span>Artificial Intelligence &amp; Digital Workflows</div>
+          <div class="comp-items">AI audio evaluation, audio classification, prompt-to-audio fidelity assessment, dataset curation &amp; annotation, taxonomy structuring, digital workflow integration.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-head"><span class="cat-letter">B. </span>Musicology &amp; Musical Analysis</div>
+          <div class="comp-items">Score &amp; harmonic analysis, ethnomusicology, music history, rhythm/tempo/meter identification, acoustic timbre assessment, musical heritage documentation.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-head"><span class="cat-letter">C. </span>Audio Engineering &amp; Sound Production</div>
+          <div class="comp-items">Multitrack recording, studio &amp; live mixing, microphone techniques, gain staging &amp; signal flow, audio editing, critical acoustic listening &amp; quality QA.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-head"><span class="cat-letter">D. </span>Music Technology &amp; MAO</div>
+          <div class="comp-items">DAW environments (Cubase, Pro Tools, Logic, FL Studio, Reaper), MIDI programming, synthesis, audio processing plug-ins, digital orchestration, hardware integration.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-head"><span class="cat-letter">E. </span>Education &amp; Curriculum Development</div>
+          <div class="comp-items">Curriculum architecture (RMA), competency-based training, pedagogical engineering, ear training systems, course material design, higher-ed lecturing (ESAS).</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-head"><span class="cat-letter">F. </span>Creative Production &amp; Cultural Projects</div>
+          <div class="comp-items">Artistic direction &amp; coordination (A LAIZ PROD), stage performance &amp; piano-bar delivery, musical arrangement, event programming, cross-cultural initiatives.</div>
+        </div>
+      </div>
+
+      <!-- 04 PROFESSIONAL EXPERIENCE (PART I) -->
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2 class="section-title">PROFESSIONAL EXPERIENCE (PART I)</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="exp-list">
+        <!-- ESAS -->
+        <div class="exp-entry">
+          <div class="exp-header">
+            <span class="exp-role">Lecturer in Musicology, MAO &amp; Music Education</span>
+            <span class="exp-date">2022 — PRESENT</span>
+          </div>
+          <div class="exp-org">ESAS — École Supérieure des Arts du Spectacle</div>
+          <ul class="exp-bullets">
+            <li>Delivers higher education lectures in musicology, computer-assisted music (MAO), and music applied to visual media.</li>
+            <li>Designs syllabi and pedagogical engineering frameworks bridging classical music analysis, ear training, and modern DAW workflows.</li>
+            <li>Supervises student audio productions, orchestration assignments, and digital composition portfolios.</li>
+          </ul>
+        </div>
+
+        <!-- RMA -->
+        <div class="exp-entry">
+          <div class="exp-header">
+            <span class="exp-role">Curriculum Architect &amp; Music Education Lead</span>
+            <span class="exp-date">ONGOING</span>
+          </div>
+          <div class="exp-org">Racines Musicales Academy® — RMA</div>
+          <ul class="exp-bullets">
+            <li>Architected the complete Music Education System, structuring sequential curricula for ear training, theory, and practical mastery.</li>
+            <li>Designed progressive pedagogical materials converting complex musicological concepts into competency-based learning modules.</li>
+            <li>Implemented standardized evaluation rubrics for auditory perception, instrumental fluency, and stylistic versatility.</li>
+          </ul>
+        </div>
+
+        <!-- Sound Engineering Practice -->
+        <div class="exp-entry">
+          <div class="exp-header">
+            <span class="exp-role">Sound Engineer &amp; Audio Production Specialist</span>
+            <span class="exp-date">PROFESSIONAL PRACTICE</span>
+          </div>
+          <div class="exp-org">Sound Engineering · Audio Production Practice</div>
+          <ul class="exp-bullets">
+            <li>Leads studio tracking, multitrack mixing, audio restoration, vocal editing, and live acoustic reinforcement across diverse genres.</li>
+            <li>Applies critical listening and acoustic QA to detect sonic artifacts, phase issues, balance anomalies, and spectral imbalances.</li>
+            <li>Masters full DAW/MAO workflows, hardware signal routing, microphone placement techniques, and monitoring calibration.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Soundwave & Footer Page 1 -->
+    <div>
+      <div class="soundwave-box">
+        {{SOUNDWAVE_SVG_INLINE}}
+      </div>
+      <footer class="page-footer">
+        <div class="footer-left">
+          <span class="gold-dot"></span>
+          <span>HERVÉ NANFANG — INTERNATIONAL RESUME</span>
+          <span>·</span>
+          <span>CONFIDENTIAL &amp; PROPRIETARY</span>
+        </div>
+        <div class="footer-page-num">01 / 02</div>
+      </footer>
+    </div>
+  </section>
+
+
+  <!-- ==================== PAGE 2 ==================== -->
+  <section class="page" id="page-2">
+    <div class="top-bar"></div>
+
+    <div>
+      <!-- Page 2 Kicker -->
+      <div class="page-2-kicker">
+        <span class="name-mini">HERVÉ NANFANG · INTERNATIONAL RESUME</span>
+        <span class="page-tag">{{PAGE2_BADGE}}</span>
+      </div>
+
+      <!-- 04 PROFESSIONAL EXPERIENCE (PART II) -->
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2 class="section-title">PROFESSIONAL EXPERIENCE (PART II)</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="exp-list">
+        <!-- A LAIZ PROD -->
+        <div class="exp-entry">
+          <div class="exp-header">
+            <span class="exp-role">Independent Music Producer &amp; Artistic / Cultural Project Coordinator</span>
+            <span class="exp-date">ONGOING</span>
+          </div>
+          <div class="exp-org">A LAIZ PROD</div>
+          <ul class="exp-bullets">
+            <li>Coordinates end-to-end music production, artistic direction, studio recording sessions, and creative development projects.</li>
+            <li>Directs cultural event programming, cross-disciplinary collaborations, and sound design for visual media.</li>
+          </ul>
+        </div>
+
+        <!-- ISMA -->
+        <div class="exp-entry">
+          <div class="exp-header">
+            <span class="exp-role">Higher Education &amp; Professional Training Contributor — Music &amp; Arts</span>
+            <span class="exp-date">BENIN</span>
+          </div>
+          <div class="exp-org">ISMA — Institut Supérieur des Métiers des Arts</div>
+          <ul class="exp-bullets">
+            <li>Contributed to academic and professional training modules in musicology, stage performance, and artistic project coordination.</li>
+            <li>Conducted masterclasses on musical interpretation, sound quality standards, and creative industry workflows.</li>
+          </ul>
+        </div>
+
+        <!-- Independent Musician -->
+        <div class="exp-entry">
+          <div class="exp-header">
+            <span class="exp-role">Professional Musician · Piano-Bar Performer · Composer &amp; Arranger</span>
+            <span class="exp-date">2007 — PRESENT</span>
+          </div>
+          <div class="exp-org">Independent / Live Performance</div>
+          <ul class="exp-bullets">
+            <li>17+ years of continuous live and piano-bar performance with simultaneous vocal interpretation and keyboard mastery.</li>
+            <li>Broad international repertoire: jazz, blues, African varieties, French chanson, international pop standards, and Oriental pieces.</li>
+            <li>Honed supreme critical listening, tempo stability, dynamic adaptability, and rapid harmonic analysis under live conditions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 05 ADDITIONAL MANAGEMENT & CULTURAL CONSULTING -->
+      <div class="section-head">
+        <span class="section-num">05</span>
+        <h2 class="section-title">ADDITIONAL MANAGEMENT &amp; CULTURAL CONSULTING EXPERIENCE</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="mgmt-grid">
+        <div class="mgmt-card">
+          <div class="mgmt-org">Goethe-Institut Yaoundé</div>
+          <div class="mgmt-role">Cultural Consulting &amp; Project Support</div>
+          <div class="mgmt-desc">Provided consulting for bilateral cultural initiatives, artistic curation support, and workshop facilitation.</div>
+        </div>
+        <div class="mgmt-card">
+          <div class="mgmt-org">Ampaya Holding · Cotonou</div>
+          <div class="mgmt-role">Event Management &amp; Coordination</div>
+          <div class="mgmt-desc">Managed logistics, live event production, stage coordination, and technical team supervision for major corporate events.</div>
+        </div>
+        <div class="mgmt-card">
+          <div class="mgmt-org">Restaurant Clé · Cotonou</div>
+          <div class="mgmt-role">Management &amp; Operational Coordination</div>
+          <div class="mgmt-desc">Directed hospitality operations, musical programming, sound environment calibration, and operational staffing.</div>
+        </div>
+      </div>
+
+      <!-- 06 EDUCATION & QUALIFICATIONS (2x2 Grid with gold left border) -->
+      <div class="section-head">
+        <span class="section-num">06</span>
+        <h2 class="section-title">EDUCATION &amp; QUALIFICATIONS</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="edu-degree">MASTER II — Musicology Applied to Visual Media</div>
+          <div class="edu-spec">Specialization: Computer-Assisted Music / MAO</div>
+          <div class="edu-inst">Advanced music analysis, film scoring, digital composition &amp; intermediality</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-degree">HIGHER TECHNICIAN DIPLOMA — Sound Engineering</div>
+          <div class="edu-spec">Technician-Level Higher Education in Sound Engineering</div>
+          <div class="edu-inst">Studio acoustics, signal processing, microphone techniques &amp; multitrack mixing</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-degree">LICENCE (BACHELOR'S DEGREE) — Arts &amp; Cultural Management</div>
+          <div class="edu-spec">University of Dschang</div>
+          <div class="edu-inst">Cultural economics, project management, arts administration &amp; heritage conservation</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-degree">MILLENNIUM BUSINESS DEVELOPER</div>
+          <div class="edu-spec">UVCDI</div>
+          <div class="edu-inst">Business strategy, project scaling, commercial development &amp; executive leadership</div>
+        </div>
+      </div>
+
+      <!-- 07 AI APPLICATIONS, AUDIO EVALUATION & MUSIC DATA PROFILE -->
+      <div class="section-head">
+        <span class="section-num">07</span>
+        <h2 class="section-title">AI APPLICATIONS, AUDIO EVALUATION &amp; MUSIC DATA PROFILE</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="ai-panel">
+        <div class="ai-panel-title">
+          <span>⚡</span>
+          <span>SPECIALIZED PROFILE: AI AUDIO EVALUATION, TAXONOMY &amp; MUSIC DATA</span>
+        </div>
+        <div class="ai-inner-grid">
+          <div class="ai-inner-card">
+            <div class="ai-card-title"><span>✦</span> Established AI &amp; Digital Workflow Practice</div>
+            <div class="ai-card-body">Routine implementation of modern digital audio workflows, AI-assisted audio processing tools, automated stem separation, and audio restoration plugins within professional DAW environments.</div>
+          </div>
+          <div class="ai-inner-card">
+            <div class="ai-card-title"><span>✦</span> AI Audio Evaluation &amp; Annotation Capabilities</div>
+            <div class="ai-card-body">High-fidelity acoustic critique for generative audio models: identifying spectral artifacts, phase smearing, harmonic incoherence, tempo drift, prompt alignment, and genre classification with musicological precision.</div>
+          </div>
+          <div class="ai-inner-card">
+            <div class="ai-card-title"><span>✦</span> Target International Roles &amp; Missions</div>
+            <div class="ai-card-body">AI Audio Quality Evaluator · Music Data Annotator / Curator · Audio QA Specialist · Human-in-the-Loop Audio QA Evaluator · MusicTech Educational Consultant.</div>
+          </div>
+          <div class="ai-inner-card">
+            <div class="ai-card-title"><span>✦</span> Transferable Professional Strengths</div>
+            <div class="ai-card-body">Rare triad combining rigorous academic musicology, practical sound engineering ear, and pedagogical taxonomy design (RMA), ensuring objective, structured, and repeatable audio evaluation data.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 08 LANGUAGES & INTERNATIONAL AVAILABILITY -->
+      <div class="section-head">
+        <span class="section-num">08</span>
+        <h2 class="section-title">LANGUAGES &amp; INTERNATIONAL AVAILABILITY</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="lang-avail-grid">
+        <div class="lang-card">
+          <div class="lang-title">LANGUAGES</div>
+          <div class="lang-item"><strong>French:</strong> Native / Full Professional Fluency</div>
+          <div class="lang-item"><strong>English:</strong> Professional Working Proficiency</div>
+        </div>
+        <div class="lang-card">
+          <div class="lang-title">INTERNATIONAL MOBILITY &amp; COLLABORATION</div>
+          <div class="lang-item"><strong>Remote:</strong> Equipped for international asynchronous &amp; real-time audio evaluation workflows.</div>
+          <div class="lang-item"><strong>On-site:</strong> Available for international travel: masterclasses, festivals, studio mixing, and consulting.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Page 2 -->
+    <div>
+      <footer class="page-footer">
+        <div class="footer-left">
+          <span class="gold-dot"></span>
+          <span>HERVÉ NANFANG — INTERNATIONAL RESUME</span>
+          <span>·</span>
+          <span>REFERENCES &amp; DIPLOMAS AVAILABLE UPON REQUEST</span>
+        </div>
+        <div class="footer-page-num">02 / 02</div>
+      </footer>
+    </div>
+  </section>
+
+</body>
+</html>

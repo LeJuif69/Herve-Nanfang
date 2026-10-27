@@ -32,7 +32,7 @@ export default function Projects() {
   useSeo({
     title: 'Projets & Marques | Hervé Nanfang — Alaiz Creative System',
     description:
-      'Projets musicaux, pédagogiques, numériques et culturels d’Hervé Nanfang : Le Pianobariste, Alaiz Creative System, RMA®, Permis de Jouer™, Musicien Augmenté™ et Tswefap.',
+      'Projets musicaux, pédagogiques et technologiques d’Hervé Nanfang : Le Pianobariste, Alaiz Creative System, RMA®, Permis de Jouer™, Musicien Augmenté™ et Tswefap.',
     path: '/projets',
     jsonLd: [
       personSchema,

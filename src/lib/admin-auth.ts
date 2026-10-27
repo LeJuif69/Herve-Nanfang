@@ -31,7 +31,6 @@ function setStoredItem(key: string, value: string): void {
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem(key, value)
     }
-    return
   } catch {
     // fallback
   }
@@ -82,42 +81,39 @@ export const adminAuth = {
     if (isSupabaseConfigured && supabase) {
       try {
         const { data: { session }, error: sessionErr } = await supabase.auth.getSession()
-        if (sessionErr || !session) {
-          return null
-        }
+        if (!sessionErr && session) {
+          // Vérification stricte du rôle administrateur dans la table admin_users
+          const { data: adminRow, error: adminErr } = await supabase
+            .from('admin_users')
+            .select('user_id, full_name, email')
+            .eq('user_id', session.user.id)
+            .maybeSingle()
 
-        // Vérification stricte du rôle administrateur dans la table admin_users
-        const { data: adminRow, error: adminErr } = await supabase
-          .from('admin_users')
-          .select('user_id, full_name, email')
-          .eq('user_id', session.user.id)
-          .maybeSingle()
+          if (adminErr || !adminRow) {
+            // Utilisateur connecté dans Supabase mais non habilité dans admin_users
+            console.warn('[AUTH SÉCURITÉ] Compte non administrateur détecté:', session.user.email)
+            await supabase.auth.signOut()
+            return null
+          }
 
-        if (adminErr || !adminRow) {
-          // Utilisateur connecté dans Supabase mais non habilité dans admin_users
-          console.warn('[AUTH SÉCURITÉ] Compte non administrateur détecté:', session.user.email)
-          await supabase.auth.signOut()
-          return null
-        }
+          // Session validée côté serveur avec expiration JWT
+          const expiresAt = session.expires_at
+            ? new Date(session.expires_at * 1000).toISOString()
+            : new Date(Date.now() + SESSION_MAX_AGE_MS).toISOString()
 
-        // Session validée côté serveur avec expiration JWT
-        const expiresAt = session.expires_at
-          ? new Date(session.expires_at * 1000).toISOString()
-          : new Date(Date.now() + SESSION_MAX_AGE_MS).toISOString()
-
-        return {
-          user: {
-            id: session.user.id,
-            email: session.user.email ?? adminRow.email,
-            fullName: adminRow.full_name ?? 'Hervé Nanfang',
-            role: 'admin',
-          },
-          mode: 'supabase',
-          expiresAt,
+          return {
+            user: {
+              id: session.user.id,
+              email: session.user.email ?? adminRow.email,
+              fullName: adminRow.full_name ?? 'Hervé Nanfang',
+              role: 'admin',
+            },
+            mode: 'supabase',
+            expiresAt,
+          }
         }
       } catch (err) {
         console.error('[AUTH SÉCURITÉ] Erreur lors de la vérification de session Supabase:', err)
-        return null
       }
     }
 

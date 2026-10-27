@@ -1,6 +1,6 @@
 # Audit éditorial et technique — hervenanfang.vercel.app
 
-*Généré le 19/10/2026 par `npm run audit`.*
+*Généré le 27/10/2026 par `npm run audit`.*
 
 Cet audit analyse la **source** du site : il est reproductible après chaque modification.
 
@@ -10,7 +10,7 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 |---|---|
 | Pages analysées | 17 |
 | Titres SEO hors cible | 0 |
-| Titres tronqués dans Google (> 60 car.) | 0 |
+| Titres tronqués dans Google (> 60 car.) | 2 |
 | Descriptions hors cible | 0 |
 | Pages sans H1 unique | 0 |
 | Liens internes cassés | 0 |
@@ -31,15 +31,15 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 | `Contact` | Contact | Hervé Nanfang — Booking, Formation & Conseil | 54 | Booking piano-bar, formation, conférence, collaboration, presse ou con… | 151 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
 | `Culture` | Culture & Recherche | Hervé Nanfang — musicologie | 49 | Musicologie, cultures africaines, patrimoine et transmission orale : c… | 148 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, CreativeWork / Book |
 | `Home` | Hervé Nanfang | Musicien, Musicologue & Musicien Augmenté | 57 | Hervé Nanfang, artiste-musicien camerounais : Piano-Bar, composition, … | 153 | 1 (balise <h1>) | Person, WebSite, Organization, MusicGroup |
-| `Journal` | Journal | Hervé Nanfang — IA, musique & pédagogie | 49 | Le Journal du Musicien Augmenté : dix piliers sur l'IA, la musique, la… | 131 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Article |
+| `Journal` | Journal | Hervé Nanfang — Musicologie, piano-bar, pédagogie & technologie ✂️ tronqué dans Google | 73 | Le Journal d’Hervé Nanfang : musicologie africaine, piano-bar, méthode… | 163 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Article |
 | `Legal` | Mentions légales | Hervé Nanfang (valeur dynamique) | 32 | Informations légales du site d'Hervé Nanfang : éditeur, hébergeur, pro… | 128 | 1 (PageHero (h1 interne)) | BreadcrumbList |
 | `Music` | Musique | Hervé Nanfang — Piano, Composition & Production | 57 | Piano-bar live depuis 2007, formats solo, duo et live band, compositio… | 139 | 1 (PageHero (h1 interne)) | MusicGroup, BreadcrumbList, Service, CreativeWork / Book |
 | `NotFound` | Page introuvable | Hervé Nanfang | 32 | La page demandée n’existe pas ou a été déplacée. Accédez aux rubriques… | 156 | 1 (Display as="h1") | — |
 | `Pedagogy` | Pédagogie & Recherche | Hervé Nanfang | 37 | Enseignement supérieur, conception de curricula, musicologie africaine… | 159 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Course, CreativeWork / Book |
 | `Press` | Presse & Médias | Hervé Nanfang — Espace officiel & EPK | 55 | Espace officiel de presse d’Hervé Nanfang : présentation de référence,… | 164 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList |
-| `Projects` | Projets & Marques | Hervé Nanfang — A LAIZ PROD | 47 | Projets musicaux, pédagogiques, numériques et culturels d’Hervé Nanfan… | 158 | 1 (PageHero (h1 interne)) | Person, Organization, BreadcrumbList, CreativeWork / Book |
+| `Projects` | Projets & Marques | Hervé Nanfang — Alaiz Creative System | 57 | Projets musicaux, pédagogiques et technologiques d’Hervé Nanfang : Le … | 161 | 1 (PageHero (h1 interne)) | Person, Organization, BreadcrumbList, CreativeWork / Book |
 | `RMA` | RMA — Racines Musicales Academy® | Hervé Nanfang | 48 | Racines Musicales Academy® : formation musicale, pédagogie, Permis de … | 161 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service, Course |
-| `Services` | Services | Hervé Nanfang — live, formation & conseil | 52 | Piano live Le Pianobariste™, production studio, conférences sur l'IA e… | 152 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
+| `Services` | Services | Hervé Nanfang — live, production, marque & conseil ✂️ tronqué dans Google | 61 | Piano live Le Pianobariste™, production musicale, stratégie de marque … | 156 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
 
 ## 3. Corrections à apporter
 
@@ -64,7 +64,7 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 
 | # | À fournir | Utilisé dans |
 |---|---|---|
-| 1 | Numéro de contribuable / RCCM officiel d’ALAIZ Creative Systems / A LAIZ PROD pour mentions légales. | Mentions légales · politique de confidentialité |
+| 1 | Numéro de contribuable / RCCM officiel d’Alaiz Creative System pour mentions légales. | Mentions légales · politique de confidentialité |
 
 ## 8. Identité numérique — rappel de cohérence
 

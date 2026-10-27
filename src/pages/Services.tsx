@@ -45,7 +45,7 @@ export default function Services() {
   useSeo({
     title: 'Services | Hervé Nanfang — live, production, marque & conseil',
     description:
-      "Piano live Le Pianobariste™, production studio, stratégie de marque culturelle, conférences sur l'IA et formations RMA : toutes les prestations d'Hervé Nanfang avec modalités et devis.",
+      "Piano live Le Pianobariste™, production musicale, stratégie de marque culturelle, conférences IA et formations RMA : prestations sur mesure d'Hervé Nanfang.",
     path: '/services',
     jsonLd: [
       personSchema,

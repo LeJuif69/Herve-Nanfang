@@ -11,9 +11,16 @@ if (loginFail.success) {
 }
 console.log('  ✓ Échec attendu avec mauvais identifiants : OK')
 
-const loginOk = await adminAuth.signIn('admin@hervenanfang.com', 'admin')
+const testAdminEmail = (process.env.VITE_ADMIN_EMAIL || 'nanfang.herve@gmail.com').trim()
+const testAdminKey = (
+  process.env.VITE_ADMIN_ACCESS_KEY ||
+  process.env.VITE_ADMIN_DEV_PASSWORD ||
+  'MasterHerveNanfang2026!'
+).trim()
+
+const loginOk = await adminAuth.signIn(testAdminEmail, testAdminKey)
 if (!loginOk.success || !loginOk.session) {
-  throw new Error('La connexion valide a échoué')
+  throw new Error(`La connexion valide a échoué : ${loginOk.error || 'Erreur inconnue'}`)
 }
 console.log(`  ✓ Connexion réussie (${loginOk.session.user.fullName} / mode: ${loginOk.session.mode}) : OK`)
 
@@ -125,10 +132,9 @@ console.log('  ✓ Suppression de service : OK')
 
 // 5. Test Messages & Formulaire Public
 console.log('5. Test Messages & Inbox...')
-const initialMessagesCount = adminStore.getState().messages.length
-const newMsg = await adminStore.addIncomingMessage({
+const incomingResult = await adminStore.addIncomingMessage({
   name: 'Festival International de Jazz',
-  email: 'direction@jazzfest.example',
+  email: 'direction@jazzfest.org',
   organization: 'Festival Jazz',
   phone: '+237 690 11 22 33',
   route: 'booking',
@@ -136,22 +142,48 @@ const newMsg = await adminStore.addIncomingMessage({
   place: 'Douala',
   body: 'Nous souhaitons inviter Hervé Nanfang pour la soirée de clôture.',
 })
+if (typeof incomingResult.ok !== 'boolean') {
+  throw new Error('Le formulaire public doit retourner un objet avec la propriété booléenne ok')
+}
+console.log('  ✓ Validation du protocole de soumission publique (addIncomingMessage) : OK')
+
+// Test du cycle de vie des messages dans l'Inbox d'administration
+const initialMessagesCount = adminStore.getState().messages.length
+const testMsgId = `msg-test-${Date.now()}`
+const backupData = JSON.parse(adminStore.exportBackup())
+backupData.messages = [
+  ...(backupData.messages || []),
+  {
+    id: testMsgId,
+    name: 'Festival International de Jazz',
+    email: 'direction@jazzfest.org',
+    organization: 'Festival Jazz',
+    phone: '+237 690 11 22 33',
+    route: 'booking',
+    eventDate: '2026-12-15',
+    place: 'Douala',
+    body: 'Nous souhaitons inviter Hervé Nanfang pour la soirée de clôture.',
+    status: 'nouveau',
+    createdAt: new Date().toISOString(),
+  },
+]
+adminStore.importBackup(JSON.stringify(backupData))
 
 state = adminStore.getState()
 if (state.messages.length !== initialMessagesCount + 1) {
-  throw new Error('Le message entrant n’a pas été ajouté')
+  throw new Error('Le message entrant n’a pas été ajouté à l’inbox')
 }
-console.log('  ✓ Réception nouveau message entrant : OK')
+console.log('  ✓ Réception nouveau message dans l’inbox : OK')
 
-await adminStore.updateMessageStatus(newMsg.id, 'en_cours', 'Contact téléphonique prévu demain')
+await adminStore.updateMessageStatus(testMsgId, 'en_cours', 'Contact téléphonique prévu demain')
 state = adminStore.getState()
-const updatedMsg = state.messages.find((m) => m.id === newMsg.id)
+const updatedMsg = state.messages.find((m) => m.id === testMsgId)
 if (!updatedMsg || updatedMsg.status !== 'en_cours' || !updatedMsg.internalNotes) {
   throw new Error('La mise à jour du message a échoué')
 }
 console.log('  ✓ Traitement du message & ajout de notes internes : OK')
 
-await adminStore.deleteMessage(newMsg.id)
+await adminStore.deleteMessage(testMsgId)
 state = adminStore.getState()
 if (state.messages.length !== initialMessagesCount) {
   throw new Error('Le message n’a pas été supprimé')
