@@ -41,6 +41,7 @@ const EMPTY_ARTICLE: AdminArticle = {
   seoDescription: '',
   coverImage: '/og-image.jpg',
   updatedAt: '',
+  isFeatured: false,
 }
 
 export const AdminArticles: React.FC<AdminArticlesProps> = ({
@@ -379,7 +380,14 @@ export const AdminArticles: React.FC<AdminArticlesProps> = ({
                     {article.num}
                   </td>
                   <td className="max-w-md px-4 py-3.5">
-                    <p className="font-display text-base text-ivory">{article.title}</p>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="font-display text-base text-ivory">{article.title}</p>
+                      {article.isFeatured && (
+                        <span className="shrink-0 rounded border border-gold/60 bg-gold/20 px-1.5 py-0.5 font-mono text-[0.6rem] font-bold text-gold uppercase tracking-wider">
+                          ✦ À la une
+                        </span>
+                      )}
+                    </div>
                     <p className="mt-0.5 line-clamp-1 text-[0.72rem] text-ivory/55">{article.excerpt}</p>
                     <p className="mt-1 font-mono text-[0.65rem] text-gold/70">/journal/{article.slug}</p>
                   </td>
@@ -412,6 +420,21 @@ export const AdminArticles: React.FC<AdminArticlesProps> = ({
                   </td>
                   <td className="px-4 py-3.5 text-right">
                     <div className="flex items-center justify-end gap-2">
+                      <button
+                        type="button"
+                        onClick={async () => {
+                          const updated = { ...article, isFeatured: !article.isFeatured }
+                          await onSave(updated)
+                        }}
+                        className={`border px-2 py-1 text-[0.68rem] transition-colors ${
+                          article.isFeatured
+                            ? 'border-gold bg-gold text-ink font-bold shadow-sm'
+                            : 'border-white/15 text-ivory/60 hover:border-gold hover:text-gold'
+                        }`}
+                        title={article.isFeatured ? 'Retirer de la une' : 'Mettre en vedette sur l’accueil'}
+                      >
+                        {article.isFeatured ? '★ En une' : '☆ En une'}
+                      </button>
                       <button
                         type="button"
                         onClick={() => setExportArticle(article)}
@@ -735,6 +758,25 @@ export const AdminArticles: React.FC<AdminArticlesProps> = ({
                         </select>
                       </label>
                     </div>
+                  </div>
+
+                  <div className="rounded border border-gold/30 bg-gold/5 p-3.5">
+                    <label className="flex items-start gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={Boolean(editingArticle.isFeatured)}
+                        onChange={(e) => setEditingArticle({ ...editingArticle, isFeatured: e.target.checked })}
+                        className="mt-0.5 accent-gold h-4 w-4 rounded cursor-pointer"
+                      />
+                      <div>
+                        <span className="text-xs font-semibold text-gold">
+                          ✦ Mettre cet article « En vedette » / « À la une » sur la page d'accueil
+                        </span>
+                        <p className="mt-0.5 text-[0.68rem] text-ivory/60">
+                          Si activé, cet article apparaîtra en grand format héroïque avec sa couverture visuelle sur la page d'accueil. Par défaut, c'est le dernier article publié qui est mis en valeur.
+                        </p>
+                      </div>
+                    </label>
                   </div>
 
                   <div>

@@ -68,6 +68,7 @@ export interface AdminArticle {
   seoDescription: string
   publishedAt?: string
   updatedAt: string
+  isFeatured?: boolean
 }
 
 export interface AdminProject {

@@ -23,11 +23,11 @@ import {
 } from '../components/ui'
 import { PILLARS } from '../data/site'
 import { IDENTITY, MASTER_IDENTITY } from '../data/identity'
-import { ARTICLES } from '../data/articles'
 import { PROJECT_FAMILIES } from '../data/projects'
 import { personSchema, websiteSchema, organizationSchema, musicGroupSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
-import { useLiveMedia } from '../lib/useLiveContent'
+import { useLiveArticles, useLiveMedia } from '../lib/useLiveContent'
+import type { AdminArticle } from '../lib/admin-types'
 
 const DISCIPLINES = [
   'Musique',
@@ -46,6 +46,29 @@ const IA_DOMAINS = [
   { title: 'IA pour le professionnel', items: ['Automatisation', 'Organisation', 'Recherche', 'Productivité', 'Contenus'] },
   { title: 'IA & communication', items: ['Stratégie éditoriale', 'Storytelling', 'Réseaux sociaux', 'Personal branding', 'Marketing'] },
 ]
+
+/**
+ * Résolution intelligente de l'image de couverture d'un article
+ */
+function getArticleCover(article: AdminArticle): string {
+  if (article.coverImage && article.coverImage !== '/og-image.jpg' && !article.coverImage.startsWith('blob:')) {
+    return article.coverImage
+  }
+  const cat = (article.category || '').toLowerCase()
+  if (cat.includes('ia') || cat.includes('techno') || cat.includes('mao')) {
+    return '/images/concept-visuel-piano-futuriste-1.webp'
+  }
+  if (cat.includes('live') || cat.includes('piano')) {
+    return '/images/04-piano-bar-live.jpeg'
+  }
+  if (cat.includes('pédagogie') || cat.includes('formation') || cat.includes('musicologie')) {
+    return '/images/cours-isma-masterclass-1311.webp'
+  }
+  if (cat.includes('marque') || cat.includes('stratégie')) {
+    return '/images/shooting-pro-officiel.webp'
+  }
+  return '/images/shooting-pro-officiel.webp'
+}
 
 /**
  * Fonds d'écran des 4 piliers — un univers par verbe.
@@ -70,6 +93,7 @@ export default function Home() {
   const { openPlayer } = useAudio()
   const [roleIndex, setRoleIndex] = useState(0)
   const livePianoMedia = useLiveMedia('med-live-piano', liveScene, 50, 20)
+  const liveArticles = useLiveArticles()
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -701,77 +725,195 @@ export default function Home() {
           </div>
         </Reveal>
 
-        {/* Spotlight Essai de Référence */}
+        {/* Grande Carte Visuelle « À la une » */}
         {(() => {
-          const featuredArticle = ARTICLES.find((a) => a.slug === 'musicien-marque-recit') || ARTICLES[10]
+          const publishedArticles = liveArticles.filter((a) => a.status === 'Publié')
+
+          // Tri par priorité éditoriale & récence :
+          // 1. Article explicitement marqué isFeatured
+          // 2. Date de publication effective (publishedAt)
+          // 3. Date de dernière mise à jour (updatedAt)
+          // 4. Numéro de pilier décroissant (les piliers récents en premier)
+          const sortedArticles = [...publishedArticles].sort((a, b) => {
+            if (a.isFeatured && !b.isFeatured) return -1
+            if (!a.isFeatured && b.isFeatured) return 1
+
+            const dateA = a.publishedAt ? new Date(a.publishedAt).getTime() : 0
+            const dateB = b.publishedAt ? new Date(b.publishedAt).getTime() : 0
+            if (dateA !== dateB) return dateB - dateA
+
+            const updateA = a.updatedAt ? new Date(a.updatedAt).getTime() : 0
+            const updateB = b.updatedAt ? new Date(b.updatedAt).getTime() : 0
+            if (updateA !== updateB) return updateB - updateA
+
+            const numA = parseInt(a.num, 10) || 0
+            const numB = parseInt(b.num, 10) || 0
+            return numB - numA
+          })
+
+          const featuredArticle = sortedArticles[0] || liveArticles[0]
+          const recentArticles = sortedArticles.filter((a) => a.slug !== featuredArticle?.slug).slice(0, 4)
+
           if (!featuredArticle) return null
+
           return (
-            <Reveal delay={80}>
-              <div className="mt-10 border border-gold/35 bg-gradient-to-br from-gold/15 via-ink-2 to-ink p-7 md:p-9 shadow-2xl">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <span className="rounded border border-gold/40 bg-gold/25 px-2.5 py-1 font-mono text-[0.68rem] font-bold text-gold uppercase tracking-wider">
-                    ✦ À la une · Stratégie & Trajectoire
-                  </span>
-                  <span className="text-[0.68rem] text-ivory/50 font-mono">
-                    Pilier {featuredArticle.num} · Lecture {featuredArticle.readingTime}
-                  </span>
+            <>
+              <Reveal delay={80}>
+                <div className="mt-12 group relative overflow-hidden rounded-sm border border-gold/40 bg-gradient-to-br from-ink-2 via-ink to-ink-3 shadow-2xl transition-all duration-500 hover:border-gold hover:shadow-[0_0_50px_rgba(197,168,105,0.18)]">
+                  {/* Lueur d'ambiance dorée */}
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-gold/10 blur-3xl transition-opacity duration-500 group-hover:bg-gold/15"
+                  />
+
+                  <div className="grid lg:grid-cols-12 lg:items-stretch">
+                    {/* Colonne Média Visuel (5 colonnes) */}
+                    <div className="relative isolate min-h-[300px] sm:min-h-[360px] lg:col-span-5 lg:min-h-[440px] overflow-hidden bg-ink-2">
+                      <img
+                        src={getArticleCover(featuredArticle)}
+                        alt={featuredArticle.coverAlt || featuredArticle.title}
+                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        style={{
+                          objectPosition: `${featuredArticle.coverPositionX ?? 50}% ${featuredArticle.coverPositionY ?? 50}%`,
+                        }}
+                        loading="lazy"
+                      />
+                      {/* Voile dégradé subtil pour contraste et intégration harmonieuse */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-ink/30 lg:to-ink" />
+
+                      {/* Badge flottant "À la une" */}
+                      <div className="absolute top-4 left-4 z-10 flex flex-wrap gap-2">
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/60 bg-ink/90 backdrop-blur-md px-3.5 py-1 font-mono text-[0.68rem] font-bold text-gold uppercase tracking-widest shadow-lg">
+                          <span className="h-2 w-2 rounded-full bg-gold animate-pulse" />
+                          ✦ À la une · Dernier article paru
+                        </span>
+                      </div>
+
+                      {/* Badge numéro de pilier en bas de l'image */}
+                      <div className="absolute bottom-4 left-4 z-10">
+                        <span className="font-mono text-xs uppercase tracking-widest text-gold bg-ink/80 backdrop-blur-sm px-3 py-1 border border-gold/30">
+                          Pilier {featuredArticle.num}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Colonne Contenu Éditorial (7 colonnes) */}
+                    <div className="relative z-10 flex flex-col justify-between p-6 sm:p-8 lg:col-span-7 lg:p-10">
+                      <div>
+                        {/* Ligne Métadonnées */}
+                        <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
+                          <div className="flex items-center gap-2">
+                            <Tag tone="gold">{featuredArticle.category}</Tag>
+                            <span className="text-[0.7rem] font-mono uppercase tracking-wider text-ivory/50">
+                              Lecture {featuredArticle.readingTime}
+                            </span>
+                          </div>
+                          {featuredArticle.publishedAt && (
+                            <time className="text-[0.68rem] font-mono text-ivory/40">
+                              {new Date(featuredArticle.publishedAt).toLocaleDateString('fr-FR', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                              })}
+                            </time>
+                          )}
+                        </div>
+
+                        {/* Titre percutant */}
+                        <h3 className="mt-4 font-display text-2xl sm:text-3xl lg:text-[2rem] leading-snug text-ivory">
+                          <Link
+                            to={`/journal/${featuredArticle.slug}`}
+                            className="transition-colors duration-300 hover:text-gold"
+                          >
+                            {featuredArticle.title}
+                          </Link>
+                        </h3>
+
+                        {/* Extrait éditorial */}
+                        <p className="mt-4 text-sm sm:text-base leading-relaxed text-ivory/70 line-clamp-4">
+                          {featuredArticle.excerpt}
+                        </p>
+
+                        {/* Public cible */}
+                        {featuredArticle.audience && (
+                          <div className="mt-5 rounded border border-white/10 bg-white/[0.02] p-3 text-xs text-ivory/60">
+                            <span className="font-semibold text-gold/90">Public cible : </span>
+                            <span className="line-clamp-2">{featuredArticle.audience}</span>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Barre d'action basse */}
+                      <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+                        <Btn to={`/journal/${featuredArticle.slug}`} variant="gold">
+                          Lire l’essai complet →
+                        </Btn>
+                        <span className="text-xs font-mono tracking-wider text-gold/80 italic">
+                          Hervé Nanfang · Le Journal du Musicien Augmenté
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="mt-4 font-display text-2xl md:text-3xl text-ivory leading-snug">
-                  <Link to={`/journal/${featuredArticle.slug}`} className="hover:text-gold transition-colors">
-                    {featuredArticle.title}
-                  </Link>
-                </h3>
-                <p className="mt-3 text-sm md:text-[0.95rem] leading-relaxed text-ivory/70 max-w-3xl">
-                  {featuredArticle.excerpt}
-                </p>
-                <div className="mt-6 flex flex-wrap items-center gap-5">
-                  <Btn to={`/journal/${featuredArticle.slug}`} variant="gold">
-                    Lire l’essai complet →
+              </Reveal>
+
+              {/* Autres articles récents */}
+              {recentArticles.length > 0 && (
+                <div className="mt-14">
+                  <div className="mb-6 flex items-center justify-between">
+                    <h4 className="font-mono text-xs uppercase tracking-widest text-ivory/60">
+                      Autres piliers & lectures recommandées
+                    </h4>
+                    <Link
+                      to="/journal"
+                      className="text-xs font-mono uppercase tracking-wider text-gold hover:underline"
+                    >
+                      Tous les piliers ({publishedArticles.length}) →
+                    </Link>
+                  </div>
+
+                  <div className="divide-y divide-white/8 border-y border-white/8">
+                    {recentArticles.map((a, i) => (
+                      <Reveal key={a.slug} delay={i * 70}>
+                        <Link
+                          to={`/journal/${a.slug}`}
+                          className="group grid gap-4 py-7 md:grid-cols-[6rem_1fr_14rem] md:items-baseline transition-colors hover:bg-white/[0.015] px-2"
+                        >
+                          <span className="font-display text-lg text-gold/60 group-hover:text-gold transition-colors">
+                            Pilier {a.num}
+                          </span>
+                          <div>
+                            <h3 className="font-display text-2xl leading-snug text-ivory transition-colors group-hover:text-gold-2 md:text-[1.7rem]">
+                              {a.title}
+                            </h3>
+                            <p className="mt-2 text-sm text-ivory/50 line-clamp-2">{a.excerpt}</p>
+                          </div>
+                          <div className="flex flex-col items-start gap-2 md:items-end">
+                            <Tag tone={a.status === 'Publié' ? 'gold' : 'ink'}>{a.status}</Tag>
+                            <span className="text-[0.65rem] uppercase tracking-[0.2em] text-ivory/40 md:text-right">
+                              <span className="text-gold/75 font-medium">Hervé Nanfang</span> · {a.readingTime}
+                            </span>
+                          </div>
+                        </Link>
+                      </Reveal>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <Reveal delay={120}>
+                <div className="mt-12 flex flex-wrap items-center gap-6">
+                  <Btn to="/journal" variant="ghost">
+                    Lire le Journal
                   </Btn>
-                  <span className="text-xs italic text-gold/80">
-                    « Le logo n’est pas la marque. L'art précède le visuel. »
+                  <span className="text-[0.68rem] uppercase tracking-[0.2em] text-ivory/40">
+                    {liveArticles.length} piliers éditoriaux · {publishedArticles.length} publiés
                   </span>
                 </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            </>
           )
         })()}
-
-        <div className="mt-14 divide-y divide-white/8 border-y border-white/8">
-          {ARTICLES.slice(0, 4).map((a, i) => (
-            <Reveal key={a.slug} delay={i * 70}>
-              <Link
-                to={`/journal/${a.slug}`}
-                className="group grid gap-4 py-7 md:grid-cols-[6rem_1fr_14rem] md:items-baseline"
-              >
-                <span className="font-display text-lg text-gold/60">Pilier {a.num}</span>
-                <div>
-                  <h3 className="font-display text-2xl leading-snug text-ivory transition-colors group-hover:text-gold-2 md:text-[1.7rem]">
-                    {a.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-ivory/50">{a.excerpt}</p>
-                </div>
-                <div className="flex flex-col items-start gap-2 md:items-end">
-                  <Tag tone={a.status === 'Publié' ? 'gold' : 'ink'}>{a.status}</Tag>
-                  <span className="text-[0.65rem] uppercase tracking-[0.2em] text-ivory/40 md:text-right">
-                    <span className="text-gold/75 font-medium">Hervé Nanfang</span> · {a.readingTime}
-                  </span>
-                </div>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal delay={120}>
-          <div className="mt-12 flex flex-wrap items-center gap-6">
-            <Btn to="/journal" variant="ghost">
-              Lire le Journal
-            </Btn>
-            <span className="text-[0.68rem] uppercase tracking-[0.2em] text-ivory/40">
-              {ARTICLES.length} piliers éditoriaux · 9 catégories
-            </span>
-          </div>
-        </Reveal>
       </Section>
 
       {/* ========================= CONFÉRENCES ========================= */}
