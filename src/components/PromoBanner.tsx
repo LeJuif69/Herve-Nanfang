@@ -38,17 +38,20 @@ export default function PromoBanner() {
   let text = '15 Sessions d’Audition & Diagnostic Gratuit — Réseau Musical Africain (RMA)'
   let ctaText = 'Réserver mon audition'
   let ctaLink = '/rma?utm_source=site&utm_medium=promo_banner&utm_campaign=audition_rma_fev2026#audition'
+  let promoImg = '/images/cours-isma-synthese-1241.webp'
 
   if (campaign === 'pianobariste') {
     badge = 'SAISON 2026'
     text = 'Le Pianobariste™ — Réservations ouvertes pour vos cocktails, réceptions et dîners de gala'
     ctaText = 'Simuler mon événement'
     ctaLink = '/musique?utm_source=site&utm_medium=promo_banner&utm_campaign=pianobariste_2026#pianobariste'
+    promoImg = '/images/affiche-pianobariste.webp'
   } else if (campaign === 'custom' && settings.promoBannerCustomText) {
     badge = 'ACTUALITÉ'
     text = settings.promoBannerCustomText
     ctaText = settings.promoBannerCustomCta || 'En savoir plus'
     ctaLink = settings.promoBannerCustomUrl || '/contact'
+    promoImg = ''
   }
 
   const handleDismiss = (e: React.MouseEvent) => {
@@ -76,7 +79,15 @@ export default function PromoBanner() {
     >
       <div className="mx-auto flex max-w-[86rem] items-center justify-between gap-3 px-2 md:px-6">
         {/* Contenu principal */}
-        <div className="flex flex-1 items-center justify-center gap-2.5 sm:gap-4 overflow-hidden text-center sm:text-left">
+        <div className="flex flex-1 items-center justify-center gap-2 sm:gap-3.5 overflow-hidden text-center sm:text-left">
+          {promoImg && (
+            <img
+              src={promoImg}
+              alt={badge}
+              className="hidden sm:inline-block h-6 w-6 rounded-full object-cover border border-gold/60 shadow-sm shrink-0"
+              loading="lazy"
+            />
+          )}
           <span className="hidden sm:inline-flex items-center rounded-full border border-gold/40 bg-gold/20 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-gold shrink-0">
             {badge}
           </span>

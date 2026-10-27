@@ -348,25 +348,44 @@ export default function RMA() {
       <div id="audition" className="scroll-mt-20">
         <Section tone="dark" id="inscriptions">
           <Reveal>
-            <div className="mb-10 border border-gold/30 bg-gradient-to-br from-gold/15 via-ink-2 to-ink p-7 md:p-9 shadow-2xl">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-white/10 pb-4">
-                <div>
-                  <p className="eyebrow text-gold font-mono">✦ Méthode Permis de Jouer™</p>
-                  <h3 className="mt-1 font-display text-2xl md:text-3xl text-ivory">
-                    Séance Diagnostique & Positionnement par Paliers
-                  </h3>
+            <div className="mb-10 overflow-hidden rounded-sm border border-gold/30 bg-gradient-to-br from-gold/15 via-ink-2 to-ink shadow-2xl">
+              <div className="grid md:grid-cols-12 items-stretch">
+                <div className="md:col-span-4 relative min-h-[220px] overflow-hidden bg-ink-2">
+                  <img
+                    src="/images/cours-isma-synthese-1241.webp"
+                    alt="15 Sessions d’Audition & Diagnostic Gratuit — Réseau Musical Africain (RMA)"
+                    className="h-full w-full object-cover object-center"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-ink" />
+                  <div className="absolute bottom-3 left-3 z-10">
+                    <span className="rounded border border-gold/40 bg-ink/85 px-2.5 py-1 text-[0.62rem] font-mono text-gold uppercase tracking-wider backdrop-blur-sm">
+                      ✦ 15 Auditions Gratuites
+                    </span>
+                  </div>
                 </div>
-                <div className="rounded border border-gold/40 bg-gold/20 px-3 py-1.5 text-xs font-mono text-gold self-start sm:self-auto">
-                  15 min offertes · Studio RMA Damas ou Visio
+                <div className="md:col-span-8 p-6 md:p-8 flex flex-col justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-white/10 pb-4">
+                    <div>
+                      <p className="eyebrow text-gold font-mono">✦ Méthode Permis de Jouer™</p>
+                      <h3 className="mt-1 font-display text-2xl md:text-3xl text-ivory">
+                        Séance Diagnostique & Positionnement par Paliers
+                      </h3>
+                    </div>
+                    <div className="rounded border border-gold/40 bg-gold/20 px-3 py-1.5 text-xs font-mono text-gold self-start sm:self-auto shrink-0">
+                      15 min offertes · Studio RMA Damas ou Visio
+                    </div>
+                  </div>
+
+                  <p className="mt-4 text-xs md:text-sm leading-relaxed text-ivory/70 max-w-3xl">
+                    Avant toute inscription à l'académie, chaque élève (enfant ou adulte) bénéficie d'une séance diagnostique gratuite.
+                    Nous évaluons l'oreille musicale, la mémoire mélodique et la pulsation pour recommander le palier adapté :
+                  </p>
                 </div>
               </div>
 
-              <p className="mt-4 text-xs md:text-sm leading-relaxed text-ivory/70 max-w-3xl">
-                Avant toute inscription à l'académie, chaque élève (enfant ou adulte) bénéficie d'une séance diagnostique gratuite.
-                Nous évaluons l'oreille musicale, la mémoire mélodique et la pulsation pour recommander le palier adapté :
-              </p>
-
-              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="p-6 md:p-8 pt-0">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {[
                   {
                     code: 'N1',
@@ -411,6 +430,7 @@ export default function RMA() {
                 ))}
               </div>
             </div>
+          </div>
 
             <RMAAuditionForm />
           </Reveal>

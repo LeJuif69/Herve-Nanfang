@@ -344,13 +344,22 @@ Tél/WhatsApp : +237 6 78 57 15 28`
           {/* Campagne RMA */}
           <div className="flex flex-col justify-between rounded-lg border border-white/10 bg-ink p-5 space-y-4">
             <div>
-              <div className="flex items-center justify-between">
-                <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-mono text-amber-400 uppercase">
-                  Pédagogie & Audition RMA
-                </span>
-                <span className="text-xs text-ivory/50">Cible : Musiciens & Élèves</span>
+              <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
+                <img
+                  src="/images/cours-isma-synthese-1241.webp"
+                  alt="15 Auditions Diagnostic RMA"
+                  className="h-16 w-24 rounded object-cover border border-white/10 shrink-0"
+                />
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-mono text-amber-400 uppercase">
+                      Pédagogie & Audition RMA
+                    </span>
+                    <span className="text-xs text-ivory/50">Cible : Musiciens & Élèves</span>
+                  </div>
+                  <h4 className="font-semibold text-ivory mt-1">15 Auditions Gratuites Diagnostic RMA</h4>
+                </div>
               </div>
-              <h4 className="font-semibold text-ivory mt-2">15 Auditions Gratuites Diagnostic RMA</h4>
               <p className="text-xs text-ivory/70 line-clamp-4 mt-2 font-mono whitespace-pre-wrap bg-ink-2 p-3 rounded border border-white/5">
                 {RMA_POST_TEXT}
               </p>
