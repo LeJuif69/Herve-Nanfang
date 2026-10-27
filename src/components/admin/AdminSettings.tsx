@@ -10,6 +10,7 @@ interface AdminSettingsProps {
   onExportBackup: () => void
   onImportBackup: (jsonStr: string) => Promise<boolean>
   onResetDefaults: () => void
+  onTestWebhook?: (url: string, secret?: string) => Promise<{ success: boolean; status?: number; error?: string }>
 }
 
 export const AdminSettingsView: React.FC<AdminSettingsProps> = ({
@@ -20,12 +21,15 @@ export const AdminSettingsView: React.FC<AdminSettingsProps> = ({
   onExportBackup,
   onImportBackup,
   onResetDefaults,
+  onTestWebhook,
 }) => {
   const [form, setForm] = useState<AdminSettings>({ ...settings })
   const [saving, setSaving] = useState(false)
   const [saveSuccess, setSaveSuccess] = useState(false)
   const [syncBusy, setSyncBusy] = useState(false)
   const [syncFeedback, setSyncFeedback] = useState<string | null>(null)
+  const [webhookTesting, setWebhookTesting] = useState(false)
+  const [webhookTestResult, setWebhookTestResult] = useState<{ success: boolean; message: string } | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleSave = async (e: React.FormEvent) => {
@@ -392,6 +396,108 @@ export const AdminSettingsView: React.FC<AdminSettingsProps> = ({
           </div>
         </div>
 
+        {/* 5. Automatisation Sociale & Webhook */}
+        <div className="border border-white/10 bg-ink-2 p-6 space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div>
+              <p className="eyebrow text-gold">5. Distribution Sociale & Webhook (n8n · Make · Metricool)</p>
+              <p className="text-xs text-ivory/60 mt-1">
+                Expédie automatiquement les 10 formats éditoriaux (LinkedIn, Facebook, Instagram, TikTok, WhatsApp...) dès qu’une publication est scellée (SHA-256) dans le calendrier.
+              </p>
+            </div>
+            {form.webhookUrl?.includes('hervenanfang.app.n8n.cloud') && (
+              <span className="self-start sm:self-auto inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-bold border border-emerald-500/40 bg-emerald-500/10 text-emerald-300 rounded">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                n8n Cloud Connecté
+              </span>
+            )}
+          </div>
+
+          <div className="rounded border border-white/10 bg-ink p-4 space-y-4">
+            <div>
+              <label className="block text-xs font-semibold text-ivory/80 mb-1">
+                URL du Webhook de réception
+              </label>
+              <input
+                type="url"
+                value={form.webhookUrl || ''}
+                onChange={(e) => setForm({ ...form, webhookUrl: e.target.value })}
+                placeholder="https://hervenanfang.app.n8n.cloud/webhook/publication-approved"
+                className="w-full border border-white/20 bg-ink-2 px-3 py-2 font-mono text-xs text-ivory placeholder:text-ivory/30 focus:border-gold focus:outline-none"
+              />
+              <p className="text-[11px] text-ivory/50 mt-1 flex flex-wrap items-center gap-1">
+                <span>Instance n8n Cloud officielle :</span>
+                <a
+                  href="https://hervenanfang.app.n8n.cloud"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold underline hover:text-gold/80"
+                >
+                  hervenanfang.app.n8n.cloud ↗
+                </a>
+              </p>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-ivory/80 mb-1">
+                Clé secrète / Header X-HN-Webhook-Secret (Optionnel)
+              </label>
+              <input
+                type="password"
+                value={form.webhookSecret || ''}
+                onChange={(e) => setForm({ ...form, webhookSecret: e.target.value })}
+                placeholder="Jeton secret de signature..."
+                className="w-full border border-white/20 bg-ink-2 px-3 py-2 font-mono text-xs text-ivory placeholder:text-ivory/30 focus:border-gold focus:outline-none"
+              />
+            </div>
+
+            {webhookTestResult && (
+              <div
+                className={`border p-3 text-xs font-medium ${
+                  webhookTestResult.success
+                    ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300'
+                    : 'border-crimson/40 bg-crimson/10 text-crimson-2'
+                }`}
+              >
+                {webhookTestResult.message}
+              </div>
+            )}
+
+            {onTestWebhook && (
+              <div className="pt-2">
+                <button
+                  type="button"
+                  disabled={webhookTesting || !form.webhookUrl}
+                  onClick={async () => {
+                    if (!form.webhookUrl) return
+                    setWebhookTesting(true)
+                    setWebhookTestResult(null)
+                    try {
+                      const res = await onTestWebhook(form.webhookUrl, form.webhookSecret)
+                      if (res.success) {
+                        setWebhookTestResult({
+                          success: true,
+                          message: `✓ Ping de test reçu avec succès (HTTP ${res.status || 200}). Votre n8n reçoit correctement les événements !`,
+                        })
+                      } else {
+                        setWebhookTestResult({
+                          success: false,
+                          message: `✕ Erreur : ${res.error || 'Vérifiez que le workflow n8n est actif.'}`,
+                        })
+                      }
+                    } finally {
+                      setWebhookTesting(false)
+                    }
+                  }}
+                  className="border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-semibold text-ivory/80 hover:border-gold hover:text-gold disabled:opacity-40 transition-colors"
+                >
+                  {webhookTesting ? 'Test en cours…' : '🧪 Tester la connexion Webhook'}
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+
         {/* Action button */}
         <div className="flex items-center justify-between border-t border-white/10 pt-4">
           <div>
@@ -409,7 +515,7 @@ export const AdminSettingsView: React.FC<AdminSettingsProps> = ({
 
       {/* Cloud & Supabase Sync Section */}
       <div className="border border-white/10 bg-ink-2 p-6">
-        <p className="eyebrow text-gold">5. Synchronisation Base de Données Cloud</p>
+        <p className="eyebrow text-gold">6. Synchronisation Base de Données Cloud</p>
         <div className="mt-3 flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
           <div>
             <p className="font-display text-xl text-ivory">Connexion Supabase</p>
@@ -452,7 +558,7 @@ export const AdminSettingsView: React.FC<AdminSettingsProps> = ({
 
       {/* Backup & Restore */}
       <div className="border border-white/10 bg-ink-2 p-6">
-        <p className="eyebrow text-gold">6. Sauvegarde & Restauration Intégrale</p>
+        <p className="eyebrow text-gold">7. Sauvegarde & Restauration Intégrale</p>
         <p className="mt-2 text-xs text-ivory/60">
           Téléchargez un instantané complet de toutes les données du site (articles, projets, services, messages, médias) sous forme de fichier JSON sécurisé.
         </p>

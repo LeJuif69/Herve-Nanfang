@@ -64,6 +64,15 @@ export default function About() {
           </div>
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <a
+              href="https://canva.link/2l6atbuzkax2k6g"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border border-gold bg-gold/90 px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink transition-all hover:bg-gold hover:shadow-md hover:shadow-gold/20"
+            >
+              <span>Portfolio & CV Officiel (Canva)</span>
+              <span>↗</span>
+            </a>
+            <a
               href="#chronologie"
               className="inline-flex items-center gap-2 border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-ivory/80 transition-colors hover:border-gold/50 hover:text-gold"
             >

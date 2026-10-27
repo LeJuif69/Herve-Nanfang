@@ -85,39 +85,38 @@ export interface RepertoireUniverse {
 
 export const REPERTOIRE_UNIVERSES: RepertoireUniverse[] = [
   {
-    category: 'Patrimoine & Racines Africaines',
+    category: 'Musiques Populaires Africaines (Rumba & Afropop)',
     description:
-      'Relectures acoustiques et pianistiques des trésors musicaux camerounais et panafricains. Les polyrythmies et mélodies emblématiques sublimées au clavier.',
-    references: ['Manu Dibango', 'Eboa Lotin', 'Francis Bebey', 'Richard Bona', 'Rythmes Makossa & Bikutsi'],
+      'Grooves festifs, rumba congolaise raffinée, afrobeats contemporain et polyrythmies camerounaises (Makossa, Bikutsi) réarrangés pour le piano et la voix.',
+    references: ['Rumba congolaise', 'Afropop & Naija Pop', 'Manu Dibango', 'Richard Bona', 'Eboa Lotin', 'Makossa & Bikutsi'],
+  },
+  {
+    category: 'Pop Internationale, Soul & Zouk Love',
+    description:
+      'Les grands tubes de la pop internationale, la chaleur de la soul et la douceur du zouk love : mélodies fédératrices et arrangements immersifs.',
+    references: ['Zouk Love & Kassav’', 'Stevie Wonder', 'Michael Jackson', 'Lionel Richie', 'John Legend', 'Soul & Motown'],
+  },
+  {
+    category: 'Variété & Chanson Poétique Francophone',
+    description:
+      'L’éloquence et l’élégance de la grande chanson et de la variété francophone, où chaque accord porte l’émotion et la poésie des textes.',
+    references: ['Charles Aznavour', 'Jacques Brel', 'Henri Salvador', 'Michel Jonasz', 'Serge Gainsbourg', 'Variété française'],
   },
   {
     category: 'Great American Songbook & Blues',
     description:
-      'L’âge d’or du jazz de Broadway et la profondeur du blues. Des harmonies soignées et une pulsation swing qui installent une atmosphère feutrée.',
+      'L’âge d’or du jazz et la profondeur du blues. Des harmonies soignées et une pulsation swing qui installent une atmosphère feutrée et prestigieuse.',
     references: ['Duke Ellington', 'Ray Charles', 'Nina Simone', 'George Gershwin', 'Miles Davis'],
-  },
-  {
-    category: 'Soul & Pop Internationale',
-    description:
-      'Les chefs-d’œuvre de la soul et de la pop mondiale des années 70 à aujourd’hui, portés par des arrangements chaleureux.',
-    references: ['Stevie Wonder', 'Elton John', 'Bill Withers', 'Donny Hathaway', 'Néo-soul & Motown'],
-  },
-  {
-    category: 'Chanson Poétique Francophone',
-    description:
-      'L’éloquence des grands auteurs-compositeurs francophones, où chaque accord sert le sens et l’émotion du texte.',
-    references: ['Charles Aznavour', 'Jacques Brel', 'Henri Salvador', 'Michel Jonasz', 'Serge Gainsbourg'],
   },
 ]
 
 export const REPERTOIRE = [
-  'Jazz & Blues',
-  'Musiques africaines',
-  'Soul & Motown',
-  'Standards francophones',
-  'Pop internationale',
+  'Musiques populaires africaines (Rumba, Afropop)',
+  'Pop internationale & Soul',
+  'Zouk Love & Caraïbes',
+  'Variété & Chanson francophone',
+  'Jazz & Blues acoustique',
   'Musiques de film',
-  'Variété contemporaine',
 ]
 
 export const TECHNICAL_STANDARDS = [

@@ -431,13 +431,24 @@ export default function PressMediaKit() {
               Dossier de Presse & Kit Média Officiel
             </h3>
           </div>
-          <a
-            href="mailto:hervenanfang@gmail.com?subject=[Presse%20%2F%20Media]%20Demande%20d%27interview%20ou%20visuels"
-            className="inline-flex items-center gap-2 border border-gold bg-gold/15 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-gold-2 transition-all hover:bg-gold hover:text-ink"
-          >
-            <span>Contacter le service presse</span>
-            <span>→</span>
-          </a>
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href="https://canva.link/2l6atbuzkax2k6g"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border border-gold bg-gold px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-ink transition-all hover:bg-gold-2 hover:shadow-lg hover:shadow-gold/20"
+            >
+              <span>Portfolio & CV Interactif (Canva)</span>
+              <span>↗</span>
+            </a>
+            <a
+              href="mailto:hervenanfang@gmail.com?subject=[Presse%20%2F%20Media]%20Demande%20d%27interview%20ou%20visuels"
+              className="inline-flex items-center gap-2 border border-gold/50 bg-gold/10 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-gold-2 transition-all hover:bg-gold hover:text-ink"
+            >
+              <span>Contacter le service presse</span>
+              <span>→</span>
+            </a>
+          </div>
         </div>
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-ivory/65">
           Cet espace rassemble les ressources textuelles, photographiques et techniques officielles

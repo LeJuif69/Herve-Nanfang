@@ -393,6 +393,9 @@ export default function Admin() {
                   await adminStore.updateSettings(settingsUpdates)
                   showToast('Paramètres et SEO mis à jour.')
                 }}
+                onTestWebhook={async (url: string, secret?: string) => {
+                  return await adminStore.triggerWebhookTest(url, secret)
+                }}
                 onSeedSupabase={async () => {
                   const res = await adminStore.seedToSupabase()
                   if (res.success) {

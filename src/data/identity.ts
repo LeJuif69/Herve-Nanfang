@@ -190,11 +190,11 @@ export const MASTER_IDENTITY = {
 
     /** ~90 mots — dossier de presse, programme de festival. */
     moyenne:
-      "Hervé Nanfang est artiste-musicien, musicologue, pédagogue et ingénieur du son. Depuis 2007, la scène — d'abord le piano-bar — constitue le socle de sa pratique : jazz, blues, variété, musiques africaines et standards, joués dans des lieux réels pour des publics réels. De cette pratique sont nées une exigence de production sonore, une activité d'enseignement supérieur et une réflexion musicologique sur les musiques africaines et leur transmission. Il explore aujourd'hui l'intelligence artificielle appliquée à la musique, à la pédagogie et aux industries culturelles, et en tire Musicien Augmenté™ : une approche professionnelle et un cadre éthique.",
+      "Hervé Nanfang est artiste-musicien, musicologue, pédagogue et ingénieur du son. Depuis 2007, la scène — d'abord le piano-bar — constitue le socle de sa pratique : musiques populaires internationales et africaines (rumba, afropop, variété, zouk), jazz, blues et standards, joués dans des lieux réels pour des publics réels. De cette pratique sont nées une exigence de production sonore, une activité d'enseignement supérieur et une réflexion musicologique sur les musiques africaines et leur transmission. Il explore aujourd'hui l'intelligence artificielle appliquée à la musique, à la pédagogie et aux industries culturelles, et en tire Musicien Augmenté™ : une approche professionnelle et un cadre éthique.",
 
     /** ~150 mots — presse écrite, podcast, dossier institutionnel. */
     longue:
-      "Hervé Nanfang est artiste-musicien, musicologue, pédagogue et ingénieur du son. Depuis 2007, la scène — d'abord le piano-bar — constitue le socle de sa pratique : jazz, blues, variété, musiques africaines et standards, joués dans des lieux réels pour des publics réels. De cette pratique sont nées une exigence de production sonore, une activité d'enseignement supérieur et une réflexion musicologique sur les musiques africaines et leur transmission. Son parcours l'a conduit de l'interprétation à la composition, de la scène à l'ingénierie du son, puis de l'enseignement à la conception de programmes pédagogiques et à la recherche. Il explore aujourd'hui l'intelligence artificielle appliquée à la musique, à la pédagogie et aux industries culturelles. Il en tire Musicien Augmenté™ : une approche professionnelle et un cadre éthique dans lesquels l'IA augmente le musicien sans jamais remplacer l'humain, l'identité artistique ni la puissance du live.",
+      "Hervé Nanfang est artiste-musicien, musicologue, pédagogue et ingénieur du son. Depuis 2007, la scène — d'abord le piano-bar — constitue le socle de sa pratique : musiques populaires internationales et africaines (rumba, afropop, variété, zouk), jazz, blues et standards, joués dans des lieux réels pour des publics réels. De cette pratique sont nées une exigence de production sonore, une activité d'enseignement supérieur et une réflexion musicologique sur les musiques africaines et leur transmission. Son parcours l'a conduit de l'interprétation à la composition, de la scène à l'ingénierie du son, puis de l'enseignement à la conception de programmes pédagogiques et à la recherche. Il explore aujourd'hui l'intelligence artificielle appliquée à la musique, à la pédagogie et aux industries culturelles. Il en tire Musicien Augmenté™ : une approche professionnelle et un cadre éthique dans lesquels l'IA augmente le musicien sans jamais remplacer l'humain, l'identité artistique ni la puissance du live.",
   },
 
   /* ------------------------------------------------------------------ */
@@ -209,7 +209,7 @@ export const MASTER_IDENTITY = {
 
   /* ------------------------------------------------------------------ */
   parcours: [
-    { annee: '2007', titre: 'Début du concept Piano-Bar', detail: 'Création et développement du concept Le Pianobariste™ associant chant, piano et répertoires transversaux (jazz, blues, variété, musiques africaines).' },
+    { annee: '2007', titre: 'Début du concept Piano-Bar', detail: 'Création et développement du concept Le Pianobariste™ associant chant, piano et répertoires transversaux : musiques populaires internationales et africaines (rumba, afropop, variété, zouk), jazz et blues.' },
     { annee: '2007–2010', titre: 'Formation technique en son', detail: 'Technicien supérieur de son : prise de son, traitement audio, sonorisation et compréhension approfondie de la chaîne de production sonore.' },
     { annee: '2013', titre: 'Licence Arts & Management Culturel', detail: 'Obtention de la licence à l’Université de Dschang : gestion de projets, production et économie des écosystèmes culturels.' },
     { annee: '2015', titre: 'Holy Infant School', detail: 'Enseignement musical auprès des classes Form 5 et Form 3.' },
@@ -377,7 +377,7 @@ export const MASTER_IDENTITY = {
       {
         type: 'oeuvre',
         intitule: 'Le Pianobariste™ — Répertoire Live',
-        detail: 'Répertoire éclectique et sur mesure : standards jazz & blues, variétés internationales et trésors des musiques africaines.',
+        detail: 'Répertoire éclectique et sur mesure : musiques populaires internationales et africaines (rumba, afropop, zouk, variété), grands standards jazz & blues.',
         annee: 'Depuis 2007',
       },
       {
@@ -511,9 +511,10 @@ export const MASTER_IDENTITY = {
    */
   liensOfficiels: [
     { plateforme: 'Site', href: 'https://hervenanfang.vercel.app', verifie: true },
+    { plateforme: 'Portfolio', href: 'https://canva.link/2l6atbuzkax2k6g', verifie: true },
+    { plateforme: 'LinkedIn', href: 'https://www.linkedin.com/in/herve-nanfang', verifie: true },
     { plateforme: 'Facebook', href: 'https://www.facebook.com/herve.nanfang.officiel/', verifie: true },
     { plateforme: 'YouTube', href: 'https://www.youtube.com/@hervenanfang', verifie: true },
-    { plateforme: 'LinkedIn', href: 'https://www.linkedin.com/in/herv%C3%A9-nanfang-317bb2b1/', verifie: true },
     { plateforme: 'Threads', href: 'https://www.threads.com/@alaizopays', verifie: true },
   ] as LienOfficiel[],
 
@@ -578,6 +579,7 @@ export const IDENTITY = {
   roles: MASTER_IDENTITY.identite.roles,
   rolesLine: MASTER_IDENTITY.identite.rolesLine,
   city: MASTER_IDENTITY.identite.base,
+  portfolioUrl: 'https://canva.link/2l6atbuzkax2k6g',
 
   seoTitle: MASTER_IDENTITY.positionnement.seoTitle,
   seoTitleSecondaire: MASTER_IDENTITY.positionnement.seoTitleSecondaire,

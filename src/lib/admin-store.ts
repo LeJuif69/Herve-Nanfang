@@ -643,6 +643,8 @@ function getInitialSettings(): AdminSettings {
     })),
     promoBannerEnabled: true,
     promoBannerCampaign: 'rma',
+    googleAdsId: 'G-DNH9G3SF7F',
+    webhookUrl: 'https://hervenanfang.app.n8n.cloud/webhook/publication-approved',
     updatedAt: new Date().toISOString(),
   }
 }
@@ -837,7 +839,20 @@ function sanitizeLoadedState(state: AdminState): AdminState {
     hasChanges = true
   }
 
-  const sanitized = { ...state, media, articles, projects, services, publications, messages }
+  // 5. Initialisation du Webhook n8n et de Google Analytics 4 si non définis
+  const currentWebhook = state.settings?.webhookUrl?.trim()
+  const currentGoogleTag = state.settings?.googleAdsId?.trim()
+  const settings = {
+    ...getInitialSettings(),
+    ...(state.settings || {}),
+    googleAdsId: currentGoogleTag || 'G-DNH9G3SF7F',
+    webhookUrl: currentWebhook || 'https://hervenanfang.app.n8n.cloud/webhook/publication-approved',
+  }
+  if (!currentWebhook || !currentGoogleTag) {
+    hasChanges = true
+  }
+
+  const sanitized = { ...state, media, articles, projects, services, publications, messages, settings }
   if (hasChanges && typeof localStorage !== 'undefined') {
     try {
       localStorage.setItem(LOCAL_STORE_KEY, JSON.stringify(sanitized))
