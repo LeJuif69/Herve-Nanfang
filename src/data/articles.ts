@@ -2564,6 +2564,138 @@ export const ARTICLES: Article[] = [
     seoDescription:
       'Droits d’auteur bloqués, cachets dérisoires : comment bâtir une souveraineté financière en Afrique centrale ? La méthode du modèle hybride par Hervé Nanfang.',
   },
+  {
+    slug: 'ai-music-evaluation-human-listening',
+    num: '27',
+    category: 'Technologies & IA',
+    title:
+      'Human-in-the-Loop Audio Evaluation: Why Musicologists and Sound Engineers Still Matter',
+    excerpt:
+      'Automated metrics cannot capture every nuance of music. A structured framework combining critical listening, musicology, audio engineering, and empirical human-in-the-loop validation for generative AI audio.',
+    readingTime: '12 min',
+    status: 'Publié',
+    audience:
+      'Researchers, audio engineers, musicologists, music AI developers, and producers seeking rigorous human-in-the-loop audio evaluation frameworks.',
+    linkedConcept: { label: 'Musicien Augmenté™', to: '/ia-technologie#musicien-augmente' },
+    outline: [
+      '1. Why automated audio metrics are not enough',
+      '2. Why musicological knowledge matters in audio datasets',
+      '3. A practical human-in-the-loop evaluation workflow',
+      '4. From subjective listening to reproducible evaluation',
+      '5. The complementary roles of musicologists and sound engineers',
+      '6. Professional opportunities in AI audio evaluation',
+      'Conclusion: AI can generate audio at scale; evaluation gives it direction',
+      'Selected references',
+    ],
+    body: [
+      {
+        heading: '1. Why Automated Audio Metrics Are Not Enough',
+        paragraphs: [
+          'Generative artificial intelligence is changing music production, sound design, audio restoration, source separation, and music composition. Text-to-music systems can generate increasingly convincing musical passages, while AI-assisted tools can automate tasks that once required substantial technical resources. But generating audio that sounds plausible is not the same as generating audio that satisfies a musical brief, meets technical requirements, or respects a particular musical tradition.',
+          'Automated evaluation metrics provide valuable information about signal quality, perceptual similarity, or the relationship between generated audio and reference recordings. Yet no single metric captures every dimension of musical quality. A model may perform well on one quantitative measure while producing an unsatisfactory result in another important respect.',
+          'Research into the evaluation of generative music highlights this challenge. In a 2025 study, Huang and colleagues examined how established audio metrics aligned with human preferences for text-to-music systems. Their findings illustrated the limitations of relying on a single evaluation approach. A broader interdisciplinary survey by Lerch and colleagues likewise examined the complementary roles of subjective judgments, objective measurements, musicology, engineering, and human-computer interaction.',
+          'For example, the Fréchet Audio Distance (FAD) compares distributions of audio representations extracted from generated and reference recordings. It can help characterize broad distributional differences, but it does not automatically identify a particular rhythmic error, explain an unnatural instrumental articulation, or establish whether a recording has followed every element of a prompt. The practical implication is straightforward: quantitative measurements and expert listening should be used as complementary sources of evidence, not as interchangeable substitutes.',
+          '1.1 Technical audio quality : Sound engineers assess audible and measurable characteristics such as clipping, distortion, unwanted noise, and compression artifacts; unnatural resonances, spectral imbalances, and masking; transient smearing, inconsistent reverberation, and artificial-sounding decay; stereo-image instability, phase-related problems, and mono compatibility; and translation across headphones, loudspeakers, and different playback environments. Not every technical characteristic can be judged reliably from one listening pass. Signal analysis can help localize suspected problems, while repeated listening helps establish whether they are perceptually significant.',
+          '1.2 Musical coherence : Musicological analysis addresses harmonic relationships and chord progression coherence, melodic contour and phrasing, metric stability, instrumental interaction through arrangement, orchestration and voice leading, and stylistic conformity. Syncopation, dissonance, rubato, asymmetrical phrasing, and rhythmic displacement are not necessarily errors. They may be central to the musical language being used. An evaluator must distinguish a meaningful artistic choice from an unintended model failure.',
+          '1.3 Prompt-to-audio alignment : Text-to-music systems are often expected to follow a natural-language description. Consider the prompt: "A West African balafon playing an interlocking rhythmic pattern over warm analogue synthesizer bass in a 6/8 meter." A structured assessment must separately examine lead instrument fidelity, metric organization (6/8 vs 4/4), bass timbral character, and multi-layer interaction. These are different kinds of failure and should be annotated separately.',
+        ],
+      },
+      {
+        heading: '2. Why Musicological Knowledge Matters in Audio Datasets',
+        paragraphs: [
+          'An AI system’s evaluation depends partly on the quality of its labels, reference examples, and evaluation criteria. Musicological expertise makes these resources more precise and informative.',
+          '2.1 Instrument identification and classification : Instruments may share similar timbral characteristics while differing in construction, playing technique, cultural context, and musical function. A sound that resembles a balafon should not automatically be treated as an accurate representation of every balafon tradition. Where the task requires regional specificity, the annotation should identify the relevant context and distinguish a confirmed instrument identity from a perceptual resemblance.',
+          '2.2 Musical structure and segmentation : Music unfolds through meaningful temporal relationships. Identifying an introduction, verse, chorus, bridge, instrumental solo, transition, or outro requires attention to musical function rather than merely dividing a recording into equal-duration segments. The same applies to identifying phrase boundaries, repetitions, cadence points, changes in instrumentation, and transitions between sections.',
+          '2.3 Cultural and stylistic context : Musical traditions cannot always be described adequately through broad genre labels. African musical traditions are diverse; a regional practice, ensemble type, or rhythmic system should not be treated as representative of an entire continent. Culturally informed evaluation requires suitable references and input from tradition-bearers and specialists. Without sufficient context, an evaluation process may reward generic approximations while overlooking meaningful stylistic or cultural inaccuracies.',
+        ],
+      },
+      {
+        heading: '3. A Practical Human-in-the-Loop Evaluation Workflow',
+        paragraphs: [
+          'Human evaluation becomes more useful when it follows a consistent, documented procedure. The following framework can be adapted to generated compositions, isolated instrument stems, vocal performances, sound effects, and audio-restoration outputs :',
+          '• Stage 1 — Define the task : Specify what the system is expected to produce and how the result will be used (full composition, stem separation, speech intelligibility, restoration artifacts, or sound design).',
+          '• Stage 2 — Establish evaluation criteria : Select task-specific criteria (technical audio quality, musical coherence, prompt adherence, rhythmic accuracy, instrumental identity, stylistic relevance). Avoid combining all dimensions into one unexplained aggregate score.',
+          '• Stage 3 — Standardize listening conditions : Document playback equipment, listening environment, and level matching. The [ITU-R Recommendation BS.1116-3](https://www.itu.int/rec/R-REC-BS.1116-3-201502-I/en) provides a recognized methodological reference for controlled subjective assessment of small impairments in audio systems.',
+          '• Stage 4 — Conduct structured listening : Use separate listening passes (first pass for overall task compliance, subsequent passes for localized technical defects, rhythmic behavior, or prompt requirements). Distinguish audible observations from interpretations.',
+          '• Stage 5 — Record evidence-based annotations : An actionable annotation states the criterion, audio timestamp, audible observation, severity level, and evaluator confidence. Example: "00:18–00:21 — The bass part becomes indistinct beneath the percussion. This reduces separation between the requested instrumental layers. Severity: moderate."',
+          '• Stage 6 — Validate the results : Use multiple evaluators when the task warrants it, especially for culturally specific repertoire. Define score anchors in advance, train evaluators on representative samples, and examine inter-rater disagreements rather than concealing them in an unweighted average.',
+          '• Stage 7 — Feed observations back into quality assurance : Consolidate annotations into structured feedback for model error analysis, dataset refinement, or iterative development cycles. This feedback loop is what makes the process genuinely human-in-the-loop.',
+        ],
+      },
+      {
+        heading: '4. From Subjective Listening to Reproducible Evaluation',
+        paragraphs: [
+          'Human judgment is indispensable for musical evaluation, but it is not automatically consistent. Different listeners may disagree because of training, cultural background, playback conditions, or task interpretation. A reproducible protocol manages these differences instead of assuming they can be eliminated.',
+          'A practical five-point rating rubric provides operational consistency :',
+          '• Score 1 (Clear failure) : Complete failure to meet the criterion; unusable output.',
+          '• Score 2 (Major problems) : Substantial limitations that severely affect the musical or technical result.',
+          '• Score 3 (Partial compliance) : Noticeable defects or inconsistencies; partially usable with human intervention.',
+          '• Score 4 (Good result) : Minor limitations; meets the core requirements with negligible flaws.',
+          '• Score 5 (Strong compliance) : Excellent result; fully satisfies the criteria with no material issue identified.',
+          'Protocol requirements : Pairwise preference tests identify which output listeners prefer under a given protocol. ABX testing investigates whether listeners can discriminate between two signals under controlled conditions. Neither approach, on its own, establishes the complete musical value of a generated composition. The goal is to define the evaluation task, document evidence, and make judgments sufficiently transparent and consistent to support meaningful conclusions.',
+        ],
+      },
+      {
+        heading: '5. The Complementary Roles of Musicologists and Sound Engineers',
+        paragraphs: [
+          'Musicology and audio engineering contribute different but mutually reinforcing perspectives across five key dimensions :',
+          '• Musical structure : Musicology analyzes harmony, melody, form, meter, and phrasing; sound engineering detects timing anomalies, articulation irregularities, and signal behavior.',
+          '• Instrumentation : Musicology identifies instrument identity, playing technique, and musical function; sound engineering evaluates timbre, masking, frequency balance, and separation quality.',
+          '• Cultural & stylistic relevance : Musicology ensures regional context, repertoire accuracy, and performance conventions; sound engineering ensures technical preservation of acoustic characteristics.',
+          '• Audio quality : Musicology interprets perceptual and musical consequences; sound engineering conducts signal analysis, distortion detection, and phase/mono compatibility checks.',
+          '• Annotation & taxonomy : Musicology provides standardized musical terminology and structural labels; sound engineering delivers acoustic descriptions, timestamps, and reproducible measurements.',
+          'A sound engineer may identify an artifact that disrupts a musical phrase, while a musicologist may recognize that an apparent rhythmic irregularity is characteristic of the intended style. The strongest evaluation process therefore matches expertise to the task.',
+        ],
+      },
+      {
+        heading: '6. Professional Opportunities in AI Audio Evaluation',
+        paragraphs: [
+          'The combination of musicological knowledge, critical listening, and audio-engineering skills is relevant to several growing activities in AI audio development :',
+          '• Evaluating AI-generated music and comparing model outputs across benchmarks.',
+          '• Conducting structured listening tests and audio quality-assurance reviews.',
+          '• Annotating music and sound datasets for machine-learning model training.',
+          '• Classifying instruments, timbres, genres, and regional performance characteristics.',
+          '• Labeling musical sections, phrase boundaries, and structural transitions.',
+          '• Assessing vocal and instrumental fidelity against reference acoustic recordings.',
+          '• Evaluating text-to-audio prompt adherence and contextual accuracy.',
+          '• Reviewing audio datasets for labeling errors, inconsistent categories, and representation gaps.',
+          'For musicians and sound professionals, the opportunity is not simply to use AI tools, but to help determine whether their outputs are accurate, useful, and appropriate for the work they are intended to support.',
+        ],
+      },
+      {
+        heading: 'Conclusion: AI Can Generate Audio at Scale; Evaluation Gives It Direction',
+        paragraphs: [
+          'Generative AI is expanding the possibilities of music composition, production, sound design, and audio processing. Yet the quality of a result cannot always be established through a single numerical metric or an unstructured impression.',
+          'Musicologists contribute knowledge of musical structure, instruments, performance practices, and cultural context. Sound engineers contribute expertise in signal behavior, recording, mixing, and technical quality control. Computational measurements provide additional evidence, while structured human judgments help interpret results in relation to the actual task.',
+          'When these elements are combined within a transparent and reproducible evaluation process, human-in-the-loop methods make model assessments more reliable, expressive, and culturally grounded.',
+          'Deepen the methodology through our manifesto on the [Musicien Augmenté™](/ia-technologie#musicien-augmente), our pedagogical framework at [Racines Musicales Academy®](/pedagogie#permis-de-jouer), and our research on [African music and copyright in the age of AI](/journal/ia-droits-auteur-musique-africaine).',
+        ],
+      },
+      {
+        heading: 'Selected References',
+        paragraphs: [
+          'Lerch, A., Arthur, C., Bryan-Kinns, N., Ford, C., Sun, Q., and Vinay, A. (2025). [Survey on the Evaluation of Generative Models in Music](https://arxiv.org/abs/2506.05104). An interdisciplinary review of evaluation methods, metrics, and perspectives on generative music.',
+          'Huang, Y., Novack, Z., Saito, K., Shi, J., Watanabe, S., Mitsufuji, Y., Thickstun, J., and Donahue, C. (2025). [Aligning Text-to-Music Evaluation with Human Preferences](https://arxiv.org/abs/2503.16669). Research presented at ISMIR 2025 on the relationship between automated metrics and human preferences.',
+          'Roblek, D., Kilgour, K., Sharifi, M., and Zuluaga, M. (2019). [Fréchet Audio Distance: A Reference-free Metric for Evaluating Music Enhancement Algorithms](https://research.google/pubs/frechet-audio-distance-a-reference-free-metric-for-evaluating-music-enhancement-algorithms/). Interspeech 2019.',
+          'International Telecommunication Union, Radiocommunication Sector. [Recommendation ITU-R BS.1116-3: Methods for the subjective assessment of small impairments in audio systems](https://www.itu.int/rec/R-REC-BS.1116-3-201502-I/en).',
+          'Liu, C., Wang, H., Zhao, J., Zhao, S., Bu, H., Xu, X., Zhou, J., Sun, H., and Qin, Y. (2025). [MusicEval: A Generative Music Corpus with Expert Ratings for Automatic Text-to-Music Evaluation](https://arxiv.org/abs/2501.10811).',
+        ],
+      },
+    ],
+    keywords: [
+      'AI music evaluation',
+      'human-in-the-loop audio evaluation',
+      'AI-generated music quality',
+      'music evaluation metrics',
+      'text-to-music evaluation',
+      'audio annotation',
+      'critical listening',
+      'musicology and AI',
+    ],
+    seoTitle: 'AI Music Evaluation: Why Human Listening Still Matters',
+    seoDescription:
+      'How musicologists and sound engineers assess AI-generated music through critical listening, prompt alignment, cultural context and structured audio annotation.',
+  },
 ]
 
 export const ARTICLE_CHAIN = [
@@ -2644,11 +2776,11 @@ export type JournalEntry = {
 export const JOURNAL_AGENDA: JournalEntry[] = [
   {
     date: 'Prochainement',
-    category: 'Pédagogie',
-    title: 'Évaluer la musique avec l’IA : ce qu’on mesure vraiment',
+    category: 'Ingénierie & Studio',
+    title: 'Interfaces audio sans souffle : diagnostic et chaîne de gain en contexte africain',
     excerpt:
-      'Une évaluation techniquement possible n’est pas forcément pédagogiquement juste. Analyse critique des outils de correction automatique.',
-    slug: 'evaluer-musique-ia',
+      'Préamplis, mise à la terre et réseau électrique instable : guide technique pour éliminer le bruit de fond en home studio.',
+    slug: 'interfaces-audio-sans-souffle-home-studio',
   },
   {
     date: 'Prochainement',
