@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import portrait from '../assets/portrait.webp'
 import liveScene from '../assets/live-scene-piano.jpeg'
 import monogram from '../assets/hn-monogram-watermark.jpg'
 import SoundWaveCanvas from '../components/SoundWaveCanvas'
@@ -476,8 +475,8 @@ export default function Home() {
           <Reveal>
             <figure className="relative">
               <img
-                src={portrait}
-                alt="Portrait d’Hervé Nanfang — musicien, musicologue, pédagogue et spécialiste de l’IA appliquée à la musique"
+                src="/images/herve-nanfang-portrait-officiel.webp"
+                alt="Portrait officiel d’Hervé Nanfang — musicien, musicologue, pédagogue et spécialiste de l’IA appliquée à la musique"
                 width={760}
                 height={1353}
                 loading="lazy"
@@ -493,7 +492,7 @@ export default function Home() {
                 className="absolute -bottom-4 -right-4 h-24 w-24 border-b border-r border-ink/30"
               />
               <figcaption className="mt-4 text-[0.68rem] uppercase tracking-[0.2em] text-ink/45">
-                Yaoundé, Cameroun
+                Portrait officiel · Yaoundé, Cameroun
               </figcaption>
             </figure>
           </Reveal>
@@ -530,6 +529,85 @@ export default function Home() {
                   →
                 </span>
               </Link>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Triptyque photographique documentaire — Google Images & Présence */}
+        <div className="mt-14 border-t border-ink/10 pt-12">
+          <Reveal>
+            <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <Eyebrow tone="ink">Repères visuels officiels</Eyebrow>
+                <h3 className="mt-2 font-display text-2xl text-ink md:text-3xl">
+                  L’identité en trois situations réelles
+                </h3>
+              </div>
+              <p className="max-w-md text-xs leading-relaxed text-ink/60">
+                Photographies authentiques documentant l’identité professionnelle, la pratique de la scène live et la transmission pédagogique en enseignement supérieur.
+              </p>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-3">
+              {/* Photo 1 — Portrait officiel */}
+              <figure className="group overflow-hidden rounded-xl border border-ink/10 bg-white shadow-sm transition-all hover:shadow-md">
+                <div className="relative aspect-[4/5] overflow-hidden bg-ink/5">
+                  <img
+                    src="/images/herve-nanfang-portrait-officiel.webp"
+                    alt="Hervé Nanfang — Portrait officiel de l’artiste-musicien, musicologue et pédagogue"
+                    width={800}
+                    height={1000}
+                    loading="lazy"
+                    className="zoomable h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <figcaption className="p-4">
+                  <p className="font-display text-base text-ink">01 · Portrait officiel</p>
+                  <p className="mt-1 text-xs text-ink/65">
+                    Identité de référence, direction artistique et recherche.
+                  </p>
+                </figcaption>
+              </figure>
+
+              {/* Photo 2 — Hervé Nanfang au clavier */}
+              <figure className="group overflow-hidden rounded-xl border border-ink/10 bg-white shadow-sm transition-all hover:shadow-md">
+                <div className="relative aspect-[4/5] overflow-hidden bg-ink/5">
+                  <img
+                    src="/images/herve-nanfang-piano-bar-live.jpeg"
+                    alt="Hervé Nanfang au clavier lors d’une prestation piano-bar live"
+                    width={800}
+                    height={1000}
+                    loading="lazy"
+                    className="zoomable h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <figcaption className="p-4">
+                  <p className="font-display text-base text-ink">02 · Hervé Nanfang au clavier</p>
+                  <p className="mt-1 text-xs text-ink/65">
+                    Scène live, répertoires jazz, afropop et piano-bar depuis 2007.
+                  </p>
+                </figcaption>
+              </figure>
+
+              {/* Photo 3 — Studio & transmission */}
+              <figure className="group overflow-hidden rounded-xl border border-ink/10 bg-white shadow-sm transition-all hover:shadow-md">
+                <div className="relative aspect-[4/5] overflow-hidden bg-ink/5">
+                  <img
+                    src="/images/herve-nanfang-studio-transmission-isma.webp"
+                    alt="Hervé Nanfang en session de transmission pédagogique et atelier MAO à l’ISMA"
+                    width={800}
+                    height={1000}
+                    loading="lazy"
+                    className="zoomable h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <figcaption className="p-4">
+                  <p className="font-display text-base text-ink">03 · Transmission & Studio</p>
+                  <p className="mt-1 text-xs text-ink/65">
+                    Ingénierie sonore, masterclasses et formation en enseignement supérieur.
+                  </p>
+                </figcaption>
+              </figure>
             </div>
           </Reveal>
         </div>

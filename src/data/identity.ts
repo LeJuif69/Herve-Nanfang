@@ -516,6 +516,8 @@ export const MASTER_IDENTITY = {
     { plateforme: 'Facebook', href: 'https://www.facebook.com/herve.nanfang.officiel/', verifie: true },
     { plateforme: 'YouTube', href: 'https://www.youtube.com/@hervenanfang', verifie: true },
     { plateforme: 'Threads', href: 'https://www.threads.com/@alaizopays', verifie: true },
+    { plateforme: 'MusicBrainz', href: 'https://musicbrainz.org/artist/bfd29b75-e867-4ece-99c7-8a250126de57', verifie: true },
+    { plateforme: 'Wikidata', href: 'https://www.wikidata.org/wiki/Q141905233', verifie: true },
   ] as LienOfficiel[],
 
   /* ------------------------------------------------------------------ */

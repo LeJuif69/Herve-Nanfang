@@ -20,7 +20,12 @@ export const personSchema: Record<string, unknown> = {
   jobTitle: MASTER_IDENTITY.schemaOrg.jobTitle,
   description: SITE.signatureLong,
   url: SITE.url,
-  image: `${SITE.url}/og-image.jpg`,
+  image: [
+    `${SITE.url}/images/herve-nanfang-portrait-officiel.webp`,
+    `${SITE.url}/images/herve-nanfang-piano-bar-live.jpeg`,
+    `${SITE.url}/images/herve-nanfang-studio-transmission-isma.webp`,
+    `${SITE.url}/og-image.jpg`,
+  ],
   knowsAbout: MASTER_IDENTITY.schemaOrg.knowsAbout,
   knowsLanguage: MASTER_IDENTITY.schemaOrg.knowsLanguage,
   nationality: { '@type': 'Country', name: MASTER_IDENTITY.schemaOrg.nationality },
