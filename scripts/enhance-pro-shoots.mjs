@@ -98,6 +98,13 @@ const targetShoots = [
     contrastBoost: 1.04,
     sharpen: { sigma: 1.2, m1: 1.0, m2: 2.2 },
   },
+  {
+    src: path.join(uploadsDir, 'ShowCase_HervéNanfang_Mikelang.jfif'),
+    dest: path.join(publicImagesDir, 'showcase-herve-nanfang-mikelang.webp'),
+    name: 'showcase-herve-nanfang-mikelang.webp',
+    contrastBoost: 1.03,
+    sharpen: { sigma: 1.1, m1: 0.9, m2: 2.0 },
+  },
 ]
 
 async function enhance() {

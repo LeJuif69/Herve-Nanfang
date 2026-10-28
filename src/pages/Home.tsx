@@ -232,22 +232,22 @@ export default function Home() {
           <Reveal>
             <figure className="home-live__collage relative overflow-hidden rounded-[1.75rem] border border-white/8 bg-ink-2">
               <img
-                src="/images/shooting-septembre-matin-727.webp"
-                alt="Hervé Nanfang — Scène, piano-bar et présence artistique"
-                width={1248}
-                height={832}
+                src="/images/showcase-herve-nanfang-mikelang.webp"
+                alt="Hervé Nanfang au clavier Yamaha Genos 2 en live — Scène et présence artistique"
+                width={2048}
+                height={1143}
                 loading="lazy"
                 onError={(e) => {
                   if (!e.currentTarget.src.includes('/images/shooting-septembre-matin-727.webp')) {
                     e.currentTarget.src = '/images/shooting-septembre-matin-727.webp'
                   }
                 }}
-                className="zoomable h-[540px] w-full object-cover object-[50%_45%]"
+                className="zoomable h-[540px] w-full object-cover object-[50%_38%]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/15 to-transparent" />
               <figcaption className="absolute bottom-0 left-0 right-0 flex justify-between gap-4 border-t border-white/10 bg-ink/60 px-5 py-4 text-[0.62rem] uppercase tracking-[0.2em] text-ivory/70 backdrop-blur-sm">
                 <span>Hervé Nanfang</span>
-                <span>Scène & Présence</span>
+                <span>Scène & Présence · Yamaha Genos 2</span>
               </figcaption>
             </figure>
           </Reveal>
