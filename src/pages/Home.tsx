@@ -47,6 +47,64 @@ const IA_DOMAINS = [
   { title: 'IA & communication', items: ['Stratégie éditoriale', 'Storytelling', 'Réseaux sociaux', 'Personal branding', 'Marketing'] },
 ]
 
+const CREATIVE_CONCEPTS = [
+  {
+    num: '01',
+    name: 'Le Pianobariste',
+    trademark: 'Marque artistique & scène live',
+    badge: 'Depuis 2007',
+    lead: 'Scène de prestige, présence d’atmosphère et répertoires internationaux.',
+    description:
+      'Identité scénique d’Hervé Nanfang dédiée aux performances live au piano (jazz, blues, variété, musiques africaines). Le piano-bar est son laboratoire de terrain depuis 2007 : réactivité en temps réel, endurance scénique et capacité à faire vibrer une salle entière.',
+    link: '/services#piano-bar',
+    linkLabel: 'Découvrir Le Pianobariste',
+  },
+  {
+    num: '02',
+    name: 'Musicien Augmenté™',
+    trademark: 'Concept doctrinal & méthode IA',
+    badge: 'Formalisé 2024–2026',
+    lead: 'L’intelligence artificielle au service du geste artistique souverain.',
+    description:
+      'Cadre théorique et méthodologique développé par Hervé Nanfang pour articuler création musicale, MAO et technologies génératives. Fondé sur le manifeste des quatre verbes (Créer · Transmettre · Augmenter · Développer), il affirme la primauté de l’oreille critique et de l’identité culturelle.',
+    link: '/ia-technologie#musicien-augmente',
+    linkLabel: 'Explorer le manifeste',
+  },
+  {
+    num: '03',
+    name: 'Le Permis de Jouer™',
+    trademark: 'Système pédagogique propriétaire',
+    badge: 'Niveaux N1 à N4',
+    lead: 'Autonomie instrumentale immédiate et accompagnement au clavier.',
+    description:
+      'Méthode structurée conçue pour adultes et apprentis musiciens, articulée en quatre niveaux modulaires. Elle remplace l’abstraction du solfège rébarbatif par une progression pragmatique axée sur les grilles d’accords, l’harmonie pratique et l’accompagnement du chant.',
+    link: '/pedagogie#permis-de-jouer',
+    linkLabel: 'Consulter la méthode',
+  },
+  {
+    num: '04',
+    name: 'Racines Musicales Academy® (RMA)',
+    trademark: 'Académie & ingénierie de formation',
+    badge: 'Enseignement certifié',
+    lead: 'Transmission vivante et valorisation des patrimoines d’Afrique.',
+    description:
+      'Organisation d’enseignement musical et de formation MAO fondée par Hervé Nanfang. La RMA forme les musiciens et éducateurs aux technologies contemporaines tout en documentant les polyrythmies et répertoires traditionnels oraux d’Afrique centrale.',
+    link: '/rma',
+    linkLabel: 'Découvrir la RMA',
+  },
+  {
+    num: '05',
+    name: 'A Laiz Ô Pays / ALAIZ Creative Systems',
+    trademark: 'Structure faîtière & production',
+    badge: 'Studio & Production',
+    lead: 'Ingénierie sonore, édition phonographique et projets durables.',
+    description:
+      'Organisation faîtière pilotant la réalisation phonographique (Alaiz Music), la composition pour l’image, la documentation patrimoniale et l’incubation d’initiatives culturelles indépendantes et pérennes.',
+    link: '/projets',
+    linkLabel: 'Voir les réalisations',
+  },
+]
+
 /**
  * Résolution intelligente de l'image de couverture d'un article
  */
@@ -707,12 +765,83 @@ export default function Home() {
         </Reveal>
       </Section>
 
+      {/* ============= CONCEPTS, MÉTHODES ET IDENTITÉS CRÉATIVES ============= */}
+      <Section tone="ink" id="concepts-identites" className="border-t border-white/8">
+        <Reveal>
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <div>
+              <ChapterMark num="08" label="Paternité intellectuelle & Concepts" />
+              <Display size="lg" className="mt-7">
+                Concepts, méthodes & identités créatives
+              </Display>
+              <p className="mt-6 font-display text-xl leading-snug text-gold md:text-2xl">
+                Concepts et créations de Hervé Nanfang
+              </p>
+            </div>
+            <Body className="lg:pb-2">
+              Mon parcours artistique, musicologique et pédagogique s’articule autour de plusieurs identités,
+              méthodes et concepts créatifs fondateurs, notamment Le Pianobariste, Musicien Augmenté™, Permis de Jouer™
+              et A Laiz Ô Pays. Cette rubrique documente leur signification, leur antériorité d'usage et les éléments
+              disponibles permettant d’en retracer l’évolution.
+            </Body>
+          </div>
+        </Reveal>
+
+        <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {CREATIVE_CONCEPTS.map((concept, i) => (
+            <Reveal key={concept.name} delay={i * 90} className={i === 4 ? 'md:col-span-2 lg:col-span-1' : ''}>
+              <Card className="flex h-full flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="font-display text-lg text-gold/60">{concept.num}</span>
+                    <span className="rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-gold">
+                      {concept.badge}
+                    </span>
+                  </div>
+                  <h3 className="mt-5 font-display text-2xl text-ivory md:text-[1.7rem]">{concept.name}</h3>
+                  <p className="mt-1 text-[0.66rem] uppercase tracking-[0.16em] text-gold/75">
+                    {concept.trademark}
+                  </p>
+                  <Rule className="my-5 opacity-30" />
+                  <p className="font-medium text-[0.92rem] leading-snug text-ivory/90">{concept.lead}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-ivory/60">{concept.description}</p>
+                </div>
+                <div className="mt-8 border-t border-white/6 pt-5">
+                  <ArrowLink to={concept.link}>{concept.linkLabel}</ArrowLink>
+                </div>
+              </Card>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={180}>
+          <div className="mt-14 rounded-2xl border border-white/10 bg-ink-3/50 p-6 md:p-8 backdrop-blur-sm">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="max-w-3xl">
+                <p className="eyebrow text-gold/80">Protection intellectuelle & Ancrage juridique</p>
+                <p className="mt-2 text-xs leading-relaxed text-ivory/65 md:text-sm">
+                  Ces concepts doctrinaux, méthodes pédagogiques et marques d'usage sont créés, documentés et déployés
+                  par Hervé Nanfang dans le cadre de ses activités professionnelles. Toute exploitation commerciale,
+                  reproduction ou reprise non autorisée relève de la législation sur la propriété littéraire, artistique
+                  et industrielle (OAPI / MINAC / Accord de Bangui révisé).
+                </p>
+              </div>
+              <div className="shrink-0">
+                <Btn to="/mentions-legales" variant="ghost" className="text-xs">
+                  Mentions légales
+                </Btn>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </Section>
+
       {/* =========================== JOURNAL =========================== */}
       <Section tone="ink">
         <Reveal>
           <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
             <div>
-              <ChapterMark num="08" label="Journal" />
+              <ChapterMark num="09" label="Journal" />
               <Display size="lg" className="mt-7">
                 Le Journal du Musicien Augmenté
               </Display>

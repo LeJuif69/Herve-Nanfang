@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import {
   Body,
@@ -162,9 +163,27 @@ export default function Culture() {
         <ul className="mt-12 divide-y divide-white/8 border-y border-white/8">
           {QUESTIONS.map((q, i) => (
             <Reveal key={q} delay={i * 60}>
-              <li className="flex items-baseline gap-6 py-5">
-                <span className="font-display text-lg text-gold/60">{String(i + 1).padStart(2, '0')}</span>
-                <span className="font-display text-xl text-ivory/90 md:text-2xl">{q}</span>
+              <li className="py-5">
+                <div className="flex items-baseline gap-6">
+                  <span className="font-display text-lg text-gold/60">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="font-display text-xl text-ivory/90 md:text-2xl">{q}</span>
+                </div>
+                {i === 3 && (
+                  <div className="ml-12 mt-3 max-w-2xl text-sm leading-relaxed text-ivory/60">
+                    <p>
+                      Cette question de recherche est au cœur du concept doctrinal <strong className="text-gold">Musicien Augmenté™</strong> conceptualisé
+                      par Hervé Nanfang, qui étudie les limites des transformateurs audio face aux polyrythmies et répertoires d'Afrique.
+                    </p>
+                    <div className="mt-2.5 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider">
+                      <Link to="/ia-technologie#musicien-augmente" className="text-gold hover:underline">
+                        Le manifeste Musicien Augmenté™ →
+                      </Link>
+                      <Link to="/journal/ai-music-evaluation-human-listening" className="text-ivory/70 hover:text-gold hover:underline">
+                        Lire l'article de recherche (Pilier 27) →
+                      </Link>
+                    </div>
+                  </div>
+                )}
               </li>
             </Reveal>
           ))}
