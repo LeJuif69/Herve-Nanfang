@@ -48,9 +48,9 @@ comprendre qu'il s'agit d'une seule et même entité**. C'est un prérequis du K
 
 | Plateforme | URL complète du profil | Le nom affiché est-il « Hervé Nanfang » ? |
 |---|---|---|
-| YouTube (chaîne A LAIZ / RMA) | https://youtube.com/alaizprod | A LAIZ / RMA |
-| LinkedIn | https://linkedin.com/in/hervenanfang | Hervé Nanfang |
-| Facebook (A LAIZ Music / A LAIZ PROD) | https://facebook.com/alaizprod | A LAIZ Music / A LAIZ PROD |
+| YouTube (chaîne officielle) | https://www.youtube.com/@hervenanfang | Hervé Nanfang |
+| LinkedIn | https://www.linkedin.com/in/herve-nanfang-317bb2b1/ | Hervé Nanfang |
+| Facebook (page officielle) | https://www.facebook.com/herve.nanfang.officiel/ | Hervé Nanfang |
 | Instagram (@alaiz_music) | https://instagram.com/alaizprod | @alaiz_music |
 | TikTok (si pertinent) | → | → |
 | Autre (SoundCloud, Spotify, X…) | → | → |
@@ -77,7 +77,7 @@ identiques sur ces profils ? (voir `docs/IDENTITE-VISUELLE.md`)
 
 | Titre | Type | Éditeur / support | Année | Statut |
 |---|---|---|---|---|
-| LES ZIKOS® | Manuel pédagogique (68 p.) | ALAIZ Creative Systems | 2026 | En cours de restructuration éditoriale |
+| LES ZIKOS® | Manuel pédagogique (68 p.) | Hervé Nanfang / A Laiz Ô Pays | 2026 | En cours de restructuration éditoriale |
 | Permis de Jouer™ | Dispositif de progression N1 à N4 | RMA | Méthode continue | Actif |
 | RMA-01 | Socle d'apprentissage (Pulsation & Body) | RMA | 2026 | Actif |
 | Tswefap | Système d'écriture & manuel de référence | Projet Batoufam | Recherche | En cours |
@@ -100,12 +100,12 @@ identiques sur ces profils ? (voir `docs/IDENTITE-VISUELLE.md`)
 
 | Projet | Structure parente | Statut réel | Rôle au sein de l'écosystème |
 |---|---|---|---|
-| ALAIZ Creative Systems | Holding / Structure mère | Actif (Signature) | Écosystème global de gouvernance |
-| A LAIZ PROD | ALAIZ Creative Systems | Actif | Production musicale, sonore et audiovisuelle |
-| A LAIZ Ô PAYS | ALAIZ Creative Systems | Actif | Marque culturelle, patrimoniale et territoriale |
-| Racines Musicales Academy® | ALAIZ Creative Systems | Actif | Formation musicale, programmes intensifs et curricula |
-| Permis de Jouer™ | RMA / ALAIZ | Actif | Système d'évaluation et de progression instrument-agnostique |
-| Musicien Augmenté™ | ALAIZ Creative Systems | Actif (Signature) | IA appliquée à la création, méthode et conférences |
+| A Laiz Ô Pays | Hervé Nanfang (Identité centrale) | Actif (Concept fondateur) | Univers créatif et culturel fédérateur (créé vers 2010–2011) |
+| Alaiz Music | Hervé Nanfang / A Laiz Ô Pays | Actif | Création, production musicale et ingénierie sonore |
+| Alaiz Patrimoine | Hervé Nanfang / A Laiz Ô Pays | Actif | Valorisation patrimoniale, culturelle et territoriale |
+| Racines Musicales Academy® | Hervé Nanfang / A Laiz Ô Pays | Actif | Formation musicale, programmes intensifs et curricula |
+| Permis de Jouer™ | RMA / Hervé Nanfang | Actif | Système d'évaluation et de progression instrument-agnostique |
+| Musicien Augmenté™ | Hervé Nanfang | Actif (Signature) | IA appliquée à la création, méthode et conférences |
 
 ---
 
@@ -122,8 +122,8 @@ identiques sur ces profils ? (voir `docs/IDENTITE-VISUELLE.md`)
 
 | Champ | Valeur |
 |---|---|
-| Structure mère de gouvernance | ALAIZ Creative Systems |
-| Structure de production | A LAIZ PROD |
+| Identité centrale & éditeur | Hervé Nanfang |
+| Concept fondateur fédérateur | A Laiz Ô Pays |
 | Hébergeur | Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA |
 | Droit applicable | Droit camerounais |
 | RCCM / Numéro de contribuable | Délivré sur demande administrative / contractuelle |
@@ -134,8 +134,8 @@ identiques sur ces profils ? (voir `docs/IDENTITE-VISUELLE.md`)
 
 | Visuel | Attribution |
 |---|---|
-| Portrait studio officiel & monogramme | Direction artistique ALAIZ Creative Systems / A LAIZ PROD |
-| Scènes live piano-bar | ALAIZ Creative Systems / Hervé Nanfang |
+| Portrait studio officiel & monogramme | © Hervé Nanfang / A Laiz Ô Pays |
+| Scènes live piano-bar | © Hervé Nanfang — Le Pianobariste™ |
 
 ---
 

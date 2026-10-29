@@ -9,7 +9,7 @@ secondaryKeywords:
   - "text-to-music evaluation"
   - "audio annotation"
   - "critical listening"
-canonicalUrl: "https://hervenanfang.vercel.app/articles/ai-music-evaluation-human-listening/"
+canonicalUrl: "https://hervenanfang.vercel.app/journal/ai-music-evaluation-human-listening"
 author: "Hervé Nanfang"
 date: "2026-10-28"
 ---

@@ -50,7 +50,8 @@ export const MASTER_IDENTITY = {
     nom: 'Hervé Nanfang',
     variantes: ['Le Pianobariste', 'le Musicologue', 'le Musicien Augmenté'],
     signature: 'Créer. Transmettre. Augmenter. Développer.',
-    structureMere: 'ALAIZ Creative Systems',
+    structureMere: 'A Laiz Ô Pays',
+    conceptFondateur: 'A Laiz Ô Pays',
     roles: [
       'Musicologue',
       'Artiste-musicien',
@@ -227,12 +228,12 @@ export const MASTER_IDENTITY = {
     { annee: '2023', titre: 'Collège bilingue L’Excellence, Odza', detail: 'Éducation musicale en milieu scolaire.' },
     { annee: 'Master II', titre: 'Musicologie appliquée aux médias', detail: 'Université de Yaoundé I : spécialisation en MAO, analyse de bandes originales (Harry Potter, cinéma d’horreur africain) et convergence IA.' },
     { annee: '2026', titre: 'RMA « Vacances Utiles » & LES ZIKOS®', detail: 'Programme intensif en 5 disciplines (restitution Damas–Petits Génies, Yaoundé) et restructuration du manuel pédagogique (68 p.).' },
-    { annee: 'Aujourd’hui', titre: 'ALAIZ Creative Systems & Musicien Augmenté™', detail: 'Écosystème de marques et programmes : recherche patrimoniale (Tswefap), production musicale et créative (ALAIZ Creative Systems) et intégration éthique de l’IA.' },
+    { annee: 'Aujourd’hui', titre: 'A Laiz Ô Pays & Musicien Augmenté™', detail: 'Univers créatif fédérateur A Laiz Ô Pays et programmes spécialisés : recherche patrimoniale (Tswefap), création musicale (Alaiz Music), formation (RMA®) et intégration éthique de l’IA (Musicien Augmenté™).' },
   ],
 
   /* ------------------------------------------------------------------ */
   marques: [
-    { nom: 'ALAIZ Creative Systems', role: 'Structure mère de l’écosystème & production créative', to: '/projets' },
+    { nom: 'A Laiz Ô Pays', role: 'Concept artistique et culturel fondateur & univers créatif fédérateur', to: '/projets' },
     { nom: 'Le Pianobariste™', role: 'Format piano-bar live (depuis 2007)', to: '/musique#pianobariste' },
     { nom: 'Alaiz Music', role: 'Création & production musicale', to: '/musique' },
     { nom: 'Alaiz Patrimoine', role: 'Pôle culturel & valorisation patrimoniale', to: '/projets' },
@@ -512,7 +513,7 @@ export const MASTER_IDENTITY = {
   liensOfficiels: [
     { plateforme: 'Site', href: 'https://hervenanfang.vercel.app', verifie: true },
     { plateforme: 'Portfolio', href: 'https://canva.link/2l6atbuzkax2k6g', verifie: true },
-    { plateforme: 'LinkedIn', href: 'https://www.linkedin.com/in/herve-nanfang', verifie: true },
+    { plateforme: 'LinkedIn', href: 'https://www.linkedin.com/in/herve-nanfang-317bb2b1/', verifie: true },
     { plateforme: 'Facebook', href: 'https://www.facebook.com/herve.nanfang.officiel/', verifie: true },
     { plateforme: 'YouTube', href: 'https://www.youtube.com/@hervenanfang', verifie: true },
     { plateforme: 'Threads', href: 'https://www.threads.com/@alaizopays', verifie: true },
@@ -549,7 +550,7 @@ export const MASTER_IDENTITY = {
       'Cultures africaines & traditions orales',
       'Documentation patrimoniale & linguistique',
       'Communication digitale & récits de marque',
-      'Entrepreneuriat culturel & ALAIZ Creative Systems',
+      'Entrepreneuriat culturel & univers créatif A Laiz Ô Pays',
     ],
     knowsLanguage: ['fr', 'en'],
     nationality: 'Cameroun',
@@ -564,7 +565,7 @@ export const MASTER_IDENTITY = {
   aConfirmer: [
     {
       id: 'legal-rccm',
-      question: 'Numéro de contribuable / RCCM officiel d’ALAIZ Creative Systems pour mentions légales.',
+      question: 'Informations d’immatriculation administrative / fiscale officielle (RCCM / numéro de contribuable) et statut juridique éventuel associé aux activités de Hervé Nanfang ou au concept A Laiz Ô Pays pour les mentions légales.',
       usedIn: 'Mentions légales · politique de confidentialité',
     },
   ],

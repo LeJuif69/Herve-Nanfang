@@ -21,7 +21,7 @@ l'on tranche**, et l'on reporte la décision dans `src/data/identity.ts`.
     Production    Formation   Méthodes    Marques culturelles
        └──────────────┴───────────┼───────────┴──────────────┘
                                                 ↓
-                     A LAIZ PROD · RMA® · MUSICIEN AUGMENTÉ™
+                     A LAIZ Ô PAYS · RMA® · MUSICIEN AUGMENTÉ™
 ```
 
 **Une seule règle d'attribution** : les marques dérivées ne concurrencent jamais Hervé

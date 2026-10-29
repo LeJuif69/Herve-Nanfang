@@ -65,7 +65,7 @@ export const EDITORIAL_PILLARS: Record<
     label: 'Conversion (10 %)',
     shortLabel: 'Conversion',
     targetPercent: 10,
-    description: 'Prestations de piano-bar prestige, admissions RMA, conférences d’entreprise et conseil Alaiz',
+    description: 'Prestations de piano-bar prestige, admissions RMA, conférences d’entreprise et conseil Hervé Nanfang',
     badgeClass: 'bg-gold/20 text-gold border-gold/40',
     borderColor: 'border-gold',
     bgColor: 'bg-gold/10',
@@ -753,7 +753,7 @@ export function exportPublicationsToIcs(posts: SocialPost[]): string {
     'PRODID:-//Herve Nanfang//NANHE Growth System//FR',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
-    'X-WR-CALNAME:HN Marque - Calendrier de Publication',
+    'X-WR-CALNAME:Hervé Nanfang - Calendrier de Publication',
     'X-WR-TIMEZONE:Africa/Douala',
   ]
 

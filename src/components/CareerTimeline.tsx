@@ -98,10 +98,10 @@ export const TIMELINE_MILESTONES: TimelineMilestone[] = [
     keyMilestones: [
       'Certification « Millennium Business Developer » auprès de UVCDI',
       'Résidences pianistiques de référence à Yaoundé et dans la sous-région',
-      'Structuration juridique des futures activités de production sous le pavillon ALAIZ Creative Systems',
+      'Développement de l’univers créatif A Laiz Ô Pays et structuration professionnelle des activités de production',
     ],
     relatedLink: {
-      label: 'Découvrir ALAIZ Creative Systems',
+      label: 'Découvrir l’univers A Laiz Ô Pays',
       to: '/projets',
     },
   },

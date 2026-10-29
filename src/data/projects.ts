@@ -164,13 +164,13 @@ export const PROJECT_FAMILIES: ProjectFamily[] = [
     intro: 'Recherche, patrimoine, transmission orale et entrepreneuriat culturel.',
     projects: [
       {
-        title: 'ALAIZ Creative Systems',
-        volume: "Structure mère et plateforme de production",
+        title: 'A Laiz Ô Pays',
+        volume: 'Concept fondateur & univers créatif fédérateur',
         description:
-          "La structure mère qui articule la production musicale, l'ingénierie créative, la valorisation patrimoniale et la formation musicale (RMA).",
-        points: ["Gouvernance d'écosystème", 'Production musicale & créative', 'Coordination de marques'],
+          "A Laiz Ô Pays est le concept artistique et culturel fondateur de Hervé Nanfang. Il fédère son univers créatif et les projets qui s'y rattachent, de la musique à la transmission, en passant par la production et l'exploration des technologies.",
+        points: ['Univers créatif fédérateur', 'Articulation création, patrimoine & transmission', 'Socle culturel des initiatives spécialisées'],
         status: 'Signature',
-        discipline: 'Entrepreneuriat culturel',
+        discipline: 'Concept culturel & créatif',
       },
       {
         title: 'Alaiz Patrimoine',

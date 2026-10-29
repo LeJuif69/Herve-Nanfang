@@ -104,7 +104,7 @@ const PUBLICATIONS: PedagogicalResource[] = [
     t: 'Permis de Jouer™ — Système de progression N1 à N4',
     group: 'disponible',
     statusLabel: 'Actif · RMA',
-    meta: 'Hervé Nanfang · Racines Musicales Academy® / ALAIZ Creative Systems · Méthode continue',
+    meta: 'Hervé Nanfang · Racines Musicales Academy® · Méthode continue',
     d: "Dispositif pédagogique instrument-agnostique conçu pour rendre lisibles les étapes d'apprentissage, définir des objectifs clairs et valider progressivement les compétences pratiques par soutenance en situation réelle.",
     sommaire: [
       'Palier A / N1 (Ceinture Blanche) — Fondations & Éveil : posture, décontraction, lecture en clés de Sol et de Fa, pulsation et premières pièces de mémoire',
@@ -150,7 +150,7 @@ const PUBLICATIONS: PedagogicalResource[] = [
     t: 'LES ZIKOS® — Manuel pédagogique (68 pages)',
     group: 'preparation',
     statusLabel: 'En cours de restructuration éditoriale',
-    meta: 'Hervé Nanfang · ALAIZ Creative Systems · Manuel pédagogique de 68 pages · 2026',
+    meta: 'Hervé Nanfang · Univers A Laiz Ô Pays · Manuel pédagogique de 68 pages · 2026',
     d: "Ouvrage pédagogique de référence de 68 pages en cours de restructuration éditoriale et graphique : progression par unités thématiques, harmonisation des notions et exercices instrumentaux applicables dès le premier cours.",
     sommaire: [
       'Progression méthodologique : de la pulsation corporelle et de l’oreille musicale vers la lecture de partition et les notions harmoniques fondamentales',

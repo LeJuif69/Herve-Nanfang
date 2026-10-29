@@ -1,7 +1,7 @@
 # Système SEO Semi-Automatisé à 0 FCFA — Guide Opérationnel
 **Auteur & Écosystème :** Hervé Nanfang (`https://hervenanfang.vercel.app`)  
 **Stack technique :** React 18 + Vite + SSG Node maison (`scripts/prerender.mjs`) + Vercel + Supabase  
-**Marques & Piliers :** Racines Musicales Academy® (RMA), Permis de Jouer™, Le Pianobariste™, Alaiz Music / ALAIZ Creative Systems, Musicien Augmenté™  
+**Concept fondateur & Piliers :** A Laiz Ô Pays, Racines Musicales Academy® (RMA), Permis de Jouer™, Le Pianobariste™, Alaiz Music, Musicien Augmenté™
 **Objectif :** Produire 1 article d'autorité de 1 500 à 2 000 mots en 2h15, sans abonnement SaaS payant (0 FCFA), indexé en HTML statique et diffusé sur 9 canaux.
 
 ---
@@ -43,7 +43,7 @@
 *À coller dans Gemini ou ChatGPT pour générer le plan d'un article.*
 
 ```markdown
-Tu es le directeur éditorial et stratège SEO d'Hervé Nanfang (hervenanfang.vercel.app), pianiste-scénographe, musicologue, créateur de la méthode « Le Permis de Jouer™ », fondateur de la Racines Musicales Academy® (RMA) et directeur d'ALAIZ Creative Systems.
+Tu es le directeur éditorial et stratège SEO d'Hervé Nanfang (hervenanfang.vercel.app), pianiste-scénographe, musicologue, créateur du concept culturel « A Laiz Ô Pays » et de la méthode « Le Permis de Jouer™ », et fondateur de la Racines Musicales Academy® (RMA).
 
 CONTEXTE & NICHES :
 - Pédagogie musicale structurée pour adultes et enfants (méthode LES ZIKOS®, Permis de Jouer™ N1 à N4).

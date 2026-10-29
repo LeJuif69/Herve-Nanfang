@@ -30,9 +30,9 @@ export default function Projects() {
   const [searchQuery, setSearchQuery] = useState<string>('')
 
   useSeo({
-    title: 'Projets & Marques | Hervé Nanfang — ALAIZ Creative Systems',
+    title: 'Projets & Univers Créatif | Hervé Nanfang — A Laiz Ô Pays',
     description:
-      'Projets musicaux, pédagogiques et technologiques d’Hervé Nanfang : Le Pianobariste, ALAIZ Creative Systems, RMA®, Permis de Jouer™, Musicien Augmenté™ et Tswefap.',
+      'Projets musicaux, pédagogiques et technologiques de Hervé Nanfang : A Laiz Ô Pays, Le Pianobariste™, RMA®, Permis de Jouer™, Musicien Augmenté™ et Tswefap.',
     path: '/projets',
     jsonLd: [
       personSchema,
@@ -92,8 +92,8 @@ export default function Projects() {
         <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
           <Stat value="5" label="Familles d'action" />
           <Stat value={String(totalProjectsCount)} label="Projets actifs" />
-          <Stat value="6" label="Marques dérivées" />
-          <Stat value="1" label="Structure : ALAIZ Creative Systems" />
+          <Stat value="2" label="Identités : Hervé Nanfang & A Laiz Ô Pays" />
+          <Stat value="1" label="Concept fédérateur : A Laiz Ô Pays" />
         </div>
       </PageHero>
 
@@ -327,7 +327,7 @@ export default function Projects() {
               Musicien Augmenté™ et le Sound Design hybride appliquent l'IA et la synthèse numérique au patrimoine pour créer les langages de demain.
             </p>
             <div className="mt-4 border-t border-white/10 pt-3 text-[0.65rem] text-gold/80">
-              → Nourrit : Nouvelles œuvres ALAIZ Creative Systems
+              → Nourrit : Nouvelles œuvres & univers A Laiz Ô Pays
             </div>
           </Card>
         </div>
@@ -361,12 +361,12 @@ export default function Projects() {
         <Reveal delay={100}>
           <div className="mt-10 grid gap-8 border border-white/8 p-8 md:grid-cols-[1.4fr_1fr] md:items-center">
             <div>
-              <Eyebrow>Structure porteuse</Eyebrow>
-              <h3 className="mt-4 font-display text-3xl text-ivory">ALAIZ Creative Systems</h3>
+              <Eyebrow>Concept fondateur & univers créatif</Eyebrow>
+              <h3 className="mt-4 font-display text-3xl text-ivory">A Laiz Ô Pays</h3>
               <p className="mt-4 max-w-xl text-sm leading-relaxed text-ivory/60">
-                Structure de production artistique, culturelle et technologique : production musicale, événementiel de prestige,
-                développement de projets et ingénierie créative. C’est le socle
-                entrepreneurial qui rend possibles les autres familles de projets.
+                A Laiz Ô Pays est le concept artistique et culturel fondateur de Hervé Nanfang.
+                Il fédère son univers créatif et les projets qui s’y rattachent, de la musique à la transmission,
+                en passant par la production et l’exploration des technologies.
               </p>
             </div>
             <div className="flex flex-wrap gap-3 md:justify-end">

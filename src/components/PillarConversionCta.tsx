@@ -65,10 +65,10 @@ export const PillarConversionCta: React.FC<PillarConversionCtaProps> = ({
     }
   } else if (category.includes('Ingénierie') || category.includes('Studio') || num === 6 || num === 19 || num === 20) {
     config = {
-      badge: 'ALAIZ CREATIVE SYSTEMS · STUDIO & ACOUSTIQUE',
+      badge: 'HERVÉ NANFANG · STUDIO & INGÉNIERIE SONORE',
       title: 'Confier votre Mixage, Mastering ou Conception Acoustique',
       description:
-        'ALAIZ Creative Systems met son savoir-faire d’ingénierie audio, sa chaîne hybride (analogique & numérique) et sa rigueur acoustique au service de la signature sonore de votre projet musical ou audiovisuel.',
+        'Hervé Nanfang met son savoir-faire d’ingénierie audio, sa chaîne hybride (analogique & numérique) et sa rigueur acoustique au service de la signature sonore de votre projet musical ou audiovisuel.',
       primaryLabel: 'Échanger sur votre projet de production',
       primaryTo: '/contact#collaboration',
       secondaryLabel: 'Découvrir l’approche studio',
@@ -117,10 +117,10 @@ export const PillarConversionCta: React.FC<PillarConversionCtaProps> = ({
   } else {
     // IA, Stratégie, Entrepreneuriat, Marque, etc.
     config = {
-      badge: 'ALAIZ CREATIVE SYSTEMS · STRATÉGIE & IA',
+      badge: 'HERVÉ NANFANG · STRATÉGIE CRÉATIVE & IA',
       title: 'Structurer votre Modèle Créatif & Déployer l’IA Musicale',
       description:
-        'Bénéficiez de l’expertise d’Hervé Nanfang et d’ALAIZ Creative Systems pour moderniser votre production, protéger votre catalogue et concevoir une stratégie multicanale pérenne.',
+        'Bénéficiez de l’expertise de Hervé Nanfang pour moderniser votre production, protéger votre catalogue et concevoir une stratégie multicanale pérenne.',
       primaryLabel: 'Réserver un diagnostic stratégique',
       primaryTo: '/contact#conseil',
       secondaryLabel: 'Explorer les systèmes créatifs',

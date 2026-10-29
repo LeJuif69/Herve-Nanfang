@@ -37,7 +37,7 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 | `NotFound` | Page introuvable | Hervé Nanfang | 32 | La page demandée n’existe pas ou a été déplacée. Accédez aux rubriques… | 156 | 1 (Display as="h1") | — |
 | `Pedagogy` | Pédagogie & Recherche | Hervé Nanfang | 37 | Enseignement supérieur, conception de curricula, musicologie africaine… | 159 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Course, CreativeWork / Book |
 | `Press` | Presse & Médias | Hervé Nanfang — Espace officiel & EPK | 55 | Espace officiel de presse d’Hervé Nanfang : présentation de référence,… | 164 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList |
-| `Projects` | Projets & Marques | Hervé Nanfang — ALAIZ Creative Systems | 58 | Projets musicaux, pédagogiques et technologiques d’Hervé Nanfang : Le … | 162 | 1 (PageHero (h1 interne)) | Person, Organization, BreadcrumbList, CreativeWork / Book |
+| `Projects` | Projets & Univers Créatif | Hervé Nanfang — A Laiz Ô Pays | 57 | Projets musicaux, pédagogiques et technologiques de Hervé Nanfang : A … | 155 | 1 (PageHero (h1 interne)) | Person, Organization, BreadcrumbList, CreativeWork / Book |
 | `RMA` | RMA — Racines Musicales Academy® | Hervé Nanfang | 48 | Racines Musicales Academy® : formation musicale, pédagogie, Permis de … | 161 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service, Course |
 | `Services` | Services | Hervé Nanfang — live, production, marque & conseil ✂️ tronqué dans Google | 61 | Piano live Le Pianobariste™, production musicale, stratégie de marque … | 156 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
 
@@ -64,7 +64,7 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 
 | # | À fournir | Utilisé dans |
 |---|---|---|
-| 1 | Numéro de contribuable / RCCM officiel d’ALAIZ Creative Systems pour mentions légales. | Mentions légales · politique de confidentialité |
+| 1 | Informations d’immatriculation administrative / fiscale officielle (RCCM / numéro de contribuable) et statut juridique éventuel associé aux activités de Hervé Nanfang ou au concept A Laiz Ô Pays pour les mentions légales. | Mentions légales · politique de confidentialité |
 
 ## 8. Identité numérique — rappel de cohérence
 

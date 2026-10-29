@@ -5,7 +5,7 @@
 
 Ce dépôt contient la **plateforme personnelle, artistique, intellectuelle et numérique** d'Hervé Nanfang, construite à partir du document *MASTER — HERVÉ NANFANG*.
 
-Le site est conçu comme la **source canonique** : toutes les marques dérivées (Le Pianobariste™, A LAIZ PROD, A LAIZ Music, Racines Musicales Academy®, Permis de Jouer™, Musicien Augmenté™) y pointent comme « un projet de Hervé Nanfang ».
+Le site est conçu comme la **source canonique** : le concept fondateur **A Laiz Ô Pays** et toutes les initiatives spécialisées (Le Pianobariste™, Alaiz Music, Alaiz Patrimoine, Racines Musicales Academy®, Permis de Jouer™, Musicien Augmenté™) y sont rattachés à **Hervé Nanfang**.
 
 ---
 
@@ -118,7 +118,7 @@ herve-nanfang/
 | `/ia-technologie` | Section stratégique : 4 domaines, **Musicien Augmenté™**, 5 principes, FAQ |
 | `/pedagogie` | Axes d'enseignement, **RMA®**, **Permis de Jouer™**, publications |
 | `/culture-recherche` | Musicologie, patrimoine, terrains (Batoufam, Tswefap), questions de travail, écriture |
-| `/projets` | 5 familles filtrables, 15 projets, écosystème de marques, A LAIZ PROD |
+| `/projets` | 5 familles filtrables, 15 projets, univers créatif A Laiz Ô Pays |
 | `/journal` | Le Journal du Musicien Augmenté : 9 catégories, 7 piliers SEO, agenda éditorial, 4 séries |
 | `/journal/:slug` | Page article (plan, mots-clés, série, conférence associée, lecture suivante) |
 | `/conferences` | 5 thèmes commerciaux, déroulé, publics, emplacement témoignages |

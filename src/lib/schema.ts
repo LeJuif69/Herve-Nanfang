@@ -7,7 +7,7 @@ import { MASTER_IDENTITY, SAME_AS } from '../data/identity'
  */
 
 export const PERSON_ID = `${SITE.url}/#person`
-export const ORG_ID = `${SITE.url}/#organization`
+export const ORG_ID = `${SITE.url}/#alaizopays`
 export const SITE_ID = `${SITE.url}/#website`
 
 export const personSchema: Record<string, unknown> = {
@@ -68,10 +68,13 @@ export const personSchema: Record<string, unknown> = {
       description: 'Intégration éthique de l’intelligence artificielle générative dans les filières culturelles.',
     },
   ],
-  worksFor: { '@id': ORG_ID },
-  affiliation: MASTER_IDENTITY.marques
-    .filter((m) => m.nom.startsWith('Alaiz') || m.nom.startsWith('ALAIZ') || m.nom.startsWith('Racines'))
-    .map((m) => ({ '@type': 'Organization', name: m.nom })),
+  brand: { '@id': ORG_ID },
+  affiliation: [
+    {
+      '@type': 'EducationalOrganization',
+      name: 'Racines Musicales Academy®',
+    },
+  ],
   // sameAs : uniquement les liens officiels vérifiés (une URL erronée nuit
   // plus qu'une absence de lien). Voir `liensOfficiels` dans identity.ts.
   sameAs: SAME_AS,
@@ -80,15 +83,13 @@ export const personSchema: Record<string, unknown> = {
 
 export const organizationSchema: Record<string, unknown> = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
+  '@type': 'Brand',
   '@id': ORG_ID,
-  name: 'ALAIZ Creative Systems',
+  name: 'A Laiz Ô Pays',
   description:
-    'Structure de production artistique, culturelle et technologique fondée par Hervé Nanfang : production musicale, événementiel, conseil en technologies créatives.',
+    'A Laiz Ô Pays est le concept artistique et culturel fondateur de Hervé Nanfang. Il fédère son univers créatif et les projets qui s’y rattachent, de la musique à la transmission, en passant par la production et l’exploration des technologies.',
   url: SITE.url,
-  founder: { '@id': PERSON_ID },
-  location: { '@type': 'Place', name: 'Yaoundé, Cameroun' },
-  knowsAbout: ['Production musicale', 'Événementiel culturel', 'IA et industries culturelles'],
+  sameAs: ['https://www.threads.com/@alaizopays'],
 }
 
 export const websiteSchema: Record<string, unknown> = {
@@ -182,9 +183,9 @@ export const conferenceEducationEventSchema = (input: {
     jobTitle: 'Artiste-Musicien, Musicologue & Spécialiste IA',
   },
   organizer: {
-    '@id': ORG_ID,
-    '@type': 'Organization',
-    name: 'ALAIZ Creative Systems',
+    '@id': PERSON_ID,
+    '@type': 'Person',
+    name: 'Hervé Nanfang',
   },
   offers: {
     '@type': 'Offer',
@@ -305,14 +306,10 @@ export const articleSchema = (input: {
       jobTitle: 'Artiste-Pianiste, Musicologue & Ingénieur Sonore',
     },
     publisher: {
-      '@type': 'Organization',
-      '@id': ORG_ID,
-      name: 'ALAIZ Creative Systems',
+      '@type': 'Person',
+      '@id': PERSON_ID,
+      name: 'Hervé Nanfang',
       url: SITE.url,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${SITE.url}/favicon.svg`,
-      },
     },
     ...(pubDate ? { datePublished: pubDate } : {}),
     ...(modDate ? { dateModified: modDate } : {}),

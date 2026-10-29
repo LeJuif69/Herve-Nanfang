@@ -176,7 +176,7 @@ Je reste à votre disposition pour imaginer ensemble une ambiance sonore sur mes
 
 Bien à vous,
 Hervé Nanfang — Pianobariste™ & Compositeur
-Directeur, ALAIZ Creative Systems
+Créateur du concept A Laiz Ô Pays & fondateur de la RMA®
 Tél/WhatsApp : +237 6 78 57 15 28`
   }
 

@@ -93,14 +93,14 @@ const CREATIVE_CONCEPTS = [
   },
   {
     num: '05',
-    name: 'A Laiz Ô Pays / ALAIZ Creative Systems',
-    trademark: 'Structure faîtière & production',
-    badge: 'Studio & Production',
-    lead: 'Ingénierie sonore, édition phonographique et projets durables.',
+    name: 'A Laiz Ô Pays',
+    trademark: 'Concept artistique & culturel fondateur',
+    badge: 'Univers créatif',
+    lead: 'Le concept fondateur qui relie création, transmission, patrimoine et innovation.',
     description:
-      'Organisation faîtière pilotant la réalisation phonographique (Alaiz Music), la composition pour l’image, la documentation patrimoniale et l’incubation d’initiatives culturelles indépendantes et pérennes.',
+      'A Laiz Ô Pays est le concept artistique et culturel fondateur de Hervé Nanfang. Il fédère son univers créatif et les projets qui s’y rattachent, de la musique (Alaiz Music) à la transmission, en passant par la valorisation patrimoniale (Alaiz Patrimoine) et l’exploration des technologies.',
     link: '/projets',
-    linkLabel: 'Voir les réalisations',
+    linkLabel: 'Explorer l’univers A Laiz Ô Pays',
   },
 ]
 

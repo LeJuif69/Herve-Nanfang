@@ -473,7 +473,7 @@ export const EDITORIAL_CALENDAR_90D: SocialPost[] = [
     ],
     mediaUrl: '/images/shooting-pro-officiel.webp',
     linkUrl: siteUrl('/projets'),
-    ctaLabel: "Explorer la vision Alaiz Creative",
+    ctaLabel: "Explorer l’univers A Laiz Ô Pays",
     targetAudience: 'Musiciens, mélomanes, apprenants et professionnels des industries créatives',
     contentByPlatform: {
       linkedin: {
@@ -814,7 +814,7 @@ export const EDITORIAL_CALENDAR_90D: SocialPost[] = [
   },
   {
     id: 'pub-2026-11-15-conseil',
-    title: "ALAIZ Creative Systems : accompagner une institution culturelle dans sa politique de diffusion",
+    title: "Conseil & ingénierie culturelle : accompagner une institution dans sa politique de diffusion",
     pillar: 'conversion',
     series: 'conferences-masterclass',
     niche: 'conseil',
@@ -828,8 +828,8 @@ export const EDITORIAL_CALENDAR_90D: SocialPost[] = [
     status: 'a_valider',
     platforms: ['linkedin', 'facebook', 'whatsapp', 'site'],
     hookVariants: [
-      "ALAIZ Creative Systems : accompagner une institution culturelle dans sa politique de diffusion",
-      "Perspective d’Hervé Nanfang — ALAIZ Creative Systems : accompagner une institution culturelle dans sa politique de diffusion",
+      "Conseil & ingénierie culturelle : accompagner une institution dans sa politique de diffusion",
+      "Perspective d’Hervé Nanfang — Conseil & ingénierie culturelle : accompagner une institution dans sa politique de diffusion",
     ],
     mediaUrl: '/images/shooting-pro-officiel.webp',
     linkUrl: siteUrl('/contact'),
@@ -837,15 +837,15 @@ export const EDITORIAL_CALENDAR_90D: SocialPost[] = [
     targetAudience: 'Musiciens, mélomanes, apprenants et professionnels des industries créatives',
     contentByPlatform: {
       linkedin: {
-        text: "ALAIZ Creative Systems : accompagner une institution culturelle dans sa politique de diffusion\n\nEn tant que musicologue et praticien de scène, j’explore cette dimension fondamentale :\n\n👉 " + siteUrl('/contact'),
+        text: "Conseil & ingénierie culturelle : accompagner une institution dans sa politique de diffusion\n\nEn tant que musicologue et praticien de scène, j’explore cette dimension fondamentale :\n\n👉 " + siteUrl('/contact'),
         hashtags: ['#HerveNanfang', '#Musique', '#InnovationCulturelle'],
       },
       facebook: {
-        text: "ALAIZ Creative Systems : accompagner une institution culturelle dans sa politique de diffusion\n\nÀ découvrir en détail sur le site officiel : \n🔗 " + siteUrl('/contact'),
+        text: "Conseil & ingénierie culturelle : accompagner une institution dans sa politique de diffusion\n\nÀ découvrir en détail sur le site officiel : \n🔗 " + siteUrl('/contact'),
         hashtags: ['#HerveNanfang', '#Pianobariste', '#Cameroun'],
       },
       whatsapp: {
-        text: "*Hervé Nanfang | Note éditoriale*\n\n*ALAIZ Creative Systems : accompagner une institution culturelle dans sa politique de diffusion*\n\n🔗 " + siteUrl('/contact'),
+        text: "*Hervé Nanfang | Note éditoriale*\n\n*Conseil & ingénierie culturelle : accompagner une institution dans sa politique de diffusion*\n\n🔗 " + siteUrl('/contact'),
         hashtags: [],
       },
     },
@@ -3273,7 +3273,7 @@ export const EDITORIAL_CALENDAR_90D: SocialPost[] = [
     ],
     mediaUrl: '/images/shooting-pro-officiel.webp',
     linkUrl: siteUrl('/projets'),
-    ctaLabel: "Découvrir l’écosystème Alaiz",
+    ctaLabel: "Découvrir l’univers A Laiz Ô Pays",
     targetAudience: 'Musiciens, mélomanes, apprenants et professionnels des industries créatives',
     contentByPlatform: {
       linkedin: {

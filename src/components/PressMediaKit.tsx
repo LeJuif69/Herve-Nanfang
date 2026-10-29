@@ -55,7 +55,7 @@ export const PRESS_VISUALS: PressVisual[] = [
     weight: '640 Ko (WebP) / 4 Mo (JPG Master)',
     src: portraitYaounde,
     masterSrc: portraitYaoundeJpg,
-    credit: '© Hervé Nanfang / ALAIZ Creative Systems — Yaoundé',
+    credit: '© Hervé Nanfang / A Laiz Ô Pays — Yaoundé',
     description: 'Portrait studio et lumière naturelle en extérieur. Idéal pour couvertures de magazines, interviews et articles de fond.',
     recommendedUsage: 'Presse écrite, magazines culturels, affiches de conférences',
   },
@@ -67,7 +67,7 @@ export const PRESS_VISUALS: PressVisual[] = [
     dimensions: '1024 × 1536 px (Format A2 ready)',
     weight: '113 Ko (WebP)',
     src: affichePianobariste,
-    credit: '© Le Pianobariste™ — ALAIZ Creative Systems',
+    credit: '© Hervé Nanfang — Le Pianobariste™',
     description: 'Affiche officielle de communication piano-bar et résidences d’hôtels de prestige.',
     recommendedUsage: 'Programmation hôtelière, événementiel VIP, affichage de salle',
   },
@@ -79,7 +79,7 @@ export const PRESS_VISUALS: PressVisual[] = [
     dimensions: '1600 × 1067 px (16:9 HD)',
     weight: '155 Ko (JPEG)',
     src: liveScenePiano,
-    credit: '© ALAIZ Creative Systems Live Capture',
+    credit: '© Hervé Nanfang — Live Capture',
     description: 'Duo piano et voix en live acoustique. Énergie de scène, complicité et présence organique.',
     recommendedUsage: 'Brochures de festivals, programmes de concerts, bannières web',
   },
@@ -91,7 +91,7 @@ export const PRESS_VISUALS: PressVisual[] = [
     dimensions: '1200 × 800 px (HD)',
     weight: '33 Ko (WebP)',
     src: liveBand,
-    credit: '© ALAIZ Creative Systems Live Sessions',
+    credit: '© Hervé Nanfang — Live Sessions',
     description: 'Formation en quartet jazz / afropop live. Idéal pour annoncer des prestations grand format.',
     recommendedUsage: 'Dossiers de programmation festivalière, presse musicale',
   },
@@ -174,7 +174,7 @@ export function PressBiographies() {
         `Format : ${activeBio.label} (${activeBio.targetWords})\n`,
         `Usage recommandé : ${activeBio.idealFor}\n`,
         `Date d'émission : ${new Date().toLocaleDateString('fr-FR')}\n`,
-        `Structure de rattachement : ALAIZ Creative Systems\n`,
+        `Concept fondateur & univers créatif : A Laiz Ô Pays\n`,
         `Contact presse : ${SITE.emailContact}\n`,
         `Site officiel : https://hervenanfang.vercel.app\n`,
         `------------------------------------------------------------\n\n`,
@@ -452,8 +452,7 @@ export default function PressMediaKit() {
         </div>
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-ivory/65">
           Cet espace rassemble les ressources textuelles, photographiques et techniques officielles
-          validées par Hervé Nanfang, sous l'égide de la structure et plateforme de
-          production ALAIZ Creative Systems.
+          validées par Hervé Nanfang et rattachées à son univers créatif A Laiz Ô Pays.
         </p>
       </div>
 

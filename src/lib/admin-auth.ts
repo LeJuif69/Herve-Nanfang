@@ -138,8 +138,8 @@ export const adminAuth = {
 
         // Validation de l'intégrité de la session
         const effectiveKey =
-          (import.meta.env.VITE_ADMIN_ACCESS_KEY as string | undefined)?.trim() ||
-          (import.meta.env.VITE_ADMIN_DEV_PASSWORD as string | undefined)?.trim() ||
+          (import.meta.env?.VITE_ADMIN_ACCESS_KEY as string | undefined)?.trim() ||
+          (import.meta.env?.VITE_ADMIN_DEV_PASSWORD as string | undefined)?.trim() ||
           'MasterHerveNanfang2026!'
 
         if (parsed.sessionToken) {
@@ -165,10 +165,10 @@ export const adminAuth = {
     const trimmedPass = password.trim()
 
     // 1. Clé d'administration directe / secours maître
-    const allowedAdminEmail = (import.meta.env.VITE_ADMIN_EMAIL as string || 'nanfang.herve@gmail.com').toLowerCase().trim()
+    const allowedAdminEmail = (import.meta.env?.VITE_ADMIN_EMAIL as string || 'nanfang.herve@gmail.com').toLowerCase().trim()
     const effectiveKey =
-      (import.meta.env.VITE_ADMIN_ACCESS_KEY as string | undefined)?.trim() ||
-      (import.meta.env.VITE_ADMIN_DEV_PASSWORD as string | undefined)?.trim() ||
+      (import.meta.env?.VITE_ADMIN_ACCESS_KEY as string | undefined)?.trim() ||
+      (import.meta.env?.VITE_ADMIN_DEV_PASSWORD as string | undefined)?.trim() ||
       'MasterHerveNanfang2026!'
 
     const isEmailAccepted =
@@ -190,7 +190,7 @@ export const adminAuth = {
           fullName: 'Hervé Nanfang (Admin)',
           role: 'admin',
         },
-        mode: import.meta.env.VITE_ADMIN_ACCESS_KEY ? 'emergency' : 'local',
+        mode: import.meta.env?.VITE_ADMIN_ACCESS_KEY ? 'emergency' : 'local',
         expiresAt,
         sessionToken,
       }

@@ -323,13 +323,13 @@ export default function About() {
       {/* ========================= 6 MARQUES ========================= */}
       <Section tone="ink">
         <Reveal>
-          <ChapterMark num="06" label="Marques & projets" />
+          <ChapterMark num="06" label="Univers créatif & projets" />
           <Display size="md" className="mt-7">
-            Six marques, une même structure
+            Des initiatives fédérées par A Laiz Ô Pays
           </Display>
           <Body className="mt-6 max-w-2xl">
             Chaque marque est la cristallisation d'une expertise précise.
-            Ensemble, elles forment l'écosystème ALAIZ Creative Systems — un projet pensé pour durer,
+            A Laiz Ô Pays est le concept artistique et culturel fondateur de Hervé Nanfang — un univers créatif pensé pour durer,
             s'étendre et créer de la valeur à long terme.
           </Body>
         </Reveal>
@@ -412,7 +412,7 @@ export default function About() {
       <CtaBand
         eyebrow="Suite logique"
         title="Découvrir les projets issus de ce parcours"
-        text="Six marques, cinq familles de projets, une même structure : ALAIZ Creative Systems — production artistique, culturelle et technologique."
+        text="Cinq familles de projets fédérées autour du parcours de Hervé Nanfang et de son concept fondateur A Laiz Ô Pays — de la scène à la transmission et à l'innovation culturelle."
         primary={{ label: 'Voir les projets', to: '/projets' }}
         secondary={{ label: 'Me contacter', to: '/contact' }}
       />

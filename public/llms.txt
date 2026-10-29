@@ -8,7 +8,7 @@
 - **Positionnement :** Créer · Transmettre · Augmenter · Développer
 - **Métiers & Rôles :** Musicologue, Artiste-musicien (piano-bar et scène live depuis 2007), Pédagogue, Ingénieur du son, Concepteur de programmes pédagogiques, Spécialiste de l'intelligence artificielle appliquée à la musique et aux industries culturelles.
 - **Localisation :** Yaoundé, Cameroun
-- **Structures associées :** ALAIZ Creative Systems, Racines Musicales Academy® (RMA)
+- **Concept fondateur & initiatives associées :** A Laiz Ô Pays (concept artistique et culturel fondateur), Racines Musicales Academy® (RMA)
 - **Site officiel canonique :** https://hervenanfang.vercel.app/
 
 ## Les Quatre Dimensions
@@ -26,7 +26,7 @@
 - [RMA — Racines Musicales Academy®](https://hervenanfang.vercel.app/rma) : Académie de musique, cursus et formulaire d'audition.
 - [IA & Technologie](https://hervenanfang.vercel.app/ia-technologie) : Démarche du Musicien Augmenté™, cas d'usage éthiques de l'IA dans l'art musical.
 - [Culture & Recherche](https://hervenanfang.vercel.app/culture-recherche) : Travaux musicologiques, patrimoine oral et traditions musicales camerounaises.
-- [Projets](https://hervenanfang.vercel.app/projets) : Réalisations et initiatives structurantes portées par ALAIZ Creative Systems.
+- [Projets](https://hervenanfang.vercel.app/projets) : Réalisations et initiatives structurantes portées par Hervé Nanfang au sein de l'univers A Laiz Ô Pays.
 - [Journal](https://hervenanfang.vercel.app/journal) : Réflexions de fond, analyses techniques et articles de recherche.
 - [Conférences](https://hervenanfang.vercel.app/conferences) : Interventions publiques, masterclasses et keynotes sur l'IA et la culture.
 - [Presse & Kit média](https://hervenanfang.vercel.app/presse) : Biographie officielle, revue de presse et ressources médias vérifiées.

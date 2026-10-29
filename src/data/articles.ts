@@ -1089,7 +1089,7 @@ export const ARTICLES: Article[] = [
         paragraphs: [
           'Certains artistes continuent de percevoir la communication comme une compromission indigne, préférant se draper dans le mythe romantique du génie maudit attendant d’être découvert par miracle. C’est une posture confortable mais stérile. Un savoir qui ne circule pas n’existe pas. Une musique qui ne rencontre pas d’oreilles ne nourrit ni l’âme du public ni le réfrigérateur du créateur.',
           'Prendre la parole avec dignité, structurer un récit clair, soigner ses supports et définir sa marque d’artiste n’est pas un acte d’arrogance commerciale : c’est un acte de politesse et de respect envers ceux qui cherchent précisément ce que vous avez à offrir.',
-          'C’est tout le sens de l’accompagnement que nous déployons aujourd’hui au sein d’ALAIZ et à travers nos prestations de conseil en stratégie de marque culturelle : outiller les musiciens et les institutions pour qu’ils soient maîtres de leur voix, souverains dans leur propos et durables dans leur économie.',
+          'C’est tout le sens de l’accompagnement que je déploie aujourd’hui à travers l’univers A Laiz Ô Pays et mes prestations de conseil en stratégie de marque culturelle : outiller les musiciens et les institutions pour qu’ils soient maîtres de leur voix, souverains dans leur propos et durables dans leur économie.',
         ],
       },
       {
@@ -1856,7 +1856,7 @@ export const ARTICLES: Article[] = [
       {
             "heading": "7. Sources et références",
             "paragraphs": [
-                  "- **Moore, Gerald** (1943). *The Unashamed Accompanist*. London: Ascherberg, Hopwood & Crew. Le grand traité historique sur l'art de l'accompagnateur au piano.\n- **Miller, Richard** (1996). *The Structure of Singing: System and Art in Vocal Technique*. Schirmer Books. Physiologie de la tessiture, du souffle et de l'acoustique vocale.\n- **Nanfang, Hervé & Flavie** (2018-2026). *Archives d'arrangements et enregistrements du Duo*. Yaoundé: Studio HN Marque.\n- **Evans, Bill & Bennett, Tony** (1975). *The Tony Bennett / Bill Evans Album*. Fantasy Records. Référence absolue du dialogue piano-voix dans l'histoire de la musique enregistrée."
+                  "- **Moore, Gerald** (1943). *The Unashamed Accompanist*. London: Ascherberg, Hopwood & Crew. Le grand traité historique sur l'art de l'accompagnateur au piano.\n- **Miller, Richard** (1996). *The Structure of Singing: System and Art in Vocal Technique*. Schirmer Books. Physiologie de la tessiture, du souffle et de l'acoustique vocale.\n- **Nanfang, Hervé & Flavie** (2018-2026). *Archives d'arrangements et enregistrements du Duo*. Yaoundé: Studio Alaiz Music.\n- **Evans, Bill & Bennett, Tony** (1975). *The Tony Bennett / Bill Evans Album*. Fantasy Records. Référence absolue du dialogue piano-voix dans l'histoire de la musique enregistrée."
             ]
       }
 ],
@@ -1972,7 +1972,7 @@ export const ARTICLES: Article[] = [
       {
             "heading": "1. La scène immersive : le paradoxe du matériel haut de gamme",
             "paragraphs": [
-                  "Note éditoriale : Cette analyse s’appuie sur plusieurs années d’expérience au sein du [studio ALAIZ Creative Systems](/services#studio) et en ateliers de formation à la [Racines Musicales Academy®](/rma) à Yaoundé. Les situations décrites condensent les écueils récurrents rencontrés lors de l’aménagement d’espaces de création avec des moyens maîtrisés.",
+                  "Note éditoriale : Cette analyse s’appuie sur plusieurs années d’expérience en ingénierie sonore au sein du [studio Alaiz Music](/services#studio) et en ateliers de formation à la [Racines Musicales Academy®](/rma) à Yaoundé. Les situations décrites condensent les écueils récurrents rencontrés lors de l’aménagement d’espaces de création avec des moyens maîtrisés.",
                   "C’est un scénario récurrent : un jeune producteur talentueux investit l’intégralité de son budget dans un microphone statique réputé à large membrane et des moniteurs de studio de référence. Il installe son matériel dans une pièce disponible de son domicile — souvent une pièce rectangulaire de 10 à 14 m², carrelée au sol, aux parois en maçonnerie lisse et dotée d’une baie vitrée.",
                   "Dès les premières prises de voix et les premiers mixages, la déception apparaît : les voix manquent de présence directe, une dureté désagréable persiste dans le haut-médium, et les lignes de basse sont instables — certaines notes disparaissent complètement tandis que d’autres résonnent de façon assourdissante. La première tentation est d’incriminer le microphone, de changer de carte son ou d’acheter des plugins de traitement vocal sophistiqués."
             ]
@@ -2077,7 +2077,7 @@ export const ARTICLES: Article[] = [
       {
             "heading": "4. La décision professionnelle : structurer un devis inattaquable",
             "paragraphs": [
-                  "Pour transformer une négociation informelle en un accord professionnel respecté, nous appliquons chez [HN Marque](/services) une méthode rigoureuse :",
+                  "Pour transformer une négociation informelle en un accord professionnel respecté, j’applique dans le cadre de mes [prestations et services](/services) une méthode rigoureuse :",
                   "1. La ventilation du devis en 4 lignes distinctes : Ligne 1 : Direction artistique, conception du programme et arrangements sur-mesure. Ligne 2 : Prestation scénique directe (précisant la plage horaire ferme d’intervention). Ligne 3 : Mise à disposition et amortissement du matériel électroacoustique de pointe. Ligne 4 : Régie technique, logistique de transport et calage acoustique préalable.",
                   "2. L’acompte obligatoire de 50 % : Aucune date n’est bloquée sur l’agenda sans le versement préalable de l’acompte à la signature du devis. C’est l’engagement réciproque qui protège l’artiste d’une annulation de dernière minute.",
                   "3. Le cadre juridique et les droits d’auteur : Rappeler systématiquement dans les conditions générales l’obligation légale de la déclaration des œuvres et du respect de la législation en vigueur ([Loi camerounaise 2000/011 du MINAC](http://www.minac.gov.cm))."
@@ -2108,7 +2108,7 @@ export const ARTICLES: Article[] = [
     num: "22",
     category: "Marque & Stratégie",
     title: "Construire une identité musicale singulière à l’ère des plateformes de streaming",
-    excerpt: "Devenir son propre média : analyse stratégique de l’écosystème HN Marque, de l’importance du site web propriétaire, des relations directes avec son public et de la signature « Créer · Transmettre · Augmenter · Développer ».",
+    excerpt: "Devenir son propre média : analyse stratégique de l’univers créatif A Laiz Ô Pays, de l’importance du site web propriétaire, des relations directes avec son public et de la signature « Créer · Transmettre · Augmenter · Développer ».",
     readingTime: "15 min",
     status: 'Publié',
     audience: "Artistes indépendants, créateurs de contenu, labels et directeurs artistiques",
@@ -2152,7 +2152,7 @@ export const ARTICLES: Article[] = [
       {
             "heading": "4. La décision professionnelle : bâtir un écosystème de marque souverain",
             "paragraphs": [
-                  "Pour s’affranchir de la précarité algorithmique, nous appliquons une stratégie en 4 piliers au sein d’ALAIZ Creative Systems et d’[HN Marque](/projets) :",
+                  "Pour s’affranchir de la précarité algorithmique, j’applique une stratégie en 4 piliers à travers mon identité professionnelle et l’univers créatif [A Laiz Ô Pays](/projets) :",
                   "1. Un site web propriétaire comme ambassade permanente : Votre plateforme officielle est le seul lieu où aucun algorithme ne filtre votre propos, où aucune publicité concurrente ne distrait l’auditeur et où vous maîtrisez l’intégralité du récit esthétique.",
                   "2. Le Journal d’autorité intellectuelle : En publiant des articles de fond sur la musicologie, l’acoustique, la pédagogie et l’éthique technologique, l’artiste démontre son expertise bien au-delà d’un extrait éphémère. Vous attirez des partenaires institutionnels, des programmateurs exigeants et des commanditaires de haut niveau.",
                   "3. La boussole des 4 verbes d’action : Figer un positionnement clair que le public peut identifier instantanément : Créer · Transmettre · Augmenter · Développer.",
@@ -2332,7 +2332,7 @@ export const ARTICLES: Article[] = [
       {
             "heading": "8. Sources et références",
             "paragraphs": [
-                  "- **République du Cameroun**. *Loi n° 2000/011 du 19 décembre 2000 relative au droit d'auteur et aux droits voisins*. Yaoundé: Journal Officiel.\n- **Organisation Africaine de la Propriété Intellectuelle (OAPI)**. *Accord de Bangui révisé, Annexe VII : De la propriété littéraire et artistique*. Bangui / Yaoundé.\n- **Organisation Mondiale de la Propriété Intellectuelle (OMPI / WIPO)** (2024). *Comité permanent du droit d'auteur et des droits voisins : questions relatives à l'intelligence artificielle et aux données d'entraînement*. Genève.\n- **Lucie-Smith, Edward & Farchy, Joëlle** (2023). *Droit d'auteur et intelligence artificielle : les défis de l'originalité algorithmique*. Revue internationale du droit d'auteur (RIDA).\n- **Nanfang, Hervé** (2026). *Souveraineté créative et protection des patrimoines oraux face aux technologies d'apprentissage profond*. Tribune doctrinale [HN Marque](/ia-technologie), Yaoundé."
+                  "- **République du Cameroun**. *Loi n° 2000/011 du 19 décembre 2000 relative au droit d'auteur et aux droits voisins*. Yaoundé: Journal Officiel.\n- **Organisation Africaine de la Propriété Intellectuelle (OAPI)**. *Accord de Bangui révisé, Annexe VII : De la propriété littéraire et artistique*. Bangui / Yaoundé.\n- **Organisation Mondiale de la Propriété Intellectuelle (OMPI / WIPO)** (2024). *Comité permanent du droit d'auteur et des droits voisins : questions relatives à l'intelligence artificielle et aux données d'entraînement*. Genève.\n- **Lucie-Smith, Edward & Farchy, Joëlle** (2023). *Droit d'auteur et intelligence artificielle : les défis de l'originalité algorithmique*. Revue internationale du droit d'auteur (RIDA).\n- **Nanfang, Hervé** (2026). *Souveraineté créative et protection des patrimoines oraux face aux technologies d'apprentissage profond*. Tribune doctrinale [Hervé Nanfang — Musicien Augmenté™](/ia-technologie), Yaoundé."
             ]
       }
 ],
@@ -2493,7 +2493,7 @@ export const ARTICLES: Article[] = [
         paragraphs: [
           'La première bascule économique consiste à changer radicalement de segment de marché pour la scène live. Plutôt que de multiplier les prestations à bas tarif dans des lieux où la musique n’est qu’un bruit de fond, l’approche que j’ai développée sous la marque [Le Pianobariste™](/services#piano-bar) consiste à s’adresser exclusivement à une clientèle pour laquelle la qualité, la ponctualité, l’élégance scénique et la réputation sont des impératifs absolus : mariages de prestige, réceptions diplomatiques, galas d’entreprises et soirées privées haut de gamme.',
           'Sur ce marché, la négociation au comptoir est formellement bannie. Elle est remplacée par les standards du conseil professionnel :',
-          '- Un devis détaillé émis par une structure officielle (ALAIZ Creative Systems) avec cahier des charges technique.',
+          '- Un devis détaillé émis professionnellement par Hervé Nanfang avec cahier des charges technique.',
           '- Un contrat de prestation signé clarifiant les obligations des deux parties (horaires, sonorisation, répertoire personnalisé).',
           '- Un acompte obligatoire de 50 % à la signature pour bloquer la date sur l’agenda, et le solde réglé avant ou immédiatement à la fin de la prestation.',
           'Le client d’affaires ou les mariés VIP n’achètent pas seulement des notes de piano : ils achètent la sérénité absolue d’un événement sans fausse note. Ce positionnement permet de facturer une prestation scénique entre 300 000 et 1 500 000 FCFA selon l’ampleur du dispositif, soit l’équivalent de plusieurs mois de cachets précaires en une seule soirée maîtrisée.',
