@@ -333,8 +333,8 @@ export const SERVICE_OFFERINGS: ServiceOffering[] = [
     ],
     cases: [
       {
-        title: "A Laiz Ô Pays — Architecture d'univers créatif",
-        context: "Articulation cohérente entre l'identité professionnelle de Hervé Nanfang et son concept fondateur A Laiz Ô Pays, reliant création musicale (Alaiz Music), valorisation patrimoniale (Alaiz Patrimoine) et formation (RMA).",
+        title: "A Laiz Ô Pays — Architecture d'auteur & manifeste culturel",
+        context: "Articulation lisible entre l'identité centrale de Hervé Nanfang, son manifeste fondateur A Laiz Ô Pays et ses trois signatures (Le Pianobariste, Racines Musicales Academy, Musicien Augmenté).",
         deliverable: "Plateforme de marque multi-entités, gouvernance éditoriale et charte de positionnement unifiée.",
         to: "/projets",
       },

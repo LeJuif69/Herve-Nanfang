@@ -1,6 +1,6 @@
 /**
- * Projets — architecture de la page PROJETS (section 10 du master)
- * Cinq familles : artistiques, pédagogiques, technologiques, culturels, entrepreneuriaux.
+ * Projets — architecture de la page RÉALISATIONS (section 10 du master)
+ * Quatre piliers : Art, Pédagogie, Technologie, Culture.
  */
 
 export type Project = {
@@ -37,19 +37,19 @@ export const PROJECT_FAMILIES: ProjectFamily[] = [
         description:
           "Un format de piano live qui ne se contente pas d'accompagner une soirée : il installe une atmosphère, une couleur, une mémoire sonore du lieu.",
         synopsis:
-          "Le Pianobariste™ est le format de piano live conçu par Hervé Nanfang depuis 2007. Avec un répertoire de plus de 440 titres couvrant le jazz, le blues, la bossa nova, la variété francophone, l'afropop et les standards internationaux, il s'adapte à chaque espace et chaque public : hôtels 5 étoiles, lounges diplomatiques, dîners de gala, réceptions privées et événements d'entreprise. La démarche est toujours la même : lire l'énergie du lieu, l'habiter musicalement et repartir en laissant une mémoire sonore.",
+          "Le Pianobariste est le format de piano live conçu par Hervé Nanfang depuis 2007. Avec un répertoire de plus de 440 titres couvrant le jazz, le blues, la bossa nova, la variété francophone, l'afropop et les standards internationaux, il s'adapte à chaque espace et chaque public : hôtels 5 étoiles, lounges diplomatiques, dîners de gala, réceptions privées et événements d'entreprise. La démarche est toujours la même : lire l'énergie du lieu, l'habiter musicalement et repartir en laissant une mémoire sonore.",
         points: ['Hôtels · Lounges · Événements', 'Répertoire jazz, blues, variété, africain (440+ titres)', 'Live piano · Live mood · Live experience'],
         status: 'Signature',
-        mark: '™',
         discipline: 'Musique live',
       },
       {
-        title: 'Alaiz Music',
-        volume: 'Création & production',
+        title: 'Studio & Production Musicale',
+        volume: 'Composition, Arrangement & Son',
         description:
-          "Composition, arrangement et production musicale pour des projets d'artistes, des institutions et des contenus audiovisuels.",
-        points: ['Composition', 'Arrangement', 'Direction de production'],
+          "Composition, arrangement, prise de son et mixage pour des projets d'artistes, des institutions et des contenus audiovisuels.",
+        points: ['Composition & arrangement sur mesure', 'Ingénierie sonore & mixage hybride', 'Direction de production & musique à l’image'],
         status: 'Actif',
+        to: '/services#studio',
         discipline: 'Production musicale',
       },
       {
@@ -81,41 +81,38 @@ export const PROJECT_FAMILIES: ProjectFamily[] = [
     intro: 'Des méthodes, des curricula, des systèmes de progression, des ouvrages.',
     projects: [
       {
-        title: 'Racines Musicales Academy®',
+        title: 'Racines Musicales Academy (RMA)',
         volume: 'RMA · Formation & Curricula',
         description:
           "Un projet de formation musicale qui relie les pratiques contemporaines et le patrimoine musical africain : socle RMA-01 (Pulsation & Body) et programme intensif « Vacances Utiles ».",
         synopsis:
-          "La RMA (Racines Musicales Academy®) est un dispositif de formation musicale fondé à Yaoundé par Hervé Nanfang. Elle propose des cursus individuels en piano, chant, guitare, basse, batterie et formation musicale, structurés selon la méthode Permis de Jouer™. Le programme intensif « Vacances Utiles » (7 semaines) accueille les enfants dès 6 ans et les adultes débutants. La RMA propose également des formations de formateurs pour les institutions souhaitant améliorer leurs curricula musicaux.",
+          "La RMA (Racines Musicales Academy) est un dispositif de formation musicale fondé à Yaoundé par Hervé Nanfang. Elle propose des cursus individuels en piano, chant, guitare, basse, batterie et formation musicale, structurés selon le référentiel Permis de Jouer. Le programme intensif « Vacances Utiles » (7 semaines) accueille les enfants dès 6 ans et les adultes débutants. La RMA propose également des formations de formateurs pour les institutions souhaitant améliorer leurs curricula musicaux.",
         points: ['Curricula en 6 disciplines', "Programme Vacances Utiles (7 sem.)", 'Restitution collective Damas–Petits Génies', "Formation de formateurs institutionnels"],
-        status: 'Actif',
-        mark: '®',
+        status: 'Signature',
         to: '/rma',
         discipline: 'Formation musicale',
       },
       {
-        title: 'Permis de Jouer™',
-        volume: 'Progression & certification',
+        title: 'Permis de Jouer',
+        volume: 'Référentiel de progression (RMA)',
         description:
           "Un système de progression et d'évaluation continue instrument-agnostique organisé en 4 niveaux (N1 à N4) pour rendre l'apprentissage lisible et mesurable.",
         synopsis:
-          "Le Permis de Jouer™ est la méthode d'évaluation progressive mise au point par Hervé Nanfang pour la RMA. Structurée en 4 paliers (N1 Blanc — Fondations, N2 Jaune — Méthode, N3 Orange — Identité, N4 Rouge — Maîtrise & Scène), elle s'applique à tous les instruments enseignés à la RMA. Chaque palier est validé par une soutenance de compétences réelles (jeu en public, pièces de mémoire) plutôt que par des examens théoriques. L'objectif : former des musiciens autonomes, pas des copistes dépendants.",
+          "Le Permis de Jouer est le référentiel d'évaluation progressive mis au point par Hervé Nanfang au sein de la RMA. Structuré en 4 paliers (N1 Blanc — Fondations, N2 Jaune — Méthode, N3 Orange — Identité, N4 Rouge — Maîtrise & Scène), il s'applique à tous les instruments enseignés à la RMA. Chaque palier est validé par une soutenance de compétences réelles (jeu en public, pièces de mémoire) plutôt que par des examens théoriques. L'objectif : former des musiciens autonomes, pas des copistes dépendants.",
         points: ['Paliers N1 à N4', 'Validation par compétences réelles', 'Instrument-agnostique'],
         status: 'Actif',
-        mark: '™',
         to: '/rma#permis-de-jouer',
         discipline: 'Méthode pédagogique',
       },
       {
-        title: 'LES ZIKOS®',
+        title: 'Les Zikos',
         volume: 'Manuel pédagogique · 68 pages',
         description:
           'Manuel pédagogique complet destiné aux débutants en musique : progression par unités thématiques, lisibilité des notions et exercices instrumentaux applicables dès le premier cours.',
         synopsis:
-          "LES ZIKOS® est un ouvrage pédagogique de 68 pages conçu par Hervé Nanfang pour combler un vide éditorial dans la littérature musicale destinée aux publics francophones d'Afrique subsaharienne. Structuré en unités progressives, il part de la pulsation corporelle et de l'oreille musicale pour arriver à la lecture de partition et aux notions harmoniques fondamentales. Chaque unité comprend un plan de cours, des exercices pratiques, une grille d'évaluation et une bibliographie de référence. Le manuel est en cours de restructuration graphique et éditoriale pour une publication officielle.",
+          "Les Zikos est un ouvrage pédagogique de 68 pages conçu par Hervé Nanfang pour combler un vide éditorial dans la littérature musicale destinée aux publics francophones d'Afrique subsaharienne. Structuré en unités progressives, il part de la pulsation corporelle et de l'oreille musicale pour arriver à la lecture de partition et aux notions harmoniques fondamentales. Chaque unité comprend un plan de cours, des exercices pratiques, une grille d'évaluation et une bibliographie de référence. Le manuel est en cours de restructuration graphique et éditoriale pour une publication officielle.",
         points: ['Manuel de 68 pages', 'Progression méthodologique par unités thématiques', 'Notions fondamentales & exercices instrumentaux', 'En cours de restructuration graphique & éditoriale'],
         status: 'En développement',
-        mark: '®',
         to: '/pedagogie#publications',
         discipline: 'Pédagogie éditoriale',
       },
@@ -127,13 +124,12 @@ export const PROJECT_FAMILIES: ProjectFamily[] = [
     intro: "L'IA et le numérique appliqués à la musique, à la pédagogie et aux institutions culturelles.",
     projects: [
       {
-        title: 'Musicien Augmenté™',
+        title: 'Musicien Augmenté',
         volume: 'IA × Musique',
         description:
-          "Une approche et un label pour penser l'intelligence artificielle comme amplification du musicien — jamais comme substitut.",
+          "Une approche méthodologique et un cycle de conférences pour penser l'intelligence artificielle comme amplification du musicien — jamais comme substitut.",
         points: ['Conférences & masterclass', "Méthodologie d'adoption", 'Cadre éthique'],
         status: 'Signature',
-        mark: '™',
         to: '/ia-technologie#musicien-augmente',
         discipline: 'IA & création musicale',
       },
@@ -165,20 +161,21 @@ export const PROJECT_FAMILIES: ProjectFamily[] = [
     projects: [
       {
         title: 'A Laiz Ô Pays',
-        volume: 'Concept fondateur & univers créatif fédérateur',
+        volume: 'Manifeste & philosophie culturelle fondatrice',
         description:
-          "A Laiz Ô Pays est le concept artistique et culturel fondateur de Hervé Nanfang. Il fédère son univers créatif et les projets qui s'y rattachent, de la musique à la transmission, en passant par la production et l'exploration des technologies.",
-        points: ['Univers créatif fédérateur', 'Articulation création, patrimoine & transmission', 'Socle culturel des initiatives spécialisées'],
+          "A Laiz Ô Pays est le manifeste et le concept artistique fondateur de Hervé Nanfang : être profondément enraciné dans sa culture d'origine pour créer, transmettre et dialoguer librement avec le monde et les technologies contemporaines.",
+        points: ['Manifeste culturel & artistique fondateur', 'Articulation création, patrimoine & transmission', 'Fil conducteur des programmes et œuvres'],
         status: 'Signature',
-        discipline: 'Concept culturel & créatif',
+        discipline: 'Manifeste & philosophie culturelle',
       },
       {
-        title: 'Alaiz Patrimoine',
-        volume: 'Pôle culturel & valorisation patrimoniale',
+        title: 'Patrimoines Oraux & Territoires',
+        volume: 'Recherche & valorisation culturelle',
         description:
-          'Pôle dédié à la valorisation des patrimoines oraux, aux projets territoriaux et à la circulation des expressions artistiques traditionnelles et contemporaines.',
-        points: ['Territoires', 'Patrimoines oraux', 'Projets culturels'],
+          'Travaux dédiés à la documentation des patrimoines musicaux oraux, aux projets territoriaux et à la circulation des expressions artistiques traditionnelles et contemporaines.',
+        points: ['Documentation des rythmes et traditions orales', 'Médiation culturelle & projets territoriaux', 'Transmission intergénérationnelle'],
         status: 'Actif',
+        to: '/culture-recherche',
         discipline: 'Culture & patrimoine',
       },
       {

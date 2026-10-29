@@ -227,21 +227,19 @@ export const MASTER_IDENTITY = {
     { annee: 'Depuis 2022', titre: 'ESAS de Lomé', detail: 'Enseignant à l’École Supérieure des Arts du Spectacle : MAO, musicologie appliquée aux médias visuels et technique de composition musicale.' },
     { annee: '2023', titre: 'Collège bilingue L’Excellence, Odza', detail: 'Éducation musicale en milieu scolaire.' },
     { annee: 'Master II', titre: 'Musicologie appliquée aux médias', detail: 'Université de Yaoundé I : spécialisation en MAO, analyse de bandes originales (Harry Potter, cinéma d’horreur africain) et convergence IA.' },
-    { annee: '2026', titre: 'RMA « Vacances Utiles » & LES ZIKOS®', detail: 'Programme intensif en 5 disciplines (restitution Damas–Petits Génies, Yaoundé) et restructuration du manuel pédagogique (68 p.).' },
-    { annee: 'Aujourd’hui', titre: 'A Laiz Ô Pays & Musicien Augmenté™', detail: 'Univers créatif fédérateur A Laiz Ô Pays et programmes spécialisés : recherche patrimoniale (Tswefap), création musicale (Alaiz Music), formation (RMA®) et intégration éthique de l’IA (Musicien Augmenté™).' },
+    { annee: '2026', titre: 'RMA « Vacances Utiles » & Les Zikos', detail: 'Programme intensif en 5 disciplines (restitution Damas–Petits Génies, Yaoundé) et restructuration du manuel pédagogique (68 p.).' },
+    { annee: 'Aujourd’hui', titre: 'A Laiz Ô Pays & Musicien Augmenté', detail: 'Manifeste culturel A Laiz Ô Pays et programmes signatures : scène (Le Pianobariste), formation (Racines Musicales Academy), recherche patrimoniale (Tswefap), production studio et intégration éthique de l’IA (Musicien Augmenté).' },
   ],
 
   /* ------------------------------------------------------------------ */
   marques: [
-    { nom: 'A Laiz Ô Pays', role: 'Concept artistique et culturel fondateur & univers créatif fédérateur', to: '/projets' },
-    { nom: 'Le Pianobariste™', role: 'Format piano-bar live (depuis 2007)', to: '/musique#pianobariste' },
-    { nom: 'Alaiz Music', role: 'Création & production musicale', to: '/musique' },
-    { nom: 'Alaiz Patrimoine', role: 'Pôle culturel & valorisation patrimoniale', to: '/projets' },
-    { nom: 'Racines Musicales Academy®', role: 'Formation musicale & curricula', to: '/rma' },
-    { nom: 'Permis de Jouer™', role: 'Progression & certification (N1 à N4)', to: '/rma#permis' },
-    { nom: 'LES ZIKOS®', role: 'Manuel pédagogique (68 pages)', to: '/pedagogie#publications' },
+    { nom: 'A Laiz Ô Pays', role: 'Manifeste artistique & philosophie culturelle fondatrice', to: '/projets' },
+    { nom: 'Le Pianobariste', role: 'Signature scénique piano-bar live (depuis 2007)', to: '/musique#pianobariste' },
+    { nom: 'Racines Musicales Academy (RMA)', role: 'Académie de formation musicale & curricula', to: '/rma' },
+    { nom: 'Permis de Jouer', role: 'Référentiel de progression & certification (RMA · N1 à N4)', to: '/rma#permis' },
+    { nom: 'Les Zikos', role: 'Manuel pédagogique (68 pages)', to: '/pedagogie#publications' },
     { nom: 'Tswefap', role: 'Système d’écriture & documentation du Batoufam', to: '/culture-recherche' },
-    { nom: 'Musicien Augmenté™', role: 'IA × musique & perfectionnement', to: '/ia-technologie#musicien-augmente' },
+    { nom: 'Musicien Augmenté', role: 'Approche méthodologique & conférences IA × musique', to: '/ia-technologie#musicien-augmente' },
   ],
 
   /* ------------------------------------------------------------------ */

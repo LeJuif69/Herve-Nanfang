@@ -6,12 +6,10 @@ import { Container, Eyebrow, Rule } from './ui'
 import SocialButtons from './SocialButtons'
 
 const DERIVED_MARKS = [
-  { name: 'Le Pianobariste™', role: 'Format piano-bar live' },
-  { name: 'A Laiz Ô Pays', role: 'Concept fondateur & univers créatif fédérateur' },
-  { name: 'Alaiz Music', role: 'Création & production musicale' },
-  { name: 'Racines Musicales Academy®', role: 'Formation & curricula' },
-  { name: 'Permis de Jouer™', role: 'Progression & certification' },
-  { name: 'Musicien Augmenté™', role: 'IA × musique' },
+  { name: 'A Laiz Ô Pays', role: 'Manifeste & philosophie culturelle fondatrice' },
+  { name: 'Le Pianobariste', role: 'Signature scénique piano-bar live (depuis 2007)' },
+  { name: 'Racines Musicales Academy (RMA)', role: 'Académie, pédagogie & référentiel Permis de Jouer' },
+  { name: 'Musicien Augmenté', role: 'Approche méthodologique, recherche & conférences IA' },
 ]
 
 export default function Footer() {

@@ -59,7 +59,7 @@ export default function About() {
           <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
             <Stat value="2007" label="Débuts live" />
             <Stat value="4" label="Dimensions" />
-            <Stat value="6" label="Marques & projets" />
+            <Stat value="7" label="Signatures & œuvres" />
             <Stat value="∞" label="Trajectoire" />
           </div>
           <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -230,7 +230,7 @@ export default function About() {
             De 2007 à aujourd'hui : chaque étape a préparé la suivante
           </Display>
           <Lead className="mt-6 max-w-3xl">
-            Du piano-bar acoustique aux scènes de prestige, de l'ingénierie sonore à la fondation de la Racines Musicales Academy® et aux recherches sur le Musicien Augmenté™ : naviguez à travers les jalons structurants du parcours.
+            Du piano-bar acoustique aux scènes de prestige, de l'ingénierie sonore à la fondation de la Racines Musicales Academy et aux recherches sur le Musicien Augmenté : naviguez à travers les jalons structurants du parcours.
           </Lead>
         </Reveal>
 
@@ -276,7 +276,7 @@ export default function About() {
           <Reveal>
             <img
               src={affiche}
-              alt="Affiche Le Pianobariste™"
+              alt="Affiche Le Pianobariste"
               width={1024}
               height={1536}
               loading="lazy"
@@ -294,7 +294,7 @@ export default function About() {
               « I don't perform. I set the mood. »
             </Display>
             <Body className="mt-7 max-w-2xl">
-              Le Pianobariste™ n'est pas un pseudonyme : c'est un format, un positionnement et une
+              Le Pianobariste n'est pas un pseudonyme : c'est un format, un positionnement et une
               promesse. Un musicien qui ne se contente pas de jouer des morceaux, mais qui compose
               l'atmosphère d'un lieu — hôtels, lounges, événements privés — avec la précision d'un
               métier acquis depuis 2007.
@@ -320,17 +320,18 @@ export default function About() {
         </div>
       </Section>
 
-      {/* ========================= 6 MARQUES ========================= */}
+      {/* ========================= MANIFESTE & SIGNATURES ========================= */}
       <Section tone="ink">
         <Reveal>
-          <ChapterMark num="06" label="Univers créatif & projets" />
+          <ChapterMark num="06" label="Architecture & Signatures" />
           <Display size="md" className="mt-7">
-            Des initiatives fédérées par A Laiz Ô Pays
+            Un manifeste fondateur, trois signatures, des œuvres durables
           </Display>
           <Body className="mt-6 max-w-2xl">
-            Chaque marque est la cristallisation d'une expertise précise.
-            A Laiz Ô Pays est le concept artistique et culturel fondateur de Hervé Nanfang — un univers créatif pensé pour durer,
-            s'étendre et créer de la valeur à long terme.
+            <strong>A Laiz Ô Pays</strong> est le manifeste artistique et culturel fondateur de Hervé Nanfang :
+            être enraciné dans sa culture d'origine pour créer, transmettre et dialoguer librement avec le monde.
+            Autour de ce fil conducteur s'articulent trois programmes signatures (<em>Le Pianobariste</em>, <em>Racines Musicales Academy</em>, <em>Musicien Augmenté</em>)
+            ainsi que des ouvrages et recherches spécialisés (<em>Permis de Jouer</em>, <em>Les Zikos</em>, <em>Tswefap</em>).
           </Body>
         </Reveal>
 
@@ -369,10 +370,10 @@ export default function About() {
             <div>
               <Eyebrow>Institutions d'enseignement</Eyebrow>
               <h2 className="mt-5 font-display text-3xl leading-snug text-ivory md:text-4xl">
-                ESAS · ISMA · IBA Nkongsamba · RMA®
+                ESAS · ISMA · IBA Nkongsamba · RMA
               </h2>
               <p className="mt-5 max-w-xl text-[15px] leading-[1.9] text-ivory/65">
-                Enseignement supérieur en musicologie appliquée, MAO et composition (ESAS de Lomé, ISMA au Bénin, Institut des Beaux-Arts de Nkongsamba, IFCPA/CRTV), complété par la fondation de la Racines Musicales Academy® (RMA) et du dispositif Permis de Jouer™.
+                Enseignement supérieur en musicologie appliquée, MAO et composition (ESAS de Lomé, ISMA au Bénin, Institut des Beaux-Arts de Nkongsamba, IFCPA/CRTV), complété par la fondation de la Racines Musicales Academy (RMA) et du référentiel Permis de Jouer.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {MASTER_IDENTITY.enseignement.disciplines.map((d) => (
@@ -411,9 +412,9 @@ export default function About() {
 
       <CtaBand
         eyebrow="Suite logique"
-        title="Découvrir les projets issus de ce parcours"
-        text="Cinq familles de projets fédérées autour du parcours de Hervé Nanfang et de son concept fondateur A Laiz Ô Pays — de la scène à la transmission et à l'innovation culturelle."
-        primary={{ label: 'Voir les projets', to: '/projets' }}
+        title="Découvrir les réalisations issues de ce parcours"
+        text="Quatre piliers de réalisations guidés par le manifeste A Laiz Ô Pays — de la scène à la transmission et à l'innovation culturelle."
+        primary={{ label: 'Voir les réalisations', to: '/projets' }}
         secondary={{ label: 'Me contacter', to: '/contact' }}
       />
     </>

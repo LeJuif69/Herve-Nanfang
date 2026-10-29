@@ -84,16 +84,16 @@ export default function Projects() {
   return (
     <>
       <PageHero
-        breadcrumb="Projets & Marques"
+        breadcrumb="Réalisations"
         eyebrow="Développer"
-        title="Des projets pensés comme des structures"
-        lead="Cinq familles de projets, une même intention : transformer des compétences en dispositifs capables de produire, de durer et de se transmettre."
+        title="Des réalisations pensées comme des structures"
+        lead="Quatre piliers d'action, une même exigence : transformer la pratique scénique, la pédagogie, la recherche patrimoniale et l'IA en réalisations durables."
       >
         <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
-          <Stat value="5" label="Familles d'action" />
-          <Stat value={String(totalProjectsCount)} label="Projets actifs" />
-          <Stat value="2" label="Identités : Hervé Nanfang & A Laiz Ô Pays" />
-          <Stat value="1" label="Concept fédérateur : A Laiz Ô Pays" />
+          <Stat value="4" label="Piliers d'action" />
+          <Stat value={String(totalProjectsCount)} label="Réalisations & programmes" />
+          <Stat value="3" label="Signatures : Pianobariste, RMA, Musicien Augmenté" />
+          <Stat value="1" label="Manifeste fondateur : A Laiz Ô Pays" />
         </div>
       </PageHero>
 
@@ -302,10 +302,10 @@ export default function Projects() {
             <span className="eyebrow text-gold">01 · Pôle Live & Performance</span>
             <h4 className="mt-3 font-display text-xl text-ivory">Le Banc d’Essai Réel</h4>
             <p className="mt-3 text-xs leading-relaxed text-ivory/70">
-              Le Pianobariste™ et les scènes de prestige testent en direct l'impact émotionnel et la résonance du répertoire auprès de publics exigeants.
+              Le Pianobariste et les scènes de prestige testent en direct l'impact émotionnel et la résonance du répertoire auprès de publics exigeants.
             </p>
             <div className="mt-4 border-t border-white/10 pt-3 text-[0.65rem] text-gold/80">
-              → Nourrit : RMA®, Alaiz Music
+              → Nourrit : Racines Musicales Academy (RMA), Production Studio
             </div>
           </Card>
 
@@ -313,7 +313,7 @@ export default function Projects() {
             <span className="eyebrow text-gold">02 · Pôle Transmission & Méthode</span>
             <h4 className="mt-3 font-display text-xl text-ivory">La Modélisation du Savoir</h4>
             <p className="mt-3 text-xs leading-relaxed text-ivory/70">
-              RMA® et Permis de Jouer™ codifient 20 ans de pratique pianistique et de rythmes traditionnels pour en faire une méthode d'excellence transmissible.
+              La RMA et le référentiel Permis de Jouer codifient 20 ans de pratique pianistique et de rythmes traditionnels pour en faire une méthode d'excellence transmissible.
             </p>
             <div className="mt-4 border-t border-white/10 pt-3 text-[0.65rem] text-gold/80">
               → Nourrit : Tswefap, Conférences
@@ -324,26 +324,25 @@ export default function Projects() {
             <span className="eyebrow text-gold">03 · Pôle Technologie & R&D</span>
             <h4 className="mt-3 font-display text-xl text-ivory">L'Augmentation Créative</h4>
             <p className="mt-3 text-xs leading-relaxed text-ivory/70">
-              Musicien Augmenté™ et le Sound Design hybride appliquent l'IA et la synthèse numérique au patrimoine pour créer les langages de demain.
+              L'approche Musicien Augmenté et le Sound Design hybride appliquent l'IA et la synthèse numérique au patrimoine pour créer les langages de demain.
             </p>
             <div className="mt-4 border-t border-white/10 pt-3 text-[0.65rem] text-gold/80">
-              → Nourrit : Nouvelles œuvres & univers A Laiz Ô Pays
+              → Nourrit : Nouvelles œuvres & manifeste A Laiz Ô Pays
             </div>
           </Card>
         </div>
       </Section>
 
-      {/* Écosystème */}
+      {/* Architecture de marque */}
       <Section tone="dark">
         <Reveal>
-          <ChapterMark num="06" label="Écosystème de marques" />
+          <ChapterMark num="06" label="Architecture & Signatures" />
           <Display size="md" className="mt-7 max-w-3xl">
-            Les marques dérivées ne concurrencent pas Hervé Nanfang
+            Une architecture d’auteur claire, rattachée à Hervé Nanfang
           </Display>
           <Body className="mt-6 max-w-3xl">
-            Chaque marque est présentée comme « un projet de Hervé Nanfang » ou « une initiative
-            développée par Hervé Nanfang », et renvoie vers ce site, source canonique de l’ensemble de
-            l’écosystème.
+            Chaque programme signature ou ouvrage spécialisé est développé par Hervé Nanfang et
+            renvoie vers ce site, source canonique de l’ensemble de ses activités.
           </Body>
         </Reveal>
 
@@ -352,7 +351,7 @@ export default function Projects() {
             <div key={mark} className="bg-ink-2 px-7 py-6">
               <p className="font-display text-xl text-ivory">{mark}</p>
               <p className="mt-2 text-[0.62rem] uppercase tracking-[0.18em] text-gold/70">
-                Un projet de Hervé Nanfang
+                Par Hervé Nanfang
               </p>
             </div>
           ))}
@@ -361,19 +360,19 @@ export default function Projects() {
         <Reveal delay={100}>
           <div className="mt-10 grid gap-8 border border-white/8 p-8 md:grid-cols-[1.4fr_1fr] md:items-center">
             <div>
-              <Eyebrow>Concept fondateur & univers créatif</Eyebrow>
+              <Eyebrow>Manifeste & philosophie culturelle fondatrice</Eyebrow>
               <h3 className="mt-4 font-display text-3xl text-ivory">A Laiz Ô Pays</h3>
               <p className="mt-4 max-w-xl text-sm leading-relaxed text-ivory/60">
-                A Laiz Ô Pays est le concept artistique et culturel fondateur de Hervé Nanfang.
-                Il fédère son univers créatif et les projets qui s’y rattachent, de la musique à la transmission,
-                en passant par la production et l’exploration des technologies.
+                A Laiz Ô Pays est le manifeste artistique et culturel fondateur de Hervé Nanfang :
+                être profondément enraciné dans sa culture d’origine pour créer, transmettre et dialoguer librement
+                avec le monde et les technologies contemporaines.
               </p>
             </div>
             <div className="flex flex-wrap gap-3 md:justify-end">
-              <Tag>Production</Tag>
-              <Tag>Événementiel</Tag>
-              <Tag>Conseil</Tag>
-              <Tag>Partenariats</Tag>
+              <Tag>Créer</Tag>
+              <Tag>Transmettre</Tag>
+              <Tag>Augmenter</Tag>
+              <Tag>Développer</Tag>
             </div>
           </div>
         </Reveal>

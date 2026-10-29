@@ -50,7 +50,7 @@ const CREATIVE_CONCEPTS = [
   {
     num: '01',
     name: 'Le Pianobariste',
-    trademark: 'Marque artistique & scène live',
+    trademark: 'Signature scénique & piano-bar live',
     badge: 'Depuis 2007',
     lead: 'Scène de prestige, présence d’atmosphère et répertoires internationaux.',
     description:
@@ -60,47 +60,47 @@ const CREATIVE_CONCEPTS = [
   },
   {
     num: '02',
-    name: 'Musicien Augmenté™',
-    trademark: 'Concept doctrinal & méthode IA',
-    badge: 'Formalisé 2024–2026',
-    lead: 'L’intelligence artificielle au service du geste artistique souverain.',
-    description:
-      'Cadre théorique et méthodologique développé par Hervé Nanfang pour articuler création musicale, MAO et technologies génératives. Fondé sur le manifeste des quatre verbes (Créer · Transmettre · Augmenter · Développer), il affirme la primauté de l’oreille critique et de l’identité culturelle.',
-    link: '/ia-technologie#musicien-augmente',
-    linkLabel: 'Explorer le manifeste',
-  },
-  {
-    num: '03',
-    name: 'Le Permis de Jouer™',
-    trademark: 'Système pédagogique propriétaire',
-    badge: 'Niveaux N1 à N4',
-    lead: 'Autonomie instrumentale immédiate et accompagnement au clavier.',
-    description:
-      'Méthode structurée conçue pour adultes et apprentis musiciens, articulée en quatre niveaux modulaires. Elle remplace l’abstraction du solfège rébarbatif par une progression pragmatique axée sur les grilles d’accords, l’harmonie pratique et l’accompagnement du chant.',
-    link: '/pedagogie#permis-de-jouer',
-    linkLabel: 'Consulter la méthode',
-  },
-  {
-    num: '04',
-    name: 'Racines Musicales Academy® (RMA)',
-    trademark: 'Académie & ingénierie de formation',
-    badge: 'Enseignement certifié',
+    name: 'Racines Musicales Academy (RMA)',
+    trademark: 'Académie & ingénierie de formation musicale',
+    badge: 'Enseignement & curricula',
     lead: 'Transmission vivante et valorisation des patrimoines d’Afrique.',
     description:
-      'Organisation d’enseignement musical et de formation MAO fondée par Hervé Nanfang. La RMA forme les musiciens et éducateurs aux technologies contemporaines tout en documentant les polyrythmies et répertoires traditionnels oraux d’Afrique centrale.',
+      'Académie d’enseignement musical et de formation MAO fondée par Hervé Nanfang. La RMA forme les musiciens et éducateurs aux pratiques contemporaines tout en documentant les polyrythmies et répertoires traditionnels oraux d’Afrique centrale.',
     link: '/rma',
     linkLabel: 'Découvrir la RMA',
   },
   {
+    num: '03',
+    name: 'Musicien Augmenté',
+    trademark: 'Approche méthodologique & conférences IA',
+    badge: 'Formalisé 2024–2026',
+    lead: 'L’intelligence artificielle au service du geste artistique souverain.',
+    description:
+      'Cadre théorique et méthodologique développé par Hervé Nanfang pour articuler création musicale, MAO et technologies génératives. Fondé sur les quatre verbes (Créer · Transmettre · Augmenter · Développer), il affirme la primauté de l’oreille critique et de l’identité culturelle.',
+    link: '/ia-technologie#musicien-augmente',
+    linkLabel: 'Explorer l’approche',
+  },
+  {
+    num: '04',
+    name: 'Le Permis de Jouer',
+    trademark: 'Référentiel d’évaluation & progression (RMA)',
+    badge: 'Niveaux N1 à N4',
+    lead: 'Autonomie instrumentale immédiate et progression par compétences réelles.',
+    description:
+      'Référentiel pédagogique structuré au sein de la RMA en quatre niveaux modulaires. Il remplace l’abstraction du solfège rébarbatif par une progression pragmatique axée sur les grilles d’accords, l’harmonie pratique et le jeu en situation réelle.',
+    link: '/pedagogie#permis-de-jouer',
+    linkLabel: 'Consulter la méthode',
+  },
+  {
     num: '05',
     name: 'A Laiz Ô Pays',
-    trademark: 'Concept artistique & culturel fondateur',
-    badge: 'Univers créatif',
-    lead: 'Le concept fondateur qui relie création, transmission, patrimoine et innovation.',
+    trademark: 'Manifeste & philosophie culturelle fondatrice',
+    badge: 'Depuis 2010',
+    lead: 'Être enraciné dans sa culture pour dialoguer librement avec le monde et les technologies.',
     description:
-      'A Laiz Ô Pays est le concept artistique et culturel fondateur de Hervé Nanfang. Il fédère son univers créatif et les projets qui s’y rattachent, de la musique (Alaiz Music) à la transmission, en passant par la valorisation patrimoniale (Alaiz Patrimoine) et l’exploration des technologies.',
+      'A Laiz Ô Pays est le manifeste artistique et culturel fondateur de Hervé Nanfang. Il incarne le fil conducteur qui relie l’interprétation vivante, la transmission pédagogique, la recherche patrimoniale et l’exploration des technologies.',
     link: '/projets',
-    linkLabel: 'Explorer l’univers A Laiz Ô Pays',
+    linkLabel: 'Explorer les réalisations',
   },
 ]
 

@@ -44,21 +44,20 @@ export type NavItem = { label: string; to: string }
 
 export const NAV_PRIMARY: NavItem[] = [
   { label: 'Accueil', to: '/' },
-  { label: 'À propos', to: '/a-propos' },
-  { label: 'Musique', to: '/musique' },
-  { label: 'Pédagogie', to: '/pedagogie' },
+  { label: 'Musique & Scène', to: '/musique' },
+  { label: 'Pédagogie & RMA', to: '/pedagogie' },
+  { label: 'IA & Recherche', to: '/ia-technologie' },
+  { label: 'Réalisations', to: '/projets' },
   { label: 'Services', to: '/services' },
-  { label: 'RMA', to: '/rma' },
-  { label: 'IA & Technologie', to: '/ia-technologie' },
-  { label: 'Projets', to: '/projets' },
   { label: 'Journal', to: '/journal' },
-  { label: 'Conférences', to: '/conferences' },
+  { label: 'À propos', to: '/a-propos' },
   { label: 'Contact', to: '/contact' },
 ]
 
 export const NAV_SECONDARY: NavItem[] = [
-  { label: 'Formations', to: '/pedagogie#formations' },
-  { label: 'Publications', to: '/pedagogie#publications' },
+  { label: 'Académie RMA', to: '/rma' },
+  { label: 'Conférences', to: '/conferences' },
+  { label: 'Culture & Patrimoine', to: '/culture-recherche' },
   { label: 'Presse & EPK', to: '/presse' },
   { label: 'Booking', to: '/contact#booking' },
 ]

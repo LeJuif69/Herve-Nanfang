@@ -164,7 +164,7 @@ const PUBLICATIONS: PedagogicalResource[] = [
     t: 'Tswefap — Système d’écriture & patrimoine Batoufam',
     group: 'preparation',
     statusLabel: 'Recherche & rédaction en cours',
-    meta: 'Hervé Nanfang · Projet Batoufam / Alaiz Patrimoine · Recherche linguistique & patrimoniale',
+    meta: 'Hervé Nanfang · Projet Batoufam · Recherche linguistique & patrimoniale',
     d: "Projet de documentation linguistique et patrimoniale consacré au Batoufam (Bamiléké, Cameroun) : constitution d'un corpus lexical issu de sources orales, conventions graphiques stables, analyse phonologique et préparation d'un manuel de référence.",
     sommaire: [
       'Système d’écriture original (Tswefap) et conventions graphiques',

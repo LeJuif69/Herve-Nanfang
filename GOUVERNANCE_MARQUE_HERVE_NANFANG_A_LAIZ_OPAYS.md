@@ -59,43 +59,46 @@ Il n'existe **aucun troisième niveau de marque** au-dessus, entre ou à côté 
 
 ---
 
-## 4. RELATION ENTRE LES DEUX IDENTITÉS & INITIATIVES SPÉCIALISÉES
+## 4. RELATION ENTRE LES DEUX IDENTITÉS & ARCHITECTURE LONG TERME (10–20 ANS)
 
-### 4.1 Architecture hiérarchique
+### 4.1 Architecture hiérarchique d'auteur (Modèle simplifié)
 ```text
 HERVÉ NANFANG (Identité personnelle, professionnelle et publique centrale)
-  └── A LAIZ Ô PAYS (Concept fondateur & univers créatif fédérateur)
-        ├── Le Pianobariste™ (Format scénique piano-bar live depuis 2007)
-        ├── Racines Musicales Academy® — RMA (Dispositif de formation musicale & curricula)
-        ├── Permis de Jouer™ (Méthode d'évaluation et progression N1 à N4)
-        ├── LES ZIKOS® (Manuel pédagogique de 68 pages)
-        ├── Musicien Augmenté™ (Approche méthodologique et éthique IA × Musique)
-        ├── Alaiz Music (Atelier / cellule de création et production musicale)
-        ├── Alaiz Patrimoine (Pôle culturel et valorisation patrimoniale)
-        └── Tswefap (Projet de documentation linguistique et patrimoniale Batoufam)
+  └── A LAIZ Ô PAYS (Manifeste artistique & philosophie culturelle fondatrice)
+        ├── PILIER 1 — MUSIQUE, SCÈNE & SON (Créer)
+        │     ├── Signature : Le Pianobariste (Format scénique piano-bar live depuis 2007)
+        │     ├── Domaine : Studio & Production Musicale (ex-Alaiz Music absorbé en service explicite)
+        │     └── Œuvre scénique : Le Concert des Guérisseurs
+        ├── PILIER 2 — PÉDAGOGIE & TRANSMISSION (Transmettre)
+        │     ├── Signature : Racines Musicales Academy — RMA (Académie de formation musicale & curricula)
+        │     ├── Méthode interne RMA : Permis de Jouer (Référentiel de progression N1 à N4)
+        │     └── Ouvrage éditorial : Les Zikos (Manuel pédagogique de 68 pages)
+        └── PILIER 3 — RECHERCHE, PATRIMOINE & IA (Augmenter & Développer)
+              ├── Signature : Musicien Augmenté (Approche méthodologique et conférences IA × Musique)
+              ├── Recherche : Tswefap & Batoufam (Système d'écriture & documentation linguistique)
+              └── Domaine : Patrimoines Oraux & Territoires (ex-Alaiz Patrimoine absorbé en domaine explicite)
 ```
 
-### 4.2 Règles d'articulation
-- **A Laiz Ô Pays** n'est jamais présenté comme un simple pseudonyme ou une nouvelle raison sociale remplaçant Hervé Nanfang.
-- **Hervé Nanfang** n'est jamais réduit à une sous-marque d'A Laiz Ô Pays.
-- Les programmes et outils spécialisés (*Le Pianobariste™*, *Racines Musicales Academy®*, *Permis de Jouer™*, *Musicien Augmenté™*, *Alaiz Music*, *Alaiz Patrimoine*, *LES ZIKOS®*, *Tswefap*) conservent leur nom fonctionnel mais sont toujours rattachés à **Hervé Nanfang** et fédérés au sein de l'univers **A Laiz Ô Pays**, sans devenir des identités principales concurrentes.
+### 4.2 Règles d'articulation et de sobriété éditoriale
+- **A Laiz Ô Pays** est positionné comme le **manifeste culturel et artistique fondateur** de Hervé Nanfang, jamais comme un pseudonyme ou une holding écran.
+- **Hervé Nanfang** reste la racine unique d'autorité et de signature.
+- **Absorption des sous-marques redondantes** : afin d'éviter la prolifération de labels opaques pour un nouveau visiteur, *Alaiz Music* et *Alaiz Patrimoine* sont remplacés dans l'interface par des intitulés explicites (*Studio & Production Musicale*, *Patrimoines Oraux & Territoires*).
+- **Usage sobre des symboles `™` et `®`** : les symboles `™` et `®` sont conservés dans les mentions légales (`src/pages/Legal.tsx`) et les fiches de propriété intellectuelle, mais allégés dans les titres courants, menus et cartes de l'interface pour privilégier une esthétique éditoriale et institutionnelle haut de gamme.
 
 ---
 
 ## 5. GRAPHIES OFFICIELLES
 
-| Entité / Programme | Graphie exacte obligatoire | Graphies proscrites en usage courant |
-| :--- | :--- | :--- |
-| Identité personnelle | **Hervé Nanfang** | `Herve Nanfang` (hors URL/identifiant technique), `HN Marque` |
-| Concept fondateur | **A Laiz Ô Pays** | `Alaiz O Pays`, `A LAIZ O PAYS`, `A Laiz Ô Pays / ALAIZ Creative Systems` |
-| Signature scénique | **Le Pianobariste™** (ou **Le Pianobariste**) | `Pianobariste` (isolé sans article en titre) |
-| Académie pédagogique | **Racines Musicales Academy®** (sigle : **RMA**) | `Réseau Musical Africain` |
-| Méthode de progression | **Permis de Jouer™** (ou **Le Permis de Jouer™**) | `Permis de jouer` (sans majuscules) |
-| Approche IA & musique | **Musicien Augmenté™** | `Le Musicien Augmenté` (lorsqu'il désigne la méthode déposée) |
-| Cellule de production | **Alaiz Music** | `A LAIZ Music`, `ALAIZ MUSIC` |
-| Pôle patrimonial | **Alaiz Patrimoine** | `ALAIZ Patrimoine` |
-| Ouvrage pédagogique | **LES ZIKOS®** | `Les Zikos` |
-| Projet linguistique | **Tswefap** | `Tswèfap` (hors transcription phonétique spécialisée) |
+| Entité / Programme | Graphie d'interface (UI / Éditorial) | Graphie juridique (`Legal.tsx`) | Graphies proscrites |
+| :--- | :--- | :--- | :--- |
+| Identité personnelle | **Hervé Nanfang** | **Hervé Nanfang** | `Herve Nanfang` (hors URL), `HN Marque` |
+| Manifeste fondateur | **A Laiz Ô Pays** | **A Laiz Ô Pays** | `Alaiz O Pays`, `ALAIZ Creative Systems` |
+| Signature scénique | **Le Pianobariste** | **Le Pianobariste™** | `Pianobariste` (isolé sans article en titre) |
+| Académie pédagogique | **Racines Musicales Academy (RMA)** | **Racines Musicales Academy® (RMA)** | `Réseau Musical Africain` |
+| Référentiel RMA | **Permis de Jouer** (ou **Le Permis de Jouer**) | **Permis de Jouer™** | `Permis de jouer` (sans majuscules) |
+| Approche IA & musique | **Musicien Augmenté** | **Musicien Augmenté™** | — |
+| Ouvrage pédagogique | **Les Zikos** | **LES ZIKOS®** | — |
+| Projet linguistique | **Tswefap** | **Tswefap** | `Tswèfap` (hors phonétique) |
 
 ---
 
