@@ -79,9 +79,11 @@ HERVÉ NANFANG (Identité personnelle, professionnelle et publique centrale)
               └── Domaine : Patrimoines Oraux & Territoires (ex-Alaiz Patrimoine absorbé en domaine explicite)
 ```
 
-### 4.2 Règles d'articulation et de sobriété éditoriale
+### 4.2 Règles d'articulation, de sobriété éditoriale et de pérennité (10–20 ans)
 - **A Laiz Ô Pays** est positionné comme le **manifeste culturel et artistique fondateur** de Hervé Nanfang, jamais comme un pseudonyme ou une holding écran.
 - **Hervé Nanfang** reste la racine unique d'autorité et de signature.
+- **Règle d'or d'intégration des futurs projets (10–20 ans)** : *Aucun nouveau projet créé à l'avenir ne doit devenir une nouvelle marque de premier niveau. Il doit obligatoirement trouver sa place dans l'un des trois grands pôles (**Le Pianobariste**, **Racines Musicales Academy**, **Musicien Augmenté**) ou rester simplement une œuvre, un programme ou une publication rattachée à **Hervé Nanfang**.*
+- **Navigation principale orientée clarté immédiate** : le menu principal associe directement les intitulés explicites et différenciants (`Musique & Scène`, `Formation & Transmission`, `Musicien Augmenté`, `Réalisations`, `Services`, `Journal`, `À propos`, `Contact`), la *Racines Musicales Academy (RMA)* étant découverte naturellement au cœur du pilier *Formation & Transmission*.
 - **Absorption des sous-marques redondantes** : afin d'éviter la prolifération de labels opaques pour un nouveau visiteur, *Alaiz Music* et *Alaiz Patrimoine* sont remplacés dans l'interface par des intitulés explicites (*Studio & Production Musicale*, *Patrimoines Oraux & Territoires*).
 - **Usage sobre des symboles `™` et `®`** : les symboles `™` et `®` sont conservés dans les mentions légales (`src/pages/Legal.tsx`) et les fiches de propriété intellectuelle, mais allégés dans les titres courants, menus et cartes de l'interface pour privilégier une esthétique éditoriale et institutionnelle haut de gamme.
 
