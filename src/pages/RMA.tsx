@@ -353,7 +353,7 @@ export default function RMA() {
                 <div className="md:col-span-4 relative min-h-[220px] overflow-hidden bg-ink-2">
                   <img
                     src="/images/cours-isma-synthese-1241.webp"
-                    alt="15 Sessions d’Audition & Diagnostic Gratuit — Réseau Musical Africain (RMA)"
+                    alt="15 Sessions d’Audition & Diagnostic Gratuit — Racines Musicales Academy® (RMA)"
                     className="h-full w-full object-cover object-center"
                     loading="lazy"
                   />

@@ -370,7 +370,7 @@ Site officiel : https://hervenanfang.vercel.app`
                   </div>
                   <div className="flex flex-col sm:flex-row sm:justify-between border-b border-white/5 pb-2.5">
                     <dt className="text-ivory/50">Structure & Production exécutive :</dt>
-                    <dd className="text-ivory font-semibold text-gold-2">Alaiz Creative System</dd>
+                    <dd className="text-ivory font-semibold text-gold-2">ALAIZ Creative Systems</dd>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:justify-between border-b border-white/5 pb-2.5">
                     <dt className="text-ivory/50">Dispositif pédagogique :</dt>

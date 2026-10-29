@@ -87,26 +87,106 @@ const VOCATION = [
   },
 ]
 
-const PUBLICATIONS = [
-  {
-    t: 'LES ZIKOS® — Manuel pédagogique',
-    d: "Ouvrage pédagogique de référence d'environ 68 pages en cours de restructuration éditoriale et graphique : progression par niveaux, harmonisation des notions et exercices pratiques d'apprentissage.",
-  },
+type PedagogicalResource = {
+  t: string
+  group: 'disponible' | 'preparation'
+  statusLabel: string
+  meta: string
+  d: string
+  sommaire: string[]
+  availability: string
+  ctaLabel: string
+  ctaTo: string
+}
+
+const PUBLICATIONS: PedagogicalResource[] = [
   {
     t: 'Permis de Jouer™ — Système de progression N1 à N4',
-    d: "Dispositif pédagogique instrument-agnostique conçu pour rendre lisibles les étapes d'apprentissage, définir des objectifs clairs et valider progressivement les compétences pratiques.",
+    group: 'disponible',
+    statusLabel: 'Actif · RMA',
+    meta: 'Hervé Nanfang · Racines Musicales Academy® / ALAIZ Creative Systems · Méthode continue',
+    d: "Dispositif pédagogique instrument-agnostique conçu pour rendre lisibles les étapes d'apprentissage, définir des objectifs clairs et valider progressivement les compétences pratiques par soutenance en situation réelle.",
+    sommaire: [
+      'Palier A / N1 (Ceinture Blanche) — Fondations & Éveil : posture, décontraction, lecture en clés de Sol et de Fa, pulsation et 3 pièces de mémoire',
+      'Palier B / N2 (Ceinture Jaune) — Autonomie & Méthode : gammes, déchiffrage à vue, indépendance des mains, nuances et jeu collectif',
+      'Palier C / N3 (Ceinture Orange) — Expression & Interprétation : accords enrichis, polyrythmie africaine, improvisation modale et set de 8 morceaux',
+      'Palier D / N4 (Ceinture Rouge) — Scène, Studio & Professionnalisation : répertoire de scène (25+ morceaux), arrangement, direction musicale et jury professionnel',
+    ],
+    availability: 'Dispositif actif en vigueur au sein des cursus de la RMA ; détail des 4 paliers consultable sur cette page et sur la page RMA.',
+    ctaLabel: 'Consulter les 4 paliers du Permis de Jouer™',
+    ctaTo: '/rma#permis-de-jouer',
   },
   {
-    t: 'RMA-01 — Fondamentaux du Musicien',
+    t: 'RMA-01 — Fondamentaux du Musicien (Unité « Pulsation & Body »)',
+    group: 'disponible',
+    statusLabel: 'Actif · Cursus RMA 2026',
+    meta: 'Hervé Nanfang · Racines Musicales Academy® · Socle d’apprentissage · 2026',
     d: "Socle pédagogique d'initiation et de consolidation : pulsation, coordination corporelle, écoute analytique et repères collectifs (Unité « Pulsation & Body »).",
+    sommaire: [
+      'Pulsation et repères rythmiques fondamentaux',
+      'Coordination corporelle appliquée (Unité « Pulsation & Body »)',
+      'Écoute analytique et pratique collective en ensemble',
+    ],
+    availability: 'Module actif enseigné au sein des parcours de la Racines Musicales Academy® (Yaoundé).',
+    ctaLabel: 'Candidater à une audition d’orientation RMA',
+    ctaTo: '/rma#audition',
+  },
+  {
+    t: 'Recherches, MAO & Musique à l’image — Supports de cours & communications',
+    group: 'disponible',
+    statusLabel: 'Actif · Enseignement supérieur',
+    meta: 'Hervé Nanfang · ESAS (Lomé, depuis 2022), ISMA (Bénin, 2022–2026), IBA Nkongsamba (2021–2022), IFCPA / CRTV (2020–2021)',
+    d: "Fiches de cours spécialisées, guides méthodologiques et communications scientifiques sur l'analyse de musiques de films (Harry Potter, cinéma d'horreur africain, transmédiatisation) et les technologies du son.",
+    sommaire: [
+      'ESAS (Lomé, depuis 2022) : MAO, musicologie appliquée aux médias visuels et technique de composition musicale',
+      'ISMA (Bénin, 2022–2026) & IFCPA / CRTV (Yaoundé, 2020–2021) : audiofréquence, prise et traitement du son, formes et genres musicaux',
+      'IBA Nkongsamba (2021–2022) & Recherche (Master II, Univ. Yaoundé I, 2024) : analyse d’œuvres, bandes originales (Harry Potter, cinéma d’horreur africain), intermédiarité et politiques musicales',
+    ],
+    availability: 'Supports destinés aux enseignements universitaires et communications scientifiques ; plans d’intervention transmissibles sur demande institutionnelle.',
+    ctaLabel: 'Solliciter une intervention ou un plan de cours',
+    ctaTo: '/contact#formation',
+  },
+  {
+    t: 'LES ZIKOS® — Manuel pédagogique (68 pages)',
+    group: 'preparation',
+    statusLabel: 'En cours de restructuration éditoriale',
+    meta: 'Hervé Nanfang · ALAIZ Creative Systems · Manuel pédagogique de 68 pages · 2026',
+    d: "Ouvrage pédagogique de référence de 68 pages en cours de restructuration éditoriale et graphique : progression par unités thématiques, harmonisation des notions et exercices instrumentaux applicables dès le premier cours.",
+    sommaire: [
+      'Progression méthodologique : de la pulsation corporelle et de l’oreille musicale vers la lecture de partition et les notions harmoniques fondamentales',
+      'Structure par unité : plan de cours, exercices pratiques, grille d’évaluation et bibliographie de référence',
+    ],
+    availability: 'Ouvrage en cours de restructuration éditoriale et graphique pour publication officielle (non commercialisé à ce stade).',
+    ctaLabel: 'Être informé de la parution ou demander une présentation',
+    ctaTo: '/contact#formation',
   },
   {
     t: 'Tswefap — Système d’écriture & patrimoine Batoufam',
-    d: "Projet de documentation linguistique et patrimoniale : constitution d'un corpus, conventions d'écriture et préparation d'un manuel de référence alliant tradition orale et numérique.",
+    group: 'preparation',
+    statusLabel: 'Recherche & rédaction en cours',
+    meta: 'Hervé Nanfang · Projet Batoufam / Alaiz Patrimoine · Recherche linguistique & patrimoniale',
+    d: "Projet de documentation linguistique et patrimoniale consacré au Batoufam (Bamiléké, Cameroun) : constitution d'un corpus lexical issu de sources orales, conventions graphiques stables, analyse phonologique et préparation d'un manuel de référence.",
+    sommaire: [
+      'Système d’écriture original (Tswefap) et conventions graphiques',
+      'Corpus lexical issu de sources orales et analyse phonologique comparée',
+      'Rédaction d’un manuel de référence destiné aux locuteurs et aux linguistes',
+    ],
+    availability: 'Travaux de recherche et de documentation en cours ; le manuel de référence n’est pas encore publié.',
+    ctaLabel: 'Consulter l’axe Culture & Recherche',
+    ctaTo: '/culture-recherche',
   },
   {
-    t: 'Recherches, MAO & Musique à l’image',
-    d: "Fiches de cours spécialisées, guides méthodologiques et communications scientifiques sur l'analyse de musiques de films (Harry Potter, cinéma d'horreur africain, transmédiatisation).",
+    t: 'Music’Arts Thérapie — Projet d’ouvrage scientifique et pédagogique',
+    group: 'preparation',
+    statusLabel: 'En préparation',
+    meta: 'Hervé Nanfang · Recherche & pédagogie · À paraître',
+    d: 'Projet d’ouvrage scientifique et pédagogique en préparation articulant recherche musicologique, médiation artistique et applications thérapeutiques.',
+    sommaire: [
+      'Prolongement des travaux de recherche-création (dont Le Concert des Guérisseurs, 2020–2022, inspiré des musiques thérapeutiques pygmées)',
+    ],
+    availability: 'Ouvrage en préparation (non publié à ce stade).',
+    ctaLabel: 'Prendre contact autour de cet axe de recherche',
+    ctaTo: '/contact#collaboration',
   },
 ]
 
@@ -354,7 +434,13 @@ export default function Pedagogy() {
               travailler seul entre les séances.
             </Body>
             <div className="mt-9">
-              <ArrowLink to="/contact#formation">Demander la liste des publications</ArrowLink>
+              <div className="flex flex-wrap gap-5">
+                <ArrowLink to="/contact#formation">Solliciter un plan de cours ou partenariat</ArrowLink>
+                <ArrowLink to="/rma#permis-de-jouer">Consulter les 4 paliers du Permis de Jouer™</ArrowLink>
+              </div>
+              <p className="mt-4 text-xs leading-relaxed text-ivory/45">
+                Distinction explicite : les dispositifs et supports de cours actifs en formation sont distingués ci-contre des ouvrages et manuels actuellement en cours de restructuration éditoriale ou de rédaction.
+              </p>
             </div>
           </Reveal>
 
@@ -362,8 +448,31 @@ export default function Pedagogy() {
             <div className="divide-y divide-white/10 border-y border-white/10">
               {PUBLICATIONS.map((p) => (
                 <div key={p.t} className="py-7 group">
-                  <h3 className="font-display text-xl text-ivory group-hover:text-gold transition-colors">{p.t}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ivory/55">{p.d}</p>
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="text-[0.62rem] font-mono uppercase tracking-[0.18em] text-gold/80">
+                      {p.group === 'disponible' ? '● Dispositif ou support actif' : '◐ Ouvrage en préparation'}
+                    </span>
+                    <Tag tone={p.group === 'disponible' ? 'gold' : 'ink'}>{p.statusLabel}</Tag>
+                  </div>
+                  <h3 className="mt-2 font-display text-xl text-ivory group-hover:text-gold transition-colors">{p.t}</h3>
+                  <p className="mt-1 text-xs font-mono text-ivory/45">{p.meta}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-ivory/65">{p.d}</p>
+                  <div className="mt-4 border-l border-gold/30 pl-4">
+                    <p className="text-[0.65rem] font-mono uppercase tracking-[0.16em] text-gold/80">
+                      Contenu & structure documentés
+                    </p>
+                    <ul className="mt-2 space-y-1.5 text-xs leading-relaxed text-ivory/60">
+                      {p.sommaire.map((item) => (
+                        <li key={item}>• {item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <p className="mt-3 text-xs leading-relaxed text-ivory/45">
+                    <strong className="font-semibold text-ivory/70">État & accès :</strong> {p.availability}
+                  </p>
+                  <div className="mt-4">
+                    <ArrowLink to={p.ctaTo}>{p.ctaLabel}</ArrowLink>
+                  </div>
                 </div>
               ))}
             </div>

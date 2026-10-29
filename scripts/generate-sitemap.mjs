@@ -40,10 +40,10 @@ async function publishedSlugs() {
   return slugs
 }
 
-const today = new Date().toISOString().split('T')[0]
-
-function entry(loc) {
-  return `  <url>\n    <loc>${SITE_URL}${loc}</loc>\n    <lastmod>${today}</lastmod>\n  </url>`
+function entry(loc, lastmod) {
+  return lastmod
+    ? `  <url>\n    <loc>${SITE_URL}${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`
+    : `  <url>\n    <loc>${SITE_URL}${loc}</loc>\n  </url>`
 }
 
 const slugs = await publishedSlugs()

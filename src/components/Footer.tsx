@@ -7,7 +7,7 @@ import SocialButtons from './SocialButtons'
 
 const DERIVED_MARKS = [
   { name: 'Le Pianobariste™', role: 'Format piano-bar live' },
-  { name: 'Alaiz Creative System', role: 'Production artistique, culturelle & technologique' },
+  { name: 'ALAIZ Creative Systems', role: 'Production artistique, culturelle & technologique' },
   { name: 'Alaiz Music', role: 'Création & production musicale' },
   { name: 'Racines Musicales Academy®', role: 'Formation & curricula' },
   { name: 'Permis de Jouer™', role: 'Progression & certification' },

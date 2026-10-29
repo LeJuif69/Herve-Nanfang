@@ -164,7 +164,7 @@ export const PROJECT_FAMILIES: ProjectFamily[] = [
     intro: 'Recherche, patrimoine, transmission orale et entrepreneuriat culturel.',
     projects: [
       {
-        title: 'Alaiz Creative System',
+        title: 'ALAIZ Creative Systems',
         volume: "Structure mère et plateforme de production",
         description:
           "La structure mère qui articule la production musicale, l'ingénierie créative, la valorisation patrimoniale et la formation musicale (RMA).",

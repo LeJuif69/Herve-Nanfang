@@ -329,7 +329,7 @@ export default function About() {
           </Display>
           <Body className="mt-6 max-w-2xl">
             Chaque marque est la cristallisation d'une expertise précise.
-            Ensemble, elles forment l'écosystème Alaiz Creative System — un projet pensé pour durer,
+            Ensemble, elles forment l'écosystème ALAIZ Creative Systems — un projet pensé pour durer,
             s'étendre et créer de la valeur à long terme.
           </Body>
         </Reveal>
@@ -412,7 +412,7 @@ export default function About() {
       <CtaBand
         eyebrow="Suite logique"
         title="Découvrir les projets issus de ce parcours"
-        text="Six marques, cinq familles de projets, une même structure : Alaiz Creative System — production artistique, culturelle et technologique."
+        text="Six marques, cinq familles de projets, une même structure : ALAIZ Creative Systems — production artistique, culturelle et technologique."
         primary={{ label: 'Voir les projets', to: '/projets' }}
         secondary={{ label: 'Me contacter', to: '/contact' }}
       />

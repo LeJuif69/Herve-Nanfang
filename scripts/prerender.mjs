@@ -79,6 +79,9 @@ function pageHead(seo, site) {
   if (process.env.VITE_BING_SITE_VERIFICATION) {
     tags.push(`<meta name="msvalidate.01" content="${escapeHtml(process.env.VITE_BING_SITE_VERIFICATION.trim())}">`)
   }
+  if (process.env.VITE_PINTEREST_DOMAIN_VERIFY) {
+    tags.push(`<meta name="p:domain_verify" content="${escapeHtml(process.env.VITE_PINTEREST_DOMAIN_VERIFY.trim())}">`)
+  }
   tags.push('<meta name="yandex-verification" content="2fa82dd48c4067fa">')
   const schemas = seo.jsonLd ? (Array.isArray(seo.jsonLd) ? seo.jsonLd : [seo.jsonLd]) : []
   for (const schema of schemas) {
@@ -137,10 +140,13 @@ function outputPath(route) {
 }
 
 function sitemapXml(site, paths) {
-  const today = new Date().toISOString().split('T')[0]
+
   const entries = paths.map((path) => {
-    const url = `${site.url}${path === '/' ? '/' : path}`
-    return `  <url>\n    <loc>${escapeHtml(url)}</loc>\n    <lastmod>${today}</lastmod>\n  </url>`
+
+    const item = typeof path === 'string' ? { path } : path
+    const url = `${site.url}${item.path === '/' ? '/' : item.path}`
+    const lastmod = item.lastmod ? `\n    <lastmod>${escapeHtml(item.lastmod)}</lastmod>` : ''
+    return `  <url>\n    <loc>${escapeHtml(url)}</loc>${lastmod}\n  </url>`
   })
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join('\n')}\n</urlset>\n`
 }
@@ -213,7 +219,10 @@ try {
 
   const publishedRoutes = ARTICLES
     .filter((article) => article.status === 'Publié')
-    .map((article) => `/journal/${article.slug}`)
+    .map((article) => ({
+      path: `/journal/${article.slug}`,
+      lastmod: (article.updatedAt || article.publishedAt || '').split('T')[0] || undefined,
+    }))
   const xml = sitemapXml(SITE, [...staticRoutes, ...publishedRoutes])
   await writeFile(resolve(dist, 'sitemap.xml'), xml, 'utf8')
   await writeFile(resolve(root, 'public', 'sitemap.xml'), xml, 'utf8')

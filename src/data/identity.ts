@@ -50,7 +50,7 @@ export const MASTER_IDENTITY = {
     nom: 'Hervé Nanfang',
     variantes: ['Le Pianobariste', 'le Musicologue', 'le Musicien Augmenté'],
     signature: 'Créer. Transmettre. Augmenter. Développer.',
-    structureMere: 'Alaiz Creative System',
+    structureMere: 'ALAIZ Creative Systems',
     roles: [
       'Musicologue',
       'Artiste-musicien',
@@ -227,12 +227,12 @@ export const MASTER_IDENTITY = {
     { annee: '2023', titre: 'Collège bilingue L’Excellence, Odza', detail: 'Éducation musicale en milieu scolaire.' },
     { annee: 'Master II', titre: 'Musicologie appliquée aux médias', detail: 'Université de Yaoundé I : spécialisation en MAO, analyse de bandes originales (Harry Potter, cinéma d’horreur africain) et convergence IA.' },
     { annee: '2026', titre: 'RMA « Vacances Utiles » & LES ZIKOS®', detail: 'Programme intensif en 5 disciplines (restitution Damas–Petits Génies, Yaoundé) et restructuration du manuel pédagogique (68 p.).' },
-    { annee: 'Aujourd’hui', titre: 'Alaiz Creative System & Musicien Augmenté™', detail: 'Écosystème de marques et programmes : recherche patrimoniale (Tswefap), production musicale et créative (Alaiz Creative System) et intégration éthique de l’IA.' },
+    { annee: 'Aujourd’hui', titre: 'ALAIZ Creative Systems & Musicien Augmenté™', detail: 'Écosystème de marques et programmes : recherche patrimoniale (Tswefap), production musicale et créative (ALAIZ Creative Systems) et intégration éthique de l’IA.' },
   ],
 
   /* ------------------------------------------------------------------ */
   marques: [
-    { nom: 'Alaiz Creative System', role: 'Structure mère de l’écosystème & production créative', to: '/projets' },
+    { nom: 'ALAIZ Creative Systems', role: 'Structure mère de l’écosystème & production créative', to: '/projets' },
     { nom: 'Le Pianobariste™', role: 'Format piano-bar live (depuis 2007)', to: '/musique#pianobariste' },
     { nom: 'Alaiz Music', role: 'Création & production musicale', to: '/musique' },
     { nom: 'Alaiz Patrimoine', role: 'Pôle culturel & valorisation patrimoniale', to: '/projets' },
@@ -549,7 +549,7 @@ export const MASTER_IDENTITY = {
       'Cultures africaines & traditions orales',
       'Documentation patrimoniale & linguistique',
       'Communication digitale & récits de marque',
-      'Entrepreneuriat culturel & Alaiz Creative System',
+      'Entrepreneuriat culturel & ALAIZ Creative Systems',
     ],
     knowsLanguage: ['fr', 'en'],
     nationality: 'Cameroun',
@@ -564,7 +564,7 @@ export const MASTER_IDENTITY = {
   aConfirmer: [
     {
       id: 'legal-rccm',
-      question: 'Numéro de contribuable / RCCM officiel d’Alaiz Creative System pour mentions légales.',
+      question: 'Numéro de contribuable / RCCM officiel d’ALAIZ Creative Systems pour mentions légales.',
       usedIn: 'Mentions légales · politique de confidentialité',
     },
   ],

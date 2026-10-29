@@ -32,6 +32,10 @@ export type Article = {
   seoTitle: string
   /** Meta description propre à l'article — 120 à 165 caractères */
   seoDescription: string
+  /** Dates vérifiées de publication et de mise à jour significative (ISO YYYY-MM-DD) */
+  publishedAt?: string
+  updatedAt?: string
+  coverImage?: string
 }
 
 export const CATEGORIES = [
@@ -1968,7 +1972,7 @@ export const ARTICLES: Article[] = [
       {
             "heading": "1. La scène immersive : le paradoxe du matériel haut de gamme",
             "paragraphs": [
-                  "Note éditoriale : Cette analyse s’appuie sur plusieurs années d’expérience au sein du [studio Alaiz Creative System](/services#studio) et en ateliers de formation à la [Racines Musicales Academy®](/rma) à Yaoundé. Les situations décrites condensent les écueils récurrents rencontrés lors de l’aménagement d’espaces de création avec des moyens maîtrisés.",
+                  "Note éditoriale : Cette analyse s’appuie sur plusieurs années d’expérience au sein du [studio ALAIZ Creative Systems](/services#studio) et en ateliers de formation à la [Racines Musicales Academy®](/rma) à Yaoundé. Les situations décrites condensent les écueils récurrents rencontrés lors de l’aménagement d’espaces de création avec des moyens maîtrisés.",
                   "C’est un scénario récurrent : un jeune producteur talentueux investit l’intégralité de son budget dans un microphone statique réputé à large membrane et des moniteurs de studio de référence. Il installe son matériel dans une pièce disponible de son domicile — souvent une pièce rectangulaire de 10 à 14 m², carrelée au sol, aux parois en maçonnerie lisse et dotée d’une baie vitrée.",
                   "Dès les premières prises de voix et les premiers mixages, la déception apparaît : les voix manquent de présence directe, une dureté désagréable persiste dans le haut-médium, et les lignes de basse sont instables — certaines notes disparaissent complètement tandis que d’autres résonnent de façon assourdissante. La première tentation est d’incriminer le microphone, de changer de carte son ou d’acheter des plugins de traitement vocal sophistiqués."
             ]

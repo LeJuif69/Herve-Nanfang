@@ -275,7 +275,7 @@ export const AdminSettingsView: React.FC<AdminSettingsProps> = ({
                 <label className="flex items-center gap-2 text-sm font-semibold text-ivory cursor-pointer">
                   <input
                     type="checkbox"
-                    checked={form.promoBannerEnabled ?? true}
+                    checked={form.promoBannerEnabled ?? false}
                     onChange={(e) => setForm({ ...form, promoBannerEnabled: e.target.checked })}
                     className="h-4 w-4 accent-[#c6a15b]"
                   />
@@ -287,7 +287,7 @@ export const AdminSettingsView: React.FC<AdminSettingsProps> = ({
               </div>
             </div>
 
-            {(form.promoBannerEnabled ?? true) && (
+            {(form.promoBannerEnabled ?? false) && (
               <div className="space-y-4 pt-2 border-t border-white/10">
                 <div>
                   <label className="block text-xs font-semibold text-ivory/70 mb-1">
