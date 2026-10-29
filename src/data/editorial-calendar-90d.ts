@@ -814,7 +814,7 @@ export const EDITORIAL_CALENDAR_90D: SocialPost[] = [
   },
   {
     id: 'pub-2026-11-15-conseil',
-    title: "Alaiz Creative System : accompagner une institution culturelle dans sa politique de diffusion",
+    title: "ALAIZ Creative Systems : accompagner une institution culturelle dans sa politique de diffusion",
     pillar: 'conversion',
     series: 'conferences-masterclass',
     niche: 'conseil',
@@ -828,8 +828,8 @@ export const EDITORIAL_CALENDAR_90D: SocialPost[] = [
     status: 'a_valider',
     platforms: ['linkedin', 'facebook', 'whatsapp', 'site'],
     hookVariants: [
-      "Alaiz Creative System : accompagner une institution culturelle dans sa politique de diffusion",
-      "Perspective d’Hervé Nanfang — Alaiz Creative System : accompagner une institution culturelle dans sa politique de diffusion",
+      "ALAIZ Creative Systems : accompagner une institution culturelle dans sa politique de diffusion",
+      "Perspective d’Hervé Nanfang — ALAIZ Creative Systems : accompagner une institution culturelle dans sa politique de diffusion",
     ],
     mediaUrl: '/images/shooting-pro-officiel.webp',
     linkUrl: siteUrl('/contact'),
@@ -837,15 +837,15 @@ export const EDITORIAL_CALENDAR_90D: SocialPost[] = [
     targetAudience: 'Musiciens, mélomanes, apprenants et professionnels des industries créatives',
     contentByPlatform: {
       linkedin: {
-        text: "Alaiz Creative System : accompagner une institution culturelle dans sa politique de diffusion\n\nEn tant que musicologue et praticien de scène, j’explore cette dimension fondamentale :\n\n👉 " + siteUrl('/contact'),
+        text: "ALAIZ Creative Systems : accompagner une institution culturelle dans sa politique de diffusion\n\nEn tant que musicologue et praticien de scène, j’explore cette dimension fondamentale :\n\n👉 " + siteUrl('/contact'),
         hashtags: ['#HerveNanfang', '#Musique', '#InnovationCulturelle'],
       },
       facebook: {
-        text: "Alaiz Creative System : accompagner une institution culturelle dans sa politique de diffusion\n\nÀ découvrir en détail sur le site officiel : \n🔗 " + siteUrl('/contact'),
+        text: "ALAIZ Creative Systems : accompagner une institution culturelle dans sa politique de diffusion\n\nÀ découvrir en détail sur le site officiel : \n🔗 " + siteUrl('/contact'),
         hashtags: ['#HerveNanfang', '#Pianobariste', '#Cameroun'],
       },
       whatsapp: {
-        text: "*Hervé Nanfang | Note éditoriale*\n\n*Alaiz Creative System : accompagner une institution culturelle dans sa politique de diffusion*\n\n🔗 " + siteUrl('/contact'),
+        text: "*Hervé Nanfang | Note éditoriale*\n\n*ALAIZ Creative Systems : accompagner une institution culturelle dans sa politique de diffusion*\n\n🔗 " + siteUrl('/contact'),
         hashtags: [],
       },
     },

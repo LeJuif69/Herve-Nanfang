@@ -149,13 +149,13 @@ export const AdminOutreach: React.FC<AdminOutreachProps> = ({ showToast }) => {
 
 Trop souvent, la pratique musicale reste cantonnée aux automatismes d'oreille ou à des approches théoriques déconnectées de la richesse de nos patrimoines (Makossa, Mangambeu, Bikutsi, Highlife, Jazz...).
 
-À travers le Réseau Musical Africain (RMA) et la méthode Le Permis de Jouer™, nous ouvrons cette semaine 15 créneaux d'évaluation et de diagnostic d'audition gratuits pour :
+À travers la Racines Musicales Academy® (RMA) et la méthode Le Permis de Jouer™, nous ouvrons cette semaine 15 créneaux d'évaluation et de diagnostic d'audition gratuits pour :
 ✔️ Analyser votre aisance au clavier et votre compréhension harmonique.
 ✔️ Identifier précisément vos points de blocage technique et rythmique.
 ✔️ Vous orienter vers un parcours structuré adapté à vos ambitions artistiques.
 
 Réservez votre créneau en 2 minutes via le formulaire dédié :
-https://hervenanfang.vercel.app/rma?utm_source=social&utm_medium=post&utm_campaign=audition_rma_fev2026#audition
+https://hervenanfang.vercel.app/rma?utm_source=social&utm_medium=post&utm_campaign=audition_rma#audition
 
 Les candidatures sont traitées par ordre d'arrivée afin de garantir la qualité de chaque échange.`
 
@@ -176,7 +176,7 @@ Je reste à votre disposition pour imaginer ensemble une ambiance sonore sur mes
 
 Bien à vous,
 Hervé Nanfang — Pianobariste™ & Compositeur
-Directeur, Alaiz Creative System
+Directeur, ALAIZ Creative Systems
 Tél/WhatsApp : +237 6 78 57 15 28`
   }
 
@@ -371,7 +371,7 @@ Tél/WhatsApp : +237 6 78 57 15 28`
                 onClick={() =>
                   handleShareLinkedIn(
                     RMA_POST_TEXT,
-                    'https://hervenanfang.vercel.app/rma?utm_source=social&utm_medium=post&utm_campaign=audition_rma_fev2026#audition',
+                    'https://hervenanfang.vercel.app/rma?utm_source=social&utm_medium=post&utm_campaign=audition_rma#audition',
                   )
                 }
                 className="flex-1 rounded border border-[#0A66C2]/50 bg-[#0A66C2]/20 px-3 py-2 text-xs font-medium text-white hover:bg-[#0A66C2] transition"
@@ -383,7 +383,7 @@ Tél/WhatsApp : +237 6 78 57 15 28`
                 onClick={() =>
                   handleShareFacebook(
                     RMA_POST_TEXT,
-                    'https://hervenanfang.vercel.app/rma?utm_source=social&utm_medium=post&utm_campaign=audition_rma_fev2026#audition',
+                    'https://hervenanfang.vercel.app/rma?utm_source=social&utm_medium=post&utm_campaign=audition_rma#audition',
                   )
                 }
                 className="flex-1 rounded border border-[#1877F2]/50 bg-[#1877F2]/20 px-3 py-2 text-xs font-medium text-white hover:bg-[#1877F2] transition"
@@ -633,14 +633,14 @@ Tél/WhatsApp : +237 6 78 57 15 28`
                 <input
                   type="text"
                   readOnly
-                  value="https://hervenanfang.vercel.app/rma?utm_source=meta_ads&utm_medium=cpc&utm_campaign=audition_rma_fev2026#audition"
+                  value="https://hervenanfang.vercel.app/rma?utm_source=meta_ads&utm_medium=cpc&utm_campaign=audition_rma#audition"
                   className="flex-1 rounded border border-white/10 bg-ink px-2.5 py-1.5 font-mono text-xs text-amber-300 select-all"
                 />
                 <button
                   type="button"
                   onClick={() =>
                     handleCopyText(
-                      'https://hervenanfang.vercel.app/rma?utm_source=meta_ads&utm_medium=cpc&utm_campaign=audition_rma_fev2026#audition',
+                      'https://hervenanfang.vercel.app/rma?utm_source=meta_ads&utm_medium=cpc&utm_campaign=audition_rma#audition',
                       'Lien sponsorisé RMA',
                     )
                   }

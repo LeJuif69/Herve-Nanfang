@@ -91,9 +91,9 @@ export default function ArticleDetail() {
             slug: article.slug,
             section: article.category,
             status: article.status,
-            image: (article as any).coverImage,
-            datePublished: (article as any).publishedAt || '2026-10-23',
-            dateModified: (article as any).updatedAt || '2026-10-26',
+            image: article.coverImage,
+            datePublished: article.publishedAt || undefined,
+            dateModified: article.updatedAt || undefined,
           }),
           breadcrumbSchema([
             { name: 'Accueil', path: '/' },

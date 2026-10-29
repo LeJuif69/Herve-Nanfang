@@ -78,7 +78,7 @@ const INITIAL_SERVICES: AdminService[] = [
 ]
 
 function getInitialArticles(): AdminArticle[] {
-  return ARTICLES.map((a: Article, index: number) => ({
+  return ARTICLES.map((a: Article) => ({
     id: `art-${a.slug}`,
     slug: a.slug,
     num: a.num,
@@ -95,8 +95,8 @@ function getInitialArticles(): AdminArticle[] {
     seoTitle: a.seoTitle,
     seoDescription: a.seoDescription,
     coverImage: '/og-image.jpg',
-    publishedAt: a.status === 'Publié' ? '2026-03-01T10:00:00Z' : undefined,
-    updatedAt: new Date(Date.now() - (index * 86400000)).toISOString(),
+    publishedAt: a.publishedAt,
+    updatedAt: a.updatedAt ?? '',
   }))
 }
 
@@ -337,8 +337,8 @@ function getInitialMedia(): AdminMedia[] {
       path: '09-fond-bureau.png',
       url: '/images/09-fond-bureau.png',
       filename: '09-fond-bureau.png',
-      altText: 'Espace de recherche artistique et bureau de production Alaiz Creative System',
-      caption: 'Espace de travail et direction générale Alaiz Creative System',
+      altText: 'Espace de recherche artistique et bureau de production ALAIZ Creative Systems',
+      caption: 'Espace de travail et direction générale ALAIZ Creative Systems',
       tags: ['Production', 'Direction', 'Studio'],
       mimeType: 'image/png',
       sizeBytes: 577186,
@@ -641,7 +641,7 @@ function getInitialSettings(): AdminSettings {
       href: l.href,
       verified: l.verifie,
     })),
-    promoBannerEnabled: true,
+    promoBannerEnabled: false,
     promoBannerCampaign: 'rma',
     googleAdsId: 'G-DMHQK0ELNX',
     webhookUrl: 'https://hervenanfang.app.n8n.cloud/webhook/publication-approved',
@@ -846,6 +846,7 @@ function sanitizeLoadedState(state: AdminState): AdminState {
   const settings = {
     ...getInitialSettings(),
     ...(state.settings || {}),
+    promoBannerEnabled: (!state.settings?.promoBannerCampaign || state.settings?.promoBannerCampaign === 'rma') ? false : Boolean(state.settings?.promoBannerEnabled),
     googleAdsId: currentGoogleTag,
     webhookUrl: currentWebhook || 'https://hervenanfang.app.n8n.cloud/webhook/publication-approved',
   }

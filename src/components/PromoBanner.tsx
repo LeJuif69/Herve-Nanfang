@@ -27,7 +27,7 @@ export default function PromoBanner() {
   if (location.pathname.startsWith('/admin')) return null
 
   const settings = state.settings
-  const isEnabled = settings.promoBannerEnabled ?? true
+  const isEnabled = settings.promoBannerEnabled ?? false
 
   if (!isEnabled || dismissed) return null
 
@@ -35,9 +35,9 @@ export default function PromoBanner() {
 
   // Définition des campagnes
   let badge = 'OFFRE SPÉCIALE'
-  let text = '15 Sessions d’Audition & Diagnostic Gratuit — Réseau Musical Africain (RMA)'
+  let text = 'Sessions d’Audition & Diagnostic — Racines Musicales Academy® (RMA)'
   let ctaText = 'Réserver mon audition'
-  let ctaLink = '/rma?utm_source=site&utm_medium=promo_banner&utm_campaign=audition_rma_fev2026#audition'
+  let ctaLink = '/rma?utm_source=site&utm_medium=promo_banner&utm_campaign=audition_rma#audition'
   let promoImg = '/images/cours-isma-synthese-1241.webp'
 
   if (campaign === 'pianobariste') {

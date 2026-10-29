@@ -70,7 +70,7 @@ export const personSchema: Record<string, unknown> = {
   ],
   worksFor: { '@id': ORG_ID },
   affiliation: MASTER_IDENTITY.marques
-    .filter((m) => m.nom.startsWith('Alaiz') || m.nom.startsWith('Racines'))
+    .filter((m) => m.nom.startsWith('Alaiz') || m.nom.startsWith('ALAIZ') || m.nom.startsWith('Racines'))
     .map((m) => ({ '@type': 'Organization', name: m.nom })),
   // sameAs : uniquement les liens officiels vérifiés (une URL erronée nuit
   // plus qu'une absence de lien). Voir `liensOfficiels` dans identity.ts.
@@ -82,7 +82,7 @@ export const organizationSchema: Record<string, unknown> = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': ORG_ID,
-  name: 'Alaiz Creative System',
+  name: 'ALAIZ Creative Systems',
   description:
     'Structure de production artistique, culturelle et technologique fondée par Hervé Nanfang : production musicale, événementiel, conseil en technologies créatives.',
   url: SITE.url,
@@ -184,7 +184,7 @@ export const conferenceEducationEventSchema = (input: {
   organizer: {
     '@id': ORG_ID,
     '@type': 'Organization',
-    name: 'Alaiz Creative System',
+    name: 'ALAIZ Creative Systems',
   },
   offers: {
     '@type': 'Offer',
@@ -276,8 +276,8 @@ export const articleSchema = (input: {
   image?: string
   authorName?: string
 }): Record<string, unknown> => {
-  const pubDate = input.datePublished || '2026-10-23'
-  const modDate = input.dateModified || pubDate
+  const pubDate = input.datePublished?.trim() || undefined
+  const modDate = input.dateModified?.trim() || pubDate
   const imageUrl = input.image
     ? input.image.startsWith('http')
       ? input.image
@@ -307,15 +307,15 @@ export const articleSchema = (input: {
     publisher: {
       '@type': 'Organization',
       '@id': ORG_ID,
-      name: 'Alaiz Creative System',
+      name: 'ALAIZ Creative Systems',
       url: SITE.url,
       logo: {
         '@type': 'ImageObject',
         url: `${SITE.url}/favicon.svg`,
       },
     },
-    datePublished: pubDate,
-    dateModified: modDate,
+    ...(pubDate ? { datePublished: pubDate } : {}),
+    ...(modDate ? { dateModified: modDate } : {}),
     ...(input.status === 'Publié' ? {} : { creativeWorkStatus: input.status }),
   }
 }

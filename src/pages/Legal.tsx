@@ -16,7 +16,7 @@ const CONTENT: Record<Kind, { title: string; eyebrow: string; path: string; lead
       {
         h: 'Éditeur du site',
         p: [
-          `Le présent site est édité par Hervé Nanfang, musicologue, artiste-musicien, pédagogue et ingénieur du son, exerçant au sein de l’écosystème et via la structure de production Alaiz Creative System.`,
+          `Le présent site est édité par Hervé Nanfang, musicologue, artiste-musicien, pédagogue et ingénieur du son, exerçant au sein de l’écosystème et via la structure de production ALAIZ Creative Systems.`,
           `Contact général : ${SITE.phones.map((phone) => phone.display).join(' · ')} — ${SITE.city}. Contact académique & RMA : ${SITE.emailRma}.`,
           'Direction éditoriale et artistique : Hervé Nanfang. Les coordonnées d’immatriculation fiscale (RCCM / numéro de contribuable) sont délivrées sur demande pour toute contractualisation institutionnelle.',
         ],
@@ -30,8 +30,8 @@ const CONTENT: Record<Kind, { title: string; eyebrow: string; path: string; lead
       {
         h: 'Propriété intellectuelle & marques',
         p: [
-          'L’ensemble des contenus de ce site — textes, méthodes pédagogiques, concepts, photographies, affiches, identités visuelles, publications et marques (notamment Le Pianobariste™, Racines Musicales Academy®, Permis de Jouer™, Musicien Augmenté™, LES ZIKOS®, Tswefap, Alaiz Creative System, Alaiz Music et Alaiz Patrimoine) — est protégé par le droit d’auteur et les traités internationaux de propriété intellectuelle.',
-          'Toute reproduction, représentation, adaptation ou exploitation, totale ou partielle, sans autorisation écrite préalable d’Hervé Nanfang ou de la structure Alaiz Creative System est formellement interdite.',
+          'L’ensemble des contenus de ce site — textes, méthodes pédagogiques, concepts, photographies, affiches, identités visuelles, publications et marques (notamment Le Pianobariste™, Racines Musicales Academy®, Permis de Jouer™, Musicien Augmenté™, LES ZIKOS®, Tswefap, ALAIZ Creative Systems, Alaiz Music et Alaiz Patrimoine) — est protégé par le droit d’auteur et les traités internationaux de propriété intellectuelle.',
+          'Toute reproduction, représentation, adaptation ou exploitation, totale ou partielle, sans autorisation écrite préalable d’Hervé Nanfang ou de la structure ALAIZ Creative Systems est formellement interdite.',
         ],
       },
       {

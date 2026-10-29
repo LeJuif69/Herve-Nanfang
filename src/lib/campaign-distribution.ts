@@ -592,7 +592,7 @@ ${thirdSection?.paragraphs?.slice(1).join('\n\n') || ''}
 ---
 
 ### À propos de l'auteur
-**Hervé Nanfang** est pianobariste professionnel, arrangeur et musicologue basé à Yaoundé (Cameroun). Fondateur d'**Alaiz Creative System** et de la **Racines Musicales Academy®**, il explore les passerelles entre traditions orales polyrythmiques d'Afrique centrale, sonorisation acoustique haute fidélité et technologies d'intelligence artificielle éthique.
+**Hervé Nanfang** est pianobariste professionnel, arrangeur et musicologue basé à Yaoundé (Cameroun). Fondateur d'**ALAIZ Creative Systems** et de la **Racines Musicales Academy®**, il explore les passerelles entre traditions orales polyrythmiques d'Afrique centrale, sonorisation acoustique haute fidélité et technologies d'intelligence artificielle éthique.
 
 Pour découvrir son répertoire live, ses masterclasses et ses autres travaux de recherche :
 👉 [Consulter le site officiel d’Hervé Nanfang](${utmMedium})`
@@ -651,7 +651,7 @@ Le texte complet et les références méthodologiques sont consultables à cette
 ${utmPress}
 
 ### Bio concise de l'auteur :
-Hervé Nanfang est pianobariste, musicologue et formateur. Fondateur d'Alaiz Creative System et de la Racines Musicales Academy® (RMA), il intervient régulièrement sur les questions de préservation du patrimoine immatériel et d'intégration éthique des technologies de production.
+Hervé Nanfang est pianobariste, musicologue et formateur. Fondateur d'ALAIZ Creative Systems et de la Racines Musicales Academy® (RMA), il intervient régulièrement sur les questions de préservation du patrimoine immatériel et d'intégration éthique des technologies de production.
 
 Je reste à votre entière disposition pour échanger et adapter ce texte aux exigences de votre ligne éditoriale.
 
