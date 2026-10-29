@@ -447,6 +447,7 @@ export interface AdminSettings {
   autoWebhookOnValidation?: boolean
   // Publicité & Pixels
   promoBannerEnabled?: boolean
+  promoBannerLegacyMigrated?: boolean
   promoBannerCampaign?: 'rma' | 'pianobariste' | 'custom'
   promoBannerCustomText?: string
   promoBannerCustomCta?: string

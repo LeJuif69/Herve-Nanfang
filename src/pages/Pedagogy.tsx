@@ -107,10 +107,10 @@ const PUBLICATIONS: PedagogicalResource[] = [
     meta: 'Hervé Nanfang · Racines Musicales Academy® / ALAIZ Creative Systems · Méthode continue',
     d: "Dispositif pédagogique instrument-agnostique conçu pour rendre lisibles les étapes d'apprentissage, définir des objectifs clairs et valider progressivement les compétences pratiques par soutenance en situation réelle.",
     sommaire: [
-      'Palier A / N1 (Ceinture Blanche) — Fondations & Éveil : posture, décontraction, lecture en clés de Sol et de Fa, pulsation et 3 pièces de mémoire',
+      'Palier A / N1 (Ceinture Blanche) — Fondations & Éveil : posture, décontraction, lecture en clés de Sol et de Fa, pulsation et premières pièces de mémoire',
       'Palier B / N2 (Ceinture Jaune) — Autonomie & Méthode : gammes, déchiffrage à vue, indépendance des mains, nuances et jeu collectif',
-      'Palier C / N3 (Ceinture Orange) — Expression & Interprétation : accords enrichis, polyrythmie africaine, improvisation modale et set de 8 morceaux',
-      'Palier D / N4 (Ceinture Rouge) — Scène, Studio & Professionnalisation : répertoire de scène (25+ morceaux), arrangement, direction musicale et jury professionnel',
+      'Palier C / N3 (Ceinture Orange) — Expression & Interprétation : accords enrichis, polyrythmie africaine, improvisation modale et répertoire autonome sans partition',
+      'Palier D / N4 (Ceinture Rouge) — Scène, Studio & Professionnalisation : répertoire de scène transversal, arrangement, direction musicale et jury professionnel',
     ],
     availability: 'Dispositif actif en vigueur au sein des cursus de la RMA ; détail des 4 paliers consultable sur cette page et sur la page RMA.',
     ctaLabel: 'Consulter les 4 paliers du Permis de Jouer™',

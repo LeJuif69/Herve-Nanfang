@@ -642,6 +642,7 @@ function getInitialSettings(): AdminSettings {
       verified: l.verifie,
     })),
     promoBannerEnabled: false,
+    promoBannerLegacyMigrated: true,
     promoBannerCampaign: 'rma',
     googleAdsId: 'G-DMHQK0ELNX',
     webhookUrl: 'https://hervenanfang.app.n8n.cloud/webhook/publication-approved',
@@ -846,11 +847,12 @@ function sanitizeLoadedState(state: AdminState): AdminState {
   const settings = {
     ...getInitialSettings(),
     ...(state.settings || {}),
-    promoBannerEnabled: (!state.settings?.promoBannerCampaign || state.settings?.promoBannerCampaign === 'rma') ? false : Boolean(state.settings?.promoBannerEnabled),
+    promoBannerEnabled: state.settings?.promoBannerLegacyMigrated ? Boolean(state.settings?.promoBannerEnabled) : false,
+    promoBannerLegacyMigrated: true,
     googleAdsId: currentGoogleTag,
     webhookUrl: currentWebhook || 'https://hervenanfang.app.n8n.cloud/webhook/publication-approved',
   }
-  if (!currentWebhook || rawGoogleTag !== currentGoogleTag) {
+  if (!currentWebhook || rawGoogleTag !== currentGoogleTag || !state.settings?.promoBannerLegacyMigrated) {
     hasChanges = true
   }
 
@@ -986,7 +988,7 @@ export const adminStore = {
           coverPreset: row.cover_preset || 'original',
           coverAlt: row.cover_alt,
           publishedAt: row.published_at,
-          updatedAt: row.updated_at || new Date().toISOString(),
+          updatedAt: row.updated_at || '',
         }))
         updated = true
       }
@@ -1013,7 +1015,7 @@ export const adminStore = {
           coverFocalY: row.cover_focal_y,
           coverPreset: row.cover_preset || 'original',
           coverAlt: row.cover_alt,
-          updatedAt: row.updated_at || new Date().toISOString(),
+          updatedAt: row.updated_at || '',
         }))
         updated = true
       }
@@ -1065,7 +1067,14 @@ export const adminStore = {
       if (setRes.data && setRes.data.length > 0) {
         const generalSetting = setRes.data.find((row: any) => row.key === 'general')
         if (generalSetting && generalSetting.value) {
-          next.settings = { ...next.settings, ...generalSetting.value }
+          next.settings = {
+            ...next.settings,
+            ...generalSetting.value,
+            promoBannerEnabled: generalSetting.value.promoBannerLegacyMigrated
+              ? Boolean(generalSetting.value.promoBannerEnabled)
+              : false,
+            promoBannerLegacyMigrated: true,
+          }
           updated = true
         }
       }
@@ -1099,7 +1108,7 @@ export const adminStore = {
           notes: row.notes,
           publishedAt: row.published_at,
           createdAt: row.created_at || row.updated_at || new Date().toISOString(),
-          updatedAt: row.updated_at || new Date().toISOString(),
+          updatedAt: row.updated_at || '',
         }))
 
         // Merge non-destructif : remote prend la priorité, conservation des publications locales non encore envoyées
@@ -1137,7 +1146,7 @@ export const adminStore = {
         cover_image: a.coverImage,
         seo_title: a.seoTitle,
         seo_description: a.seoDescription,
-        published_at: a.publishedAt || (a.status === 'Publié' ? new Date().toISOString() : null),
+        published_at: a.publishedAt || null,
       }))
 
       const { error: artErr } = await supabase.from('articles').upsert(articlesRows, { onConflict: 'slug' })

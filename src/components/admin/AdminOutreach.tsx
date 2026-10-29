@@ -149,7 +149,7 @@ export const AdminOutreach: React.FC<AdminOutreachProps> = ({ showToast }) => {
 
 Trop souvent, la pratique musicale reste cantonnée aux automatismes d'oreille ou à des approches théoriques déconnectées de la richesse de nos patrimoines (Makossa, Mangambeu, Bikutsi, Highlife, Jazz...).
 
-À travers la Racines Musicales Academy® (RMA) et la méthode Le Permis de Jouer™, nous ouvrons cette semaine 15 créneaux d'évaluation et de diagnostic d'audition gratuits pour :
+À travers la Racines Musicales Academy® (RMA) et la méthode Le Permis de Jouer™, nous proposons des séances d'évaluation et de diagnostic d'orientation sur candidature pour :
 ✔️ Analyser votre aisance au clavier et votre compréhension harmonique.
 ✔️ Identifier précisément vos points de blocage technique et rythmique.
 ✔️ Vous orienter vers un parcours structuré adapté à vos ambitions artistiques.
@@ -347,7 +347,7 @@ Tél/WhatsApp : +237 6 78 57 15 28`
               <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
                 <img
                   src="/images/cours-isma-synthese-1241.webp"
-                  alt="15 Auditions Diagnostic RMA"
+                  alt="Auditions & Diagnostic d'Orientation RMA"
                   className="h-16 w-24 rounded object-cover border border-white/10 shrink-0"
                 />
                 <div className="flex-1">
@@ -357,7 +357,7 @@ Tél/WhatsApp : +237 6 78 57 15 28`
                     </span>
                     <span className="text-xs text-ivory/50">Cible : Musiciens & Élèves</span>
                   </div>
-                  <h4 className="font-semibold text-ivory mt-1">15 Auditions Gratuites Diagnostic RMA</h4>
+                  <h4 className="font-semibold text-ivory mt-1">Auditions & Diagnostic d’Orientation RMA</h4>
                 </div>
               </div>
               <p className="text-xs text-ivory/70 line-clamp-4 mt-2 font-mono whitespace-pre-wrap bg-ink-2 p-3 rounded border border-white/5">

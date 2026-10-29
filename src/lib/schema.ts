@@ -215,7 +215,7 @@ export const permisDeJouerProgramSchema = (): Record<string, unknown> => ({
     {
       '@type': 'Course',
       name: 'Permis A (Ceinture Blanche) — Fondations & Éveil',
-      description: 'Posture, décontraction, lecture en clés de Sol et de Fa, pulsation et 3 pièces de mémoire.',
+      description: 'Posture, décontraction, lecture en clés de Sol et de Fa, pulsation et premières pièces de mémoire.',
       timeToComplete: 'P3M/P6M',
     },
     {
@@ -227,13 +227,13 @@ export const permisDeJouerProgramSchema = (): Record<string, unknown> => ({
     {
       '@type': 'Course',
       name: 'Permis C (Ceinture Orange) — Expression & Interprétation',
-      description: 'Accords enrichis, polyrythmie africaine, improvisation modale et set de 8 morceaux.',
+      description: 'Accords enrichis, polyrythmie africaine, improvisation modale et répertoire autonome sans partition.',
       timeToComplete: 'P9M/P12M',
     },
     {
       '@type': 'Course',
       name: 'Permis D (Ceinture Rouge) — Scène, Studio & Professionnalisation',
-      description: 'Répertoire de scène (25+ morceaux), arrangement, direction musicale et jury professionnel.',
+      description: 'Répertoire de scène transversal, arrangement, direction musicale et jury professionnel.',
       timeToComplete: 'P12M/P18M',
     },
   ],
