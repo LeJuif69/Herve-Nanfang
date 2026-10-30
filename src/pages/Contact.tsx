@@ -19,7 +19,13 @@ import { breadcrumbSchema, personSchema, serviceSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 import { adminStore } from '../lib/admin-store'
 import { formatAttributionTag } from '../lib/utm-tracker'
-import { trackLeadConversion } from '../lib/ad-pixels'
+import {
+  trackContactMethodClick,
+  trackFormStart,
+  trackFormSubmitError,
+  trackFormSubmitSuccess,
+  trackLeadConversion,
+} from '../lib/ad-pixels'
 
 type FormState = {
   name: string
@@ -143,9 +149,11 @@ export default function Contact() {
     })
     setSending(false)
     if (res.ok) {
+      trackFormSubmitSuccess('contact_form', form.route)
       trackLeadConversion('contact', { route: form.route, category: 'Contact Form' })
       setSubmitted(true)
     } else {
+      trackFormSubmitError('contact_form', 'submission_failed')
       setSendError(
         'L’envoi n’a pas abouti. Votre demande n’a pas été reçue : réessayez, ou envoyez-la directement par WhatsApp ci-dessous.',
       )
@@ -239,6 +247,7 @@ export default function Contact() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackContactMethodClick('whatsapp', form.route)}
                       className="btn btn-gold"
                     >
                       WhatsApp · {link.display}
@@ -257,7 +266,12 @@ export default function Contact() {
                 </div>
               </div>
             ) : (
-              <form className="mt-10 space-y-6" onSubmit={onSubmit} noValidate>
+              <form
+                className="mt-10 space-y-6"
+                onSubmit={onSubmit}
+                onFocus={() => trackFormStart('contact_form', form.route)}
+                noValidate
+              >
                 <div className="grid gap-6 sm:grid-cols-2">
                   <div>
                     <label htmlFor="name" className="eyebrow text-ivory/50">

@@ -63,7 +63,7 @@ const DISCIPLINES = [
 const PROGRAMMES = [
   {
     title: 'Cours individuel hebdomadaire',
-    text: 'Piano, chant, guitare, basse ou batterie : cours de 45 min à 1 h, plan de progression personnalisé selon le palier Permis de Jouer™, suivi trimestriel et accès aux ressources pédagogiques RMA.',
+    text: 'Piano, chant, guitare, basse ou batterie : cours de 45 min à 1 h, plan de progression personnalisé selon le palier Permis de Jouer, suivi trimestriel et accès aux ressources pédagogiques RMA.',
     icon: '♩',
     highlights: [
       'Studio RMA Yaoundé ou cours à distance (Zoom / WhatsApp)',
@@ -132,7 +132,7 @@ export default function RMA() {
     <>
       <PageHero
         breadcrumb="RMA"
-        eyebrow="Racines Musicales Academy®"
+        eyebrow="Racines Musicales Academy"
         title="Former des musiciens capables de jouer, comprendre, transmettre et évoluer"
         lead="La RMA est un dispositif de formation musicale fondé sur une conviction : apprendre la musique ne devrait jamais signifier perdre son identité. Méthode rigoureuse, patrimoine africain vivant, progression lisible."
       >
@@ -255,7 +255,7 @@ export default function RMA() {
             Ce que disent les élèves et partenaires de la RMA
           </Display>
           <Lead className="mt-4 max-w-2xl">
-            Élèves adultes, enfants, musiciens professionnels et responsables pédagogiques — ils témoignent de leur parcours au sein de la Racines Musicales Academy®.
+            Élèves adultes, enfants, musiciens professionnels et responsables pédagogiques — ils témoignent de leur parcours au sein de la Racines Musicales Academy (RMA).
           </Lead>
         </Reveal>
 
@@ -353,7 +353,7 @@ export default function RMA() {
                 <div className="md:col-span-4 relative min-h-[220px] overflow-hidden bg-ink-2">
                   <img
                     src="/images/cours-isma-synthese-1241.webp"
-                    alt="15 Sessions d’Audition & Diagnostic Gratuit — Racines Musicales Academy® (RMA)"
+                    alt="15 Sessions d’Audition & Diagnostic Gratuit — Racines Musicales Academy (RMA)"
                     className="h-full w-full object-cover object-center"
                     loading="lazy"
                   />
@@ -367,7 +367,7 @@ export default function RMA() {
                 <div className="md:col-span-8 p-6 md:p-8 flex flex-col justify-between">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-white/10 pb-4">
                     <div>
-                      <p className="eyebrow text-gold font-mono">✦ Méthode Permis de Jouer™</p>
+                      <p className="eyebrow text-gold font-mono">✦ Référentiel Permis de Jouer</p>
                       <h3 className="mt-1 font-display text-2xl md:text-3xl text-ivory">
                         Séance Diagnostique & Positionnement par Paliers
                       </h3>
@@ -418,7 +418,7 @@ export default function RMA() {
                         <span className="font-mono text-xs font-bold text-gold bg-gold/15 px-2 py-0.5 rounded border border-gold/30">
                           Palier {p.code}
                         </span>
-                        <span className="text-[0.62rem] text-ivory/40 uppercase tracking-wider font-mono">Permis™</span>
+                        <span className="text-[0.62rem] text-ivory/40 uppercase tracking-wider font-mono">Permis RMA</span>
                       </div>
                       <h4 className="mt-3 font-display text-lg text-ivory">{p.label}</h4>
                       <p className="mt-2 text-[0.72rem] leading-relaxed text-ivory/65">{p.focus}</p>

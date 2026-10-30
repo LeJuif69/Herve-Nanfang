@@ -2,7 +2,13 @@ import { useState, type FormEvent } from 'react'
 import { SITE } from '../data/site'
 import { adminStore } from '../lib/admin-store'
 import { formatAttributionTag } from '../lib/utm-tracker'
-import { trackLeadConversion } from '../lib/ad-pixels'
+import {
+  trackContactMethodClick,
+  trackFormStart,
+  trackFormSubmitError,
+  trackFormSubmitSuccess,
+  trackLeadConversion,
+} from '../lib/ad-pixels'
 
 export default function RMAAuditionForm() {
   const [discipline, setDiscipline] = useState('Piano classique, jazz & musiques actuelles')
@@ -60,9 +66,11 @@ ${musicalGoals || 'Non renseigné'}
 
     setIsSending(false)
     if (res.ok) {
+      trackFormSubmitSuccess('rma_audition_form', discipline)
       trackLeadConversion('rma_audition', { category: 'RMA Audition', route: discipline })
       setIsSuccess(true)
     } else {
+      trackFormSubmitError('rma_audition_form', 'submission_failed')
       setSendError(
         "L’envoi direct n’a pas abouti. Votre candidature n'a pas pu être transmise au serveur : réessayez ou envoyez-la directement par WhatsApp."
       )
@@ -94,7 +102,7 @@ ${musicalGoals || 'Non renseigné'}
           </h3>
           <p className="mt-2 text-xs text-ivory/70 max-w-xl leading-relaxed">
             Remplissez ce formulaire d'audition pour planifier votre séance d'évaluation diagnostique
-            et déterminer votre palier d'entrée au sein du Permis de Jouer™.
+            et déterminer votre palier d'entrée au sein du référentiel Permis de Jouer.
           </p>
         </div>
 
@@ -127,6 +135,7 @@ ${musicalGoals || 'Non renseigné'}
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackContactMethodClick('whatsapp', 'rma_audition')}
               className="btn btn-gold text-xs uppercase tracking-wider font-bold px-5 py-2.5 inline-flex items-center gap-2"
             >
               <span>Envoyer sur WhatsApp direct</span>
@@ -142,7 +151,11 @@ ${musicalGoals || 'Non renseigné'}
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="mt-8 grid gap-6 md:grid-cols-2">
+        <form
+          onSubmit={handleSubmit}
+          onFocus={() => trackFormStart('rma_audition_form', discipline)}
+          className="mt-8 grid gap-6 md:grid-cols-2"
+        >
           {/* 1. Discipline */}
           <div>
             <label className="block text-xs font-semibold uppercase tracking-wider text-ivory/70 mb-2">

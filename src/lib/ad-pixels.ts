@@ -149,3 +149,47 @@ export function trackContentView(contentName: string, category: string = 'Servic
     content_category: category,
   })
 }
+
+/* ============================================================================
+ * TAXONOMIE DES 8 ÉVÉNEMENTS DE CONVERSION NON-SENSIBLES (HN MASTER v3.0)
+ * Aucune donnée personnelle (nom, email, téléphone, message) n'est transmise.
+ * ============================================================================ */
+
+function currentPath(): string {
+  return typeof window !== 'undefined' ? window.location.pathname : '/'
+}
+
+export function trackCtaClick(ctaId: string, offerType: string, placement: string = 'page'): void {
+  trackAdEvent('cta_click', { cta_id: ctaId, offer_type: offerType, placement, page: currentPath() })
+}
+
+export function trackContactMethodClick(
+  method: 'email' | 'phone' | 'whatsapp',
+  offerType: string = 'general',
+): void {
+  trackAdEvent('contact_method_click', { method, offer_type: offerType, page: currentPath() })
+}
+
+export function trackFormStart(formId: string, motive: string): void {
+  trackAdEvent('form_start', { form_id: formId, motive, page: currentPath() })
+}
+
+export function trackFormSubmitSuccess(formId: string, motive: string): void {
+  trackAdEvent('form_submit_success', { form_id: formId, motive, page: currentPath() })
+}
+
+export function trackFormSubmitError(formId: string, errorCategory: string): void {
+  trackAdEvent('form_submit_error', { form_id: formId, error_category: errorCategory, page: currentPath() })
+}
+
+export function trackMediaPlay(mediaId: string, type: 'audio' | 'video'): void {
+  trackAdEvent('media_play', { media_id: mediaId, type, page: currentPath() })
+}
+
+export function trackEpkDownload(assetId: string): void {
+  trackAdEvent('epk_download', { asset_id: assetId, page: currentPath() })
+}
+
+export function trackResourceDownload(resourceId: string, status: string): void {
+  trackAdEvent('resource_download', { resource_id: resourceId, status, page: currentPath() })
+}

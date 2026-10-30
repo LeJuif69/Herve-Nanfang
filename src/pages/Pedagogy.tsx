@@ -65,10 +65,10 @@ const INSTITUTIONS = [
     role: 'Enseignant vacataire en audiofréquence (2020–2021) : MAO, prise et traitement du son, formes et genres musicaux, travaux dirigés.',
   },
   {
-    nom: 'RMA®',
-    full: 'Racines Musicales Academy®',
+    nom: 'RMA',
+    full: 'Racines Musicales Academy',
     ville: 'Yaoundé, Cameroun',
-    role: 'Fondateur — conception de curricula, Permis de Jouer™ (N1 à N4), socle RMA-01 (Pulsation & Body) et Programme Vacances Utiles.',
+    role: 'Fondateur — conception de curricula, référentiel Permis de Jouer (N1 à N4), socle RMA-01 (Pulsation & Body) et Programme Vacances Utiles.',
   },
 ]
 
@@ -101,33 +101,33 @@ type PedagogicalResource = {
 
 const PUBLICATIONS: PedagogicalResource[] = [
   {
-    t: 'Permis de Jouer™ — Système de progression N1 à N4',
+    t: 'Permis de Jouer — Référentiel de progression N1 à N4',
     group: 'disponible',
     statusLabel: 'Actif · RMA',
-    meta: 'Hervé Nanfang · Racines Musicales Academy® · Méthode continue',
-    d: "Dispositif pédagogique instrument-agnostique conçu pour rendre lisibles les étapes d'apprentissage, définir des objectifs clairs et valider progressivement les compétences pratiques par soutenance en situation réelle.",
+    meta: 'Hervé Nanfang · Racines Musicales Academy (RMA) · Référentiel interne continu',
+    d: "Référentiel pédagogique instrument-agnostique conçu au sein de la RMA pour rendre lisibles les étapes d'apprentissage, définir des objectifs clairs et valider progressivement les compétences pratiques par soutenance en situation réelle.",
     sommaire: [
       'Palier A / N1 (Ceinture Blanche) — Fondations & Éveil : posture, décontraction, lecture en clés de Sol et de Fa, pulsation et premières pièces de mémoire',
       'Palier B / N2 (Ceinture Jaune) — Autonomie & Méthode : gammes, déchiffrage à vue, indépendance des mains, nuances et jeu collectif',
       'Palier C / N3 (Ceinture Orange) — Expression & Interprétation : accords enrichis, polyrythmie africaine, improvisation modale et répertoire autonome sans partition',
-      'Palier D / N4 (Ceinture Rouge) — Scène, Studio & Professionnalisation : répertoire de scène transversal, arrangement, direction musicale et jury professionnel',
+      'Palier D / N4 (Ceinture Rouge) — Scène, Studio & Professionnalisation : répertoire de scène transversal, arrangement, direction musicale et récital devant jury RMA',
     ],
-    availability: 'Dispositif actif en vigueur au sein des cursus de la RMA ; détail des 4 paliers consultable sur cette page et sur la page RMA.',
-    ctaLabel: 'Consulter les 4 paliers du Permis de Jouer™',
+    availability: 'Référentiel interne actif en vigueur au sein des cursus de la RMA ; détail des 4 paliers consultable sur cette page et sur la page RMA.',
+    ctaLabel: 'Consulter les 4 paliers du Permis de Jouer',
     ctaTo: '/rma#permis-de-jouer',
   },
   {
     t: 'RMA-01 — Fondamentaux du Musicien (Unité « Pulsation & Body »)',
     group: 'disponible',
     statusLabel: 'Actif · Cursus RMA 2026',
-    meta: 'Hervé Nanfang · Racines Musicales Academy® · Socle d’apprentissage · 2026',
+    meta: 'Hervé Nanfang · Racines Musicales Academy (RMA) · Socle d’apprentissage · 2026',
     d: "Socle pédagogique d'initiation et de consolidation : pulsation, coordination corporelle, écoute analytique et repères collectifs (Unité « Pulsation & Body »).",
     sommaire: [
       'Pulsation et repères rythmiques fondamentaux',
       'Coordination corporelle appliquée (Unité « Pulsation & Body »)',
       'Écoute analytique et pratique collective en ensemble',
     ],
-    availability: 'Module actif enseigné au sein des parcours de la Racines Musicales Academy® (Yaoundé).',
+    availability: 'Module actif enseigné au sein des parcours de la Racines Musicales Academy (Yaoundé).',
     ctaLabel: 'Candidater à une audition d’orientation RMA',
     ctaTo: '/rma#audition',
   },
@@ -147,10 +147,10 @@ const PUBLICATIONS: PedagogicalResource[] = [
     ctaTo: '/contact#formation',
   },
   {
-    t: 'LES ZIKOS® — Manuel pédagogique (68 pages)',
+    t: 'Les Zikos — Manuel pédagogique (68 pages)',
     group: 'preparation',
     statusLabel: 'En cours de restructuration éditoriale',
-    meta: 'Hervé Nanfang · Univers A Laiz Ô Pays · Manuel pédagogique de 68 pages · 2026',
+    meta: 'Hervé Nanfang · Manifeste A Laiz Ô Pays · Manuel pédagogique de 68 pages · 2026',
     d: "Ouvrage pédagogique de référence de 68 pages en cours de restructuration éditoriale et graphique : progression par unités thématiques, harmonisation des notions et exercices instrumentaux applicables dès le premier cours.",
     sommaire: [
       'Progression méthodologique : de la pulsation corporelle et de l’oreille musicale vers la lecture de partition et les notions harmoniques fondamentales',
@@ -353,7 +353,7 @@ export default function Pedagogy() {
           {/* RMA */}
           <Reveal>
             <SpotlightCard className="h-full border-white/10 bg-ink p-8 md:p-10">
-              <Eyebrow>Racines Musicales Academy®</Eyebrow>
+              <Eyebrow>Racines Musicales Academy</Eyebrow>
               <h3 className="mt-6 font-display text-3xl text-ivory">RMA</h3>
               <p className="mt-5 text-[15px] leading-[1.85] text-ivory/65">
                 Un projet de formation musicale qui relie les pratiques contemporaines et le
@@ -380,11 +380,11 @@ export default function Pedagogy() {
           {/* Permis de Jouer */}
           <Reveal delay={120}>
             <SpotlightCard className="h-full border-white/10 bg-ink p-8 md:p-10">
-              <Eyebrow>Permis de Jouer™</Eyebrow>
-              <h3 className="mt-6 font-display text-3xl text-ivory">Progression & certification</h3>
+              <Eyebrow>Permis de Jouer</Eyebrow>
+              <h3 className="mt-6 font-display text-3xl text-ivory">Progression & validation par paliers</h3>
               <p className="mt-5 text-[15px] leading-[1.85] text-ivory/65">
-                Un système de progression et de certification qui rend l'apprentissage lisible :
-                paliers clairement définis, compétences validées, objectifs explicites pour l'élève,
+                Un référentiel interne de progression et d'évaluation par compétences qui rend l'apprentissage lisible :
+                paliers clairement définis, compétences validées en situation réelle, objectifs explicites pour l'élève,
                 ses parents et l'enseignant. Fin de l'évaluation floue, début d'une progression
                 visible et motivante.
               </p>
@@ -400,12 +400,12 @@ export default function Pedagogy() {
               </div>
 
               <div className="mt-7 flex flex-wrap gap-2">
-                {['Paliers', 'Compétences', 'Certification', 'Autonomie'].map((t) => (
+                {['Paliers N1–N4', 'Compétences', 'Validation interne RMA', 'Autonomie'].map((t) => (
                   <Tag key={t}>{t}</Tag>
                 ))}
               </div>
               <p className="mt-6 text-[0.68rem] uppercase tracking-[0.2em] text-ivory/40">
-                Une initiative développée par Hervé Nanfang
+                Une méthode développée par Hervé Nanfang au sein de la RMA
               </p>
               <div className="mt-5">
                 <ArrowLink to="/rma#permis-de-jouer">Découvrir les 4 Paliers & Candidatures</ArrowLink>
@@ -436,7 +436,7 @@ export default function Pedagogy() {
             <div className="mt-9">
               <div className="flex flex-wrap gap-5">
                 <ArrowLink to="/contact#formation">Solliciter un plan de cours ou partenariat</ArrowLink>
-                <ArrowLink to="/rma#permis-de-jouer">Consulter les 4 paliers du Permis de Jouer™</ArrowLink>
+                <ArrowLink to="/rma#permis-de-jouer">Consulter les 4 paliers du Permis de Jouer</ArrowLink>
               </div>
               <p className="mt-4 text-xs leading-relaxed text-ivory/45">
                 Distinction explicite : les dispositifs et supports de cours actifs en formation sont distingués ci-contre des ouvrages et manuels actuellement en cours de restructuration éditoriale ou de rédaction.

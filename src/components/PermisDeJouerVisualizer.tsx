@@ -78,8 +78,8 @@ export const PALIERS_DATA: PalierDetail[] = [
     couleurCode: '#EF4444',
     badgeBg: 'bg-red-500/15 border-red-500/40 text-red-400',
     badgeText: 'Excellence & Professionnalisation',
-    titre: 'Exercer son métier / Récital diplômant',
-    dureeMoyenne: 'Cycle professionnel (1 an)',
+    titre: 'Exercer son métier / Récital de fin de cycle',
+    dureeMoyenne: 'Cycle avancé (1 an)',
     profil: 'Musiciens professionnels, chefs de chœur, futurs enseignants et artistes de scène',
     objectifs: [
       'Direction de répétition, balance régie autonome et maîtrise du protocole de scène',
@@ -87,7 +87,7 @@ export const PALIERS_DATA: PalierDetail[] = [
       'Direction artistique d’un enregistrement studio ou d’un spectacle vivant complet',
       'Maîtrise des outils technologiques : MAO, enregistrement numérique et hybridation IA raisonnée',
     ],
-    epreuveValidation: 'Grand Récital public validé par un jury d’experts et remise officielle du Certificat RMA.',
+    epreuveValidation: 'Grand Récital public évalué par un jury interne et remise de l’Attestation de Palier D (RMA).',
   },
 ]
 
@@ -104,15 +104,15 @@ export default function PermisDeJouerVisualizer() {
           <div className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-gold animate-pulse" />
             <span className="font-mono text-xs uppercase tracking-wider text-gold">
-              Dispositif Exclusif · Méthode Déposée RMA®
+              Référentiel Pédagogique · Racines Musicales Academy (RMA)
             </span>
           </div>
           <h3 className="mt-2 font-display text-2xl text-ivory md:text-3xl">
-            Le Permis de Jouer™ : Quatre Paliers d'Excellence
+            Le Permis de Jouer : Quatre Paliers de Progression
           </h3>
           <p className="mt-2 text-xs text-ivory/70 max-w-2xl leading-relaxed">
-            Inspiré de la progression par ceintures et permis de compétences, ce cadre breveté rend
-            l'apprentissage musical transparent, motivant et rigoureux. Aucun flou : chaque étape valide des acquis techniques et artistiques mesurables.
+            Inspiré de la progression par ceintures et paliers de compétences, ce référentiel conçu par Hervé Nanfang au sein de la RMA rend
+            l'apprentissage musical transparent, motivant et rigoureux. Aucun flou : chaque étape valide en situation réelle des acquis techniques et artistiques mesurables.
           </p>
         </div>
 
@@ -210,11 +210,11 @@ export default function PermisDeJouerVisualizer() {
           </div>
         </div>
 
-        {/* Épreuve de validation officielle */}
+        {/* Épreuve de validation interne RMA */}
         <div className="rounded-xl border border-gold/25 bg-gold/5 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <span className="font-mono text-[0.68rem] uppercase tracking-wider text-gold block">
-              Modalité d'évaluation certifiante
+              Modalité de validation interne RMA
             </span>
             <p className="mt-1 text-xs text-ivory/90 font-medium">
               {activePalier.epreuveValidation}

@@ -4,6 +4,8 @@ import { NAV_PRIMARY, NAV_SECONDARY, SITE } from '../data/site'
 import { IDENTITY } from '../data/identity'
 import { Container, Eyebrow, Rule } from './ui'
 import SocialButtons from './SocialButtons'
+import { adminStore } from '../lib/admin-store'
+import { trackFormSubmitSuccess, trackLeadConversion } from '../lib/ad-pixels'
 
 const DERIVED_MARKS = [
   { name: 'A Laiz Ô Pays', role: 'Manifeste & philosophie culturelle fondatrice' },
@@ -32,9 +34,23 @@ export default function Footer() {
           </div>
           <form
             className="flex flex-col gap-3 sm:flex-row"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault()
-              const message = `Je souhaite m’inscrire à la lettre du Journal du Musicien Augmenté. Mon adresse email : ${email}`
+              const cleanEmail = email.trim()
+              if (!cleanEmail) return
+              try {
+                await adminStore.addIncomingMessage({
+                  name: 'Abonné Lettre du Journal',
+                  email: cleanEmail,
+                  route: 'newsletter',
+                  body: `Inscription à la lettre d'information du Journal du Musicien Augmenté (${cleanEmail}).`,
+                })
+                trackFormSubmitSuccess('newsletter_footer', 'newsletter')
+                trackLeadConversion('newsletter_signup', { category: 'Newsletter' })
+              } catch {
+                // Fallback silencieux vers WhatsApp si hors-ligne
+              }
+              const message = `Je souhaite m’inscrire à la lettre du Journal du Musicien Augmenté. Mon adresse email : ${cleanEmail}`
               window.open(
                 `https://wa.me/${SITE.phones[0].whatsapp}?text=${encodeURIComponent(message)}`,
                 '_blank',
@@ -56,12 +72,12 @@ export default function Footer() {
               className="w-full border border-white/15 bg-transparent px-5 py-4 text-sm text-ivory placeholder:text-ivory/35 focus:border-gold focus:outline-none"
             />
             <button type="submit" className="btn btn-gold shrink-0">
-              S’inscrire via WhatsApp
+              S’inscrire (Email & WhatsApp)
             </button>
           </form>
           {sent && (
             <p className="text-xs text-gold lg:col-start-2">
-              WhatsApp s’ouvre avec votre demande préremplie. Relisez puis envoyez le message pour vous inscrire.
+              Votre adresse e-mail a été enregistrée. WhatsApp s’ouvre également avec un message prérempli pour confirmation directe.
             </p>
           )}
         </div>

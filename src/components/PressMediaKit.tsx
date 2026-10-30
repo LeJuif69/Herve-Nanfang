@@ -7,6 +7,7 @@ import liveBand from '../assets/live-band.webp'
 import portraitStudio from '../assets/portrait.webp'
 import { MASTER_IDENTITY } from '../data/identity'
 import { SITE } from '../data/site'
+import { trackContactMethodClick, trackEpkDownload } from '../lib/ad-pixels'
 
 export type BioFormat = 'express' | 'courte' | 'moyenne' | 'longue' | 'reference'
 
@@ -190,6 +191,7 @@ export function PressBiographies() {
     document.body.appendChild(element)
     element.click()
     document.body.removeChild(element)
+    trackEpkDownload(`bio-${activeBio.id}`)
   }
 
   const countWords = (str: string) => str.trim().split(/\s+/).filter(Boolean).length
@@ -436,13 +438,15 @@ export default function PressMediaKit() {
               href="https://canva.link/2l6atbuzkax2k6g"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEpkDownload('portfolio-canva')}
               className="inline-flex items-center gap-2 border border-gold bg-gold px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-ink transition-all hover:bg-gold-2 hover:shadow-lg hover:shadow-gold/20"
             >
               <span>Portfolio & CV Interactif (Canva)</span>
               <span>↗</span>
             </a>
             <a
-              href="mailto:hervenanfang@gmail.com?subject=[Presse%20%2F%20Media]%20Demande%20d%27interview%20ou%20visuels"
+              href={`mailto:${SITE.emailContact}?subject=[Presse%20%2F%20Media]%20Demande%20d%27interview%20ou%20visuels`}
+              onClick={() => trackContactMethodClick('email', 'presse')}
               className="inline-flex items-center gap-2 border border-gold/50 bg-gold/10 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-gold-2 transition-all hover:bg-gold hover:text-ink"
             >
               <span>Contacter le service presse</span>
