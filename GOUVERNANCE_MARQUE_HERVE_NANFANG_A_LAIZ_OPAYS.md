@@ -70,9 +70,14 @@ HERVÉ NANFANG (Identité personnelle, professionnelle et publique centrale)
         │     ├── Domaine : Studio & Production Musicale (ex-Alaiz Music absorbé en service explicite)
         │     └── Œuvre scénique : Le Concert des Guérisseurs
         ├── PILIER 2 — PÉDAGOGIE & TRANSMISSION (Transmettre)
-        │     ├── Signature : Racines Musicales Academy — RMA (Académie de formation musicale & curricula)
-        │     ├── Méthode interne RMA : Permis de Jouer (Référentiel de progression N1 à N4)
-        │     └── Ouvrage éditorial : Les Zikos (Manuel pédagogique de 68 pages)
+        │     ├── Signature : A Laiz Academy (anciennement Racines Musicales Academy — RMA)
+        │     │     ├── Permis de Jouer (Référentiel de progression N1 à N4)
+        │     │     ├── Les Zikos (Éveil & Pratique d'ensemble, manuel de 68 p.)
+        │     │     ├── Formation musicale (Harmonie, solfège & oreille)
+        │     │     ├── MAO & Home Studio
+        │     │     ├── Composition & Arrangement
+        │     │     ├── Musicologie & Traditions orales
+        │     │     └── Ressources pédagogiques & Masterclasses
         └── PILIER 3 — RECHERCHE, PATRIMOINE & IA (Augmenter & Développer)
               ├── Signature : Musicien Augmenté (Approche méthodologique et conférences IA × Musique)
               ├── Recherche : Tswefap & Batoufam (Système d'écriture & documentation linguistique)
@@ -82,7 +87,7 @@ HERVÉ NANFANG (Identité personnelle, professionnelle et publique centrale)
 ### 4.2 Règles d'articulation, de sobriété éditoriale et de pérennité (10–20 ans)
 - **A Laiz Ô Pays** est positionné comme le **manifeste culturel et artistique fondateur** de Hervé Nanfang, jamais comme un pseudonyme ou une holding écran.
 - **Hervé Nanfang** reste la racine unique d'autorité et de signature.
-- **Règle d'or d'intégration des futurs projets (10–20 ans)** : *Aucun nouveau projet créé à l'avenir ne doit devenir une nouvelle marque de premier niveau. Il doit obligatoirement trouver sa place dans l'un des trois grands pôles (**Le Pianobariste**, **Racines Musicales Academy**, **Musicien Augmenté**) ou rester simplement une œuvre, un programme ou une publication rattachée à **Hervé Nanfang**.*
+- **Règle d'or d'intégration des futurs projets (10–20 ans)** : *Aucun nouveau projet créé à l'avenir ne doit devenir une nouvelle marque de premier niveau. Il doit obligatoirement trouver sa place dans l'un des trois grands pôles (**Le Pianobariste**, **A Laiz Academy**, **Musicien Augmenté**) ou rester simplement une œuvre, un programme ou une publication rattachée à **Hervé Nanfang**.*
 - **Navigation principale orientée clarté immédiate** : le menu principal associe directement les intitulés explicites et différenciants (`Musique & Scène`, `Formation & Transmission`, `Musicien Augmenté`, `Réalisations`, `Services`, `Journal`, `À propos`, `Contact`), la *Racines Musicales Academy (RMA)* étant découverte naturellement au cœur du pilier *Formation & Transmission*.
 - **Absorption des sous-marques redondantes** : afin d'éviter la prolifération de labels opaques pour un nouveau visiteur, *Alaiz Music* et *Alaiz Patrimoine* sont remplacés dans l'interface par des intitulés explicites (*Studio & Production Musicale*, *Patrimoines Oraux & Territoires*).
 - **Usage sobre des symboles `™` et `®`** : les symboles `™` et `®` sont conservés dans les mentions légales (`src/pages/Legal.tsx`) et les fiches de propriété intellectuelle, mais allégés dans les titres courants, menus et cartes de l'interface pour privilégier une esthétique éditoriale et institutionnelle haut de gamme.
@@ -241,4 +246,54 @@ Avant toute publication d'article, de page web, de post social ou de dossier de 
 
 ### 13.2 Plan d'action pour les publications externes (Hors dépôt — Accès requis)
 Voir le tableau détaillé des priorités 1 à 4 dans le rapport d'exécution pour la mise à jour manuelle des profils externes (LinkedIn, Facebook, YouTube, Threads, Canva) et la vérification DNS du domaine `alaizopays.art`.
+
+---
+
+## 14. RENFORCEMENT DU MAILLAGE INTERNE, DU JOURNAL ET DE L’INDEXATION
+
+Considérer la page `/journal` comme une page stratégique pour l’autorité éditoriale, le SEO et la découverte des contenus.
+
+### Objectif
+Augmenter sa visibilité interne, faciliter son exploration par les utilisateurs et renforcer son importance aux yeux des moteurs de recherche.
+
+### Instructions techniques et ergonomiques
+1. **Ajouter au minimum un lien direct vers `/journal` dans :**
+   - la navigation principale ;
+   - le pied de page ;
+   - les sections de contenus ou ressources lorsque cela est pertinent.
+
+2. **Vérifier que le lien vers `/journal` soit :**
+   - visible ;
+   - accessible sur desktop et mobile ;
+   - non enfoui dans des sous-menus complexes ;
+   - présent dans les composants de navigation réutilisés.
+
+3. **Renforcer le maillage contextuel :**
+   - depuis la page d’accueil ;
+   - depuis les pages Musique & Scène (`/musique`) ;
+   - depuis les pages Formation & Transmission (`/pedagogie`) ;
+   - depuis les pages Musicien Augmenté (`/ia-technologie`) ;
+   - depuis les pages Projets (`/projets`) ;
+   - depuis les pages Services (`/services`).
+
+4. **Lorsque cela est pertinent, ajouter des blocs du type :**
+   - « Derniers articles »
+   - « Ressources associées »
+   - « Lire aussi »
+   - « Explorer le Journal »
+   avec des liens directs vers les contenus du Journal.
+
+5. **Vérifications obligatoires :**
+   - `/journal` figure dans le sitemap ;
+   - les liens internes utilisent l’URL canonique sans slash terminal ;
+   - aucun `nofollow` ou blocage involontaire ne limite sa découverte.
+
+6. **Objectif de validation :**
+   Un visiteur arrivant sur la page d’accueil `https://hervenanfang.vercel.app/` doit pouvoir accéder à la page `/journal` en un seul clic depuis le menu principal ou le pied de page.
+
+### Règle éditoriale permanente
+Chaque nouvel article publié dans le Journal doit être relié à au moins une page métier du site (*Musique & Scène*, *Racines Musicales Academy*, *Musicien Augmenté*, *Services* ou *Projets*), et chaque page métier doit renvoyer vers au moins un contenu pertinent du Journal.
+
+**Objectif directeur :** transformer le Journal en centre d’autorité éditoriale de l’ensemble du site.
+
 

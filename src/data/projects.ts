@@ -81,12 +81,12 @@ export const PROJECT_FAMILIES: ProjectFamily[] = [
     intro: 'Des méthodes, des curricula, des systèmes de progression, des ouvrages.',
     projects: [
       {
-        title: 'Racines Musicales Academy (RMA)',
-        volume: 'RMA · Formation & Curricula',
+        title: 'A Laiz Academy (ex-RMA)',
+        volume: 'A Laiz Academy · Formation & Curricula',
         description:
-          "Un projet de formation musicale qui relie les pratiques contemporaines et le patrimoine musical africain : socle RMA-01 (Pulsation & Body) et programme intensif « Vacances Utiles ».",
+          "Le pôle de formation musicale qui relie les pratiques contemporaines et le patrimoine musical africain : socle ALA-01 (Pulsation & Body) et programme intensif « Vacances Utiles ».",
         synopsis:
-          "La RMA (Racines Musicales Academy) est un dispositif de formation musicale fondé à Yaoundé par Hervé Nanfang. Elle propose des cursus individuels en piano, chant, guitare, basse, batterie et formation musicale, structurés selon le référentiel Permis de Jouer. Le programme intensif « Vacances Utiles » (7 semaines) accueille les enfants dès 6 ans et les adultes débutants. La RMA propose également des formations de formateurs pour les institutions souhaitant améliorer leurs curricula musicaux.",
+          "A Laiz Academy (anciennement Racines Musicales Academy — RMA) est le dispositif de formation musicale fondé à Yaoundé par Hervé Nanfang. Elle propose des cursus individuels en piano, chant, guitare, basse, batterie et formation musicale, structurés selon le référentiel Permis de Jouer. Le programme intensif « Vacances Utiles » (7 semaines) accueille les enfants dès 6 ans et les adultes débutants. A Laiz Academy propose également des formations de formateurs pour les institutions souhaitant améliorer leurs curricula musicaux.",
         points: ['Curricula en 6 disciplines', "Programme Vacances Utiles (7 sem.)", 'Restitution collective Damas–Petits Génies', "Formation de formateurs institutionnels"],
         status: 'Signature',
         to: '/rma',
@@ -94,11 +94,11 @@ export const PROJECT_FAMILIES: ProjectFamily[] = [
       },
       {
         title: 'Permis de Jouer',
-        volume: 'Référentiel de progression (RMA)',
+        volume: 'Référentiel de progression (A Laiz Academy)',
         description:
           "Un système de progression et d'évaluation continue instrument-agnostique organisé en 4 niveaux (N1 à N4) pour rendre l'apprentissage lisible et mesurable.",
         synopsis:
-          "Le Permis de Jouer est le référentiel d'évaluation progressive mis au point par Hervé Nanfang au sein de la RMA. Structuré en 4 paliers (N1 Blanc — Fondations, N2 Jaune — Méthode, N3 Orange — Identité, N4 Rouge — Maîtrise & Scène), il s'applique à tous les instruments enseignés à la RMA. Chaque palier est validé par une soutenance de compétences réelles (jeu en public, pièces de mémoire) plutôt que par des examens théoriques. L'objectif : former des musiciens autonomes, pas des copistes dépendants.",
+          "Le Permis de Jouer est le référentiel d'évaluation progressive mis au point par Hervé Nanfang au sein de A Laiz Academy (RMA). Structuré en 4 paliers (N1 Blanc — Fondations, N2 Jaune — Méthode, N3 Orange — Identité, N4 Rouge — Maîtrise & Scène), il s'applique à tous les instruments enseignés à l'académie. Chaque palier est validé par une soutenance de compétences réelles (jeu en public, pièces de mémoire) plutôt que par des examens théoriques. L'objectif : former des musiciens autonomes, pas des copistes dépendants.",
         points: ['Paliers N1 à N4', 'Validation par compétences réelles', 'Instrument-agnostique'],
         status: 'Actif',
         to: '/rma#permis-de-jouer',

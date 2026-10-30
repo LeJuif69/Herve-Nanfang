@@ -70,7 +70,7 @@ export default function Services() {
         'Formation et conseil',
       ),
       serviceSchema(
-        'Formations RMA — Racines Musicales Academy®',
+        'A Laiz Academy — Formation & Transmission (ex-RMA)',
         'Cursus piano, chant, guitare, batterie, programme Vacances Utiles et formation de formateurs.',
         'Formation musicale',
       ),
@@ -87,7 +87,7 @@ export default function Services() {
         breadcrumb="Services"
         eyebrow="Créer · Transmettre · Augmenter"
         title="Des prestations pensées pour la création, la transmission et la transformation"
-        lead="Piano live, production musicale, conseil en stratégie de marque, conférences et formations RMA : chaque service s'appuie sur le même principe — clarifier le besoin, protéger l'intention artistique et donner du sens au dispositif."
+        lead="Piano live, production musicale, conseil en stratégie de marque, conférences et formations A Laiz Academy (ex-RMA) : chaque service s'appuie sur le même principe — clarifier le besoin, protéger l'intention artistique et donner du sens au dispositif."
       >
         <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
           <Stat value="05" label="Familles de services" />
@@ -268,24 +268,24 @@ export default function Services() {
         </div>
       </Section>
 
-      {/* ======================== RMA FOCUS ======================== */}
+      {/* ======================== A LAIZ ACADEMY FOCUS ======================== */}
       <Section tone="ink">
         <Reveal>
-          <ChapterMark num="07" label="RMA" />
+          <ChapterMark num="07" label="A Laiz Academy" />
           <Display size="md" className="mt-7 max-w-3xl">
-            Racines Musicales Academy® : formation musicale de terrain
+            A Laiz Academy : formation musicale d'excellence (ex-RMA)
           </Display>
         </Reveal>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <Reveal>
             <div className="border border-white/10 bg-ink-2 p-8 md:p-10">
-              <p className="text-[0.68rem] uppercase tracking-[0.2em] text-gold">RMA</p>
+              <p className="text-[0.68rem] uppercase tracking-[0.2em] text-gold">A Laiz Academy</p>
               <h3 className="mt-6 font-display text-3xl text-ivory">
                 Formation musicale, pédagogie et transmission
               </h3>
               <Body className="mt-5">
-                La RMA relie les pratiques contemporaines et le patrimoine musical africain. Elle vise à rendre
+                A Laiz Academy (anciennement Racines Musicales Academy — RMA) relie les pratiques contemporaines et le patrimoine musical africain. Elle vise à rendre
                 l'apprentissage musical plus structuré, plus lisible et plus durable, sans perdre le lien
                 avec la culture de départ.
               </Body>
@@ -296,7 +296,7 @@ export default function Services() {
               </div>
               <div className="mt-8">
                 <Link to="/rma" className="btn btn-gold">
-                  Découvrir la page RMA
+                  Découvrir A Laiz Academy
                 </Link>
               </div>
             </div>

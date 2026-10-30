@@ -14,7 +14,7 @@ export default function RMAAuditionForm() {
   const [discipline, setDiscipline] = useState('Piano classique, jazz & musiques actuelles')
   const [profile, setProfile] = useState('Adulte (débutant ou reprise)')
   const [targetPalier, setTargetPalier] = useState('Permis A — Prendre ses marques (Blanc)')
-  const [format, setFormat] = useState('Cours individuel régulier (Studio RMA Yaoundé)')
+  const [format, setFormat] = useState('Cours individuel régulier (Studio A Laiz Academy Yaoundé)')
   const [fullName, setFullName] = useState('')
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
@@ -24,7 +24,7 @@ export default function RMAAuditionForm() {
   const [sendError, setSendError] = useState('')
   const [isCopied, setIsCopied] = useState(false)
 
-  const summary = `CANDIDATURE & AUDITION — RACINES MUSICALES ACADEMY®
+  const summary = `CANDIDATURE & AUDITION — A LAIZ ACADEMY (EX-RMA)
 --------------------------------------------------
 Candidat : ${fullName || 'À préciser'}
 Discipline : ${discipline}
@@ -44,7 +44,7 @@ ${musicalGoals || 'Non renseigné'}
     setSendError('')
 
     const tag = formatAttributionTag()
-    const headerLines = tag ? [tag, '[CANDIDATURE AUDITION RMA]'] : ['[CANDIDATURE AUDITION RMA]']
+    const headerLines = tag ? [tag, '[CANDIDATURE AUDITION A LAIZ ACADEMY]'] : ['[CANDIDATURE AUDITION A LAIZ ACADEMY]']
 
     const bodyContent = [
       ...headerLines,
@@ -120,7 +120,7 @@ ${musicalGoals || 'Non renseigné'}
           <h4 className="font-display text-2xl text-ivory">Candidature enregistrée avec succès !</h4>
           <p className="text-xs text-ivory/75 max-w-lg mx-auto leading-relaxed">
             Merci <strong>{fullName}</strong>. Votre demande pour le cursus{' '}
-            <strong className="text-gold">{discipline}</strong> a bien été transmise à l'équipe pédagogique de la RMA. Vous serez contacté sous 48h pour fixer la date de votre audition diagnostique.
+            <strong className="text-gold">{discipline}</strong> a bien été transmise à l'équipe pédagogique de A Laiz Academy (RMA). Vous serez contacté sous 48h pour fixer la date de votre audition diagnostique.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
@@ -221,7 +221,7 @@ ${musicalGoals || 'Non renseigné'}
               onChange={(e) => setFormat(e.target.value)}
               className="w-full rounded-xl border border-white/15 bg-ink px-4 py-3 text-sm text-ivory focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
             >
-              <option value="Cours individuel régulier (Studio RMA Yaoundé)">Cours individuel régulier (Studio RMA Yaoundé)</option>
+              <option value="Cours individuel régulier (Studio A Laiz Academy Yaoundé)">Cours individuel régulier (Studio A Laiz Academy Yaoundé)</option>
               <option value="Cours intensif bimensuel (2h consécutives)">Cours intensif bimensuel (2h consécutives)</option>
               <option value="Atelier de groupe / Pratique collective">Atelier de groupe / Pratique collective</option>
               <option value="Accompagnement à distance / Visioconférence">Accompagnement à distance / Visioconférence</option>

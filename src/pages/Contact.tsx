@@ -439,7 +439,7 @@ export default function Contact() {
               <Rule className="opacity-40" />
               <ul className="mt-5 space-y-4 text-sm">
                 <li>
-                  <p className="text-[0.62rem] uppercase tracking-[0.18em] text-ivory/35">Email · RMA</p>
+                  <p className="text-[0.62rem] uppercase tracking-[0.18em] text-ivory/35">Email · A Laiz Academy (RMA)</p>
                   <a href={`mailto:${SITE.emailRma}`} className="mt-1 block break-all font-display text-xl text-gold">
                     {SITE.emailRma}
                   </a>

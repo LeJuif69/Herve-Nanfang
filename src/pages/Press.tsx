@@ -147,7 +147,7 @@ const INTERVIEW_TOPICS = [
   {
     title: 'Pédagogie musicale & Permis de Jouer™',
     angle: 'Apprentissage par la pratique, développement de l’écoute, coordination corporelle et conception de parcours de formation. Pourquoi la musique doit d’abord se vivre (Pulsation & Body) avant d’être formalisée sur partition.',
-    tags: ['Pédagogie', 'Permis de Jouer™', 'RMA'],
+    tags: ['Pédagogie', 'Permis de Jouer™', 'A Laiz Academy (RMA)'],
   },
   {
     title: 'Intelligence artificielle et création',
@@ -374,7 +374,7 @@ Site officiel : https://hervenanfang.vercel.app`
                   </div>
                   <div className="flex flex-col sm:flex-row sm:justify-between border-b border-white/5 pb-2.5">
                     <dt className="text-ivory/50">Dispositif pédagogique :</dt>
-                    <dd className="text-ivory/80">Racines Musicales Academy® (RMA) & Permis de Jouer™</dd>
+                    <dd className="text-ivory/80">A Laiz Academy (ex-RMA) & Permis de Jouer™</dd>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:justify-between pt-1">
                     <dt className="text-ivory/50">Documentation patrimoniale :</dt>

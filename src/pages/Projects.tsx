@@ -32,13 +32,13 @@ export default function Projects() {
   useSeo({
     title: 'Projets & Univers Créatif | Hervé Nanfang — A Laiz Ô Pays',
     description:
-      'Projets musicaux, pédagogiques et technologiques de Hervé Nanfang : A Laiz Ô Pays, Le Pianobariste™, RMA®, Permis de Jouer™, Musicien Augmenté™ et Tswefap.',
+      'Projets musicaux et pédagogiques de Hervé Nanfang : A Laiz Ô Pays, Le Pianobariste™, A Laiz Academy (ex-RMA), Permis de Jouer™, Musicien Augmenté™ et Tswefap.',
     path: '/projets',
     jsonLd: [
       personSchema,
       organizationSchema,
       creativeWorkSchema(
-        'Racines Musicales Academy®',
+        'A Laiz Academy (ex-RMA)',
         'Projet de formation musicale reliant pratiques contemporaines et patrimoine musical africain.',
       ),
       creativeWorkSchema(
@@ -92,7 +92,7 @@ export default function Projects() {
         <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
           <Stat value="4" label="Piliers d'action" />
           <Stat value={String(totalProjectsCount)} label="Réalisations & programmes" />
-          <Stat value="3" label="Signatures : Pianobariste, RMA, Musicien Augmenté" />
+          <Stat value="3" label="Signatures : Pianobariste, A Laiz Academy, Musicien Augmenté" />
           <Stat value="1" label="Manifeste fondateur : A Laiz Ô Pays" />
         </div>
       </PageHero>
@@ -305,7 +305,7 @@ export default function Projects() {
               Le Pianobariste et les scènes de prestige testent en direct l'impact émotionnel et la résonance du répertoire auprès de publics exigeants.
             </p>
             <div className="mt-4 border-t border-white/10 pt-3 text-[0.65rem] text-gold/80">
-              → Nourrit : Racines Musicales Academy (RMA), Production Studio
+              → Nourrit : A Laiz Academy (RMA), Production Studio
             </div>
           </Card>
 
@@ -313,7 +313,7 @@ export default function Projects() {
             <span className="eyebrow text-gold">02 · Pôle Transmission & Méthode</span>
             <h4 className="mt-3 font-display text-xl text-ivory">La Modélisation du Savoir</h4>
             <p className="mt-3 text-xs leading-relaxed text-ivory/70">
-              La RMA et le référentiel Permis de Jouer codifient 20 ans de pratique pianistique et de rythmes traditionnels pour en faire une méthode d'excellence transmissible.
+              A Laiz Academy et le référentiel Permis de Jouer codifient 20 ans de pratique pianistique et de rythmes traditionnels pour en faire une méthode d'excellence transmissible.
             </p>
             <div className="mt-4 border-t border-white/10 pt-3 text-[0.65rem] text-gold/80">
               → Nourrit : Tswefap, Conférences

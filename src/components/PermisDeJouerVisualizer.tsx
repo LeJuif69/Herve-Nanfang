@@ -50,7 +50,7 @@ export const PALIERS_DATA: PalierDetail[] = [
       'Jeu d’une pièce complète de mémoire avec intention expressive et sens du tempo',
       'Première expérience de jeu collectif (duo piano-voix ou accompagnement)',
     ],
-    epreuveValidation: 'Audition trimestrielle RMA : 3 morceaux interprétés devant professeurs et promotion.',
+    epreuveValidation: 'Audition trimestrielle A Laiz Academy (RMA) : 3 morceaux interprétés devant professeurs et promotion.',
   },
   {
     id: 'palier-c',
@@ -87,7 +87,7 @@ export const PALIERS_DATA: PalierDetail[] = [
       'Direction artistique d’un enregistrement studio ou d’un spectacle vivant complet',
       'Maîtrise des outils technologiques : MAO, enregistrement numérique et hybridation IA raisonnée',
     ],
-    epreuveValidation: 'Grand Récital public évalué par un jury interne et remise de l’Attestation de Palier D (RMA).',
+    epreuveValidation: 'Grand Récital public évalué par un jury interne et remise de l’Attestation de Palier D A Laiz Academy (RMA).',
   },
 ]
 
@@ -104,14 +104,14 @@ export default function PermisDeJouerVisualizer() {
           <div className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-gold animate-pulse" />
             <span className="font-mono text-xs uppercase tracking-wider text-gold">
-              Référentiel Pédagogique · Racines Musicales Academy (RMA)
+              Référentiel Pédagogique · A Laiz Academy (ex-RMA)
             </span>
           </div>
           <h3 className="mt-2 font-display text-2xl text-ivory md:text-3xl">
             Le Permis de Jouer : Quatre Paliers de Progression
           </h3>
           <p className="mt-2 text-xs text-ivory/70 max-w-2xl leading-relaxed">
-            Inspiré de la progression par ceintures et paliers de compétences, ce référentiel conçu par Hervé Nanfang au sein de la RMA rend
+            Inspiré de la progression par ceintures et paliers de compétences, ce référentiel conçu par Hervé Nanfang au sein de A Laiz Academy (anciennement RMA) rend
             l'apprentissage musical transparent, motivant et rigoureux. Aucun flou : chaque étape valide en situation réelle des acquis techniques et artistiques mesurables.
           </p>
         </div>
@@ -210,11 +210,11 @@ export default function PermisDeJouerVisualizer() {
           </div>
         </div>
 
-        {/* Épreuve de validation interne RMA */}
+        {/* Épreuve de validation interne A Laiz Academy */}
         <div className="rounded-xl border border-gold/25 bg-gold/5 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <span className="font-mono text-[0.68rem] uppercase tracking-wider text-gold block">
-              Modalité de validation interne RMA
+              Modalité de validation interne A Laiz Academy (RMA)
             </span>
             <p className="mt-1 text-xs text-ivory/90 font-medium">
               {activePalier.epreuveValidation}

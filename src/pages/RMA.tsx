@@ -55,25 +55,77 @@ const DISCIPLINES = [
   {
     num: '06',
     title: 'Formation musicale',
-    desc: 'Solfège, dictée, ear training, harmonie tonale, analyse et culture musicale. Transversal à toutes les disciplines instrumentales de la RMA.',
+    desc: 'Solfège, dictée, ear training, harmonie tonale, analyse et culture musicale. Transversal à toutes les disciplines instrumentales de A Laiz Academy.',
     levels: ['Tous niveaux'],
+  },
+]
+
+const ACADEMY_ARCHITECTURE = [
+  {
+    num: '01',
+    title: 'Permis de Jouer™',
+    subtitle: 'Référentiel Paliers N1 à N4',
+    desc: 'Cadre méthodologique continu d’évaluation et d’autonomie instrumentale au clavier, guitare, basse et chant.',
+    to: '#permis-de-jouer',
+  },
+  {
+    num: '02',
+    title: 'Les Zikos®',
+    subtitle: 'Éveil & Pratique d’ensemble',
+    desc: 'Manuel pédagogique complet (68 pages) et répertoire collectif progressif adapté dès 6 ans.',
+    to: '/pedagogie#publications',
+  },
+  {
+    num: '03',
+    title: 'Formation musicale',
+    subtitle: 'Harmonie, Solfège & Oreille',
+    desc: 'Entendre, chanter, nommer et transcrire les structures harmoniques et rythmiques sans théorie bloquante.',
+    to: '#disciplines',
+  },
+  {
+    num: '04',
+    title: 'MAO & Studio',
+    subtitle: 'Production & Enregistrement',
+    desc: 'Initiation et perfectionnement aux séquenceurs (DAW), à la prise de son et à la gestion d’un home studio.',
+    to: '/services#studio',
+  },
+  {
+    num: '05',
+    title: 'Composition & Arrangement',
+    subtitle: 'Écriture & Scène',
+    desc: 'Techniques d’arrangement, orchestration live band, harmonisation moderne et travail pour la scène.',
+    to: '/musique',
+  },
+  {
+    num: '06',
+    title: 'Musicologie & Patrimoine',
+    subtitle: 'Traditions orales & Polyrythmies',
+    desc: 'Analyse des systèmes polyrythmiques d’Afrique centrale (Bikutsi, Batoufam) et documentation vivante.',
+    to: '/culture-recherche',
+  },
+  {
+    num: '07',
+    title: 'Ressources pédagogiques',
+    subtitle: 'Curricula & Masterclasses',
+    desc: 'Fiches didactiques, livrets d’exercices, formation continue d’enseignants et masterclasses sur mesure.',
+    to: '/pedagogie',
   },
 ]
 
 const PROGRAMMES = [
   {
     title: 'Cours individuel hebdomadaire',
-    text: 'Piano, chant, guitare, basse ou batterie : cours de 45 min à 1 h, plan de progression personnalisé selon le palier Permis de Jouer, suivi trimestriel et accès aux ressources pédagogiques RMA.',
+    text: 'Piano, chant, guitare, basse ou batterie : cours de 45 min à 1 h, plan de progression personnalisé selon le palier Permis de Jouer, suivi trimestriel et accès aux ressources pédagogiques A Laiz Academy.',
     icon: '♩',
     highlights: [
-      'Studio RMA Yaoundé ou cours à distance (Zoom / WhatsApp)',
+      'Studio A Laiz Academy Yaoundé ou cours à distance (Zoom / WhatsApp)',
       "Entrée possible tout au long de l'année",
       'Séance diagnostique gratuite au premier cours',
     ],
   },
   {
     title: 'Vacances Utiles — 7 semaines',
-    text: 'Programme intensif estival pour enfants dès 6 ans et adultes débutants : socle RMA-01 (Pulsation & Body), clavier, lecture et restitution collective finale Damas–Petits Génies.',
+    text: 'Programme intensif estival pour enfants dès 6 ans et adultes débutants : socle ALA-01 (Pulsation & Body, ex-RMA), clavier, lecture et restitution collective finale Damas–Petits Génies.',
     icon: '☀',
     highlights: [
       'Module 1 : Pulsation & Body (ancrage rythmique corporel)',
@@ -103,27 +155,27 @@ const VALEURS = [
 
 export default function RMA() {
   useSeo({
-    title: 'RMA — Racines Musicales Academy® | Hervé Nanfang',
+    title: 'A Laiz Academy | Hervé Nanfang — Musique & Pédagogie (ex-RMA)',
     description:
-      'Racines Musicales Academy® : formation musicale, pédagogie, Permis de Jouer™, transmission et conception de curricula. Piano, chant, guitare, batterie à Yaoundé.',
+      "A Laiz Academy (ex-Racines Musicales Academy — RMA) : formation musicale d'excellence, méthode Permis de Jouer™ et transmission par Hervé Nanfang.",
     path: '/rma',
     jsonLd: [
       personSchema,
       serviceSchema(
-        'Racines Musicales Academy®',
-        'Formation musicale, pédagogie, ateliers, masterclass et accompagnement de structures culturelles et éducatives.',
+        'A Laiz Academy',
+        'Formation musicale d’excellence, pédagogie, ateliers, masterclass et accompagnement de structures éducatives (anciennement Racines Musicales Academy).',
         'Formation musicale',
       ),
       courseSchema(
-        'Racines Musicales Academy®',
-        'Parcours de formation musicale structuré, incluant pratique instrumentale, pédagogie, évolution et patrimoine culturel.',
-        'Racines Musicales Academy®',
+        'A Laiz Academy',
+        'Parcours de formation musicale structuré, incluant pratique instrumentale, pédagogie, évolution et patrimoine culturel (anciennement Racines Musicales Academy).',
+        'A Laiz Academy',
       ),
       permisDeJouerProgramSchema(),
       breadcrumbSchema([
         { name: 'Accueil', path: '/' },
-        { name: 'Services', path: '/services' },
-        { name: 'RMA', path: '/rma' },
+        { name: 'Formation & Transmission', path: '/pedagogie' },
+        { name: 'A Laiz Academy', path: '/rma' },
       ]),
     ],
   })
@@ -131,15 +183,15 @@ export default function RMA() {
   return (
     <>
       <PageHero
-        breadcrumb="RMA"
-        eyebrow="Racines Musicales Academy"
-        title="Former des musiciens capables de jouer, comprendre, transmettre et évoluer"
-        lead="La RMA est un dispositif de formation musicale fondé sur une conviction : apprendre la musique ne devrait jamais signifier perdre son identité. Méthode rigoureuse, patrimoine africain vivant, progression lisible."
+        breadcrumb="A Laiz Academy"
+        eyebrow="A Laiz Academy · Formation & Transmission"
+        title="Former des musiciens capables de créer, comprendre, transmettre et évoluer"
+        lead="A Laiz Academy (anciennement Racines Musicales Academy — RMA) est le pôle de formation musicale d’Hervé Nanfang fondé sur une conviction : apprendre la musique ne devrait jamais signifier perdre son identité. Méthode rigoureuse, patrimoine africain vivant, progression lisible."
       >
         <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
-          <Stat value="6" label="Disciplines" />
+          <Stat value="7" label="Pôles d'enseignement" />
           <Stat value="4" label="Paliers Permis" />
-          <Stat value="3" label="Programmes" />
+          <Stat value="6" label="Disciplines" />
           <Stat value="Live" label="& transmission" />
         </div>
       </PageHero>
@@ -152,7 +204,7 @@ export default function RMA() {
             Rendre le savoir musical profond, lisible et transmissible
           </Display>
           <Lead className="mt-6 max-w-3xl">
-            La RMA ne forme pas des élèves standardisés. Elle construit des musiciens capables
+            A Laiz Academy ne forme pas des élèves standardisés. Elle construit des musiciens capables
             de comprendre ce qu'ils jouent, de le transmettre, et de s'adapter à un contexte
             en perpétuelle mutation — sans sacrifier leur ancrage culturel.
           </Lead>
@@ -166,6 +218,40 @@ export default function RMA() {
                 <p className="mt-5 font-display text-xl text-ivory leading-snug">{val.v}</p>
                 <p className="mt-3 text-sm leading-relaxed text-ivory/55">{val.d}</p>
               </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* ======================== ARCHITECTURE A LAIZ ACADEMY ======================== */}
+      <Section tone="ink">
+        <Reveal>
+          <ChapterMark num="02" label="Architecture Pédagogique" />
+          <Display size="md" className="mt-7 max-w-3xl">
+            A Laiz Academy : Les Sept Piliers de Transmission
+          </Display>
+          <Lead className="mt-6 max-w-3xl">
+            L'académie organise l'ensemble de ses parcours autour d'une arborescence complète : de l’éveil à l’autonomie instrumentale, de la production MAO aux polyrythmies patrimoniales.
+          </Lead>
+        </Reveal>
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {ACADEMY_ARCHITECTURE.map((p, i) => (
+            <Reveal key={p.title} delay={i * 50}>
+              <SpotlightCard className="flex h-full flex-col justify-between border-white/10 bg-ink p-6">
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-xs text-gold font-bold">{p.num}</span>
+                    <span className="text-[0.62rem] uppercase tracking-wider text-ivory/40 font-mono">Pôle ALA</span>
+                  </div>
+                  <h3 className="mt-3 font-display text-xl text-ivory">{p.title}</h3>
+                  <p className="mt-1 text-[0.68rem] uppercase tracking-wider text-gold/80 font-mono">{p.subtitle}</p>
+                  <p className="mt-3 text-xs leading-relaxed text-ivory/65">{p.desc}</p>
+                </div>
+                <div className="mt-6 border-t border-white/8 pt-3">
+                  <ArrowLink to={p.to}>Explorer</ArrowLink>
+                </div>
+              </SpotlightCard>
             </Reveal>
           ))}
         </div>
@@ -252,10 +338,10 @@ export default function RMA() {
         <Reveal>
           <ChapterMark num="05" label="Témoignages" />
           <Display size="md" className="mt-7 max-w-3xl">
-            Ce que disent les élèves et partenaires de la RMA
+            Ce que disent les élèves et partenaires de A Laiz Academy
           </Display>
           <Lead className="mt-4 max-w-2xl">
-            Élèves adultes, enfants, musiciens professionnels et responsables pédagogiques — ils témoignent de leur parcours au sein de la Racines Musicales Academy (RMA).
+            Élèves adultes, enfants, musiciens professionnels et responsables pédagogiques — ils témoignent de leur parcours au sein de A Laiz Academy (anciennement Racines Musicales Academy — RMA).
           </Lead>
         </Reveal>
 
@@ -297,7 +383,7 @@ export default function RMA() {
         <div className="mt-10 grid gap-8 lg:grid-cols-2">
           <Reveal>
             <div className="border border-white/10 bg-ink-2 p-8 h-full">
-              <Eyebrow>Ce que la RMA apporte</Eyebrow>
+              <Eyebrow>Ce que A Laiz Academy apporte</Eyebrow>
               <ul className="mt-8 space-y-5">
                 {[
                   'Une progression claire de la pratique à la compréhension',
@@ -353,7 +439,7 @@ export default function RMA() {
                 <div className="md:col-span-4 relative min-h-[220px] overflow-hidden bg-ink-2">
                   <img
                     src="/images/cours-isma-synthese-1241.webp"
-                    alt="15 Sessions d’Audition & Diagnostic Gratuit — Racines Musicales Academy (RMA)"
+                    alt="15 Sessions d’Audition & Diagnostic Gratuit — A Laiz Academy (ex-RMA)"
                     className="h-full w-full object-cover object-center"
                     loading="lazy"
                   />
@@ -369,11 +455,11 @@ export default function RMA() {
                     <div>
                       <p className="eyebrow text-gold font-mono">✦ Référentiel Permis de Jouer</p>
                       <h3 className="mt-1 font-display text-2xl md:text-3xl text-ivory">
-                        Séance Diagnostique & Positionnement par Paliers
+                        Séance Diagnostique & Positionnement par Paliers — A Laiz Academy
                       </h3>
                     </div>
                     <div className="rounded border border-gold/40 bg-gold/20 px-3 py-1.5 text-xs font-mono text-gold self-start sm:self-auto shrink-0">
-                      15 min offertes · Studio RMA Damas ou Visio
+                      15 min offertes · Studio Damas ou Visio
                     </div>
                   </div>
 
@@ -418,7 +504,7 @@ export default function RMA() {
                         <span className="font-mono text-xs font-bold text-gold bg-gold/15 px-2 py-0.5 rounded border border-gold/30">
                           Palier {p.code}
                         </span>
-                        <span className="text-[0.62rem] text-ivory/40 uppercase tracking-wider font-mono">Permis RMA</span>
+                        <span className="text-[0.62rem] text-ivory/40 uppercase tracking-wider font-mono">Permis ALA</span>
                       </div>
                       <h4 className="mt-3 font-display text-lg text-ivory">{p.label}</h4>
                       <p className="mt-2 text-[0.72rem] leading-relaxed text-ivory/65">{p.focus}</p>
@@ -438,10 +524,10 @@ export default function RMA() {
       </div>
 
       <CtaBand
-        eyebrow="RMA • Transmission"
+        eyebrow="A Laiz Academy • Transmission"
         title="Créer un parcours de formation solide"
-        text="Pour une école, un centre culturel, un organisme de formation ou un projet d'accompagnement pédagogique, la RMA propose des dispositifs sur mesure adaptés à chaque contexte."
-        primary={{ label: 'Parler de la RMA', to: '/contact#formation' }}
+        text="Pour une école, un centre culturel, un organisme de formation ou un projet d'accompagnement pédagogique, A Laiz Academy propose des dispositifs sur mesure adaptés à chaque contexte."
+        primary={{ label: 'Échanger avec A Laiz Academy', to: '/contact#formation' }}
         secondary={{ label: 'Voir les services', to: '/services' }}
       />
     </>

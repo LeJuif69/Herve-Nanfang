@@ -23,7 +23,7 @@
 - **Identité 2 — A Laiz Ô Pays** : Concept artistique et culturel fondateur créé par Hervé Nanfang (autour de 2010–2011), univers créatif fédérateur présenté et référencé sur le site Hervé Nanfang. Ne jamais le présenter automatiquement comme une société juridiquement constituée ni lui attribuer de domaine autonome non validé.
 - **Domaine actif** : `https://hervenanfang.vercel.app/` (domaine personnalisé envisagé ultérieurement : `hervenanfang.com`, sans accent sur les liens — non acquis à ce stade, ne modifier aucun réglage DNS ou canonique sans validation).
 - **Profils officiels vérifiés (sans accent sur les liens)** : LinkedIn `https://www.linkedin.com/in/herve-nanfang-317bb2b1/`, Facebook `https://www.facebook.com/herve.nanfang.officiel/`, YouTube `https://www.youtube.com/@hervenanfang`, Threads `https://www.threads.com/@alaizopays`.
-- **Signatures & programmes spécialisés rattachés** : Le Pianobariste™, Racines Musicales Academy® (RMA), Permis de Jouer™, Musicien Augmenté™, LES ZIKOS®, Tswefap, Alaiz Music, Alaiz Patrimoine.
+- **Signatures & programmes spécialisés rattachés** : Le Pianobariste™, A Laiz Academy (anciennement Racines Musicales Academy / RMA), Permis de Jouer™, Musicien Augmenté™, LES ZIKOS®, Tswefap, Alaiz Music, Alaiz Patrimoine.
 - **Appellations proscrites comme identité principale ou structure faîtière** : Ne jamais réintroduire « ALAIZ Creative Systems », « Alaiz Creative System », « ALAIZ Creative Group », « A LAIZ PROD » (sauf archive datée justifiée) ou « HN Marque ».
 - **Document maître de référence** : `GOUVERNANCE_MARQUE_HERVE_NANFANG_A_LAIZ_OPAYS.md`.
 - **Signature** : Créer · Transmettre · Augmenter · Développer.
@@ -33,3 +33,10 @@
   Les récits composites inspirés d'expériences réelles sont permis.
 - Corriger les erreurs factuelles sans neutraliser inutilement
   la voix de l'auteur.
+
+## Règle Éditoriale & Maillage Interne (/journal)
+- **Le Journal comme centre d'autorité** : Considérer `/journal` comme page stratégique pour l'autorité éditoriale, le SEO et la découverte.
+- **Règle de maillage bidirectionnel** : Chaque nouvel article publié dans le Journal doit être relié à au moins une page métier du site (*Musique & Scène*, *Racines Musicales Academy*, *Musicien Augmenté*, *Services* ou *Projets*), et chaque page métier doit renvoyer vers au moins un contenu pertinent du Journal.
+- **Accessibilité 1 clic** : Le lien vers `/journal` doit être accessible en 1 clic depuis l'accueil (menu principal et pied de page), visible sur desktop et mobile sans être enfoui.
+- **Canoniques & Indexabilité** : Utiliser l'URL canonique sans slash terminal, sans `nofollow` ni blocage.
+

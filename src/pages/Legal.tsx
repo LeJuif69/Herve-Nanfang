@@ -17,7 +17,7 @@ const CONTENT: Record<Kind, { title: string; eyebrow: string; path: string; lead
         h: 'Éditeur du site',
         p: [
           `Le présent site est édité à titre personnel et professionnel par Hervé Nanfang, musicologue, artiste-musicien, pédagogue et ingénieur du son.`,
-          `Contact général : ${SITE.phones.map((phone) => phone.display).join(' · ')} — ${SITE.city}. Contact académique & RMA : ${SITE.emailRma}.`,
+          `Contact général : ${SITE.phones.map((phone) => phone.display).join(' · ')} — ${SITE.city}. Contact académique & A Laiz Academy (RMA) : ${SITE.emailRma}.`,
           'Direction de la publication, éditoriale et artistique : Hervé Nanfang. Toute demande administrative, institutionnelle ou contractuelle peut être adressée directement aux coordonnées officielles ci-dessus.',
         ],
       },
@@ -30,7 +30,7 @@ const CONTENT: Record<Kind, { title: string; eyebrow: string; path: string; lead
       {
         h: 'Propriété intellectuelle & marques',
         p: [
-          'L’ensemble des contenus de ce site — textes, méthodes pédagogiques, concepts, photographies, affiches, identités visuelles, publications et signes distinctifs (notamment Hervé Nanfang, A Laiz Ô Pays, Le Pianobariste™, Racines Musicales Academy®, Permis de Jouer™, Musicien Augmenté™, LES ZIKOS®, Tswefap, Alaiz Music et Alaiz Patrimoine) — est protégé par le droit d’auteur et les traités internationaux de propriété intellectuelle.',
+          'L’ensemble des contenus de ce site — textes, méthodes pédagogiques, concepts, photographies, affiches, identités visuelles, publications et signes distinctifs (notamment Hervé Nanfang, A Laiz Ô Pays, Le Pianobariste™, A Laiz Academy, Racines Musicales Academy®, Permis de Jouer™, Musicien Augmenté™, LES ZIKOS®, Tswefap, Alaiz Music et Alaiz Patrimoine) — est protégé par le droit d’auteur et les traités internationaux de propriété intellectuelle.',
           'Toute reproduction, représentation, adaptation ou exploitation, totale ou partielle, sans autorisation écrite préalable de Hervé Nanfang est formellement interdite.',
         ],
       },
@@ -57,7 +57,7 @@ const CONTENT: Record<Kind, { title: string; eyebrow: string; path: string; lead
       {
         h: 'Données collectées',
         p: [
-          'Formulaires de contact et d’audition RMA : nom, adresse email, numéro de téléphone, organisation, objet de la demande et message. Ces données sont collectées exclusivement pour traiter et répondre à vos sollicitations artistiques, pédagogiques et professionnelles.',
+          'Formulaires de contact et d’audition A Laiz Academy (RMA) : nom, adresse email, numéro de téléphone, organisation, objet de la demande et message. Ces données sont collectées exclusivement pour traiter et répondre à vos sollicitations artistiques, pédagogiques et professionnelles.',
           'Navigation et attribution : des paramètres anonymes d’attribution de trafic (UTM) peuvent être temporairement conservés en mémoire de session pour analyser l’efficacité des canaux de communication de l’artiste.',
         ],
       },

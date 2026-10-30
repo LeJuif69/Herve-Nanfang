@@ -55,7 +55,7 @@ export const personSchema: Record<string, unknown> = {
     {
       '@type': 'Occupation',
       name: 'Pédagogue & Directeur d’Académie',
-      description: 'Fondateur de la Racines Musicales Academy® et auteur du Permis de Jouer™.',
+      description: 'Fondateur de A Laiz Academy (ex-Racines Musicales Academy) et concepteur du Permis de Jouer™.',
     },
     {
       '@type': 'Occupation',
@@ -72,7 +72,9 @@ export const personSchema: Record<string, unknown> = {
   affiliation: [
     {
       '@type': 'EducationalOrganization',
-      name: 'Racines Musicales Academy®',
+      name: 'A Laiz Academy',
+      alternateName: ['Racines Musicales Academy', 'RMA'],
+      url: `${SITE.url}/rma`,
     },
   ],
   // sameAs : uniquement les liens officiels vérifiés (une URL erronée nuit
@@ -124,14 +126,19 @@ export const serviceSchema = (
 export const courseSchema = (
   name: string,
   description: string,
-  provider = 'Racines Musicales Academy®',
+  provider = 'A Laiz Academy',
 ): Record<string, unknown> => ({
   '@context': 'https://schema.org',
   '@type': 'Course',
   name,
   description,
   inLanguage: 'fr',
-  provider: { '@type': 'Organization', name: provider, founder: { '@id': PERSON_ID } },
+  provider: {
+    '@type': 'EducationalOrganization',
+    name: provider,
+    alternateName: ['Racines Musicales Academy', 'RMA'],
+    founder: { '@id': PERSON_ID },
+  },
   hasCourseInstance: {
     '@type': 'CourseInstance',
     courseMode: ['onsite', 'online'],
@@ -202,13 +209,14 @@ export const conferenceEducationEventSchema = (input: {
 export const permisDeJouerProgramSchema = (): Record<string, unknown> => ({
   '@context': 'https://schema.org',
   '@type': 'EducationalOccupationalProgram',
-  name: 'Permis de Jouer™ — Système de Progression et Certification Pianistique',
+  name: 'Permis de Jouer™ — Référentiel de Progression et d’Évaluation Pédagogique',
   description:
-    'Méthode propriétaire structurée en 4 paliers (A: Blanc, B: Jaune, C: Orange, D: Rouge) développée par Hervé Nanfang à la Racines Musicales Academy® (RMA).',
-  educationalCredentialAwarded: 'Permis de Jouer™ (Paliers A, B, C, D)',
+    'Méthode propriétaire structurée en 4 paliers (A: Blanc, B: Jaune, C: Orange, D: Rouge) développée par Hervé Nanfang au sein de A Laiz Academy (anciennement Racines Musicales Academy — RMA).',
+  educationalCredentialAwarded: 'Attestation interne de compétences Permis de Jouer (Paliers A, B, C, D)',
   provider: {
     '@type': 'EducationalOrganization',
-    name: 'Racines Musicales Academy®',
+    name: 'A Laiz Academy',
+    alternateName: ['Racines Musicales Academy', 'RMA'],
     url: `${SITE.url}/rma`,
     founder: { '@id': PERSON_ID },
   },

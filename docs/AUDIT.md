@@ -10,7 +10,7 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 |---|---|
 | Pages analysées | 17 |
 | Titres SEO hors cible | 0 |
-| Titres tronqués dans Google (> 60 car.) | 2 |
+| Titres tronqués dans Google (> 60 car.) | 3 |
 | Descriptions hors cible | 0 |
 | Pages sans H1 unique | 0 |
 | Liens internes cassés | 0 |
@@ -35,10 +35,10 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 | `Legal` | Mentions légales | Hervé Nanfang (valeur dynamique) | 32 | Informations légales du site d'Hervé Nanfang : éditeur, hébergeur, pro… | 128 | 1 (PageHero (h1 interne)) | BreadcrumbList |
 | `Music` | Musique | Hervé Nanfang — Piano, Composition & Production | 57 | Piano-bar live depuis 2007, formats solo, duo et live band, compositio… | 139 | 1 (PageHero (h1 interne)) | MusicGroup, BreadcrumbList, Service, CreativeWork / Book |
 | `NotFound` | Page introuvable | Hervé Nanfang | 32 | La page demandée n’existe pas ou a été déplacée. Accédez aux rubriques… | 156 | 1 (Display as="h1") | — |
-| `Pedagogy` | Pédagogie & Recherche | Hervé Nanfang | 37 | Enseignement supérieur, conception de curricula, musicologie africaine… | 159 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Course, CreativeWork / Book |
+| `Pedagogy` | Pédagogie & Formation | Hervé Nanfang — A Laiz Academy | 54 | Enseignement supérieur, conception de curricula, musicologie africaine… | 156 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Course, CreativeWork / Book |
 | `Press` | Presse & Médias | Hervé Nanfang — Espace officiel & EPK | 55 | Espace officiel de presse d’Hervé Nanfang : présentation de référence,… | 164 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList |
-| `Projects` | Projets & Univers Créatif | Hervé Nanfang — A Laiz Ô Pays | 57 | Projets musicaux, pédagogiques et technologiques de Hervé Nanfang : A … | 155 | 1 (PageHero (h1 interne)) | Person, Organization, BreadcrumbList, CreativeWork / Book |
-| `RMA` | RMA — Racines Musicales Academy® | Hervé Nanfang | 48 | Racines Musicales Academy® : formation musicale, pédagogie, Permis de … | 161 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service, Course |
+| `Projects` | Projets & Univers Créatif | Hervé Nanfang — A Laiz Ô Pays | 57 | Projets musicaux et pédagogiques de Hervé Nanfang : A Laiz Ô Pays, Le … | 158 | 1 (PageHero (h1 interne)) | Person, Organization, BreadcrumbList, CreativeWork / Book |
+| `RMA` | A Laiz Academy | Hervé Nanfang — Musique & Pédagogie (ex-RMA) ✂️ tronqué dans Google | 61 | A Laiz Academy (ex-Racines Musicales Academy — RMA) : formation musica… | 146 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service, Course |
 | `Services` | Services | Hervé Nanfang — live, production, marque & conseil ✂️ tronqué dans Google | 61 | Piano live Le Pianobariste™, production musicale, stratégie de marque … | 156 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
 
 ## 3. Corrections à apporter

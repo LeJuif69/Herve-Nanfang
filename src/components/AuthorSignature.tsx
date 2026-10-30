@@ -60,7 +60,7 @@ export default function AuthorSignature() {
           <p className="text-sm leading-relaxed text-ivory/70">
             Pianiste live depuis 2007, formateur et chercheur, Hervé Nanfang relie la scène au
             studio, l’héritage des musiques africaines et l’intelligence artificielle appliquée.
-            Fondateur de Racines Musicales Academy® et concepteur du Permis de Jouer™, il œuvre
+            Fondateur de A Laiz Academy (anciennement Racines Musicales Academy) et concepteur du Permis de Jouer™, il œuvre
             pour une technologie qui augmente l’artiste sans remplacer le jugement humain.
           </p>
 

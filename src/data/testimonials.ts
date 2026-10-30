@@ -1,5 +1,5 @@
 /**
- * Témoignages d'élèves et partenaires — Racines Musicales Academy®
+ * Témoignages d'élèves et partenaires — A Laiz Academy (ex-RMA)
  * Source : profil officiel et retours d'expérience
  */
 
@@ -25,7 +25,7 @@ export const TESTIMONIALS: Testimonial[] = [
     discipline: "Piano",
     palier: "Palier N2 — Méthode",
     body:
-      "Avant la RMA, j'avais essayé deux autres académies et j'abandonnais toujours après deux mois. Ici, pour la première fois, je comprends vraiment ce que je joue. La progression par paliers change tout : on sait exactement où on en est et où on va. J'ai joué ma première pièce complète de mémoire devant ma famille, une chose que je croyais impossible.",
+      "Avant A Laiz Academy (RMA), j'avais essayé deux autres académies et j'abandonnais toujours après deux mois. Ici, pour la première fois, je comprends vraiment ce que je joue. La progression par paliers change tout : on sait exactement où on en est et où on va. J'ai joué ma première pièce complète de mémoire devant ma famille, une chose que je croyais impossible.",
     initials: "SM",
   },
   {
@@ -57,7 +57,7 @@ export const TESTIMONIALS: Testimonial[] = [
     location: "Ngaoundéré",
     discipline: "Formation de formateurs",
     body:
-      "Nous avons fait appel à la RMA pour accompagner notre équipe pédagogique dans la refonte de nos curricula. La rigueur de la méthode, la clarté des outils d'évaluation et la capacité d'adaptation au contexte camerouno-africain nous ont impressionnés. Le livret de progression est désormais utilisé dans nos trois centres.",
+      "Nous avons fait appel à A Laiz Academy pour accompagner notre équipe pédagogique dans la refonte de nos curricula. La rigueur de la méthode, la clarté des outils d'évaluation et la capacité d'adaptation au contexte camerouno-africain nous ont impressionnés. Le livret de progression est désormais utilisé dans nos trois centres.",
     initials: "CA",
   },
   {

@@ -384,7 +384,7 @@ export const ARTICLES: Article[] = [
           'Analyse juridique de référence : Hervé Nanfang, [IA et droit d’auteur au Cameroun : guide pour les créateurs](/journal/ia-droits-auteur-musique-africaine) (Loi 2000/011, OAPI, OMPI).',
           'Philosophie de la technique et de l’esprit : Simondon, Gilbert (1958), Du mode d’existence des objets techniques (Aubier) ; Stiegler, Bernard (1994), La Technique et le Temps.',
           'Sémiologie et musicologie : Meeùs, Nicolas, Sémiologie musicale, Sorbonne Université ; Nketia, J.H. Kwabena (1974), The Music of Africa, sur l’organisation polyrythmique et les contextes communautaires de la musique africaine.',
-          'Pédagogie et formation d’excellence : découvrez nos programmes au sein de la [Racines Musicales Academy®](/rma) et le cursus d’autonomie instrumentale [Le Permis de Jouer®](/pedagogie).',
+          'Pédagogie et formation d’excellence : découvrez nos programmes au sein de [A Laiz Academy (ex-RMA)](/rma) et le cursus d’autonomie instrumentale [Le Permis de Jouer®](/pedagogie).',
         ],
       },
     ],
@@ -628,7 +628,7 @@ export const ARTICLES: Article[] = [
       {
         heading: 'Sources et références',
         paragraphs: [
-          'Pédagogie et transmission : découvrez les cursus et masterclasses de la [Racines Musicales Academy® (RMA)](/rma) et notre cycle [Formations & MAO](/pedagogie#formations).',
+          'Pédagogie et transmission : découvrez les cursus et masterclasses de [A Laiz Academy (ex-RMA)](/rma) et notre cycle [Formations & MAO](/pedagogie#formations).',
           'Histoire des technologies musicales : Paul Théberge, Any Sound You Can Imagine: Making Music/Consuming Technology (Wesleyan University Press), sur l’émergence du home-studio et la numérisation des pratiques musicales.',
           'Pionniers de la MAO : documentation historique sur la spécification MIDI 1.0 (1983) et l’écosystème Steinberg Cubase / Digidesign Pro Tools ayant façonné quarante ans d’enregistrement audionumérique.',
           'Manifeste fondateur : pour les principes directeurs de l’artiste face aux outils récents, consulter le [Manifeste Musicien Augmenté™](/ia-technologie#manifeste).',
@@ -1629,11 +1629,11 @@ export const ARTICLES: Article[] = [
       "1. La scène immersive : le face-à-face des deux intelligences",
       "2. Le diagnostic : le piège du dogme pédagogique",
       "3. L’explication scientifique : la polyphonie cognitive du cerveau musical",
-      "4. La décision pédagogique : l’hybridation vivante à la RMA",
+      "4. La décision pédagogique : l’hybridation vivante à A Laiz Academy",
       "5. La transmission : former des créateurs libres"
 ],
     linkedConcept: {
-      label: "Racines Musicales Academy®",
+      label: "A Laiz Academy (ex-RMA)",
       to: "/rma",
     },
     body: [
@@ -1666,9 +1666,9 @@ export const ARTICLES: Article[] = [
             ]
       },
       {
-            "heading": "4. La décision pédagogique : l’hybridation vivante à la RMA",
+            "heading": "4. La décision pédagogique : l’hybridation vivante à A Laiz Academy",
             "paragraphs": [
-                  "Au sein de la [Racines Musicales Academy® (RMA)](/rma), nous refusons d’enfermer l’élève dans un camp :",
+                  "Au sein de [A Laiz Academy (anciennement Racines Musicales Academy — RMA)](/rma), nous refusons d’enfermer l’élève dans un camp :",
                   "1. L’oralité et le chant d’abord : Tout ce qui doit être joué au clavier ou à la guitare doit pouvoir être scandé à la voix avec des onomatopées rythmiques (tcha-ku-tcha). Si le corps ne le porte pas, les doigts ne l’exprimeront jamais.",
                   "2. La partition comme confirmation, non comme départ : L’apprenant découvre la notation sur portée après avoir maîtrisé le son et l’accord sous ses doigts. La note écrite ne lui fait plus peur : elle vient simplement lui confirmer ce que son oreille sait déjà.",
                   "3. La pédagogie par projet d’ensemble : Dans nos sessions intensives (comme le stage Vacances Utiles avec restitution publique à Damas–Petits Génies), les élèves montent sur scène en duo ou en groupe dès le premier mois. C’est l’écoute mutuelle sur scène qui forge le véritable musicien."
@@ -1678,7 +1678,7 @@ export const ARTICLES: Article[] = [
             "heading": "5. La transmission : former des créateurs libres",
             "paragraphs": [
                   "Enseigner la musique ne consiste pas à fabriquer des clones d’un maître ou des exécutants mécaniques.",
-                  "C’est donner à chaque élève les clés de son émancipation : la rigueur de l’harmonie universelle alliée à la vitalité des racines de notre terre. Pour découvrir notre pédagogie complète, explorez le [programme RMA](/rma) et le manuel pédagogique [LES ZIKOS®](/pedagogie#publications)."
+                  "C’est donner à chaque élève les clés de son émancipation : la rigueur de l’harmonie universelle alliée à la vitalité des racines de notre terre. Pour découvrir notre pédagogie complète, explorez le [programme A Laiz Academy](/rma) et le manuel pédagogique [LES ZIKOS®](/pedagogie#publications)."
             ]
       }
 ],
@@ -2404,9 +2404,9 @@ export const ARTICLES: Article[] = [
         ],
       },
       {
-        heading: '5. L’approche pédagogique à la Racines Musicales Academy® et les paliers du Permis de Jouer™',
+        heading: '5. L’approche pédagogique à A Laiz Academy et les paliers du Permis de Jouer™',
         paragraphs: [
-          'Transmettre cette science du rythme au piano n’est pas une affaire d’improvisation hasardeuse : cela exige une progression didactique rigoureusement balisée. À la [Racines Musicales Academy®](/rma) de Yaoundé et dans nos programmes d’accompagnement pour la diaspora, nous avons intégré l’apprentissage des polyrythmies camerounaises au cœur de notre méthode certifiante [Le Permis de Jouer™](/pedagogie#permis-de-jouer).',
+          'Transmettre cette science du rythme au piano n’est pas une affaire d’improvisation hasardeuse : cela exige une progression didactique rigoureusement balisée. À [A Laiz Academy (anciennement Racines Musicales Academy)](/rma) de Yaoundé et dans nos programmes d’accompagnement pour la diaspora, nous avons intégré l’apprentissage des polyrythmies camerounaises au cœur de notre méthode certifiante [Le Permis de Jouer™](/pedagogie#permis-de-jouer).',
           'Notre cursus se déploie en quatre étapes incontournables :',
           '1. **Le Permis d’Écoute et de Frappe Corporelle (N1)** : Aucun étudiant ne touche au clavier avant de savoir incarner la pulsation dans son propre corps. On frappe le temps ternaire avec les pieds tout en chantant le motif asymétrique de la cloche avec des onomatopées traditionnelles.',
           '2. **L’Isolation de l’Ostinato (N2)** : Travail exclusif de la main gauche au piano. Acquisition de l’endurance musculaire sur des boucles rythmiques de Bikutsi et de Makossa répétées pendant cinq minutes sans fluctuation de tempo.',
@@ -2429,7 +2429,7 @@ export const ARTICLES: Article[] = [
           'Recherche appliquée et patrimoine vivant : découvrez l’ensemble de nos collectes sonores et analyses ethnomusicologiques sur la page [Culture & Recherche](/culture-recherche).',
           'Méthodologie du rythme Bikutsi : lire également notre étude de fond [Le Bikutsi au-delà de la mesure : pulsation, mouvement et organisation du rythme](/journal/le-bikutsi-au-dela-de-la-mesure).',
           'Protocole de terrain et captation : consulter notre guide déontologique [Documenter les traditions musicales orales : méthode, contexte et responsabilité du chercheur](/journal/documenter-les-traditions-musicales-orales).',
-          'Enseignement certifié : découvrir le programme complet de la [Racines Musicales Academy®](/rma) et le cadre d’apprentissage [Le Permis de Jouer™](/pedagogie#permis-de-jouer).',
+          'Enseignement et curricula : découvrir le programme complet de [A Laiz Academy](/rma) et le cadre d’apprentissage [Le Permis de Jouer™](/pedagogie#permis-de-jouer).',
           'Ouvrages de référence : Simha Arom, Polyphonies et polyrythmies instrumentales d’Afrique centrale (SELAF/CNRS) ; Francis Bebey, Musique de l’Afrique (Horizons de France) ; Gilbert Rouget, La Musique et la Transe (Gallimard).',
         ],
       },
@@ -2463,7 +2463,7 @@ export const ARTICLES: Article[] = [
       '1. L’illusion du chèque de droits d’auteur : la réalité brutale de la gestion collective au Cameroun',
       '2. Le piège du cachet précaire : sortir de la négociation informelle au comptoir',
       '3. Pilier 1 — L’événementiel de prestige : passer du musicien d’ambiance au créateur d’atmosphère (Le Pianobariste™)',
-      '4. Pilier 2 — La pédagogie certifiante : transformer sa virtuosité en revenu prévisible (RMA & Permis de Jouer™)',
+      '4. Pilier 2 — La pédagogie structurée : transformer sa virtuosité en revenu prévisible (A Laiz Academy & Permis de Jouer™)',
       '5. Pilier 3 — La production et l’ingénierie sonore : monétiser son outil de travail (Alaiz Music)',
       '6. Pilier 4 — L’expertise, le conseil et le cadre du Musicien Augmenté™',
       '7. Tableau comparatif : Modèle dépendant en crise vs Modèle hybride souverain',
@@ -2500,10 +2500,10 @@ export const ARTICLES: Article[] = [
         ],
       },
       {
-        heading: '4. Pilier 2 — La pédagogie certifiante : transformer sa virtuosité en revenu prévisible (RMA & Permis de Jouer™)',
+        heading: '4. Pilier 2 — La pédagogie structurée : transformer sa virtuosité en revenu prévisible (A Laiz Academy & Permis de Jouer™)',
         paragraphs: [
           'Le deuxième pilier de l’indépendance financière réside dans la transmission structurée. Beaucoup de musiciens donnent des cours particuliers au domicile de leurs élèves. Mais là encore, sans cadre institutionnel, ce travail devient vite un calvaire : cours annulés à la dernière minute par les parents, retards de paiement, et heures perdues dans les embouteillages de Yaoundé ou Douala.',
-          'À la [Racines Musicales Academy® (RMA)](/rma), nous avons professionnalisé cette transmission en créant la méthode certifiante [Le Permis de Jouer™](/pedagogie#permis-de-jouer), articulée du niveau N1 au niveau N4.',
+          'À [A Laiz Academy (anciennement Racines Musicales Academy — RMA)](/rma), nous avons professionnalisé cette transmission en créant la méthode structurante [Le Permis de Jouer™](/pedagogie#permis-de-jouer), articulée du niveau N1 au niveau N4.',
           'En formalisant des programmes pédagogiques clairs, en évaluant les élèves sur des compétences vérifiables (harmonie pratique, déchiffrage, accompagnement du chant, polyrythmies africaines) et en instaurant des forfaits d’inscription trimestriels ou annuels payés d’avance, l’artiste transforme son savoir-faire en une trésorerie récurrente et prévisible. Ce socle éducatif stabilise les finances du musicien et lui confère une respectabilité sociale incontestable au sein de la cité.',
         ],
       },
@@ -2530,7 +2530,7 @@ export const ARTICLES: Article[] = [
           'La rupture fondamentale entre le paradigme historique de précarité et l’architecture entrepreneuriale que nous appliquons quotidiennement à Yaoundé s’articule sur cinq contrastes décisifs :',
           '• **Scène live** : Passer des cachets informels de cabaret (15 000 à 30 000 FCFA sans contrat) à des prestations d’atmosphère événementielles haut de gamme (300 000 à 1 500 000 FCFA sous devis formel et contrat d’entreprise).',
           '• **Revenus de création** : Remplacer l’attente illusoire des répartitions de droits d’auteur bloqués par la facturation directe B2B (spots publicitaires, identités sonores de marque, bandes originales de film, mixage et mastering).',
-          '• **Transmission** : Remplacer les cours particuliers ponctuels à l’heure, non garantis et annulables, par des forfaits trimestriels certifiés RMA (méthode [Le Permis de Jouer™](/pedagogie#permis-de-jouer)).',
+          '• **Transmission** : Remplacer les cours particuliers ponctuels à l’heure, non garantis et annulables, par des forfaits trimestriels A Laiz Academy (méthode [Le Permis de Jouer™](/pedagogie#permis-de-jouer)).',
           '• **Diffusion & Image** : Quitter la quête stérile de buzz éphémère sur les réseaux sociaux pour bâtir un portfolio d’autorité, une marque scénique reconnue ([Le Pianobariste™](/services#piano-bar)) et un réseau d’organisateurs VIP.',
           '• **Résilience financière** : Quitter la dépendance totale à un seul gérant de salle pour asseoir sa vie d’artiste sur 4 sources de revenus directes, indépendantes et complémentaires.',
         ],
@@ -2549,7 +2549,7 @@ export const ARTICLES: Article[] = [
           'Cadre institutionnel et réalités juridiques : Ministère des Arts et de la Culture du Cameroun (MINAC), [Loi n° 2000/011 du 19 décembre 2000 relative au droit d’auteur et aux droits voisins](https://www.minac.gov.cm/fr/documentation/textes-et-lois/droit-dauteur-et-droits-voisins).',
           'Organisation internationale : [Organisation Africaine de la Propriété Intellectuelle (OAPI)](https://oapi.int/), Accord de Bangui révisé, Annexe VII sur la propriété littéraire et artistique.',
           'Prestations scéniques d’atmosphère : découvrez notre cahier des charges et nos formules sur [Le Pianobariste™](/services#piano-bar).',
-          'Pédagogie et certification professionnelle : programme et inscriptions à la [Racines Musicales Academy®](/rma) et cursus [Le Permis de Jouer™](/pedagogie#permis-de-jouer).',
+          'Pédagogie et formation d’excellence : programme et inscriptions à [A Laiz Academy](/rma) et cursus [Le Permis de Jouer™](/pedagogie#permis-de-jouer).',
           'Ingénierie sonore et partenariats créatifs : nos solutions d’enregistrement et de composition pour l’image sur [Alaiz Music](/services#studio) et [Services aux entreprises](/services).',
         ],
       },
@@ -2739,7 +2739,7 @@ export const JOURNAL_SERIES = [
   {
     num: '03',
     title: 'Pédagogie & Permis de Jouer™',
-    text: 'Apprentissage du clavier, accompagnement du chant et transmission à la RMA.',
+    text: 'Apprentissage du clavier, accompagnement du chant et transmission au sein de A Laiz Academy.',
   },
   {
     num: '04',

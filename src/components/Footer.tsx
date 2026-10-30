@@ -10,7 +10,7 @@ import { trackFormSubmitSuccess, trackLeadConversion } from '../lib/ad-pixels'
 const DERIVED_MARKS = [
   { name: 'A Laiz Ô Pays', role: 'Manifeste & philosophie culturelle fondatrice' },
   { name: 'Le Pianobariste', role: 'Signature scénique piano-bar live (depuis 2007)' },
-  { name: 'Racines Musicales Academy (RMA)', role: 'Académie, pédagogie & référentiel Permis de Jouer' },
+  { name: 'A Laiz Academy', role: 'Académie de formation, pédagogie & Permis de Jouer (ex-RMA)' },
   { name: 'Musicien Augmenté', role: 'Approche méthodologique, recherche & conférences IA' },
 ]
 
@@ -140,7 +140,7 @@ export default function Footer() {
             <p className="eyebrow text-ivory/40">Contact</p>
             <ul className="mt-5 space-y-3 text-sm text-ivory/65">
               <li>
-                <span className="block text-ivory/40">Racines Musicales Academy</span>
+                <span className="block text-ivory/40">A Laiz Academy</span>
                 <a href={`mailto:${SITE.emailRma}`} className="transition-colors hover:text-gold">
                   {SITE.emailRma}
                 </a>

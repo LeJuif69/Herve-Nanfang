@@ -227,16 +227,16 @@ export const MASTER_IDENTITY = {
     { annee: 'Depuis 2022', titre: 'ESAS de Lomé', detail: 'Enseignant à l’École Supérieure des Arts du Spectacle : MAO, musicologie appliquée aux médias visuels et technique de composition musicale.' },
     { annee: '2023', titre: 'Collège bilingue L’Excellence, Odza', detail: 'Éducation musicale en milieu scolaire.' },
     { annee: 'Master II', titre: 'Musicologie appliquée aux médias', detail: 'Université de Yaoundé I : spécialisation en MAO, analyse de bandes originales (Harry Potter, cinéma d’horreur africain) et convergence IA.' },
-    { annee: '2026', titre: 'RMA « Vacances Utiles » & Les Zikos', detail: 'Programme intensif en 5 disciplines (restitution Damas–Petits Génies, Yaoundé) et restructuration du manuel pédagogique (68 p.).' },
-    { annee: 'Aujourd’hui', titre: 'A Laiz Ô Pays & Musicien Augmenté', detail: 'Manifeste culturel A Laiz Ô Pays et programmes signatures : scène (Le Pianobariste), formation (Racines Musicales Academy), recherche patrimoniale (Tswefap), production studio et intégration éthique de l’IA (Musicien Augmenté).' },
+    { annee: '2026', titre: 'A Laiz Academy « Vacances Utiles » & Les Zikos', detail: 'Programme intensif en 5 disciplines (restitution Damas–Petits Génies, Yaoundé) et restructuration du manuel pédagogique (68 p.).' },
+    { annee: 'Aujourd’hui', titre: 'A Laiz Ô Pays & Musicien Augmenté', detail: 'Manifeste culturel A Laiz Ô Pays et programmes signatures : scène (Le Pianobariste), formation (A Laiz Academy, ex-RMA), recherche patrimoniale (Tswefap), production studio et intégration éthique de l’IA (Musicien Augmenté).' },
   ],
 
   /* ------------------------------------------------------------------ */
   marques: [
     { nom: 'A Laiz Ô Pays', role: 'Manifeste artistique & philosophie culturelle fondatrice', to: '/projets' },
     { nom: 'Le Pianobariste', role: 'Signature scénique piano-bar live (depuis 2007)', to: '/musique#pianobariste' },
-    { nom: 'Racines Musicales Academy (RMA)', role: 'Académie de formation musicale & curricula', to: '/rma' },
-    { nom: 'Permis de Jouer', role: 'Référentiel de progression & certification (RMA · N1 à N4)', to: '/rma#permis' },
+    { nom: 'A Laiz Academy (ex-RMA)', role: 'Académie de formation musicale & curricula', to: '/rma' },
+    { nom: 'Permis de Jouer', role: 'Référentiel de progression & certification interne (A Laiz Academy · N1 à N4)', to: '/rma#permis' },
     { nom: 'Les Zikos', role: 'Manuel pédagogique (68 pages)', to: '/pedagogie#publications' },
     { nom: 'Tswefap', role: 'Système d’écriture & documentation du Batoufam', to: '/culture-recherche' },
     { nom: 'Musicien Augmenté', role: 'Approche méthodologique & conférences IA × musique', to: '/ia-technologie#musicien-augmente' },
@@ -336,7 +336,7 @@ export const MASTER_IDENTITY = {
       {
         type: 'lieu',
         intitule: 'Espace Damas–Petits Génies (Yaoundé)',
-        detail: 'Scène de restitution collective du programme intensif RMA Vacances Utiles 2026 (5 disciplines instrumentales & vocales).',
+        detail: 'Scène de restitution collective du programme intensif A Laiz Academy Vacances Utiles 2026 (5 disciplines instrumentales & vocales).',
         annee: 'Août 2026',
       },
     ] as Preuve[],
@@ -350,7 +350,7 @@ export const MASTER_IDENTITY = {
       {
         type: 'publication',
         intitule: 'Permis de Jouer™ (Paliers N1 à N4)',
-        detail: 'Dispositif pédagogique de progression musicale instrument-agnostique articulé à la pédagogie RMA.',
+        detail: 'Dispositif pédagogique de progression musicale instrument-agnostique articulé à la pédagogie A Laiz Academy.',
         annee: 'Méthode',
       },
       {
@@ -387,7 +387,7 @@ export const MASTER_IDENTITY = {
       },
       {
         type: 'oeuvre',
-        intitule: 'Programme RMA « Vacances Utiles » 2026',
+        intitule: 'Programme A Laiz Academy « Vacances Utiles » 2026',
         detail: 'Cursus intensif sur 7 semaines en 5 disciplines (piano, guitare, basse, batterie, voix) avec restitution artistique collective.',
         annee: '2026',
       },
@@ -414,10 +414,10 @@ export const MASTER_IDENTITY = {
       'Pulsation, coordination & pratique collective',
     ],
     dispositifs: [
-      'Racines Musicales Academy® (RMA)',
+      'A Laiz Academy (anciennement Racines Musicales Academy)',
       'Permis de Jouer™ (N1 à N4)',
       'LES ZIKOS® (manuel de 68 pages)',
-      'RMA-01 — Fondamentaux du Musicien (Pulsation & Body)',
+      'ALA-01 — Fondamentaux du Musicien (Pulsation & Body, ex-RMA-01)',
       'Programme Vacances Utiles (7 semaines)',
     ],
   },

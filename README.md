@@ -5,7 +5,7 @@
 
 Ce dépôt contient la **plateforme personnelle, artistique, intellectuelle et numérique** d'Hervé Nanfang, construite à partir du document *MASTER — HERVÉ NANFANG*.
 
-Le site est conçu comme la **source canonique** : le concept fondateur **A Laiz Ô Pays** et toutes les initiatives spécialisées (Le Pianobariste™, Alaiz Music, Alaiz Patrimoine, Racines Musicales Academy®, Permis de Jouer™, Musicien Augmenté™) y sont rattachés à **Hervé Nanfang**.
+Le site est conçu comme la **source canonique** : le concept fondateur **A Laiz Ô Pays** et toutes les initiatives spécialisées (Le Pianobariste™, A Laiz Academy — anciennement Racines Musicales Academy®, Alaiz Music, Alaiz Patrimoine, Permis de Jouer™, Musicien Augmenté™) y sont rattachés à **Hervé Nanfang**.
 
 ---
 

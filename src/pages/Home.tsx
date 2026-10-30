@@ -60,14 +60,14 @@ const CREATIVE_CONCEPTS = [
   },
   {
     num: '02',
-    name: 'Racines Musicales Academy (RMA)',
-    trademark: 'Académie & ingénierie de formation musicale',
+    name: 'A Laiz Academy',
+    trademark: 'Académie de formation musicale & transmission (ex-RMA)',
     badge: 'Enseignement & curricula',
     lead: 'Transmission vivante et valorisation des patrimoines d’Afrique.',
     description:
-      'Académie d’enseignement musical et de formation MAO fondée par Hervé Nanfang. La RMA forme les musiciens et éducateurs aux pratiques contemporaines tout en documentant les polyrythmies et répertoires traditionnels oraux d’Afrique centrale.',
+      'Académie d’enseignement musical et de formation MAO fondée par Hervé Nanfang (anciennement Racines Musicales Academy — RMA). A Laiz Academy forme les musiciens et éducateurs aux pratiques contemporaines tout en documentant les polyrythmies et répertoires traditionnels oraux d’Afrique centrale.',
     link: '/rma',
-    linkLabel: 'Découvrir la RMA',
+    linkLabel: 'Découvrir A Laiz Academy',
   },
   {
     num: '03',
@@ -83,11 +83,11 @@ const CREATIVE_CONCEPTS = [
   {
     num: '04',
     name: 'Le Permis de Jouer',
-    trademark: 'Référentiel d’évaluation & progression (RMA)',
+    trademark: 'Référentiel d’évaluation & progression (A Laiz Academy)',
     badge: 'Niveaux N1 à N4',
     lead: 'Autonomie instrumentale immédiate et progression par compétences réelles.',
     description:
-      'Référentiel pédagogique structuré au sein de la RMA en quatre niveaux modulaires. Il remplace l’abstraction du solfège rébarbatif par une progression pragmatique axée sur les grilles d’accords, l’harmonie pratique et le jeu en situation réelle.',
+      'Référentiel pédagogique structuré au sein de A Laiz Academy en quatre niveaux modulaires. Il remplace l’abstraction du solfège rébarbatif par une progression pragmatique axée sur les grilles d’accords, l’harmonie pratique et le jeu en situation réelle.',
     link: '/pedagogie#permis-de-jouer',
     linkLabel: 'Consulter la méthode',
   },
@@ -750,7 +750,7 @@ export default function Home() {
             },
             {
               title: 'Systèmes & publications',
-              text: 'Racines Musicales Academy® (RMA), Permis de Jouer™ (N1 à N4) et manuel LES ZIKOS®.',
+              text: 'A Laiz Academy (ex-RMA), Permis de Jouer™ (N1 à N4) et manuel LES ZIKOS®.',
             },
           ].map((item, i) => (
             <Reveal key={item.title} delay={i * 110}>

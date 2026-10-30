@@ -28,3 +28,10 @@ Ne modifie aucun fichier sans autorisation explicite.
 
 Pour chaque constat, donne le fichier ou l'URL, la preuve,
 l'impact, la correction proposée et la méthode de vérification.
+
+## Règle de maillage interne du Journal (/journal)
+- Le Journal est la priorité d'autorité éditoriale du site.
+- Tout nouvel article du Journal doit pointer vers au moins une page métier (*Musique & Scène*, *Racines Musicales Academy*, *Musicien Augmenté*, *Services* ou *Projets*).
+- Chaque page métier doit comporter des liens contextuels vers les articles de référence du Journal.
+- `/journal` doit être accessible en 1 clic direct depuis la navigation desktop et mobile et le pied de page.
+

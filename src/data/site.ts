@@ -55,7 +55,7 @@ export const NAV_PRIMARY: NavItem[] = [
 ]
 
 export const NAV_SECONDARY: NavItem[] = [
-  { label: 'Académie RMA', to: '/rma' },
+  { label: 'A Laiz Academy', to: '/rma' },
   { label: 'Conférences', to: '/conferences' },
   { label: 'Culture & Patrimoine', to: '/culture-recherche' },
   { label: 'Presse & EPK', to: '/presse' },
