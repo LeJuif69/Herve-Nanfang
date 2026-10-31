@@ -938,7 +938,7 @@ export const ARTICLES: Article[] = [
     status: 'Publié',
     audience:
       'Enseignants de musique, directeurs d’écoles et de conservatoires, parents et musiciens autodidactes.',
-    linkedConcept: { label: 'Racines Musicales Academy®', to: '/rma' },
+    linkedConcept: { label: 'A Laiz Academy', to: '/rma' },
     outline: [
       'Le diagnostic : l’échec du solfège déconnecté de la pratique',
       'Le socle RMA-01 : la pulsation corporelle avant l’abstraction graphique',

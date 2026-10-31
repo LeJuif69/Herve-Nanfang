@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import PermisDeJouerVisualizer from '../components/PermisDeJouerVisualizer'
 import RMAAuditionForm from '../components/RMAAuditionForm'
@@ -18,6 +19,7 @@ import {
   Tag,
 } from '../components/ui'
 
+import { ARTICLES } from '../data/articles'
 import { courseSchema, creativeWorkSchema, breadcrumbSchema, permisDeJouerProgramSchema, personSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 
@@ -524,6 +526,66 @@ export default function Pedagogy() {
 
         <div className="mt-12">
           <RMAAuditionForm />
+        </div>
+      </Section>
+
+      {/* ====================== LE JOURNAL • RESSOURCES PÉDAGOGIQUES ====================== */}
+      <Section tone="ink" id="journal-pedagogie">
+        <Reveal>
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <ChapterMark num="07" label="Le Journal • Pédagogie & Méthode" />
+              <Display size="md" className="mt-6 max-w-2xl">
+                Doctrine d'apprentissage & ingénierie pédagogique
+              </Display>
+              <Lead className="mt-4 max-w-2xl">
+                Découvrez les fondements théoriques, la philosophie du Permis de Jouer™ et les analyses
+                de transmission musicale publiées dans le Journal.
+              </Lead>
+            </div>
+            <Btn to="/journal" variant="ghost" className="self-start md:self-auto shrink-0">
+              Explorer les écrits du Journal →
+            </Btn>
+          </div>
+        </Reveal>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {ARTICLES.filter((a) =>
+            [
+              'methode-permis-de-jouer-pedagogie-musicale',
+              'traduire-tradition-orale-au-clavier-rythmes-camerounais',
+              'transmission-orale-archive',
+            ].includes(a.slug),
+          ).map((article, i) => (
+            <Reveal key={article.slug} delay={i * 80}>
+              <Link to={`/journal/${article.slug}`} className="group block h-full">
+                <SpotlightCard className="flex h-full flex-col justify-between border-white/10 bg-ink-2 p-7 transition-colors group-hover:border-gold/50">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs text-gold/80 uppercase tracking-wider">
+                        {article.category}
+                      </span>
+                      <span className="text-[0.62rem] uppercase tracking-wider text-ivory/45">
+                        {article.readingTime}
+                      </span>
+                    </div>
+                    <h3 className="mt-4 font-display text-xl leading-snug text-ivory transition-colors group-hover:text-gold-2">
+                      {article.title}
+                    </h3>
+                    <p className="mt-3 text-xs leading-relaxed text-ivory/60 line-clamp-3">
+                      {article.excerpt}
+                    </p>
+                  </div>
+                  <div className="mt-6 border-t border-white/5 pt-3 flex items-center justify-between">
+                    <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-gold group-hover:text-gold-2 inline-flex items-center gap-1.5">
+                      Lire l’article <span>→</span>
+                    </span>
+                    <span className="text-[0.6rem] uppercase tracking-wider text-ivory/40">Hervé Nanfang</span>
+                  </div>
+                </SpotlightCard>
+              </Link>
+            </Reveal>
+          ))}
         </div>
       </Section>
 

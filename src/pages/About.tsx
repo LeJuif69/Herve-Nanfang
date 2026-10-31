@@ -19,6 +19,7 @@ import {
 } from '../components/ui'
 import { MASTER_IDENTITY, IDENTITY } from '../data/identity'
 import { PILLARS } from '../data/site'
+import { ARTICLES } from '../data/articles'
 import { breadcrumbSchema, personSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 import CareerTimeline from '../components/CareerTimeline'
@@ -407,6 +408,68 @@ export default function About() {
 
         <div className="mt-14">
           <PressMediaKit />
+        </div>
+      </Section>
+
+      {/* ========================================================================= */}
+      {/* LE JOURNAL — LA VOIX & LES ÉCRITS DE L'AUTEUR                             */}
+      {/* ========================================================================= */}
+      <Section tone="dark" id="journal-auteur">
+        <Reveal>
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <ChapterMark num="08" label="Le Journal • Écrits & Témoignages" />
+              <Display size="md" className="mt-6 max-w-2xl">
+                La parole d'auteur dans le Journal
+              </Display>
+              <Lead className="mt-4 max-w-2xl">
+                Pour comprendre la pensée, le parcours et les convictions d'Hervé Nanfang au-delà de
+                la biographie, découvrez ses articles de fond et retours d'expérience.
+              </Lead>
+            </div>
+            <Btn to="/journal" variant="ghost" className="self-start md:self-auto shrink-0">
+              Explorer tous les articles →
+            </Btn>
+          </div>
+        </Reveal>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {ARTICLES.filter((a) =>
+            [
+              'apres-la-mao-lia',
+              'musicien-augmente-definition',
+              'musicien-marque-recit',
+            ].includes(a.slug),
+          ).map((article, i) => (
+            <Reveal key={article.slug} delay={i * 80}>
+              <Link to={`/journal/${article.slug}`} className="group block h-full">
+                <SpotlightCard className="flex h-full flex-col justify-between border-white/10 bg-ink-2 p-7 transition-colors group-hover:border-gold/50">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs text-gold/80 uppercase tracking-wider">
+                        {article.category}
+                      </span>
+                      <span className="text-[0.62rem] uppercase tracking-wider text-ivory/45">
+                        {article.readingTime}
+                      </span>
+                    </div>
+                    <h3 className="mt-4 font-display text-xl leading-snug text-ivory transition-colors group-hover:text-gold-2">
+                      {article.title}
+                    </h3>
+                    <p className="mt-3 text-xs leading-relaxed text-ivory/60 line-clamp-3">
+                      {article.excerpt}
+                    </p>
+                  </div>
+                  <div className="mt-6 border-t border-white/5 pt-3 flex items-center justify-between">
+                    <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-gold group-hover:text-gold-2 inline-flex items-center gap-1.5">
+                      Lire l’article <span>→</span>
+                    </span>
+                    <span className="text-[0.6rem] uppercase tracking-wider text-ivory/40">Hervé Nanfang</span>
+                  </div>
+                </SpotlightCard>
+              </Link>
+            </Reveal>
+          ))}
         </div>
       </Section>
 

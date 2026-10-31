@@ -1,19 +1,24 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import {
   ArrowLink,
   Body,
+  Btn,
   Card,
   ChapterMark,
   CtaBand,
   Display,
   Eyebrow,
+  Lead,
   Reveal,
   Rule,
   Section,
+  SpotlightCard,
   Stat,
   Tag,
 } from '../components/ui'
+import { ARTICLES } from '../data/articles'
 import { PROJECT_FAMILIES } from '../data/projects'
 import { SITE } from '../data/site'
 import {
@@ -376,6 +381,68 @@ export default function Projects() {
             </div>
           </div>
         </Reveal>
+      </Section>
+
+      {/* ========================================================================= */}
+      {/* LE JOURNAL — MANIFESTES, FONDEMENTS & ÉTUDES DE RECHERCHE                 */}
+      {/* ========================================================================= */}
+      <Section tone="ink" id="journal-projets">
+        <Reveal>
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <ChapterMark num="07" label="Le Journal • Manifestes & Projets" />
+              <Display size="md" className="mt-6 max-w-2xl">
+                Les réflexions de fond documentant nos réalisations
+              </Display>
+              <Lead className="mt-4 max-w-2xl">
+                Chaque initiative culturelle, pédagogique ou technologique prend racine dans une démarche
+                de recherche appliquée et d'écriture documentée.
+              </Lead>
+            </div>
+            <Btn to="/journal" variant="ghost" className="self-start md:self-auto shrink-0">
+              Explorer tout le Journal →
+            </Btn>
+          </div>
+        </Reveal>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {ARTICLES.filter((a) =>
+            [
+              'documenter-les-traditions-musicales-orales',
+              'musicien-augmente-definition',
+              '5-facons-ia-carriere-musicien',
+            ].includes(a.slug),
+          ).map((article, i) => (
+            <Reveal key={article.slug} delay={i * 80}>
+              <Link to={`/journal/${article.slug}`} className="group block h-full">
+                <SpotlightCard className="flex h-full flex-col justify-between border-white/10 bg-ink-2 p-7 transition-colors group-hover:border-gold/50">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs text-gold/80 uppercase tracking-wider">
+                        {article.category}
+                      </span>
+                      <span className="text-[0.62rem] uppercase tracking-wider text-ivory/45">
+                        {article.readingTime}
+                      </span>
+                    </div>
+                    <h3 className="mt-4 font-display text-xl leading-snug text-ivory transition-colors group-hover:text-gold-2">
+                      {article.title}
+                    </h3>
+                    <p className="mt-3 text-xs leading-relaxed text-ivory/60 line-clamp-3">
+                      {article.excerpt}
+                    </p>
+                  </div>
+                  <div className="mt-6 border-t border-white/5 pt-3 flex items-center justify-between">
+                    <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-gold group-hover:text-gold-2 inline-flex items-center gap-1.5">
+                      Lire l’article <span>→</span>
+                    </span>
+                    <span className="text-[0.6rem] uppercase tracking-wider text-ivory/40">Hervé Nanfang</span>
+                  </div>
+                </SpotlightCard>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
       </Section>
 
       <CtaBand
