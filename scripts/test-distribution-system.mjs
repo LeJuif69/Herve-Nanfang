@@ -21,7 +21,7 @@ function assert(condition, message) {
 // TEST 1 : Vérification de la fonction buildUtmUrl
 // -----------------------------------------------------------------------------
 console.log('1. Test de la génération d’URLs avec paramètres UTM')
-const testBaseUrl = 'https://hervenanfang.vercel.app/journal/apres-la-mao-lia'
+const testBaseUrl = 'https://hervenanfang.art/journal/apres-la-mao-lia'
 const utmUrl = buildUtmUrl(testBaseUrl, {
   source: 'linkedin',
   medium: 'social',
@@ -30,7 +30,7 @@ const utmUrl = buildUtmUrl(testBaseUrl, {
 })
 
 assert(
-  utmUrl.startsWith('https://hervenanfang.vercel.app/journal/apres-la-mao-lia?'),
+  utmUrl.startsWith('https://hervenanfang.art/journal/apres-la-mao-lia?'),
   'La base canonique est préservée avant les paramètres de requête',
 )
 assert(utmUrl.includes('utm_source=linkedin'), 'utm_source est correctement encodé')
@@ -48,7 +48,7 @@ const plan = generateArticleCampaignDistribution(firstArticle, '2026-10-26')
 assert(plan.article.slug === 'apres-la-mao-lia', 'Article associé correctement')
 assert(plan.baseDate === '2026-10-26', 'Date de départ J0 correcte')
 assert(
-  plan.canonicalUrl === 'https://hervenanfang.vercel.app/journal/apres-la-mao-lia',
+  plan.canonicalUrl === 'https://hervenanfang.art/journal/apres-la-mao-lia',
   'URL canonique exacte sans paramètres parasites',
 )
 assert(plan.assets.length === 10, `Génération de 10 assets complets (obtenu: ${plan.assets.length})`)
@@ -84,7 +84,7 @@ assert(offsets.includes(14), 'J14 (+14j) présent')
 
 const mediumAsset = plan.assets.find((a) => a.type === 'medium_syndication')
 assert(
-  mediumAsset.content.includes('<link rel="canonical" href="https://hervenanfang.vercel.app/journal/apres-la-mao-lia" />'),
+  mediumAsset.content.includes('<link rel="canonical" href="https://hervenanfang.art/journal/apres-la-mao-lia" />'),
   'Medium asset contient la balise canonique explicite pointant vers le site',
 )
 assert(

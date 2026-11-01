@@ -210,7 +210,7 @@ export default function Footer() {
               <span>Haut de page</span>
               <span aria-hidden>↑</span>
             </button>
-            <span className="text-ivory/25">Site canonique : hervenanfang.vercel.app</span>
+            <span className="text-ivory/25">Site canonique : hervenanfang.art</span>
           </div>
         </div>
       </Container>

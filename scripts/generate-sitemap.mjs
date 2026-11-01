@@ -8,7 +8,7 @@ import { readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
 const root = process.cwd()
-const SITE_URL = 'https://hervenanfang.vercel.app'
+const SITE_URL = 'https://hervenanfang.art'
 
 const STATIC_URLS = [
   '/',

@@ -2803,7 +2803,7 @@ export const ARTICLES: Article[] = [
           'En identifiant d’abord la nature du bruit, puis en isolant les éléments de la chaîne un par un, il devient possible de corriger de nombreux problèmes sans dépense immédiate. Le gain staging et le traitement logiciel viennent ensuite compléter le travail réalisé à la prise.',
           'Besoin d’un diagnostic personnalisé ? Vous constatez un souffle persistant, un ronflement inexpliqué ou des grésillements sur vos prises de voix ? Hervé Nanfang propose une séance individuelle de Diagnostic Chaîne de Gain & Traitement du Souffle (60 minutes), à Yaoundé, dans d’autres villes ou à distance.',
           'La séance peut comprendre l’écoute de fichiers tests, l’examen de votre configuration (microphone, interface, câbles, alimentation et logiciel), l’identification des causes probables et la remise d’un protocole de réglages adapté. Les éventuels besoins de réparation électrique sont orientés vers un professionnel qualifié.',
-          'Réservation et renseignements : WhatsApp (+237 694 72 34 92) ou via le formulaire de contact du site officiel (https://hervenanfang.vercel.app/contact).',
+          'Réservation et renseignements : WhatsApp (+237 694 72 34 92) ou via le formulaire de contact du site officiel (https://hervenanfang.art/contact).',
         ],
       },
       {

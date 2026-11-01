@@ -126,7 +126,7 @@ export default function PressKit() {
           {[
             { t: 'Nom', d: 'Toujours « Hervé Nanfang », sans variante.' },
             { t: 'Portrait', d: 'Une seule photo de référence, identique partout.' },
-            { t: 'Lien', d: 'hervenanfang.vercel.app vers lequel pointent toutes les plateformes.' },
+            { t: 'Lien', d: 'hervenanfang.art vers lequel pointent toutes les plateformes.' },
             { t: 'Marques', d: 'Toujours rattachées : « un projet de Hervé Nanfang ».' },
           ].map((item) => (
             <div key={item.t} className="bg-ink-2 p-7">

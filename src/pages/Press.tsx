@@ -228,7 +228,7 @@ ALIMENTATION ÉLECTRIQUE : ${activeRider.powerSupply}
 NOTE IMPORTANTE : Les besoins définitifs dépendent du lieu, du format et des équipements disponibles. La fiche technique doit être confirmée avec l'organisateur avant chaque prestation.
 --------------------------------------------------
 Contact régie & production : ${SITE.emailContact} | WhatsApp : +237 694 72 34 92
-Site officiel : https://hervenanfang.vercel.app`
+Site officiel : https://hervenanfang.art`
 
     navigator.clipboard.writeText(text)
     setCopiedRider(true)
@@ -723,10 +723,10 @@ Site officiel : https://hervenanfang.vercel.app`
                   <div>
                     <span className="text-[0.68rem] text-ivory/40 uppercase block font-sans">Site officiel de référence</span>
                     <a
-                      href="https://hervenanfang.vercel.app"
+                      href="https://hervenanfang.art"
                       className="text-ivory/70 hover:text-gold text-xs transition-colors mt-1 block"
                     >
-                      https://hervenanfang.vercel.app
+                      https://hervenanfang.art
                     </a>
                   </div>
                 </div>

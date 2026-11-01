@@ -10,7 +10,7 @@ import { IDENTITY, MASTER_IDENTITY } from './identity'
 
 export const SITE = {
   name: 'Hervé Nanfang',
-  url: 'https://hervenanfang.vercel.app',
+  url: 'https://hervenanfang.art',
   tagline: 'Créer. Transmettre. Augmenter. Développer.',
   signatureLong: IDENTITY.positioningLine,
   /** Description de référence — identique sur toutes les plateformes. */

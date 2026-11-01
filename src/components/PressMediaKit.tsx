@@ -177,7 +177,7 @@ export function PressBiographies() {
         `Date d'émission : ${new Date().toLocaleDateString('fr-FR')}\n`,
         `Concept fondateur & univers créatif : A Laiz Ô Pays\n`,
         `Contact presse : ${SITE.emailContact}\n`,
-        `Site officiel : https://hervenanfang.vercel.app\n`,
+        `Site officiel : https://hervenanfang.art\n`,
         `------------------------------------------------------------\n\n`,
         activeBio.text,
         `\n\n------------------------------------------------------------\n`,

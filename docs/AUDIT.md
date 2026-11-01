@@ -1,4 +1,4 @@
-# Audit éditorial et technique — hervenanfang.vercel.app
+# Audit éditorial et technique — hervenanfang.art
 
 *Généré le 01/11/2026 par `npm run audit`.*
 

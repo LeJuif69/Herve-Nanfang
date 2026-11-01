@@ -23,7 +23,7 @@ export default function ArticleShareBar({
     url ||
     (typeof window !== 'undefined'
       ? window.location.href
-      : `https://hervenanfang.vercel.app/journal/${slug || ''}`)
+      : `https://hervenanfang.art/journal/${slug || ''}`)
 
   const shareText = `*${title}*\n\n${excerpt ? `${excerpt}\n\n` : ''}👉 Lire l’analyse sur le site officiel :\n${shareUrl}`
 

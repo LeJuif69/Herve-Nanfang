@@ -56,7 +56,7 @@ const basePost = {
     whatsapp: { text: 'Session live disponible !', hashtags: [] },
   },
   mediaUrl: '/images/hero-duo-live.webp',
-  linkUrl: 'https://hervenanfang.vercel.app/musique',
+  linkUrl: 'https://hervenanfang.art/musique',
   ctaLabel: 'Écouter',
   targetAudience: 'Tout public',
 }

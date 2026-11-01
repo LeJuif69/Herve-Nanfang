@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AUDIT ÉDITORIAL ET TECHNIQUE — hervenanfang.vercel.app
+AUDIT ÉDITORIAL ET TECHNIQUE — hervenanfang.art
 =============================================================================
 Usage :  npm run audit          (ou : python3 scripts/audit.py)
 
@@ -369,7 +369,7 @@ def main() -> int:
     lines: list[str] = []
     add = lines.append
 
-    add("# Audit éditorial et technique — hervenanfang.vercel.app")
+    add("# Audit éditorial et technique — hervenanfang.art")
     add("")
     add(f"*Généré le {date.today().strftime('%d/%m/%Y')} par `npm run audit`.*")
     add("")

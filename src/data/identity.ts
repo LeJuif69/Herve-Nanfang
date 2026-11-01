@@ -509,7 +509,7 @@ export const MASTER_IDENTITY = {
    * comprendre qu'il s'agit d'une seule et même entité.
    */
   liensOfficiels: [
-    { plateforme: 'Site', href: 'https://hervenanfang.vercel.app', verifie: true },
+    { plateforme: 'Site', href: 'https://hervenanfang.art', verifie: true },
     { plateforme: 'Portfolio', href: 'https://canva.link/2l6atbuzkax2k6g', verifie: true },
     { plateforme: 'LinkedIn', href: 'https://www.linkedin.com/in/herve-nanfang-317bb2b1/', verifie: true },
     { plateforme: 'Facebook', href: 'https://www.facebook.com/herve.nanfang.officiel/', verifie: true },

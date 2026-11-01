@@ -27,7 +27,7 @@ function parseArgKey() {
 const DEFAULT_KEY = 'e7d7bc0a9f824b619dc8456209ef48bc'
 const key = (process.env.INDEXNOW_KEY || parseArgKey() || DEFAULT_KEY).trim()
 
-const host = 'hervenanfang.vercel.app'
+const host = 'hervenanfang.art'
 
 // Auto-création du fichier de vérification <clé>.txt dans public/ et dist/
 const keyFileName = `${key}.txt`
