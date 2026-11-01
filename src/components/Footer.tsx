@@ -140,6 +140,12 @@ export default function Footer() {
             <p className="eyebrow text-ivory/40">Contact</p>
             <ul className="mt-5 space-y-3 text-sm text-ivory/65">
               <li>
+                <span className="block text-ivory/40">Contact direct</span>
+                <a href={`mailto:${SITE.emailContact}`} className="transition-colors hover:text-gold">
+                  {SITE.emailContact}
+                </a>
+              </li>
+              <li>
                 <span className="block text-ivory/40">A Laiz Academy</span>
                 <a href={`mailto:${SITE.emailRma}`} className="transition-colors hover:text-gold">
                   {SITE.emailRma}

@@ -21,7 +21,7 @@ export const SITE = {
   city: IDENTITY.city,
   emailContact: 'hello@hervenanfang.art',
   emailAcademy: 'contact@hervenanfang.art',
-  emailRma: 'racinesmusicalesacademy@gmail.com',
+  emailRma: 'contact@hervenanfang.art',
   phones: [
     { display: '+237 694 72 34 92', tel: '+237694723492', whatsapp: '237694723492' },
     { display: '+237 682 18 02 66', tel: '+237682180266', whatsapp: '237682180266' },
