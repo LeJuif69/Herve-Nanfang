@@ -1,5 +1,5 @@
 /**
- * Témoignages d'élèves et partenaires — A Laiz Academy (ex-RMA)
+ * Témoignages d'élèves et partenaires — A Laiz Academy
  * Source : profil officiel et retours d'expérience
  */
 
@@ -25,7 +25,7 @@ export const TESTIMONIALS: Testimonial[] = [
     discipline: "Piano",
     palier: "Palier N2 — Méthode",
     body:
-      "Avant A Laiz Academy (RMA), j'avais essayé deux autres académies et j'abandonnais toujours après deux mois. Ici, pour la première fois, je comprends vraiment ce que je joue. La progression par paliers change tout : on sait exactement où on en est et où on va. J'ai joué ma première pièce complète de mémoire devant ma famille, une chose que je croyais impossible.",
+      "Avant A Laiz Academy, j'avais essayé deux autres académies et j'abandonnais toujours après deux mois. Ici, pour la première fois, je comprends vraiment ce que je joue. La progression par paliers change tout : on sait exactement où on en est et où on va. J'ai joué ma première pièce complète de mémoire devant ma famille, une chose que je croyais impossible.",
     initials: "SM",
   },
   {
@@ -68,7 +68,7 @@ export const TESTIMONIALS: Testimonial[] = [
     discipline: "Guitare (enfant 9 ans)",
     palier: "Palier N1 — Fondations",
     body:
-      "Mon fils avait peur de se tromper et s'arrêtait à chaque fausse note. Aujourd'hui, il joue en continu, il chante en même temps et il m'explique les accords qu'il utilise. Le changement en huit mois est remarquable. La pédagogie de la RMA est bienveillante sans être permissive : c'est exactement ce que je cherchais.",
+      "Mon fils avait peur de se tromper et s'arrêtait à chaque fausse note. Aujourd'hui, il joue en continu, il chante en même temps et il m'explique les accords qu'il utilise. Le changement en huit mois est remarquable. La pédagogie de A Laiz Academy est bienveillante sans être permissive : c'est exactement ce que je cherchais.",
     initials: "NP",
   },
   {

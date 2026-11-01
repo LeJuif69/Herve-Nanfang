@@ -120,7 +120,7 @@ ${musicalGoals || 'Non renseigné'}
           <h4 className="font-display text-2xl text-ivory">Candidature enregistrée avec succès !</h4>
           <p className="text-xs text-ivory/75 max-w-lg mx-auto leading-relaxed">
             Merci <strong>{fullName}</strong>. Votre demande pour le cursus{' '}
-            <strong className="text-gold">{discipline}</strong> a bien été transmise à l'équipe pédagogique de A Laiz Academy (RMA). Vous serez contacté sous 48h pour fixer la date de votre audition diagnostique.
+            <strong className="text-gold">{discipline}</strong> a bien été transmise à l'équipe pédagogique de A Laiz Academy. Vous serez contacté sous 48h pour fixer la date de votre audition diagnostique.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 pt-4">

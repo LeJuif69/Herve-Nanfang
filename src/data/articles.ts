@@ -2700,6 +2700,139 @@ export const ARTICLES: Article[] = [
     seoDescription:
       'How musicologists and sound engineers assess AI-generated music through critical listening, prompt alignment, cultural context and structured audio annotation.',
   },
+    {
+    slug: 'interfaces-audio-sans-souffle-home-studio',
+    num: '28',
+    category: 'Ingénierie du son & Studio',
+    title:
+      'Carte son qui souffle ou qui grésille : le guide pratique de l’ingénieur du son',
+    excerpt:
+      'Un souffle dans le casque, un ronflement ou un grésillement USB ? Méthode d’ingénieur du son pour identifier le type de bruit, isoler la chaîne par élimination et assainir vos prises de voix.',
+    readingTime: '13 min',
+    status: 'Publié',
+    audience:
+      'Chanteurs, beatmakers, podcasteurs, musiciens indépendants et créateurs travaillant en home studio.',
+    coverImage: '/carte-son-souffle-guide-ingenieur-du-son.jpg',
+    linkedConcept: { label: 'Services Studio & Ingénierie', to: '/services#production' },
+    outline: [
+      'Introduction — Ne condamnez pas votre carte son trop vite',
+      '1. Identifier le bruit avant de chercher une solution',
+      '2. Diagnostiquer la chaîne par élimination',
+      '3. Réduire les perturbations électriques et informatiques',
+      '4. Optimiser le gain staging et l’association microphone–préamplificateur',
+      '5. Traitement logiciel : corriger le résiduel sans dégrader la voix',
+      '6. Construire une chaîne de prise de son fiable sans achat immédiat',
+      'Conclusion — Un diagnostic méthodique vaut mieux qu’un achat précipité',
+      'Références techniques et documentation',
+    ],
+    body: [
+      {
+        heading: 'Introduction — Ne condamnez pas votre carte son trop vite',
+        paragraphs: [
+          'Un souffle dans le casque, un ronflement grave sur une prise de voix ou un grésillement qui apparaît lorsque l’ordinateur est branché au secteur : ces problèmes sont fréquents en home studio. Ils peuvent donner l’impression que l’interface audio est défectueuse ou que le microphone n’est pas assez performant.',
+          'Pourtant, le bruit peut entrer dans la chaîne à plusieurs endroits : microphone, câble, préamplificateur, alimentation, ordinateur, liaison USB, enceinte de contrôle ou environnement acoustique. Un plugin de débruitage ne permet pas toujours de corriger un problème qui aurait pu être éliminé à la source.',
+          'La bonne méthode consiste donc à identifier le type de bruit, isoler progressivement les éléments de la chaîne, puis corriger la cause avant de traiter ce qui reste dans le logiciel.',
+          'Ce guide propose une démarche accessible, qui commence par des tests ne nécessitant aucun achat. Les manipulations touchant à l’installation électrique doivent, en revanche, être confiées à une personne compétente.',
+        ],
+      },
+      {
+        heading: '1. Identifier le bruit avant de chercher une solution',
+        paragraphs: [
+          'Tous les bruits ne se ressemblent pas. Leur écoute donne une première indication, mais elle ne suffit pas toujours à déterminer leur origine. Un analyseur de spectre peut compléter le diagnostic.',
+          '1.1 Le souffle continu — hiss : Le souffle ressemble à un chuintement relativement régulier. Il peut provenir du bruit propre du microphone ou du préamplificateur, d’un gain important, d’un appareil électronique ou d’un bruit ambiant comme une ventilation. Il ne se limite pas nécessairement aux fréquences aiguës : sa répartition spectrale dépend de la source. Il faut donc éviter de conclure à partir de la seule impression d’un souffle « dans les aigus ».',
+          '1.2 Le ronflement — hum : Le ronflement est généralement grave et relativement stable. Dans les installations alimentées par un réseau à 50 Hz, on peut observer une composante à 50 Hz et des harmoniques à 100 Hz, 150 Hz ou davantage. Une boucle de masse est une cause possible, notamment lorsque plusieurs appareils reliés entre eux disposent de références de masse différentes. Un couplage électromagnétique, un transformateur trop proche d’un câble ou un défaut de blindage peuvent également être en cause. Un ronflement à 50 Hz ne prouve donc pas, à lui seul, l’existence d’une boucle de masse.',
+          '1.3 Le buzz ou grésillement électrique : Le buzz peut être plus riche en harmoniques et plus agressif qu’un ronflement classique. Il peut être lié à une alimentation à découpage, à un variateur d’éclairage, à un écran, à un câble mal blindé ou à un chemin de masse perturbé. Un indice utile consiste à observer si le bruit change lorsque l’on déplace un câble, éloigne un chargeur ou fait fonctionner l’ordinateur sur batterie.',
+          '1.4 Les clics, craquements et coupures numériques : Des claquements intermittents, des clics ou des interruptions de signal ne sont pas nécessairement des bruits analogiques. Ils peuvent signaler une instabilité de la liaison USB, un pilote audio, une taille de buffer inadaptée, une surcharge du processeur ou un problème de synchronisation numérique. Il faut distinguer ces incidents des bruits continus : augmenter le gain du préampli ne résoudra pas une coupure de flux numérique.',
+          '1.5 Le bruit de la pièce : Un ventilateur, un climatiseur, une circulation extérieure ou une pièce très réverbérante peuvent dégrader une prise. Il s’agit alors d’un problème acoustique, et non nécessairement d’un défaut électrique de l’interface. Un microphone ne sépare pas automatiquement la voix du bruit ambiant. La distance à la source, la directivité, l’orientation du microphone et les caractéristiques de la pièce jouent un rôle déterminant.',
+        ],
+      },
+      {
+        heading: '2. Diagnostiquer la chaîne par élimination',
+        paragraphs: [
+          'Avant de modifier les réglages, créez une copie de votre session et notez les conditions du test : microphone utilisé, câble, port USB, alimentation et réglage de gain. Baissez le volume du casque et des enceintes avant toute manipulation afin d’éviter les surprises sonores.',
+          'Étape 1 — Déterminer où le bruit apparaît : Écoutez séparément le signal enregistré dans le logiciel, le retour direct de l’interface (lorsque cette fonction existe), la sortie casque de l’interface et les enceintes de contrôle. Si le bruit est présent dans le fichier enregistré, il entre probablement dans la chaîne avant ou pendant la conversion. S’il n’apparaît que dans un système d’écoute, examinez aussi la sortie casque, les câbles vers les enceintes et leur alimentation. Cette première comparaison permet de ne pas confondre le bruit capté par le microphone avec un bruit généré uniquement dans le système de monitoring.',
+          'Étape 2 — Tester un câble et un microphone connus comme fonctionnels : Remplacez le câble XLR par un autre câble symétrique en bon état, puis refaites un enregistrement dans les mêmes conditions. Si possible, testez également un autre microphone sur la même entrée. Évitez de conclure qu’un câble est défectueux simplement parce qu’un bruit apparaît lorsque son extrémité reste ouverte et que le gain est fortement augmenté : une entrée non terminée peut capter des interférences. Pour un contrôle approfondi du bruit propre d’un préamplificateur, un technicien peut utiliser une terminaison de mesure adaptée. Ce test n’est pas nécessaire au diagnostic courant et ne doit pas être improvisé par un utilisateur qui ne maîtrise pas le câblage XLR et l’alimentation fantôme.',
+          'Étape 3 — Isoler le microphone et son environnement : Placez le microphone à sa position habituelle, sans parler, puis écoutez le bruit capté. Éloignez temporairement les chargeurs, écrans, lampes à variateur et autres appareils électriques. Modifiez l’orientation du microphone et observez si le bruit change. Si le souffle augmente lorsque le microphone est branché, cela ne signifie pas automatiquement qu’il est défectueux : il peut simplement capter le bruit de la pièce ou révéler le bruit propre de la chaîne de préamplification.',
+          'Étape 4 — Vérifier l’interface et la liaison USB : Essayez un autre port USB de l’ordinateur, de préférence une connexion directe plutôt qu’un hub. Utilisez un câble USB adapté aux spécifications de l’interface et, si possible, le câble fourni par le fabricant. Testez un autre câble si le doute persiste. Les fabricants recommandent généralement de commencer par une connexion directe et de tester les ports et câbles. Si un hub est indispensable, un modèle alimenté séparément peut être essayé, sans garantie qu’il convienne à toutes les interfaces.',
+          'Étape 5 — Faire le test secteur / batterie : Sur un ordinateur portable, comparez le bruit lorsque le chargeur est branché puis lorsqu’il est déconnecté et que l’ordinateur fonctionne sur batterie. Si le bruit disparaît sur batterie, cela oriente le diagnostic vers l’alimentation du portable ou le réseau électrique du lieu. Ce résultat constitue un indice, pas une preuve suffisante pour désigner un composant précis.',
+        ],
+      },
+      {
+        heading: '3. Réduire les perturbations électriques et informatiques',
+        paragraphs: [
+          'Connexion USB directe et alimentation adaptée : Commencez par les mesures simples : port USB direct, câble court et conforme, alimentation d’origine ou recommandée par le fabricant, puis essai des autres ports. Évitez les rallonges et adaptateurs non vérifiés lorsque des coupures ou des bruits apparaissent. Certains problèmes de bruit concernent les interfaces alimentées par le bus USB, particulièrement sensibles à la qualité de l’alimentation fournie par l’ordinateur. D’autres interfaces disposent d’une alimentation secteur séparée et présentent des comportements différents.',
+          'Câbles audio et alimentation secteur : Évitez de faire courir longuement un câble micro parallèlement à un câble secteur ou à un bloc d’alimentation. Lorsque leur croisement est inévitable, un croisement à angle droit réduit généralement la longueur de couplage. Gardez les chargeurs et transformateurs éloignés des câbles audio lorsque cela est possible. Privilégiez les liaisons symétriques lorsque les deux appareils disposent d\'entrées et de sorties symétriques compatibles. Un câble symétrique correctement câblé aide à rejeter les perturbations communes, mais il ne corrige pas tous les défauts de mise à la terre ou de matériel.',
+          'Une règle de sécurité non négociable : ne jamais supprimer la terre de protection. Ne coupez jamais la broche de terre d’une prise, ne la recouvrez pas et n’utilisez pas un adaptateur destiné à supprimer la terre de protection pour faire disparaître un ronflement. Cette manipulation peut rendre le châssis d’un appareil dangereux en cas de défaut électrique. La terre de protection et la masse du signal audio n’ont pas la même fonction. Certains équipements disposent d’un commutateur Ground Lift conçu pour agir sur le circuit du signal ; il ne doit jamais être confondu avec la suppression de la terre secteur. Une boîte de direct ou un transformateur d’isolement audio adapté peut aider dans certaines configurations, à condition d’être utilisé conformément à sa documentation. Si vous suspectez un défaut de l’installation électrique, arrêtez les essais et faites contrôler l’installation par un électricien qualifié.',
+        ],
+      },
+      {
+        heading: '4. Optimiser le gain staging et l’association microphone–préamplificateur',
+        paragraphs: [
+          'Le gain staging consiste à gérer les niveaux à chaque étape de la chaîne pour obtenir un signal suffisamment élevé, sans écrêtage et sans amplifier inutilement le bruit.',
+          'Commencer par le placement du microphone : Avant de pousser le gain, rapprochez le microphone de la source lorsque la prise le permet. Une distance plus courte augmente généralement le rapport entre le son direct et le bruit de la pièce. Avec un microphone directionnel, elle peut aussi modifier la réponse dans le grave par effet de proximité. Il faut toutefois éviter les plosives, les bruits de bouche et une coloration excessive. Un filtre anti-pop et une distance adaptée sont souvent plus utiles qu’un réglage extrême du préampli. Un microphone dynamique n’est pas automatiquement meilleur qu’un microphone à condensateur dans une pièce non traitée. Le résultat dépend notamment de la directivité, de la distance, de la sensibilité, du bruit propre, de la source et de l’acoustique du lieu.',
+          'Comprendre la sensibilité du microphone : Les microphones ne délivrent pas tous le même niveau pour une pression acoustique identique. À titre d’exemple, le Shure SM7B présente une sensibilité de -59 dBV/Pa (1,12 mV). Shure indique qu’il peut nécessiter un préamplificateur disposant d’environ 60 dB de gain ou un amplificateur en ligne adapté, selon la source et le niveau recherché. Le Shure SM58 est plus sensible : sa documentation utilisateur indique -56 dBV/Pa (1,6 mV). Ces valeurs illustrent pourquoi il ne faut pas attribuer la même exigence de gain à tous les microphones dynamiques. Un booster en ligne peut être pertinent dans certains cas, mais il ne constitue pas un remède universel au souffle. Il faut vérifier le niveau de sortie du microphone, le gain réellement disponible, le bruit propre du préampli et les exigences d’alimentation du booster.',
+          'Régler le niveau d’enregistrement sans chercher le 0 dBFS : En enregistrement 24 bits, il n’est pas nécessaire de pousser le signal près de 0 dBFS. Il faut conserver une marge suffisante pour les crêtes imprévues et éviter tout écrêtage numérique. Comme repères pratiques, on peut viser des crêtes autour de -12 à -6 dBFS, tout en observant le niveau moyen. Une moyenne proche de -18 dBFS est un repère courant dans de nombreux flux de travail, mais ces valeurs ne sont pas des obligations universelles : elles varient selon la dynamique de la source et la méthode de mesure. Ne vous fiez pas uniquement à la position physique du potentiomètre de gain : le bon réglage est celui qui permet d’obtenir un niveau exploitable, sans écrêtage, avec un bruit résiduel acceptable.',
+        ],
+      },
+      {
+        heading: '5. Traitement logiciel : corriger le résiduel sans dégrader la voix',
+        paragraphs: [
+          'Lorsque le signal a été correctement capté, un traitement logiciel peut réduire un bruit résiduel. Les outils de réduction de bruit, les portes de bruit et les expandeurs ne fonctionnent pas tous de la même manière ; ils doivent être réglés selon le signal.',
+          'Une réduction légère peut suffire pour atténuer une ventilation stable ou un bruit constant entre les phrases. Pour certains traitements, une courte portion contenant uniquement le bruit aide le logiciel à établir un profil. Les outils adaptatifs peuvent être utiles lorsque le bruit évolue dans le temps.',
+          'Une réduction trop forte peut produire des artefacts : son métallique ou aquatique, consonnes affaiblies, variations artificielles du bruit de fond ou perte de naturel. Il n’existe cependant pas de seuil universel de 3, 6 ou 12 dB applicable à toutes les prises. Écoutez le résultat, comparez avec le signal original et réduisez le traitement dès que la voix perd sa texture.',
+          'La hiérarchie de travail reste simple : corriger la cause physique lorsque c’est possible, enregistrer un signal propre, puis traiter avec mesure le bruit résiduel qui ne peut pas être éliminé autrement.',
+        ],
+      },
+      {
+        heading: '6. Construire une chaîne de prise de son fiable sans achat immédiat',
+        paragraphs: [
+          'Voici une séquence de travail adaptée à un home studio disposant de moyens limités :',
+          '1. Tester avant d’acheter : changer de port USB, essayer un autre câble disponible, éloigner les chargeurs et comparer secteur et batterie.',
+          '2. Soigner le câblage : utiliser un câble micro symétrique en bon état, vérifier les connecteurs et éviter les parcours parallèles prolongés avec les câbles secteur.',
+          '3. Rapprocher la source : ajuster la distance et l’orientation du microphone avant d’augmenter le gain.',
+          '4. Réduire les réflexions : choisir un emplacement moins réverbérant et, si nécessaire, placer un matériau absorbant adapté sur les surfaces réfléchissantes proches. Une couverture épaisse peut atténuer certaines réflexions aiguës, mais ne remplace pas un traitement acoustique complet.',
+          '5. Écouter et mesurer : enregistrer quelques secondes de silence dans les mêmes conditions que la prise, puis comparer les résultats après chaque changement.',
+          '6. N’acheter qu’après diagnostic : si le problème demeure, déterminer quel maillon doit réellement être remplacé ou complété.',
+          'Un câble plus cher, un connecteur de marque ou un filtre secteur ne garantissent pas à eux seuls une prise silencieuse. La qualité du blindage, la symétrie du câblage, l’état des connecteurs, la compatibilité des appareils et la cause initiale du bruit comptent davantage que l’argument commercial d’un matériau présenté comme miraculeux.',
+        ],
+      },
+      {
+        heading: 'Conclusion — Un diagnostic méthodique vaut mieux qu’un achat précipité',
+        paragraphs: [
+          'Un souffle, un ronflement ou un grésillement ne désigne pas automatiquement une carte son défectueuse. Le bruit peut provenir du microphone, du préampli, du câblage, de l’ordinateur, de l’alimentation, de la liaison USB ou de la pièce elle-même.',
+          'En identifiant d’abord la nature du bruit, puis en isolant les éléments de la chaîne un par un, il devient possible de corriger de nombreux problèmes sans dépense immédiate. Le gain staging et le traitement logiciel viennent ensuite compléter le travail réalisé à la prise.',
+          'Besoin d’un diagnostic personnalisé ? Vous constatez un souffle persistant, un ronflement inexpliqué ou des grésillements sur vos prises de voix ? Hervé Nanfang propose une séance individuelle de Diagnostic Chaîne de Gain & Traitement du Souffle (60 minutes), à Yaoundé, dans d’autres villes ou à distance.',
+          'La séance peut comprendre l’écoute de fichiers tests, l’examen de votre configuration (microphone, interface, câbles, alimentation et logiciel), l’identification des causes probables et la remise d’un protocole de réglages adapté. Les éventuels besoins de réparation électrique sont orientés vers un professionnel qualifié.',
+          'Réservation et renseignements : WhatsApp (+237 694 72 34 92) ou via le formulaire de contact du site officiel (https://hervenanfang.vercel.app/contact).',
+        ],
+      },
+      {
+        heading: 'Références techniques et documentation',
+        paragraphs: [
+          '1. Audio Engineering Society (AES). AES48-2019 — AES standard on interconnections: Grounding and EMC practices — Shields of connectors in audio equipment containing active circuitry.',
+          '2. Focusrite Support. Why is there unwanted hum/noise in my monitors? Guide de diagnostic officiel.',
+          '3. Focusrite Support. Troubleshooting USB audio interface issues. Guide de dépannage USB.',
+          '4. Shure. SM7B User Guide — specifications and preamplifier use. Documentation officielle.',
+          '5. Shure. SM58 User Guide — specifications. Documentation officielle.',
+          '6. Avid. Guide to gain staging in audio production. Guide technique de référence.',
+          '7. iZotope. RX Voice De-noise — Help Documentation. Principes du traitement spectral.',
+          '8. Health and Safety Executive (HSE). Electrical safety for entertainers — sound equipment and earth connections. Guide de sécurité.',
+        ],
+      },
+    ],
+    keywords: [
+      'souffle carte son USB',
+      'bruit parasite micro',
+      'ronflement audio 50 Hz',
+      'grésillement interface audio',
+      'boucle de masse audio',
+      'gain staging home studio',
+      'préampli micro',
+    ],
+    seoTitle: 'Carte son USB : éliminer souffle et grésillements',
+    seoDescription:
+      'Souffle au micro, ronflement ou grésillement USB ? Identifiez les causes et nettoyez votre signal avec une méthode de diagnostic audio pratique.',
+  },
 ]
 
 export const ARTICLE_CHAIN = [
@@ -2778,14 +2911,6 @@ export type JournalEntry = {
 
 /** Agenda éditorial — extensions après la série fondatrice */
 export const JOURNAL_AGENDA: JournalEntry[] = [
-  {
-    date: 'Prochainement',
-    category: 'Ingénierie & Studio',
-    title: 'Interfaces audio sans souffle : diagnostic et chaîne de gain en contexte africain',
-    excerpt:
-      'Préamplis, mise à la terre et réseau électrique instable : guide technique pour éliminer le bruit de fond en home studio.',
-    slug: 'interfaces-audio-sans-souffle-home-studio',
-  },
   {
     date: 'Prochainement',
     category: 'Entrepreneuriat',

@@ -81,6 +81,7 @@ export default function ArticleDetail() {
       "Article introuvable — retour au Journal du Musicien Augmenté d'Hervé Nanfang.",
     path: `/journal/${slug ?? ''}`,
     type: 'article',
+    image: article?.coverImage,
     robots: article?.status === 'Publié' ? 'index, follow, max-image-preview:large' : 'noindex, follow',
     jsonLd: article
       ? [
@@ -150,6 +151,23 @@ export default function ArticleDetail() {
               slug={article.slug}
               className="mb-10"
             />
+
+            {/* Illustration / Infographie de couverture si disponible */}
+            {article.coverImage && (
+              <figure className="mb-12 overflow-hidden border border-gold/20 bg-ink-2 shadow-2xl">
+                <img
+                  src={article.coverImage}
+                  alt={article.title}
+                  className="mx-auto max-h-[580px] w-auto object-contain"
+                  loading="eager"
+                  width={687}
+                  height={1024}
+                />
+                <figcaption className="border-t border-gold/10 px-4 py-3 text-center text-xs text-ivory/50">
+                  Infographie officielle · Diagnostic différentiel, gain staging et traitement des bruits parasites en home studio
+                </figcaption>
+              </figure>
+            )}
 
             {article.body ? (
               <article className="space-y-12">

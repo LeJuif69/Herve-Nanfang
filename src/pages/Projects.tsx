@@ -310,7 +310,7 @@ export default function Projects() {
               Le Pianobariste et les scènes de prestige testent en direct l'impact émotionnel et la résonance du répertoire auprès de publics exigeants.
             </p>
             <div className="mt-4 border-t border-white/10 pt-3 text-[0.65rem] text-gold/80">
-              → Nourrit : A Laiz Academy (RMA), Production Studio
+              → Nourrit : A Laiz Academy, Production Studio
             </div>
           </Card>
 

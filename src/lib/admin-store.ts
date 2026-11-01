@@ -94,7 +94,7 @@ function getInitialArticles(): AdminArticle[] {
     linkedConcept: a.linkedConcept,
     seoTitle: a.seoTitle,
     seoDescription: a.seoDescription,
-    coverImage: '/og-image.jpg',
+    coverImage: a.coverImage || '/og-image.jpg',
     publishedAt: a.publishedAt,
     updatedAt: a.updatedAt ?? '',
   }))
@@ -1174,12 +1174,12 @@ export const adminStore = {
         family: ['artistiques', 'pedagogiques', 'technologiques', 'culturels', 'entrepreneuriaux'].includes(p.family)
           ? p.family
           : p.family === 'art'
-          ? 'artistiques'
-          : p.family === 'pedagogie'
-          ? 'pedagogiques'
-          : p.family === 'technologie'
-          ? 'technologiques'
-          : 'culturels',
+            ? 'artistiques'
+            : p.family === 'pedagogie'
+              ? 'pedagogiques'
+              : p.family === 'technologie'
+                ? 'technologiques'
+                : 'culturels',
         title: p.title,
         volume: p.volume,
         description: p.description,
@@ -1931,11 +1931,11 @@ export const adminStore = {
         status: 'a_valider',
         validationSignature: post.validationSignature
           ? {
-              ...post.validationSignature,
-              isRevoked: true,
-              revokedAt: nowIso,
-              revocationReason: 'Créneau modifié post-approbation',
-            }
+            ...post.validationSignature,
+            isRevoked: true,
+            revokedAt: nowIso,
+            revocationReason: 'Créneau modifié post-approbation',
+          }
           : undefined,
         decisionHistory: [invalidationLog, ...(post.decisionHistory || [])],
         updatedAt: nowIso,
@@ -2020,16 +2020,16 @@ export const adminStore = {
       publishedAt: nowIso,
       publicationProof: proof
         ? {
-            proofUrl: proof.proofUrl,
-            note: proof.note,
-            publishedAt: nowIso,
-            verifiedBy: author,
-          }
+          proofUrl: proof.proofUrl,
+          note: proof.note,
+          publishedAt: nowIso,
+          verifiedBy: author,
+        }
         : post.publicationProof || {
-            verifiedBy: author,
-            publishedAt: nowIso,
-            note: mode === 'webhook' ? 'Confirmation webhook certifiée' : 'Attestation manuelle par l’administrateur',
-          },
+          verifiedBy: author,
+          publishedAt: nowIso,
+          note: mode === 'webhook' ? 'Confirmation webhook certifiée' : 'Attestation manuelle par l’administrateur',
+        },
       connectorStatus: {
         provider: mode,
         status: 'success',
@@ -2065,11 +2065,11 @@ export const adminStore = {
       status: 'a_valider',
       validationSignature: post.validationSignature
         ? {
-            ...post.validationSignature,
-            isRevoked: true,
-            revokedAt: nowIso,
-            revocationReason: reason,
-          }
+          ...post.validationSignature,
+          isRevoked: true,
+          revokedAt: nowIso,
+          revocationReason: reason,
+        }
         : undefined,
       decisionHistory: [revLog, ...(post.decisionHistory || [])],
       updatedAt: nowIso,

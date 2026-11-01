@@ -68,7 +68,7 @@ const INSTITUTIONS = [
   },
   {
     nom: 'A Laiz Academy',
-    full: 'A Laiz Academy (ex-Racines Musicales Academy)',
+    full: 'A Laiz Academy — Pôle Formation & Transmission',
     ville: 'Yaoundé, Cameroun',
     role: 'Fondateur — conception de curricula, référentiel Permis de Jouer (N1 à N4), socle ALA-01 (Pulsation & Body) et Programme Vacances Utiles.',
   },
@@ -106,7 +106,7 @@ const PUBLICATIONS: PedagogicalResource[] = [
     t: 'Permis de Jouer — Référentiel de progression N1 à N4',
     group: 'disponible',
     statusLabel: 'Actif · A Laiz Academy',
-    meta: 'Hervé Nanfang · A Laiz Academy (ex-RMA) · Référentiel interne continu',
+    meta: 'Hervé Nanfang · A Laiz Academy · Référentiel interne continu',
     d: "Référentiel pédagogique instrument-agnostique conçu au sein de A Laiz Academy pour rendre lisibles les étapes d'apprentissage, définir des objectifs clairs et valider progressivement les compétences pratiques par soutenance en situation réelle.",
     sommaire: [
       'Palier A / N1 (Ceinture Blanche) — Fondations & Éveil : posture, décontraction, lecture en clés de Sol et de Fa, pulsation et premières pièces de mémoire',
@@ -119,10 +119,10 @@ const PUBLICATIONS: PedagogicalResource[] = [
     ctaTo: '/rma#permis-de-jouer',
   },
   {
-    t: 'ALA-01 — Fondamentaux du Musicien (Unité « Pulsation & Body », ex-RMA-01)',
+    t: 'ALA-01 — Fondamentaux du Musicien (Unité « Pulsation & Body »)',
     group: 'disponible',
     statusLabel: 'Actif · Cursus A Laiz Academy',
-    meta: 'Hervé Nanfang · A Laiz Academy (ex-RMA) · Socle d’apprentissage · 2026',
+    meta: 'Hervé Nanfang · A Laiz Academy · Socle d’apprentissage · 2026',
     d: "Socle pédagogique d'initiation et de consolidation : pulsation, coordination corporelle, écoute analytique et repères collectifs (Unité « Pulsation & Body »).",
     sommaire: [
       'Pulsation et repères rythmiques fondamentaux',
@@ -231,7 +231,7 @@ export default function Pedagogy() {
   useSeo({
     title: 'Pédagogie & Formation | Hervé Nanfang — A Laiz Academy',
     description:
-      "Enseignement supérieur, conception de curricula, musicologie africaine, A Laiz Academy (ex-RMA) et Permis de Jouer™ : la pédagogie musicale d'Hervé Nanfang.",
+      "Enseignement supérieur, conception de curricula, musicologie africaine, A Laiz Academy et méthode Permis de Jouer™ : la pédagogie musicale d'Hervé Nanfang.",
     path: '/pedagogie',
     jsonLd: [
       personSchema,
@@ -408,7 +408,7 @@ export default function Pedagogy() {
                 ))}
               </div>
               <p className="mt-6 text-[0.68rem] uppercase tracking-[0.2em] text-ivory/40">
-                Une méthode développée par Hervé Nanfang au sein de A Laiz Academy (RMA)
+                Une méthode développée par Hervé Nanfang au sein de A Laiz Academy
               </p>
               <div className="mt-5">
                 <ArrowLink to="/rma#permis-de-jouer">Découvrir les 4 Paliers & Candidatures</ArrowLink>

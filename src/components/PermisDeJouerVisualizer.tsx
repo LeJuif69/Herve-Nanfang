@@ -50,7 +50,7 @@ export const PALIERS_DATA: PalierDetail[] = [
       'Jeu d’une pièce complète de mémoire avec intention expressive et sens du tempo',
       'Première expérience de jeu collectif (duo piano-voix ou accompagnement)',
     ],
-    epreuveValidation: 'Audition trimestrielle A Laiz Academy (RMA) : 3 morceaux interprétés devant professeurs et promotion.',
+    epreuveValidation: 'Audition trimestrielle A Laiz Academy : 3 morceaux interprétés devant professeurs et promotion.',
   },
   {
     id: 'palier-c',
@@ -87,7 +87,7 @@ export const PALIERS_DATA: PalierDetail[] = [
       'Direction artistique d’un enregistrement studio ou d’un spectacle vivant complet',
       'Maîtrise des outils technologiques : MAO, enregistrement numérique et hybridation IA raisonnée',
     ],
-    epreuveValidation: 'Grand Récital public évalué par un jury interne et remise de l’Attestation de Palier D A Laiz Academy (RMA).',
+    epreuveValidation: 'Grand Récital public évalué par un jury interne et remise de l’Attestation de Palier D A Laiz Academy.',
   },
 ]
 
@@ -104,7 +104,7 @@ export default function PermisDeJouerVisualizer() {
           <div className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-gold animate-pulse" />
             <span className="font-mono text-xs uppercase tracking-wider text-gold">
-              Référentiel Pédagogique · A Laiz Academy (ex-RMA)
+              Référentiel Pédagogique · A Laiz Academy
             </span>
           </div>
           <h3 className="mt-2 font-display text-2xl text-ivory md:text-3xl">

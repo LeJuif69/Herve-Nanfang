@@ -51,7 +51,7 @@ export function useLiveArticles(): AdminArticle[] {
     return {
       ...live,
       ...source,
-      coverImage: live.coverImage || source.coverImage || '/og-image.jpg',
+      coverImage: (live.coverImage && live.coverImage !== '/og-image.jpg' ? live.coverImage : source.coverImage) || '/og-image.jpg',
       coverPositionX: live.coverPositionX ?? source.coverPositionX,
       coverPositionY: live.coverPositionY ?? source.coverPositionY,
       status: live.status || source.status,
