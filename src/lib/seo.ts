@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect } from 'react'
 import { SITE } from '../data/site'
 
 /** Code de vérification Google Search Console — défini dans .env.local / Vercel. */
-export const GOOGLE_SITE_VERIFICATION = (import.meta.env.VITE_GOOGLE_SITE_VERIFICATION ?? '').trim()
+export const GOOGLE_SITE_VERIFICATION = (import.meta.env.VITE_GOOGLE_SITE_VERIFICATION ?? 'rgBN6vjZ15Jg1sprP413jApGM5LYrYe8XKyj-fMf8VE').trim()
 /** Code de vérification Bing Webmaster Tools (balise meta `msvalidate.01`). */
 export const BING_SITE_VERIFICATION = (import.meta.env.VITE_BING_SITE_VERIFICATION ?? '').trim()
 /** Identifiant de mesure d'audience (optionnel). */
