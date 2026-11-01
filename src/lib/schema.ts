@@ -45,7 +45,7 @@ export const personSchema: Record<string, unknown> = {
     {
       '@type': 'Occupation',
       name: 'Artiste-Musicien & Pianiste Live',
-      description: 'Prestations de piano-bar live de prestige, répertoires internationaux et jazz.',
+      description: 'Prestations de piano-bar live, répertoires variés : variété internationale, chanson française, musiques africaines, gospel et lounge.',
     },
     {
       '@type': 'Occupation',
@@ -254,9 +254,9 @@ export const musicGroupSchema: Record<string, unknown> = {
   name: 'Le Pianobariste',
   alternateName: 'Hervé Nanfang',
   description:
-    'Format de piano live créé par Hervé Nanfang : jazz, blues, variété, musiques africaines et standards, pour hôtels, lounges et événements.',
+    'Format de piano live créé par Hervé Nanfang : piano-bar, variété internationale, chanson française, musiques africaines et gospel, pour hôtels, réceptions et événements.',
   member: { '@id': PERSON_ID },
-  genre: ['Jazz', 'Blues', 'Musiques africaines', 'Variété'],
+  genre: ['Piano-bar', 'Variété internationale', 'Musiques africaines', 'Chanson française', 'Gospel', 'Lounge'],
   foundingLocation: { '@type': 'Place', name: 'Cameroun' },
 }
 

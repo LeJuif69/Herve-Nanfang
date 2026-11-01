@@ -24,7 +24,7 @@ export default function RMAAuditionForm() {
   const [sendError, setSendError] = useState('')
   const [isCopied, setIsCopied] = useState(false)
 
-  const summary = `CANDIDATURE & AUDITION — A LAIZ ACADEMY (EX-RMA)
+  const summary = `CANDIDATURE & AUDITION — A LAIZ ACADEMY
 --------------------------------------------------
 Candidat : ${fullName || 'À préciser'}
 Discipline : ${discipline}

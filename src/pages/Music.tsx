@@ -187,12 +187,12 @@ export default function Music() {
         <Reveal>
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <ChapterMark num="♫" label="Enregistrements & Audio" />
+              <ChapterMark num="♫" label="Extraits musicaux" />
               <Display size="md" className="mt-6 max-w-2xl">
-                La Scène Sonore — Écoutes & Extraits de scène
+                Extraits musicaux & Répertoires
               </Display>
               <Lead className="mt-4 max-w-xl">
-                Huit univers de captation et de travail sonore. Choisissez une ambiance pour configurer instantanément la console, auditionner les progressions harmoniques et lancer le lecteur acoustique.
+                Découvrez les univers musicaux et ambiances pianistiques d’Hervé Nanfang : piano-bar, variété internationale, chanson française, musiques camerounaises et africaines, et compositions originales.
               </Lead>
             </div>
 
@@ -223,7 +223,7 @@ export default function Music() {
               { id: 'all', label: `Tous les extraits (${AUDIO_PLAYLIST.length})` },
               { id: 'piano', label: 'Piano-bar & Standards' },
               { id: 'duo', label: 'Duo Signature' },
-              { id: 'patrimoine', label: 'Afro-Jazz' },
+              { id: 'patrimoine', label: 'Musiques africaines & Makossa' },
               { id: 'afropop', label: 'Rumba & Afropop' },
               { id: 'poetique', label: 'Nocturne & Soul' },
               { id: 'guerisseurs', label: 'Guérisseurs & Thérapie' },
@@ -514,7 +514,7 @@ export default function Music() {
                     </span>
                     <h4 className="mt-2 font-display text-xl text-ivory">Élégance acoustique et présence feutrée</h4>
                     <p className="mt-2 text-xs leading-relaxed text-ivory/70">
-                      Piano solo intimiste. Plus de 440 titres explorant le jazz feutré, la bossa nova subtile et les ballades francophones & internationales.
+                      Piano solo intimiste. Plus de 440 titres : piano-bar, variété internationale, chanson française, musiques africaines, gospel et ambiances lounge.
                       Garantie acoustique : volume modéré permettant à vos invités d'échanger sans forcer la voix.
                     </p>
                   </div>
@@ -535,7 +535,7 @@ export default function Music() {
                     </span>
                     <h4 className="mt-2 font-display text-xl text-ivory">Montée en intensité et grands standards</h4>
                     <p className="mt-2 text-xs leading-relaxed text-ivory/70">
-                      Accompagnement dynamique du cocktail d'accueil jusqu'au dessert. Répertoire enrichi de soul poétique, afropop acoustique et reprises personnalisées à la demande des hôtes.
+                      Accompagnement dynamique du cocktail d'accueil jusqu'au dessert. Répertoire équilibré : piano-bar, variété internationale, musiques africaines et adaptations sur mesure.
                     </p>
                   </div>
                   <div className="flex flex-col gap-3 md:items-end">
@@ -625,7 +625,7 @@ export default function Music() {
             <div>
               <ChapterMark num="03" label="Captations & Vidéos" />
               <Display size="md" className="mt-6 max-w-2xl">
-                Vidéos live — Scène, Jazz & Piano-bar
+                Vidéos live — Piano-bar, Scène & Répertoires variés
               </Display>
               <Lead className="mt-4 max-w-xl">
                 Découvrez la présence scénique, l’alchimie acoustique et la réactivité en direct d’Hervé Nanfang
@@ -832,7 +832,7 @@ export default function Music() {
         eyebrow="Booking Direct"
         title="Réserver une prestation live"
         text="Palaces, lounges, réceptions privées, cocktails de prestige ou galas : formule solo, duo ou formation complète adaptée à votre événement."
-        primary={{ label: 'Ouvrir le formulaire de booking', to: '/contact#booking' }}
+        primary={{ label: 'Réserver une prestation live', to: '/contact#booking' }}
         secondary={{ label: 'Voir les conférences', to: '/conferences' }}
       />
 

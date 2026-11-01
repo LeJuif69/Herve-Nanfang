@@ -17,7 +17,7 @@ import {
   Stat,
   Tag,
 } from '../components/ui'
-import { MASTER_IDENTITY, IDENTITY } from '../data/identity'
+import { MASTER_IDENTITY } from '../data/identity'
 import { PILLARS } from '../data/site'
 import { ARTICLES } from '../data/articles'
 import { breadcrumbSchema, personSchema } from '../lib/schema'
@@ -108,10 +108,7 @@ export default function About() {
               <p>{MASTER_IDENTITY.concepts.musicienAugmente.definition}</p>
             </div>
 
-            {/* Désambiguïsation */}
-            <p className="mt-8 border-l-2 border-white/10 pl-5 text-[0.8rem] leading-relaxed text-ivory/40 italic">
-              {IDENTITY.desambiguisation}
-            </p>
+
 
             <Rule className="my-12" />
 
@@ -301,8 +298,8 @@ export default function About() {
               métier acquis depuis 2007.
             </Body>
             <Body className="mt-5 max-w-2xl">
-              Répertoire international (jazz, bossa, soul, musiques africaines, variétés) adapté
-              en temps réel au contexte, au lieu et au public. Chaque prestation est unique.
+              Répertoire étendu (piano-bar, variété internationale, chanson française, musiques
+              africaines, gospel, lounge) adapté en temps réel au contexte, au lieu et au public. Chaque prestation est unique.
             </Body>
             <div className="mt-9 flex flex-wrap gap-x-8 gap-y-3 text-[0.68rem] uppercase tracking-[0.2em] text-ivory/45">
               <span>Live piano</span>
@@ -374,7 +371,7 @@ export default function About() {
                 ESAS · ISMA · IBA Nkongsamba · A Laiz Academy
               </h2>
               <p className="mt-5 max-w-xl text-[15px] leading-[1.9] text-ivory/65">
-                Enseignement supérieur en musicologie appliquée, MAO et composition (ESAS de Lomé, ISMA au Bénin, Institut des Beaux-Arts de Nkongsamba, IFCPA/CRTV), complété par la fondation de A Laiz Academy (ex-RMA) et du référentiel Permis de Jouer.
+                Enseignement supérieur en musicologie appliquée, MAO et composition (ESAS de Lomé, ISMA au Bénin, Institut des Beaux-Arts de Nkongsamba, IFCPA/CRTV), complété par la fondation de A Laiz Academy et du référentiel Permis de Jouer.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {MASTER_IDENTITY.enseignement.disciplines.map((d) => (

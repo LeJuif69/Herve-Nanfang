@@ -654,7 +654,7 @@ export default function AI() {
                 Demander une formation
               </Btn>
               <Btn to="/contact#conference" variant="ghost">
-                Inviter une conférence
+                Inviter Hervé Nanfang à intervenir
               </Btn>
               <Link
                 to="/a-propos"
@@ -671,7 +671,7 @@ export default function AI() {
         eyebrow="IA · Musique · Pédagogie · Culture"
         title="Parlons de votre réalité avant de parler d’outils"
         text="Chaque intervention commence par une question : quel est votre métier, et qu’est-ce qui vous coûte du temps aujourd’hui ?"
-        primary={{ label: 'Ouvrir un parcours', to: '/contact#formation' }}
+        primary={{ label: 'Demander une formation', to: '/contact#formation' }}
         secondary={{ label: 'Voir toutes les conférences', to: '/conferences' }}
       />
     </>

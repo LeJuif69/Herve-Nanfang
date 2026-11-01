@@ -116,7 +116,7 @@ export default function AudioPlayer() {
       ref={playerRef}
       onKeyDown={handleKeyDown}
       role="region"
-      aria-label="La Scène Sonore — Lecteur audio d'Hervé Nanfang"
+      aria-label="Lecteur audio d'Hervé Nanfang — Extraits musicaux"
       tabIndex={0}
       className="fixed bottom-4 right-4 z-40 max-w-[calc(100vw-2rem)] outline-none sm:bottom-6 sm:right-6 sm:max-w-md focus-visible:ring-1 focus-visible:ring-gold"
     >
@@ -136,7 +136,7 @@ export default function AudioPlayer() {
             <div className="flex items-center gap-2.5">
               <span className="inline-block h-2 w-2 rounded-full bg-gold animate-pulse" />
               <span className="font-display text-lg tracking-[0.02em] text-ivory">
-                La Scène Sonore
+                Lecteur Audio · Extraits Musicaux
               </span>
             </div>
 
@@ -446,7 +446,7 @@ export default function AudioPlayer() {
           <button
             type="button"
             onClick={openPlayer}
-            aria-label="Ouvrir le lecteur audio La Scène Sonore"
+            aria-label="Ouvrir le lecteur audio"
             className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-ink transition-transform hover:scale-105"
           >
             <div
@@ -466,7 +466,7 @@ export default function AudioPlayer() {
             className="flex flex-col text-left focus-visible:outline-none"
           >
             <span className="truncate max-w-[130px] sm:max-w-[180px] font-display text-sm leading-tight text-ivory group-hover:text-gold transition-colors">
-              {currentTrack?.title || 'La Scène Sonore'}
+              {currentTrack?.title || 'Extraits musicaux'}
             </span>
             <span className="text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-gold/75">
               {currentTrack?.category || 'Hervé Nanfang'}

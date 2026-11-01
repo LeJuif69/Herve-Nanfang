@@ -171,7 +171,7 @@ export default function Culture() {
                 {i === 3 && (
                   <div className="ml-12 mt-3 max-w-2xl text-sm leading-relaxed text-ivory/60">
                     <p>
-                      Cette question de recherche est au cœur du concept doctrinal <strong className="text-gold">Musicien Augmenté™</strong> conceptualisé
+                      Cette question de recherche est au cœur de l'approche <strong className="text-gold">Musicien Augmenté™</strong> développée
                       par Hervé Nanfang, qui étudie les limites des transformateurs audio face aux polyrythmies et répertoires d'Afrique.
                     </p>
                     <div className="mt-2.5 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider">

@@ -73,7 +73,7 @@ export default function Services() {
         'Formation et conseil',
       ),
       serviceSchema(
-        'A Laiz Academy — Formation & Transmission (ex-RMA)',
+        'A Laiz Academy — Formation & Transmission',
         'Cursus piano, chant, guitare, batterie, programme Vacances Utiles et formation de formateurs.',
         'Formation musicale',
       ),
@@ -90,7 +90,7 @@ export default function Services() {
         breadcrumb="Services"
         eyebrow="Créer · Transmettre · Augmenter"
         title="Des prestations pensées pour la création, la transmission et la transformation"
-        lead="Piano live, production musicale, conseil en stratégie de marque, conférences et formations A Laiz Academy (ex-RMA) : chaque service s'appuie sur le même principe — clarifier le besoin, protéger l'intention artistique et donner du sens au dispositif."
+        lead="Piano live, production musicale, conseil en stratégie de marque, conférences et formations A Laiz Academy : chaque service s'appuie sur le même principe — clarifier le besoin, protéger l'intention artistique et donner du sens au dispositif."
       >
         <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
           <Stat value="05" label="Familles de services" />
@@ -276,7 +276,7 @@ export default function Services() {
         <Reveal>
           <ChapterMark num="07" label="A Laiz Academy" />
           <Display size="md" className="mt-7 max-w-3xl">
-            A Laiz Academy : formation musicale d'excellence (ex-RMA)
+            A Laiz Academy : formation musicale d'excellence
           </Display>
         </Reveal>
 
@@ -334,11 +334,11 @@ export default function Services() {
             <div>
               <ChapterMark num="09" label="Le Journal • Marque, Droit & Stratégie" />
               <Display size="md" className="mt-6 max-w-2xl">
-                Doctrine économique & propriété intellectuelle
+                Économie de la création & Propriété intellectuelle
               </Display>
               <Lead className="mt-4 max-w-2xl">
-                Comprendre les logiques de marque, les enjeux de droit d'auteur et les modèles économiques
-                hybrides avant d'engager une collaboration professionnelle.
+                Comprendre les modèles économiques de la musique, les enjeux de droits d’auteur et la valorisation
+                artistique avant d'engager un projet ou une collaboration.
               </Lead>
             </div>
             <Btn to="/journal" variant="ghost" className="self-start md:self-auto shrink-0">

@@ -37,13 +37,13 @@ export default function Projects() {
   useSeo({
     title: 'Projets & Univers Créatif | Hervé Nanfang — A Laiz Ô Pays',
     description:
-      'Projets musicaux et pédagogiques de Hervé Nanfang : A Laiz Ô Pays, Le Pianobariste™, A Laiz Academy (ex-RMA), Permis de Jouer™, Musicien Augmenté™ et Tswefap.',
+      'Projets musicaux et pédagogiques de Hervé Nanfang : A Laiz Ô Pays, Le Pianobariste™, A Laiz Academy, Permis de Jouer™, Musicien Augmenté™ et Tswefap.',
     path: '/projets',
     jsonLd: [
       personSchema,
       organizationSchema,
       creativeWorkSchema(
-        'A Laiz Academy (ex-RMA)',
+        'A Laiz Academy',
         'Projet de formation musicale reliant pratiques contemporaines et patrimoine musical africain.',
       ),
       creativeWorkSchema(

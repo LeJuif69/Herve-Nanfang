@@ -127,7 +127,7 @@ const PROGRAMMES = [
   },
   {
     title: 'Vacances Utiles — 7 semaines',
-    text: 'Programme intensif estival pour enfants dès 6 ans et adultes débutants : socle ALA-01 (Pulsation & Body, ex-RMA), clavier, lecture et restitution collective finale Damas–Petits Génies.',
+    text: 'Programme intensif estival pour enfants dès 6 ans et adultes débutants : socle ALA-01 (Pulsation & Body), clavier, lecture et restitution collective finale Damas–Petits Génies.',
     icon: '☀',
     highlights: [
       'Module 1 : Pulsation & Body (ancrage rythmique corporel)',
@@ -157,7 +157,7 @@ const VALEURS = [
 
 export default function RMA() {
   useSeo({
-    title: 'A Laiz Academy | Hervé Nanfang — Musique & Pédagogie (ex-RMA)',
+    title: 'A Laiz Academy | Hervé Nanfang — Musique & Pédagogie',
     description:
       "A Laiz Academy (ex-Racines Musicales Academy — RMA) : formation musicale d'excellence, méthode Permis de Jouer™ et transmission par Hervé Nanfang.",
     path: '/rma',
@@ -441,7 +441,7 @@ export default function RMA() {
                 <div className="md:col-span-4 relative min-h-[220px] overflow-hidden bg-ink-2">
                   <img
                     src="/images/cours-isma-synthese-1241.webp"
-                    alt="15 Sessions d’Audition & Diagnostic Gratuit — A Laiz Academy (ex-RMA)"
+                    alt="15 Sessions d’Audition & Diagnostic Gratuit — A Laiz Academy"
                     className="h-full w-full object-cover object-center"
                     loading="lazy"
                   />

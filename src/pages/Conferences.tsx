@@ -217,7 +217,7 @@ export default function Conferences() {
         eyebrow="Organisateurs"
         title="Inviter Hervé Nanfang"
         text="Indiquez la structure, le public visé, la date envisagée et le thème pressenti : vous recevrez une proposition adaptée, avec les modalités techniques et financières."
-        primary={{ label: 'Ouvrir le parcours conférence', to: '/contact#conference' }}
+        primary={{ label: 'Inviter Hervé Nanfang à intervenir', to: '/contact#conference' }}
         secondary={{ label: 'Voir les projets', to: '/projets' }}
       />
     </>

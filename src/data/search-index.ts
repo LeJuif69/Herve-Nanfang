@@ -62,14 +62,14 @@ export function buildSearchIndex(): SearchItem[] {
     })
   })
 
-  // 2. La Scène Sonore (Pistes audio)
+  // 2. Extraits musicaux
   AUDIO_PLAYLIST.forEach((track) => {
     items.push({
       id: `audio-${track.id}`,
       title: track.title,
       subtitle: track.category,
       category: 'audio',
-      categoryLabel: 'La Scène Sonore ♫',
+      categoryLabel: 'Extraits musicaux ♫',
       track,
       keywords: [
         track.title.toLowerCase(),

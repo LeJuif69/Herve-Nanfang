@@ -46,7 +46,7 @@ export const SERVICE_OFFERINGS: ServiceOffering[] = [
     title: "Le Pianobariste™",
     tagline: "Piano live pour palaces, événements et lieux de prestige",
     description:
-      "Piano live acoustique ou amplifié, couvrant plus de 440 titres de jazz, blues, bossa nova, variété francophone, afropop et standards internationaux. Depuis 2007 dans les hôtels, lounges et événements privés de Yaoundé et du Cameroun.",
+      "Piano live acoustique ou amplifié, couvrant plus de 440 titres : piano-bar, variété internationale, chanson française, musiques camerounaises et africaines (makossa, afropop, bikutsi), gospel et ambiances lounge. Depuis 2007 dans les hôtels, réceptions et événements privés de Yaoundé et du Cameroun.",
     tiers: [
       {
         label: "Session Lounge",
@@ -55,7 +55,7 @@ export const SERVICE_OFFERINGS: ServiceOffering[] = [
         price: "Sur devis",
         features: [
           "Piano acoustique ou numérique haut de gamme",
-          "Répertoire jazz & standards feutrés",
+          "Répertoire piano-bar, variété internationale & française",
           "Adaptation au tempo de l'événement en temps réel",
           "Matériel de sonorisation léger si besoin",
         ],
@@ -218,11 +218,11 @@ export const SERVICE_OFFERINGS: ServiceOffering[] = [
   {
     id: "formation-rma",
     icon: "📚",
-    family: "Formation RMA",
-    title: "Formations & Cursus RMA",
-    tagline: "Cours de musique, Permis de Jouer™ et accompagnement pédagogique",
+    family: "Formation musicale",
+    title: "A Laiz Academy — Formations & Cursus",
+    tagline: "Cours de musique, méthode Permis de Jouer™ et accompagnement pédagogique",
     description:
-      "Racines Musicales Academy® : cursus individuels hebdomadaires, ateliers collectifs, programme intensif « Vacances Utiles » (7 semaines) et formation de formateurs musicaux en école ou conservatoire.",
+      "A Laiz Academy : cursus individuels hebdomadaires, ateliers collectifs, programme intensif « Vacances Utiles » (7 semaines) et formation de formateurs musicaux en école ou conservatoire.",
     tiers: [
       {
         label: "Cours individuel",
@@ -232,8 +232,8 @@ export const SERVICE_OFFERINGS: ServiceOffering[] = [
         features: [
           "Cours hebdomadaire adapté au palier Permis de Jouer™",
           "Plan de progression personnalisé et suivi trimestriel",
-          "Accès aux ressources pédagogiques RMA (fiches & méthodes)",
-          "Studio RMA Yaoundé ou cours à distance (Zoom/WhatsApp)",
+          "Accès aux ressources pédagogiques de l'académie",
+          "Studio à Yaoundé ou cours à distance (Zoom/WhatsApp)",
         ],
       },
       {
@@ -243,13 +243,13 @@ export const SERVICE_OFFERINGS: ServiceOffering[] = [
         price: "Sur devis",
         highlight: true,
         features: [
-          "Socle RMA-01 : Pulsation & Body (rythme corporel)",
+          "Socle ALA-01 : Pulsation & Body (rythme corporel)",
           "Clavier, lecture de partition et théorie musicale appliquée",
           "Ateliers collectifs et restitution finale Damas–Petits Génies",
           "Livret de progression fourni à chaque participant",
           "Accessible dès 6 ans",
         ],
-        cta: "Programme phare de la RMA",
+        cta: "Programme phare de l'académie",
       },
       {
         label: "Formation de formateurs",
@@ -271,7 +271,7 @@ export const SERVICE_OFFERINGS: ServiceOffering[] = [
       "Réductions pour fratries ou groupes d'institutions publiques.",
       "Partenariats institutionnels (ministères, associations, ONG) sur convention.",
     ],
-    contactLabel: "S'inscrire à la RMA",
+    contactLabel: "S'inscrire à A Laiz Academy", 
     contactTo: "/rma#inscriptions",
   },
   {

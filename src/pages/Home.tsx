@@ -54,14 +54,14 @@ const CREATIVE_CONCEPTS = [
     badge: 'Depuis 2007',
     lead: 'Scène de prestige, présence d’atmosphère et répertoires internationaux.',
     description:
-      'Identité scénique d’Hervé Nanfang dédiée aux performances live au piano (jazz, blues, variété, musiques africaines). Le piano-bar est son laboratoire de terrain depuis 2007 : réactivité en temps réel, endurance scénique et capacité à faire vibrer une salle entière.',
+      'Identité scénique d’Hervé Nanfang dédiée aux performances live au piano (piano-bar, variété internationale, chanson française, musiques africaines, gospel, lounge). Le piano-bar est son laboratoire de terrain depuis 2007 : écoute de la salle, endurance et élégance acoustique.',
     link: '/services#piano-bar',
     linkLabel: 'Découvrir Le Pianobariste',
   },
   {
     num: '02',
     name: 'A Laiz Academy',
-    trademark: 'Académie de formation musicale & transmission (ex-RMA)',
+    trademark: 'Académie de formation musicale & transmission',
     badge: 'Enseignement & curricula',
     lead: 'Transmission vivante et valorisation des patrimoines d’Afrique.',
     description:
@@ -245,13 +245,13 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={openPlayer}
-                  aria-label="Ouvrir la Scène Sonore et écouter les extraits musicaux"
+                  aria-label="Écouter les extraits musicaux au piano"
                   className="btn btn-ghost inline-flex items-center gap-2 border-gold/40 text-gold hover:border-gold hover:bg-gold/10 hover:text-gold-2"
                 >
                   <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
                     <polygon points="6 3 20 12 6 21 6 3" />
                   </svg>
-                  <span>La Scène Sonore ♫</span>
+                  <span>Écouter les extraits ♫</span>
                 </button>
               </div>
               <a
@@ -538,13 +538,13 @@ export default function Home() {
           <Reveal>
             <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
               <div>
-                <Eyebrow tone="ink">Repères visuels officiels</Eyebrow>
+                <Eyebrow tone="ink">Sur le terrain</Eyebrow>
                 <h3 className="mt-2 font-display text-2xl text-ink md:text-3xl">
-                  L’identité en trois situations réelles
+                  La scène, la transmission et la création
                 </h3>
               </div>
               <p className="max-w-md text-xs leading-relaxed text-ink/60">
-                Photographies authentiques documentant l’identité professionnelle, la pratique de la scène live et la transmission pédagogique en enseignement supérieur.
+                Présence sur scène en piano-bar live, transmission pédagogique en enseignement supérieur et travail de création en studio.
               </p>
             </div>
 
@@ -584,7 +584,7 @@ export default function Home() {
                 <figcaption className="p-4">
                   <p className="font-display text-base text-ink">02 · Hervé Nanfang au clavier</p>
                   <p className="mt-1 text-xs text-ink/65">
-                    Scène live, répertoires jazz, afropop et piano-bar depuis 2007.
+                    Scène live, piano-bar, variété internationale et musiques africaines depuis 2007.
                   </p>
                 </figcaption>
               </figure>
@@ -623,8 +623,8 @@ export default function Home() {
             </Display>
             <Body className="mt-7 max-w-xl">
               Depuis 2007, la scène — d’abord le piano-bar — est mon laboratoire. C’est là que la
-              musique cesse d’être un savoir pour devenir une présence : jazz, blues, variété,
-              musiques africaines et standards, joués pour des publics réels.
+              musique cesse d’être un savoir pour devenir une présence : piano-bar, variété
+              internationale, chanson française, musiques africaines, gospel et répertoires contemporains.
             </Body>
             <ul className="mt-9 grid gap-x-8 gap-y-3 sm:grid-cols-2">
               {['Piano-Bar Live', 'Composition & Arrangement', 'Production musicale', 'Ingénierie du son', 'Musique à l’image', 'Spectacle vivant'].map(
@@ -750,7 +750,7 @@ export default function Home() {
             },
             {
               title: 'Systèmes & publications',
-              text: 'A Laiz Academy (ex-RMA), Permis de Jouer™ (N1 à N4) et manuel LES ZIKOS®.',
+              text: 'A Laiz Academy, Permis de Jouer™ (N1 à N4) et manuel LES ZIKOS®.',
             },
           ].map((item, i) => (
             <Reveal key={item.title} delay={i * 110}>
@@ -896,12 +896,12 @@ export default function Home() {
           <div className="mt-14 rounded-2xl border border-white/10 bg-ink-3/50 p-6 md:p-8 backdrop-blur-sm">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="max-w-3xl">
-                <p className="eyebrow text-gold/80">Protection intellectuelle & Ancrage juridique</p>
+                <p className="eyebrow text-gold/80">Propriété intellectuelle & Droits réservés</p>
                 <p className="mt-2 text-xs leading-relaxed text-ivory/65 md:text-sm">
-                  Ces concepts doctrinaux, méthodes pédagogiques et marques d'usage sont créés, documentés et déployés
-                  par Hervé Nanfang dans le cadre de ses activités professionnelles. Toute exploitation commerciale,
-                  reproduction ou reprise non autorisée relève de la législation sur la propriété littéraire, artistique
-                  et industrielle (OAPI / MINAC / Accord de Bangui révisé).
+                  L’ensemble des contenus, méthodes pédagogiques, concepts artistiques et signes distinctifs présentés
+                  sur ce site sont des créations originales d’Hervé Nanfang protégées par le droit d’auteur et la législation
+                  sur la propriété intellectuelle. Toute reproduction, adaptation ou utilisation commerciale non autorisée
+                  est strictement interdite.
                 </p>
               </div>
               <div className="shrink-0">
@@ -925,9 +925,8 @@ export default function Home() {
               </Display>
             </div>
             <Body className="lg:pb-2">
-              Série éditoriale sur la musique à l’ère des technologies génératives : analyses,
-              méthodes et prises de position. Les piliers sont publiés progressivement après
-              validation éditoriale.
+              Série éditoriale sur la musique à l’ère des technologies génératives : réflexions
+              de terrain, méthodes de création et repères concrets pour les artistes et éducateurs.
             </Body>
           </div>
         </Reveal>
@@ -1154,7 +1153,7 @@ export default function Home() {
         eyebrow="Parlons de votre projet"
         title="Booking · Formation · Conférence · Collaboration · Presse · Conseil"
         text="Chaque demande mérite un parcours adapté. Choisissez votre motif : je vous réponds avec des éléments concrets, pas une réponse automatique."
-        primary={{ label: 'Ouvrir un parcours', to: '/contact' }}
+        primary={{ label: 'Prendre contact', to: '/contact' }}
         secondary={{ label: 'Réserver un live', to: '/contact#booking' }}
       />
     </>

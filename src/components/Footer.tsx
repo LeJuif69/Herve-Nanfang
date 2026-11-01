@@ -10,7 +10,7 @@ import { trackFormSubmitSuccess, trackLeadConversion } from '../lib/ad-pixels'
 const DERIVED_MARKS = [
   { name: 'A Laiz Ô Pays', role: 'Manifeste & philosophie culturelle fondatrice' },
   { name: 'Le Pianobariste', role: 'Signature scénique piano-bar live (depuis 2007)' },
-  { name: 'A Laiz Academy', role: 'Académie de formation, pédagogie & Permis de Jouer (ex-RMA)' },
+  { name: 'A Laiz Academy', role: 'Académie de formation, pédagogie & Permis de Jouer' },
   { name: 'Musicien Augmenté', role: 'Approche méthodologique, recherche & conférences IA' },
 ]
 
@@ -190,7 +190,7 @@ export default function Footer() {
 
         <Rule className="mt-14" />
 
-        <p className="pt-6 text-xs leading-relaxed text-ivory/35">{IDENTITY.desambiguisation}</p>
+
         <div className="flex flex-col gap-4 pt-4 text-[0.68rem] uppercase tracking-[0.16em] text-ivory/35 md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Hervé Nanfang — Tous droits réservés.</p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
@@ -210,7 +210,7 @@ export default function Footer() {
               <span>Haut de page</span>
               <span aria-hidden>↑</span>
             </button>
-            <span className="text-ivory/25">Site canonique : hervenanfang.art</span>
+
           </div>
         </div>
       </Container>

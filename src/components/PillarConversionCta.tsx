@@ -49,7 +49,7 @@ export const PillarConversionCta: React.FC<PillarConversionCtaProps> = ({
   } else if (category.includes('Pédagogie') || num === 10 || num === 15 || num === 16) {
     config = {
       badge: 'MÉTHODE OFFICIELLE & ACADÉMIE',
-      title: 'Postuler aux Auditions de A Laiz Academy (ex-RMA)',
+      title: 'Postuler aux Auditions de A Laiz Academy',
       description:
         'Comprenez enfin ce que vous jouez grâce au référentiel du Permis de Jouer™. Rejoignez les promotions d’élèves d’A Laiz Academy et découvrez les manuels officiels LES ZIKOS®.',
       primaryLabel: 'Découvrir la méthode & les cursus',

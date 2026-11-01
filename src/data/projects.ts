@@ -81,7 +81,7 @@ export const PROJECT_FAMILIES: ProjectFamily[] = [
     intro: 'Des méthodes, des curricula, des systèmes de progression, des ouvrages.',
     projects: [
       {
-        title: 'A Laiz Academy (ex-RMA)',
+        title: 'A Laiz Academy',
         volume: 'A Laiz Academy · Formation & Curricula',
         description:
           "Le pôle de formation musicale qui relie les pratiques contemporaines et le patrimoine musical africain : socle ALA-01 (Pulsation & Body) et programme intensif « Vacances Utiles ».",

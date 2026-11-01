@@ -620,7 +620,7 @@ export default function Pedagogy() {
         eyebrow="Écoles, institutions, enseignants"
         title="Structurer une offre de formation musicale"
         text="Conception de curriculum, formation d'équipes pédagogiques, mise en place d'un système de progression ou rédaction de supports : chaque contexte est analysé, chaque dispositif est conçu sur mesure."
-        primary={{ label: 'Ouvrir un parcours formation', to: '/contact#formation' }}
+        primary={{ label: 'Demander un accompagnement', to: '/contact#formation' }}
         secondary={{ label: 'Voir les conférences', to: '/conferences' }}
       />
     </>

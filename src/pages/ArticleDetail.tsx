@@ -134,11 +134,9 @@ export default function ArticleDetail() {
           <div className="min-w-0">
             {!published && (
               <div className="mb-10 border border-gold/30 bg-ink-2 p-6">
-                <p className="eyebrow text-gold">Article {article.status.toLowerCase()}</p>
+                <p className="eyebrow text-gold">Article à paraître</p>
                 <p className="mt-3 text-sm leading-relaxed text-ivory/65">
-                  {article.body
-                    ? 'Version de travail pour relecture éditoriale. Elle n’est ni publiée ni indexée.'
-                    : 'Ce pilier est structuré mais sa rédaction complète est en préparation. Le plan ci-dessous présente l’angle et la progression prévus.'}
+                  Cet article paraîtra prochainement dans le cadre de la série « Après la MAO, l’IA ». Le plan ci-dessous présente les thèmes et la progression abordés.
                 </p>
               </div>
             )}
@@ -381,8 +379,7 @@ export default function ArticleDetail() {
         </div>
         <Container className="mt-12 px-0">
           <p className="text-sm text-ivory/40">
-            La rédaction complète des piliers en préparation sera publiée depuis l’interface
-            d’administration du site.
+            Les nouvelles publications du Journal paraissent régulièrement au fil des travaux de recherche et de création.
           </p>
         </Container>
       </Section>
