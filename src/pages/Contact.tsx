@@ -444,6 +444,12 @@ export default function Contact() {
                     {SITE.emailContact}
                   </a>
                 </li>
+                <li>
+                  <p className="text-[0.62rem] uppercase tracking-[0.18em] text-ivory/35">Cours & Académie</p>
+                  <a href={`mailto:${SITE.emailAcademy}`} className="mt-1 block break-all font-display text-lg text-ivory/90 hover:text-gold">
+                    {SITE.emailAcademy}
+                  </a>
+                </li>
                 {SITE.phones.map((phone) => (
                   <li key={phone.tel}>
                     <p className="text-[0.62rem] uppercase tracking-[0.18em] text-ivory/35">Téléphone / WhatsApp</p>

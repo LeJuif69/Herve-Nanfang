@@ -628,7 +628,7 @@ Pour découvrir son répertoire live, ses masterclasses et ses autres travaux de
   const pressPitchText = `================================================================================
 OBJET : Proposition de tribune / Idées : « ${article.title.slice(0, 50)} » — Hervé Nanfang
 DESTINATAIRE SUGGÉRÉ : Rédacteurs en chef Culture / Musiques du Monde / Innovation créative
-CONTACT OFFICIEL : hervenanfang@gmail.com | https://hervenanfang.vercel.app
+CONTACT OFFICIEL : hello@hervenanfang.art | https://hervenanfang.vercel.app
 ================================================================================
 
 Madame, Monsieur,
@@ -659,7 +659,7 @@ Bien cordialement,
 
 Hervé Nanfang
 Tél. / WhatsApp : +237 699 00 00 00
-Courriel : hervenanfang@gmail.com
+Courriel : hello@hervenanfang.art
 Site officiel : https://hervenanfang.vercel.app`
 
   assets.push({

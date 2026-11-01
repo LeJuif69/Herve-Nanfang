@@ -358,7 +358,7 @@ export default function LiveStageVideoTheater({ onOpenVideoModal }: LiveStageVid
             Fiche technique indicative modifiable selon les contraintes acoustiques du lieu d’accueil.
           </span>
           <a
-            href="mailto:hervenanfang@gmail.com?subject=[Fiche%20R%C3%A9gie%20Sc%C3%A8ne]%20Demande%20de%20d%C3%A9tails%20techniques"
+            href="mailto:hello@hervenanfang.art?subject=[Fiche%20R%C3%A9gie%20Sc%C3%A8ne]%20Demande%20de%20d%C3%A9tails%20techniques"
             className="text-xs uppercase tracking-wider text-gold hover:text-gold-2 font-bold"
           >
             Contacter la régie technique d'Hervé Nanfang ↗

@@ -173,7 +173,8 @@ export const adminAuth = {
 
     const isEmailAccepted =
       trimmedEmail === allowedAdminEmail ||
-      trimmedEmail === 'hervenanfang@gmail.com' ||
+      trimmedEmail === 'hello@hervenanfang.art' ||
+      trimmedEmail === 'contact@hervenanfang.art' ||
       trimmedEmail === 'contact@hervenanfang.com' ||
       trimmedEmail === 'racinesmusicalesacademy@gmail.com'
 

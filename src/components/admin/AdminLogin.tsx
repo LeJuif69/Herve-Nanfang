@@ -9,7 +9,7 @@ interface AdminLoginProps {
 
 export const AdminLogin: React.FC<AdminLoginProps> = ({ onSignIn }) => {
   const [mode, setMode] = useState<'login' | 'forgot'>('login')
-  const [email, setEmail] = useState('hervenanfang@gmail.com')
+  const [email, setEmail] = useState('hello@hervenanfang.art')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
@@ -89,7 +89,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSignIn }) => {
                   autoComplete="username email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="hervenanfang@gmail.com"
+                  placeholder="hello@hervenanfang.art"
                   className="mt-2 w-full border border-white/20 bg-ink px-4 py-3 text-sm text-ivory focus:border-gold focus:outline-none"
                 />
               </label>

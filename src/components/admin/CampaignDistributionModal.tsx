@@ -367,7 +367,7 @@ export const CampaignDistributionModal: React.FC<CampaignDistributionModalProps>
 
             {activeAsset.type === 'press_pitch' && (
               <div className="mb-4 border border-purple-500/30 bg-purple-500/10 p-3 text-xs text-purple-300">
-                🎙️ <strong className="text-white">Proposition de tribune média :</strong> À adresser directement aux rédactions (ex. Jeune Afrique, Music In Africa, RFI Musique, Le Point Afrique). L'email officiel de contact est configuré sur <strong className="text-gold">hervenanfang@gmail.com</strong>.
+                🎙️ <strong className="text-white">Proposition de tribune média :</strong> À adresser directement aux rédactions (ex. Jeune Afrique, Music In Africa, RFI Musique, Le Point Afrique). L'email officiel de contact est configuré sur <strong className="text-gold">hello@hervenanfang.art</strong>.
               </div>
             )}
 

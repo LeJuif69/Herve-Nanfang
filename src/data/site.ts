@@ -19,7 +19,8 @@ export const SITE = {
   roles: IDENTITY.roles,
   rolesShort: IDENTITY.rolesLine,
   city: IDENTITY.city,
-  emailContact: 'hervenanfang@gmail.com',
+  emailContact: 'hello@hervenanfang.art',
+  emailAcademy: 'contact@hervenanfang.art',
   emailRma: 'racinesmusicalesacademy@gmail.com',
   phones: [
     { display: '+237 694 72 34 92', tel: '+237694723492', whatsapp: '237694723492' },
