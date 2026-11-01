@@ -89,7 +89,7 @@ const CONTENT: Record<Kind, { title: string; eyebrow: string; path: string; lead
         h: 'Vos droits',
         p: [
           'Conformément à la réglementation sur la protection des données, vous disposez d’un droit d’accès, de rectification, de portabilité, de limitation et de suppression de vos informations personnelles.',
-          'Pour exercer ces droits, vous pouvez contacter l’éditeur à tout moment via l’adresse email officielle : racinesmusicalesacademy@gmail.com.',
+          'Pour exercer ces droits, vous pouvez contacter l’éditeur à tout moment via l’adresse email officielle : hervenanfang@gmail.com.',
           'Une réponse sera apportée dans un délai maximum de trente jours.',
         ],
       },
