@@ -46,6 +46,7 @@ export type NavItem = { label: string; to: string }
 export const NAV_PRIMARY: NavItem[] = [
   { label: 'Accueil', to: '/' },
   { label: 'Musique & Scène', to: '/musique' },
+  { label: 'Vidéos Live', to: '/videos' },
   { label: 'Formation & Transmission', to: '/pedagogie' },
   { label: 'Musicien Augmenté', to: '/ia-technologie' },
   { label: 'Réalisations', to: '/projets' },

@@ -41,6 +41,7 @@ const Contact = lazy(() => import('./pages/Contact'))
 const Legal = lazy(() => import('./pages/Legal'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 const Admin = lazy(() => import('./pages/Admin'))
+const Videos = lazy(() => import('./pages/Videos'))
 
 export default function App() {
   return (
@@ -64,6 +65,7 @@ export default function App() {
               <Route path="/conferences" element={<Conferences />} />
               <Route path="/presse" element={<Press />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/videos" element={<Videos />} />
               <Route path="/mentions-legales" element={<Legal kind="mentions" />} />
               <Route path="/confidentialite" element={<Legal kind="confidentialite" />} />
               <Route path="/admin" element={<Admin />} />

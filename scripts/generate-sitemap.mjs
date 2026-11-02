@@ -23,6 +23,7 @@ const STATIC_URLS = [
   '/journal',
   '/conferences',
   '/presse',
+  '/videos',
   '/contact',
   '/mentions-legales',
   '/confidentialite',

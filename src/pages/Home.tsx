@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import HomeFeaturedVideos from '../components/HomeFeaturedVideos'
 import liveScene from '../assets/live-scene-piano.jpeg'
 import monogram from '../assets/hn-monogram-watermark.jpg'
 import SoundWaveCanvas from '../components/SoundWaveCanvas'
@@ -329,6 +330,9 @@ export default function Home() {
           </Reveal>
         </div>
       </Section>
+
+      {/* ====================== VIDÉOS LIVE VEDETTES ====================== */}
+      <HomeFeaturedVideos />
 
       {/* ====================== BANDEAU DISCIPLINES ====================== */}
       <div className="border-y border-white/8 bg-ink-2">
