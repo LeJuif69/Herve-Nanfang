@@ -41,12 +41,19 @@ export const SITE = {
 /* Navigation                                                          */
 /* ------------------------------------------------------------------ */
 
-export type NavItem = { label: string; to: string }
+export type NavSubItem = { label: string; to: string; desc?: string }
+export type NavItem = { label: string; to: string; children?: NavSubItem[] }
 
 export const NAV_PRIMARY: NavItem[] = [
   { label: 'Accueil', to: '/' },
-  { label: 'Musique & Scène', to: '/musique' },
-  { label: 'Vidéos Live', to: '/videos' },
+  {
+    label: 'Musique & Scène',
+    to: '/musique',
+    children: [
+      { label: 'Scène, Répertoire & Live', to: '/musique', desc: 'Piano-bar live, répertoires & prestations' },
+      { label: 'Vidéos & Captations Live', to: '/videos', desc: 'Shorts YouTube, reprises & sessions live' },
+    ],
+  },
   { label: 'Formation & Transmission', to: '/pedagogie' },
   { label: 'Musicien Augmenté', to: '/ia-technologie' },
   { label: 'Réalisations', to: '/projets' },

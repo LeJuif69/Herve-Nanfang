@@ -2,54 +2,94 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { NAV_PRIMARY, NAV_SECONDARY, SITE } from '../data/site'
 import { useCommandMenu } from '../lib/command-menu-context'
-import ScrollProgress from './ScrollProgress'
-import PromoBanner from './PromoBanner'
 
 export default function Header() {
-  const { openCommandMenu } = useCommandMenu()
-  const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [musicDropdownOpen, setMusicDropdownOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [readingProgress, setReadingProgress] = useState(0)
+  const { openCommandMenu } = useCommandMenu()
   const location = useLocation()
 
+  // Fermer le menu compact lors d'un changement d'URL
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 32)
-    onScroll()
+    setOpen(false)
+    setMusicDropdownOpen(false)
+  }, [location.pathname])
+
+  // Détecter le défilement pour adapter l'en-tête et calculer la progression
+  useEffect(() => {
+    let ticking = false
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const y = window.scrollY
+          setScrolled(y > 32)
+
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight
+          if (docHeight > 0) {
+            setReadingProgress(Math.min(100, Math.max(0, (y / docHeight) * 100)))
+          } else {
+            setReadingProgress(0)
+          }
+          ticking = false
+        })
+        ticking = true
+      }
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Échap pour fermer le menu
   useEffect(() => {
-    setOpen(false)
-  }, [location.pathname, location.hash])
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
 
+  // Bloquer le défilement de fond quand le menu est ouvert
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
+    if (open) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
     return () => {
       document.body.style.overflow = ''
     }
   }, [open])
 
-  useEffect(() => {
-    if (!open) return
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpen(false)
-    }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [open])
-
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <PromoBanner />
-      <ScrollProgress />
-      {/* Bandeau secondaire */}
+      {/* Barre de progression de lecture au sommet absolu */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[2px] bg-transparent"
+      >
+        <div
+          className="h-full bg-gradient-to-r from-gold-3 via-gold to-gold-2 shadow-[0_0_8px_rgba(198,161,91,0.5)] transition-transform duration-75 ease-out"
+          style={{
+            transform: `scaleX(${readingProgress / 100})`,
+            transformOrigin: 'left',
+            opacity: scrolled ? 1 : 0,
+          }}
+        />
+      </div>
+
+      {/* Barre supérieure — escamotable au scroll */}
       <div
         className={`hidden border-b border-white/5 bg-ink transition-all duration-500 lg:block ${
-          scrolled ? 'max-h-0 overflow-hidden opacity-0' : 'max-h-12 opacity-100'
+          scrolled ? 'max-h-0 overflow-hidden border-transparent py-0 opacity-0' : 'max-h-12 opacity-100'
         }`}
       >
         <div className="mx-auto flex max-w-[86rem] items-center justify-between px-10 py-2.5 lg:px-14">
-          <p className="eyebrow text-[0.6rem] text-ivory/45">{SITE.rolesShort}</p>
+          <p className="eyebrow text-[0.6rem] text-ivory/45">
+            Musicologue · Artiste-musicien · Pédagogue · Ingénieur du son · Concepteur de programmes
+          </p>
           <nav aria-label="Navigation secondaire" className="flex items-center gap-7">
             {NAV_SECONDARY.map((item) => (
               <Link
@@ -68,13 +108,17 @@ export default function Header() {
       <div
         className={`border-b transition-all duration-500 ${
           scrolled
-            ? 'border-white/10 bg-ink/92 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.9)] backdrop-blur-xl'
+            ? 'border-gold/20 bg-ink/95 py-3 shadow-[0_10px_35px_rgba(0,0,0,0.85)] backdrop-blur-xl'
             : 'border-white/5 bg-gradient-to-b from-ink/85 to-ink/40 backdrop-blur-md'
         }`}
       >
         <div className="mx-auto flex max-w-[86rem] items-center justify-between gap-6 px-6 py-4 md:px-10 lg:px-14">
-          <Link to="/" className="group flex items-center gap-3.5" aria-label="Hervé Nanfang — accueil">
-            {/* Écrin du monogramme initiales HN */}
+          {/* Logo marque */}
+          <Link
+            to="/"
+            className="group flex items-center gap-3.5"
+            aria-label="Hervé Nanfang — accueil"
+          >
             <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gold/40 bg-gradient-to-br from-ink-2 via-black to-ink p-1.5 shadow-[0_0_15px_rgba(198,161,91,0.2)] ring-1 ring-gold/20 transition-all duration-300 group-hover:scale-105 group-hover:border-gold group-hover:shadow-[0_0_25px_rgba(198,161,91,0.4)]">
               <img
                 src="/hn-initials-mark.png"
@@ -93,22 +137,97 @@ export default function Header() {
             </span>
           </Link>
 
+          {/* Navigation desktop avec sous-menu pour Musique & Scène */}
           <nav aria-label="Navigation principale" className="hidden items-center gap-6 xl:flex">
-            {NAV_PRIMARY.slice(1, 8).map((item) => (
-              <NavLink
-                key={item.label}
-                to={item.to}
-                className={({ isActive }) =>
-                  `relative text-[0.68rem] font-semibold uppercase tracking-[0.18em] transition-colors ${
-                    isActive
-                      ? 'text-gold after:absolute after:-bottom-[18px] after:left-0 after:right-0 after:h-px after:bg-gold/60'
-                      : 'text-ivory/70 hover:text-ivory'
-                  }`
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
+            {NAV_PRIMARY.slice(1, 8).map((item) => {
+              if (item.children && item.children.length > 0) {
+                const isChildActive = location.pathname === item.to || item.children.some(c => location.pathname === c.to)
+
+                return (
+                  <div
+                    key={item.label}
+                    className="relative group py-2"
+                    onMouseEnter={() => setMusicDropdownOpen(true)}
+                    onMouseLeave={() => setMusicDropdownOpen(false)}
+                  >
+                    <NavLink
+                      to={item.to}
+                      className={() =>
+                        `relative flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] transition-colors ${
+                          isChildActive
+                            ? 'text-gold after:absolute after:-bottom-[18px] after:left-0 after:right-0 after:h-px after:bg-gold/60'
+                            : 'text-ivory/70 hover:text-ivory'
+                        }`
+                      }
+                    >
+                      <span>{item.label}</span>
+                      <svg
+                        className={`h-3 w-3 text-gold/70 transition-transform duration-200 ${
+                          musicDropdownOpen ? 'rotate-180 text-gold' : ''
+                        }`}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <polyline points="6 9 12 15 18 9" />
+                      </svg>
+                    </NavLink>
+
+                    {/* Menu déroulant / sous-branche */}
+                    <div
+                      className={`absolute top-full left-0 mt-1 w-64 rounded-xl border border-gold/30 bg-ink-2/95 p-2 shadow-2xl backdrop-blur-xl transition-all duration-300 ${
+                        musicDropdownOpen
+                          ? 'opacity-100 visible translate-y-0 pointer-events-auto'
+                          : 'opacity-0 invisible -translate-y-2 pointer-events-none'
+                      }`}
+                    >
+                      {item.children.map((sub) => {
+                        const isSubActive = location.pathname === sub.to
+                        return (
+                          <Link
+                            key={sub.label}
+                            to={sub.to}
+                            onClick={() => setMusicDropdownOpen(false)}
+                            className={`flex flex-col rounded-lg p-2.5 transition-colors ${
+                              isSubActive
+                                ? 'bg-gold/15 text-gold'
+                                : 'text-ivory/80 hover:bg-white/5 hover:text-gold'
+                            }`}
+                          >
+                            <span className="text-xs font-semibold tracking-wide flex items-center justify-between">
+                              {sub.label}
+                              {isSubActive && <span className="h-1.5 w-1.5 rounded-full bg-gold" />}
+                            </span>
+                            {sub.desc && (
+                              <span className="text-[0.65rem] text-ivory/50 mt-0.5">
+                                {sub.desc}
+                              </span>
+                            )}
+                          </Link>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )
+              }
+
+              return (
+                <NavLink
+                  key={item.label}
+                  to={item.to}
+                  className={({ isActive }) =>
+                    `relative text-[0.68rem] font-semibold uppercase tracking-[0.18em] transition-colors ${
+                      isActive
+                        ? 'text-gold after:absolute after:-bottom-[18px] after:left-0 after:right-0 after:h-px after:bg-gold/60'
+                        : 'text-ivory/70 hover:text-ivory'
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              )
+            })}
           </nav>
 
           <div className="flex items-center gap-3">
@@ -168,7 +287,7 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Menu compact */}
+      {/* Menu compact pour mobile */}
       <button
         type="button"
         aria-label="Fermer le menu"
@@ -210,19 +329,37 @@ export default function Header() {
             <ul className="grid grid-cols-2 gap-x-6 border-y border-white/10">
               {NAV_PRIMARY.map((item, i) => (
                 <li key={item.label} className="border-b border-white/8">
-              <NavLink
-                to={item.to}
-                className={({ isActive }) =>
-                  `group flex min-h-[4.25rem] items-center justify-between gap-2 py-3 font-display text-xl leading-tight transition-colors sm:text-2xl ${
-                    isActive ? 'text-gold' : 'text-ivory/85 hover:text-gold'
-                  }`
-                }
-              >
-                <span>{item.label}</span>
-                <span className="shrink-0 font-sans text-[0.6rem] tracking-[0.16em] text-gold/55 transition-colors group-hover:text-gold">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-              </NavLink>
+                  <NavLink
+                    to={item.to}
+                    className={({ isActive }) =>
+                      `group flex min-h-[4.25rem] items-center justify-between gap-2 py-3 font-display text-xl leading-tight transition-colors sm:text-2xl ${
+                        isActive ? 'text-gold' : 'text-ivory/85 hover:text-gold'
+                      }`
+                    }
+                  >
+                    <span>{item.label}</span>
+                    <span className="shrink-0 font-sans text-[0.6rem] tracking-[0.16em] text-gold/55 transition-colors group-hover:text-gold">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                  </NavLink>
+                  {/* Si l'item a des sous-branches, les afficher discrètement en dessous */}
+                  {item.children && (
+                    <div className="pb-3 pl-2 space-y-1">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.label}
+                          to={child.to}
+                          className={`block text-xs transition-colors ${
+                            location.pathname === child.to
+                              ? 'text-gold font-medium'
+                              : 'text-ivory/60 hover:text-gold'
+                          }`}
+                        >
+                          ↳ {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
@@ -249,7 +386,9 @@ export default function Header() {
                 </a>
               ))}
             </div>
-            <p className="mt-2 text-xs uppercase tracking-[0.16em] text-ivory/40">{SITE.city}</p>
+            <p className="mt-2 text-xs uppercase tracking-[0.16em] text-ivory/40">
+              {SITE.city}
+            </p>
           </div>
         </div>
       </div>
