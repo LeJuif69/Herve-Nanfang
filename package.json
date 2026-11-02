@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build && node scripts/prerender.mjs && node scripts/submit-indexnow.mjs --auto",
+    "build": "tsc --noEmit && vite build && node scripts/prerender.mjs && node scripts/fetch-yt-rss.js && node scripts/submit-indexnow.mjs --auto",
     "preview": "vite preview",
     "test": "npx tsx scripts/test-distribution-system.mjs",
     "test:admin": "npx tsx scripts/test-admin.mjs",
@@ -34,6 +34,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "tailwindcss": "^4.1.0",
     "typescript": "^5.6.3",
-    "vite": "^6.0.7"
+    "vite": "^6.0.7",
+    "fast-xml-parser": "^4.3.0"
   }
 }
