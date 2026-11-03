@@ -83,7 +83,8 @@ function pageHead(seo, site) {
   if (process.env.VITE_PINTEREST_DOMAIN_VERIFY) {
     tags.push(`<meta name="p:domain_verify" content="${escapeHtml(process.env.VITE_PINTEREST_DOMAIN_VERIFY.trim())}">`)
   }
-  tags.push('<meta name="google-site-verification" content="rgBN6vjZ15Jg1sprP413jApGM5LYrYe8XKyj-fMf8VE">')
+  tags.push('<meta name="google-site-verification" content="p_ZbSiZ94DyZ5e9YEy3oLDXLvaszQGE7pKnPHAZFtzQ">')
+  tags.push('<meta name="p:domain_verify" content="67154518be397028f4e8d887c127754b">')
   tags.push('<meta name="yandex-verification" content="2fa82dd48c4067fa">')
   const schemas = seo.jsonLd ? (Array.isArray(seo.jsonLd) ? seo.jsonLd : [seo.jsonLd]) : []
   for (const schema of schemas) {
