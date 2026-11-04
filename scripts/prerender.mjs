@@ -86,6 +86,7 @@ function pageHead(seo, site) {
   tags.push('<meta name="google-site-verification" content="p_ZbSiZ94DyZ5e9YEy3oLDXLvaszQGE7pKnPHAZFtzQ">')
   tags.push('<meta name="p:domain_verify" content="67154518be397028f4e8d887c127754b">')
   tags.push('<meta name="yandex-verification" content="2fa82dd48c4067fa">')
+  tags.push('<meta name="msvalidate.01" content="8DF80077ED9D232B63A6B2865557E400">')
   const schemas = seo.jsonLd ? (Array.isArray(seo.jsonLd) ? seo.jsonLd : [seo.jsonLd]) : []
   for (const schema of schemas) {
     const json = JSON.stringify(schema).replace(/</g, '\\u003c')
