@@ -1,6 +1,26 @@
 import { writeFile } from 'fs/promises';
-import { XMLParser } from 'fast-xml-parser';
 import { resolve } from 'path';
+
+// Simple XML parsing using RegExp – sufficient for YouTube RSS
+function extractTag(xml, tag) {
+  const regex = new RegExp(`<${tag}>([^<]*)<\\/${tag}>`, 'g');
+  const matches = [];
+  let m;
+  while ((m = regex.exec(xml)) !== null) {
+    matches.push(m[1]);
+  }
+  return matches;
+}
+
+function extractAttr(tag, attr, xml) {
+  const regex = new RegExp(`<${tag}[^>]*${attr}="([^"]*)"[^>]*>`, 'g');
+  const matches = [];
+  let m;
+  while ((m = regex.exec(xml)) !== null) {
+    matches.push(m[1]);
+  }
+  return matches;
+}
 
 // Helper: slugify a string (basic)
 function slugify(text) {
@@ -30,34 +50,35 @@ async function fetchRss(channelId) {
 }
 
 function parseRss(xml) {
-  const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '' });
-  const json = parser.parse(xml);
-  // The feed structure: json.feed.entry is an array (or single object)
-  const entries = Array.isArray(json.feed.entry) ? json.feed.entry : [json.feed.entry];
-  return entries.map((e) => {
-    const videoId = e['yt:videoId'];
-    const title = e.title;
-    const published = e.published;
-    const thumbnail = e['media:group']?.['media:thumbnail']?.url || '';
-    return {
+  const titles = extractTag(xml, 'title'); // first title is feed title, later are entries
+  const videoIds = extractTag(xml, 'yt:videoId');
+  const published = extractTag(xml, 'published');
+  const thumbnails = extractAttr('media:thumbnail', 'url', xml);
+  const descriptions = extractTag(xml, 'media:description');
+
+  const videos = [];
+  for (let i = 0; i < videoIds.length; i++) {
+    const title = titles[i + 1] || `Video ${i + 1}`; // skip feed title
+    videos.push({
       id: slugify(title),
       title,
       slug: slugify(title),
-      youtubeId: videoId,
-      category: 'LIVE SESSIONS', // default, can be refined later
-      description: e['media:group']?.['media:description'] || '',
+      youtubeId: videoIds[i],
+      category: 'LIVE SESSIONS',
+      description: descriptions[i] || '',
       originalArtist: '',
       performedBy: 'Hervé Nanfang',
       orientation: 'horizontal',
-      thumbnail,
-      publishedAt: published,
-    };
-  });
+      thumbnail: thumbnails[i] || '',
+      publishedAt: published[i] || '',
+    });
+  }
+  return videos;
 }
 
 async function main() {
   try {
-    const handle = '@hervenanfang'; // YouTube handle
+    const handle = '@hervenanfang';
     const channelId = await getChannelId(handle);
     const rssXml = await fetchRss(channelId);
     const videos = parseRss(rssXml);

@@ -27,6 +27,8 @@ import { PROJECT_FAMILIES } from '../data/projects'
 import { personSchema, websiteSchema, organizationSchema, musicGroupSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 import { useLiveArticles, useLiveMedia } from '../lib/useLiveContent'
+import { trackContactMethodClick, trackCtaClick } from '../lib/ad-pixels'
+import { SITE } from '../data/site'
 import type { AdminArticle } from '../lib/admin-types'
 
 const DISCIPLINES = [
@@ -236,18 +238,80 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={220}>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Btn to="/a-propos" variant="gold">
-                  Découvrir mon parcours
+              {/* Bloc de conversion direct & 4 parcours */}
+              <div className="mt-8 rounded-2xl border border-gold/30 bg-ink-2/80 p-5 md:p-6 backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
+                  <div>
+                    <h2 className="font-display text-lg text-ivory sm:text-xl">
+                      Réserver Hervé Nanfang
+                    </h2>
+                    <p className="mt-0.5 text-xs text-ivory/70">
+                      Piano-bar live, conférences, masterclasses, formations et accompagnement IA.
+                    </p>
+                  </div>
+                  <a
+                    href={`https://wa.me/${SITE.phones[0].whatsapp}?text=${encodeURIComponent("Bonjour Hervé Nanfang, je souhaite échanger directement avec vous concernant un projet.")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackContactMethodClick('whatsapp', 'hero_fast')}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-[0.68rem] font-bold uppercase tracking-wider text-emerald-400 hover:border-emerald-400 hover:bg-emerald-500/20 transition-all"
+                  >
+                    <span>💬 Réserver par WhatsApp</span>
+                  </a>
+                </div>
+
+                <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+                  <Btn
+                    to="/contact#booking"
+                    variant="gold"
+                    onClick={() => trackCtaClick('hero_booking', 'booking', 'hero')}
+                    className="w-full justify-center text-center !py-2.5 !text-xs !tracking-wider font-semibold"
+                  >
+                    Piano-bar live
+                  </Btn>
+                  <Btn
+                    to="/contact#conference"
+                    variant="ghost"
+                    onClick={() => trackCtaClick('hero_conference', 'conference', 'hero')}
+                    className="w-full justify-center text-center !py-2.5 !text-xs !tracking-wider border-white/20 hover:border-gold hover:text-gold"
+                  >
+                    Conférence / Masterclass
+                  </Btn>
+                  <Btn
+                    to="/contact#formation"
+                    variant="ghost"
+                    onClick={() => trackCtaClick('hero_formation', 'formation', 'hero')}
+                    className="w-full justify-center text-center !py-2.5 !text-xs !tracking-wider border-white/20 hover:border-gold hover:text-gold"
+                  >
+                    A Laiz Academy
+                  </Btn>
+                  <Btn
+                    to="/contact#conseil"
+                    variant="ghost"
+                    onClick={() => trackCtaClick('hero_conseil', 'conseil', 'hero')}
+                    className="w-full justify-center text-center !py-2.5 !text-xs !tracking-wider border-white/20 hover:border-gold hover:text-gold"
+                  >
+                    Accompagnement IA
+                  </Btn>
+                </div>
+              </div>
+
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <a
+                  href="#offres"
+                  className="btn btn-ghost inline-flex items-center gap-2 border-white/20 text-ivory hover:border-gold hover:text-gold text-xs"
+                >
+                  Découvrir nos 4 offres en détail ↓
+                </a>
+                <Btn to="/a-propos" variant="ghost" className="text-xs">
+                  Mon parcours
                 </Btn>
-                <Btn to="/projets" variant="ghost">
-                  Explorer mes projets
-                </Btn>
+
                 <button
                   type="button"
                   onClick={openPlayer}
                   aria-label="Écouter les extraits musicaux au piano"
-                  className="btn btn-ghost inline-flex items-center gap-2 border-gold/40 text-gold hover:border-gold hover:bg-gold/10 hover:text-gold-2"
+                  className="btn btn-ghost inline-flex items-center gap-2 border-gold/40 text-gold hover:border-gold hover:bg-gold/10 hover:text-gold-2 text-xs"
                 >
                   <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
                     <polygon points="6 3 20 12 6 21 6 3" />
@@ -256,8 +320,8 @@ export default function Home() {
                 </button>
               </div>
               <a
-                href="#socle"
-                aria-label="Défiler vers les quatre piliers"
+                href="#chiffres-autorite"
+                aria-label="Défiler vers les chiffres d’autorité"
                 className="mt-12 inline-flex items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-ivory/45 transition-colors hover:text-gold"
               >
                 Défiler
@@ -267,6 +331,218 @@ export default function Home() {
           </div>
         </Container>
       </section>
+
+      {/* ===================== BANDEAU D’AUTORITÉ & PREUVE DE TERRAIN ===================== */}
+      <section id="chiffres-autorite" className="relative border-y border-white/10 bg-ink-2 py-10 md:py-14">
+        <Container>
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:gap-12">
+            <Reveal delay={0}>
+              <div className="border-l-2 border-gold/60 pl-4 md:pl-6">
+                <p className="font-display text-3xl text-gold sm:text-4xl lg:text-5xl">2007</p>
+                <p className="mt-1 font-mono text-[0.68rem] uppercase tracking-wider text-ivory/60 sm:text-xs">
+                  Pratique piano-bar live
+                </p>
+
+                <p className="mt-1 text-xs text-ivary/40">+200 interventions live depuis 2007</p>
+              </div>
+            </Reveal>
+            <Reveal delay={60}>
+              <div className="border-l-2 border-gold/60 pl-4 md:pl-6">
+                <p className="font-display text-3xl text-gold sm:text-4xl lg:text-5xl">4</p>
+                <p className="mt-1 font-mono text-[0.68rem] uppercase tracking-wider text-ivory/60 sm:text-xs">
+                  Institutions supérieures
+                </p>
+
+                <p className="mt-1 text-xs text-ivory/40">Enseignement & Masterclass</p>
+              </div>
+            </Reveal>
+            <Reveal delay={120}>
+              <div className="border-l-2 border-gold/60 pl-4 md:pl-6">
+                <p className="font-display text-3xl text-gold sm:text-4xl lg:text-5xl">N1–N4</p>
+                <p className="mt-1 font-mono text-[0.68rem] uppercase tracking-wider text-ivory/60 sm:text-xs">
+                  Permis de Jouer™
+                </p>
+
+                <p className="mt-1 text-xs text-ivory/40">4 paliers de compétences certifiées</p>
+              </div>
+            </Reveal>
+            <Reveal delay={180}>
+              <div className="border-l-2 border-gold/60 pl-4 md:pl-6">
+                <p className="font-display text-3xl text-gold sm:text-4xl lg:text-5xl">28</p>
+                <p className="mt-1 font-mono text-[0.68rem] uppercase tracking-wider text-ivory/60 sm:text-xs">
+                  Piliers éditoriaux
+                </p>
+
+                <p className="mt-1 text-xs text-ivory/40">Essais de recherche au Journal</p>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Références institutionnelles certifiées */}
+          <div className="mt-10 border-t border-white/5 pt-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <span className="font-mono text-[0.65rem] uppercase tracking-widest text-gold/80 flex items-center gap-2">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-gold animate-pulse" />
+                Références d’enseignement, scène & recherche :
+              </span>
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-3 md:gap-6 font-mono text-[0.72rem] text-ivory/75">
+                <div className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1.5 hover:border-gold/40 hover:text-gold transition-all">
+                  ESAS Lomé (Togo)
+                </div>
+                <div className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1.5 hover:border-gold/40 hover:text-gold transition-all">
+                  ISMA Bénin
+                </div>
+                <div className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1.5 hover:border-gold/40 hover:text-gold transition-all">
+                  IBA Nkongsamba (Univ. Douala)
+                </div>
+                <div className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1.5 hover:border-gold/40 hover:text-gold transition-all">
+                  IFCPA / CRTV Cameroun
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ===================== 4 PORTES D’ENTRÉE COMMERCIALES & RÉSERVATION ===================== */}
+      <Section id="offres" tone="dark" className="border-t border-gold/20">
+        <Reveal>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <Eyebrow>Travailler avec Hervé Nanfang</Eyebrow>
+              <Display size="lg" className="mt-4 text-ivory">
+                Quatre univers d’intervention directe
+              </Display>
+              <Body className="mt-4 max-w-2xl text-ivory/70">
+                Organisateur d’événement, responsable d’école, entreprise, média ou porteur de projet : accédez directement au cadre de collaboration adapté à votre besoin.
+              </Body>
+            </div>
+            <div className="shrink-0">
+              <Btn to="/contact" variant="ghost">
+                Toutes les modalités de contact →
+              </Btn>
+            </div>
+          </div>
+        </Reveal>
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Offre 1 : Live */}
+          <Reveal delay={0}>
+            <div className="group flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-ink-2/70 p-6 transition-all duration-300 hover:border-gold/50 hover:bg-ink-2">
+              <div>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-mono text-xs uppercase tracking-widest text-gold">01 · Live</span>
+                  <Tag tone="gold">Prestige</Tag>
+                </div>
+                <h3 className="mt-4 font-display text-xl text-ivory group-hover:text-gold transition-colors">
+                  Piano-bar Live & Réceptions
+                </h3>
+                <p className="mt-3 text-xs leading-relaxed text-ivory/70">
+                  Prestations live pour mariages, galas, hôtels de prestige, salons diplomatiques et cocktails d’entreprise. Répertoire de +440 titres (variété internationale, musiques africaines, jazz, chanson).
+                </p>
+
+                <div className="mt-4 rounded border border-white/5 bg-white/[0.02] p-3 text-[0.7rem] text-ivory/60">
+                  <strong className="text-gold/90 font-medium">Claviers :</strong> Yamaha PSR-SX600 & PSR-SX920 · Piano à queue sur demande.
+                </div>
+              </div>
+              <div className="mt-6 pt-5 border-t border-white/10">
+                <Btn to="/contact#booking" variant="gold" className="w-full justify-center text-center text-xs">
+                  Demander une disponibilité
+                </Btn>
+
+
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Offre 2 : Conférences */}
+          <Reveal delay={80}>
+            <div className="group flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-ink-2/70 p-6 transition-all duration-300 hover:border-gold/50 hover:bg-ink-2">
+              <div>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-mono text-xs uppercase tracking-widest text-gold">02 · Échange</span>
+                  <Tag tone="ink">Institutions</Tag>
+                </div>
+                <h3 className="mt-4 font-display text-xl text-ivory group-hover:text-gold transition-colors">
+                  Conférences & Masterclasses
+                </h3>
+                <p className="mt-3 text-xs leading-relaxed text-ivory/70">
+                  Interventions magistrales pour universités, conservatoires, écoles de cinéma et festivals culturels. Thèmes majeurs : Le Musicien Augmenté™, IA & MAO, droit d’auteur et pédagogie moderne.
+                </p>
+
+                <div className="mt-4 rounded border border-white/5 bg-white/[0.02] p-3 text-[0.7rem] text-ivory/60">
+                  <strong className="text-gold/90 font-medium">Publics :</strong> Étudiants, enseignants, professionnels du son et institutions.
+                </div>
+              </div>
+              <div className="mt-6 pt-5 border-t border-white/10">
+                <Btn to="/conferences" variant="ghost" className="w-full justify-center text-center text-xs">
+                  Voir les conférences
+                </Btn>
+
+
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Offre 3 : Formation */}
+          <Reveal delay={160}>
+            <div className="group flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-ink-2/70 p-6 transition-all duration-300 hover:border-gold/50 hover:bg-ink-2">
+              <div>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-mono text-xs uppercase tracking-widest text-gold">03 · Cursus</span>
+                  <Tag tone="gold">Académie</Tag>
+                </div>
+                <h3 className="mt-4 font-display text-xl text-ivory group-hover:text-gold transition-colors">
+                  A Laiz Academy & Permis de Jouer™
+                </h3>
+                <p className="mt-3 text-xs leading-relaxed text-ivory/70">
+                  Formation pratique au piano, MAO et polyrythmies patrimoniales africaines. Méthode structurée en 4 niveaux certifiants pour une autonomie instrumentale sans solfège rébarbatif.
+                </p>
+
+                <div className="mt-4 rounded border border-white/5 bg-white/[0.02] p-3 text-[0.7rem] text-ivory/60">
+                  <strong className="text-gold/90 font-medium">Formats :</strong> Cursus individuel, stages intensifs et formation d’éducateurs.
+                </div>
+              </div>
+              <div className="mt-6 pt-5 border-t border-white/10">
+                <Btn to="/rma" variant="ghost" className="w-full justify-center text-center text-xs">
+                  Découvrir l’Académie
+                </Btn>
+
+
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Offre 4 : Conseil & IA */}
+          <Reveal delay={240}>
+            <div className="group flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-ink-2/70 p-6 transition-all duration-300 hover:border-gold/50 hover:bg-ink-2">
+              <div>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-mono text-xs uppercase tracking-widest text-gold">04 · Conseil</span>
+                  <Tag tone="ink">Innovation</Tag>
+                </div>
+                <h3 className="mt-4 font-display text-xl text-ivory group-hover:text-gold transition-colors">
+                  Conseil IA, Son & Stratégie
+                </h3>
+                <p className="mt-3 text-xs leading-relaxed text-ivory/70">
+                  Accompagnement stratégique pour artistes, studios et institutions culturelles : intégration d’outils IA, ingénierie et mixage audio, valorisation d’archives et développement de marques pérennes.
+                </p>
+
+                <div className="mt-4 rounded border border-white/5 bg-white/[0.02] p-3 text-[0.7rem] text-ivory/60">
+                  <strong className="text-gold/90 font-medium">Livrables :</strong> Diagnostic personnalisé, feuilles de route et sessions de travail.
+                </div>
+              </div>
+              <div className="mt-6 pt-5 border-t border-white/10">
+                <Btn to="/services" variant="ghost" className="w-full justify-center text-center text-xs">
+                  Consulter les services
+                </Btn>
+
+
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
 
       <Section tone="ivory" className="home-manifest relative overflow-hidden">
         <div className="home-manifest__backdrop absolute inset-0 opacity-80" aria-hidden />
@@ -291,7 +567,7 @@ export default function Home() {
             <figure className="home-live__collage relative overflow-hidden rounded-[1.75rem] border border-white/8 bg-ink-2">
               <img
                 src="/images/showcase-herve-nanfang-mikelang.webp"
-                alt="Hervé Nanfang au clavier Yamaha Genos 2 en live — Scène et présence artistique"
+                alt="Hervé Nanfang au clavier arrangeur Yamaha PSR-SX920 en live — Scène et présence artistique"
                 width={2048}
                 height={1143}
                 loading="lazy"
@@ -305,7 +581,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/15 to-transparent" />
               <figcaption className="absolute bottom-0 left-0 right-0 flex justify-between gap-4 border-t border-white/10 bg-ink/60 px-5 py-4 text-[0.62rem] uppercase tracking-[0.2em] text-ivory/70 backdrop-blur-sm">
                 <span>Hervé Nanfang</span>
-                <span>Scène & Présence · Yamaha Genos 2</span>
+                <span>Scène & Présence · Yamaha PSR-SX600 & PSR-SX920 · Piano à queue sur demande</span>
               </figcaption>
             </figure>
           </Reveal>
@@ -324,8 +600,11 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div className="mt-8">
-              <ArrowLink to="/musique">Découvrir la scène</ArrowLink>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Btn to="/contact#booking" variant="gold" className="text-xs">
+                Réserver une prestation live
+              </Btn>
+              <ArrowLink to="/musique">Découvrir le répertoire & la scène</ArrowLink>
             </div>
           </Reveal>
         </div>
@@ -406,6 +685,7 @@ export default function Home() {
                   <p className="mt-4 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-gold/70">
                     {p.keywords}
                   </p>
+
                   <p className="mt-6 flex-1 text-[15px] leading-[1.8] text-ivory/60">{p.text}</p>
                   <span className="mt-8 inline-flex items-center gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-ivory/45 transition-colors group-hover:text-gold">
                     Entrer <span aria-hidden>→</span>
@@ -449,6 +729,7 @@ export default function Home() {
                     <p className="mt-1 text-[0.66rem] uppercase tracking-[0.16em] text-gold/70">
                       {step.resume}
                     </p>
+
                   </div>
                   <div className="flex items-start justify-between gap-6">
                     <p className="max-w-2xl text-sm leading-relaxed text-ivory/55">{step.apport}</p>
@@ -570,6 +851,7 @@ export default function Home() {
                   <p className="mt-1 text-xs text-ink/65">
                     Identité de référence, direction artistique et recherche.
                   </p>
+
                 </figcaption>
               </figure>
 
@@ -590,6 +872,7 @@ export default function Home() {
                   <p className="mt-1 text-xs text-ink/65">
                     Scène live, piano-bar, variété internationale et musiques africaines depuis 2007.
                   </p>
+
                 </figcaption>
               </figure>
 
@@ -610,6 +893,7 @@ export default function Home() {
                   <p className="mt-1 text-xs text-ink/65">
                     Ingénierie sonore, masterclasses et formation en enseignement supérieur.
                   </p>
+
                 </figcaption>
               </figure>
             </div>
@@ -714,8 +998,11 @@ export default function Home() {
         </div>
 
         <Reveal delay={120}>
-          <div className="mt-12 flex flex-wrap items-center gap-6">
-            <Btn to="/ia-technologie#musicien-augmente" variant="gold">
+          <div className="mt-12 flex flex-wrap items-center gap-4">
+            <Btn to="/contact#conseil" variant="gold" className="text-xs">
+              Demander un accompagnement IA
+            </Btn>
+            <Btn to="/ia-technologie#musicien-augmente" variant="ghost" className="text-xs">
               Explorer Musicien Augmenté™
             </Btn>
             <Link
@@ -884,6 +1171,7 @@ export default function Home() {
                   <p className="mt-1 text-[0.66rem] uppercase tracking-[0.16em] text-gold/75">
                     {concept.trademark}
                   </p>
+
                   <Rule className="my-5 opacity-30" />
                   <p className="font-medium text-[0.92rem] leading-snug text-ivory/90">{concept.lead}</p>
                   <p className="mt-3 text-sm leading-relaxed text-ivory/60">{concept.description}</p>
@@ -907,11 +1195,14 @@ export default function Home() {
                   sur la propriété intellectuelle. Toute reproduction, adaptation ou utilisation commerciale non autorisée
                   est strictement interdite.
                 </p>
+
               </div>
               <div className="shrink-0">
                 <Btn to="/mentions-legales" variant="ghost" className="text-xs">
                   Mentions légales
                 </Btn>
+
+
               </div>
             </div>
           </div>
@@ -1044,6 +1335,7 @@ export default function Home() {
                           {featuredArticle.excerpt}
                         </p>
 
+
                         {/* Public cible */}
                         {featuredArticle.audience && (
                           <div className="mt-5 rounded border border-white/10 bg-white/[0.02] p-3 text-xs text-ivory/60">
@@ -1058,6 +1350,8 @@ export default function Home() {
                         <Btn to={`/journal/${featuredArticle.slug}`} variant="gold">
                           Lire l’essai complet →
                         </Btn>
+
+
                         <span className="text-xs font-mono tracking-wider text-gold/80 italic">
                           Hervé Nanfang · Le Journal du Musicien Augmenté
                         </span>
@@ -1066,6 +1360,7 @@ export default function Home() {
                   </div>
                 </div>
               </Reveal>
+
 
               {/* Autres articles récents */}
               {recentArticles.length > 0 && (
@@ -1106,21 +1401,29 @@ export default function Home() {
                           </div>
                         </Link>
                       </Reveal>
+
                     ))}
                   </div>
                 </div>
               )}
 
               <Reveal delay={120}>
-                <div className="mt-12 flex flex-wrap items-center gap-6">
-                  <Btn to="/journal" variant="ghost">
-                    Lire le Journal
-                  </Btn>
+                <div className="mt-12 flex flex-wrap items-center justify-between gap-6 border-t border-white/10 pt-8">
+                  <div className="flex flex-wrap items-center gap-4">
+                    <Btn to="/contact#formation" variant="gold" className="text-xs">
+                      Rejoindre A Laiz Academy
+                    </Btn>
+                    <Btn to="/journal" variant="ghost" className="text-xs">
+                      Lire tous les essais du Journal
+                    </Btn>
+                  </div>
+
                   <span className="text-[0.68rem] uppercase tracking-[0.2em] text-ivory/40">
                     {liveArticles.length} piliers éditoriaux · {publishedArticles.length} publiés
                   </span>
                 </div>
               </Reveal>
+
             </>
           )
         })()}

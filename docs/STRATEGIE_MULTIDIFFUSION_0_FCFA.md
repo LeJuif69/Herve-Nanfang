@@ -170,3 +170,4 @@
 1. **Sitemap Vidéo XML dédié** : Écrire un petit script Node (`scripts/generate-video-sitemap.mjs`) pour alimenter spécifiquement la section "Vidéos" de Google Search Console.
 2. **Webhooks IFTTT / Zapier (Plans gratuits)** : Si des passerelles gratuites sans carte bancaire le permettent, relier le flux RSS YouTube pour publier automatiquement un tweet ou une notification.
 3. **Optimisation des métadonnées JSON-LD** : Enrichir le balisage Schema.org `MusicRecording` et `VideoObject` sur chaque fiche du site.
+

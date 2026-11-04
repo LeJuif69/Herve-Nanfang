@@ -247,6 +247,39 @@ export default function Services() {
             </Reveal>
           ))}
         </div>
+
+        {/* Synthèse Logistique & Délais garantis */}
+        <Reveal delay={120}>
+          <div className="mt-10 border border-gold/30 bg-gold/5 p-6 md:p-8">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-4">
+              <div>
+                <p className="eyebrow text-gold">✦ Cadrage Opérationnel & Réactivité</p>
+                <h3 className="mt-1 font-display text-xl md:text-2xl text-ivory">Repères d’intervention, durées & délais</h3>
+              </div>
+              <span className="font-mono text-xs uppercase tracking-wider text-gold bg-ink/60 border border-gold/30 px-3 py-1">
+                Devis garanti sous 48h
+              </span>
+            </div>
+            <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 text-xs">
+              <div>
+                <p className="font-mono text-[0.65rem] uppercase tracking-wider text-gold/80">Formats live & scène</p>
+                <p className="mt-1 text-ivory/70 leading-relaxed">Solo piano, Duo piano-voix, Trio acoustique, Live band complet. Durées types : 1h30, 2h30, 4h avec pauses protocolaires.</p>
+              </div>
+              <div>
+                <p className="font-mono text-[0.65rem] uppercase tracking-wider text-gold/80">Équipement scénique</p>
+                <p className="mt-1 text-ivory/70 leading-relaxed">Claviers arrangeurs professionnels Yamaha PSR-SX600 & Yamaha PSR-SX920. Piano à queue sur demande. Sonorisation autonome incluse jusqu’à 200 pers.</p>
+              </div>
+              <div>
+                <p className="font-mono text-[0.65rem] uppercase tracking-wider text-gold/80">Périmètres géographiques</p>
+                <p className="mt-1 text-ivory/70 leading-relaxed">Yaoundé (local), ensemble du Cameroun (Douala, Kribi, Bafoussam...), Afrique centrale (Gabon, Guinée Éq., Tchad, RDC...) et international sur devis.</p>
+              </div>
+              <div>
+                <p className="font-mono text-[0.65rem] uppercase tracking-wider text-gold/80">Anticipation conseillée</p>
+                <p className="mt-1 text-ivory/70 leading-relaxed">2 à 4 semaines pour réceptions privées et prestations hôtelières ; 1 à 2 mois pour mariages, galas annuels et masterclasses universitaires.</p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </Section>
 
       {/* ======================== ENGAGEMENTS ======================== */}

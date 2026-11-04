@@ -170,6 +170,10 @@ export function trackContactMethodClick(
   trackAdEvent('contact_method_click', { method, offer_type: offerType, page: currentPath() })
 }
 
+export function trackFormView(formId: string, motive: string): void {
+  trackAdEvent('form_view', { form_id: formId, motive, page: currentPath() })
+}
+
 export function trackFormStart(formId: string, motive: string): void {
   trackAdEvent('form_start', { form_id: formId, motive, page: currentPath() })
 }

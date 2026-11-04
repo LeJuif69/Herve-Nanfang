@@ -121,8 +121,8 @@ export const REPERTOIRE = [
 
 export const TECHNICAL_STANDARDS = [
   {
-    title: 'Clavier de scène 88 touches',
-    text: 'Mécanique à marteaux et toucher lourd professionnel reproduisant le répondant d’un piano acoustique de concert.',
+    title: 'Claviers arrangeurs de référence',
+    text: 'Yamaha PSR-SX600 & Yamaha PSR-SX920 offrant des sonorités acoustiques ultra-réalistes et des rythmiques temps réel. Piano à queue de concert sur demande.',
   },
   {
     title: 'Système son haute fidélité',
@@ -365,3 +365,24 @@ export const PRESTIGE_VENUES: PrestigeVenue[] = [
   },
 ]
 
+
+export const BOOKING_FRAMEWORK = {
+  delays: [
+    { label: "Délai de réservation conseillé", value: "2 à 4 semaines (hôtellerie / réceptions) · 1 à 2 mois (mariages & galas)" },
+    { label: "Réponse & Devis", value: "Sous 48 heures ouvrées avec proposition technique chiffrée" },
+    { label: "Installation & Balance", value: "Arrivée et réglages discrets 2h avant l’accueil des invités" },
+    { label: "Cadre contractuel", value: "Contrat de prestation artistique ou bon de commande institutionnel" },
+  ],
+  zones: [
+    { zone: "Périmètre Local", places: "Yaoundé et région Centre", details: "Logistique et déplacements directs inclus" },
+    { zone: "Couverture Nationale", places: "Douala, Kribi, Bafoussam, Garoua...", details: "Frais de déplacement et logistique inclus sur devis" },
+    { zone: "Afrique Centrale & Monde", places: "Gabon, Guinée Éq., Tchad, RDC, France...", details: "Rider logistique, transport & hébergement pris en charge sur devis" },
+  ],
+  included: [
+    "Claviers arrangeurs professionnels Yamaha PSR-SX600 & Yamaha PSR-SX920",
+    "Piano à queue de concert mis à disposition sur demande et étude logistique",
+    "Système de sonorisation de proximité autonome (jauges jusqu’à 200 personnes)",
+    "Répertoire de plus de 440 titres personnalisable en amont selon votre événement",
+    "Autonomie technique complète et respect scrupuleux du protocole événementiel",
+  ],
+}

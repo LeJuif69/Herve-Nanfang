@@ -29,6 +29,7 @@ import {
   REPERTOIRE_UNIVERSES,
   STAGE_FORMATS,
   TECHNICAL_STANDARDS,
+  BOOKING_FRAMEWORK,
   type LivePerformance,
 } from '../data/music'
 import { AUDIO_PLAYLIST, type AudioTrack } from '../data/audio'
@@ -522,7 +523,7 @@ export default function Music() {
                     <Btn to="/contact?formula=lounge#booking" variant="gold" className="w-full md:w-auto text-center justify-center">
                       Réserver la formule Lounge →
                     </Btn>
-                    <span className="text-[0.65rem] text-ivory/40">Piano fourni sur demande si le lieu n'est pas équipé</span>
+                    <span className="text-[0.65rem] text-ivory/40">Claviers autonomes Yamaha PSR-SX600 / PSR-SX920 inclus · Piano à queue sur demande</span>
                   </div>
                 </div>
               )}
@@ -542,7 +543,7 @@ export default function Music() {
                     <Btn to="/contact?formula=prestige#booking" variant="gold" className="w-full md:w-auto text-center justify-center">
                       Réserver la formule Prestige →
                     </Btn>
-                    <span className="text-[0.65rem] text-ivory/40">Idéal pour mariages d'exception et dîners protocolaires</span>
+                    <span className="text-[0.65rem] text-ivory/40">Solo ou Duo Voix-Piano · Sonorisation autonome de proximité incluse</span>
                   </div>
                 </div>
               )}
@@ -562,10 +563,55 @@ export default function Music() {
                     <Btn to="/contact?formula=liveband#booking" variant="gold" className="w-full md:w-auto text-center justify-center">
                       Réserver le Live Band →
                     </Btn>
-                    <span className="text-[0.65rem] text-ivory/40">Fiche technique et rider fournis sur mesure</span>
+                    <span className="text-[0.65rem] text-ivory/40">Fiche technique & rider complets fournis · Déplacement Cameroun & international</span>
                   </div>
                 </div>
               )}
+            </div>
+
+            {/* Cadrage Logistique, Zones & Modalités de Devis */}
+            <div className="mt-8 grid gap-6 border-t border-white/10 pt-8 lg:grid-cols-3">
+              {/* Zones d'intervention */}
+              <div className="rounded border border-white/10 bg-ink-2/60 p-5">
+                <span className="font-mono text-[0.65rem] uppercase tracking-widest text-gold">01 · Périmètres</span>
+                <h4 className="mt-1 font-display text-base text-ivory">Zones d’intervention</h4>
+                <div className="mt-3 space-y-3">
+                  {BOOKING_FRAMEWORK.zones.map((z) => (
+                    <div key={z.zone} className="border-l-2 border-gold/40 pl-2.5">
+                      <p className="text-xs font-semibold text-ivory">{z.zone} : <span className="font-normal text-gold/90">{z.places}</span></p>
+                      <p className="text-[0.68rem] text-ivory/50">{z.details}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Délais & Réactivité */}
+              <div className="rounded border border-white/10 bg-ink-2/60 p-5">
+                <span className="font-mono text-[0.65rem] uppercase tracking-widest text-gold">02 · Délais & Process</span>
+                <h4 className="mt-1 font-display text-base text-ivory">Planning & Devis sous 48h</h4>
+                <div className="mt-3 space-y-2.5">
+                  {BOOKING_FRAMEWORK.delays.map((d) => (
+                    <div key={d.label} className="border-b border-white/5 pb-1.5 last:border-b-0">
+                      <p className="text-[0.62rem] font-mono uppercase tracking-wider text-gold/80">{d.label}</p>
+                      <p className="text-xs text-ivory/70">{d.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Équipement & Inclus */}
+              <div className="rounded border border-white/10 bg-ink-2/60 p-5">
+                <span className="font-mono text-[0.65rem] uppercase tracking-widest text-gold">03 · Réassurance technique</span>
+                <h4 className="mt-1 font-display text-base text-ivory">Ce qui est inclus</h4>
+                <ul className="mt-3 space-y-2">
+                  {BOOKING_FRAMEWORK.included.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-xs leading-relaxed text-ivory/65">
+                      <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </Reveal>

@@ -24,6 +24,7 @@ import {
   trackFormStart,
   trackFormSubmitError,
   trackFormSubmitSuccess,
+  trackFormView,
   trackLeadConversion,
 } from '../lib/ad-pixels'
 
@@ -65,12 +66,15 @@ export default function Contact() {
   const [sendError, setSendError] = useState('')
 
   useEffect(() => {
+    let currentRoute = 'booking'
     if (typeof window !== 'undefined' && window.location.hash) {
       const hash = window.location.hash.replace('#', '')
       if (CONTACT_ROUTES.some((r) => r.id === hash)) {
+        currentRoute = hash
         setForm((f) => ({ ...f, route: hash }))
       }
     }
+    trackFormView('contact_form', currentRoute)
   }, [])
 
   useSeo({
@@ -368,16 +372,34 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="eyebrow text-ivory/50">
-                    Votre demande *
-                  </label>
+                  <div className="flex items-center justify-between">
+                    <label htmlFor="message" className="eyebrow text-ivory/50">
+                      Votre demande *
+                    </label>
+                    <span className="text-[0.68rem] text-gold/75 font-mono">
+                      {form.route === 'booking' && 'Format, durée, ambiance & matériel'}
+                      {form.route === 'conference' && 'Thème, public & format souhaité'}
+                      {form.route === 'formation' && 'Niveau, objectifs & profil des apprenants'}
+                      {form.route === 'conseil' && 'Enjeux stratégiques, IA & besoins digitaux'}
+                    </span>
+                  </div>
                   <textarea
                     id="message"
                     rows={6}
                     className={`mt-3 ${inputCls('message')}`}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    placeholder="Contexte, objectifs, format souhaité, contraintes techniques et budgétaires…"
+                    placeholder={
+                      form.route === 'booking'
+                        ? 'Ex. : Mariage, cocktail d’entreprise, hôtel… Nombre d’invités, horaires envisagés, piano acoustique ou clavier autonome requis…'
+                        : form.route === 'conference'
+                        ? 'Ex. : Établissement/organisation, thème souhaité (Musicien Augmenté, IA & MAO…), public cible, durée et date envisagées…'
+                        : form.route === 'formation'
+                        ? 'Ex. : Inscription A Laiz Academy, formation continue d’éducateurs, Permis de Jouer™, profil des apprenants…'
+                        : form.route === 'conseil'
+                        ? 'Ex. : Projet artistique, identité de marque, accompagnement stratégique, intégration d’outils IA…'
+                        : 'Contexte, objectifs, format souhaité, contraintes techniques et budgétaires…'
+                    }
                   />
                   {errors.message && <p className="mt-2 text-xs text-crimson-2">{errors.message}</p>}
                 </div>
