@@ -111,8 +111,7 @@ export const videos: Video[] = ${JSON.stringify(videos, null, 2)};\n`;
     await writeFile(outPath, fileContent, 'utf8');
     console.log('✅ videos.ts regenerated with', videos.length, 'items');
   } catch (err) {
-    console.error('❌ Error:', err);
-    process.exit(1);
+    console.warn('⚠️ [fetch-yt-rss] Impossible de synchroniser les vidéos YouTube (conservation des vidéos existantes) :', err.message);
   }
 }
 
