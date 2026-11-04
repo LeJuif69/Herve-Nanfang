@@ -325,7 +325,7 @@ Et voilà ce qui se passe quand on applique le geste juste : (démonstration aco
 C’est exactement ce que je transmets dans mon dossier de la semaine. »
 
 ⏱️ 00:45 – 01:00 | APPEL À L’ACTION (CTA) :
-« Retrouvez l’étude complète et les exemples sur hervenanfang.vercel.app dans le Journal.
+« Retrouvez l’étude complète et les exemples sur hervenanfang.art dans le Journal.
 Abonnez-vous pour la suite des carnets d’atelier ! »
 
 ---
@@ -467,7 +467,7 @@ Avec toute ma considération musicale,
 
 Hervé Nanfang
 Pianobariste · Musicologue · Fondateur Racines Musicales Academy®
-https://hervenanfang.vercel.app`
+https://hervenanfang.art`
 
   assets.push({
     type: 'newsletter',
@@ -628,7 +628,7 @@ Pour découvrir son répertoire live, ses masterclasses et ses autres travaux de
   const pressPitchText = `================================================================================
 OBJET : Proposition de tribune / Idées : « ${article.title.slice(0, 50)} » — Hervé Nanfang
 DESTINATAIRE SUGGÉRÉ : Rédacteurs en chef Culture / Musiques du Monde / Innovation créative
-CONTACT OFFICIEL : hello@hervenanfang.art | https://hervenanfang.vercel.app
+CONTACT OFFICIEL : hello@hervenanfang.art | https://hervenanfang.art
 ================================================================================
 
 Madame, Monsieur,
@@ -658,9 +658,9 @@ Je reste à votre entière disposition pour échanger et adapter ce texte aux ex
 Bien cordialement,
 
 Hervé Nanfang
-Tél. / WhatsApp : +237 699 00 00 00
+Tél. / WhatsApp : +237 694 72 34 92
 Courriel : hello@hervenanfang.art
-Site officiel : https://hervenanfang.vercel.app`
+Site officiel : https://hervenanfang.art`
 
   assets.push({
     type: 'press_pitch',

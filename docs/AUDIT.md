@@ -1,6 +1,6 @@
 # Audit éditorial et technique — hervenanfang.art
 
-*Généré le 01/11/2026 par `npm run audit`.*
+*Généré le 04/11/2026 par `npm run audit`.*
 
 Cet audit analyse la **source** du site : il est reproductible après chaque modification.
 
@@ -8,9 +8,9 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 
 | Contrôle | Résultat |
 |---|---|
-| Pages analysées | 17 |
+| Pages analysées | 18 |
 | Titres SEO hors cible | 0 |
-| Titres tronqués dans Google (> 60 car.) | 2 |
+| Titres tronqués dans Google (> 60 car.) | 3 |
 | Descriptions hors cible | 0 |
 | Pages sans H1 unique | 0 |
 | Liens internes cassés | 0 |
@@ -40,6 +40,7 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 | `Projects` | Projets & Univers Créatif | Hervé Nanfang — A Laiz Ô Pays | 57 | Projets musicaux et pédagogiques de Hervé Nanfang : A Laiz Ô Pays, Le … | 149 | 1 (PageHero (h1 interne)) | Person, Organization, BreadcrumbList, CreativeWork / Book |
 | `RMA` | A Laiz Academy | Hervé Nanfang — Musique & Pédagogie | 52 | A Laiz Academy (ex-Racines Musicales Academy — RMA) : formation musica… | 146 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service, Course |
 | `Services` | Services | Hervé Nanfang — live, production, marque & conseil ✂️ tronqué dans Google | 61 | Piano live Le Pianobariste™, production musicale, stratégie de marque,… | 156 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
+| `Videos` | Vidéos Live & Reprises Musicales | Hervé Nanfang – Le Pianobariste ✂️ tronqué dans Google | 66 | Découvrez les performances live, reprises musicales, sessions Piano-Ba… | 147 | 1 (PageHero (h1 interne)) | — |
 
 ## 3. Corrections à apporter
 

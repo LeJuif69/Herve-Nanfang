@@ -26,7 +26,7 @@ Il n'existe **aucun troisième niveau de marque** au-dessus, entre ou à côté 
 
 - **Nom public officiel :** Hervé Nanfang
 - **Fonction :** Identité personnelle, professionnelle et publique centrale.
-- **Domaine canonique actif :** `https://hervenanfang.vercel.app/`
+- **Domaine canonique actif :** `https://hervenanfang.art` (miroir technique Vercel : `https://hervenanfang.vercel.app/`)
 - **Signatures et surnoms d'exercice rattachés à la personne :** *Le Pianobariste*, *le Musicologue*, *le Musicien Augmenté*
 - **Boussole éditoriale (4 verbes) :** *Créer · Transmettre · Augmenter · Développer.*
 
@@ -38,7 +38,7 @@ Il n'existe **aucun troisième niveau de marque** au-dessus, entre ou à côté 
 - Musicologie, recherche patrimoniale (*Tswefap*) et publications (Journal, articles scientifiques) ;
 - Activités numériques, conseil éditorial et intelligence artificielle appliquée à la musique (*Musicien Augmenté™*) ;
 - Collaborations, conférences, projets et références professionnelles ;
-- Édition légale du site professionnel (`hervenanfang.vercel.app`).
+- Édition légale du site professionnel (`hervenanfang.art`).
 
 ---
 
@@ -46,7 +46,7 @@ Il n'existe **aucun troisième niveau de marque** au-dessus, entre ou à côté 
 
 - **Nom officiel :** A Laiz Ô Pays
 - **Fonction :** Concept fondateur et univers créatif fédérateur créé par Hervé Nanfang.
-- **Référencement numérique :** Présenté et référencé sur le site officiel de Hervé Nanfang (`https://hervenanfang.vercel.app/`). Aucun domaine autonome n'est considéré comme actif, acquis ou destiné à un déploiement séparé sans décision expresse ultérieure.
+- **Référencement numérique :** Présenté et référencé sur le site officiel de Hervé Nanfang (`https://hervenanfang.art`). Aucun domaine autonome n'est considéré comme actif, acquis ou destiné à un déploiement séparé sans décision expresse ultérieure.
 - **Ancrage historique :** Concept artistique et culturel créé par Hervé Nanfang autour de 2010–2011 selon son historique personnel (toute mention publique d'une date exacte doit s'appuyer sur les pièces d'archives correspondantes).
 
 ### Périmètre et rôle d'A Laiz Ô Pays :

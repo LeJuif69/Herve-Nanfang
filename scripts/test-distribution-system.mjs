@@ -94,7 +94,7 @@ assert(
 
 const pressAsset = plan.assets.find((a) => a.type === 'press_pitch')
 assert(
-  pressAsset.content.includes('hervenanfang@gmail.com'),
+  pressAsset.content.includes('hello@hervenanfang.art'),
   'Pitch tribune presse contient l’email officiel vérifié',
 )
 
@@ -131,9 +131,9 @@ assert(normalizePublicationStatus('failed') === 'failed', 'failed -> failed')
 assert(normalizePublicationStatus('erreur') === 'failed', 'erreur -> failed')
 
 // -----------------------------------------------------------------------------
-// TEST 7 : Test sur tous les 12 articles du Journal
+// TEST 7 : Test sur l’ensemble des articles du Journal
 // -----------------------------------------------------------------------------
-console.log('\n7. Test de robustesse sur l’intégralité des 12 articles')
+console.log(`\n7. Test de robustesse sur l’intégralité des ${ARTICLES.length} articles`)
 let allArticlesValid = true
 for (const art of ARTICLES) {
   const p = generateArticleCampaignDistribution(art, '2026-11-01')
@@ -142,7 +142,7 @@ for (const art of ARTICLES) {
     console.error(`Erreur sur l’article ${art.slug}`)
   }
 }
-assert(allArticlesValid, 'Les 12 articles du Journal génèrent avec succès leur campagne multicanal sans erreur')
+assert(allArticlesValid, `Les ${ARTICLES.length} articles du Journal génèrent avec succès leur campagne multicanal sans erreur`)
 
 console.log('\n-------------------------------------------------------------')
 console.log(`RÉSULTAT DES TESTS : ${passedTests} réussis / ${failedTests} échoués`)
