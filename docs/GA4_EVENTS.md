@@ -42,3 +42,4 @@ Conformément à la politique de confidentialité et aux standards éthiques d'H
 
 Le déclencheur centralisé réside dans [`src/lib/ad-pixels.ts`](file:///c:/HN_MARQUE/herve-nanfang/src/lib/ad-pixels.ts).  
 Chaque appel utilise de manière non bloquante `window.gtag('event', ...)` et `window.fbq('track', ...)`.
+
