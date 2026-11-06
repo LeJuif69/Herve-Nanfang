@@ -1092,7 +1092,7 @@ export const AdminArticles: React.FC<AdminArticlesProps> = ({
 
                       {/* Google Preview Snippet */}
                       <div className="mt-4 rounded bg-white p-3 text-left font-sans text-xs text-slate-800 shadow-sm">
-                        <p className="text-[0.65rem] text-slate-500">https://hervenanfang.vercel.app &gt; journal &gt; {editingArticle.slug || 'slug'}</p>
+                        <p className="text-[0.65rem] text-slate-500">https://hervenanfang.art &gt; journal &gt; {editingArticle.slug || 'slug'}</p>
                         <p className="text-sm font-medium text-blue-800 line-clamp-1">
                           {editingArticle.seoTitle || editingArticle.title || 'Titre de l’article'}
                         </p>

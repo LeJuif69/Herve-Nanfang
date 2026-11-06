@@ -18,7 +18,7 @@ FORMATTED_DIR = os.path.join(BASE_DIR, "articles_hub", "formatted")
 AUTHOR_BIO_EN = """---
 ### About the Author
 **Hervé Nanfang** is a Musicologist, Senior Sound Engineer, Music Producer, and AI Specialist based in Yaoundé, Cameroon, collaborating globally. Holding a Master II in Musicology Applied to Visual Media and higher qualifications in Sound Engineering, he combines 15+ years of studio mixing, stage performance, and higher education lecturing (ESAS) with specialized research in AI audio evaluation, music dataset taxonomy, and human-in-the-loop acoustic validation.
-- **Website & Portfolio**: [hervenanfang.vercel.app](https://hervenanfang.vercel.app/)
+- **Website & Portfolio**: [hervenanfang.art](https://hervenanfang.art/)
 - **LinkedIn**: [linkedin.com/in/herve-nanfang-317bb2b1](https://www.linkedin.com/in/herve-nanfang-317bb2b1/)
 - **Email**: hervenanfang@gmail.com
 """
@@ -26,7 +26,7 @@ AUTHOR_BIO_EN = """---
 AUTHOR_BIO_FR = """---
 ### À propos de l'auteur
 **Hervé Nanfang** est musicologue, ingénieur du son senior, producteur de musique et spécialiste de l'IA basé à Yaoundé (Cameroun) avec une pratique internationale. Titulaire d'un Master II en musicologie appliquée aux médias visuels et diplômé en ingénierie du son, il allie 15+ ans de pratique studio, de performance scénique et d'enseignement supérieur (ESAS) à des travaux de pointe en évaluation qualitative d'IA audio, curation de données musicales et écoute critique human-in-the-loop.
-- **Site & Portfolio** : [hervenanfang.vercel.app](https://hervenanfang.vercel.app/)
+- **Site & Portfolio** : [hervenanfang.art](https://hervenanfang.art/)
 - **LinkedIn** : [linkedin.com/in/herve-nanfang-317bb2b1](https://www.linkedin.com/in/herve-nanfang-317bb2b1/)
 - **Contact** : hervenanfang@gmail.com
 """
@@ -77,7 +77,7 @@ def format_draft(file_path):
 
 > **Keywords**: {', '.join(tags)}  
 > **Author**: Hervé Nanfang — Musicologist · Sound Engineer · AI Specialist  
-> **Original Canonical URL**: https://hervenanfang.vercel.app/journal/{base_name}
+> **Original Canonical URL**: https://hervenanfang.art/journal/{base_name}
 
 ---
 
@@ -114,7 +114,7 @@ Voici 3 points clés issus de mon analyse de terrain :
 
 💡 En tant que musicologue et ingénieur du son en exercice depuis plus de 15 ans, je constate quotidiennement que la sensibilité humaine et la rigueur taxonomique restent le maillon indispensable de la validation qualitative des modèles (Human-in-the-Loop QA).
 
-👉 Découvrez l'analyse complète sur mon site : https://hervenanfang.vercel.app/
+👉 Découvrez l'analyse complète sur mon site : https://hervenanfang.art/
 💬 Qu'observez-vous de votre côté sur la qualité des stems et des générations actuelles ? Échangeons en commentaires !
 
 #MusicTech #AudioEngineering #AIinMusic #Musicologie #IngenierieduSon #Acoustique #HerveNanfang
@@ -134,7 +134,7 @@ Here are 3 critical takeaways from my practical evaluation framework:
 
 💡 Over 15+ years across studio mixing, DAW orchestration, and higher education, I've observed that true acoustic fidelity is won in the micro-details: phase smearing, harmonic density, and stylistic prompt adherence.
 
-👉 Read the full breakdown here: https://hervenanfang.vercel.app/
+👉 Read the full breakdown here: https://hervenanfang.art/
 💬 How are you addressing audio quality validation in your workflows? Let's discuss below!
 
 #MusicTech #AudioEvaluation #SoundEngineering #Musicology #GenerativeAudio #HumanInTheLoop #HerveNanfang

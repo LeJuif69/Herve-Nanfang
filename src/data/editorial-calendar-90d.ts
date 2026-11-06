@@ -2214,7 +2214,7 @@ export const EDITORIAL_CALENDAR_90D: SocialPost[] = [
   },
   {
     id: 'pub-2026-12-20-site',
-    title: "Le site hervenanfang.vercel.app : explorez la Scène Sonore et les publications intégrales",
+    title: "Le site hervenanfang.art : explorez la Scène Sonore et les publications intégrales",
     pillar: 'conversion',
     series: 'booking-prestige',
     niche: 'site',
@@ -2228,8 +2228,8 @@ export const EDITORIAL_CALENDAR_90D: SocialPost[] = [
     status: 'a_valider',
     platforms: ['linkedin', 'facebook', 'whatsapp', 'site'],
     hookVariants: [
-      "Le site hervenanfang.vercel.app : explorez la Scène Sonore et les publications intégrales",
-      "Perspective d’Hervé Nanfang — Le site hervenanfang.vercel.app : explorez la Scène Sonore et les publications intégrales",
+      "Le site hervenanfang.art : explorez la Scène Sonore et les publications intégrales",
+      "Perspective d’Hervé Nanfang — Le site hervenanfang.art : explorez la Scène Sonore et les publications intégrales",
     ],
     mediaUrl: '/images/shooting-pro-officiel.webp',
     linkUrl: siteUrl('/'),
@@ -2237,15 +2237,15 @@ export const EDITORIAL_CALENDAR_90D: SocialPost[] = [
     targetAudience: 'Musiciens, mélomanes, apprenants et professionnels des industries créatives',
     contentByPlatform: {
       linkedin: {
-        text: "Le site hervenanfang.vercel.app : explorez la Scène Sonore et les publications intégrales\n\nEn tant que musicologue et praticien de scène, j’explore cette dimension fondamentale :\n\n👉 " + siteUrl('/'),
+        text: "Le site hervenanfang.art : explorez la Scène Sonore et les publications intégrales\n\nEn tant que musicologue et praticien de scène, j’explore cette dimension fondamentale :\n\n👉 " + siteUrl('/'),
         hashtags: ['#HerveNanfang', '#Musique', '#InnovationCulturelle'],
       },
       facebook: {
-        text: "Le site hervenanfang.vercel.app : explorez la Scène Sonore et les publications intégrales\n\nÀ découvrir en détail sur le site officiel : \n🔗 " + siteUrl('/'),
+        text: "Le site hervenanfang.art : explorez la Scène Sonore et les publications intégrales\n\nÀ découvrir en détail sur le site officiel : \n🔗 " + siteUrl('/'),
         hashtags: ['#HerveNanfang', '#Pianobariste', '#Cameroun'],
       },
       whatsapp: {
-        text: "*Hervé Nanfang | Note éditoriale*\n\n*Le site hervenanfang.vercel.app : explorez la Scène Sonore et les publications intégrales*\n\n🔗 " + siteUrl('/'),
+        text: "*Hervé Nanfang | Note éditoriale*\n\n*Le site hervenanfang.art : explorez la Scène Sonore et les publications intégrales*\n\n🔗 " + siteUrl('/'),
         hashtags: [],
       },
     },
@@ -3574,7 +3574,7 @@ export const EDITORIAL_CALENDAR_90D: SocialPost[] = [
   },
   {
     id: 'pub-2027-01-23-bilan',
-    title: "90 jours de création, transmission, technologie et scène : découvrez l'écosystème complet sur hervenanfang.vercel.app",
+    title: "90 jours de création, transmission, technologie et scène : découvrez l'écosystème complet sur hervenanfang.art",
     pillar: 'conversion',
     series: 'booking-prestige',
     niche: 'bilan',
@@ -3588,8 +3588,8 @@ export const EDITORIAL_CALENDAR_90D: SocialPost[] = [
     status: 'a_valider',
     platforms: ['linkedin', 'facebook', 'whatsapp', 'site'],
     hookVariants: [
-      "90 jours de création, transmission, technologie et scène : découvrez l'écosystème complet sur hervenanfang.vercel.app",
-      "Perspective d’Hervé Nanfang — 90 jours de création, transmission, technologie et scène : découvrez l'écosystème complet sur hervenanfang.vercel.app",
+      "90 jours de création, transmission, technologie et scène : découvrez l'écosystème complet sur hervenanfang.art",
+      "Perspective d’Hervé Nanfang — 90 jours de création, transmission, technologie et scène : découvrez l'écosystème complet sur hervenanfang.art",
     ],
     mediaUrl: '/images/shooting-pro-officiel.webp',
     linkUrl: siteUrl('/'),
@@ -3597,15 +3597,15 @@ export const EDITORIAL_CALENDAR_90D: SocialPost[] = [
     targetAudience: 'Musiciens, mélomanes, apprenants et professionnels des industries créatives',
     contentByPlatform: {
       linkedin: {
-        text: "90 jours de création, transmission, technologie et scène : découvrez l'écosystème complet sur hervenanfang.vercel.app\n\nEn tant que musicologue et praticien de scène, j’explore cette dimension fondamentale :\n\n👉 " + siteUrl('/'),
+        text: "90 jours de création, transmission, technologie et scène : découvrez l'écosystème complet sur hervenanfang.art\n\nEn tant que musicologue et praticien de scène, j’explore cette dimension fondamentale :\n\n👉 " + siteUrl('/'),
         hashtags: ['#HerveNanfang', '#Musique', '#InnovationCulturelle'],
       },
       facebook: {
-        text: "90 jours de création, transmission, technologie et scène : découvrez l'écosystème complet sur hervenanfang.vercel.app\n\nÀ découvrir en détail sur le site officiel : \n🔗 " + siteUrl('/'),
+        text: "90 jours de création, transmission, technologie et scène : découvrez l'écosystème complet sur hervenanfang.art\n\nÀ découvrir en détail sur le site officiel : \n🔗 " + siteUrl('/'),
         hashtags: ['#HerveNanfang', '#Pianobariste', '#Cameroun'],
       },
       whatsapp: {
-        text: "*Hervé Nanfang | Note éditoriale*\n\n*90 jours de création, transmission, technologie et scène : découvrez l'écosystème complet sur hervenanfang.vercel.app*\n\n🔗 " + siteUrl('/'),
+        text: "*Hervé Nanfang | Note éditoriale*\n\n*90 jours de création, transmission, technologie et scène : découvrez l'écosystème complet sur hervenanfang.art*\n\n🔗 " + siteUrl('/'),
         hashtags: [],
       },
     },

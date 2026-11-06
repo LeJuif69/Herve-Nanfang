@@ -1,4 +1,4 @@
-# AI Music Evaluation: Why Human Listening Still Matters
+﻿# AI Music Evaluation: Why Human Listening Still Matters
 
 **Subtitle:** How musicologists and sound engineers help evaluate AI-generated music beyond automated metrics.  
 **Suggested Short URL / Slug:** `ai-music-evaluation-human-listening`  
@@ -15,7 +15,8 @@ The central question is not whether AI can generate sound. It is whether we can 
 I also outline a practical human-in-the-loop workflow for evaluating generated music and explain why reproducible human judgment remains important alongside automated metrics.
 
 **Read the full article:**  
-👉 [Human-in-the-Loop Audio Evaluation: Why Musicologists and Sound Engineers Still Matter](https://hervenanfang.vercel.app/)
+👉 [Human-in-the-Loop Audio Evaluation: Why Musicologists and Sound Engineers Still Matter](https://hervenanfang.art/)
 
 ---
 *Note: Replace the link above with the direct article URL once published on the main website.*
+

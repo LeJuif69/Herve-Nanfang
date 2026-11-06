@@ -1,4 +1,4 @@
----
+﻿---
 seoTitle: "AI Music Evaluation: Why Human Listening Still Matters"
 seoDescription: "Learn how musicologists and sound engineers assess AI-generated music through critical listening, prompt alignment, cultural context and structured audio annotation."
 targetQuery: "AI music evaluation"
@@ -9,7 +9,7 @@ secondaryKeywords:
   - "text-to-music evaluation"
   - "audio annotation"
   - "critical listening"
-canonicalUrl: "https://hervenanfang.vercel.app/journal/ai-music-evaluation-human-listening"
+canonicalUrl: "https://hervenanfang.art/journal/ai-music-evaluation-human-listening"
 author: "Hervé Nanfang"
 date: "2026-10-28"
 ---
@@ -267,6 +267,7 @@ The future of AI-generated music depends not only on the ability to produce soun
 
 His professional activities include live musical performance, music education, computer-assisted music production (MAO), and the design of music-learning resources through Racines Musicales Academy®. His work explores how artificial intelligence can augment human musical capabilities while preserving artistic judgment, technical rigor, and cultural integrity.
 
-* **Website**: [hervenanfang.vercel.app](https://hervenanfang.vercel.app/)
+* **Website**: [hervenanfang.art](https://hervenanfang.art/)
 * **LinkedIn**: [Hervé Nanfang](https://www.linkedin.com/in/herve-nanfang-317bb2b1/)
-* **Contact**: [hervenanfang.vercel.app/contact](https://hervenanfang.vercel.app/contact)
+* **Contact**: [hervenanfang.art/contact](https://hervenanfang.art/contact)
+

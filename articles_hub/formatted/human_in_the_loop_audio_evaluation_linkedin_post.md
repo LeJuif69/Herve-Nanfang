@@ -1,4 +1,4 @@
-# POSTS D'ACCROCHE LINKEDIN — HUMAN-IN-THE-LOOP AUDIO EVALUATION: WHY GENERATIVE AI STILL NEEDS THE MUSICOLOGIST & SOUND ENGINEER
+﻿# POSTS D'ACCROCHE LINKEDIN — HUMAN-IN-THE-LOOP AUDIO EVALUATION: WHY GENERATIVE AI STILL NEEDS THE MUSICOLOGIST & SOUND ENGINEER
 
 ================================================================================
 VERSION EN FRANÇAIS (LinkedIn FR)
@@ -15,7 +15,7 @@ Voici 3 points clés issus de mon analyse de terrain :
 
 💡 En tant que musicologue et ingénieur du son en exercice depuis plus de 15 ans, je constate quotidiennement que la sensibilité humaine et la rigueur taxonomique restent le maillon indispensable de la validation qualitative des modèles (Human-in-the-Loop QA).
 
-👉 Découvrez l'analyse complète sur mon site : https://hervenanfang.vercel.app/
+👉 Découvrez l'analyse complète sur mon site : https://hervenanfang.art/
 💬 Qu'observez-vous de votre côté sur la qualité des stems et des générations actuelles ? Échangeons en commentaires !
 
 #MusicTech #AudioEngineering #AIinMusic #Musicologie #IngenierieduSon #Acoustique #HerveNanfang
@@ -35,7 +35,8 @@ Here are 3 critical takeaways from my practical evaluation framework:
 
 💡 Over 15+ years across studio mixing, DAW orchestration, and higher education, I've observed that true acoustic fidelity is won in the micro-details: phase smearing, harmonic density, and stylistic prompt adherence.
 
-👉 Read the full breakdown here: https://hervenanfang.vercel.app/
+👉 Read the full breakdown here: https://hervenanfang.art/
 💬 How are you addressing audio quality validation in your workflows? Let's discuss below!
 
 #MusicTech #AudioEvaluation #SoundEngineering #Musicology #GenerativeAudio #HumanInTheLoop #HerveNanfang
+

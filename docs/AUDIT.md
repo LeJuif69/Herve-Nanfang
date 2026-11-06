@@ -1,6 +1,6 @@
 # Audit éditorial et technique — hervenanfang.art
 
-*Généré le 04/11/2026 par `npm run audit`.*
+*Généré le 06/11/2026 par `npm run audit`.*
 
 Cet audit analyse la **source** du site : il est reproductible après chaque modification.
 

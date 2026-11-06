@@ -4,4 +4,6 @@ node_modules
 dist
 __pycache__/
 *.py[cod]
+docs/BROWSER_QA_REPORT.json
+docs/qa-screenshots/
 

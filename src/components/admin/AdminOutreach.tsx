@@ -155,14 +155,14 @@ Trop souvent, la pratique musicale reste cantonnée aux automatismes d'oreille o
 ✔️ Vous orienter vers un parcours structuré adapté à vos ambitions artistiques.
 
 Réservez votre créneau en 2 minutes via le formulaire dédié :
-https://hervenanfang.vercel.app/rma?utm_source=social&utm_medium=post&utm_campaign=audition_rma#audition
+https://hervenanfang.art/rma?utm_source=social&utm_medium=post&utm_campaign=audition_rma#audition
 
 Les candidatures sont traitées par ordre d'arrivée afin de garantir la qualité de chaque échange.`
 
   const PIANOBARISTE_BROADCAST_TEXT = `Pour vos soirées d'exception, cocktails et réceptions de prestige, découvrez la signature Pianobariste™ par Hervé Nanfang : une scénographie acoustique vivante alliant grands standards de jazz, pop internationale et relectures élégantes des patrimoines africains.
 
 Explorez l'univers et testez notre simulateur interactif :
-https://hervenanfang.vercel.app/musique?utm_source=whatsapp&utm_medium=status&utm_campaign=pianobariste_2026`
+https://hervenanfang.art/musique?utm_source=whatsapp&utm_medium=status&utm_campaign=pianobariste_2026`
 
   const getVipMessage = (t: OutreachTarget) => {
     return `Bonjour ${t.name},
@@ -170,7 +170,7 @@ https://hervenanfang.vercel.app/musique?utm_source=whatsapp&utm_medium=status&ut
 Pour les soirées d'exception, dîners de gala et cocktails de prestige de ${t.organization}, je vous invite à découvrir la signature Pianobariste™ : une scénographie acoustique vivante alliant jazz, standards internationaux et relectures élégantes de nos patrimoines.
 
 Vous pouvez écouter des extraits et configurer une scénographie adaptée à votre espace directement sur mon espace officiel :
-👉 https://hervenanfang.vercel.app/musique?utm_source=whatsapp&utm_medium=outreach_vip&utm_campaign=pianobariste_2026
+👉 https://hervenanfang.art/musique?utm_source=whatsapp&utm_medium=outreach_vip&utm_campaign=pianobariste_2026
 
 Je reste à votre disposition pour imaginer ensemble une ambiance sonore sur mesure pour vos prochaines réceptions.
 
@@ -371,7 +371,7 @@ Tél/WhatsApp : +237 6 78 57 15 28`
                 onClick={() =>
                   handleShareLinkedIn(
                     RMA_POST_TEXT,
-                    'https://hervenanfang.vercel.app/rma?utm_source=social&utm_medium=post&utm_campaign=audition_rma#audition',
+                    'https://hervenanfang.art/rma?utm_source=social&utm_medium=post&utm_campaign=audition_rma#audition',
                   )
                 }
                 className="flex-1 rounded border border-[#0A66C2]/50 bg-[#0A66C2]/20 px-3 py-2 text-xs font-medium text-white hover:bg-[#0A66C2] transition"
@@ -383,7 +383,7 @@ Tél/WhatsApp : +237 6 78 57 15 28`
                 onClick={() =>
                   handleShareFacebook(
                     RMA_POST_TEXT,
-                    'https://hervenanfang.vercel.app/rma?utm_source=social&utm_medium=post&utm_campaign=audition_rma#audition',
+                    'https://hervenanfang.art/rma?utm_source=social&utm_medium=post&utm_campaign=audition_rma#audition',
                   )
                 }
                 className="flex-1 rounded border border-[#1877F2]/50 bg-[#1877F2]/20 px-3 py-2 text-xs font-medium text-white hover:bg-[#1877F2] transition"
@@ -428,7 +428,7 @@ Tél/WhatsApp : +237 6 78 57 15 28`
                 onClick={() =>
                   handleShareLinkedIn(
                     PIANOBARISTE_BROADCAST_TEXT,
-                    'https://hervenanfang.vercel.app/musique?utm_source=social&utm_medium=post&utm_campaign=pianobariste_2026',
+                    'https://hervenanfang.art/musique?utm_source=social&utm_medium=post&utm_campaign=pianobariste_2026',
                   )
                 }
                 className="flex-1 rounded border border-[#0A66C2]/50 bg-[#0A66C2]/20 px-3 py-2 text-xs font-medium text-white hover:bg-[#0A66C2] transition"
@@ -440,7 +440,7 @@ Tél/WhatsApp : +237 6 78 57 15 28`
                 onClick={() =>
                   handleShareFacebook(
                     PIANOBARISTE_BROADCAST_TEXT,
-                    'https://hervenanfang.vercel.app/musique?utm_source=social&utm_medium=post&utm_campaign=pianobariste_2026',
+                    'https://hervenanfang.art/musique?utm_source=social&utm_medium=post&utm_campaign=pianobariste_2026',
                   )
                 }
                 className="flex-1 rounded border border-[#1877F2]/50 bg-[#1877F2]/20 px-3 py-2 text-xs font-medium text-white hover:bg-[#1877F2] transition"
@@ -633,14 +633,14 @@ Tél/WhatsApp : +237 6 78 57 15 28`
                 <input
                   type="text"
                   readOnly
-                  value="https://hervenanfang.vercel.app/rma?utm_source=meta_ads&utm_medium=cpc&utm_campaign=audition_rma#audition"
+                  value="https://hervenanfang.art/rma?utm_source=meta_ads&utm_medium=cpc&utm_campaign=audition_rma#audition"
                   className="flex-1 rounded border border-white/10 bg-ink px-2.5 py-1.5 font-mono text-xs text-amber-300 select-all"
                 />
                 <button
                   type="button"
                   onClick={() =>
                     handleCopyText(
-                      'https://hervenanfang.vercel.app/rma?utm_source=meta_ads&utm_medium=cpc&utm_campaign=audition_rma#audition',
+                      'https://hervenanfang.art/rma?utm_source=meta_ads&utm_medium=cpc&utm_campaign=audition_rma#audition',
                       'Lien sponsorisé RMA',
                     )
                   }
@@ -689,14 +689,14 @@ Tél/WhatsApp : +237 6 78 57 15 28`
                 <input
                   type="text"
                   readOnly
-                  value="https://hervenanfang.vercel.app/musique?utm_source=meta_ads&utm_medium=cpc&utm_campaign=pianobariste_2026"
+                  value="https://hervenanfang.art/musique?utm_source=meta_ads&utm_medium=cpc&utm_campaign=pianobariste_2026"
                   className="flex-1 rounded border border-white/10 bg-ink px-2.5 py-1.5 font-mono text-xs text-gold select-all"
                 />
                 <button
                   type="button"
                   onClick={() =>
                     handleCopyText(
-                      'https://hervenanfang.vercel.app/musique?utm_source=meta_ads&utm_medium=cpc&utm_campaign=pianobariste_2026',
+                      'https://hervenanfang.art/musique?utm_source=meta_ads&utm_medium=cpc&utm_campaign=pianobariste_2026',
                       'Lien sponsorisé Pianobariste',
                     )
                   }

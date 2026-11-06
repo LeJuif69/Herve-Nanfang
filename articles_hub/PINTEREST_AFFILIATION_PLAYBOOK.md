@@ -1,4 +1,4 @@
-# PLAN OPÉRATIONNEL D'AFFILIATION PINTEREST — HERVÉ NANFANG
+﻿# PLAN OPÉRATIONNEL D'AFFILIATION PINTEREST — HERVÉ NANFANG
 **Stratégie 0 FCFA • Niche Home Studio & MAO • Marchés Afrique & International**
 
 ---
@@ -56,7 +56,7 @@ gantt
 
 ### J1 à J3 : Fondations
 - Convertir le compte en **Pinterest Business**.
-- Renseigner la bio officielle, photo professionnelle et lien canonique vers `https://hervenanfang.vercel.app`.
+- Renseigner la bio officielle, photo professionnelle et lien canonique vers `https://hervenanfang.art`.
 - Créer les 3 tableaux thématiques :
   1. *Home Studio pour débutants* (Microphones, casques, cartes son).
   2. *MAO & Logiciels de musique* (Plugins, DAW, banques de sons, mixage).
@@ -91,7 +91,7 @@ gantt
 > **Pourquoi ne pas mettre de lien affilié direct sur chaque épingle Pinterest ?**
 > 1. Les algorithmes de Pinterest pénalisent parfois les liens d'affiliation directs considérés comme agressifs.
 > 2. Amazon Partenaires exige un site web actif avec au moins 10 articles originaux avant de valider définitivement le compte.
-> 3. En renvoyant l'épingle vers un article comparatif ou une page guide de votre site `hervenanfang.vercel.app` (ex. [Guide Microphones](https://hervenanfang.vercel.app/journal)) :
+> 3. En renvoyant l'épingle vers un article comparatif ou une page guide de votre site `hervenanfang.art` (ex. [Guide Microphones](https://hervenanfang.art/journal)) :
 >    - Vous gagnez du trafic SEO durable sur votre site.
 >    - L'acheteur découvre votre profil d'ingénieur du son et vous fait confiance.
 >    - Vous placez plusieurs liens affiliés alternatifs sur la même page.
@@ -104,7 +104,7 @@ gantt
 - **Titre** : Quel microphone choisir pour débuter en home studio ? Guide USB vs XLR
 - **Description** : Vous voulez enregistrer votre voix avec une clarté professionnelle sans dépenser une fortune ? Découvrez notre comparatif d'ingénieur du son : faut-il choisir un micro USB plug & play ou un XLR avec carte son ? Analyse des meilleurs modèles pour débuter. (Lien affilié transparent).
 - **Mots-clés** : `micro home studio debutant`, `micro usb vs xlr`, `quel micro pour chanter`, `home studio petit budget`.
-- **Destination recommandée** : Article guide sur `hervenanfang.vercel.app/journal` ou lien produit Amazon/Thomann.
+- **Destination recommandée** : Article guide sur `hervenanfang.art/journal` ou lien produit Amazon/Thomann.
 
 ### Épingle 2 (Accessoires indispensables)
 - **Titre** : 5 accessoires indispensables pour enregistrer une voix nette à la maison
@@ -172,10 +172,11 @@ gantt
 Pour tracker avec précision la rentabilité de chaque épingle Pinterest vers votre site web, utilisez systématiquement la nomenclature standardisée :
 
 ```text
-https://hervenanfang.vercel.app/journal/guide-choisir-micro-home-studio?utm_source=pinterest&utm_medium=social_pin&utm_campaign=affil_homestudio_2026&utm_content=pin01_micro_usb_xlr
+https://hervenanfang.art/journal/guide-choisir-micro-home-studio?utm_source=pinterest&utm_medium=social_pin&utm_campaign=affil_homestudio_2026&utm_content=pin01_micro_usb_xlr
 ```
 
 - `utm_source` : `pinterest`
 - `utm_medium` : `social_pin`
 - `utm_campaign` : `affil_homestudio_2026`
 - `utm_content` : code de l'épingle (ex: `pin01_micro_usb_xlr`, `pin02_accessoires_voix`, etc.)
+

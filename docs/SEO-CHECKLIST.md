@@ -1,4 +1,4 @@
-# SEO — Identité et référencement personnel
+﻿# SEO — Identité et référencement personnel
 
 Objectif stratégique : **Google doit d'abord connaître Hervé Nanfang, puis comprendre ses différents univers.**
 
@@ -13,7 +13,7 @@ Ce document recense ce qui est déjà implémenté dans le site et ce qui reste 
 | **Title** | *Hervé Nanfang \| Musicien, Musicologue, Pédagogue & IA* |
 | **Meta description** | *Hervé Nanfang est artiste-musicien, musicologue, pédagogue, ingénieur du son et spécialiste de l'IA appliquée à la musique, à la pédagogie et aux industries culturelles.* |
 | **H1** | **Hervé Nanfang** |
-| **Canonical** | `https://hervenanfang.vercel.app` + chemin de page |
+| **Canonical** | `https://hervenanfang.art` + chemin de page |
 
 Chaque page possède son title, sa description, sa canonical, son image OG et ses données structurées propres (voir `src/lib/seo.ts`).
 
@@ -97,7 +97,7 @@ Implémentées dans `src/lib/schema.ts` et injectées page par page.
 **Rythme recommandé :** un pilier rédigé par mois, complété par une note courte (500–800 mots) toutes les deux semaines. Chaque article lie au moins trois pages du site (maillage interne) et une page commerciale (conférences, formations, contact).
 
 **Autorité externe (à mener en parallèle) :**
-- une biographie identique (nom, fonction, liens) sur toutes les plateformes, pointant vers `hervenanfang.vercel.app` ;
+- une biographie identique (nom, fonction, liens) sur toutes les plateformes, pointant vers `hervenanfang.art` ;
 - réponses signées dans la presse spécialisée et les podcasts ;
 - citations vérifiables (presse, institutions) pour alimenter la notoriété ;
 - cohérence du nom : toujours « Hervé Nanfang », les marques dérivées restant secondaires.
@@ -120,3 +120,4 @@ Implémentées dans `src/lib/schema.ts` et injectées page par page.
 | Conférences | ✅ | ✅ | Service, Event ×5 | ✅ |
 | Contact | ✅ | ✅ | Service, Breadcrumb | ✅ |
 | Légales | ✅ | ✅ | Breadcrumb | ✅ |
+

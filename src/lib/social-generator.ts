@@ -642,7 +642,7 @@ Et ce qui se passe quand on applique la méthode juste : (jouer ou montrer le r�
 C’est ce que j’ai résumé dans mon guide complet de cette semaine. »
 
 ⏱️ 00:45 – 01:00 | L'APPEL À L'ACTION (CTA) :
-« Ne perdez plus des mois sur de fausses pistes. Le lien complet est sur hervenanfang.vercel.app dans le Journal.
+« Ne perdez plus des mois sur de fausses pistes. Le lien complet est sur https://hervenanfang.art dans le Journal.
 Abonnez-vous pour la prochaine démonstration au piano ! »`
 
   const postVideo: SocialPost = {
@@ -790,7 +790,7 @@ export function exportPublicationsToIcs(posts: SocialPost[]): string {
 
     lines.push(
       'BEGIN:VEVENT',
-      `UID:${post.id}@hervenanfang.vercel.app`,
+      `UID:${post.id}@hervenanfang.art`,
       `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').slice(0, 15)}Z`,
       `DTSTART:${dtStart}`,
       `DTEND:${dtEnd}`,

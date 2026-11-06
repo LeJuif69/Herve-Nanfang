@@ -1,4 +1,4 @@
-# Fiche Complète du Projet — Hervé Nanfang
+﻿# Fiche Complète du Projet — Hervé Nanfang
 
 ## 1. Identité du Projet
 - **Nom du projet** : `herve-nanfang`
@@ -7,7 +7,7 @@
 - **Chemin local** : `C:\HN_MARQUE\herve-nanfang`
 - **Node.js** : 24.21.0 · **Gestionnaire** : npm (`package-lock.json`)
 - **Dépôt distant** : `https://github.com/LeJuif69/Herv-Nanfang.git`
-- **Domaine Production** : [https://hervenanfang.vercel.app](https://hervenanfang.vercel.app)
+- **Domaine Production** : [https://hervenanfang.art](https://hervenanfang.art)
 
 ---
 
@@ -69,3 +69,4 @@
   1. Accès `/sitemap.xml` (15 URL valides).
   2. Balise `<meta name="msvalidate.01" content="...">` sur la page d'accueil `/`.
   3. Champ `disambiguatingDescription` présent dans le schéma JSON-LD `Person`.
+

@@ -1660,7 +1660,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                     type="text"
                     value={editingPost.linkUrl || ''}
                     onChange={(e) => setEditingPost({ ...editingPost, linkUrl: e.target.value })}
-                    placeholder="https://hervenanfang.vercel.app/..."
+                    placeholder="https://hervenanfang.art/..."
                     className="mt-1 w-full border border-white/10 bg-ink px-3 py-1.5 text-xs text-ivory focus:border-gold focus:outline-none"
                   />
                 </div>
@@ -2361,7 +2361,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                               linkedin: { text: 'Analyse de fond avec questions...', hashtags: ['#Musicologie'] },
                               facebook: { text: 'Synthèse pratique sans jargon...', hashtags: ['#HerveNanfang'] },
                             },
-                            linkUrl: 'https://hervenanfang.vercel.app/journal/ia-droits-auteur-musique-africaine?utm_source=linkedin',
+                            linkUrl: 'https://hervenanfang.art/journal/ia-droits-auteur-musique-africaine?utm_source=linkedin',
                             validationSignature: {
                               validatedBy: 'Hervé Nanfang',
                               timestamp: new Date().toISOString(),
@@ -2392,7 +2392,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
     "contentByPlatform": {
       "linkedin": { "text": "...", "hashtags": ["#Musicologie", "#HerveNanfang"] }
     },
-    "linkUrl": "https://hervenanfang.vercel.app/journal/ia-droits-auteur...utm_source=linkedin",
+    "linkUrl": "https://hervenanfang.art/journal/ia-droits-auteur...utm_source=linkedin",
     "validationSignature": {
       "validatedBy": "Hervé Nanfang",
       "contentHash": "5a7943..."
@@ -2513,7 +2513,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
               <div>
                 <p className="eyebrow text-gold">Tableau de Bord Stratégique</p>
                 <h2 className="mt-1 font-display text-2xl text-ivory">Rapport Hebdomadaire de Croissance</h2>
-                <p className="text-xs text-ivory/60">Plateforme officielle hervenanfang.vercel.app · Système NANHÉ</p>
+                <p className="text-xs text-ivory/60">Plateforme officielle hervenanfang.art · Système NANHÉ</p>
               </div>
               <button
                 type="button"
@@ -2671,13 +2671,13 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                 <button
                   type="button"
                   onClick={() => {
-                    const mdReport = `# Rapport Hebdomadaire de Croissance · hervenanfang.vercel.app
+                    const mdReport = `# Rapport Hebdomadaire de Croissance · hervenanfang.art
 Date : ${new Date().toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
 Auteur : Hervé Nanfang (Système de Croissance NANHÉ)
 
 ## 1. Découverte Moteurs & SEO
 - Pages indexables : 27 URLs complètes (12 articles Journal, 5 services, RMA, biographie, mentions, politique)
-- Sitemap XML : https://hervenanfang.vercel.app/sitemap.xml (dist/sitemap.xml généré au build)
+- Sitemap XML : https://hervenanfang.art/sitemap.xml (dist/sitemap.xml généré au build)
 - IndexNow : Actif en mode non-bloquant (--auto) à chaque déploiement
 - Synchronisation : 12 articles publiés confirmés en production
 

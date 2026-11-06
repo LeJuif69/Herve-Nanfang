@@ -1846,7 +1846,7 @@ export const adminStore = {
           body: JSON.stringify({
             event: 'publication.approved',
             timestamp: nowIso,
-            source: 'hervenanfang.vercel.app/admin',
+            source: 'hervenanfang.art/admin',
             approvedBy: approver,
             post: approvedPost,
           }),

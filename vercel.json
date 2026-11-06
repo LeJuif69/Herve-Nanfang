@@ -6,10 +6,24 @@
     {
       "source": "/(.*)",
       "has": [
-        {
-          "type": "host",
-          "value": "hervenanfang.vercel.app"
-        }
+        { "type": "host", "value": "hervenanfang.art" },
+        { "type": "protocol", "value": "http" }
+      ],
+      "destination": "https://hervenanfang.art/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        { "type": "host", "value": "www.hervenanfang.art" }
+      ],
+      "destination": "https://hervenanfang.art/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        { "type": "host", "value": "*.vercel.app" }
       ],
       "destination": "https://hervenanfang.art/$1",
       "permanent": true

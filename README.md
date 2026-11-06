@@ -1,4 +1,4 @@
-# HERVÉ NANFANG — Plateforme canonique
+﻿# HERVÉ NANFANG — Plateforme canonique
 
 > **Créer. Transmettre. Innover.**
 > Artiste-musicien · Musicologue · Pédagogue · Ingénieur du son · Innovateur culturel
@@ -142,7 +142,7 @@ herve-nanfang/
 
 > Les valeurs de démonstration sont marquées « placeholder » dans `src/data/site.ts`.
 
-- [x] **Domaine Vercel** : `https://hervenanfang.vercel.app` alimente les URL canoniques, le sitemap et `robots.txt`.
+- [x] **Domaine Vercel** : `https://hervenanfang.art` alimente les URL canoniques, le sitemap et `robots.txt`.
 - [x] **Vercel** : neuf routes directes vérifiées en HTTP 200 et `/une-url-inexistante` en HTTP 404 sur `hnnanfang.vercel.app`.
 - [x] **Email professionnel général / booking** : l’adresse `racinesmusicalesacademy@gmail.com` est utilisée comme point de contact officiel pour les demandes de booking, formation, presse et conseil, avec les deux téléphones et les profils sociaux confirmés intégrés.
 - [x] **Téléphones & réseaux sociaux** : les numéros et profils officiels confirmés sont intégrés à la configuration centrale et à Schema.org.
@@ -182,3 +182,4 @@ herve-nanfang/
 ---
 
 © Hervé Nanfang. Tous droits réservés. Le Pianobariste™ · Racines Musicales Academy® · Permis de Jouer™ · Musicien Augmenté™.
+

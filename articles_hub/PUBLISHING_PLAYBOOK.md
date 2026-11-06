@@ -1,4 +1,4 @@
-# PLAYBOOK DE PUBLICATION MULTI-PLATEFORMES — HERVÉ NANFANG
+﻿# PLAYBOOK DE PUBLICATION MULTI-PLATEFORMES — HERVÉ NANFANG
 **Stratégie éditoriale, liens directs de soumission & bonnes pratiques**
 
 Ce guide opérationnel permet à Hervé Nanfang de diffuser ses travaux d'analyse musicologique, d'ingénierie du son, de MusicTech et d'intelligence artificielle sur l'ensemble des plateformes internationales cibles.
@@ -12,7 +12,7 @@ Ce guide opérationnel permet à Hervé Nanfang de diffuser ses travaux d'analys
 - **Format optimal** : Articles de 800 à 1 500 mots. Accroche percutante dès les 3 premières lignes. Utiliser 3 à 5 hashtags thématiques (`#MusicTech`, `#AudioEngineering`, `#AIinMusic`, `#Musicology`, `#SoundQuality`).
 - **Signature d'auteur** :
   > **Hervé Nanfang** | Musicologist · Sound Engineer · Music Producer · AI Specialist  
-  > *Explore more on [hervenanfang.vercel.app](https://hervenanfang.vercel.app/) and connect on [LinkedIn](https://www.linkedin.com/in/herve-nanfang-317bb2b1/).*
+  > *Explore more on [hervenanfang.art](https://hervenanfang.art/) and connect on [LinkedIn](https://www.linkedin.com/in/herve-nanfang-317bb2b1/).*
 
 ### 1.2 Medium
 - **Lien direct** : [https://medium.com/new-story](https://medium.com/new-story)
@@ -69,3 +69,4 @@ Ce guide opérationnel permet à Hervé Nanfang de diffuser ses travaux d'analys
 ### 4.2 Audiofanzine
 - **Lien direct** : [https://fr.audiofanzine.com/](https://fr.audiofanzine.com/)
 - **Format** : Bancs d'essai de matériel de studio, tutoriels de prise de son, méthodologie de mixage et analyse critique des plugins d'IA audio.
+

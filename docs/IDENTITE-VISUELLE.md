@@ -1,4 +1,4 @@
-# Identité visuelle et identité numérique — Hervé Nanfang
+﻿# Identité visuelle et identité numérique — Hervé Nanfang
 
 Ce document couvre deux choses indissociables :
 
@@ -104,7 +104,7 @@ Le même `portrait-principal` doit servir :
 
 ### 4.3 Un seul jeu de liens
 
-Toutes les plateformes doivent renvoyer vers `hervenanfang.vercel.app`, et le site renvoyer
+Toutes les plateformes doivent renvoyer vers `hervenanfang.art`, et le site renvoyer
 vers elles (`SITE.socials`, qui alimente aussi le `sameAs` du Schema.org — c'est le
 mécanisme qui permet aux moteurs de comprendre qu'il s'agit d'une seule et même entité).
 
@@ -141,3 +141,4 @@ mécanisme qui permet aux moteurs de comprendre qu'il s'agit d'une seule et mêm
 - [ ] Le logo éventuel (le site utilise aujourd'hui un monogramme « touches de piano » dessiné en SVG).
 - [ ] Les extraits audio (3 titres suffisent pour lancer le portfolio sonore).
 - [ ] Les liens vidéo (YouTube ou Vimeo) — un par ligne dans `photos/VIDEOS.txt`.
+

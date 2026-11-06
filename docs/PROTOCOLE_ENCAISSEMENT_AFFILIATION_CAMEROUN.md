@@ -1,4 +1,4 @@
-# PROTOCOLE TECHNIQUE D'ENCAISSEMENT DES COMMISSIONS — CAMEROUN
+﻿# PROTOCOLE TECHNIQUE D'ENCAISSEMENT DES COMMISSIONS — CAMEROUN
 **Amazon Partenaires & Thomann Partner • Circuit 0 FCFA de Frais Inutiles**
 
 ---
@@ -66,7 +66,7 @@ flowchart TD
 
 1. **Création du compte** :
    - Rendez-vous sur [Partenaires Amazon France](https://partenaires.amazon.fr).
-   - Renseignez votre identité réelle et l'URL de votre site : `https://hervenanfang.vercel.app`.
+   - Renseignez votre identité réelle et l'URL de votre site : `https://hervenanfang.art`.
    - Décrivez votre site : *« Média d'analyse acoustique, de production musicale et d'ingénierie sonore fondé par Hervé Nanfang, avec guides d'achat de matériel home studio et MAO »*.
 2. **Questionnaire fiscal (Tax Interview)** :
    - Statut : **Particulier / Non assujetti à la TVA**.
@@ -88,7 +88,7 @@ flowchart TD
 1. **Candidature** :
    - Rendez-vous sur la section partenaire de Thomann : [Thomann Affiliate Program](https://www.thomann.de).
    - Candidature sous le statut de créateur musical / webmaster.
-   - Présentez votre site `https://hervenanfang.vercel.app` et votre profil d'ingénieur du son / formateur RMA.
+   - Présentez votre site `https://hervenanfang.art` et votre profil d'ingénieur du son / formateur RMA.
 2. **Rémunération & Taux** :
    - **3,5 % à 4,5 %** sur le matériel audio pro, claviers maîtres, micros, cartes son et synthétiseurs.
    - Durée du cookie : **14 jours**.
@@ -123,5 +123,6 @@ Dès que vos commissions arrivent sur votre solde Payoneer :
 
 - [ ] Ne jamais utiliser de VPN avec une fausse géolocalisation lors de la création d'Amazon ou Payoneer.
 - [ ] Votre nom complet doit être strictement identique partout : **Hervé Nanfang** (CNI, Payoneer, compte bancaire local, compte Amazon, compte Thomann).
-- [ ] Sur votre site `hervenanfang.vercel.app`, afficher la mention de transparence légale : *« En tant que Partenaire Amazon / Thomann, Hervé Nanfang réalise un bénéfice sur les achats remplissant les conditions requises. »*
+- [ ] Sur votre site `hervenanfang.art`, afficher la mention de transparence légale : *« En tant que Partenaire Amazon / Thomann, Hervé Nanfang réalise un bénéfice sur les achats remplissant les conditions requises. »*
 - [ ] Ne jamais cliquer vous-même sur vos propres liens d'affiliation pour acheter du matériel (détection d'adresses IP et annulation immédiate de compte par Amazon).
+

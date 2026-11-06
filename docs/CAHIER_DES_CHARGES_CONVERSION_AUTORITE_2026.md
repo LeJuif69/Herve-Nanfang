@@ -1,11 +1,11 @@
-# Cahier des Charges Stratégique & Opérationnel (2026–2027)
+﻿# Cahier des Charges Stratégique & Opérationnel (2026–2027)
 ## Refonte de la Conversion, Preuve Sociale & Découvrabilité de hervenanfang.art
 
 ---
 
 ### Informations de Référence
 * **Projet** : Écosystème digital et vitrine d'autorité d'Hervé Nanfang
-* **Domaine actif de production** : `https://hervenanfang.art/` (déployé sur Vercel : `hervenanfang.vercel.app`)
+* **Domaine actif de production** : `https://hervenanfang.art/` (déployé sur Vercel : `hervenanfang.art`)
 * **Cadre de marque maître** : Deux identités principales exclusives (1. Hervé Nanfang, 2. A Laiz Ô Pays), aucun 3ᵉ niveau de marque. Document maître : `GOUVERNANCE_MARQUE_HERVE_NANFANG_A_LAIZ_OPAYS.md`.
 * **Signature fondatrice** : *Créer · Transmettre · Augmenter · Développer*.
 * **Date de cadrage** : Novembre 2026
@@ -190,10 +190,11 @@ Transformer le site d'un « monument biographique et intellectuel » en une **v�
 ## 5. Règles de Conformité & Gouvernance Intangibles
 1. **Deux identités principales. Aucun 3ᵉ niveau de marque** : Toutes les initiatives se rattachent strictement soit à **Hervé Nanfang**, soit à **A Laiz Ô Pays**.
 2. **Appellations proscrites** : Ne jamais réintroduire *ALAIZ Creative Systems*, *Alaiz Creative Group*, *A LAIZ PROD* ou *HN Marque*.
-3. **Domaine actif vérifié** : Travailler exclusivement avec `https://hervenanfang.art/` (redirection configurée depuis `hervenanfang.vercel.app`).
+3. **Domaine actif vérifié** : Travailler exclusivement avec `https://hervenanfang.art/` (redirection configurée depuis `hervenanfang.art`).
 4. **Préservation de la voix de l'auteur** : Maintenir le ton noble, cultivé, incarné et précis.
 5. **Vérification technique systématique** : Aucun code n'est validé sans exécution préalable du compilateur TypeScript (`tsc --noEmit`).
 
 ---
 *Document consigné dans le référentiel projet : `docs/CAHIER_DES_CHARGES_CONVERSION_AUTORITE_2026.md`*
+
 

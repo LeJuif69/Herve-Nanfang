@@ -1,4 +1,4 @@
-# GOUVERNANCE DE MARQUE — HERVÉ NANFANG & A LAIZ Ô PAYS
+﻿# GOUVERNANCE DE MARQUE — HERVÉ NANFANG & A LAIZ Ô PAYS
 
 **Version :** 1.0 — Décision stratégique de référence  
 **Date d'établissement :** 29 octobre 2026  
@@ -26,7 +26,7 @@ Il n'existe **aucun troisième niveau de marque** au-dessus, entre ou à côté 
 
 - **Nom public officiel :** Hervé Nanfang
 - **Fonction :** Identité personnelle, professionnelle et publique centrale.
-- **Domaine canonique actif :** `https://hervenanfang.art` (miroir technique Vercel : `https://hervenanfang.vercel.app/`)
+- **Domaine canonique actif :** `https://hervenanfang.art` (miroir technique Vercel : `https://hervenanfang.art/`)
 - **Signatures et surnoms d'exercice rattachés à la personne :** *Le Pianobariste*, *le Musicologue*, *le Musicien Augmenté*
 - **Boussole éditoriale (4 verbes) :** *Créer · Transmettre · Augmenter · Développer.*
 
@@ -158,7 +158,7 @@ Hervé Nanfang
 Artiste-musicien · Musicologue · Pédagogue · Ingénieur du son
 Créateur du concept A Laiz Ô Pays & de Musicien Augmenté™
 Fondateur — Racines Musicales Academy® (RMA)
-Site officiel : https://hervenanfang.vercel.app
+Site officiel : https://hervenanfang.art
 Tél. / WhatsApp : +237 694 72 34 92 · +237 682 18 02 66
 ```
 
@@ -168,9 +168,9 @@ Tél. / WhatsApp : +237 694 72 34 92 · +237 682 18 02 66
 
 | Actif numérique | URL / Identifiant | Rôle dans l'architecture | Statut vérifié (29/10/2026) |
 | :--- | :--- | :--- | :--- |
-| **Site professionnel central (Domaine actuel)** | `https://hervenanfang.vercel.app` | Référence opérationnelle et canonique active pendant le développement, la correction et la validation | **Actif et vérifié** (Production Vercel, pré-rendu SSG) |
+| **Site professionnel central (Domaine actuel)** | `https://hervenanfang.art` | Référence opérationnelle et canonique active pendant le développement, la correction et la validation | **Actif et vérifié** (Production Vercel, pré-rendu SSG) |
 | **Domaine personnalisé envisagé (Prochaine étape)** | `hervenanfang.com` (sans accent sur les liens ; variante IDN étudiée à titre documentaire uniquement) | Domaine personnalisé cible envisagé pour le site Hervé Nanfang après acquisition et validation technique | **Non acquis / Non configuré** (Préparation documentée ci-dessous ; aucune migration lancée) |
-| **Concept A Laiz Ô Pays** | Référencé sur `https://hervenanfang.vercel.app/projets` | Concept fondateur présenté au sein du site de Hervé Nanfang | **Actif sur le site Hervé Nanfang** (Aucun domaine externe autonome attribué ou actif) |
+| **Concept A Laiz Ô Pays** | Référencé sur `https://hervenanfang.art/projets` | Concept fondateur présenté au sein du site de Hervé Nanfang | **Actif sur le site Hervé Nanfang** (Aucun domaine externe autonome attribué ou actif) |
 | **Dépôt GitHub actif** | `https://github.com/LeJuif69/Herve-Nanfang.git` | Code source du site professionnel Hervé Nanfang | **Actif et vérifié** (branche `fix/audit-consolidation-p1-p2`) |
 | **LinkedIn** | `https://www.linkedin.com/in/herve-nanfang-317bb2b1/` | Profil professionnel officiel Hervé Nanfang (`sameAs`) | **Vérifié** |
 | **Facebook** | `https://www.facebook.com/herve.nanfang.officiel/` | Page officielle Hervé Nanfang (`sameAs`) | **Vérifié** |
@@ -181,7 +181,7 @@ Tél. / WhatsApp : +237 694 72 34 92 · +237 682 18 02 66
 | **Portfolio Canva** | `https://canva.link/2l6atbuzkax2k6g` | Portfolio & CV interactif externe (`sameAs`) | **Vérifié** |
 
 ### Protocole préparatoire pour le domaine envisagé `hervenanfang.com` (sans accent sur les liens) :
-1. **Maintien strict de `https://hervenanfang.vercel.app` :** Aucune modification des URL canoniques, du `sitemap.xml` ou du `robots.txt` n'est effectuée tant que le futur domaine personnalisé n'est pas acquis, configuré sur Vercel et validé en HTTPS.
+1. **Maintien strict de `https://hervenanfang.art` :** Aucune modification des URL canoniques, du `sitemap.xml` ou du `robots.txt` n'est effectuée tant que le futur domaine personnalisé n'est pas acquis, configuré sur Vercel et validé en HTTPS.
 2. **Règle absolue : aucun accent dans les liens et URL (`hervenanfang.com`) :**
    - Tous les liens, URL et adresses électroniques doivent exclusivement utiliser des caractères ASCII standards sans accent (`hervenanfang.com`, `contact@hervenanfang.com`).
    - Les domaines internationalisés avec accent (IDN Punycode `xn--hervnanfang-bbar.com`) posent des problèmes de compatibilité avec les clients mail (norme EAI / SMTPUTF8), les systèmes bancaires, les formulaires et le partage d'URL. Si la variante accentuée est réservée à titre défensif, elle ne doit jamais être utilisée comme lien public ni comme domaine canonique.
@@ -289,11 +289,12 @@ Augmenter sa visibilité interne, faciliter son exploration par les utilisateurs
    - aucun `nofollow` ou blocage involontaire ne limite sa découverte.
 
 6. **Objectif de validation :**
-   Un visiteur arrivant sur la page d’accueil `https://hervenanfang.vercel.app/` doit pouvoir accéder à la page `/journal` en un seul clic depuis le menu principal ou le pied de page.
+   Un visiteur arrivant sur la page d’accueil `https://hervenanfang.art/` doit pouvoir accéder à la page `/journal` en un seul clic depuis le menu principal ou le pied de page.
 
 ### Règle éditoriale permanente
 Chaque nouvel article publié dans le Journal doit être relié à au moins une page métier du site (*Musique & Scène*, *Racines Musicales Academy*, *Musicien Augmenté*, *Services* ou *Projets*), et chaque page métier doit renvoyer vers au moins un contenu pertinent du Journal.
 
 **Objectif directeur :** transformer le Journal en centre d’autorité éditoriale de l’ensemble du site.
+
 
 

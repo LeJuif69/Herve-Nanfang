@@ -1,5 +1,5 @@
-# Système SEO Semi-Automatisé à 0 FCFA — Guide Opérationnel
-**Auteur & Écosystème :** Hervé Nanfang (`https://hervenanfang.vercel.app`)  
+﻿# Système SEO Semi-Automatisé à 0 FCFA — Guide Opérationnel
+**Auteur & Écosystème :** Hervé Nanfang (`https://hervenanfang.art`)  
 **Stack technique :** React 18 + Vite + SSG Node maison (`scripts/prerender.mjs`) + Vercel + Supabase  
 **Concept fondateur & Piliers :** A Laiz Ô Pays, Racines Musicales Academy® (RMA), Permis de Jouer™, Le Pianobariste™, Alaiz Music, Musicien Augmenté™
 **Objectif :** Produire 1 article d'autorité de 1 500 à 2 000 mots en 2h15, sans abonnement SaaS payant (0 FCFA), indexé en HTML statique et diffusé sur 9 canaux.
@@ -43,7 +43,7 @@
 *À coller dans Gemini ou ChatGPT pour générer le plan d'un article.*
 
 ```markdown
-Tu es le directeur éditorial et stratège SEO d'Hervé Nanfang (hervenanfang.vercel.app), pianiste-scénographe, musicologue, créateur du concept culturel « A Laiz Ô Pays » et de la méthode « Le Permis de Jouer™ », et fondateur de la Racines Musicales Academy® (RMA).
+Tu es le directeur éditorial et stratège SEO d'Hervé Nanfang (hervenanfang.art), pianiste-scénographe, musicologue, créateur du concept culturel « A Laiz Ô Pays » et de la méthode « Le Permis de Jouer™ », et fondateur de la Racines Musicales Academy® (RMA).
 
 CONTEXTE & NICHES :
 - Pédagogie musicale structurée pour adultes et enfants (méthode LES ZIKOS®, Permis de Jouer™ N1 à N4).
@@ -98,7 +98,7 @@ CONSIGNES DE TON ET DE STYLE (CRITÈRES E-E-A-T STRICTS) :
 *À exécuter pour transformer l'article rédigé en code directement intégrable.*
 
 ```markdown
-Transforme l'article rédigé en un objet TypeScript conforme à l'interface Article du projet hervenanfang.vercel.app.
+Transforme l'article rédigé en un objet TypeScript conforme à l'interface Article du projet hervenanfang.art.
 
 STRUCTURE TYPESCRIPT REQUISE :
 ```typescript
@@ -166,3 +166,4 @@ Avant de déployer un nouvel article sur Vercel, valide cette checklist :
 | **04** | **Musicologie** | *Traduire la tradition orale au clavier : rythmes camerounais, langues tonales et transmission* | `rythmes camerounais piano langues tonales` | Éducative / Marque -> `/culture-recherche` |
 | **05** | **Studio MAO** | *Production musicale hybride chez Alaiz Music : marier prise de son acoustique, MAO et outils IA sans perdre son identité* | `production musicale hybride MAO acoustique Afrique` | Commerciale -> `/services#studio` |
 | **06** | **Économie** | *L'économie du musicien en Afrique francophone : bâtir un modèle hybride durable entre scène, enseignement et production* | `vivre de la musique en Afrique modèle économique` | Stratégique -> `/contact` |
+
