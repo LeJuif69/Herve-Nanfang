@@ -78,7 +78,7 @@ function parseRss(xml) {
 
 async function main() {
   try {
-    const handle = '@hervenanfang';
+    const handle = '@herve_nanfang';
     const channelId = await getChannelId(handle);
     const rssXml = await fetchRss(channelId);
     const videos = parseRss(rssXml);

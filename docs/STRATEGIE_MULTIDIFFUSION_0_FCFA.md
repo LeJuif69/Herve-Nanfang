@@ -1,7 +1,7 @@
 # STRATÉGIE OPÉRATIONNELLE DE MULTIDIFFUSION VIDÉO — BUDGET 0 FCFA
 **Artiste & Marque** : Hervé Nanfang (Le Pianobariste / A Laiz Ô Pays)  
 **Domaine officiel** : https://hervenanfang.art  
-**Chaîne YouTube officielle** : @hervenanfang  
+**Chaîne YouTube officielle** : @herve_nanfang
 **Date d'établissement** : Novembre 2026  
 
 ---

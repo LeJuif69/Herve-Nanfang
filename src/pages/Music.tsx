@@ -680,7 +680,7 @@ export default function Music() {
             </div>
 
             <a
-              href="https://www.youtube.com/@hervenanfang"
+              href="https://www.youtube.com/@herve_nanfang"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 border border-crimson/50 bg-crimson/15 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-crimson-2 hover:bg-crimson hover:text-white transition-colors"

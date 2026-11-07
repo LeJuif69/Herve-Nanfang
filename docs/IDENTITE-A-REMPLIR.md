@@ -48,11 +48,11 @@ comprendre qu'il s'agit d'une seule et même entité**. C'est un prérequis du K
 
 | Plateforme | URL complète du profil | Le nom affiché est-il « Hervé Nanfang » ? |
 |---|---|---|
-| YouTube (chaîne officielle) | https://www.youtube.com/@hervenanfang | Hervé Nanfang |
+| YouTube (chaîne officielle) | https://www.youtube.com/@herve_nanfang | Hervé Nanfang |
 | LinkedIn | https://www.linkedin.com/in/herve-nanfang-317bb2b1/ | Hervé Nanfang |
 | Facebook (page officielle) | https://www.facebook.com/herve.nanfang.officiel/ | Hervé Nanfang |
 | Instagram (@alaiz_music) | https://instagram.com/alaizprod | @alaiz_music |
-| TikTok (si pertinent) | → | → |
+| TikTok (compte officiel) | https://www.tiktok.com/@hervey.nanfang | Hervé Nanfang |
 | Autre (SoundCloud, Spotify, X…) | → | → |
 
 **Question de contrôle :** le **portrait** et la **description de référence** sont-ils

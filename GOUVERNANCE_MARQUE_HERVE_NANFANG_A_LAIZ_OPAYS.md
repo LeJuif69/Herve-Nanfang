@@ -1,4 +1,4 @@
-﻿# GOUVERNANCE DE MARQUE — HERVÉ NANFANG & A LAIZ Ô PAYS
+# GOUVERNANCE DE MARQUE — HERVÉ NANFANG & A LAIZ Ô PAYS
 
 **Version :** 1.0 — Décision stratégique de référence  
 **Date d'établissement :** 29 octobre 2026  
@@ -174,7 +174,8 @@ Tél. / WhatsApp : +237 694 72 34 92 · +237 682 18 02 66
 | **Dépôt GitHub actif** | `https://github.com/LeJuif69/Herve-Nanfang.git` | Code source du site professionnel Hervé Nanfang | **Actif et vérifié** (branche `fix/audit-consolidation-p1-p2`) |
 | **LinkedIn** | `https://www.linkedin.com/in/herve-nanfang-317bb2b1/` | Profil professionnel officiel Hervé Nanfang (`sameAs`) | **Vérifié** |
 | **Facebook** | `https://www.facebook.com/herve.nanfang.officiel/` | Page officielle Hervé Nanfang (`sameAs`) | **Vérifié** |
-| **YouTube** | `https://www.youtube.com/@hervenanfang` | Chaîne officielle Hervé Nanfang (`sameAs`) | **Vérifié** |
+| **YouTube** | `https://www.youtube.com/@herve_nanfang` | Chaîne officielle Hervé Nanfang (`sameAs`) | **Vérifié** |
+| **TikTok** | `https://www.tiktok.com/@hervey.nanfang` | Compte officiel TikTok (`sameAs`) | **Vérifié** |
 | **Threads** | `https://www.threads.com/@alaizopays` | Profil social associé à l'univers `@alaizopays` (`sameAs`) | **Vérifié** |
 | **Wikidata** | `https://www.wikidata.org/wiki/Q141905233` | Entité de référence encyclopédique (`sameAs`) | **Vérifié** |
 | **MusicBrainz** | `https://musicbrainz.org/artist/bfd29b75-e867-4ece-99c7-8a250126de57` | Fiche artiste base musicale (`verifie: false` dans `sameAs` en attente de contrôle final) | **Préparé** |

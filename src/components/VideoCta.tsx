@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Container } from './ui'
 
 export default function VideoCta() {
-  const channelUrl = 'https://www.youtube.com/@hervenanfang'
+  const channelUrl = 'https://www.youtube.com/@herve_nanfang'
 
   return (
     <section className="relative my-16 overflow-hidden rounded-3xl border border-gold/30 bg-gradient-to-br from-ink-2 via-ink to-black p-8 text-center md:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.8)]">

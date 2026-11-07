@@ -25,16 +25,16 @@ export interface Video {
 export const videos: Video[] = [
   {
     id: 'pyromane-ferre-gola',
-    title: 'PYROMANE — Ferre Gola | Reprise Live par Hervé Nanfang',
+    title: 'Pyromane — Ferre Gola | Cover live par Hervé Nanfang',
     slug: 'pyromane-ferre-gola',
-    youtubeId: 'YwXm05hJYCg',
+    youtubeId: '31YI4NAD5hw',
     category: 'REPRISES LIVE',
     description:
-      'Reprise live au piano-bar du titre emblématique « Pyromane » de Ferre Gola par Hervé Nanfang. Une nouvelle lecture, une même émotion.',
+      'Redécouvrez « Pyromane », le titre emblématique de Ferre Gola, revisité au piano-bar par Hervé Nanfang (Le Pianobariste™). Entre sensibilité vocale, accompagnement acoustique et partage d’émotions.',
     originalArtist: 'Ferre Gola',
     performedBy: 'Hervé Nanfang',
-    orientation: 'vertical',
-    thumbnail: '/images/pyromane-reprise-live-herve-nanfang.jpg',
+    orientation: 'horizontal',
+    thumbnail: 'https://i.ytimg.com/vi/31YI4NAD5hw/hqdefault.jpg',
     tags: [
       'Ferre Gola',
       'Pyromane',
@@ -43,9 +43,11 @@ export const videos: Video[] = [
       'musique africaine',
       'Piano-Bar',
       'Hervé Nanfang',
+      'Rumba Congolaise',
+      'Le Pianobariste',
     ],
     priority: 1,
     featured: true,
-    publishedAt: '2026-03-01T12:00:00Z',
+    publishedAt: '2026-11-07T00:00:00Z',
   },
 ]

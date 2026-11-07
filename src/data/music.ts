@@ -189,7 +189,7 @@ export const LIVE_PERFORMANCES: LivePerformance[] = [
     description:
       'L’art de la nuance acoustique : le piano installe une mémoire sonore du lieu sans jamais écraser les conversations. Toucher dynamique et harmonisation subtile.',
     tags: ['Piano Solo', 'Standards Jazz', 'Piano-bar', 'Ambiance Feutrée'],
-    youtubeUrl: 'https://www.youtube.com/@hervenanfang',
+    youtubeUrl: 'https://www.youtube.com/@herve_nanfang',
     youtubeLabel: 'Visionner la session live',
     musicians: 'Hervé Nanfang (Piano de concert)',
     format: 'Format Solo Prestige',
@@ -211,7 +211,7 @@ export const LIVE_PERFORMANCES: LivePerformance[] = [
     description:
       'Pulsation swing, harmonies denses et phrasé blues. Une immersion dans les grands classiques du jazz américain portés par un toucher acoustique percussif et délicat.',
     tags: ['Jazz & Blues', 'Swing', 'Great American Songbook', 'Ray Charles'],
-    youtubeUrl: 'https://www.youtube.com/@hervenanfang',
+    youtubeUrl: 'https://www.youtube.com/@herve_nanfang',
     youtubeLabel: 'Visionner la session live',
     musicians: 'Hervé Nanfang (Piano 88 touches)',
     format: 'Session Jazz Club',
@@ -233,7 +233,7 @@ export const LIVE_PERFORMANCES: LivePerformance[] = [
     description:
       'Dialogue complice entre les harmonies du piano et la voix de Flavie. Un répertoire transversal réunissant soul internationale, chanson poétique et classiques africains.',
     tags: ['Duo Signature', 'Piano-Voix', 'Soul & Jazz', 'Patrimoine Africain'],
-    youtubeUrl: 'https://www.youtube.com/@hervenanfang',
+    youtubeUrl: 'https://www.youtube.com/@herve_nanfang',
     youtubeLabel: 'Visionner la session live',
     musicians: 'Hervé Nanfang (Piano) & Flavie (Voix Lead)',
     format: 'Format Duo Signature',
@@ -255,7 +255,7 @@ export const LIVE_PERFORMANCES: LivePerformance[] = [
     description:
       'Pulsation rythmique vivante : clavier, basse, batterie et percussions traditionnelles africaines. Une montée en énergie festive sublimant les trésors rythmiques du Cameroun.',
     tags: ['Live Band', 'Makossa', 'Afrobeat', 'Rythmes Camerounais'],
-    youtubeUrl: 'https://www.youtube.com/@hervenanfang',
+    youtubeUrl: 'https://www.youtube.com/@herve_nanfang',
     youtubeLabel: 'Visionner le concert live',
     musicians: 'Hervé Nanfang (Claviers), Basse, Batterie & Percussions',
     format: 'Format Formation Élargie',
@@ -277,7 +277,7 @@ export const LIVE_PERFORMANCES: LivePerformance[] = [
     description:
       'Transposition magistrale des guitares et percussions patrimoniales sur les marteaux du piano à queue. La mémoire musicale du Cameroun célébrée avec noblesse.',
     tags: ['Patrimoine', 'Eboa Lotin', 'Francis Bebey', 'Piano Solo'],
-    youtubeUrl: 'https://www.youtube.com/@hervenanfang',
+    youtubeUrl: 'https://www.youtube.com/@herve_nanfang',
     youtubeLabel: 'Visionner le récital',
     musicians: 'Hervé Nanfang (Piano acoustique)',
     format: 'Récital Patrimonial',
@@ -299,7 +299,7 @@ export const LIVE_PERFORMANCES: LivePerformance[] = [
     description:
       'Le paroxysme de la soirée : lorsque la musique soulève la salle. Une fusion communicative entre énergie live, communion du public et rigueur régie irréprochable.',
     tags: ['Grand Gala', 'Afro-Pop', 'Clôture Scénique', 'Ambiance Festive'],
-    youtubeUrl: 'https://www.youtube.com/@hervenanfang',
+    youtubeUrl: 'https://www.youtube.com/@herve_nanfang',
     youtubeLabel: 'Visionner le show de gala',
     musicians: 'Hervé Nanfang & Full Live Band (5 musiciens)',
     format: 'Grand Show de Gala',

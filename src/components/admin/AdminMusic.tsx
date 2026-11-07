@@ -18,7 +18,7 @@ const EMPTY_TRACK: AdminTrack = {
   category: 'Live Piano-Bar',
   duration: '3:30',
   coverImage: '/hn-initials-mark.png',
-  streaming: { youtube: 'https://www.youtube.com/@hervenanfang' },
+  streaming: { youtube: 'https://www.youtube.com/@herve_nanfang' },
   status: 'Actif',
   updatedAt: '',
 }
