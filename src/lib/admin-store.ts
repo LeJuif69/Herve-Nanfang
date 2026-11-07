@@ -645,7 +645,7 @@ function getInitialSettings(): AdminSettings {
     promoBannerLegacyMigrated: true,
     promoBannerCampaign: 'rma',
     googleAdsId: 'G-DMHQK0ELNX',
-    webhookUrl: 'https://hervenanfang.app.n8n.cloud/webhook/publication-approved',
+    webhookUrl: 'https://hervenanfang.app.n8n.cloud/webhook/a680fa6e-49a8-48d6-ac29-585120113415',
     updatedAt: new Date().toISOString(),
   }
 }
@@ -850,7 +850,7 @@ function sanitizeLoadedState(state: AdminState): AdminState {
     promoBannerEnabled: state.settings?.promoBannerLegacyMigrated ? Boolean(state.settings?.promoBannerEnabled) : false,
     promoBannerLegacyMigrated: true,
     googleAdsId: currentGoogleTag,
-    webhookUrl: currentWebhook || 'https://hervenanfang.app.n8n.cloud/webhook/publication-approved',
+    webhookUrl: currentWebhook || 'https://hervenanfang.app.n8n.cloud/webhook/a680fa6e-49a8-48d6-ac29-585120113415',
   }
   if (!currentWebhook || rawGoogleTag !== currentGoogleTag || !state.settings?.promoBannerLegacyMigrated) {
     hasChanges = true

@@ -422,7 +422,7 @@ export const AdminSettingsView: React.FC<AdminSettingsProps> = ({
                 type="url"
                 value={form.webhookUrl || ''}
                 onChange={(e) => setForm({ ...form, webhookUrl: e.target.value })}
-                placeholder="https://hervenanfang.app.n8n.cloud/webhook/publication-approved"
+                placeholder="https://hervenanfang.app.n8n.cloud/webhook/a680fa6e-49a8-48d6-ac29-585120113415"
                 className="w-full border border-white/20 bg-ink-2 px-3 py-2 font-mono text-xs text-ivory placeholder:text-ivory/30 focus:border-gold focus:outline-none"
               />
               <p className="text-[11px] text-ivory/50 mt-1 flex flex-wrap items-center gap-1">
