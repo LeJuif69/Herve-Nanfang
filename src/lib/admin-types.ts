@@ -458,6 +458,17 @@ export interface AdminSettings {
   updatedAt: string
 }
 
+export interface WebhookEventPayload {
+  event: 'publication.approved'
+  isTest: boolean
+  timestamp: string
+  environment: 'production' | 'test'
+  source: 'hervenanfang.art/admin'
+  approvedBy: string
+  post: SocialPost
+  publication: SocialPost
+}
+
 export interface AdminState {
   articles: AdminArticle[]
   projects: AdminProject[]

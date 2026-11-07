@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { SITE } from '../../data/site'
 import type {
   AdminArticle,
@@ -115,6 +115,11 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
   const [webhookTestResult, setWebhookTestResult] = useState<{ success: boolean; message: string } | null>(null)
   const [webhookGuideTab, setWebhookGuideTab] = useState<'make' | 'n8n' | 'metricool' | 'schema'>('make')
   const [copiedSchema, setCopiedSchema] = useState(false)
+
+  useEffect(() => {
+    setWebhookUrl(settings.webhookUrl || '')
+    setWebhookSecret(settings.webhookSecret || '')
+  }, [settings.webhookUrl, settings.webhookSecret])
 
   // Weekly Growth Report modal
   const [isReportModalOpen, setIsReportModalOpen] = useState(false)
@@ -2346,28 +2351,36 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                     <button
                       type="button"
                       onClick={() => {
+                        const samplePost = {
+                          id: 'pub-sample-01',
+                          title: 'IA et droit d’auteur : ce que les créateurs doivent savoir',
+                          pillar: 'autorite',
+                          series: 'Le Journal du Musicien Augmenté™',
+                          scheduledDate: '2026-10-26',
+                          scheduledTime: '08:30',
+                          status: 'valide',
+                          platforms: ['linkedin', 'facebook', 'instagram', 'youtube', 'whatsapp'],
+                          contentByPlatform: {
+                            linkedin: { text: 'Analyse de fond avec questions...', hashtags: ['#Musicologie'] },
+                            facebook: { text: 'Synthèse pratique sans jargon...', hashtags: ['#HerveNanfang'] },
+                          },
+                          linkUrl: 'https://hervenanfang.art/journal/ia-droits-auteur-musique-africaine?utm_source=linkedin',
+                          validationSignature: {
+                            approvedBy: 'Hervé Nanfang',
+                            approvedAt: new Date().toISOString(),
+                            contentHash: 'sha256:a6c5b9...34f8',
+                            isRevoked: false,
+                          },
+                        }
                         const samplePayload = {
                           event: 'publication.approved',
+                          isTest: false,
                           timestamp: new Date().toISOString(),
-                          publication: {
-                            id: 'pub-sample-01',
-                            title: 'IA et droit d’auteur : ce que les créateurs doivent savoir',
-                            pillar: 'autorite',
-                            series: 'Le Journal du Musicien Augmenté™',
-                            scheduledDate: '2026-10-26',
-                            scheduledTime: '08:30',
-                            platforms: ['linkedin', 'facebook', 'instagram', 'youtube', 'whatsapp'],
-                            contentByPlatform: {
-                              linkedin: { text: 'Analyse de fond avec questions...', hashtags: ['#Musicologie'] },
-                              facebook: { text: 'Synthèse pratique sans jargon...', hashtags: ['#HerveNanfang'] },
-                            },
-                            linkUrl: 'https://hervenanfang.art/journal/ia-droits-auteur-musique-africaine?utm_source=linkedin',
-                            validationSignature: {
-                              validatedBy: 'Hervé Nanfang',
-                              timestamp: new Date().toISOString(),
-                              contentHash: 'a6c5b9...34f8',
-                            },
-                          },
+                          environment: 'production',
+                          source: 'hervenanfang.art/admin',
+                          approvedBy: 'Hervé Nanfang',
+                          post: samplePost,
+                          publication: samplePost,
                         }
                         navigator.clipboard.writeText(JSON.stringify(samplePayload, null, 2))
                         setCopiedSchema(true)
@@ -2381,23 +2394,31 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                   <pre className="text-ivory/70 overflow-x-auto p-2 bg-black/40 rounded text-[0.68rem] leading-relaxed">
 {`{
   "event": "publication.approved",
+  "isTest": false,
   "timestamp": "2026-10-26T10:00:00Z",
-  "publication": {
+  "environment": "production",
+  "source": "hervenanfang.art/admin",
+  "approvedBy": "Hervé Nanfang",
+  "post": {
     "id": "repurpose-ia-droits-auteur-linkedin-...",
     "title": "[Campagne J+0 · LinkedIn] IA et droit d’auteur...",
     "pillar": "autorite",
     "scheduledDate": "2026-10-26",
     "scheduledTime": "08:30",
+    "status": "valide",
     "platforms": ["linkedin"],
     "contentByPlatform": {
       "linkedin": { "text": "...", "hashtags": ["#Musicologie", "#HerveNanfang"] }
     },
     "linkUrl": "https://hervenanfang.art/journal/ia-droits-auteur...utm_source=linkedin",
     "validationSignature": {
-      "validatedBy": "Hervé Nanfang",
-      "contentHash": "5a7943..."
+      "approvedBy": "Hervé Nanfang",
+      "approvedAt": "2026-10-26T10:00:00Z",
+      "contentHash": "sha256:5a7943...",
+      "isRevoked": false
     }
-  }
+  },
+  "publication": { /* Miroir exact de "post" pour compatibilité n8n / Make */ }
 }`}
                   </pre>
                 </div>
@@ -2411,7 +2432,7 @@ export const AdminCalendar: React.FC<AdminCalendarProps> = ({
                   type="url"
                   value={webhookUrl}
                   onChange={(e) => setWebhookUrl(e.target.value)}
-                  placeholder="https://hook.eu1.make.com/xxxxxx ou https://n8n.votredomaine.com/webhook/..."
+                  placeholder="https://hervenanfang.app.n8n.cloud/webhook/a680fa6e-49a8-48d6-ac29-585120113415"
                   className="w-full border border-white/10 bg-ink-2 p-2.5 text-xs text-ivory focus:border-gold focus:outline-none font-mono"
                 />
               </div>

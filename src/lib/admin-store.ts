@@ -20,9 +20,58 @@ import {
 } from './admin-types'
 import generatedUploadsMedia from './generated-uploads-media.json'
 import { INITIAL_PUBLICATIONS, exportPublicationsToIcs } from './social-generator'
-import { computeSocialPostHash, DecisionLog, PublicationMetrics } from './admin-types'
+import {
+  computeSocialPostHash,
+  DecisionLog,
+  PublicationMetrics,
+  WebhookEventPayload,
+} from './admin-types'
 
 const LOCAL_STORE_KEY = 'hn_admin_store_v4'
+
+export const N8N_PRODUCTION_WEBHOOK_URL =
+  'https://hervenanfang.app.n8n.cloud/webhook/a680fa6e-49a8-48d6-ac29-585120113415'
+export const N8N_LEGACY_WEBHOOK_URL =
+  'https://hervenanfang.app.n8n.cloud/webhook/publication-approved'
+
+/**
+ * Migre automatiquement l'ancienne URL n8n de démonstration vers l'URL de production UUID
+ * tout en préservant strictement toute URL personnalisée définie par l'administrateur.
+ */
+export function resolveMigratedWebhookUrl(rawUrl?: string): string {
+  const trimmed = rawUrl?.trim()
+  if (!trimmed) return N8N_PRODUCTION_WEBHOOK_URL
+  const normalized = trimmed.replace(/\/+$/, '')
+  if (normalized === N8N_LEGACY_WEBHOOK_URL) {
+    return N8N_PRODUCTION_WEBHOOK_URL
+  }
+  return trimmed
+}
+
+/**
+ * Construit le contrat JSON unique envoyé au Webhook (n8n / Make) lors d'une approbation
+ * ou d'un test de connexion. Expose à la fois `post` et `publication` pour garantir
+ * la compatibilité descendante avec tous les workflows.
+ */
+export function buildWebhookPayload(
+  post: SocialPost,
+  options: { isTest?: boolean; approvedBy?: string; timestamp?: string } = {},
+): WebhookEventPayload {
+  const isTest = Boolean(options.isTest)
+  const timestamp = options.timestamp || new Date().toISOString()
+  const approvedBy = options.approvedBy || post.validationSignature?.approvedBy || 'Hervé Nanfang'
+
+  return {
+    event: 'publication.approved',
+    isTest,
+    timestamp,
+    environment: isTest ? 'test' : 'production',
+    source: 'hervenanfang.art/admin',
+    approvedBy,
+    post,
+    publication: post,
+  }
+}
 
 const INITIAL_SERVICES: AdminService[] = [
   {
@@ -645,7 +694,7 @@ function getInitialSettings(): AdminSettings {
     promoBannerLegacyMigrated: true,
     promoBannerCampaign: 'rma',
     googleAdsId: 'G-DMHQK0ELNX',
-    webhookUrl: 'https://hervenanfang.app.n8n.cloud/webhook/a680fa6e-49a8-48d6-ac29-585120113415',
+    webhookUrl: N8N_PRODUCTION_WEBHOOK_URL,
     updatedAt: new Date().toISOString(),
   }
 }
@@ -840,8 +889,9 @@ function sanitizeLoadedState(state: AdminState): AdminState {
     hasChanges = true
   }
 
-  // 5. Initialisation du Webhook n8n et de Google Analytics 4 si non définis
+  // 5. Initialisation et migration automatique du Webhook n8n et de Google Analytics 4
   const currentWebhook = state.settings?.webhookUrl?.trim()
+  const migratedWebhook = resolveMigratedWebhookUrl(currentWebhook)
   const rawGoogleTag = state.settings?.googleAdsId?.trim()
   const currentGoogleTag = (!rawGoogleTag || rawGoogleTag === 'G-DNH9G3SF7F') ? 'G-DMHQK0ELNX' : rawGoogleTag
   const settings = {
@@ -850,9 +900,14 @@ function sanitizeLoadedState(state: AdminState): AdminState {
     promoBannerEnabled: state.settings?.promoBannerLegacyMigrated ? Boolean(state.settings?.promoBannerEnabled) : false,
     promoBannerLegacyMigrated: true,
     googleAdsId: currentGoogleTag,
-    webhookUrl: currentWebhook || 'https://hervenanfang.app.n8n.cloud/webhook/a680fa6e-49a8-48d6-ac29-585120113415',
+    webhookUrl: migratedWebhook,
   }
-  if (!currentWebhook || rawGoogleTag !== currentGoogleTag || !state.settings?.promoBannerLegacyMigrated) {
+  if (
+    !currentWebhook ||
+    currentWebhook !== migratedWebhook ||
+    rawGoogleTag !== currentGoogleTag ||
+    !state.settings?.promoBannerLegacyMigrated
+  ) {
     hasChanges = true
   }
 
@@ -930,6 +985,8 @@ function persistAndBroadcast(state: AdminState) {
   }
   storeListeners.forEach((fn) => fn(currentState))
 }
+
+const inFlightApprovals = new Set<string>()
 
 export const adminStore = {
   getState(): AdminState {
@@ -1067,9 +1124,13 @@ export const adminStore = {
       if (setRes.data && setRes.data.length > 0) {
         const generalSetting = setRes.data.find((row: any) => row.key === 'general')
         if (generalSetting && generalSetting.value) {
+          const remoteWebhook = resolveMigratedWebhookUrl(
+            generalSetting.value.webhookUrl || next.settings.webhookUrl,
+          )
           next.settings = {
             ...next.settings,
             ...generalSetting.value,
+            webhookUrl: remoteWebhook,
             promoBannerEnabled: generalSetting.value.promoBannerLegacyMigrated
               ? Boolean(generalSetting.value.promoBannerEnabled)
               : false,
@@ -1794,78 +1855,105 @@ export const adminStore = {
     approver = 'Hervé Nanfang',
     notes?: string,
   ): Promise<{ success: boolean; triggeredWebhook: boolean; error?: string }> {
+    if (inFlightApprovals.has(id)) {
+      return {
+        success: true,
+        triggeredWebhook: false,
+      }
+    }
+
     const post = currentState.publications.find((p) => p.id === id)
     if (!post) {
       return { success: false, triggeredWebhook: false, error: 'Publication introuvable.' }
     }
 
     const currentHash = computeSocialPostHash(post)
-    const nowIso = new Date().toISOString()
 
-    const approvalLog: DecisionLog = {
-      id: `log-${Date.now()}-appr`,
-      action: 'approbation',
-      timestamp: nowIso,
-      author: approver,
-      reason: notes || 'Approbation explicite du contenu pour mise en ligne multiplateforme',
-      contentHash: currentHash,
-    }
-
-    const approvedPost: SocialPost = {
-      ...post,
-      status: 'valide',
-      validatedAt: nowIso,
-      rejectionReason: undefined,
-      validationSignature: {
-        approvedBy: approver,
-        approvedAt: nowIso,
-        contentHash: currentHash,
-        isRevoked: false,
-      },
-      decisionHistory: [approvalLog, ...(post.decisionHistory || [])],
-      updatedAt: nowIso,
-    }
-
-    await this.savePublication(approvedPost, approver)
-
-    // Déclenchement du Webhook d'automatisation si configuré
-    let triggeredWebhook = false
-    let webhookError: string | undefined = undefined
-
-    const webhookUrl = currentState.settings.webhookUrl
-    if (webhookUrl && webhookUrl.trim().startsWith('http')) {
-      try {
-        const response = await fetch(webhookUrl.trim(), {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            ...(currentState.settings.webhookSecret
-              ? { 'X-HN-Webhook-Secret': currentState.settings.webhookSecret }
-              : {}),
-          },
-          body: JSON.stringify({
-            event: 'publication.approved',
-            timestamp: nowIso,
-            source: 'hervenanfang.art/admin',
-            approvedBy: approver,
-            post: approvedPost,
-          }),
-        })
-
-        if (response.ok) {
-          triggeredWebhook = true
-        } else {
-          webhookError = `Webhook a retourné le code HTTP ${response.status}`
-        }
-      } catch (err) {
-        webhookError = err instanceof Error ? err.message : 'Échec d’appel réseau Webhook'
+    // Idempotence : si la publication est déjà validée avec le même sceau SHA-256 non révoqué,
+    // on n'émet pas de second déclenchement Webhook en double.
+    if (
+      post.status === 'valide' &&
+      post.validationSignature &&
+      !post.validationSignature.isRevoked &&
+      post.validationSignature.contentHash === currentHash
+    ) {
+      return {
+        success: true,
+        triggeredWebhook: false,
       }
     }
 
-    return {
-      success: true,
-      triggeredWebhook,
-      error: webhookError,
+    inFlightApprovals.add(id)
+    try {
+      const nowIso = new Date().toISOString()
+
+      const approvalLog: DecisionLog = {
+        id: `log-${Date.now()}-appr`,
+        action: 'approbation',
+        timestamp: nowIso,
+        author: approver,
+        reason: notes || 'Approbation explicite du contenu pour mise en ligne multiplateforme',
+        contentHash: currentHash,
+      }
+
+      const approvedPost: SocialPost = {
+        ...post,
+        status: 'valide',
+        validatedAt: nowIso,
+        rejectionReason: undefined,
+        validationSignature: {
+          approvedBy: approver,
+          approvedAt: nowIso,
+          contentHash: currentHash,
+          isRevoked: false,
+        },
+        decisionHistory: [approvalLog, ...(post.decisionHistory || [])],
+        updatedAt: nowIso,
+      }
+
+      await this.savePublication(approvedPost, approver)
+
+      // Déclenchement du Webhook d'automatisation si configuré
+      let triggeredWebhook = false
+      let webhookError: string | undefined = undefined
+
+      const webhookUrl = resolveMigratedWebhookUrl(currentState.settings.webhookUrl)
+      if (webhookUrl && webhookUrl.startsWith('http')) {
+        try {
+          const payload = buildWebhookPayload(approvedPost, {
+            isTest: false,
+            approvedBy: approver,
+            timestamp: nowIso,
+          })
+
+          const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              ...(currentState.settings.webhookSecret
+                ? { 'X-HN-Webhook-Secret': currentState.settings.webhookSecret }
+                : {}),
+            },
+            body: JSON.stringify(payload),
+          })
+
+          if (response.ok) {
+            triggeredWebhook = true
+          } else {
+            webhookError = `Webhook a retourné le code HTTP ${response.status}`
+          }
+        } catch (err) {
+          webhookError = err instanceof Error ? err.message : 'Échec d’appel réseau Webhook'
+        }
+      }
+
+      return {
+        success: true,
+        triggeredWebhook,
+        error: webhookError,
+      }
+    } finally {
+      inFlightApprovals.delete(id)
     }
   },
 
@@ -2117,34 +2205,69 @@ export const adminStore = {
     secret?: string,
   ): Promise<{ success: boolean; status?: number; error?: string }> {
     try {
-      const samplePost = currentState.publications[0] || {
-        id: 'test-sample',
-        title: 'Publication de test Webhook',
-        scheduledDate: new Date().toISOString().slice(0, 10),
+      const nowIso = new Date().toISOString()
+      const basePost: SocialPost = currentState.publications[0] || {
+        id: 'test-sample-post',
+        title: '[TEST WEBHOOK] Publication de test — Hervé Nanfang',
+        pillar: 'autorite',
+        series: 'Le Journal du Musicien Augmenté™',
+        sourceType: 'article',
+        sourceSlug: 'apres-la-mao-lia',
+        sourceTitle: 'Après la MAO, l’IA : pourquoi le musicien augmenté ne remplace pas l’artiste',
+        scheduledDate: nowIso.slice(0, 10),
         scheduledTime: '10:00',
         status: 'valide',
         platforms: ['linkedin', 'facebook', 'whatsapp'],
         contentByPlatform: {
           linkedin: {
-            text: 'Test de transmission automatisée depuis la plateforme Hervé Nanfang.',
-            hashtags: ['#Test', '#HerveNanfang'],
+            text: '[TEST CONNEXION N8N] Test de transmission automatisée depuis la plateforme Hervé Nanfang.',
+            hashtags: ['#TestWebhook', '#HerveNanfang', '#MusicienAugmente'],
           },
+          facebook: {
+            text: '[TEST CONNEXION N8N] Synthèse de test pour vérification du connecteur.',
+            hashtags: ['#TestWebhook', '#HerveNanfang'],
+          },
+          whatsapp: {
+            text: '[TEST CONNEXION N8N] Ping de validation du flux éditorial.',
+            hashtags: [],
+          },
+        },
+        linkUrl: 'https://hervenanfang.art/journal/apres-la-mao-lia?utm_source=linkedin&utm_medium=social&utm_campaign=webhook_test',
+        createdAt: nowIso,
+        updatedAt: nowIso,
+      }
+
+      const testPost: SocialPost = {
+        ...basePost,
+        id: basePost.id.startsWith('test-') ? basePost.id : `test-${basePost.id}`,
+        title: basePost.title.startsWith('[TEST WEBHOOK]')
+          ? basePost.title
+          : `[TEST WEBHOOK] ${basePost.title}`,
+        status: 'valide',
+        validatedAt: nowIso,
+        validationSignature: {
+          approvedBy: 'Hervé Nanfang (Test Connexion)',
+          approvedAt: nowIso,
+          contentHash: computeSocialPostHash(basePost),
+          isRevoked: false,
         },
       }
 
-      const res = await fetch(targetUrl.trim(), {
+      const payload = buildWebhookPayload(testPost, {
+        isTest: true,
+        approvedBy: 'Hervé Nanfang (Test Connexion)',
+        timestamp: nowIso,
+      })
+
+      const effectiveUrl = resolveMigratedWebhookUrl(targetUrl)
+
+      const res = await fetch(effectiveUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           ...(secret ? { 'X-HN-Webhook-Secret': secret } : {}),
         },
-        body: JSON.stringify({
-          event: 'test.ping',
-          timestamp: new Date().toISOString(),
-          environment: 'production',
-          sender: 'Hervé Nanfang Admin Engine',
-          samplePost,
-        }),
+        body: JSON.stringify(payload),
       })
 
       if (res.ok) {
@@ -2163,9 +2286,15 @@ export const adminStore = {
   // SETTINGS & BACKUP
   // -------------------------------------------------------------
   async updateSettings(settings: Partial<AdminSettings>): Promise<void> {
+    const mergedWebhook =
+      settings.webhookUrl !== undefined
+        ? resolveMigratedWebhookUrl(settings.webhookUrl)
+        : resolveMigratedWebhookUrl(currentState.settings.webhookUrl)
+
     const nextSettings = {
       ...currentState.settings,
       ...settings,
+      webhookUrl: mergedWebhook,
       updatedAt: new Date().toISOString(),
     }
 
@@ -2194,7 +2323,8 @@ export const adminStore = {
       if (!parsed.articles || !parsed.projects) {
         return { success: false, error: 'Fichier de sauvegarde invalide.' }
       }
-      persistAndBroadcast(parsed)
+      const sanitized = sanitizeLoadedState(parsed)
+      persistAndBroadcast(sanitized)
       return { success: true }
     } catch (err) {
       return { success: false, error: 'JSON malformé.' }

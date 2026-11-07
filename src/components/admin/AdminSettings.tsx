@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { isSupabaseConfigured } from '../../lib/supabase'
 import type { AdminSettings } from '../../lib/admin-types'
 
@@ -31,6 +31,10 @@ export const AdminSettingsView: React.FC<AdminSettingsProps> = ({
   const [webhookTesting, setWebhookTesting] = useState(false)
   const [webhookTestResult, setWebhookTestResult] = useState<{ success: boolean; message: string } | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    setForm({ ...settings })
+  }, [settings])
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault()
