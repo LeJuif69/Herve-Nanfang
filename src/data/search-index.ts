@@ -174,6 +174,30 @@ export function buildSearchIndex(): SearchItem[] {
       keywords: ['rma', 'académie', 'racines musicales', 'cours', 'formation', 'piano'],
     },
     {
+      id: 'brand-pianobariste',
+      title: 'Le Pianobariste™ — Prestations Piano-Bar Live',
+      subtitle: 'Solo piano-voix, duo prestige, live band & ambiance événementielle',
+      category: 'projet',
+      categoryLabel: 'Prestations & Live',
+      to: '/musique',
+      keywords: [
+        'pianobariste',
+        'piano bar',
+        'piano-bar',
+        'music live',
+        'musique live',
+        'live',
+        'concert',
+        'animation',
+        'evenementiel',
+        'cocktail',
+        'hotel',
+        'soiree',
+        'piano voix',
+        'pianiste',
+      ],
+    },
+    {
       id: 'proj-musicien-augmente',
       title: 'Musicien Augmenté™',
       subtitle: 'L’IA appliquée à la musique et à la création',
@@ -189,7 +213,18 @@ export function buildSearchIndex(): SearchItem[] {
       category: 'navigation',
       categoryLabel: 'Contact & Booking',
       to: '/contact#booking',
-      keywords: ['booking', 'contact', 'réservation', 'devis', 'prestation', 'concert'],
+      keywords: [
+        'booking',
+        'contact',
+        'réservation',
+        'devis',
+        'prestation',
+        'concert',
+        'pianobariste',
+        'piano bar',
+        'music live',
+        'musique live',
+      ],
     },
   )
 
@@ -197,7 +232,7 @@ export function buildSearchIndex(): SearchItem[] {
 }
 
 /**
- * Recherche insensible aux accents et à la casse
+ * Recherche insensible aux accents, à la casse et supportant le multi-mots
  */
 export function searchItems(items: SearchItem[], query: string): SearchItem[] {
   const clean = (str: string) =>
@@ -210,12 +245,34 @@ export function searchItems(items: SearchItem[], query: string): SearchItem[] {
   const normalizedQuery = clean(query)
   if (!normalizedQuery) return items.slice(0, 10)
 
+  const terms = normalizedQuery.split(/\s+/).filter(Boolean)
+
   return items
-    .filter((item) => {
-      const matchTitle = clean(item.title).includes(normalizedQuery)
-      const matchSubtitle = clean(item.subtitle).includes(normalizedQuery)
-      const matchKeywords = item.keywords.some((k) => clean(k).includes(normalizedQuery))
-      return matchTitle || matchSubtitle || matchKeywords
+    .map((item) => {
+      const cleanTitle = clean(item.title)
+      const cleanSubtitle = clean(item.subtitle)
+      const cleanKeywords = item.keywords.map(clean)
+
+      let score = 0
+      // Correspondance exacte de l'expression complète
+      if (cleanTitle.includes(normalizedQuery)) score += 12
+      if (cleanKeywords.some((k) => k === normalizedQuery)) score += 10
+      if (cleanKeywords.some((k) => k.includes(normalizedQuery))) score += 8
+      if (cleanSubtitle.includes(normalizedQuery)) score += 5
+
+      // Correspondance de tous les mots saisis (ex: "piano" + "bar")
+      const allTermsMatch = terms.every(
+        (t) =>
+          cleanTitle.includes(t) ||
+          cleanSubtitle.includes(t) ||
+          cleanKeywords.some((k) => k.includes(t)),
+      )
+      if (allTermsMatch) score += 6
+
+      return { item, score }
     })
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map((entry) => entry.item)
     .slice(0, 8)
 }

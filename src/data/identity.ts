@@ -48,7 +48,15 @@ export const MASTER_IDENTITY = {
   /* ------------------------------------------------------------------ */
   identite: {
     nom: 'Hervé Nanfang',
-    variantes: ['Le Pianobariste', 'le Musicologue', 'le Musicien Augmenté'],
+    variantes: [
+      'Le Pianobariste',
+      'Le Pianobariste™',
+      'Pianobariste',
+      'Pianiste Piano-Bar',
+      'Musicien Live',
+      'le Musicologue',
+      'le Musicien Augmenté',
+    ],
     signature: 'Créer. Transmettre. Augmenter. Développer.',
     structureMere: 'A Laiz Ô Pays',
     conceptFondateur: 'A Laiz Ô Pays',
@@ -87,13 +95,13 @@ export const MASTER_IDENTITY = {
     contreLecture:
       'Plusieurs métiers juxtaposés, une somme de compétences sans lien entre elles.',
 
-    /** Titre SEO de référence — conforme au positionnement éditorial validé. */
-    seoTitle: 'Hervé Nanfang | Musicien, Musicologue & Musicien Augmenté',
-    seoTitleSecondaire: 'Hervé Nanfang | Musicien, Musicologue, Pédagogue & IA',
+    /** Titre SEO de référence — optimisé pour Le Pianobariste™, Piano-Bar Live & IA */
+    seoTitle: 'Hervé Nanfang — Le Pianobariste™ | Piano-Bar Live, Musicologie & IA',
+    seoTitleSecondaire: 'Hervé Nanfang | Le Pianobariste™, Musique Live, Pédagogie & IA',
 
     /** Meta description — conforme au brief éditorial validé. */
     metaDescription:
-      'Hervé Nanfang, artiste-musicien camerounais : Piano-Bar, composition, MAO, musicologie, pédagogie et intelligence artificielle au service de la création.',
+      'Hervé Nanfang — Le Pianobariste™ : prestations piano-bar live, chant, répertoire de 440+ titres, composition, pédagogie musicale (Permis de Jouer™) et Musicien Augmenté™ par l’IA au Cameroun.',
 
     /**
      * DÉSAMBIGUÏSATION — affichée sur le site et exposée en Schema.org
