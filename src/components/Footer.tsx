@@ -18,72 +18,10 @@ export default function Footer() {
   const [sent, setSent] = useState(false)
 
   return (
-    <footer className="relative border-t border-white/10 bg-ink pb-10 pt-20">
+    <footer className="relative border-t border-white/10 bg-ink pb-10 pt-16">
       <Container>
-        {/* Lettre d'information */}
-        <div className="grid gap-10 border-b border-white/8 pb-16 lg:grid-cols-[1fr_1fr] lg:items-center">
-          <div>
-            <Eyebrow>Le Journal du Musicien Augmenté</Eyebrow>
-            <h2 className="mt-5 font-display text-3xl leading-tight text-ivory md:text-4xl">
-              Une lettre occasionnelle sur la musique, l’IA et la transmission.
-            </h2>
-            <p className="mt-4 max-w-lg text-sm leading-relaxed text-ivory/55">
-              Analyses, méthodes et retours d’expérience — sans rythme forcé, sans remplissage.
-            </p>
-          </div>
-          <form
-            className="flex flex-col gap-3 sm:flex-row"
-            onSubmit={async (e) => {
-              e.preventDefault()
-              const cleanEmail = email.trim()
-              if (!cleanEmail) return
-              try {
-                const { adminStore } = await import('../lib/admin-store')
-                await adminStore.addIncomingMessage({
-                  name: 'Abonné Lettre du Journal',
-                  email: cleanEmail,
-                  route: 'newsletter',
-                  body: `Inscription à la lettre d'information du Journal du Musicien Augmenté (${cleanEmail}).`,
-                })
-                trackFormSubmitSuccess('newsletter_footer', 'newsletter')
-                trackLeadConversion('newsletter_signup', { category: 'Newsletter' })
-              } catch {
-                // Fallback silencieux vers WhatsApp si hors-ligne
-              }
-              const message = `Je souhaite m’inscrire à la lettre du Journal du Musicien Augmenté. Mon adresse email : ${cleanEmail}`
-              window.open(
-                `https://wa.me/${SITE.phones[0].whatsapp}?text=${encodeURIComponent(message)}`,
-                '_blank',
-                'noopener,noreferrer',
-              )
-              setSent(true)
-            }}
-          >
-            <label className="sr-only" htmlFor="newsletter-email">
-              Adresse email
-            </label>
-            <input
-              id="newsletter-email"
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="votre@email.com"
-              className="w-full border border-white/15 bg-transparent px-5 py-4 text-sm text-ivory placeholder:text-ivory/35 focus:border-gold focus:outline-none"
-            />
-            <button type="submit" className="btn btn-gold shrink-0">
-              S’inscrire (Email & WhatsApp)
-            </button>
-          </form>
-          {sent && (
-            <p className="text-xs text-gold lg:col-start-2">
-              Votre adresse e-mail a été enregistrée. WhatsApp s’ouvre également avec un message prérempli pour confirmation directe.
-            </p>
-          )}
-        </div>
-
-        {/* Colonnes */}
-        <div className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
+        {/* Colonnes principales */}
+        <div className="grid gap-12 pb-14 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="flex items-center gap-3.5">
               <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gold/40 bg-gradient-to-br from-ink-2 via-black to-ink p-1.5 shadow-[0_0_15px_rgba(198,161,91,0.2)] ring-1 ring-gold/20 transition-all duration-300 hover:border-gold hover:shadow-[0_0_25px_rgba(198,161,91,0.4)]">
@@ -120,8 +58,44 @@ export default function Footer() {
           </nav>
 
           <nav aria-label="Navigation secondaire">
-            <p className="eyebrow text-ivory/60">Ressources</p>
+            <p className="eyebrow text-ivory/60">Accès direct aux offres</p>
             <ul className="mt-5 space-y-2.5">
+              <li>
+                <Link
+                  to="/contact?sujet=booking#booking"
+                  className="text-sm text-ivory/75 transition-colors hover:text-gold"
+                >
+                  Réserver une prestation musicale
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact?sujet=formation#formation"
+                  className="text-sm text-ivory/75 transition-colors hover:text-gold"
+                >
+                  Organiser une formation
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact?sujet=conference#conference"
+                  className="text-sm text-ivory/75 transition-colors hover:text-gold"
+                >
+                  Inviter en conférence
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact?sujet=conseil#conseil"
+                  className="text-sm text-ivory/75 transition-colors hover:text-gold"
+                >
+                  Demander un accompagnement
+                </Link>
+              </li>
+            </ul>
+
+            <p className="eyebrow mt-8 text-ivory/60">Ressources</p>
+            <ul className="mt-4 space-y-2">
               {NAV_SECONDARY.map((item) => (
                 <li key={item.label}>
                   <Link to={item.to} className="text-sm text-ivory/65 transition-colors hover:text-gold">
@@ -130,62 +104,59 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            <p className="eyebrow mt-9 text-ivory/60">Marques & projets</p>
-            <ul className="mt-5 space-y-2.5">
-              {DERIVED_MARKS.slice(0, 3).map((m) => (
-                <li key={m.name} className="text-sm text-ivory/65">
-                  {m.name}
-                </li>
-              ))}
-            </ul>
           </nav>
 
           <div>
-            <p className="eyebrow text-ivory/60">Contact</p>
+            <p className="eyebrow text-ivory/60">Contact direct</p>
             <ul className="mt-5 space-y-3 text-sm text-ivory/65">
               <li>
-                <span className="block text-ivory/60">Contact direct</span>
+                <span className="block text-ivory/60">Booking, Conférences & Conseil</span>
                 <a href={`mailto:${SITE.emailContact}`} className="transition-colors hover:text-gold">
                   {SITE.emailContact}
                 </a>
               </li>
               <li>
-                <span className="block text-ivory/60">A Laiz Academy</span>
+                <span className="block text-ivory/60">Formations & A Laiz Academy</span>
                 <a href={`mailto:${SITE.emailRma}`} className="transition-colors hover:text-gold">
                   {SITE.emailRma}
                 </a>
               </li>
               {SITE.phones.map((phone) => (
-                <li key={phone.tel}>
+                <li key={phone.tel} className="flex flex-wrap items-center gap-3">
                   <a href={`tel:${phone.tel}`} className="transition-colors hover:text-gold">
                     {phone.display}
+                  </a>
+                  <a
+                    href={`https://wa.me/${phone.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-semibold text-emerald-400 hover:text-emerald-300"
+                  >
+                    WhatsApp ↗
                   </a>
                 </li>
               ))}
               <li className="text-ivory/60">{SITE.city}</li>
             </ul>
-            <p className="eyebrow mt-9 text-ivory/60">Presse</p>
-            <p className="mt-4 text-sm text-ivory/65">
-              Biographies, portrait et éléments de référence disponibles sur la page Contact.
-            </p>
+            <p className="eyebrow mt-8 text-ivory/60">Presse & Médias</p>
             <Link
-              to="/contact#presse"
+              to="/contact?sujet=presse#presse"
               className="mt-3 inline-block text-[0.68rem] uppercase tracking-[0.18em] text-gold hover:text-gold-2"
             >
-              Kit presse →
+              Dossier de presse & contact média →
             </Link>
 
-            <p className="eyebrow mt-9 text-ivory/60">Suivre</p>
-            <div className="mt-5">
+            <p className="eyebrow mt-8 text-ivory/60">Profils officiels</p>
+            <div className="mt-4">
               <SocialButtons />
             </div>
           </div>
         </div>
 
-        {/* Marques dérivées */}
-        <div className="border-t border-white/8 pt-10">
-          <p className="eyebrow text-ivory/60">Écosystème — un projet de Hervé Nanfang</p>
-          <ul className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Marques & Signatures rattachées */}
+        <div className="border-t border-white/8 py-10">
+          <p className="eyebrow text-ivory/60">Univers & signatures — Hervé Nanfang · A Laiz Ô Pays</p>
+          <ul className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {DERIVED_MARKS.map((m) => (
               <li
                 key={m.name}
@@ -198,8 +169,66 @@ export default function Footer() {
           </ul>
         </div>
 
-        <Rule className="mt-14" />
+        {/* Lettre d'information secondaire (fidélisation éditoriale sans concurrencer les CTA commerciaux) */}
+        <div className="grid gap-6 border-t border-white/8 py-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div>
+            <Eyebrow>Fidélisation éditoriale · Le Journal du Musicien Augmenté</Eyebrow>
+            <p className="mt-2 font-display text-xl text-ivory">
+              Recevoir occasionnellement les essais et notes de recherche (musique, pédagogie, IA).
+            </p>
+          </div>
+          <form
+            className="flex flex-col gap-2.5 sm:flex-row"
+            onSubmit={async (e) => {
+              e.preventDefault()
+              const cleanEmail = email.trim()
+              if (!cleanEmail) return
+              try {
+                const { adminStore } = await import('../lib/admin-store')
+                await adminStore.addIncomingMessage({
+                  name: 'Abonné Lettre du Journal',
+                  email: cleanEmail,
+                  route: 'newsletter',
+                  body: `Inscription à la lettre d'information du Journal du Musicien Augmenté (${cleanEmail}).`,
+                })
+                trackFormSubmitSuccess('newsletter_footer', 'newsletter')
+                trackLeadConversion('newsletter_signup', { category: 'Newsletter' })
+              } catch {
+                // Fallback silencieux vers WhatsApp si hors-ligne
+              }
+              const message = `Je souhaite m’inscrire à la lettre du Journal du Musicien Augmenté. Mon adresse email : ${cleanEmail}`
+              window.open(
+                `https://wa.me/${SITE.phones[0].whatsapp}?text=${encodeURIComponent(message)}`,
+                '_blank',
+                'noopener,noreferrer',
+              )
+              setSent(true)
+            }}
+          >
+            <label className="sr-only" htmlFor="newsletter-email">
+              Adresse email
+            </label>
+            <input
+              id="newsletter-email"
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="votre@email.com"
+              className="w-full border border-white/15 bg-transparent px-4 py-3 text-xs text-ivory placeholder:text-ivory/35 focus:border-gold focus:outline-none"
+            />
+            <button type="submit" className="btn btn-ghost shrink-0 !py-3 !px-4 !text-xs border-gold/40 text-gold hover:border-gold">
+              S’abonner à la lettre
+            </button>
+          </form>
+          {sent && (
+            <p className="text-xs text-gold lg:col-start-2">
+              Votre adresse e-mail a été enregistrée.
+            </p>
+          )}
+        </div>
 
+        <Rule className="mt-4" />
 
         <div className="flex flex-col gap-4 pt-4 text-[0.68rem] uppercase tracking-[0.16em] text-ivory/60 md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Hervé Nanfang — Tous droits réservés.</p>
@@ -220,7 +249,6 @@ export default function Footer() {
               <span>Haut de page</span>
               <span aria-hidden>↑</span>
             </button>
-
           </div>
         </div>
       </Container>
