@@ -1,4 +1,5 @@
 import { isSupabaseConfigured, supabase } from './supabase'
+import { adminAuth } from './admin-auth'
 import { ARTICLES, Article } from '../data/articles'
 import { PROJECT_FAMILIES } from '../data/projects'
 import { CONFERENCES } from '../data/conferences'
@@ -70,6 +71,113 @@ export function buildWebhookPayload(
     approvedBy,
     post,
     publication: post,
+  }
+}
+
+/**
+ * Transmet l'événement Webhook via le relais serveur sécurisé (`/api/webhook-relay`)
+ * lorsqu'exécuté dans le navigateur afin d'éviter le crash HTTP 500 CORS de n8n Cloud,
+ * ou appelle directement l'URL cible en environnement Node.js / test unitaire.
+ */
+export async function dispatchWebhookEvent(
+  targetUrl: string,
+  payload: WebhookEventPayload,
+  secret?: string,
+): Promise<{ success: boolean; status?: number; error?: string }> {
+  const effectiveUrl = resolveMigratedWebhookUrl(targetUrl)
+
+  const useServerRelay =
+    typeof window !== 'undefined' &&
+    typeof window.location !== 'undefined' &&
+    window.location.origin.startsWith('http')
+
+  if (useServerRelay) {
+    try {
+      const session = await adminAuth.getSession()
+      const adminAuthProof = session
+        ? {
+            email: session.user.email,
+            expiresAt: session.expiresAt,
+            sessionToken: session.sessionToken || '',
+            mode: session.mode,
+          }
+        : null
+
+      const relayRes = await fetch('/api/webhook-relay', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          targetUrl: effectiveUrl,
+          secret: secret?.trim() || undefined,
+          adminAuth: adminAuthProof,
+          payload,
+        }),
+      })
+
+      const contentType = relayRes.headers?.get?.('content-type') || ''
+      if (contentType.includes('application/json')) {
+        const data = await relayRes.json()
+        if (data && typeof data.success === 'boolean') {
+          return {
+            success: data.success,
+            status: data.status ?? relayRes.status,
+            error: data.error,
+          }
+        }
+      }
+    } catch {
+      // Fallback en cas d'environnement de prévisualisation statique sans route /api
+    }
+  }
+
+  // Appel direct (environnement Node.js / tests unitaires ou fallback sans en-têtes déclenchant un preflight inutile)
+  try {
+    const trimmedSecret = secret?.trim()
+    const response = await fetch(effectiveUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(trimmedSecret ? { 'X-HN-Webhook-Secret': trimmedSecret } : {}),
+      },
+      body: JSON.stringify(payload),
+    })
+
+    if (response.ok) {
+      return { success: true, status: response.status }
+    }
+
+    let detail = `Webhook a retourné le code HTTP ${response.status}`
+    try {
+      const text = typeof response.text === 'function' ? await response.text() : ''
+      if (text) {
+        const parsed = JSON.parse(text)
+        if (response.status === 404 && parsed?.message && String(parsed.message).includes('not registered')) {
+          detail =
+            'Connexion établie avec n8n Cloud, mais le workflow n8n est actuellement INACTIF (HTTP 404 : Webhook non enregistré). Activez l’interrupteur "Active" en haut à droite dans n8n.'
+        } else if (parsed?.message) {
+          detail = `Le serveur a répondu ${response.status} : ${parsed.message}`
+        }
+      } else if (response.statusText) {
+        detail = `Le serveur a répondu ${response.status} ${response.statusText}`
+      }
+    } catch {
+      if (response.statusText) {
+        detail = `Le serveur a répondu ${response.status} ${response.statusText}`
+      }
+    }
+
+    return {
+      success: false,
+      status: response.status,
+      error: detail,
+    }
+  } catch (err) {
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'Échec d’appel réseau Webhook',
+    }
   }
 }
 
@@ -1919,31 +2027,22 @@ export const adminStore = {
 
       const webhookUrl = resolveMigratedWebhookUrl(currentState.settings.webhookUrl)
       if (webhookUrl && webhookUrl.startsWith('http')) {
-        try {
-          const payload = buildWebhookPayload(approvedPost, {
-            isTest: false,
-            approvedBy: approver,
-            timestamp: nowIso,
-          })
+        const payload = buildWebhookPayload(approvedPost, {
+          isTest: false,
+          approvedBy: approver,
+          timestamp: nowIso,
+        })
 
-          const response = await fetch(webhookUrl, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              ...(currentState.settings.webhookSecret
-                ? { 'X-HN-Webhook-Secret': currentState.settings.webhookSecret }
-                : {}),
-            },
-            body: JSON.stringify(payload),
-          })
+        const dispatchRes = await dispatchWebhookEvent(
+          webhookUrl,
+          payload,
+          currentState.settings.webhookSecret,
+        )
 
-          if (response.ok) {
-            triggeredWebhook = true
-          } else {
-            webhookError = `Webhook a retourné le code HTTP ${response.status}`
-          }
-        } catch (err) {
-          webhookError = err instanceof Error ? err.message : 'Échec d’appel réseau Webhook'
+        if (dispatchRes.success) {
+          triggeredWebhook = true
+        } else {
+          webhookError = dispatchRes.error || `Webhook a retourné le code HTTP ${dispatchRes.status || 500}`
         }
       }
 
@@ -2259,21 +2358,7 @@ export const adminStore = {
         timestamp: nowIso,
       })
 
-      const effectiveUrl = resolveMigratedWebhookUrl(targetUrl)
-
-      const res = await fetch(effectiveUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(secret ? { 'X-HN-Webhook-Secret': secret } : {}),
-        },
-        body: JSON.stringify(payload),
-      })
-
-      if (res.ok) {
-        return { success: true, status: res.status }
-      }
-      return { success: false, status: res.status, error: `Le serveur a répondu ${res.status} ${res.statusText}` }
+      return await dispatchWebhookEvent(targetUrl, payload, secret)
     } catch (err) {
       return {
         success: false,

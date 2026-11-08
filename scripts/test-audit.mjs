@@ -6,6 +6,8 @@ import {
   N8N_PRODUCTION_WEBHOOK_URL,
   resolveMigratedWebhookUrl,
 } from '../src/lib/admin-store.ts'
+import { adminAuth } from '../src/lib/admin-auth.ts'
+import webhookRelayHandler from '../api/webhook-relay.js'
 
 console.log('--- TEST 1: SHA-256 standard vectors ---')
 // NIST test vectors
@@ -250,6 +252,180 @@ try {
   console.log('✓ HTTP and network errors handled cleanly')
 
   await adminStore.deletePublication(testPostId)
+} finally {
+  globalThis.fetch = originalFetch
+}
+
+console.log('\n--- TEST 5: Server-side Webhook Relay (/api/webhook-relay) ---')
+function createMockRes() {
+  return {
+    statusCode: 200,
+    headers: {},
+    body: null,
+    setHeader(k, v) {
+      this.headers[k] = v
+    },
+    status(c) {
+      this.statusCode = c
+      return this
+    },
+    json(d) {
+      this.body = d
+      return this
+    },
+    end() {
+      return this
+    },
+  }
+}
+
+try {
+  // 5A. Reject GET method (405)
+  const resGet = createMockRes()
+  await webhookRelayHandler({ method: 'GET', body: {} }, resGet)
+  if (resGet.statusCode !== 405 || resGet.body?.success !== false) {
+    throw new Error('Relay should reject non-POST methods with HTTP 405!')
+  }
+
+  // 5B. Reject unauthenticated calls (401)
+  const resUnauth = createMockRes()
+  await webhookRelayHandler(
+    {
+      method: 'POST',
+      body: {
+        targetUrl: N8N_PRODUCTION_WEBHOOK_URL,
+        adminAuth: { email: 'hacker@evil.com', expiresAt: '2099-01-01T00:00:00Z', sessionToken: 'bad' },
+        payload: { event: 'publication.approved', isTest: true, post: { id: 'p1', title: 'T' } },
+      },
+    },
+    resUnauth,
+  )
+  if (resUnauth.statusCode !== 401 || resUnauth.body?.success !== false) {
+    throw new Error('Relay should reject unauthorized admin session with HTTP 401!')
+  }
+
+  // 5C. Authenticate valid admin session and test valid relay + deduplication
+  const signInRes = await adminAuth.signIn('hello@hervenanfang.art', 'MasterHerveNanfang2026!')
+  if (!signInRes.success || !signInRes.session) {
+    throw new Error('Failed to sign in admin for relay test!')
+  }
+  const validAdminAuth = {
+    email: signInRes.session.user.email,
+    expiresAt: signInRes.session.expiresAt,
+    sessionToken: signInRes.session.sessionToken,
+    mode: signInRes.session.mode,
+  }
+
+  // Invalid payload check (400)
+  const resBadPayload = createMockRes()
+  await webhookRelayHandler(
+    {
+      method: 'POST',
+      body: {
+        targetUrl: N8N_PRODUCTION_WEBHOOK_URL,
+        adminAuth: validAdminAuth,
+        payload: { event: 'wrong.event' },
+      },
+    },
+    resBadPayload,
+  )
+  if (resBadPayload.statusCode !== 400) {
+    throw new Error('Relay should reject invalid payload with HTTP 400!')
+  }
+
+  // Mock upstream fetch for relay
+  let upstreamCallCount = 0
+  globalThis.fetch = async () => {
+    upstreamCallCount++
+    return {
+      ok: true,
+      status: 200,
+      text: async () => JSON.stringify({ message: 'Workflow was started' }),
+    }
+  }
+
+  const samplePost = {
+    id: 'pub-relay-real-01',
+    title: 'Article Relay Test',
+    pillar: 'autorite',
+    sourceType: 'article',
+    scheduledDate: '2026-11-15',
+    scheduledTime: '10:00',
+    status: 'valide',
+    platforms: ['linkedin'],
+    contentByPlatform: { linkedin: { text: 'Texte', hashtags: [] } },
+    validationSignature: {
+      approvedBy: 'Hervé Nanfang',
+      approvedAt: new Date().toISOString(),
+      contentHash: 'sha256:relayhash123',
+      isRevoked: false,
+    },
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  }
+  const validPayload = buildWebhookPayload(samplePost, { isTest: false })
+
+  const resRelay1 = createMockRes()
+  await webhookRelayHandler(
+    {
+      method: 'POST',
+      body: {
+        targetUrl: N8N_LEGACY_WEBHOOK_URL,
+        adminAuth: validAdminAuth,
+        payload: validPayload,
+      },
+    },
+    resRelay1,
+  )
+  if (resRelay1.statusCode !== 200 || !resRelay1.body?.success || upstreamCallCount !== 1) {
+    throw new Error('Relay failed to forward valid authenticated request!')
+  }
+
+  // Duplicate real approval within TTL should be deduplicated without calling upstream again
+  const resRelay2 = createMockRes()
+  await webhookRelayHandler(
+    {
+      method: 'POST',
+      body: {
+        targetUrl: N8N_PRODUCTION_WEBHOOK_URL,
+        adminAuth: validAdminAuth,
+        payload: validPayload,
+      },
+    },
+    resRelay2,
+  )
+  if (!resRelay2.body?.success || !resRelay2.body?.deduplicated || upstreamCallCount !== 1) {
+    throw new Error('Relay failed to deduplicate identical approval payload!')
+  }
+
+  // Test 404 inactive n8n workflow diagnostic message
+  globalThis.fetch = async () => ({
+    ok: false,
+    status: 404,
+    text: async () =>
+      JSON.stringify({
+        code: 404,
+        message: 'The requested webhook "POST a680fa6e-49a8-48d6-ac29-585120113415" is not registered.',
+      }),
+  })
+  const resRelay404 = createMockRes()
+  await webhookRelayHandler(
+    {
+      method: 'POST',
+      body: {
+        targetUrl: N8N_PRODUCTION_WEBHOOK_URL,
+        adminAuth: validAdminAuth,
+        payload: buildWebhookPayload(samplePost, { isTest: true }),
+      },
+    },
+    resRelay404,
+  )
+  if (resRelay404.body?.success !== false || resRelay404.body?.status !== 404 || !resRelay404.body?.error?.includes('INACTIF')) {
+    throw new Error('Relay did not format 404 inactive n8n workflow diagnostic properly!')
+  }
+
+  await adminAuth.signOut()
+  console.log('✓ Server-side Webhook Relay auth, validation, deduplication & 404 diagnostics PASSED')
 } finally {
   globalThis.fetch = originalFetch
 }
