@@ -121,7 +121,7 @@ export default function Header() {
           >
             <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gold/40 bg-gradient-to-br from-ink-2 via-black to-ink p-1.5 shadow-[0_0_15px_rgba(198,161,91,0.2)] ring-1 ring-gold/20 transition-all duration-300 group-hover:scale-105 group-hover:border-gold group-hover:shadow-[0_0_25px_rgba(198,161,91,0.4)]">
               <img
-                src="/hn-initials-mark.png"
+                src="/hn-initials-mark.webp"
                 alt=""
                 width={40}
                 height={40}
@@ -294,10 +294,11 @@ export default function Header() {
       <button
         type="button"
         aria-label="Fermer le menu"
+        aria-hidden={!open}
         tabIndex={open ? 0 : -1}
         onClick={() => setOpen(false)}
         className={`fixed inset-0 z-40 bg-black/65 transition-opacity duration-300 xl:hidden ${
-          open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
+          open ? 'visible pointer-events-auto opacity-100' : 'invisible pointer-events-none opacity-0'
         }`}
       />
       <div
@@ -312,7 +313,7 @@ export default function Header() {
             <div className="flex items-center gap-3.5">
               <div className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gold/40 bg-gradient-to-br from-ink-2 via-black to-ink p-1.5 shadow-[0_0_15px_rgba(198,161,91,0.2)] ring-1 ring-gold/20">
                 <img
-                  src="/hn-initials-mark.png"
+                  src="/hn-initials-mark.webp"
                   alt=""
                   width={44}
                   height={44}
@@ -324,10 +325,10 @@ export default function Header() {
               </div>
               <div>
                 <p className="eyebrow text-gold">Hervé Nanfang</p>
-                <h2 className="mt-1 font-display text-2xl text-ivory">Navigation</h2>
+                <p className="mt-1 font-display text-2xl text-ivory">Navigation</p>
               </div>
             </div>
-            <span className="text-[0.62rem] uppercase tracking-[0.2em] text-ivory/35">
+            <span className="text-[0.62rem] uppercase tracking-[0.2em] text-ivory/60">
               {String(NAV_PRIMARY.length).padStart(2, '0')} rubriques
             </span>
           </div>
@@ -372,7 +373,7 @@ export default function Header() {
             </ul>
           </nav>
 
-          <p className="eyebrow mt-8 text-ivory/40">Ressources & réservation</p>
+          <p className="eyebrow mt-8 text-ivory/60">Ressources & réservation</p>
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-3">
             {NAV_SECONDARY.map((item) => (
               <Link
@@ -393,7 +394,7 @@ export default function Header() {
                 </a>
               ))}
             </div>
-            <p className="mt-2 text-xs uppercase tracking-[0.16em] text-ivory/40">
+            <p className="mt-2 text-xs uppercase tracking-[0.16em] text-ivory/60">
               {SITE.city}
             </p>
           </div>

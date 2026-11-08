@@ -22,6 +22,8 @@ export default function SoundWaveCanvas({ className = '' }: { className?: string
     if (!ctx) return
 
     let animationId: number
+    let startTimeoutId: ReturnType<typeof setTimeout> | null = null
+    let isVisible = true
     let width = (canvas.width = canvas.offsetWidth)
     let height = (canvas.height = canvas.offsetHeight)
     let step = 0
@@ -48,6 +50,17 @@ export default function SoundWaveCanvas({ className = '' }: { className?: string
     canvas.addEventListener('mousemove', handleMouseMove)
     canvas.addEventListener('mouseleave', handleMouseLeave)
 
+    let observer: IntersectionObserver | null = null
+    if (typeof IntersectionObserver !== 'undefined') {
+      observer = new IntersectionObserver(
+        (entries) => {
+          isVisible = entries[0]?.isIntersecting ?? true
+        },
+        { threshold: 0.05 },
+      )
+      observer.observe(canvas)
+    }
+
     // Configuration des 3 ondes harmoniques (Fréquences fondamentales et harmoniques)
     const waves = [
       { amplitude: 24, length: 0.007, speed: 0.02, color: 'rgba(198, 161, 91, 0.28)' },
@@ -56,7 +69,7 @@ export default function SoundWaveCanvas({ className = '' }: { className?: string
     ]
 
     const render = () => {
-      if (document.hidden) {
+      if (document.hidden || !isVisible) {
         animationId = requestAnimationFrame(render)
         return
       }
@@ -71,7 +84,7 @@ export default function SoundWaveCanvas({ className = '' }: { className?: string
         ctx.lineWidth = waveIndex === 0 ? 1.5 : 1
         ctx.strokeStyle = w.color
 
-        for (let x = 0; x < width; x += 4) {
+        for (let x = 0; x < width; x += 6) {
           // Modulation d'amplitude par la souris si survolée
           const distToMouse = Math.abs(x - mouseX)
           const mouseFactor = isHovering && distToMouse < 220 ? 1 + (1 - distToMouse / 220) * 0.8 : 1
@@ -94,10 +107,15 @@ export default function SoundWaveCanvas({ className = '' }: { className?: string
       animationId = requestAnimationFrame(render)
     }
 
-    render()
+    // Différer le démarrage de l'animation après le rendu initial critique (LCP/TBT)
+    startTimeoutId = setTimeout(() => {
+      animationId = requestAnimationFrame(render)
+    }, 1800)
 
     return () => {
+      if (startTimeoutId) clearTimeout(startTimeoutId)
       cancelAnimationFrame(animationId)
+      observer?.disconnect()
       window.removeEventListener('resize', handleResize)
       if (canvas) {
         canvas.removeEventListener('mousemove', handleMouseMove)

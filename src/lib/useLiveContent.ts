@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
 import type {
-  AdminArticle,
   AdminMedia,
   AdminSettings,
   AdminState,
 } from './admin-types'
-import { ARTICLES } from '../data/articles'
 import { SITE } from '../data/site'
 
 const DEFAULT_PUBLIC_MEDIA: AdminMedia[] = [
@@ -32,7 +30,7 @@ const DEFAULT_PUBLIC_MEDIA: AdminMedia[] = [
     id: 'med-live-piano',
     bucket: 'public-media',
     path: 'live-scene-piano.webp',
-    url: '/images/live-scene-piano.webp',
+    url: '',
     filename: 'live-scene-piano.webp',
     altText: 'Hervé Nanfang sur scène en concert live au piano',
     caption: 'Concert live Piano-Bar (Page Musique & Presse)',
@@ -64,7 +62,6 @@ function readLightweightPublicState(): Partial<AdminState> {
     // ignore
   }
   return {
-    articles: ARTICLES as unknown as AdminArticle[],
     media: DEFAULT_PUBLIC_MEDIA,
   }
 }
@@ -100,62 +97,6 @@ export function useAdminState(): Partial<AdminState> {
   }, [])
 
   return state
-}
-
-/**
- * Retourne la liste des articles à jour avec les modifications faites en session admin.
- */
-export function useLiveArticles(): AdminArticle[] {
-  const state = useAdminState()
-  const sourceArticles = ARTICLES as unknown as AdminArticle[]
-  const liveArticles = state.articles ?? []
-  if (liveArticles.length === 0) return sourceArticles
-
-  const liveBySlug = new Map<string, AdminArticle>(
-    liveArticles.map((article) => [article.slug, article] as const),
-  )
-  const sourceSlugs = new Set(sourceArticles.map((article) => article.slug))
-
-  // Supabase currently supplies article metadata but not the long-form body,
-  // audience, outline or linked concept. Keep those authored fields from the
-  // source catalogue so a client-side refresh does not replace the full article
-  // with the short plan-only fallback after hydration.
-  const mergedSourceArticles = sourceArticles.map((source) => {
-    const live = liveBySlug.get(source.slug)
-    if (!live) return source
-
-    const hasSourceBody = Boolean(source.body && source.body.length > 0)
-    return {
-      ...live,
-      ...source,
-      coverImage: (live.coverImage && live.coverImage !== '/og-image.jpg' ? live.coverImage : source.coverImage) || '/og-image.jpg',
-      coverPositionX: live.coverPositionX ?? source.coverPositionX,
-      coverPositionY: live.coverPositionY ?? source.coverPositionY,
-      status: live.status || source.status,
-      isFeatured: live.isFeatured ?? (source as any).isFeatured,
-      publishedAt: live.publishedAt ?? (source as any).publishedAt,
-      updatedAt: live.updatedAt ?? (source as any).updatedAt,
-      readingTime: hasSourceBody ? source.readingTime : (live.readingTime || source.readingTime),
-      audience: source.audience || live.audience,
-      outline: source.outline?.length ? source.outline : (live.outline || []),
-      body: hasSourceBody ? source.body : live.body,
-      keywords: source.keywords?.length ? source.keywords : (live.keywords || []),
-      linkedConcept: source.linkedConcept || live.linkedConcept,
-    }
-  })
-
-  // Preserve additional articles created only in the admin database.
-  const additionalLiveArticles = liveArticles.filter((article) => !sourceSlugs.has(article.slug))
-  return [...mergedSourceArticles, ...additionalLiveArticles]
-}
-
-/**
- * Retourne un article précis selon son slug, en tenant compte des modifications de l'admin.
- */
-export function useLiveArticle(slug: string | undefined): AdminArticle | undefined {
-  const articles = useLiveArticles()
-  if (!slug) return undefined
-  return articles.find((a) => a.slug === slug)
 }
 
 /**

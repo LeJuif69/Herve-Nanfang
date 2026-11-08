@@ -20,7 +20,7 @@ import { ARTICLE_CHAIN, CATEGORIES, JOURNAL_AGENDA, JOURNAL_SERIES } from '../da
 import { IDENTITY } from '../data/identity'
 import { articleSchema, breadcrumbSchema, personSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
-import { useLiveArticles } from '../lib/useLiveContent'
+import { useLiveArticles } from '../lib/useLiveArticles'
 
 const STATUS_TONE: Record<string, 'gold' | 'ink'> = {
   Publié: 'gold',

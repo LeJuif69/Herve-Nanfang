@@ -149,11 +149,8 @@
           a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6623797864465522';
           document.head.appendChild(a);
         }
-        ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function(evt) {
+        ['scroll', 'pointerdown', 'mousemove', 'keydown', 'touchstart'].forEach(function(evt) {
           window.addEventListener(evt, loadThirdParty, { once: true, passive: true });
-        });
-        window.addEventListener('load', function() {
-          setTimeout(loadThirdParty, 3500);
         });
       })();
     </script>

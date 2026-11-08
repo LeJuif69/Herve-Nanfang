@@ -21,7 +21,7 @@ import {
 import { ARTICLE_CHAIN } from '../data/articles'
 import { articleSchema, breadcrumbSchema, personSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
-import { useLiveArticle, useLiveArticles } from '../lib/useLiveContent'
+import { useLiveArticle, useLiveArticles } from '../lib/useLiveArticles'
 import NotFound from './NotFound'
 
 function renderFormattedText(text: string) {

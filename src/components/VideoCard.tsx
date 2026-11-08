@@ -35,7 +35,10 @@ export default function VideoCard({ video }: { video: Video }) {
             <img
               src={thumbUrl}
               alt={video.title}
+              width={480}
+              height={360}
               loading="lazy"
+              decoding="async"
               className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-black/30" />

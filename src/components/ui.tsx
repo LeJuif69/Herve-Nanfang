@@ -299,7 +299,7 @@ export function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div className="border-t border-gold/30 pt-5">
       <p className="font-display text-4xl leading-none text-ivory md:text-5xl">{value}</p>
-      <p className="mt-2 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-ivory/50">{label}</p>
+      <p className="mt-2 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-ivory/65">{label}</p>
     </div>
   )
 }
@@ -308,8 +308,8 @@ export function Stat({ value, label }: { value: string; label: string }) {
 export function ChapterMark({ num, label }: { num: string; label: string }) {
   return (
     <div className="group flex items-baseline gap-4">
-      <span className="font-display text-2xl text-gold/70">{num}</span>
-      <span className="relative eyebrow text-ivory/45">
+      <span className="font-display text-2xl text-gold/85">{num}</span>
+      <span className="relative eyebrow text-ivory/65">
         <span
           aria-hidden
           className="absolute -bottom-1 left-0 h-px w-0 bg-gold/40 transition-all duration-700 group-hover:w-full"

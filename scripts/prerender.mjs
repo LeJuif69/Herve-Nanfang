@@ -50,7 +50,7 @@ function escapeHtml(value) {
   })[char])
 }
 
-function pageHead(seo, site) {
+function pageHead(seo, site, assetMap = {}) {
   const cleanPath = !seo.path || seo.path === '/' ? '' : seo.path.replace(/\/+$/, '')
   const canonical = `${site.url}${cleanPath}`
   const image = seo.image.startsWith('http') ? seo.image : `${site.url}${seo.image}`
@@ -61,6 +61,27 @@ function pageHead(seo, site) {
     `<link rel="canonical" href="${escapeHtml(canonical)}">`,
     `<link rel="alternate" hreflang="fr" href="${escapeHtml(canonical)}">`,
     `<link rel="alternate" hreflang="x-default" href="${escapeHtml(canonical)}">`,
+  ]
+
+  // Preload des polices latines critiques (Instrument Serif + Space Grotesk)
+  const serifFont = Object.entries(assetMap).find(([k]) => k.includes('instrument-serif-latin-400-normal') && k.endsWith('.woff2'))?.[1]
+  const sansFont = Object.entries(assetMap).find(([k]) => k.includes('space-grotesk-latin-wght-normal') && k.endsWith('.woff2'))?.[1]
+  if (serifFont) {
+    tags.push(`<link rel="preload" as="font" type="font/woff2" href="${escapeHtml(serifFont)}" crossorigin>`)
+  }
+  if (sansFont) {
+    tags.push(`<link rel="preload" as="font" type="font/woff2" href="${escapeHtml(sansFont)}" crossorigin>`)
+  }
+
+  // Preload prioritaire de l'image Hero LCP sur la page d'accueil
+  if (cleanPath === '') {
+    const heroLcpImg = assetMap['/src/assets/live-scene-piano.webp']
+    if (heroLcpImg) {
+      tags.push(`<link rel="preload" as="image" href="${escapeHtml(heroLcpImg)}" fetchpriority="high">`)
+    }
+  }
+
+  tags.push(
     `<meta property="og:type" content="${escapeHtml(seo.type)}">`,
     `<meta property="og:site_name" content="${escapeHtml(site.name)}">`,
     '<meta property="og:locale" content="fr_FR">',
@@ -75,7 +96,7 @@ function pageHead(seo, site) {
     `<meta name="twitter:title" content="${escapeHtml(seo.title)}">`,
     `<meta name="twitter:description" content="${escapeHtml(seo.description)}">`,
     `<meta name="twitter:image" content="${escapeHtml(image)}">`,
-  ]
+  )
   const gscTokens = new Set(['p_ZbSiZ94DyZ5e9YEy3oLDXLvaszQGE7pKnPHAZFtzQ'])
   if (process.env.VITE_GOOGLE_SITE_VERIFICATION) {
     gscTokens.add(process.env.VITE_GOOGLE_SITE_VERIFICATION.trim())
@@ -204,7 +225,7 @@ try {
   for (const route of routes) {
     const { markup, seo } = await renderRoute(App, SeoContext, route)
     const processedMarkup = rewriteAssetUrls(markup)
-    const html = injectHead(template, pageHead(seo, SITE)).replace(
+    const html = injectHead(template, pageHead(seo, SITE, assetMap)).replace(
       '<div id="root"></div>',
       `<div id="root">${processedMarkup}</div>`,
     )
@@ -220,7 +241,7 @@ try {
 
   const notFound = await renderRoute(App, SeoContext, '/not-found')
   const notFoundMarkup = rewriteAssetUrls(notFound.markup)
-  const notFoundHtml = injectHead(template, pageHead(notFound.seo, SITE)).replace(
+  const notFoundHtml = injectHead(template, pageHead(notFound.seo, SITE, assetMap)).replace(
     '<div id="root"></div>',
     `<div id="root">${notFoundMarkup}</div>`,
   )

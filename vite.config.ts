@@ -101,8 +101,8 @@ export default defineConfig({
           if (id.includes('node_modules/@supabase')) {
             return 'vendor-supabase'
           }
-          if (id.includes('editorial-calendar-90d') || id.includes('social-generator')) {
-            return 'calendar-data'
+          if (id.includes('src/data/articles')) {
+            return 'articles-data'
           }
         },
       },

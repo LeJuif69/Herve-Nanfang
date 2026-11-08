@@ -88,7 +88,7 @@ export default function Footer() {
             <div className="flex items-center gap-3.5">
               <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gold/40 bg-gradient-to-br from-ink-2 via-black to-ink p-1.5 shadow-[0_0_15px_rgba(198,161,91,0.2)] ring-1 ring-gold/20 transition-all duration-300 hover:border-gold hover:shadow-[0_0_25px_rgba(198,161,91,0.4)]">
                 <img
-                  src="/hn-initials-mark.png"
+                  src="/hn-initials-mark.webp"
                   alt=""
                   width={40}
                   height={40}
@@ -107,7 +107,7 @@ export default function Footer() {
           </div>
 
           <nav aria-label="Plan du site">
-            <p className="eyebrow text-ivory/40">Navigation</p>
+            <p className="eyebrow text-ivory/60">Navigation</p>
             <ul className="mt-5 space-y-2.5">
               {NAV_PRIMARY.map((item) => (
                 <li key={item.label}>
@@ -120,7 +120,7 @@ export default function Footer() {
           </nav>
 
           <nav aria-label="Navigation secondaire">
-            <p className="eyebrow text-ivory/40">Ressources</p>
+            <p className="eyebrow text-ivory/60">Ressources</p>
             <ul className="mt-5 space-y-2.5">
               {NAV_SECONDARY.map((item) => (
                 <li key={item.label}>
@@ -130,10 +130,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            <p className="eyebrow mt-9 text-ivory/40">Marques & projets</p>
+            <p className="eyebrow mt-9 text-ivory/60">Marques & projets</p>
             <ul className="mt-5 space-y-2.5">
               {DERIVED_MARKS.slice(0, 3).map((m) => (
-                <li key={m.name} className="text-sm text-ivory/50">
+                <li key={m.name} className="text-sm text-ivory/65">
                   {m.name}
                 </li>
               ))}
@@ -141,16 +141,16 @@ export default function Footer() {
           </nav>
 
           <div>
-            <p className="eyebrow text-ivory/40">Contact</p>
+            <p className="eyebrow text-ivory/60">Contact</p>
             <ul className="mt-5 space-y-3 text-sm text-ivory/65">
               <li>
-                <span className="block text-ivory/40">Contact direct</span>
+                <span className="block text-ivory/60">Contact direct</span>
                 <a href={`mailto:${SITE.emailContact}`} className="transition-colors hover:text-gold">
                   {SITE.emailContact}
                 </a>
               </li>
               <li>
-                <span className="block text-ivory/40">A Laiz Academy</span>
+                <span className="block text-ivory/60">A Laiz Academy</span>
                 <a href={`mailto:${SITE.emailRma}`} className="transition-colors hover:text-gold">
                   {SITE.emailRma}
                 </a>
@@ -162,10 +162,10 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
-              <li className="text-ivory/45">{SITE.city}</li>
+              <li className="text-ivory/60">{SITE.city}</li>
             </ul>
-            <p className="eyebrow mt-9 text-ivory/40">Presse</p>
-            <p className="mt-4 text-sm text-ivory/55">
+            <p className="eyebrow mt-9 text-ivory/60">Presse</p>
+            <p className="mt-4 text-sm text-ivory/65">
               Biographies, portrait et éléments de référence disponibles sur la page Contact.
             </p>
             <Link
@@ -175,7 +175,7 @@ export default function Footer() {
               Kit presse →
             </Link>
 
-            <p className="eyebrow mt-9 text-ivory/40">Suivre</p>
+            <p className="eyebrow mt-9 text-ivory/60">Suivre</p>
             <div className="mt-5">
               <SocialButtons />
             </div>
@@ -184,7 +184,7 @@ export default function Footer() {
 
         {/* Marques dérivées */}
         <div className="border-t border-white/8 pt-10">
-          <p className="eyebrow text-ivory/35">Écosystème — un projet de Hervé Nanfang</p>
+          <p className="eyebrow text-ivory/60">Écosystème — un projet de Hervé Nanfang</p>
           <ul className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {DERIVED_MARKS.map((m) => (
               <li
@@ -192,7 +192,7 @@ export default function Footer() {
                 className="border border-white/8 px-4 py-3 transition-colors duration-300 hover:border-gold/40"
               >
                 <p className="text-sm text-ivory/80">{m.name}</p>
-                <p className="mt-1 text-[0.68rem] uppercase tracking-[0.16em] text-ivory/35">{m.role}</p>
+                <p className="mt-1 text-[0.68rem] uppercase tracking-[0.16em] text-ivory/60">{m.role}</p>
               </li>
             ))}
           </ul>
@@ -201,7 +201,7 @@ export default function Footer() {
         <Rule className="mt-14" />
 
 
-        <div className="flex flex-col gap-4 pt-4 text-[0.68rem] uppercase tracking-[0.16em] text-ivory/35 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-4 pt-4 text-[0.68rem] uppercase tracking-[0.16em] text-ivory/60 md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Hervé Nanfang — Tous droits réservés.</p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <Link to="/mentions-legales" className="hover:text-gold">

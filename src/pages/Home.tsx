@@ -33,9 +33,60 @@ import {
   websiteSchema,
 } from '../lib/schema'
 import { useSeo } from '../lib/seo'
-import { useLiveArticles, useLiveMedia } from '../lib/useLiveContent'
+import { useAdminState, useLiveMedia } from '../lib/useLiveContent'
 import { trackContactMethodClick, trackCtaClick } from '../lib/ad-pixels'
-import type { AdminArticle } from '../lib/admin-types'
+
+type HomeArticleSummary = {
+  slug: string
+  category: string
+  title: string
+  excerpt: string
+  readingTime: string
+  coverImage?: string
+}
+
+const HOME_FEATURED_ARTICLES: HomeArticleSummary[] = [
+  {
+    slug: 'apres-la-mao-lia',
+    category: 'IA',
+    title: 'Après la MAO, l’IA : comment les musiciens peuvent évoluer sans perdre leur identité',
+    excerpt:
+      'La MAO n’a pas supprimé le musicien : elle a redistribué les compétences. L’IA ouvre une nouvelle étape où la machine ne se contente plus d’exécuter, mais formule des propositions esthétiques. Analyse, retours d’expérience en studio à Yaoundé et méthode d’auteur pour adopter la technologie sans diluer sa signature culturelle.',
+    readingTime: '12 min',
+  },
+  {
+    slug: 'ia-va-t-elle-remplacer-les-musiciens',
+    category: 'IA',
+    title: 'L’IA va-t-elle remplacer les musiciens ?',
+    excerpt:
+      'L’IA peut automatiser certaines tâches et fragiliser des revenus, mais elle ne transforme pas tous les métiers musicaux de la même manière. Pour comprendre le risque, il faut regarder le travail réel, pas répondre par un slogan.',
+    readingTime: '7 min',
+  },
+  {
+    slug: 'musicien-augmente-definition',
+    category: 'Réflexions',
+    title: 'Musicien augmenté : définition, enjeux et perspectives',
+    excerpt:
+      'Musicien Augmenté™ ne désigne ni un logiciel miracle ni une promesse de productivité industrielle. C’est un cadre doctrinal et professionnel formalisé par Hervé Nanfang pour utiliser l’IA afin d’étendre les capacités du créateur sans lui retirer son jugement esthétique, sa responsabilité d’auteur ni son ancrage culturel.',
+    readingTime: '14 min',
+  },
+  {
+    slug: 'ia-et-musique-live',
+    category: 'Musique',
+    title: 'IA et musique live : ce que la technologie ne doit jamais remplacer',
+    excerpt:
+      'Le live n’est pas une scène sans technologie : c’est une situation où les choix doivent rester adaptés au lieu, au moment et aux personnes présentes. Où placer la limite quand l’IA entre dans le jeu ?',
+    readingTime: '7 min',
+  },
+  {
+    slug: '5-facons-ia-carriere-musicien',
+    category: 'Entrepreneuriat',
+    title: '5 façons dont un musicien peut utiliser l’IA dans sa carrière',
+    excerpt:
+      'Des usages concrets, immédiatement applicables : création, communication, organisation, facturation, veille. Sans gadget, sans dépendance.',
+    readingTime: '8 min',
+  },
+]
 
 const DISCIPLINES = [
   'Musique',
@@ -115,7 +166,7 @@ const ACADEMY_TRACKS = [
 /**
  * Résolution intelligente de l'image de couverture d'un article
  */
-function getArticleCover(article: AdminArticle): string {
+function getArticleCover(article: HomeArticleSummary): string {
   if (article.coverImage && article.coverImage !== '/og-image.jpg' && !article.coverImage.startsWith('blob:')) {
     return article.coverImage
   }
@@ -146,7 +197,11 @@ export default function Home() {
   const { openPlayer } = useAudio()
   const [roleIndex, setRoleIndex] = useState(0)
   const livePianoMedia = useLiveMedia('med-live-piano', liveScene, 50, 20)
-  const liveArticles = useLiveArticles()
+  const adminState = useAdminState()
+  const liveArticles: HomeArticleSummary[] =
+    adminState.articles && adminState.articles.length > 0
+      ? adminState.articles.slice(0, 5)
+      : HOME_FEATURED_ARTICLES
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -214,7 +269,7 @@ export default function Home() {
                     className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(198,161,91,0.22),transparent_70%)]"
                   />
                   <img
-                    src="/hn-initials-mark.png"
+                    src="/hn-initials-mark.webp"
                     alt="Monogramme HN — Hervé Nanfang"
                     width={112}
                     height={112}
@@ -413,7 +468,7 @@ export default function Home() {
                   className="aspect-[4/5] w-full object-cover object-[50%_18%]"
                 />
               </div>
-              <figcaption className="mt-3 flex items-center justify-between text-[0.68rem] uppercase tracking-[0.18em] text-ivory/45">
+              <figcaption className="mt-3 flex items-center justify-between text-[0.68rem] uppercase tracking-[0.18em] text-ivory/65">
                 <span>{IDENTITY.name}</span>
                 <span>{IDENTITY.city}</span>
               </figcaption>
@@ -521,7 +576,7 @@ export default function Home() {
                   className="aspect-[16/10] w-full object-cover"
                 />
               </div>
-              <figcaption className="mt-3 flex items-center justify-between text-[0.68rem] uppercase tracking-[0.18em] text-ivory/45">
+              <figcaption className="mt-3 flex items-center justify-between text-[0.68rem] uppercase tracking-[0.18em] text-ivory/65">
                 <span>Le Pianobariste™ · Piano & Voix</span>
                 <span>Hilton · Mont Fébé · Djeuga Palace · Akwa Palace</span>
               </figcaption>
@@ -660,7 +715,7 @@ export default function Home() {
                 <div>
                   <div className="flex items-center justify-between gap-2">
                     <Eyebrow>{conf.theme}</Eyebrow>
-                    <span className="font-mono text-[0.62rem] uppercase tracking-wider text-ivory/45">
+                    <span className="font-mono text-[0.62rem] uppercase tracking-wider text-ivory/65">
                       {conf.duration}
                     </span>
                   </div>
@@ -672,7 +727,7 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="mt-6 flex items-center justify-between border-t border-white/8 pt-3">
-                  <span className="text-[0.65rem] uppercase tracking-wider text-ivory/45">
+                  <span className="text-[0.65rem] uppercase tracking-wider text-ivory/65">
                     {conf.formats.join(' · ')}
                   </span>
                   <Link
@@ -806,7 +861,7 @@ export default function Home() {
                 </div>
 
                 <div>
-                  <span className="font-mono text-xs text-ivory/50">
+                  <span className="font-mono text-xs text-ivory/65">
                     Temps de lecture : {liveArticles[0].readingTime}
                   </span>
                   <h3 className="mt-3 font-display text-2xl leading-[1.15] text-ivory transition-colors group-hover:text-gold sm:text-3xl">
@@ -822,7 +877,7 @@ export default function Home() {
                   <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold group-hover:text-gold-2">
                     Lire l’essai complet →
                   </span>
-                  <span className="font-mono text-[0.68rem] uppercase tracking-widest text-ivory/40">
+                  <span className="font-mono text-[0.68rem] uppercase tracking-widest text-ivory/65">
                     Par Hervé Nanfang
                   </span>
                 </div>
@@ -854,7 +909,7 @@ export default function Home() {
                       <span className="text-[0.62rem] font-semibold uppercase tracking-wider text-gold">
                         {a.category}
                       </span>
-                      <span className="font-mono text-[0.62rem] text-ivory/40">{a.readingTime}</span>
+                      <span className="font-mono text-[0.62rem] text-ivory/65">{a.readingTime}</span>
                     </div>
                     <h4 className="mt-1.5 font-display text-lg leading-snug text-ivory transition-colors group-hover:text-gold line-clamp-2">
                       {a.title}
