@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import HomeFeaturedVideos from '../components/HomeFeaturedVideos'
-import liveScene from '../assets/live-scene-piano.jpeg'
-import monogram from '../assets/hn-monogram-watermark.jpg'
+import liveScene from '../assets/live-scene-piano.webp'
 import SoundWaveCanvas from '../components/SoundWaveCanvas'
 import { useAudio } from '../lib/audio-context'
 import {
@@ -15,20 +14,27 @@ import {
   CtaBand,
   Display,
   Eyebrow,
+  Lead,
   Reveal,
   Rule,
   Section,
   Stat,
   Tag,
 } from '../components/ui'
-import { PILLARS } from '../data/site'
+import { PILLARS, SITE } from '../data/site'
 import { IDENTITY, MASTER_IDENTITY } from '../data/identity'
-import { PROJECT_FAMILIES } from '../data/projects'
-import { personSchema, websiteSchema, organizationSchema, musicGroupSchema } from '../lib/schema'
+import { CONFERENCES } from '../data/conferences'
+import {
+  courseSchema,
+  musicGroupSchema,
+  organizationSchema,
+  personSchema,
+  serviceSchema,
+  websiteSchema,
+} from '../lib/schema'
 import { useSeo } from '../lib/seo'
 import { useLiveArticles, useLiveMedia } from '../lib/useLiveContent'
 import { trackContactMethodClick, trackCtaClick } from '../lib/ad-pixels'
-import { SITE } from '../data/site'
 import type { AdminArticle } from '../lib/admin-types'
 
 const DISCIPLINES = [
@@ -43,67 +49,66 @@ const DISCIPLINES = [
 ]
 
 const IA_DOMAINS = [
-  { title: 'IA pour la musique', items: ['Composition', 'Arrangement', 'Analyse', 'Idéation', 'Production', 'Recherche'] },
-  { title: 'IA pour le pédagogue', items: ['Conception de cours', 'Curricula', 'Supports', 'Évaluation', 'Recherche'] },
-  { title: 'IA pour le professionnel', items: ['Automatisation', 'Organisation', 'Recherche', 'Productivité', 'Contenus'] },
-  { title: 'IA & communication', items: ['Stratégie éditoriale', 'Storytelling', 'Réseaux sociaux', 'Personal branding', 'Marketing'] },
+  {
+    title: 'IA pour la musique & la MAO',
+    items: ['Composition', 'Arrangement', 'Analyse harmonique', 'Idéation', 'Production', 'Sound design'],
+  },
+  {
+    title: 'IA pour le pédagogue',
+    items: ['Conception de cours', 'Curricula', 'Supports interactifs', 'Évaluation', 'Progression N1–N4'],
+  },
+  {
+    title: 'IA pour le professionnel',
+    items: ['Automatisation', 'Workflows créatifs', 'Documentation', 'Productivité', 'Veille stratégique'],
+  },
+  {
+    title: 'IA & communication culturelle',
+    items: ['Stratégie éditoriale', 'Storytelling', 'Direction de marque', 'Médiation', 'Rayonnement'],
+  },
 ]
 
-const CREATIVE_CONCEPTS = [
+const PIANOBAR_FORMATS = [
   {
-    num: '01',
-    name: 'Le Pianobariste',
-    trademark: 'Signature scénique & piano-bar live',
-    badge: 'Depuis 2007',
-    lead: 'Scène de prestige, présence d’atmosphère et répertoires internationaux.',
-    description:
-      'Identité scénique d’Hervé Nanfang dédiée aux performances live au piano (piano-bar, variété internationale, chanson française, musiques africaines, gospel, lounge). Le piano-bar est son laboratoire de terrain depuis 2007 : écoute de la salle, endurance et élégance acoustique.',
-    link: '/services#piano-bar',
-    linkLabel: 'Découvrir Le Pianobariste',
+    name: 'Formule Solo — Piano & Voix',
+    tag: 'Signature Le Pianobariste™',
+    desc: 'Présence acoustique feutrée et élégante pour hôtels 5 étoiles, dîners diplomatiques, lounges et réceptions privées.',
+    to: '/contact?sujet=booking&formula=lounge#booking',
   },
   {
-    num: '02',
-    name: 'A Laiz Academy',
-    trademark: 'Académie de formation musicale & transmission',
-    badge: 'Enseignement & curricula',
-    lead: 'Transmission vivante et valorisation des patrimoines d’Afrique.',
-    description:
-      'Académie d’enseignement musical et de formation MAO fondée par Hervé Nanfang (anciennement Racines Musicales Academy — RMA). A Laiz Academy forme les musiciens et éducateurs aux pratiques contemporaines tout en documentant les polyrythmies et répertoires traditionnels oraux d’Afrique centrale.',
-    link: '/rma',
-    linkLabel: 'Découvrir A Laiz Academy',
+    name: 'Formule Duo — Piano & Chant',
+    tag: 'Duo Prestige',
+    desc: 'Dialogue scénique chaleureux (Hervé Nanfang & voix invitée) pour cocktails de gala, vernissages et cérémonies.',
+    to: '/contact?sujet=booking&formula=prestige#booking',
   },
   {
-    num: '03',
-    name: 'Musicien Augmenté',
-    trademark: 'Approche méthodologique & conférences IA',
-    badge: 'Formalisé 2024–2026',
-    lead: 'L’intelligence artificielle au service du geste artistique souverain.',
-    description:
-      'Cadre théorique et méthodologique développé par Hervé Nanfang pour articuler création musicale, MAO et technologies génératives. Fondé sur les quatre verbes (Créer · Transmettre · Augmenter · Développer), il affirme la primauté de l’oreille critique et de l’identité culturelle.',
-    link: '/ia-technologie#musicien-augmente',
-    linkLabel: 'Explorer l’approche',
+    name: 'Formule Live Band — Orchestre',
+    tag: 'Grand Format',
+    desc: 'Formation complète avec section rythmique et cuivres pour grands événements institutionnels, festivals et soirées corporate.',
+    to: '/contact?sujet=booking&formula=liveband#booking',
   },
+]
+
+const ACADEMY_TRACKS = [
   {
-    num: '04',
-    name: 'Le Permis de Jouer',
-    trademark: 'Référentiel d’évaluation & progression (A Laiz Academy)',
-    badge: 'Niveaux N1 à N4',
-    lead: 'Autonomie instrumentale immédiate et progression par compétences réelles.',
-    description:
-      'Référentiel pédagogique structuré au sein de A Laiz Academy en quatre niveaux modulaires. Il remplace l’abstraction du solfège rébarbatif par une progression pragmatique axée sur les grilles d’accords, l’harmonie pratique et le jeu en situation réelle.',
+    level: 'N1 → N4',
+    title: 'Le Permis de Jouer™',
+    text: 'Référentiel progressif en 4 paliers privilégiant le jeu immédiat, les grilles harmoniques, l’écoute active et l’autonomie scénique.',
     link: '/pedagogie#permis-de-jouer',
-    linkLabel: 'Consulter la méthode',
+    linkLabel: 'Voir le référentiel N1–N4',
   },
   {
-    num: '05',
-    name: 'A Laiz Ô Pays',
-    trademark: 'Manifeste & philosophie culturelle fondatrice',
-    badge: 'Depuis 2010',
-    lead: 'Être enraciné dans sa culture pour dialoguer librement avec le monde et les technologies.',
-    description:
-      'A Laiz Ô Pays est le manifeste artistique et culturel fondateur de Hervé Nanfang. Il incarne le fil conducteur qui relie l’interprétation vivante, la transmission pédagogique, la recherche patrimoniale et l’exploration des technologies.',
-    link: '/projets',
-    linkLabel: 'Explorer les réalisations',
+    level: 'Piano · Chant · MAO',
+    title: 'A Laiz Academy (ex-RMA)',
+    text: 'Cours particuliers et collectifs à Yaoundé et à distance : piano, accompagnement, chant, arrangement, MAO et ingénierie du son.',
+    link: '/rma',
+    linkLabel: 'Explorer les programmes',
+  },
+  {
+    level: 'Manuel déposé',
+    title: 'Collection LES ZIKOS®',
+    text: 'Supports pédagogiques structurés et méthodes d’apprentissage ancrées dans les réalités rythmiques et harmoniques africaines et internationales.',
+    link: '/pedagogie',
+    linkLabel: 'Découvrir les ouvrages',
   },
 ]
 
@@ -130,22 +135,10 @@ function getArticleCover(article: AdminArticle): string {
   return '/images/shooting-pro-officiel.webp'
 }
 
-/**
- * Fonds d'écran des 4 piliers — un univers par verbe.
- * Photos assombries + motif CSS + chiffre fantôme ; le voile (JSX)
- * garantit la lisibilité. Alternance photo / motif pour le rythme.
- */
-const PILLAR_BG: { img?: string; motif?: string; position?: string }[] = [
-  { img: '/images/hero-duo-live.webp', position: 'object-center' }, // Créer — duo live, piano & voix
-  { motif: 'motif-staff' }, // Transmettre — portée musicale
-  { img: monogram, motif: 'motif-circuit', position: 'object-center' }, // Augmenter — monogramme or + circuit
-  { motif: 'motif-growth' }, // Développer — constellation & croissance
-]
-
 const ROLES = [
-  'Artiste-Musicien · Le Pianobariste',
-  'Musicologue · Pédagogue',
-  'Ingénieur du Son · Producteur',
+  'Artiste-Musicien · Le Pianobariste™',
+  'Musicologue · Pédagogue & Formateur',
+  'Ingénieur du Son · Producteur MAO',
   'Musicien Augmenté™ · IA & Innovation',
 ]
 
@@ -166,19 +159,37 @@ export default function Home() {
     title: IDENTITY.seoTitle,
     description: IDENTITY.metaDescription,
     path: '/',
-    jsonLd: [personSchema, websiteSchema, organizationSchema, musicGroupSchema],
+    jsonLd: [
+      personSchema,
+      websiteSchema,
+      organizationSchema,
+      musicGroupSchema,
+      serviceSchema(
+        'Le Pianobariste™ — Prestations piano-bar live & musique événementielle',
+        'Prestations musicales live au piano et au chant (solo, duo, live band) pour hôtels de prestige, événements diplomatiques, galas et réceptions au Cameroun et à l’international.',
+        'Performance musicale live',
+      ),
+      courseSchema(
+        'A Laiz Academy — Formation musicale, Piano, MAO & Permis de Jouer™',
+        'Académie de formation musicale et technologique fondée par Hervé Nanfang : piano, chant, MAO, ingénierie du son et méthode certifiante Permis de Jouer™ (N1 à N4).',
+      ),
+    ],
   })
 
   return (
     <>
-      {/* ============================ HERO ============================ */}
+      {/* ========================================================================= */}
+      {/* 1. HERO — HERVÉ NANFANG, PROPOSITION DE VALEUR & 4 CTA PRIORITAIRES       */}
+      {/* ========================================================================= */}
       <section className="home-hero relative isolate overflow-hidden bg-ink">
         <img
           src={liveScene}
-          alt="Hervé Nanfang au piano avec Flavie au chant lors d’une prestation live."
+          alt="Hervé Nanfang au piano lors d’une prestation live Le Pianobariste au Cameroun."
           width={1600}
           height={900}
           loading="eager"
+          {...({ fetchpriority: 'high' } as Record<string, string>)}
+          decoding="async"
           onError={(e) => {
             if (!e.currentTarget.src.includes('/images/live-scene-piano.jpeg')) {
               e.currentTarget.src = '/images/live-scene-piano.jpeg'
@@ -193,12 +204,11 @@ export default function Home() {
         {/* Onde acoustique cinétique harmonique */}
         <SoundWaveCanvas className="z-[3] opacity-60" />
 
-        <Container className="relative z-10 flex min-h-[min(54rem,100svh)] items-end pb-16 pt-36 md:items-end md:pb-20 md:pt-40">
-          <div className="max-w-4xl">
+        <Container className="relative z-10 flex min-h-[min(54rem,100svh)] items-end pb-14 pt-32 md:items-end md:pb-20 md:pt-40">
+          <div className="max-w-4xl w-full">
             <Reveal>
-              <div className="mb-6 flex flex-wrap items-center gap-3 sm:gap-4 md:gap-5">
-                {/* Écrin de prestige pour le monogramme des initiales HN */}
-                <div className="group relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-2xl border-2 border-gold/50 bg-gradient-to-br from-gold/15 via-ink-2 to-black p-2.5 shadow-[0_0_35px_rgba(198,161,91,0.3)] ring-1 ring-gold/25 backdrop-blur-md transition-all duration-500 hover:scale-105 hover:border-gold hover:shadow-[0_0_50px_rgba(198,161,91,0.55)] md:h-24 md:w-24 md:p-3">
+              <div className="mb-5 flex flex-wrap items-center gap-3 sm:gap-4 md:gap-5">
+                <div className="group relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border-2 border-gold/50 bg-gradient-to-br from-gold/15 via-ink-2 to-black p-2 shadow-[0_0_35px_rgba(198,161,91,0.3)] ring-1 ring-gold/25 backdrop-blur-md transition-all duration-500 hover:scale-105 hover:border-gold sm:h-20 sm:w-20 md:h-24 md:w-24 md:p-3">
                   <div
                     aria-hidden="true"
                     className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(198,161,91,0.22),transparent_70%)]"
@@ -209,7 +219,8 @@ export default function Home() {
                     width={112}
                     height={112}
                     loading="eager"
-                    className="relative z-10 h-full w-full object-contain drop-shadow-[0_0_12px_rgba(198,161,91,0.4)] transition-transform duration-500 group-hover:scale-105"
+                    decoding="async"
+                    className="relative z-10 h-full w-full object-contain drop-shadow-[0_0_12px_rgba(198,161,91,0.4)]"
                   />
                 </div>
                 <span aria-hidden className="hidden h-px w-8 bg-ivory/30 sm:block md:w-12" />
@@ -223,30 +234,31 @@ export default function Home() {
                   </Eyebrow>
                 </div>
               </div>
-              <h1 className="home-hero__title mt-0 max-w-4xl text-5xl leading-[0.9] tracking-[-0.04em] text-ivory sm:text-7xl lg:text-[6.5rem]">
+
+              <h1 className="home-hero__title mt-0 max-w-4xl text-5xl leading-[0.92] tracking-[-0.04em] text-ivory sm:text-7xl lg:text-[6.2rem]">
                 {MASTER_IDENTITY.identite.nom}
               </h1>
             </Reveal>
 
-            <Reveal delay={140}>
-              <p className="mt-7 max-w-2xl font-display text-2xl leading-snug text-ivory sm:text-3xl">
-                La musique comme création, transmission et transformation.
+            <Reveal delay={100}>
+              <p className="mt-5 max-w-2xl font-display text-2xl leading-snug text-ivory sm:text-3xl">
+                Créer. Transmettre. Augmenter. Développer.
               </p>
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-ivory/75 md:text-base">
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ivory/80 md:text-base">
                 {MASTER_IDENTITY.positionnement.accrocheAccueil}
               </p>
             </Reveal>
 
-            <Reveal delay={220}>
-              {/* Bloc de conversion direct & 4 parcours */}
-              <div className="mt-8 rounded-2xl border border-gold/30 bg-ink-2/80 p-5 md:p-6 backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
+            <Reveal delay={180}>
+              {/* Appels à l'action prioritaires dès le premier écran */}
+              <div className="mt-7 rounded-2xl border border-gold/35 bg-ink-2/85 p-4 sm:p-5 md:p-6 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.55)]">
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
                   <div>
-                    <h2 className="font-display text-lg text-ivory sm:text-xl">
-                      Réserver Hervé Nanfang
-                    </h2>
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold">
+                      Accès direct · Cameroun & International
+                    </p>
                     <p className="mt-0.5 text-xs text-ivory/70">
-                      Piano-bar live, conférences, masterclasses, formations et accompagnement IA.
+                      Sélectionnez votre besoin pour obtenir une proposition sur mesure sous 48 h.
                     </p>
                   </div>
                   <a
@@ -254,59 +266,49 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackContactMethodClick('whatsapp', 'hero_fast')}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-[0.68rem] font-bold uppercase tracking-wider text-emerald-400 hover:border-emerald-400 hover:bg-emerald-500/20 transition-all"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3.5 py-1.5 text-[0.68rem] font-bold uppercase tracking-wider text-emerald-400 hover:border-emerald-400 hover:bg-emerald-500/20 transition-all"
                   >
-                    <span>💬 Réserver par WhatsApp</span>
+                    <span>💬 WhatsApp Direct</span>
                   </a>
                 </div>
 
-                <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+                <div className="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
                   <Btn
-                    to="/contact#booking"
+                    to="/contact?sujet=booking#booking"
                     variant="gold"
                     onClick={() => trackCtaClick('hero_booking', 'booking', 'hero')}
-                    className="w-full justify-center text-center !py-2.5 !text-xs !tracking-wider font-semibold"
+                    className="w-full justify-center text-center !py-3 !px-3 !text-xs !tracking-wider font-semibold"
                   >
-                    Piano-bar live
+                    Réserver une prestation
                   </Btn>
                   <Btn
-                    to="/contact#conference"
-                    variant="ghost"
-                    onClick={() => trackCtaClick('hero_conference', 'conference', 'hero')}
-                    className="w-full justify-center text-center !py-2.5 !text-xs !tracking-wider border-white/20 hover:border-gold hover:text-gold"
-                  >
-                    Conférence / Masterclass
-                  </Btn>
-                  <Btn
-                    to="/contact#formation"
+                    to="/contact?sujet=formation#formation"
                     variant="ghost"
                     onClick={() => trackCtaClick('hero_formation', 'formation', 'hero')}
-                    className="w-full justify-center text-center !py-2.5 !text-xs !tracking-wider border-white/20 hover:border-gold hover:text-gold"
+                    className="w-full justify-center text-center !py-3 !px-3 !text-xs !tracking-wider border-white/25 hover:border-gold hover:text-gold"
                   >
-                    A Laiz Academy
+                    Organiser une formation
                   </Btn>
                   <Btn
-                    to="/contact#conseil"
+                    to="/contact?sujet=conference#conference"
+                    variant="ghost"
+                    onClick={() => trackCtaClick('hero_conference', 'conference', 'hero')}
+                    className="w-full justify-center text-center !py-3 !px-3 !text-xs !tracking-wider border-white/25 hover:border-gold hover:text-gold"
+                  >
+                    Inviter Hervé Nanfang
+                  </Btn>
+                  <Btn
+                    to="/contact?sujet=conseil#conseil"
                     variant="ghost"
                     onClick={() => trackCtaClick('hero_conseil', 'conseil', 'hero')}
-                    className="w-full justify-center text-center !py-2.5 !text-xs !tracking-wider border-white/20 hover:border-gold hover:text-gold"
+                    className="w-full justify-center text-center !py-3 !px-3 !text-xs !tracking-wider border-white/25 hover:border-gold hover:text-gold"
                   >
-                    Accompagnement IA
+                    Demander un accompagnement
                   </Btn>
                 </div>
               </div>
 
-              <div className="mt-6 flex flex-wrap items-center gap-3">
-                <a
-                  href="#offres"
-                  className="btn btn-ghost inline-flex items-center gap-2 border-white/20 text-ivory hover:border-gold hover:text-gold text-xs"
-                >
-                  Découvrir nos 4 offres en détail ↓
-                </a>
-                <Btn to="/a-propos" variant="ghost" className="text-xs">
-                  Mon parcours
-                </Btn>
-
+              <div className="mt-5 flex flex-wrap items-center gap-3">
                 <button
                   type="button"
                   onClick={openPlayer}
@@ -316,1152 +318,564 @@ export default function Home() {
                   <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
                     <polygon points="6 3 20 12 6 21 6 3" />
                   </svg>
-                  <span>Écouter les extraits ♫</span>
+                  <span>Écouter Le Pianobariste™ ♫</span>
                 </button>
+                <Btn to="/a-propos" variant="ghost" className="text-xs border-white/20">
+                  Biographie & Parcours
+                </Btn>
+                <Btn to="/journal" variant="ghost" className="text-xs border-white/20">
+                  Lire le Journal
+                </Btn>
               </div>
-              <a
-                href="#chiffres-autorite"
-                aria-label="Défiler vers les chiffres d’autorité"
-                className="mt-12 inline-flex items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-ivory/45 transition-colors hover:text-gold"
-              >
-                Défiler
-                <span aria-hidden className="inline-block h-8 w-px bg-gradient-to-b from-gold/70 to-transparent" />
-              </a>
             </Reveal>
           </div>
         </Container>
       </section>
 
-      {/* ===================== BANDEAU D’AUTORITÉ & PREUVE DE TERRAIN ===================== */}
+      {/* ========================================================================= */}
+      {/* BANDEAU D’AUTORITÉ & PROPOSITIONS DE VALEUR                               */}
+      {/* ========================================================================= */}
       <section id="chiffres-autorite" className="relative border-y border-white/10 bg-ink-2 py-10 md:py-14">
         <Container>
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:gap-12">
             <Reveal delay={0}>
               <div className="border-l-2 border-gold/60 pl-4 md:pl-6">
                 <p className="font-display text-3xl text-gold sm:text-4xl lg:text-5xl">2007</p>
-                <p className="mt-1 font-mono text-[0.68rem] uppercase tracking-wider text-ivory/60 sm:text-xs">
-                  Pratique piano-bar live
+                <p className="mt-1 font-mono text-[0.68rem] uppercase tracking-wider text-ivory/80 sm:text-xs">
+                  Le Pianobariste™ live
                 </p>
-
-                <p className="mt-1 text-xs text-ivary/40">+200 interventions live depuis 2007</p>
+                <p className="mt-1 text-xs text-ivory/65">+440 titres au répertoire · Scènes de prestige</p>
               </div>
             </Reveal>
             <Reveal delay={60}>
               <div className="border-l-2 border-gold/60 pl-4 md:pl-6">
                 <p className="font-display text-3xl text-gold sm:text-4xl lg:text-5xl">4</p>
-                <p className="mt-1 font-mono text-[0.68rem] uppercase tracking-wider text-ivory/60 sm:text-xs">
+                <p className="mt-1 font-mono text-[0.68rem] uppercase tracking-wider text-ivory/80 sm:text-xs">
                   Institutions supérieures
                 </p>
-
-                <p className="mt-1 text-xs text-ivory/40">Enseignement & Masterclass</p>
+                <p className="mt-1 text-xs text-ivory/65">ESAS Lomé · ISMA · IBA · IFCPA/CRTV</p>
               </div>
             </Reveal>
             <Reveal delay={120}>
               <div className="border-l-2 border-gold/60 pl-4 md:pl-6">
                 <p className="font-display text-3xl text-gold sm:text-4xl lg:text-5xl">N1–N4</p>
-                <p className="mt-1 font-mono text-[0.68rem] uppercase tracking-wider text-ivory/60 sm:text-xs">
+                <p className="mt-1 font-mono text-[0.68rem] uppercase tracking-wider text-ivory/80 sm:text-xs">
                   Permis de Jouer™
                 </p>
-
-                <p className="mt-1 text-xs text-ivory/40">4 paliers de compétences certifiées</p>
+                <p className="mt-1 text-xs text-ivory/65">4 paliers de compétences à A Laiz Academy</p>
               </div>
             </Reveal>
             <Reveal delay={180}>
               <div className="border-l-2 border-gold/60 pl-4 md:pl-6">
-                <p className="font-display text-3xl text-gold sm:text-4xl lg:text-5xl">28</p>
-                <p className="mt-1 font-mono text-[0.68rem] uppercase tracking-wider text-ivory/60 sm:text-xs">
-                  Piliers éditoriaux
+                <p className="font-display text-3xl text-gold sm:text-4xl lg:text-5xl">06</p>
+                <p className="mt-1 font-mono text-[0.68rem] uppercase tracking-wider text-ivory/80 sm:text-xs">
+                  Conférences majeures
                 </p>
-
-                <p className="mt-1 text-xs text-ivory/40">Essais de recherche au Journal</p>
+                <p className="mt-1 text-xs text-ivory/65">Musicien Augmenté™ · IA, MAO & Culture</p>
               </div>
             </Reveal>
           </div>
 
-          {/* Références institutionnelles certifiées */}
-          <div className="mt-10 border-t border-white/5 pt-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <span className="font-mono text-[0.65rem] uppercase tracking-widest text-gold/80 flex items-center gap-2">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-gold animate-pulse" />
-                Références d’enseignement, scène & recherche :
-              </span>
-              <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-3 md:gap-6 font-mono text-[0.72rem] text-ivory/75">
-                <div className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1.5 hover:border-gold/40 hover:text-gold transition-all">
-                  ESAS Lomé (Togo)
-                </div>
-                <div className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1.5 hover:border-gold/40 hover:text-gold transition-all">
-                  ISMA Bénin
-                </div>
-                <div className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1.5 hover:border-gold/40 hover:text-gold transition-all">
-                  IBA Nkongsamba (Univ. Douala)
-                </div>
-                <div className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1.5 hover:border-gold/40 hover:text-gold transition-all">
-                  IFCPA / CRTV Cameroun
-                </div>
-              </div>
+          <div className="mt-8 border-t border-white/8 pt-6 flex flex-wrap items-center justify-between gap-4">
+            <span className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold/80">
+              Références académiques & scènes de prestige :
+            </span>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-medium tracking-wider text-ivory/60">
+              <span>ESAS (Lomé)</span>
+              <span className="text-gold/40">•</span>
+              <span>ISMA (Bénin)</span>
+              <span className="text-gold/40">•</span>
+              <span>Institut des Beaux-Arts (Nkongsamba)</span>
+              <span className="text-gold/40">•</span>
+              <span>IFCPA / CRTV (Yaoundé)</span>
+              <span className="text-gold/40">•</span>
+              <span>Hôtel Hilton · Mont Fébé · Djeuga Palace · Akwa Palace</span>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* ===================== 4 PORTES D’ENTRÉE COMMERCIALES & RÉSERVATION ===================== */}
-      <Section id="offres" tone="dark" className="border-t border-gold/20">
-        <Reveal>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <Eyebrow>Travailler avec Hervé Nanfang</Eyebrow>
-              <Display size="lg" className="mt-4 text-ivory">
-                Quatre univers d’intervention directe
-              </Display>
-              <Body className="mt-4 max-w-2xl text-ivory/70">
-                Organisateur d’événement, responsable d’école, entreprise, média ou porteur de projet : accédez directement au cadre de collaboration adapté à votre besoin.
-              </Body>
+      {/* ========================================================================= */}
+      {/* SYNTHÈSE IDENTITAIRE — CRÉER · TRANSMETTRE · AUGMENTER · DÉVELOPPER       */}
+      {/* ========================================================================= */}
+      <Section tone="ink" id="proposition-de-valeur">
+        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+          <Reveal>
+            <figure className="relative mx-auto max-w-md lg:max-w-none">
+              <div className="overflow-hidden border border-white/10 bg-ink-2">
+                <img
+                  src="/images/shooting-pro-officiel.webp"
+                  alt="Portrait officiel d'Hervé Nanfang — Artiste-musicien, musicologue, pédagogue et ingénieur du son"
+                  width={800}
+                  height={1000}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[4/5] w-full object-cover object-[50%_18%]"
+                />
+              </div>
+              <figcaption className="mt-3 flex items-center justify-between text-[0.68rem] uppercase tracking-[0.18em] text-ivory/45">
+                <span>{IDENTITY.name}</span>
+                <span>{IDENTITY.city}</span>
+              </figcaption>
+            </figure>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <ChapterMark num="00" label="Identité & Architecture" />
+            <Display size="md" className="mt-6">
+              Créer. Transmettre. Augmenter. Développer.
+            </Display>
+            <Lead className="mt-5">
+              {IDENTITY.referenceDescription}
+            </Lead>
+            <Body className="mt-4">
+              {IDENTITY.bios.court} Fondateur de l’univers créatif et culturel{' '}
+              <strong className="text-ivory">A Laiz Ô Pays</strong>, il relie la scène piano-bar live,
+              l’enseignement musical structuré et l’innovation technologique appliquée au son.
+            </Body>
+
+            <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {PILLARS.map((p) => (
+                <Link
+                  key={p.index}
+                  to={p.to}
+                  className="group border border-white/10 bg-ink-2/70 p-3.5 transition-colors hover:border-gold/50"
+                >
+                  <span className="font-mono text-[0.65rem] text-gold/80">{p.index}</span>
+                  <p className="mt-1 font-display text-lg text-ivory group-hover:text-gold transition-colors">
+                    {p.verb}
+                  </p>
+                  <p className="mt-0.5 text-[0.68rem] text-ivory/55">{p.keywords}</p>
+                </Link>
+              ))}
             </div>
-            <div className="shrink-0">
-              <Btn to="/contact" variant="ghost">
-                Toutes les modalités de contact →
+
+            <div className="mt-7 flex flex-wrap gap-2">
+              {DISCIPLINES.map((d) => (
+                <Tag key={d}>{d}</Tag>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-wrap items-center gap-5">
+              <Btn to="/a-propos" variant="ghost">
+                Découvrir le parcours complet
+              </Btn>
+              <ArrowLink to="/presse">Dossier de presse & EPK officiel</ArrowLink>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* ========================================================================= */}
+      {/* 2. LE PIANOBARISTE™ — PRESTATIONS MUSICALES LIVE                          */}
+      {/* ========================================================================= */}
+      <Section tone="dark" id="le-pianobariste">
+        <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <Reveal>
+            <ChapterMark num="01" label="Le Pianobariste™ · Prestations Musicales" />
+            <Display size="lg" className="mt-6">
+              Piano-bar live & musique d’atmosphère pour événements de prestige
+            </Display>
+            <Lead className="mt-5">
+              Depuis 2007, Hervé Nanfang façonne sous la signature <strong className="text-ivory">Le Pianobariste™</strong>{' '}
+              une présence musicale cousue main pour les grands hôtels, réceptions diplomatiques, soirées
+              corporate, mariages et événements privés au Cameroun (Yaoundé, Douala) et à l’international.
+            </Lead>
+
+            <div className="mt-8 grid grid-cols-3 gap-4 border-y border-white/10 py-5">
+              <Stat value="2007" label="Scène piano-bar" />
+              <Stat value="440+" label="Titres au répertoire" />
+              <Stat value="Solo → Band" label="Formules sur mesure" />
+            </div>
+
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Btn
+                to="/contact?sujet=booking#booking"
+                variant="gold"
+                onClick={() => trackCtaClick('section_pianobar_booking', 'booking', 'home_pianobar')}
+              >
+                Réserver une prestation
+              </Btn>
+              <Btn to="/musique" variant="ghost">
+                Explorer l’univers musical & répertoire
+              </Btn>
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <figure className="relative">
+              <div className="overflow-hidden border border-white/10 bg-ink">
+                <img
+                  src={livePianoMedia.url}
+                  alt={livePianoMedia.alt || 'Hervé Nanfang — Le Pianobariste en prestation piano-bar live'}
+                  width={1280}
+                  height={853}
+                  loading="lazy"
+                  decoding="async"
+                  style={livePianoMedia.style}
+                  onError={(e) => {
+                    if (!e.currentTarget.src.includes('/images/live-scene-piano.jpeg')) {
+                      e.currentTarget.src = '/images/live-scene-piano.jpeg'
+                    }
+                  }}
+                  className="aspect-[16/10] w-full object-cover"
+                />
+              </div>
+              <figcaption className="mt-3 flex items-center justify-between text-[0.68rem] uppercase tracking-[0.18em] text-ivory/45">
+                <span>Le Pianobariste™ · Piano & Voix</span>
+                <span>Hilton · Mont Fébé · Djeuga Palace · Akwa Palace</span>
+              </figcaption>
+            </figure>
+          </Reveal>
+        </div>
+
+        {/* Les 3 formules scéniques */}
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {PIANOBAR_FORMATS.map((f, i) => (
+            <Reveal key={f.name} delay={i * 80}>
+              <Card className="flex h-full flex-col justify-between border-white/10 bg-ink p-7 transition-colors hover:border-gold/50">
+                <div>
+                  <Eyebrow>{f.tag}</Eyebrow>
+                  <h3 className="mt-3 font-display text-2xl text-ivory">{f.name}</h3>
+                  <Rule className="opacity-35" />
+                  <Body className="mt-3 text-sm">{f.desc}</Body>
+                </div>
+                <div className="mt-6 pt-3 border-t border-white/8">
+                  <ArrowLink to={f.to}>Demander un devis pour ce format</ArrowLink>
+                </div>
+              </Card>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Extraits vidéo live intégrés */}
+        <div className="mt-14">
+          <HomeFeaturedVideos />
+        </div>
+      </Section>
+
+      {/* ========================================================================= */}
+      {/* 3. A LAIZ ACADEMY — FORMATION MUSICALE, PIANO & MAO                       */}
+      {/* ========================================================================= */}
+      <Section tone="ink" id="a-laiz-academy">
+        <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+          <Reveal>
+            <ChapterMark num="02" label="A Laiz Academy · Formation & Pédagogie" />
+            <Display size="lg" className="mt-6">
+              Apprendre la musique, le piano et la MAO avec une méthode structurée
+            </Display>
+          </Reveal>
+          <Reveal delay={100}>
+            <Lead>
+              Fondée par Hervé Nanfang, <strong className="text-ivory">A Laiz Academy</strong> (anciennement
+              Racines Musicales Academy — RMA) forme les enfants, adultes, musiciens et professionnels aux
+              pratiques instrumentales et aux technologies du son, à Yaoundé et à distance.
+            </Lead>
+          </Reveal>
+        </div>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {ACADEMY_TRACKS.map((track, i) => (
+            <Reveal key={track.title} delay={i * 80}>
+              <Card className="flex h-full flex-col justify-between border-white/10 bg-ink-2 p-7 transition-colors hover:border-gold/50">
+                <div>
+                  <span className="inline-block rounded border border-gold/30 bg-gold/10 px-2.5 py-0.5 font-mono text-[0.65rem] uppercase tracking-wider text-gold">
+                    {track.level}
+                  </span>
+                  <h3 className="mt-4 font-display text-2xl text-ivory">{track.title}</h3>
+                  <Rule className="opacity-35" />
+                  <Body className="mt-3 text-sm">{track.text}</Body>
+                </div>
+                <div className="mt-6 pt-3 border-t border-white/8">
+                  <ArrowLink to={track.link}>{track.linkLabel}</ArrowLink>
+                </div>
+              </Card>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={140}>
+          <div className="mt-10 flex flex-col justify-between gap-6 border border-gold/30 bg-ink-2/90 p-7 sm:flex-row sm:items-center md:p-9">
+            <div className="max-w-2xl">
+              <Eyebrow>Inscriptions & Partenariats Académiques</Eyebrow>
+              <h3 className="mt-2 font-display text-2xl text-ivory">
+                Vous souhaitez suivre un cursus ou organiser une formation dans votre établissement ?
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-ivory/65">
+                Cours individuels, ateliers collectifs, séminaires MAO ou conception de curricula pour écoles
+                supérieures et conservatoires.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3 shrink-0">
+              <Btn
+                to="/contact?sujet=formation#formation"
+                variant="gold"
+                onClick={() => trackCtaClick('section_academy_formation', 'formation', 'home_academy')}
+              >
+                Organiser une formation
+              </Btn>
+              <Btn to="/rma" variant="ghost">
+                Découvrir A Laiz Academy
               </Btn>
             </div>
           </div>
         </Reveal>
+      </Section>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Offre 1 : Live */}
-          <Reveal delay={0}>
-            <div className="group flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-ink-2/70 p-6 transition-all duration-300 hover:border-gold/50 hover:bg-ink-2">
-              <div>
-                <div className="flex items-center justify-between gap-2">
-                  <span className="font-mono text-xs uppercase tracking-widest text-gold">01 · Live</span>
-                  <Tag tone="gold">Prestige</Tag>
-                </div>
-                <h3 className="mt-4 font-display text-xl text-ivory group-hover:text-gold transition-colors">
-                  Piano-bar Live & Réceptions
-                </h3>
-                <p className="mt-3 text-xs leading-relaxed text-ivory/70">
-                  Prestations live pour mariages, galas, hôtels de prestige, salons diplomatiques et cocktails d’entreprise. Répertoire de +440 titres (variété internationale, musiques africaines, jazz, chanson).
-                </p>
-
-                <div className="mt-4 rounded border border-white/5 bg-white/[0.02] p-3 text-[0.7rem] text-ivory/60">
-                  <strong className="text-gold/90 font-medium">Claviers :</strong> Yamaha PSR-SX600 & PSR-SX920 · Piano à queue sur demande.
-                </div>
-              </div>
-              <div className="mt-6 pt-5 border-t border-white/10">
-                <Btn to="/contact#booking" variant="gold" className="w-full justify-center text-center text-xs">
-                  Demander une disponibilité
-                </Btn>
-
-
-              </div>
-            </div>
+      {/* ========================================================================= */}
+      {/* 4. CONFÉRENCES & INTERVENTIONS INSTITUTIONNELLES                          */}
+      {/* ========================================================================= */}
+      <Section tone="dark" id="conferences">
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <Reveal>
+            <ChapterMark num="03" label="Conférences · Masterclasses · Séminaires" />
+            <Display size="lg" className="mt-6 max-w-3xl">
+              Des interventions de référence pour universités, écoles et institutions
+            </Display>
+            <Lead className="mt-4 max-w-2xl">
+              Six conférences et masterclasses alliant démonstrations musicales en direct, musicologie
+              africaine et décryptage méthodologique de l’intelligence artificielle.
+            </Lead>
           </Reveal>
-
-          {/* Offre 2 : Conférences */}
-          <Reveal delay={80}>
-            <div className="group flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-ink-2/70 p-6 transition-all duration-300 hover:border-gold/50 hover:bg-ink-2">
-              <div>
-                <div className="flex items-center justify-between gap-2">
-                  <span className="font-mono text-xs uppercase tracking-widest text-gold">02 · Échange</span>
-                  <Tag tone="ink">Institutions</Tag>
-                </div>
-                <h3 className="mt-4 font-display text-xl text-ivory group-hover:text-gold transition-colors">
-                  Conférences & Masterclasses
-                </h3>
-                <p className="mt-3 text-xs leading-relaxed text-ivory/70">
-                  Interventions magistrales pour universités, conservatoires, écoles de cinéma et festivals culturels. Thèmes majeurs : Le Musicien Augmenté™, IA & MAO, droit d’auteur et pédagogie moderne.
-                </p>
-
-                <div className="mt-4 rounded border border-white/5 bg-white/[0.02] p-3 text-[0.7rem] text-ivory/60">
-                  <strong className="text-gold/90 font-medium">Publics :</strong> Étudiants, enseignants, professionnels du son et institutions.
-                </div>
-              </div>
-              <div className="mt-6 pt-5 border-t border-white/10">
-                <Btn to="/conferences" variant="ghost" className="w-full justify-center text-center text-xs">
-                  Voir les conférences
-                </Btn>
-
-
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Offre 3 : Formation */}
-          <Reveal delay={160}>
-            <div className="group flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-ink-2/70 p-6 transition-all duration-300 hover:border-gold/50 hover:bg-ink-2">
-              <div>
-                <div className="flex items-center justify-between gap-2">
-                  <span className="font-mono text-xs uppercase tracking-widest text-gold">03 · Cursus</span>
-                  <Tag tone="gold">Académie</Tag>
-                </div>
-                <h3 className="mt-4 font-display text-xl text-ivory group-hover:text-gold transition-colors">
-                  A Laiz Academy & Permis de Jouer™
-                </h3>
-                <p className="mt-3 text-xs leading-relaxed text-ivory/70">
-                  Formation pratique au piano, MAO et polyrythmies patrimoniales africaines. Méthode structurée en 4 niveaux certifiants pour une autonomie instrumentale sans solfège rébarbatif.
-                </p>
-
-                <div className="mt-4 rounded border border-white/5 bg-white/[0.02] p-3 text-[0.7rem] text-ivory/60">
-                  <strong className="text-gold/90 font-medium">Formats :</strong> Cursus individuel, stages intensifs et formation d’éducateurs.
-                </div>
-              </div>
-              <div className="mt-6 pt-5 border-t border-white/10">
-                <Btn to="/rma" variant="ghost" className="w-full justify-center text-center text-xs">
-                  Découvrir l’Académie
-                </Btn>
-
-
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Offre 4 : Conseil & IA */}
-          <Reveal delay={240}>
-            <div className="group flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-ink-2/70 p-6 transition-all duration-300 hover:border-gold/50 hover:bg-ink-2">
-              <div>
-                <div className="flex items-center justify-between gap-2">
-                  <span className="font-mono text-xs uppercase tracking-widest text-gold">04 · Conseil</span>
-                  <Tag tone="ink">Innovation</Tag>
-                </div>
-                <h3 className="mt-4 font-display text-xl text-ivory group-hover:text-gold transition-colors">
-                  Conseil IA, Son & Stratégie
-                </h3>
-                <p className="mt-3 text-xs leading-relaxed text-ivory/70">
-                  Accompagnement stratégique pour artistes, studios et institutions culturelles : intégration d’outils IA, ingénierie et mixage audio, valorisation d’archives et développement de marques pérennes.
-                </p>
-
-                <div className="mt-4 rounded border border-white/5 bg-white/[0.02] p-3 text-[0.7rem] text-ivory/60">
-                  <strong className="text-gold/90 font-medium">Livrables :</strong> Diagnostic personnalisé, feuilles de route et sessions de travail.
-                </div>
-              </div>
-              <div className="mt-6 pt-5 border-t border-white/10">
-                <Btn to="/services" variant="ghost" className="w-full justify-center text-center text-xs">
-                  Consulter les services
-                </Btn>
-
-
-              </div>
+          <Reveal delay={100}>
+            <div className="flex flex-wrap gap-3 shrink-0">
+              <Btn
+                to="/contact?sujet=conference#conference"
+                variant="gold"
+                onClick={() => trackCtaClick('section_conferences_invite', 'conference', 'home_conferences')}
+              >
+                Inviter Hervé Nanfang
+              </Btn>
+              <Btn to="/conferences" variant="ghost">
+                Voir les 6 fiches détaillées
+              </Btn>
             </div>
           </Reveal>
         </div>
-      </Section>
 
-      <Section tone="ivory" className="home-manifest relative overflow-hidden">
-        <div className="home-manifest__backdrop absolute inset-0 opacity-80" aria-hidden />
-        <div className="relative z-10 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-          <Reveal>
-            <Eyebrow tone="ink">Signature artistique</Eyebrow>
-            <Display size="lg" className="mt-6 text-ink">
-              Créer. Transmettre. Augmenter. Développer.
-            </Display>
-          </Reveal>
-          <Reveal delay={120}>
-            <Body className="max-w-xl text-ink/75">
-              Hervé Nanfang unit la pratique musicale, la musicologie, l’enseignement, la culture numérique et la création d’initiatives durables. Son travail articule la scène, la recherche et l’innovation pour faire de la musique un espace vivant d’identité, de transmission et de transformation.
-            </Body>
-          </Reveal>
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {CONFERENCES.map((conf, i) => (
+            <Reveal key={conf.id} delay={i * 70}>
+              <Card className="flex h-full flex-col justify-between border-white/10 bg-ink p-7 transition-colors hover:border-gold/50">
+                <div>
+                  <div className="flex items-center justify-between gap-2">
+                    <Eyebrow>{conf.theme}</Eyebrow>
+                    <span className="font-mono text-[0.62rem] uppercase tracking-wider text-ivory/45">
+                      {conf.duration}
+                    </span>
+                  </div>
+                  <h3 className="mt-3 font-display text-xl leading-snug text-ivory">
+                    « {conf.title} »
+                  </h3>
+                  <p className="mt-3 text-xs leading-relaxed text-ivory/65 line-clamp-3">
+                    {conf.pitch}
+                  </p>
+                </div>
+                <div className="mt-6 flex items-center justify-between border-t border-white/8 pt-3">
+                  <span className="text-[0.65rem] uppercase tracking-wider text-ivory/45">
+                    {conf.formats.join(' · ')}
+                  </span>
+                  <Link
+                    to="/conferences#themes"
+                    className="text-xs font-semibold uppercase tracking-wider text-gold hover:text-gold-2"
+                  >
+                    Fiche →
+                  </Link>
+                </div>
+              </Card>
+            </Reveal>
+          ))}
         </div>
       </Section>
 
-      <Section tone="dark" className="home-live">
-        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      {/* ========================================================================= */}
+      {/* 5. MUSICIEN AUGMENTÉ™ — INNOVATION, IA & CONSEIL STRATÉGIQUE              */}
+      {/* ========================================================================= */}
+      <Section tone="ink" id="musicien-augmente">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-start">
           <Reveal>
-            <figure className="home-live__collage relative overflow-hidden rounded-[1.75rem] border border-white/8 bg-ink-2">
-              <img
-                src="/images/showcase-herve-nanfang-mikelang.webp"
-                alt="Hervé Nanfang au clavier arrangeur Yamaha PSR-SX920 en live — Scène et présence artistique"
-                width={2048}
-                height={1143}
-                loading="lazy"
-                onError={(e) => {
-                  if (!e.currentTarget.src.includes('/images/shooting-septembre-matin-727.webp')) {
-                    e.currentTarget.src = '/images/shooting-septembre-matin-727.webp'
-                  }
-                }}
-                className="zoomable h-[540px] w-full object-cover object-[50%_38%]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/15 to-transparent" />
-              <figcaption className="absolute bottom-0 left-0 right-0 flex justify-between gap-4 border-t border-white/10 bg-ink/60 px-5 py-4 text-[0.62rem] uppercase tracking-[0.2em] text-ivory/70 backdrop-blur-sm">
-                <span>Hervé Nanfang</span>
-                <span>Scène & Présence · Yamaha PSR-SX600 & PSR-SX920 · Piano à queue sur demande</span>
-              </figcaption>
-            </figure>
-          </Reveal>
-          <Reveal delay={120}>
-            <Eyebrow>Live · piano-bar · performances</Eyebrow>
-            <Display size="lg" className="mt-6 text-ivory">
-              Une présence qui prend la salle entière.
+            <ChapterMark num="04" label="Musicien Augmenté™ · Innovation, IA & Conseil" />
+            <Display size="lg" className="mt-6">
+              L’intelligence artificielle ne doit pas remplacer le musicien. Elle doit l’augmenter.
             </Display>
-            <Body className="mt-6 max-w-xl text-ivory/70">
-              Du piano-bar aux événements professionnels, la scène est le laboratoire de sa pratique : répertoire, présence, improvisation, intensité, écoute, et capacité à faire vibrer un public réel.
+            <Lead className="mt-5">
+              Formalisé par Hervé Nanfang, le cadre <strong className="text-ivory">Musicien Augmenté™</strong>{' '}
+              accompagne les artistes, studios, écoles et organisations culturelles dans l’intégration
+              éthique, lucide et souveraine des outils génératifs et de la MAO.
+            </Lead>
+            <Body className="mt-4">
+              Qu’il s’agisse d’ingénierie sonore, de direction artistique, d’architecture de marque culturelle
+              ou d’automatisation éditoriale, la technologie reste au service de l’écoute humaine et de
+              l’identité du créateur.
             </Body>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {['Mariages', 'Restaurants', 'Concerts', 'Événements privés', 'Shows publics', 'Événements pro'].map((item) => (
-                <div key={item} className="rounded-full border border-gold/25 bg-gold/5 px-4 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-gold/80">
-                  {item}
+
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Btn
+                to="/contact?sujet=conseil#conseil"
+                variant="gold"
+                onClick={() => trackCtaClick('section_ia_conseil', 'conseil', 'home_ia')}
+              >
+                Demander un accompagnement
+              </Btn>
+              <Btn to="/ia-technologie" variant="ghost">
+                Découvrir Musicien Augmenté™
+              </Btn>
+              <ArrowLink to="/services">Tous les services & conseil</ArrowLink>
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <div className="grid gap-5 sm:grid-cols-2">
+              {IA_DOMAINS.map((domain) => (
+                <div
+                  key={domain.title}
+                  className="border border-white/10 bg-ink-2 p-6 transition-colors hover:border-gold/40"
+                >
+                  <h3 className="font-display text-xl text-ivory">{domain.title}</h3>
+                  <Rule className="opacity-35" />
+                  <ul className="mt-4 space-y-1.5 text-xs text-ivory/65">
+                    {domain.items.map((item) => (
+                      <li key={item} className="flex items-center gap-2">
+                        <span className="h-1 w-1 rounded-full bg-gold" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Btn to="/contact#booking" variant="gold" className="text-xs">
-                Réserver une prestation live
-              </Btn>
-              <ArrowLink to="/musique">Découvrir le répertoire & la scène</ArrowLink>
-            </div>
           </Reveal>
         </div>
       </Section>
 
-      {/* ====================== VIDÉOS LIVE VEDETTES ====================== */}
-      <HomeFeaturedVideos />
-
-      {/* ====================== BANDEAU DISCIPLINES ====================== */}
-      <div className="border-y border-white/8 bg-ink-2">
-        <Container className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 py-7">
-          {DISCIPLINES.map((d, i) => (
-            <span key={d} className="flex items-center gap-8">
-              <span className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-ivory/50">
-                {d}
-              </span>
-              {i < DISCIPLINES.length - 1 && <span aria-hidden className="hidden h-1 w-1 bg-gold/60 sm:block" />}
-            </span>
-          ))}
-        </Container>
-      </div>
-
-      {/* ======================= QUATRE DIMENSIONS ======================= */}
-      <Section id="socle">
-        <Reveal>
-          <ChapterMark num="01" label="Le socle" />
-          <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-end">
-            <Display size="lg">
-              Quatre dimensions,
-              <br />
-              une seule trajectoire.
+      {/* ========================================================================= */}
+      {/* 6. LE JOURNAL — CENTRE D'AUTORITÉ MUSICOLOGIQUE & ÉDITORIALE              */}
+      {/* ========================================================================= */}
+      <Section tone="dark" id="journal">
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <Reveal>
+            <ChapterMark num="05" label="Le Journal · Recherche & Pensée" />
+            <Display size="lg" className="mt-6 max-w-3xl">
+              Musicologie africaine, piano-bar, pédagogie et intelligence artificielle
             </Display>
-            <Body className="lg:pb-3">
-              Quatre mouvements, une même trajectoire. Créer des œuvres et des expériences sonores,
-              transmettre des savoirs structurés, augmenter la pratique par l'IA et développer des projets durables : chacune de ces
-              étapes découle de la précédente et nourrit la suivante.
-            </Body>
-          </div>
-        </Reveal>
+            <Lead className="mt-4 max-w-2xl">
+              Essais de fond, analyses de terrain et chroniques publiés par Hervé Nanfang pour documenter
+              les mutations de la création musicale contemporaine.
+            </Lead>
+          </Reveal>
+          <Reveal delay={100}>
+            <div className="flex flex-wrap gap-3 shrink-0">
+              <Btn to="/journal" variant="gold">
+                Explorer tout le Journal
+              </Btn>
+              <Btn to="/culture-recherche" variant="ghost">
+                Axes de recherche
+              </Btn>
+              <Btn to="/projets" variant="ghost">
+                Projets A Laiz Ô Pays
+              </Btn>
+            </div>
+          </Reveal>
+        </div>
 
-        <div className="mt-16 grid gap-px border border-white/8 bg-white/8 sm:grid-cols-2 lg:grid-cols-4">
-          {PILLARS.map((p, i) => (
-            <Reveal key={p.verb} delay={i * 120}>
+        <div className="mt-12 grid gap-8 lg:grid-cols-12">
+          {/* Article à la une */}
+          {liveArticles[0] && (
+            <Reveal className="lg:col-span-7">
               <Link
-                to={p.to}
-                onMouseMove={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect()
-                  e.currentTarget.style.setProperty('--spotlight-x', `${e.clientX - rect.left}px`)
-                  e.currentTarget.style.setProperty('--spotlight-y', `${e.clientY - rect.top}px`)
-                }}
-                className="pillar-card spotlight-card group flex h-full flex-col bg-ink transition-colors duration-500 hover:bg-ink-2"
+                to={`/journal/${liveArticles[0].slug}`}
+                className="group relative flex h-full flex-col justify-between overflow-hidden border border-gold/40 bg-ink p-7 transition-all duration-500 hover:border-gold sm:p-10"
               >
-                {PILLAR_BG[i].img && (
+                <div className="relative mb-6 aspect-[16/9] w-full overflow-hidden border border-white/10 bg-ink-2">
                   <img
-                    src={PILLAR_BG[i].img}
-                    alt=""
-                    aria-hidden="true"
+                    src={getArticleCover(liveArticles[0])}
+                    alt={liveArticles[0].title}
                     width={800}
-                    height={1000}
+                    height={450}
                     loading="lazy"
                     decoding="async"
-                    className={`absolute inset-0 h-full w-full object-cover ${PILLAR_BG[i].position ?? 'object-center'} opacity-25 transition-all duration-700 group-hover:scale-[1.04] group-hover:opacity-35`}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                )}
-                {PILLAR_BG[i].motif && (
-                  <div aria-hidden="true" className={`absolute inset-0 ${PILLAR_BG[i].motif} opacity-70`} />
-                )}
-                {i === 0 && (
-                  <div aria-hidden="true" className="keys-bg absolute inset-x-0 bottom-0 h-20 opacity-25" />
-                )}
-                <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/40" />
-                <span aria-hidden="true" className="pillar-ghost">{p.index}</span>
-                <div className="relative flex h-full flex-col px-8 py-12">
-                  <span className="font-display text-xl text-gold/70">{p.index}</span>
-                  <h3 className="text-gradient-gold mt-6 font-display text-4xl">
-                    {p.verb}
-                  </h3>
-                  <p className="mt-4 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-gold/70">
-                    {p.keywords}
-                  </p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
+                  <div className="absolute bottom-3 left-3 flex flex-wrap items-center gap-2">
+                    <span className="bg-gold px-2.5 py-1 text-[0.62rem] font-bold uppercase tracking-[0.2em] text-ink">
+                      À la une
+                    </span>
+                    <Tag>{liveArticles[0].category}</Tag>
+                  </div>
+                </div>
 
-                  <p className="mt-6 flex-1 text-[15px] leading-[1.8] text-ivory/60">{p.text}</p>
-                  <span className="mt-8 inline-flex items-center gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-ivory/45 transition-colors group-hover:text-gold">
-                    Entrer <span aria-hidden>→</span>
+                <div>
+                  <span className="font-mono text-xs text-ivory/50">
+                    Temps de lecture : {liveArticles[0].readingTime}
+                  </span>
+                  <h3 className="mt-3 font-display text-2xl leading-[1.15] text-ivory transition-colors group-hover:text-gold sm:text-3xl">
+                    {liveArticles[0].title}
+                  </h3>
+                  <Rule className="my-5 opacity-40" />
+                  <p className="text-sm leading-relaxed text-ivory/70 line-clamp-3">
+                    {liveArticles[0].excerpt}
+                  </p>
+                </div>
+
+                <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold group-hover:text-gold-2">
+                    Lire l’essai complet →
+                  </span>
+                  <span className="font-mono text-[0.68rem] uppercase tracking-widest text-ivory/40">
+                    Par Hervé Nanfang
                   </span>
                 </div>
               </Link>
             </Reveal>
-          ))}
-        </div>
-      </Section>
+          )}
 
-      {/* ==================== TRAJECTOIRE INTELLECTUELLE ==================== */}
-      <Section tone="ink" id="trajectoire">
-        <Reveal>
-          <ChapterMark num="02" label="La trajectoire" />
-          <div className="mt-8 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
-            <Display size="lg">
-              Une seule trajectoire,
-              <br />
-              du clavier à l’innovation
-            </Display>
-            <Body className="lg:pb-3">{MASTER_IDENTITY.positionnement.these}</Body>
-          </div>
-        </Reveal>
-
-        <ol className="mt-16 border-t border-white/10">
-          {MASTER_IDENTITY.trajectoire.map((step, i) => (
-            <Reveal key={step.etape} delay={i * 60}>
-              <li className="border-b border-white/8">
+          {/* 4 essais récents */}
+          <div className="grid gap-5 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
+            {liveArticles.slice(1, 5).map((a, i) => (
+              <Reveal key={a.slug} delay={i * 70}>
                 <Link
-                  to={step.to}
-                  className="group grid gap-4 py-7 transition-colors hover:bg-ink-3/60 md:grid-cols-[4rem_13rem_1fr] md:gap-8 md:px-4"
+                  to={`/journal/${a.slug}`}
+                  className="group flex flex-col justify-between border border-white/10 bg-ink p-5 transition-all duration-300 hover:border-gold/50 hover:bg-ink-2/90 sm:flex-row sm:items-center gap-4"
                 >
-                  <span className="font-display text-2xl text-gold/60">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-2xl leading-snug text-ivory transition-colors group-hover:text-gold-2 md:text-[1.75rem]">
-                      {step.etape}
-                    </h3>
-                    <p className="mt-1 text-[0.66rem] uppercase tracking-[0.16em] text-gold/70">
-                      {step.resume}
-                    </p>
-
+                  <div className="h-20 w-full sm:w-28 shrink-0 overflow-hidden border border-white/10 bg-ink-2">
+                    <img
+                      src={getArticleCover(a)}
+                      alt={a.title}
+                      width={224}
+                      height={160}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
                   </div>
-                  <div className="flex items-start justify-between gap-6">
-                    <p className="max-w-2xl text-sm leading-relaxed text-ivory/55">{step.apport}</p>
-                    <span
-                      aria-hidden
-                      className="mt-1 shrink-0 text-gold/50 transition-transform group-hover:translate-x-1"
-                    >
-                      →
-                    </span>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[0.62rem] font-semibold uppercase tracking-wider text-gold">
+                        {a.category}
+                      </span>
+                      <span className="font-mono text-[0.62rem] text-ivory/40">{a.readingTime}</span>
+                    </div>
+                    <h4 className="mt-1.5 font-display text-lg leading-snug text-ivory transition-colors group-hover:text-gold line-clamp-2">
+                      {a.title}
+                    </h4>
                   </div>
                 </Link>
-              </li>
-            </Reveal>
-          ))}
-        </ol>
-
-        <Reveal delay={140}>
-          <p className="mt-10 max-w-3xl border-l-2 border-gold/40 pl-6 font-display text-xl leading-snug text-ivory/85 md:text-2xl">
-            Chaque étape a été rendue possible par la précédente — et c’est cet enchaînement, non une
-            somme de compétences, qui constitue aujourd’hui ma valeur professionnelle.
-          </p>
-        </Reveal>
-      </Section>
-
-      {/* ==================== QUI EST HERVÉ NANFANG ? ==================== */}
-      <Section tone="light">
-        <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-          <Reveal>
-            <figure className="relative">
-              <img
-                src="/images/herve-nanfang-portrait-officiel.webp"
-                alt="Portrait officiel d’Hervé Nanfang — musicien, musicologue, pédagogue et spécialiste de l’IA appliquée à la musique"
-                width={760}
-                height={1353}
-                loading="lazy"
-                onError={(e) => {
-                  if (!e.currentTarget.src.includes('/images/portrait.webp')) {
-                    e.currentTarget.src = '/images/portrait.webp'
-                  }
-                }}
-                className="zoomable w-full object-cover"
-              />
-              <div
-                aria-hidden
-                className="absolute -bottom-4 -right-4 h-24 w-24 border-b border-r border-ink/30"
-              />
-              <figcaption className="mt-4 text-[0.68rem] uppercase tracking-[0.2em] text-ink/45">
-                Portrait officiel · Yaoundé, Cameroun
-              </figcaption>
-            </figure>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <Eyebrow tone="ink">Qui est Hervé Nanfang ?</Eyebrow>
-            <Display size="lg" className="mt-6 text-ink">
-              Un parcours à la croisée de plusieurs mondes
-            </Display>
-            <div className="mt-8 space-y-6 text-[15px] leading-[1.9] text-ink/75 md:text-base">
-              <p>
-                Musicien, musicologue, pédagogue, ingénieur du son et entrepreneur culturel, Hervé
-                Nanfang développe depuis plusieurs années une pratique professionnelle située à la
-                rencontre de l’art, de la technologie et de la transmission.
-              </p>
-              <p>
-                Son parcours l’a conduit de la scène musicale à la production sonore, de
-                l’enseignement à la conception de programmes pédagogiques, puis progressivement vers
-                l’intelligence artificielle, la communication digitale et les nouveaux modèles de
-                création.
-              </p>
-              <p className="text-ink">
-                Aujourd’hui, il développe une vision dans laquelle la technologie ne remplace pas
-                l’humain : elle augmente ses capacités.
-              </p>
-            </div>
-            <div className="mt-10">
-              <Link
-                to="/a-propos"
-                className="group inline-flex items-center gap-3 border-b border-ink pb-1 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-ink transition-colors hover:border-gold hover:text-gold-3"
-              >
-                Lire mon parcours
-                <span aria-hidden className="transition-transform group-hover:translate-x-1">
-                  →
-                </span>
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-
-        {/* Triptyque photographique documentaire — Google Images & Présence */}
-        <div className="mt-14 border-t border-ink/10 pt-12">
-          <Reveal>
-            <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <Eyebrow tone="ink">Sur le terrain</Eyebrow>
-                <h3 className="mt-2 font-display text-2xl text-ink md:text-3xl">
-                  La scène, la transmission et la création
-                </h3>
-              </div>
-              <p className="max-w-md text-xs leading-relaxed text-ink/60">
-                Présence sur scène en piano-bar live, transmission pédagogique en enseignement supérieur et travail de création en studio.
-              </p>
-            </div>
-
-            <div className="grid gap-6 sm:grid-cols-3">
-              {/* Photo 1 — Portrait officiel */}
-              <figure className="group overflow-hidden rounded-xl border border-ink/10 bg-white shadow-sm transition-all hover:shadow-md">
-                <div className="relative aspect-[4/5] overflow-hidden bg-ink/5">
-                  <img
-                    src="/images/herve-nanfang-portrait-officiel.webp"
-                    alt="Hervé Nanfang — Portrait officiel de l’artiste-musicien, musicologue et pédagogue"
-                    width={800}
-                    height={1000}
-                    loading="lazy"
-                    className="zoomable h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <figcaption className="p-4">
-                  <p className="font-display text-base text-ink">01 · Portrait officiel</p>
-                  <p className="mt-1 text-xs text-ink/65">
-                    Identité de référence, direction artistique et recherche.
-                  </p>
-
-                </figcaption>
-              </figure>
-
-              {/* Photo 2 — Hervé Nanfang au clavier */}
-              <figure className="group overflow-hidden rounded-xl border border-ink/10 bg-white shadow-sm transition-all hover:shadow-md">
-                <div className="relative aspect-[4/5] overflow-hidden bg-ink/5">
-                  <img
-                    src="/images/herve-nanfang-piano-bar-live.jpeg"
-                    alt="Hervé Nanfang au clavier lors d’une prestation piano-bar live"
-                    width={800}
-                    height={1000}
-                    loading="lazy"
-                    className="zoomable h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <figcaption className="p-4">
-                  <p className="font-display text-base text-ink">02 · Hervé Nanfang au clavier</p>
-                  <p className="mt-1 text-xs text-ink/65">
-                    Scène live, piano-bar, variété internationale et musiques africaines depuis 2007.
-                  </p>
-
-                </figcaption>
-              </figure>
-
-              {/* Photo 3 — Studio & transmission */}
-              <figure className="group overflow-hidden rounded-xl border border-ink/10 bg-white shadow-sm transition-all hover:shadow-md">
-                <div className="relative aspect-[4/5] overflow-hidden bg-ink/5">
-                  <img
-                    src="/images/herve-nanfang-studio-transmission-isma.webp"
-                    alt="Hervé Nanfang en session de transmission pédagogique et atelier MAO à l’ISMA"
-                    width={800}
-                    height={1000}
-                    loading="lazy"
-                    className="zoomable h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <figcaption className="p-4">
-                  <p className="font-display text-base text-ink">03 · Transmission & Studio</p>
-                  <p className="mt-1 text-xs text-ink/65">
-                    Ingénierie sonore, masterclasses et formation en enseignement supérieur.
-                  </p>
-
-                </figcaption>
-              </figure>
-            </div>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* =========================== MUSIQUE =========================== */}
-      <Section tone="dark">
-        <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:items-center">
-          <Reveal>
-            <ChapterMark num="03" label="Créer" />
-            <Display size="lg" className="mt-7">
-              La musique comme langage, métier et expérience
-            </Display>
-            <Body className="mt-7 max-w-xl">
-              Depuis 2007, la scène — d’abord le piano-bar — est mon laboratoire. C’est là que la
-              musique cesse d’être un savoir pour devenir une présence : piano-bar, variété
-              internationale, chanson française, musiques africaines, gospel et répertoires contemporains.
-            </Body>
-            <ul className="mt-9 grid gap-x-8 gap-y-3 sm:grid-cols-2">
-              {['Piano-Bar Live', 'Composition & Arrangement', 'Production musicale', 'Ingénierie du son', 'Musique à l’image', 'Spectacle vivant'].map(
-                (item) => (
-                  <li key={item} className="flex items-baseline gap-3 text-sm text-ivory/70">
-                    <span aria-hidden className="h-1 w-1 shrink-0 translate-y-[-3px] bg-gold" />
-                    {item}
-                  </li>
-                ),
-              )}
-            </ul>
-            <div className="mt-10">
-              <ArrowLink to="/musique">Découvrir l’univers musical</ArrowLink>
-            </div>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <figure className="relative overflow-hidden">
-              <img
-                src={livePianoMedia.url || liveScene}
-                alt={livePianoMedia.alt || "Hervé Nanfang au clavier en prestation live — visage visible"}
-                width={1400}
-                height={783}
-                loading="lazy"
-                style={livePianoMedia.style}
-                onError={(e) => {
-                  if (!e.currentTarget.src.includes('/images/live-scene-piano.jpeg')) {
-                    e.currentTarget.src = '/images/live-scene-piano.jpeg'
-                  }
-                }}
-                className="zoomable w-full object-cover"
-              />
-              <figcaption className="absolute bottom-0 left-0 bg-ink/85 px-5 py-3 text-[0.68rem] uppercase tracking-[0.2em] text-ivory/70 backdrop-blur">
-                Live piano · Live mood · Live experience
-              </figcaption>
-            </figure>
-            <div className="mt-8 grid grid-cols-2 gap-6">
-              <Stat value="2007" label="Depuis" />
-              <Stat value="∞" label="Répertoire ouvert" />
-            </div>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* ====================== IA & TECHNOLOGIE ====================== */}
-      <Section tone="ink" id="ia">
-        <Reveal>
-          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-end">
-            <div>
-              <ChapterMark num="04" label="Augmenter — section stratégique" />
-              <Display size="lg" className="mt-7">
-                Musicien <span className="text-gold">+</span> IA
-              </Display>
-              <p className="mt-6 font-display text-2xl leading-snug text-gold md:text-3xl">
-                L’intelligence artificielle ne doit pas remplacer le musicien. Elle doit l’augmenter.
-              </p>
-            </div>
-            <Body className="lg:pb-2">
-              Après avoir vécu la transformation de la musique par la MAO, j’explore aujourd’hui une
-              nouvelle transformation : celle de l’intelligence artificielle. Mon approche consiste à
-              créer un pont entre les pratiques musicales humaines et les possibilités offertes par
-              les technologies génératives.
-            </Body>
-          </div>
-        </Reveal>
-
-        <div className="mt-14 grid gap-px border border-white/8 bg-white/8 sm:grid-cols-2 lg:grid-cols-4">
-          {IA_DOMAINS.map((domain, i) => (
-            <Reveal key={domain.title} delay={i * 90}>
-              <div className="h-full bg-ink-2 p-7">
-                <h3 className="font-display text-2xl text-ivory">{domain.title}</h3>
-                <Rule className="opacity-40" />
-                <ul className="mt-4 space-y-2">
-                  {domain.items.map((item) => (
-                    <li key={item} className="text-sm text-ivory/60">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal delay={120}>
-          <div className="mt-12 flex flex-wrap items-center gap-4">
-            <Btn to="/contact#conseil" variant="gold" className="text-xs">
-              Demander un accompagnement IA
-            </Btn>
-            <Btn to="/ia-technologie#musicien-augmente" variant="ghost" className="text-xs">
-              Explorer Musicien Augmenté™
-            </Btn>
-            <Link
-              to="/conferences"
-              className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ivory/60 hover:text-gold"
-            >
-              Conférence « Le musicien augmenté » →
-            </Link>
-          </div>
-        </Reveal>
-      </Section>
-
-      {/* ========================== PÉDAGOGIE ========================== */}
-      <Section tone="dark">
-        <Reveal>
-          <ChapterMark num="05" label="Transmettre" />
-          <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-end">
-            <Display size="lg">Transmettre autrement</Display>
-            <Body className="lg:pb-2">
-              Enseigner la musique, ce n’est pas transmettre un contenu : c’est construire un
-              parcours. J’interviens dans l’enseignement supérieur, je conçois des curricula et des
-              méthodes, et je développe des systèmes qui rendent la progression lisible.
-            </Body>
-          </div>
-        </Reveal>
-
-        <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {[
-            {
-              title: 'Enseignement supérieur',
-              text: 'ESAS (Lomé) · ISMA (Bénin) · IBA Nkongsamba · IFCPA/CRTV — transmission académique et formation.',
-            },
-            {
-              title: 'Conception pédagogique',
-              text: 'MAO, musicologie appliquée, composition pour l’image, ingénierie de curricula et évaluation.',
-            },
-            {
-              title: 'Systèmes & publications',
-              text: 'A Laiz Academy, Permis de Jouer™ (N1 à N4) et manuel LES ZIKOS®.',
-            },
-          ].map((item, i) => (
-            <Reveal key={item.title} delay={i * 110}>
-              <Card className="h-full">
-                <h3 className="font-display text-2xl text-ivory">{item.title}</h3>
-                <Body className="mt-4">{item.text}</Body>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal delay={160}>
-          <div className="mt-12">
-            <ArrowLink to="/pedagogie">Découvrir mon approche pédagogique</ArrowLink>
-          </div>
-        </Reveal>
-      </Section>
-
-      {/* ===================== CULTURE & RECHERCHE ===================== */}
-      <Section tone="ink" tight>
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <Reveal>
-            <ChapterMark num="06" label="Culture & Recherche" />
-            <Display size="md" className="mt-6">
-              Comprendre la musique, c’est aussi comprendre ceux qui la portent.
-            </Display>
-            <Body className="mt-6">
-              Musicologie, cultures africaines, patrimoine, transmission orale : documenter les
-              pratiques musicales et les faire dialoguer avec le présent technologique.
-            </Body>
-            <div className="mt-8">
-              <ArrowLink to="/culture-recherche">Explorer la recherche</ArrowLink>
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <div className="flex flex-wrap gap-3">
-              {['Musicologie', 'Cultures africaines', 'Patrimoine', 'Transmission orale', 'Batoufam', 'Tswefap', 'Écriture', 'Documentation'].map(
-                (tag) => (
-                  <Tag key={tag}>{tag}</Tag>
-                ),
-              )}
-            </div>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* =========================== PROJETS =========================== */}
-      <Section tone="dark">
-        <Reveal>
-          <ChapterMark num="07" label="Développer" />
-          <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-end">
-            <Display size="lg">
-              Des projets pensés
-              <br />
-              comme des structures
-            </Display>
-            <Body className="lg:pb-2">
-              Chaque initiative est développée comme une entité autonome, capable de produire et de
-              durer — artistique, pédagogique, technologique, culturelle ou entrepreneuriale.
-            </Body>
-          </div>
-        </Reveal>
-
-        <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {PROJECT_FAMILIES.map((family, i) => (
-            <Reveal key={family.id} delay={i * 80}>
-              <Card className="h-full">
-                <p className="eyebrow text-gold">{family.label}</p>
-                <Rule className="opacity-40" />
-                <p className="mt-4 text-sm leading-relaxed text-ivory/55">{family.intro}</p>
-                <ul className="mt-6 space-y-3">
-                  {family.projects.map((p) => (
-                    <li key={p.title} className="flex items-baseline justify-between gap-4">
-                      <span className="text-[15px] text-ivory/85">{p.title}</span>
-                      <span className="shrink-0 text-[0.62rem] uppercase tracking-[0.18em] text-ivory/35">
-                        {p.status}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal delay={140}>
-          <div className="mt-12">
-            <ArrowLink to="/projets">Voir tous les projets</ArrowLink>
-          </div>
-        </Reveal>
-      </Section>
-
-      {/* ============= CONCEPTS, MÉTHODES ET IDENTITÉS CRÉATIVES ============= */}
-      <Section tone="ink" id="concepts-identites" className="border-t border-white/8">
-        <Reveal>
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <div>
-              <ChapterMark num="08" label="Paternité intellectuelle & Concepts" />
-              <Display size="lg" className="mt-7">
-                Concepts, méthodes & identités créatives
-              </Display>
-              <p className="mt-6 font-display text-xl leading-snug text-gold md:text-2xl">
-                Concepts et créations de Hervé Nanfang
-              </p>
-            </div>
-            <Body className="lg:pb-2">
-              Mon parcours artistique, musicologique et pédagogique s’articule autour de plusieurs identités,
-              méthodes et concepts créatifs fondateurs, notamment Le Pianobariste, Musicien Augmenté™, Permis de Jouer™
-              et A Laiz Ô Pays. Cette rubrique documente leur signification, leur antériorité d'usage et les éléments
-              disponibles permettant d’en retracer l’évolution.
-            </Body>
-          </div>
-        </Reveal>
-
-        <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {CREATIVE_CONCEPTS.map((concept, i) => (
-            <Reveal key={concept.name} delay={i * 90} className={i === 4 ? 'md:col-span-2 lg:col-span-1' : ''}>
-              <Card className="flex h-full flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="font-display text-lg text-gold/60">{concept.num}</span>
-                    <span className="rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-gold">
-                      {concept.badge}
-                    </span>
-                  </div>
-                  <h3 className="mt-5 font-display text-2xl text-ivory md:text-[1.7rem]">{concept.name}</h3>
-                  <p className="mt-1 text-[0.66rem] uppercase tracking-[0.16em] text-gold/75">
-                    {concept.trademark}
-                  </p>
-
-                  <Rule className="my-5 opacity-30" />
-                  <p className="font-medium text-[0.92rem] leading-snug text-ivory/90">{concept.lead}</p>
-                  <p className="mt-3 text-sm leading-relaxed text-ivory/60">{concept.description}</p>
-                </div>
-                <div className="mt-8 border-t border-white/6 pt-5">
-                  <ArrowLink to={concept.link}>{concept.linkLabel}</ArrowLink>
-                </div>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal delay={180}>
-          <div className="mt-14 rounded-2xl border border-white/10 bg-ink-3/50 p-6 md:p-8 backdrop-blur-sm">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div className="max-w-3xl">
-                <p className="eyebrow text-gold/80">Propriété intellectuelle & Droits réservés</p>
-                <p className="mt-2 text-xs leading-relaxed text-ivory/65 md:text-sm">
-                  L’ensemble des contenus, méthodes pédagogiques, concepts artistiques et signes distinctifs présentés
-                  sur ce site sont des créations originales d’Hervé Nanfang protégées par le droit d’auteur et la législation
-                  sur la propriété intellectuelle. Toute reproduction, adaptation ou utilisation commerciale non autorisée
-                  est strictement interdite.
-                </p>
-
-              </div>
-              <div className="shrink-0">
-                <Btn to="/mentions-legales" variant="ghost" className="text-xs">
-                  Mentions légales
-                </Btn>
-
-
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </Section>
-
-      {/* =========================== JOURNAL =========================== */}
-      <Section tone="ink">
-        <Reveal>
-          <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
-            <div>
-              <ChapterMark num="09" label="Journal" />
-              <Display size="lg" className="mt-7">
-                Le Journal du Musicien Augmenté
-              </Display>
-            </div>
-            <Body className="lg:pb-2">
-              Série éditoriale sur la musique à l’ère des technologies génératives : réflexions
-              de terrain, méthodes de création et repères concrets pour les artistes et éducateurs.
-            </Body>
-          </div>
-        </Reveal>
-
-        {/* Grande Carte Visuelle « À la une » */}
-        {(() => {
-          const publishedArticles = liveArticles.filter((a) => a.status === 'Publié')
-
-          // Tri par priorité éditoriale & récence :
-          // 1. Article explicitement marqué isFeatured
-          // 2. Date de publication effective (publishedAt)
-          // 3. Date de dernière mise à jour (updatedAt)
-          // 4. Numéro de pilier décroissant (les piliers récents en premier)
-          const sortedArticles = [...publishedArticles].sort((a, b) => {
-            if (a.isFeatured && !b.isFeatured) return -1
-            if (!a.isFeatured && b.isFeatured) return 1
-
-            const dateA = a.publishedAt ? new Date(a.publishedAt).getTime() : 0
-            const dateB = b.publishedAt ? new Date(b.publishedAt).getTime() : 0
-            if (dateA !== dateB) return dateB - dateA
-
-            const updateA = a.updatedAt ? new Date(a.updatedAt).getTime() : 0
-            const updateB = b.updatedAt ? new Date(b.updatedAt).getTime() : 0
-            if (updateA !== updateB) return updateB - updateA
-
-            const numA = parseInt(a.num, 10) || 0
-            const numB = parseInt(b.num, 10) || 0
-            return numB - numA
-          })
-
-          const featuredArticle = sortedArticles[0] || liveArticles[0]
-          const recentArticles = sortedArticles.filter((a) => a.slug !== featuredArticle?.slug).slice(0, 4)
-
-          if (!featuredArticle) return null
-
-          return (
-            <>
-              <Reveal delay={80}>
-                <div className="mt-12 group relative overflow-hidden rounded-sm border border-gold/40 bg-gradient-to-br from-ink-2 via-ink to-ink-3 shadow-2xl transition-all duration-500 hover:border-gold hover:shadow-[0_0_50px_rgba(197,168,105,0.18)]">
-                  {/* Lueur d'ambiance dorée */}
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-gold/10 blur-3xl transition-opacity duration-500 group-hover:bg-gold/15"
-                  />
-
-                  <div className="grid lg:grid-cols-12 lg:items-stretch">
-                    {/* Colonne Média Visuel (5 colonnes) */}
-                    <div className="relative isolate min-h-[300px] sm:min-h-[360px] lg:col-span-5 lg:min-h-[440px] overflow-hidden bg-ink-2">
-                      <img
-                        src={getArticleCover(featuredArticle)}
-                        alt={featuredArticle.coverAlt || featuredArticle.title}
-                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                        style={{
-                          objectPosition: `${featuredArticle.coverPositionX ?? 50}% ${featuredArticle.coverPositionY ?? 50}%`,
-                        }}
-                        loading="lazy"
-                      />
-                      {/* Voile dégradé subtil pour contraste et intégration harmonieuse */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-ink/30 lg:to-ink" />
-
-                      {/* Badge flottant "À la une" */}
-                      <div className="absolute top-4 left-4 z-10 flex flex-wrap gap-2">
-                        <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/60 bg-ink/90 backdrop-blur-md px-3.5 py-1 font-mono text-[0.68rem] font-bold text-gold uppercase tracking-widest shadow-lg">
-                          <span className="h-2 w-2 rounded-full bg-gold animate-pulse" />
-                          ✦ À la une · Dernier article paru
-                        </span>
-                      </div>
-
-                      {/* Badge numéro de pilier en bas de l'image */}
-                      <div className="absolute bottom-4 left-4 z-10">
-                        <span className="font-mono text-xs uppercase tracking-widest text-gold bg-ink/80 backdrop-blur-sm px-3 py-1 border border-gold/30">
-                          Pilier {featuredArticle.num}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Colonne Contenu Éditorial (7 colonnes) */}
-                    <div className="relative z-10 flex flex-col justify-between p-6 sm:p-8 lg:col-span-7 lg:p-10">
-                      <div>
-                        {/* Ligne Métadonnées */}
-                        <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
-                          <div className="flex items-center gap-2">
-                            <Tag tone="gold">{featuredArticle.category}</Tag>
-                            <span className="text-[0.7rem] font-mono uppercase tracking-wider text-ivory/50">
-                              Lecture {featuredArticle.readingTime}
-                            </span>
-                          </div>
-                          {featuredArticle.publishedAt && (
-                            <time className="text-[0.68rem] font-mono text-ivory/40">
-                              {new Date(featuredArticle.publishedAt).toLocaleDateString('fr-FR', {
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric',
-                              })}
-                            </time>
-                          )}
-                        </div>
-
-                        {/* Titre percutant */}
-                        <h3 className="mt-4 font-display text-2xl sm:text-3xl lg:text-[2rem] leading-snug text-ivory">
-                          <Link
-                            to={`/journal/${featuredArticle.slug}`}
-                            className="transition-colors duration-300 hover:text-gold"
-                          >
-                            {featuredArticle.title}
-                          </Link>
-                        </h3>
-
-                        {/* Extrait éditorial */}
-                        <p className="mt-4 text-sm sm:text-base leading-relaxed text-ivory/70 line-clamp-4">
-                          {featuredArticle.excerpt}
-                        </p>
-
-
-                        {/* Public cible */}
-                        {featuredArticle.audience && (
-                          <div className="mt-5 rounded border border-white/10 bg-white/[0.02] p-3 text-xs text-ivory/60">
-                            <span className="font-semibold text-gold/90">Public cible : </span>
-                            <span className="line-clamp-2">{featuredArticle.audience}</span>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Barre d'action basse */}
-                      <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-                        <Btn to={`/journal/${featuredArticle.slug}`} variant="gold">
-                          Lire l’essai complet →
-                        </Btn>
-
-
-                        <span className="text-xs font-mono tracking-wider text-gold/80 italic">
-                          Hervé Nanfang · Le Journal du Musicien Augmenté
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </Reveal>
-
-
-              {/* Autres articles récents */}
-              {recentArticles.length > 0 && (
-                <div className="mt-14">
-                  <div className="mb-6 flex items-center justify-between">
-                    <h4 className="font-mono text-xs uppercase tracking-widest text-ivory/60">
-                      Autres piliers & lectures recommandées
-                    </h4>
-                    <Link
-                      to="/journal"
-                      className="text-xs font-mono uppercase tracking-wider text-gold hover:underline"
-                    >
-                      Tous les piliers ({publishedArticles.length}) →
-                    </Link>
-                  </div>
-
-                  <div className="divide-y divide-white/8 border-y border-white/8">
-                    {recentArticles.map((a, i) => (
-                      <Reveal key={a.slug} delay={i * 70}>
-                        <Link
-                          to={`/journal/${a.slug}`}
-                          className="group grid gap-4 py-7 md:grid-cols-[6rem_1fr_14rem] md:items-baseline transition-colors hover:bg-white/[0.015] px-2"
-                        >
-                          <span className="font-display text-lg text-gold/60 group-hover:text-gold transition-colors">
-                            Pilier {a.num}
-                          </span>
-                          <div>
-                            <h3 className="font-display text-2xl leading-snug text-ivory transition-colors group-hover:text-gold-2 md:text-[1.7rem]">
-                              {a.title}
-                            </h3>
-                            <p className="mt-2 text-sm text-ivory/50 line-clamp-2">{a.excerpt}</p>
-                          </div>
-                          <div className="flex flex-col items-start gap-2 md:items-end">
-                            <Tag tone={a.status === 'Publié' ? 'gold' : 'ink'}>{a.status}</Tag>
-                            <span className="text-[0.65rem] uppercase tracking-[0.2em] text-ivory/40 md:text-right">
-                              <span className="text-gold/75 font-medium">Hervé Nanfang</span> · {a.readingTime}
-                            </span>
-                          </div>
-                        </Link>
-                      </Reveal>
-
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <Reveal delay={120}>
-                <div className="mt-12 flex flex-wrap items-center justify-between gap-6 border-t border-white/10 pt-8">
-                  <div className="flex flex-wrap items-center gap-4">
-                    <Btn to="/contact#formation" variant="gold" className="text-xs">
-                      Rejoindre A Laiz Academy
-                    </Btn>
-                    <Btn to="/journal" variant="ghost" className="text-xs">
-                      Lire tous les essais du Journal
-                    </Btn>
-                  </div>
-
-                  <span className="text-[0.68rem] uppercase tracking-[0.2em] text-ivory/40">
-                    {liveArticles.length} piliers éditoriaux · {publishedArticles.length} publiés
-                  </span>
-                </div>
-              </Reveal>
-
-            </>
-          )
-        })()}
-      </Section>
-
-      {/* ========================= CONFÉRENCES ========================= */}
-      <Section tone="dark" tight>
-        <Reveal>
-          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
-            <div>
-              <Eyebrow>Conférences & Masterclass</Eyebrow>
-              <Display size="md" className="mt-6">
-                Six thèmes pour les institutions, écoles et organisations
-              </Display>
-              <Body className="mt-6 max-w-xl">
-                « Le musicien augmenté » · « De la MAO à l’IA » · « Enseigner la musique à l’ère de
-                l’intelligence artificielle » · « Construire sa carrière musicale à l’ère digitale »
-                · « Le musicien comme marque » · « Musique, image et narration (cinéma) ».
-              </Body>
-            </div>
-            <div className="flex flex-wrap gap-4 lg:justify-end">
-              <Btn to="/conferences" variant="gold">
-                Voir les conférences
-              </Btn>
-              <Btn to="/contact#conference" variant="ghost">
-                Proposer une date
-              </Btn>
-            </div>
+            ))}
           </div>
-        </Reveal>
+        </div>
       </Section>
 
+      {/* ========================================================================= */}
+      {/* BANDEAU FINAL DE CONVERSION                                               */}
+      {/* ========================================================================= */}
       <CtaBand
-        eyebrow="Parlons de votre projet"
-        title="Booking · Formation · Conférence · Collaboration · Presse · Conseil"
-        text="Chaque demande mérite un parcours adapté. Choisissez votre motif : je vous réponds avec des éléments concrets, pas une réponse automatique."
+        eyebrow="Booking · Formation · Conférences · Conseil IA"
+        title="Construisons votre prochain événement, programme de formation ou projet musical."
+        text="Prestation piano-bar live Le Pianobariste™, formation A Laiz Academy, conférence institutionnelle ou accompagnement Musicien Augmenté™ : réponse détaillée sous 48 h."
         primary={{ label: 'Prendre contact', to: '/contact' }}
-        secondary={{ label: 'Réserver un live', to: '/contact#booking' }}
+        secondary={{ label: 'Découvrir les services', to: '/services' }}
       />
     </>
   )

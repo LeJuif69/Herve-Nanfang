@@ -158,6 +158,7 @@ SCHEMA_LABELS = {
     "serviceSchema": "Service",
     "courseSchema": "Course",
     "eventSchema": "Event",
+    "conferenceEducationEventSchema": "EducationEvent",
     "articleSchema": "Article",
     "faqSchema": "FAQPage",
     "creativeWorkSchema": "CreativeWork / Book",

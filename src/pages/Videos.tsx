@@ -1,10 +1,12 @@
 import { useState, useMemo } from 'react'
+import { Link } from 'react-router-dom'
 import { videos } from '../data/videos'
 import type { Video } from '../data/videos'
 import VideoCard from '../components/VideoCard'
 import VideoFilters from '../components/VideoFilters'
 import VideoCta from '../components/VideoCta'
 import PageHero from '../components/PageHero'
+import { breadcrumbSchema, creativeWorkSchema, personSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 import { Container, Reveal, ChapterMark, Display } from '../components/ui'
 
@@ -20,11 +22,22 @@ export default function Videos() {
   }, [filter])
 
   useSeo({
-    title: 'Vidéos Live & Reprises Musicales | Hervé Nanfang – Le Pianobariste',
+    title: 'Vidéos Piano-Bar Live & Concerts | Hervé Nanfang',
     description:
       'Découvrez les performances live, reprises musicales, sessions Piano-Bar et prestations de Hervé Nanfang, pianiste-chanteur et musicien camerounais.',
     path: '/videos',
     image: '/og-videos.jpg',
+    jsonLd: [
+      personSchema,
+      creativeWorkSchema(
+        'Performances vidéo live — Le Pianobariste™ (Hervé Nanfang)',
+        'Captations piano-bar live, reprises de standards africains et internationaux, sessions studio et concerts en duo ou live band par Hervé Nanfang.',
+      ),
+      breadcrumbSchema([
+        { name: 'Accueil', path: '/' },
+        { name: 'Vidéos Live', path: '/videos' },
+      ]),
+    ],
   })
 
   return (
@@ -83,6 +96,17 @@ export default function Videos() {
               <div className="rounded-xl border border-white/5 bg-black/30 p-5 md:col-span-2 lg:col-span-2">
                 <h4 className="font-serif text-lg text-gold font-medium mb-1">Scènes & Événements</h4>
                 <p>Concerts, festivals, galas, événements culturels et prestations de prestige en formation scénique élargie.</p>
+              </div>
+            </div>
+            <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-ivory/65">
+              <span>Pour approfondir l’esthétique scénique et l’approche piano-bar d’Hervé Nanfang :</span>
+              <div className="flex flex-wrap gap-4 font-semibold uppercase tracking-wider">
+                <Link to="/musique" className="text-gold hover:underline">
+                  Explorer le répertoire & les formules live →
+                </Link>
+                <Link to="/journal/ia-et-musique-live" className="text-ivory/80 hover:text-gold hover:underline">
+                  Lire l’essai « IA et musique live » au Journal →
+                </Link>
               </div>
             </div>
           </div>

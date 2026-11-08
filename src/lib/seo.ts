@@ -53,13 +53,14 @@ export function useSeo({
   jsonLd,
   type = 'website',
   image = '/og-image.jpg',
-  robots = 'index, follow, max-image-preview:large',
+  robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
 }: SeoInput) {
   const captureSeo = useContext(SeoContext)
   captureSeo?.({ title, description, path, jsonLd, type, image, robots })
 
   useEffect(() => {
-    const url = `${SITE.url}${path === '/' ? '/' : path}`
+    const cleanPath = !path || path === '/' ? '' : path.replace(/\/+$/, '')
+    const url = `${SITE.url}${cleanPath}`
     const imageUrl = image.startsWith('http') ? image : `${SITE.url}${image}`
 
     document.title = title

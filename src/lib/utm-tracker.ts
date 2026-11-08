@@ -52,8 +52,36 @@ export function captureTrafficAttribution(): void {
     if (!existing && document.referrer) {
       try {
         const refUrl = new URL(document.referrer)
-        if (refUrl.hostname !== window.location.hostname) {
+        const host = refUrl.hostname.toLowerCase()
+        if (host !== window.location.hostname.toLowerCase()) {
+          let detectedSource: string | undefined
+          let detectedMedium: string | undefined
+
+          if (
+            host.includes('google.') ||
+            host.includes('bing.') ||
+            host.includes('duckduckgo.') ||
+            host.includes('yahoo.') ||
+            host.includes('qwant.') ||
+            host.includes('ecosia.')
+          ) {
+            detectedSource = host.replace(/^www\./, '').split('.')[0]
+            detectedMedium = 'organic'
+          } else if (
+            host.includes('chatgpt.com') ||
+            host.includes('openai.com') ||
+            host.includes('perplexity.ai') ||
+            host.includes('claude.ai') ||
+            host.includes('copilot.microsoft.com') ||
+            host.includes('gemini.google.com')
+          ) {
+            detectedSource = host.replace(/^www\./, '')
+            detectedMedium = 'ai_search'
+          }
+
           const data: TrafficAttribution = {
+            utm_source: detectedSource,
+            utm_medium: detectedMedium,
             referrer: document.referrer,
             landing_page: window.location.pathname,
             timestamp: new Date().toISOString(),

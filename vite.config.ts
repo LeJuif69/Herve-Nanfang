@@ -92,5 +92,20 @@ export default defineConfig({
     target: 'es2020',
     sourcemap: false,
     manifest: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom') || id.includes('node_modules/react-router')) {
+            return 'vendor-react'
+          }
+          if (id.includes('node_modules/@supabase')) {
+            return 'vendor-supabase'
+          }
+          if (id.includes('editorial-calendar-90d') || id.includes('social-generator')) {
+            return 'calendar-data'
+          }
+        },
+      },
+    },
   },
 })

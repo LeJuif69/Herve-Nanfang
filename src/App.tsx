@@ -1,15 +1,17 @@
 import { lazy, Suspense, useEffect } from 'react'
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import Layout from './components/Layout'
+import Home from './pages/Home'
 import { AudioProvider } from './lib/audio-context'
 import { CommandMenuProvider } from './lib/command-menu-context'
 
 import { captureTrafficAttribution } from './lib/utm-tracker'
 import { initAdPixels } from './lib/ad-pixels'
 
-// Gestion de la compatibilité des URLs avec hash (#/admin), capture des UTM et pixels
+// Gestion de la compatibilité des URLs avec hash (#/admin), redirections d'alias et capture des UTM/pixels
 function HashAdminRedirect() {
   const navigate = useNavigate()
+  const location = useLocation()
   useEffect(() => {
     captureTrafficAttribution()
     initAdPixels()
@@ -20,11 +22,20 @@ function HashAdminRedirect() {
       }
     }
   }, [navigate])
+
+  useEffect(() => {
+    const normalized = location.pathname.replace(/\/+$/, '').toLowerCase()
+    if (normalized === '/a-laiz-academy' || normalized === '/racines-musicales-academy') {
+      navigate(`/rma${location.search}${location.hash}`, { replace: true })
+    } else if (normalized === '/epk') {
+      navigate(`/presse${location.search}${location.hash}`, { replace: true })
+    }
+  }, [location, navigate])
+
   return null
 }
 
-// Lazy load des pages
-const Home = lazy(() => import('./pages/Home'))
+// Lazy load des pages secondaires
 const About = lazy(() => import('./pages/About'))
 const Music = lazy(() => import('./pages/Music'))
 const AI = lazy(() => import('./pages/AI'))

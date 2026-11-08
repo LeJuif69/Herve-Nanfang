@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import InterventionSimulator from '../components/InterventionSimulator'
 import {
@@ -15,6 +16,7 @@ import {
   Stat,
   Tag,
 } from '../components/ui'
+import { ARTICLES } from '../data/articles'
 import { CONFERENCES, CONFERENCE_AUDIENCES } from '../data/conferences'
 import { breadcrumbSchema, conferenceEducationEventSchema, personSchema, serviceSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
@@ -28,9 +30,9 @@ const PROCESS = [
 
 export default function Conferences() {
   useSeo({
-    title: 'Conférences & Masterclass | Hervé Nanfang — IA & Musique',
+    title: 'Conférences IA, Musique & Culture | Hervé Nanfang',
     description:
-      "Six conférences de référence pour écoles, universités et institutions : le musicien augmenté, musique à l'image, MAO vers IA, enseigner la musique.",
+      'Six conférences et masterclasses pour universités, écoles et institutions : Le Musicien Augmenté™, de la MAO à l’IA, musique à l’image et pédagogie musicale.',
     path: '/conferences',
     jsonLd: [
       personSchema,
@@ -211,6 +213,54 @@ export default function Conferences() {
             </div>
           </div>
         </Reveal>
+
+        {/* Publications associées dans le Journal */}
+        <div className="mt-14 border-t border-white/10 pt-12">
+          <Reveal>
+            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+              <div>
+                <Eyebrow>Supports écrits & Recherche</Eyebrow>
+                <h3 className="mt-2 font-display text-2xl text-ivory md:text-3xl">
+                  Les essais du Journal qui prolongent ces conférences
+                </h3>
+              </div>
+              <Btn to="/journal" variant="ghost">
+                Tout le Journal →
+              </Btn>
+            </div>
+          </Reveal>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {ARTICLES.filter((a) =>
+              [
+                'le-musicien-augmente',
+                'apres-la-mao-l-ia',
+                'enseigner-la-musique-a-l-ere-de-l-ia',
+              ].includes(a.slug),
+            ).map((article, i) => (
+              <Reveal key={article.slug} delay={i * 70}>
+                <Link
+                  to={`/journal/${article.slug}`}
+                  className="group flex h-full flex-col justify-between border border-white/10 bg-ink-2 p-6 transition-colors hover:border-gold/50"
+                >
+                  <div>
+                    <span className="font-mono text-[0.65rem] uppercase tracking-wider text-gold/80">
+                      {article.category} · {article.readingTime}
+                    </span>
+                    <h4 className="mt-3 font-display text-xl leading-snug text-ivory group-hover:text-gold transition-colors">
+                      {article.title}
+                    </h4>
+                    <p className="mt-2 text-xs leading-relaxed text-ivory/60 line-clamp-3">
+                      {article.excerpt}
+                    </p>
+                  </div>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-[0.65rem] font-semibold uppercase tracking-wider text-gold">
+                    Lire l’essai →
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </Section>
 
       <CtaBand

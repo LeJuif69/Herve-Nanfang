@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#08080A" />
 
-    <!-- Performance & Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+    <!-- Performance & DNS Prefetch -->
+    <meta name="google-adsense-account" content="ca-pub-6623797864465522" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
 
     <!-- Favicons -->
@@ -20,10 +19,10 @@
     <link rel="shortcut icon" href="/favicon.ico" />
 
     <meta name="prerender-head-start" content="true" />
-    <title>Hervé Nanfang | Musicien, IA &amp; Innovation culturelle</title>
+    <title>Hervé Nanfang | Musicien, Musicologue &amp; Musicien Augmenté</title>
     <meta
       name="description"
-      content="Musicien, musicologue, pédagogue et ingénieur du son, Hervé Nanfang est spécialiste de l'IA appliquée à la musique, à la pédagogie et aux industries culturelles."
+      content="Hervé Nanfang, artiste-musicien camerounais : Piano-Bar, composition, ingénierie du son, pédagogie musicale et intelligence artificielle. Fondateur d'A Laiz Ô Pays et d'A Laiz Academy."
     />
     <meta name="author" content="Hervé Nanfang" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -31,18 +30,18 @@
     <meta name="google-site-verification" content="p_ZbSiZ94DyZ5e9YEy3oLDXLvaszQGE7pKnPHAZFtzQ" />
     <meta name="msvalidate.01" content="8DF80077ED9D232B63A6B2865557E400" />
     <meta name="p:domain_verify" content="67154518be397028f4e8d887c127754b" />
-    <link rel="canonical" href="https://hervenanfang.art/" />
+    <link rel="canonical" href="https://hervenanfang.art" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Hervé Nanfang" />
     <meta property="og:locale" content="fr_FR" />
-    <meta property="og:title" content="Hervé Nanfang | Musicien, IA &amp; Innovation culturelle" />
+    <meta property="og:title" content="Hervé Nanfang | Musicien, Musicologue &amp; Musicien Augmenté" />
     <meta
       property="og:description"
-      content="Artiste-musicien, musicologue, pédagogue, ingénieur du son et spécialiste de l'IA appliquée à la musique, à la pédagogie et aux industries culturelles."
+      content="Hervé Nanfang, artiste-musicien camerounais : Piano-Bar, composition, ingénierie du son, pédagogie musicale et intelligence artificielle. Fondateur d'A Laiz Ô Pays et d'A Laiz Academy."
     />
-    <meta property="og:url" content="https://hervenanfang.art/" />
+    <meta property="og:url" content="https://hervenanfang.art" />
     <meta property="og:image" content="https://hervenanfang.art/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -127,21 +126,37 @@
     </script>
     <meta name="prerender-head-end" content="true" />
 
-    <!-- Google tag (gtag.js) — Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DMHQK0ELNX"></script>
+    <!-- Google Analytics 4 & AdSense — Chargement différé hors chemin critique LCP/TBT -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-DMHQK0ELNX');
-    </script>
 
-    <!-- Google AdSense officiel (Validation immédiate par le robot Google) -->
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6623797864465522"
-      crossorigin="anonymous"
-    ></script>
+      (function() {
+        var loaded = false;
+        function loadThirdParty() {
+          if (loaded) return;
+          loaded = true;
+          var g = document.createElement('script');
+          g.async = true;
+          g.src = 'https://www.googletagmanager.com/gtag/js?id=G-DMHQK0ELNX';
+          document.head.appendChild(g);
+
+          var a = document.createElement('script');
+          a.async = true;
+          a.crossOrigin = 'anonymous';
+          a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6623797864465522';
+          document.head.appendChild(a);
+        }
+        ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function(evt) {
+          window.addEventListener(evt, loadThirdParty, { once: true, passive: true });
+        });
+        window.addEventListener('load', function() {
+          setTimeout(loadThirdParty, 3500);
+        });
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

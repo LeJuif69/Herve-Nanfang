@@ -14,7 +14,7 @@ import {
   Stat,
   Tag,
 } from '../components/ui'
-import { JOURNAL_SERIES } from '../data/articles'
+import { ARTICLES, JOURNAL_SERIES } from '../data/articles'
 import { breadcrumbSchema, creativeWorkSchema, personSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 
@@ -66,9 +66,9 @@ const QUESTIONS = [
 
 export default function Culture() {
   useSeo({
-    title: 'Culture & Recherche | Hervé Nanfang — musicologie',
+    title: 'Musicologie & Musiques Africaines | Hervé Nanfang',
     description:
-      "Musicologie, cultures africaines, patrimoine et transmission orale : comprendre la musique à travers ceux qui la portent. Recherche d'Hervé Nanfang.",
+      'Musicologie africaine, patrimoine sonore, Tswefap Batoufam et transmission orale : travaux de recherche, terrain et publications d’Hervé Nanfang au Cameroun.',
     path: '/culture-recherche',
     jsonLd: [
       personSchema,
@@ -220,6 +220,47 @@ export default function Culture() {
               ))}
             </div>
           </Reveal>
+        </div>
+
+        {/* Essais musicologiques de référence dans le Journal */}
+        <div className="mt-14 border-t border-white/10 pt-12">
+          <Reveal>
+            <Eyebrow>Publications de référence au Journal</Eyebrow>
+            <h3 className="mt-3 font-display text-2xl text-ivory md:text-3xl">
+              Essais d’ethnomusicologie et d’analyse patrimoniale
+            </h3>
+          </Reveal>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {ARTICLES.filter((a) =>
+              [
+                'fela-kuti-afrobeat-revolution-musicale-politique',
+                'manu-dibango-cameroun-jazz-monde',
+                'patrimoine-musical-africain-numerisation-ia',
+              ].includes(a.slug),
+            ).map((article, i) => (
+              <Reveal key={article.slug} delay={i * 70}>
+                <Link
+                  to={`/journal/${article.slug}`}
+                  className="group flex h-full flex-col justify-between border border-white/10 bg-ink-2 p-6 transition-colors hover:border-gold/50"
+                >
+                  <div>
+                    <span className="font-mono text-[0.65rem] uppercase tracking-wider text-gold/80">
+                      {article.category} · {article.readingTime}
+                    </span>
+                    <h4 className="mt-3 font-display text-xl leading-snug text-ivory group-hover:text-gold transition-colors">
+                      {article.title}
+                    </h4>
+                    <p className="mt-2 text-xs leading-relaxed text-ivory/60 line-clamp-3">
+                      {article.excerpt}
+                    </p>
+                  </div>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-[0.65rem] font-semibold uppercase tracking-wider text-gold">
+                    Lire l’essai complet →
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </Section>
 

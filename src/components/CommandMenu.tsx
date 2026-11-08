@@ -15,8 +15,8 @@ export default function CommandMenu() {
   const inputRef = useRef<HTMLInputElement>(null)
   const resultsRef = useRef<HTMLDivElement>(null)
 
-  const allItems = useMemo(() => buildSearchIndex(), [])
-  const filteredItems = useMemo(() => searchItems(allItems, query), [allItems, query])
+  const allItems = useMemo(() => (isOpen ? buildSearchIndex() : []), [isOpen])
+  const filteredItems = useMemo(() => (isOpen ? searchItems(allItems, query) : []), [allItems, isOpen, query])
 
   // Focus automatique lors de l'ouverture
   useEffect(() => {

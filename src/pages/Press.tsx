@@ -184,13 +184,13 @@ export default function Press() {
   useSeo({
     title: 'Presse & Médias | Hervé Nanfang — Espace officiel & EPK',
     description:
-      'Espace officiel de presse d’Hervé Nanfang : présentation de référence, biographies multi-formats, photothèque haute définition, fiches techniques et contact direct.',
+      'EPK (Electronic Press Kit) et espace officiel de presse d’Hervé Nanfang : présentation de référence, biographies multi-formats, photothèque HD, fiches techniques (riders) et contact direct.',
     path: '/presse',
     jsonLd: [
       personSchema,
       breadcrumbSchema([
         { name: 'Accueil', path: '/' },
-        { name: 'Presse & Médias', path: '/presse' },
+        { name: 'Presse & Médias (EPK)', path: '/presse' },
       ]),
     ],
   })
@@ -241,10 +241,10 @@ Site officiel : https://hervenanfang.art`
       {/* EN-TÊTE PRESSE                                                            */}
       {/* ========================================================================= */}
       <PageHero
-        breadcrumb="Presse & Médias"
+        breadcrumb="Presse & Médias · EPK"
         eyebrow="Musique · Musicologie · Pédagogie · Culture · Innovation"
-        title="Hervé Nanfang — Espace officiel de presse et de programmation"
-        lead="Bienvenue dans l’espace presse officiel de Hervé Nanfang, artiste-musicien, musicologue, pédagogue et ingénieur du son basé à Yaoundé, au Cameroun. Cet espace rassemble les informations de référence, biographies, portraits, ressources professionnelles et fiches techniques nécessaires à la préparation d’articles, d’interviews, de reportages, de conférences et de programmations artistiques. Journalistes, rédactions, médias audiovisuels, programmateurs, institutions culturelles et partenaires peuvent y consulter les informations essentielles et adresser leurs demandes directement."
+        title="Hervé Nanfang — Espace officiel de presse, EPK et programmation"
+        lead="Bienvenue dans l’espace presse et EPK (Electronic Press Kit) officiel de Hervé Nanfang, artiste-musicien, musicologue, pédagogue et ingénieur du son basé à Yaoundé, au Cameroun. Ce dossier de presse numérique rassemble les informations de référence, biographies, portraits haute définition, ressources professionnelles et fiches techniques (riders) nécessaires à la préparation d’articles, d’interviews, de reportages, de conférences et de programmations artistiques. Journalistes, rédactions, médias audiovisuels, programmateurs, institutions culturelles et partenaires peuvent y consulter les informations essentielles et adresser leurs demandes directement."
       >
         <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
           <Stat value="2007" label="Scène live (19 ans)" />
@@ -613,7 +613,7 @@ Site officiel : https://hervenanfang.art`
                 </div>
                 <div className="mt-6 border-t border-white/5 pt-4">
                   <ArrowLink
-                    to={`mailto:hervenanfang@gmail.com?subject=${encodeURIComponent(`[Interview / Presse] Sujet : ${topic.title}`)}`}
+                    to={`mailto:${SITE.emailContact}?subject=${encodeURIComponent(`[Interview / Presse] Sujet : ${topic.title}`)}`}
                   >
                     Proposer un entretien sur ce sujet
                   </ArrowLink>
@@ -701,7 +701,7 @@ Site officiel : https://hervenanfang.art`
                   <div className="border-b border-white/5 pb-3">
                     <span className="text-[0.68rem] text-ivory/40 uppercase block font-sans">Courriel professionnel</span>
                     <a
-                      href="mailto:hervenanfang@gmail.com?subject=[Demande%20Presse%20%2F%20M%C3%A9dia]%20Demande%20d%27interview%20ou%20ressources&body=Bonjour%20Herv%C3%A9%20Nanfang%2C%0A%0AVoici%20les%20%C3%A9l%C3%A9ments%20de%20notre%20demande%20%3A%0A1.%20M%C3%A9dia%20%2F%20Organisation%20%3A%20%0A2.%20Nom%20et%20coordonn%C3%A9es%20%3A%20%0A3.%20Sujet%20et%20format%20envisag%C3%A9s%20%3A%20%0A4.%20D%C3%A9lai%20%C3%A9ditorial%20ou%20date%20%3A%20%0A5.%20Ressources%20souhait%C3%A9es%20%3A%20%0A6.%20Conditions%20de%20diffusion%20%3A%20%0A%0ABien%20cordialement%2C"
+                      href={`mailto:${SITE.emailContact}?subject=[Demande%20Presse%20%2F%20M%C3%A9dia]%20Demande%20d%27interview%20ou%20ressources&body=Bonjour%20Herv%C3%A9%20Nanfang%2C%0A%0AVoici%20les%20%C3%A9l%C3%A9ments%20de%20notre%20demande%20%3A%0A1.%20M%C3%A9dia%20%2F%20Organisation%20%3A%20%0A2.%20Nom%20et%20coordonn%C3%A9es%20%3A%20%0A3.%20Sujet%20et%20format%20envisag%C3%A9s%20%3A%0A4.%20D%C3%A9lai%20%C3%A9ditorial%20ou%20date%20%3A%20%0A5.%20Ressources%20souhait%C3%A9es%20%3A%20%0A6.%20Conditions%20de%20diffusion%20%3A%20%0A%0ABien%20cordialement%2C`}
                       className="text-gold hover:text-gold-2 text-sm font-semibold transition-colors mt-1 block"
                     >
                       {SITE.emailContact}
@@ -734,7 +734,7 @@ Site officiel : https://hervenanfang.art`
 
               <div className="mt-8 space-y-3">
                 <a
-                  href="mailto:hervenanfang@gmail.com?subject=[Demande%20Presse%20%2F%20M%C3%A9dia]%20Demande%20d%27interview%20ou%20ressources&body=Bonjour%20Herv%C3%A9%20Nanfang%2C%0A%0AVoici%20les%20%C3%A9l%C3%A9ments%20de%20notre%20demande%20%3A%0A1.%20M%C3%A9dia%20%2F%20Organisation%20%3A%20%0A2.%20Nom%20et%20coordonn%C3%A9es%20%3A%20%0A3.%20Sujet%20et%20format%20envisag%C3%A9s%20%3A%20%0A4.%20D%C3%A9lai%20%C3%A9ditorial%20ou%20date%20%3A%20%0A5.%20Ressources%20souhait%C3%A9es%20%3A%20%0A6.%20Conditions%20de%20diffusion%20%3A%20%0A%0ABien%20cordialement%2C"
+                  href={`mailto:${SITE.emailContact}?subject=[Demande%20Presse%20%2F%20M%C3%A9dia]%20Demande%20d%27interview%20ou%20ressources&body=Bonjour%20Herv%C3%A9%20Nanfang%2C%0A%0AVoici%20les%20%C3%A9l%C3%A9ments%20de%20notre%20demande%20%3A%0A1.%20M%C3%A9dia%20%2F%20Organisation%20%3A%20%0A2.%20Nom%20et%20coordonn%C3%A9es%20%3A%20%0A3.%20Sujet%20et%20format%20envisag%C3%A9s%20%3A%20%0A4.%20D%C3%A9lai%20%C3%A9ditorial%20ou%20date%20%3A%20%0A5.%20Ressources%20souhait%C3%A9es%20%3A%20%0A6.%20Conditions%20de%20diffusion%20%3A%20%0A%0ABien%20cordialement%2C`}
                   className="btn btn-gold text-xs uppercase tracking-wider font-bold w-full text-center py-2.5 block"
                 >
                   Envoyer une demande par email

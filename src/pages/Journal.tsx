@@ -33,7 +33,7 @@ export default function Journal() {
   const articles = useLiveArticles()
 
   useSeo({
-    title: 'Journal | Hervé Nanfang — Musicologie, piano-bar, pédagogie & technologie',
+    title: 'Journal Musicologie, Piano, MAO & IA | Hervé Nanfang',
     description:
       'Le Journal d’Hervé Nanfang : musicologie africaine, piano-bar, méthode Permis de Jouer™, ingénierie sonore, cinéma africain, entrepreneuriat et Musicien Augmenté™.',
     path: '/journal',

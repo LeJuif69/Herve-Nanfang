@@ -4,6 +4,21 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/a-laiz-academy",
+      "destination": "/rma",
+      "permanent": true
+    },
+    {
+      "source": "/racines-musicales-academy",
+      "destination": "/rma",
+      "permanent": true
+    },
+    {
+      "source": "/epk",
+      "destination": "/presse",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [
         { "type": "host", "value": "www.hervenanfang.art" }
@@ -14,7 +29,7 @@
     {
       "source": "/(.*)",
       "has": [
-        { "type": "host", "value": "hervenanfang.vercel.app" }
+        { "type": "host", "value": "(.*)\\.vercel\\.app" }
       ],
       "destination": "https://hervenanfang.art/$1",
       "permanent": true
@@ -25,6 +40,18 @@
     { "source": "/admin/(.*)", "destination": "/index.html" }
   ],
   "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [

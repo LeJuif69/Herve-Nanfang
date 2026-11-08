@@ -4,7 +4,6 @@ import { NAV_PRIMARY, NAV_SECONDARY, SITE } from '../data/site'
 import { IDENTITY } from '../data/identity'
 import { Container, Eyebrow, Rule } from './ui'
 import SocialButtons from './SocialButtons'
-import { adminStore } from '../lib/admin-store'
 import { trackFormSubmitSuccess, trackLeadConversion } from '../lib/ad-pixels'
 
 const DERIVED_MARKS = [
@@ -39,6 +38,7 @@ export default function Footer() {
               const cleanEmail = email.trim()
               if (!cleanEmail) return
               try {
+                const { adminStore } = await import('../lib/admin-store')
                 await adminStore.addIncomingMessage({
                   name: 'Abonné Lettre du Journal',
                   email: cleanEmail,
@@ -90,6 +90,10 @@ export default function Footer() {
                 <img
                   src="/hn-initials-mark.png"
                   alt=""
+                  width={40}
+                  height={40}
+                  loading="lazy"
+                  decoding="async"
                   aria-hidden="true"
                   className="h-full w-full object-contain"
                 />

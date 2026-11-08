@@ -3,8 +3,6 @@
  * Supporte : Meta Pixel (Facebook & Instagram Ads) et Google Ads / Google Tag
  */
 
-import { adminStore } from './admin-store'
-
 declare global {
   interface Window {
     fbq?: (...args: unknown[]) => void
@@ -17,6 +15,25 @@ declare global {
 let metaPixelInitialized = false
 let googleAdsInitialized = false
 
+function readStoredAdminSettings(): {
+  metaPixelId?: string
+  googleAdsId?: string
+  googleAnalyticsId?: string
+} {
+  try {
+    if (typeof localStorage !== 'undefined') {
+      const raw = localStorage.getItem('hn_admin_store_v4')
+      if (raw) {
+        const parsed = JSON.parse(raw)
+        if (parsed && parsed.settings) return parsed.settings
+      }
+    }
+  } catch {
+    // ignore
+  }
+  return {}
+}
+
 /**
  * Initialise les pixels publicitaires déclarés (soit dans adminSettings, soit dans les envs).
  */
@@ -24,7 +41,7 @@ export function initAdPixels(): void {
   if (typeof window === 'undefined') return
 
   try {
-    const settings = adminStore.getState().settings
+    const settings = readStoredAdminSettings()
 
     // 1. Meta Pixel (Facebook / Instagram Ads)
     const metaPixelId =

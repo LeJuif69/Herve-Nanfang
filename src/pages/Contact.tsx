@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import PressKit from '../components/PressKit'
 import SocialButtons from '../components/SocialButtons'
@@ -58,8 +59,16 @@ const ROUTE_LABELS: Record<string, string> = Object.fromEntries(
   CONTACT_ROUTES.map((r) => [r.id, r.label]),
 )
 
+const FORMULA_LABELS: Record<string, string> = {
+  lounge: 'Formule Solo — Piano & Voix (Lounge / Réception)',
+  prestige: 'Formule Duo — Piano & Chant (Prestige)',
+  liveband: 'Formule Live Band — Orchestre complet',
+}
+
 export default function Contact() {
+  const location = useLocation()
   const [form, setForm] = useState<FormState>(EMPTY)
+  const [selectedFormula, setSelectedFormula] = useState<string>('')
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [submitted, setSubmitted] = useState(false)
   const [sending, setSending] = useState(false)
@@ -67,15 +76,32 @@ export default function Contact() {
 
   useEffect(() => {
     let currentRoute = 'booking'
-    if (typeof window !== 'undefined' && window.location.hash) {
-      const hash = window.location.hash.replace('#', '')
-      if (CONTACT_ROUTES.some((r) => r.id === hash)) {
-        currentRoute = hash
-        setForm((f) => ({ ...f, route: hash }))
-      }
+    const params = new URLSearchParams(location.search)
+    const sujet = params.get('sujet')?.toLowerCase()
+    const formula = params.get('formula')?.toLowerCase()
+    const hash = location.hash.replace('#', '').toLowerCase()
+
+    if (sujet && CONTACT_ROUTES.some((r) => r.id === sujet)) {
+      currentRoute = sujet
+    } else if (hash && CONTACT_ROUTES.some((r) => r.id === hash)) {
+      currentRoute = hash
+    } else if (formula) {
+      currentRoute = 'booking'
     }
+
+    const formulaLabel = formula && FORMULA_LABELS[formula] ? FORMULA_LABELS[formula] : ''
+    setSelectedFormula(formulaLabel)
+
+    setForm((f) => ({
+      ...f,
+      route: currentRoute,
+      message:
+        formulaLabel && !f.message
+          ? `Format souhaité : ${formulaLabel}.\nContexte de l'événement, date et lieu envisagés : `
+          : f.message,
+    }))
     trackFormView('contact_form', currentRoute)
-  }, [])
+  }, [location.hash, location.search])
 
   useSeo({
     title: 'Contact | Hervé Nanfang — Booking, Formation & Conseil',
@@ -232,6 +258,12 @@ export default function Contact() {
             <Lead className="mt-5 max-w-xl">
               Motif sélectionné : <span className="text-gold">{selected.label}</span> — {selected.detail}
             </Lead>
+            {selectedFormula && (
+              <div className="mt-4 inline-flex items-center gap-2 rounded border border-gold/40 bg-gold/10 px-3.5 py-1.5 text-xs text-gold">
+                <span>✦ Configuration présélectionnée :</span>
+                <strong>{selectedFormula}</strong>
+              </div>
+            )}
 
             {submitted ? (
               <div className="mt-10 border border-gold/40 bg-ink-2 p-8">
@@ -445,9 +477,10 @@ export default function Contact() {
                     href={whatsappHrefs[0].href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[0.68rem] uppercase tracking-[0.18em] text-ivory/45 hover:text-gold"
+                    onClick={() => trackContactMethodClick('whatsapp', form.route)}
+                    className="text-[0.68rem] uppercase tracking-[0.18em] text-ivory/60 hover:text-gold"
                   >
-                    ou ouvrir WhatsApp →
+                    ou envoyer directement sur WhatsApp →
                   </a>
                 </div>
               </form>
@@ -457,18 +490,26 @@ export default function Contact() {
           {/* Coordonnées */}
           <Reveal delay={120} className="lg:sticky lg:top-32">
             <Card hover={false}>
-              <Eyebrow>Coordonnées</Eyebrow>
+              <Eyebrow>Coordonnées directes</Eyebrow>
               <Rule className="opacity-40" />
               <ul className="mt-5 space-y-4 text-sm">
                 <li>
                   <p className="text-[0.62rem] uppercase tracking-[0.18em] text-ivory/35">Email officiel direct</p>
-                  <a href={`mailto:${SITE.emailContact}`} className="mt-1 block break-all font-display text-xl text-gold">
+                  <a
+                    href={`mailto:${SITE.emailContact}`}
+                    onClick={() => trackContactMethodClick('email', form.route)}
+                    className="mt-1 block break-all font-display text-xl text-gold"
+                  >
                     {SITE.emailContact}
                   </a>
                 </li>
                 <li>
-                  <p className="text-[0.62rem] uppercase tracking-[0.18em] text-ivory/35">Cours & Académie</p>
-                  <a href={`mailto:${SITE.emailAcademy}`} className="mt-1 block break-all font-display text-lg text-ivory/90 hover:text-gold">
+                  <p className="text-[0.62rem] uppercase tracking-[0.18em] text-ivory/35">Cours & A Laiz Academy</p>
+                  <a
+                    href={`mailto:${SITE.emailAcademy}`}
+                    onClick={() => trackContactMethodClick('email', 'formation')}
+                    className="mt-1 block break-all font-display text-lg text-ivory/90 hover:text-gold"
+                  >
                     {SITE.emailAcademy}
                   </a>
                 </li>
@@ -476,40 +517,52 @@ export default function Contact() {
                   <li key={phone.tel}>
                     <p className="text-[0.62rem] uppercase tracking-[0.18em] text-ivory/35">Téléphone / WhatsApp</p>
                     <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1">
-                      <a href={`tel:${phone.tel}`} className="text-ivory/75 hover:text-gold">{phone.display}</a>
+                      <a
+                        href={`tel:${phone.tel}`}
+                        onClick={() => trackContactMethodClick('phone', form.route)}
+                        className="text-ivory/75 hover:text-gold"
+                      >
+                        {phone.display}
+                      </a>
                       <a
                         href={`https://wa.me/${phone.whatsapp}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-gold hover:text-gold-2"
+                        onClick={() => trackContactMethodClick('whatsapp', form.route)}
+                        className="text-gold hover:text-gold-2 font-semibold"
                       >
-                        WhatsApp
+                        WhatsApp ↗
                       </a>
                     </div>
                   </li>
                 ))}
                 <li>
-                  <p className="text-[0.62rem] uppercase tracking-[0.18em] text-ivory/35">Base</p>
-                  <p className="mt-1 text-ivory/75">{SITE.city} — interventions internationales</p>
+                  <p className="text-[0.62rem] uppercase tracking-[0.18em] text-ivory/35">Base & Mobilité</p>
+                  <p className="mt-1 text-ivory/75">{SITE.city} — interventions Cameroun & international</p>
                 </li>
               </ul>
 
               <Rule className="my-7 opacity-40" />
 
-              <p className="text-[0.62rem] uppercase tracking-[0.18em] text-ivory/35">Réseaux</p>
+              <p className="text-[0.62rem] uppercase tracking-[0.18em] text-ivory/35">Profils officiels vérifiés</p>
               <div className="mt-4">
                 <SocialButtons />
               </div>
             </Card>
 
             <Card hover={false} className="mt-8">
-              <Eyebrow>Bon à savoir</Eyebrow>
+              <Eyebrow>Références & Cadrage</Eyebrow>
               <Rule className="opacity-40" />
-              <ul className="mt-5 space-y-3 text-sm text-ivory/60">
-                <li>Une demande précise reçoit une réponse plus rapide et plus utile.</li>
-                <li>Pour un booking, indiquez la date, la durée et le type de salle.</li>
-                <li>Pour une conférence, précisez le public et le format attendu.</li>
-                <li>Les demandes de presse reçoivent une biographie vérifiée et des visuels.</li>
+              <ul className="mt-5 space-y-3 text-sm text-ivory/65">
+                <li>
+                  <strong className="text-ivory">Scènes & Hôtels :</strong> Hôtel Hilton, Mont Fébé, Djeuga Palace, Akwa Palace.
+                </li>
+                <li>
+                  <strong className="text-ivory">Enseignement supérieur :</strong> ESAS (Lomé), ISMA (Bénin), IBA (Nkongsamba), IFCPA / CRTV (Yaoundé).
+                </li>
+                <li>
+                  <strong className="text-ivory">Réponse sous 48 h :</strong> proposition chiffrée, fiche technique autonome et modalités contractuelles.
+                </li>
               </ul>
             </Card>
           </Reveal>

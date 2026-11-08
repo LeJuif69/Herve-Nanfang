@@ -87,7 +87,7 @@ export default function Header() {
         }`}
       >
         <div className="mx-auto flex max-w-[86rem] items-center justify-between px-10 py-2.5 lg:px-14">
-          <p className="eyebrow text-[0.6rem] text-ivory/45">
+          <p className="eyebrow text-[0.6rem] text-ivory/65">
             Musicologue · Artiste-musicien · Pédagogue · Ingénieur du son · Concepteur de programmes
           </p>
           <nav aria-label="Navigation secondaire" className="flex items-center gap-7">
@@ -95,7 +95,7 @@ export default function Header() {
               <Link
                 key={item.label}
                 to={item.to}
-                className="text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-ivory/55 transition-colors hover:text-gold"
+                className="text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-ivory/70 transition-colors hover:text-gold"
               >
                 {item.label}
               </Link>
@@ -123,6 +123,9 @@ export default function Header() {
               <img
                 src="/hn-initials-mark.png"
                 alt=""
+                width={40}
+                height={40}
+                decoding="async"
                 aria-hidden="true"
                 className="h-full w-full object-contain"
               />
@@ -311,6 +314,10 @@ export default function Header() {
                 <img
                   src="/hn-initials-mark.png"
                   alt=""
+                  width={44}
+                  height={44}
+                  loading="lazy"
+                  decoding="async"
                   aria-hidden="true"
                   className="h-full w-full object-contain"
                 />

@@ -46,7 +46,7 @@ const PROCESS = [
 
 export default function Services() {
   useSeo({
-    title: 'Services | Hervé Nanfang — live, production, marque & conseil',
+    title: 'Services : Piano Live, Studio MAO & Conseil | Hervé Nanfang',
     description:
       "Piano live Le Pianobariste™, production musicale, stratégie de marque, conférences IA et formations A Laiz Academy : prestations sur mesure d'Hervé Nanfang.",
     path: '/services',

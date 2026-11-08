@@ -157,9 +157,9 @@ const VALEURS = [
 
 export default function RMA() {
   useSeo({
-    title: 'A Laiz Academy | Hervé Nanfang — Musique & Pédagogie',
+    title: 'A Laiz Academy | École de Musique, Piano & MAO Cameroun',
     description:
-      "A Laiz Academy (ex-Racines Musicales Academy — RMA) : formation musicale d'excellence, méthode Permis de Jouer™ et transmission par Hervé Nanfang.",
+      'A Laiz Academy (ex-Racines Musicales Academy — RMA) à Yaoundé et en ligne : formation piano, chant, MAO et méthode certifiante Permis de Jouer™ d’Hervé Nanfang.',
     path: '/rma',
     jsonLd: [
       personSchema,

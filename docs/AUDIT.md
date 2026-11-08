@@ -1,6 +1,6 @@
 # Audit éditorial et technique — hervenanfang.art
 
-*Généré le 07/11/2026 par `npm run audit`.*
+*Généré le 08/11/2026 par `npm run audit`.*
 
 Cet audit analyse la **source** du site : il est reproductible après chaque modification.
 
@@ -10,11 +10,11 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 |---|---|
 | Pages analysées | 18 |
 | Titres SEO hors cible | 0 |
-| Titres tronqués dans Google (> 60 car.) | 3 |
+| Titres tronqués dans Google (> 60 car.) | 0 |
 | Descriptions hors cible | 0 |
 | Pages sans H1 unique | 0 |
 | Liens internes cassés | 0 |
-| Images sans `alt` | 0 sur 16 |
+| Images sans `alt` | 0 sur 12 |
 | Routes absentes du sitemap | 0 |
 | URL du sitemap sans route | 0 |
 | Éléments factuels à confirmer | 1 |
@@ -27,20 +27,20 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 | `Admin` | Administration | Hervé Nanfang | 30 | Espace privé du2019administration du site du2019Hervé Nanfang : conten… | 120 | 1 (balise <h1>) | — |
 | `AI` | IA & Technologie | Hervé Nanfang — Musicien Augmenté | 52 | Musique, MAO, pédagogie et communication digitale : la position d’Herv… | 152 | 1 (PageHero (h1 interne)) | Person, Organization, BreadcrumbList, Course, FAQPage, CreativeWork / Book |
 | `ArticleDetail` | Article introuvable | Hervé Nanfang (valeur dynamique) | 35 | Article introuvable — retour au Journal du Musicien Augmenté d'Hervé N… | 77 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Article |
-| `Conferences` | Conférences & Masterclass | Hervé Nanfang — IA & Musique | 56 | Six conférences de référence pour écoles, universités et institutions … | 147 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
+| `Conferences` | Conférences IA, Musique & Culture | Hervé Nanfang | 49 | Six conférences et masterclasses pour universités, écoles et instituti… | 157 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service, EducationEvent |
 | `Contact` | Contact | Hervé Nanfang — Booking, Formation & Conseil | 54 | Booking piano-bar, formation, conférence, collaboration, presse ou con… | 151 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
-| `Culture` | Culture & Recherche | Hervé Nanfang — musicologie | 49 | Musicologie, cultures africaines, patrimoine et transmission orale : c… | 148 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, CreativeWork / Book |
-| `Home` | Hervé Nanfang | Musicien, Musicologue & Musicien Augmenté | 57 | Hervé Nanfang, artiste-musicien camerounais : Piano-Bar, composition, … | 153 | 1 (balise <h1>) | Person, WebSite, Organization, MusicGroup |
-| `Journal` | Journal | Hervé Nanfang — Musicologie, piano-bar, pédagogie & technologie ✂️ tronqué dans Google | 73 | Le Journal d’Hervé Nanfang : musicologie africaine, piano-bar, méthode… | 163 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Article |
+| `Culture` | Musicologie & Musiques Africaines | Hervé Nanfang | 49 | Musicologie africaine, patrimoine sonore, Tswefap Batoufam et transmis… | 157 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, CreativeWork / Book |
+| `Home` | Hervé Nanfang | Musicien, Musicologue & Musicien Augmenté | 57 | Hervé Nanfang, artiste-musicien camerounais : Piano-Bar, composition, … | 153 | 1 (balise <h1>) | Person, WebSite, Organization, MusicGroup, Service, Course |
+| `Journal` | Journal Musicologie, Piano, MAO & IA | Hervé Nanfang | 52 | Le Journal d’Hervé Nanfang : musicologie africaine, piano-bar, méthode… | 163 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Article |
 | `Legal` | Mentions légales | Hervé Nanfang (valeur dynamique) | 32 | Informations légales du site d'Hervé Nanfang : éditeur, hébergeur, pro… | 128 | 1 (PageHero (h1 interne)) | BreadcrumbList |
-| `Music` | Musique | Hervé Nanfang — Piano, Composition & Production | 57 | Piano-bar live depuis 2007, formats solo, duo et live band, compositio… | 139 | 1 (PageHero (h1 interne)) | MusicGroup, BreadcrumbList, Service, CreativeWork / Book |
+| `Music` | Piano-Bar Live & Musique Cameroun | Hervé Nanfang | 49 | Pianiste-chanteur live au Cameroun depuis 2007 (Le Pianobariste™) : pi… | 152 | 1 (PageHero (h1 interne)) | Person, MusicGroup, BreadcrumbList, Service, Event, CreativeWork / Book |
 | `NotFound` | Page introuvable | Hervé Nanfang | 32 | La page demandée n’existe pas ou a été déplacée. Accédez aux rubriques… | 156 | 1 (Display as="h1") | — |
 | `Pedagogy` | Pédagogie & Formation | Hervé Nanfang — A Laiz Academy | 54 | Enseignement supérieur, conception de curricula, musicologie africaine… | 155 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Course, CreativeWork / Book |
 | `Press` | Presse & Médias | Hervé Nanfang — Espace officiel & EPK | 55 | Espace officiel de presse d’Hervé Nanfang : présentation de référence,… | 164 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList |
 | `Projects` | Projets & Univers Créatif | Hervé Nanfang — A Laiz Ô Pays | 57 | Projets musicaux et pédagogiques de Hervé Nanfang : A Laiz Ô Pays, Le … | 149 | 1 (PageHero (h1 interne)) | Person, Organization, BreadcrumbList, CreativeWork / Book |
-| `RMA` | A Laiz Academy | Hervé Nanfang — Musique & Pédagogie | 52 | A Laiz Academy (ex-Racines Musicales Academy — RMA) : formation musica… | 146 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service, Course |
-| `Services` | Services | Hervé Nanfang — live, production, marque & conseil ✂️ tronqué dans Google | 61 | Piano live Le Pianobariste™, production musicale, stratégie de marque,… | 156 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
-| `Videos` | Vidéos Live & Reprises Musicales | Hervé Nanfang – Le Pianobariste ✂️ tronqué dans Google | 66 | Découvrez les performances live, reprises musicales, sessions Piano-Ba… | 147 | 1 (PageHero (h1 interne)) | — |
+| `RMA` | A Laiz Academy | École de Musique, Piano & MAO Cameroun | 55 | A Laiz Academy (ex-Racines Musicales Academy — RMA) à Yaoundé et en li… | 160 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service, Course |
+| `Services` | Services : Piano Live, Studio MAO & Conseil | Hervé Nanfang | 59 | Piano live Le Pianobariste™, production musicale, stratégie de marque,… | 156 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
+| `Videos` | Vidéos Piano-Bar Live & Concerts | Hervé Nanfang | 48 | Découvrez les performances live, reprises musicales, sessions Piano-Ba… | 147 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, CreativeWork / Book |
 
 ## 3. Corrections à apporter
 

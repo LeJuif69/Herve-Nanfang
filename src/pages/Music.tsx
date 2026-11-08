@@ -35,7 +35,7 @@ import {
 import { AUDIO_PLAYLIST, type AudioTrack } from '../data/audio'
 import { ARTICLES } from '../data/articles'
 import { useAudio } from '../lib/audio-context'
-import { breadcrumbSchema, creativeWorkSchema, musicGroupSchema, serviceSchema } from '../lib/schema'
+import { breadcrumbSchema, creativeWorkSchema, eventSchema, musicGroupSchema, personSchema, serviceSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 
 export default function Music() {
@@ -68,11 +68,12 @@ export default function Music() {
   })
 
   useSeo({
-    title: 'Musique | Hervé Nanfang — Piano, Composition & Production',
+    title: 'Piano-Bar Live & Musique Cameroun | Hervé Nanfang',
     description:
-      "Piano-bar live depuis 2007, formats solo, duo et live band, composition originale et ingénierie du son : l'univers musical d'Hervé Nanfang.",
+      'Pianiste-chanteur live au Cameroun depuis 2007 (Le Pianobariste™) : piano-bar, formules solo, duo et live band, composition et production MAO à Yaoundé.',
     path: '/musique',
     jsonLd: [
+      personSchema,
       musicGroupSchema,
       creativeWorkSchema(
         'Le Pianobariste',
@@ -87,6 +88,11 @@ export default function Music() {
         'Production musicale & ingénierie du son',
         'Composition, arrangement, prise de son, mixage et production musicale pour artistes et contenus audiovisuels.',
         'Production musicale',
+      ),
+      eventSchema(
+        'Sessions Piano-Bar Live — Le Pianobariste™ (Hervé Nanfang)',
+        'Performances piano-bar live, cocktails diplomatiques, soirées lounge et galas assurés par Hervé Nanfang à Yaoundé, Douala et à l’international.',
+        'Yaoundé & Douala, Cameroun',
       ),
       breadcrumbSchema([
         { name: 'Accueil', path: '/' },

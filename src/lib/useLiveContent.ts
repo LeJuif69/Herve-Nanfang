@@ -1,25 +1,102 @@
 import { useEffect, useState } from 'react'
-import { adminStore } from './admin-store'
 import type {
   AdminArticle,
+  AdminMedia,
   AdminSettings,
   AdminState,
 } from './admin-types'
 import { ARTICLES } from '../data/articles'
 import { SITE } from '../data/site'
 
+const DEFAULT_PUBLIC_MEDIA: AdminMedia[] = [
+  {
+    id: 'med-about-portrait',
+    bucket: 'public-media',
+    path: 'shooting-pro-officiel.webp',
+    url: '/images/shooting-pro-officiel.webp',
+    filename: 'shooting-pro-officiel.webp',
+    altText: 'Portrait officiel d’Hervé Nanfang en costume d’apparat et chemise dorée',
+    caption: 'Portrait éditorial officiel de prestige (Page À propos & Presse)',
+    tags: ['Portrait', 'À propos', 'Presse', 'Identité'],
+    mimeType: 'image/webp',
+    sizeBytes: 137906,
+    width: 1280,
+    height: 853,
+    defaultPositionX: 50,
+    defaultPositionY: 30,
+    focalX: 50,
+    focalY: 30,
+    createdAt: '2026-03-01T00:00:00Z',
+  },
+  {
+    id: 'med-live-piano',
+    bucket: 'public-media',
+    path: 'live-scene-piano.webp',
+    url: '/images/live-scene-piano.webp',
+    filename: 'live-scene-piano.webp',
+    altText: 'Hervé Nanfang sur scène en concert live au piano',
+    caption: 'Concert live Piano-Bar (Page Musique & Presse)',
+    tags: ['Live', 'Piano', 'Concert', 'Scène'],
+    mimeType: 'image/webp',
+    sizeBytes: 54680,
+    width: 1080,
+    height: 1080,
+    defaultPositionX: 50,
+    defaultPositionY: 40,
+    focalX: 50,
+    focalY: 40,
+    createdAt: '2026-03-02T00:00:00Z',
+  },
+]
+
+function readLightweightPublicState(): Partial<AdminState> {
+  try {
+    if (typeof localStorage !== 'undefined') {
+      const saved = localStorage.getItem('hn_admin_store_v4')
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        if (parsed && typeof parsed === 'object') {
+          return parsed as Partial<AdminState>
+        }
+      }
+    }
+  } catch {
+    // ignore
+  }
+  return {
+    articles: ARTICLES as unknown as AdminArticle[],
+    media: DEFAULT_PUBLIC_MEDIA,
+  }
+}
+
 /**
  * Hook qui écoute en temps réel les changements du store d'administration
- * (localStorage / Supabase) pour alimenter les pages publiques instantanément.
+ * (localStorage / Supabase) pour alimenter les pages publiques instantanément,
+ * sans alourdir le bundle public initial avec les dépendances d'administration.
  */
-export function useAdminState(): AdminState {
-  const [state, setState] = useState<AdminState>(() => adminStore.getState())
+export function useAdminState(): Partial<AdminState> {
+  const [state, setState] = useState<Partial<AdminState>>(() => readLightweightPublicState())
 
   useEffect(() => {
-    const unsubscribe = adminStore.subscribe((newState) => {
-      setState({ ...newState })
+    if (typeof localStorage === 'undefined') return
+    const hasAdminSessionOrStore =
+      Boolean(localStorage.getItem('hn_admin_store_v4')) ||
+      Boolean(localStorage.getItem('hn_admin_session_v1'))
+
+    if (!hasAdminSessionOrStore) return
+
+    let unsubscribe: (() => void) | undefined
+    let cancelled = false
+    import('./admin-store').then(({ adminStore }) => {
+      if (cancelled) return
+      unsubscribe = adminStore.subscribe((newState) => {
+        setState({ ...newState })
+      })
     })
-    return unsubscribe
+    return () => {
+      cancelled = true
+      unsubscribe?.()
+    }
   }, [])
 
   return state

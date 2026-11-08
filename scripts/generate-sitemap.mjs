@@ -42,9 +42,10 @@ async function publishedSlugs() {
 }
 
 function entry(loc, lastmod) {
+  const cleanLoc = loc === '/' ? '' : loc.replace(/\/+$/, '')
   return lastmod
-    ? `  <url>\n    <loc>${SITE_URL}${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`
-    : `  <url>\n    <loc>${SITE_URL}${loc}</loc>\n  </url>`
+    ? `  <url>\n    <loc>${SITE_URL}${cleanLoc}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`
+    : `  <url>\n    <loc>${SITE_URL}${cleanLoc}</loc>\n  </url>`
 }
 
 const slugs = await publishedSlugs()

@@ -51,13 +51,16 @@ function escapeHtml(value) {
 }
 
 function pageHead(seo, site) {
-  const canonical = `${site.url}${seo.path === '/' ? '/' : seo.path}`
+  const cleanPath = !seo.path || seo.path === '/' ? '' : seo.path.replace(/\/+$/, '')
+  const canonical = `${site.url}${cleanPath}`
   const image = seo.image.startsWith('http') ? seo.image : `${site.url}${seo.image}`
   const tags = [
     `<title>${escapeHtml(seo.title)}</title>`,
     `<meta name="description" content="${escapeHtml(seo.description)}">`,
     `<meta name="robots" content="${escapeHtml(seo.robots)}">`,
     `<link rel="canonical" href="${escapeHtml(canonical)}">`,
+    `<link rel="alternate" hreflang="fr" href="${escapeHtml(canonical)}">`,
+    `<link rel="alternate" hreflang="x-default" href="${escapeHtml(canonical)}">`,
     `<meta property="og:type" content="${escapeHtml(seo.type)}">`,
     `<meta property="og:site_name" content="${escapeHtml(site.name)}">`,
     '<meta property="og:locale" content="fr_FR">',
@@ -73,20 +76,18 @@ function pageHead(seo, site) {
     `<meta name="twitter:description" content="${escapeHtml(seo.description)}">`,
     `<meta name="twitter:image" content="${escapeHtml(image)}">`,
   ]
-  // Vérifications Search Console / Bing Webmaster Tools (pré-rendues si définies au build).
+  const gscTokens = new Set(['p_ZbSiZ94DyZ5e9YEy3oLDXLvaszQGE7pKnPHAZFtzQ'])
   if (process.env.VITE_GOOGLE_SITE_VERIFICATION) {
-    tags.push(`<meta name="google-site-verification" content="${escapeHtml(process.env.VITE_GOOGLE_SITE_VERIFICATION.trim())}">`)
+    gscTokens.add(process.env.VITE_GOOGLE_SITE_VERIFICATION.trim())
   }
-  if (process.env.VITE_BING_SITE_VERIFICATION) {
-    tags.push(`<meta name="msvalidate.01" content="${escapeHtml(process.env.VITE_BING_SITE_VERIFICATION.trim())}">`)
+  for (const token of gscTokens) {
+    tags.push(`<meta name="google-site-verification" content="${escapeHtml(token)}">`)
   }
-  if (process.env.VITE_PINTEREST_DOMAIN_VERIFY) {
-    tags.push(`<meta name="p:domain_verify" content="${escapeHtml(process.env.VITE_PINTEREST_DOMAIN_VERIFY.trim())}">`)
-  }
-  tags.push('<meta name="google-site-verification" content="p_ZbSiZ94DyZ5e9YEy3oLDXLvaszQGE7pKnPHAZFtzQ">')
-  tags.push('<meta name="p:domain_verify" content="67154518be397028f4e8d887c127754b">')
+  const bingToken = process.env.VITE_BING_SITE_VERIFICATION?.trim() || '8DF80077ED9D232B63A6B2865557E400'
+  const pinterestToken = process.env.VITE_PINTEREST_DOMAIN_VERIFY?.trim() || '67154518be397028f4e8d887c127754b'
+  tags.push(`<meta name="p:domain_verify" content="${escapeHtml(pinterestToken)}">`)
   tags.push('<meta name="yandex-verification" content="2fa82dd48c4067fa">')
-  tags.push('<meta name="msvalidate.01" content="8DF80077ED9D232B63A6B2865557E400">')
+  tags.push(`<meta name="msvalidate.01" content="${escapeHtml(bingToken)}">`)
   const schemas = seo.jsonLd ? (Array.isArray(seo.jsonLd) ? seo.jsonLd : [seo.jsonLd]) : []
   for (const schema of schemas) {
     const json = JSON.stringify(schema).replace(/</g, '\\u003c')
@@ -144,11 +145,10 @@ function outputPath(route) {
 }
 
 function sitemapXml(site, paths) {
-
   const entries = paths.map((path) => {
-
     const item = typeof path === 'string' ? { path } : path
-    const url = `${site.url}${item.path === '/' ? '/' : item.path}`
+    const cleanPath = !item.path || item.path === '/' ? '' : item.path.replace(/\/+$/, '')
+    const url = `${site.url}${cleanPath}`
     const lastmod = item.lastmod ? `\n    <lastmod>${escapeHtml(item.lastmod)}</lastmod>` : ''
     return `  <url>\n    <loc>${escapeHtml(url)}</loc>${lastmod}\n  </url>`
   })
@@ -211,6 +211,11 @@ try {
     const destination = outputPath(route)
     await mkdir(dirname(destination), { recursive: true })
     await writeFile(destination, html, 'utf8')
+    if (route === '/rma') {
+      const aliasDestination = outputPath('/a-laiz-academy')
+      await mkdir(dirname(aliasDestination), { recursive: true })
+      await writeFile(aliasDestination, html, 'utf8')
+    }
   }
 
   const notFound = await renderRoute(App, SeoContext, '/not-found')
