@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import portraitYaounde from '../assets/about-portrait-yaounde.webp'
-import portraitYaoundeJpg from '../assets/about-portrait-yaounde.jpg'
 import affichePianobariste from '../assets/affiche-pianobariste.webp'
 import liveScenePiano from '../assets/live-scene-piano.jpeg'
 import liveBand from '../assets/live-band.webp'
@@ -54,8 +52,8 @@ export const PRESS_VISUALS: PressVisual[] = [
     categoryLabel: 'Portrait HD',
     dimensions: '760 × 1353 px (Haute Définition)',
     weight: '640 Ko (WebP) / 4 Mo (JPG Master)',
-    src: portraitYaounde,
-    masterSrc: portraitYaoundeJpg,
+    src: '/images/about-portrait-yaounde.webp',
+    masterSrc: '/images/about-portrait-yaounde.jpg',
     credit: '© Hervé Nanfang / A Laiz Ô Pays — Yaoundé',
     description: 'Portrait studio et lumière naturelle en extérieur. Idéal pour couvertures de magazines, interviews et articles de fond.',
     recommendedUsage: 'Presse écrite, magazines culturels, affiches de conférences',

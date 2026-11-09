@@ -104,6 +104,14 @@ export default defineConfig({
           if (id.includes('src/data/articles')) {
             return 'articles-data'
           }
+          if (
+            id.includes('src/lib/admin-store') ||
+            id.includes('src/lib/social-generator') ||
+            id.includes('src/lib/generated-uploads-media') ||
+            id.includes('src/lib/campaign-distribution')
+          ) {
+            return 'admin-store'
+          }
         },
       },
     },

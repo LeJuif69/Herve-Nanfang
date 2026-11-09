@@ -1,6 +1,5 @@
 import { useState, type FormEvent } from 'react'
 import { SITE } from '../data/site'
-import { adminStore } from '../lib/admin-store'
 import { formatAttributionTag } from '../lib/utm-tracker'
 import {
   trackContactMethodClick,
@@ -55,6 +54,7 @@ ${musicalGoals || 'Non renseigné'}
       `Objectifs : ${musicalGoals || 'Non renseigné'}`,
     ].join('\n')
 
+    const { adminStore } = await import('../lib/admin-store')
     const res = await adminStore.addIncomingMessage({
       name: fullName,
       email: email,

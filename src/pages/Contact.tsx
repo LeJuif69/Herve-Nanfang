@@ -18,7 +18,6 @@ import {
 import { CONTACT_ROUTES, SITE } from '../data/site'
 import { breadcrumbSchema, personSchema, serviceSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
-import { adminStore } from '../lib/admin-store'
 import { formatAttributionTag } from '../lib/utm-tracker'
 import {
   trackContactMethodClick,
@@ -358,6 +357,7 @@ export default function Contact() {
     const rawMessage = `${contextHeader}${form.message.trim()}`
     const fullBody = tag ? `${tag}\n\n${rawMessage}` : rawMessage
 
+    const { adminStore } = await import('../lib/admin-store')
     const res = await adminStore.addIncomingMessage({
       name: form.name,
       email: form.email,

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { adminStore } from '../lib/admin-store'
 import { formatAttributionTag } from '../lib/utm-tracker'
 import { trackLeadConversion } from '../lib/ad-pixels'
 import { SITE } from '../data/site'
@@ -65,6 +64,7 @@ export const JournalLeadMagnet: React.FC<JournalLeadMagnetProps> = ({
       .join('\n')
 
     try {
+      const { adminStore } = await import('../lib/admin-store')
       const res = await adminStore.addIncomingMessage({
         name: fullName.trim(),
         email: email.trim(),

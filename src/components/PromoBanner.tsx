@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { adminStore } from '../lib/admin-store'
+import { useAdminState } from '../lib/useLiveContent'
+import type { AdminSettings } from '../lib/admin-types'
 import { trackAdEvent } from '../lib/ad-pixels'
 
 const DISMISS_STORAGE_KEY = 'hn_promo_banner_dismissed_v1'
 
 export default function PromoBanner() {
   const [dismissed, setDismissed] = useState(true)
-  const [state, setState] = useState(() => adminStore.getState())
+  const state = useAdminState()
   const location = useLocation()
 
   useEffect(() => {
@@ -18,15 +19,12 @@ export default function PromoBanner() {
     } catch {
       setDismissed(false)
     }
-
-    const unsub = adminStore.subscribe((next) => setState(next))
-    return unsub
   }, [])
 
   // Masquer sur les pages d'administration
   if (location.pathname.startsWith('/admin')) return null
 
-  const settings = state.settings
+  const settings: Partial<AdminSettings> = state.settings || {}
   const isEnabled = settings.promoBannerEnabled ?? false
 
   if (!isEnabled || dismissed) return null
