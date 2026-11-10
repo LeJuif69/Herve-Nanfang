@@ -233,9 +233,9 @@ export default function Culture() {
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             {ARTICLES.filter((a) =>
               [
-                'fela-kuti-afrobeat-revolution-musicale-politique',
-                'manu-dibango-cameroun-jazz-monde',
-                'patrimoine-musical-africain-numerisation-ia',
+                'souverainete-musicale-africaine-ia',
+                'le-bikutsi-au-dela-de-la-mesure',
+                'documenter-les-traditions-musicales-orales',
               ].includes(a.slug),
             ).map((article, i) => (
               <Reveal key={article.slug} delay={i * 70}>

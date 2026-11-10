@@ -387,24 +387,46 @@ export default function AI() {
         </div>
 
         <Reveal delay={200}>
-          <div className="mt-14 rounded-xl border border-gold/30 bg-ink-2/90 p-8 shadow-2xl">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div className="max-w-3xl">
+          <div className="mt-14 grid gap-6 lg:grid-cols-2">
+            <div className="flex flex-col justify-between rounded-xl border border-gold/40 bg-gradient-to-br from-ink-2 to-ink-1 p-8 shadow-2xl">
+              <div>
                 <div className="flex items-center gap-3">
                   <span className="inline-block h-2 w-2 rounded-full bg-gold" />
                   <span className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-gold">
+                    Tribune Pilier · SIMA 2026 Cotonou
+                  </span>
+                </div>
+                <h3 className="mt-3 font-display text-2xl leading-snug text-ivory">
+                  IA et souveraineté musicale africaine : qui possède la valeur de la création ?
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ivory/70">
+                  Droits d’auteur, patrimoine sonore, jeunesse, langues africaines et gouvernance technologique : quelle place pour l’Afrique dans la nouvelle économie mondiale ? Tribune de référence par Hervé Nanfang.
+                </p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-gold/15">
+                <Btn to="/journal/souverainete-musicale-africaine-ia" variant="gold">
+                  Lire la tribune de référence →
+                </Btn>
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-between rounded-xl border border-white/10 bg-ink-2 p-8 shadow-2xl">
+              <div>
+                <div className="flex items-center gap-3">
+                  <span className="inline-block h-2 w-2 rounded-full bg-gold/60" />
+                  <span className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-gold/80">
                     Enquête & Cadre Juridique Africain
                   </span>
                 </div>
-                <h3 className="mt-3 font-display text-2xl leading-snug text-ivory md:text-3xl">
-                  IA et droit d’auteur : ce que les créateurs camerounais doivent savoir
+                <h3 className="mt-3 font-display text-2xl leading-snug text-ivory">
+                  IA et droit d’auteur : ce que les créateurs doivent savoir
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ivory/70">
-                  Par Hervé Nanfang (Yaoundé) : Loi n° 2000/011, cadre OAPI, protection du travail en studio MAO et méthode concrète du Musicien Augmenté.
+                  Par Hervé Nanfang (Yaoundé) : Loi n° 2000/011, cadre OAPI, leçons de GEMA c. Suno, protection du travail en studio MAO et méthode du Musicien Augmenté.
                 </p>
               </div>
-              <div className="shrink-0">
-                <Btn to="/journal/ia-droits-auteur-musique-africaine" variant="gold">
+              <div className="mt-6 pt-4 border-t border-white/10">
+                <Btn to="/journal/ia-droits-auteur-musique-africaine" variant="ghost">
                   Lire l’analyse juridique →
                 </Btn>
               </div>
