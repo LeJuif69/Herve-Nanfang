@@ -2924,6 +2924,7 @@ export const ARTICLES: Article[] = [
     status: 'Publié',
     publishedAt: '2026-11-10',
     updatedAt: '2026-11-10',
+    coverImage: '/images/ia-souverainete-musicale-africaine-sima-2026.jpg',
     audience:
       'Artistes, compositeurs, chercheurs, juristes, producteurs, ingénieurs du son et institutions culturelles africaines qui refusent d’être de simples réservoirs de données pour les algorithmes mondiaux.',
     linkedConcept: { label: 'Musicien Augmenté™', to: '/ia-technologie#musicien-augmente' },

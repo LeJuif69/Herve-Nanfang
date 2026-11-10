@@ -158,11 +158,15 @@ export default function ArticleDetail() {
                   alt={article.title}
                   className="mx-auto max-h-[580px] w-auto object-contain"
                   loading="eager"
-                  width={687}
-                  height={1024}
+                  width={1200}
+                  height={675}
                 />
                 <figcaption className="border-t border-gold/10 px-4 py-3 text-center text-xs text-ivory/50">
-                  Infographie officielle · Diagnostic différentiel, gain staging et traitement des bruits parasites en home studio
+                  {article.slug === 'interfaces-audio-sans-souffle-home-studio'
+                    ? 'Infographie officielle · Diagnostic différentiel, gain staging et traitement des bruits parasites en home studio'
+                    : article.slug === 'souverainete-musicale-africaine-ia'
+                    ? 'Visuel officiel · Tribune SIMA 2026 (Cotonou) : IA et souveraineté musicale africaine'
+                    : `Visuel officiel · ${article.title}`}
                 </figcaption>
               </figure>
             )}
