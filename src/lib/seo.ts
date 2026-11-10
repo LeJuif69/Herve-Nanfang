@@ -53,7 +53,7 @@ export function useSeo({
   jsonLd,
   type = 'website',
   image = '/og-image.jpg',
-  robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+  robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1, noai, noimageai',
 }: SeoInput) {
   const captureSeo = useContext(SeoContext)
   captureSeo?.({ title, description, path, jsonLd, type, image, robots })

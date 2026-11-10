@@ -1,8 +1,82 @@
+# ==============================================================================
 # Hervé Nanfang — robots.txt
-# https://hervenanfang.art
+# Site officiel : https://hervenanfang.art
+# Doctrine : Souveraineté sur les données culturelles, musicales et artistiques
+# ==============================================================================
 
+# ------------------------------------------------------------------------------
+# 1. MOTEURS DE RECHERCHE CLASSIQUES (INDEXATION ORGANIQUE & DÉCOUVERTE)
+# ------------------------------------------------------------------------------
 User-agent: *
 Allow: /
 Disallow: /admin
+Disallow: /admin/
 
+# ------------------------------------------------------------------------------
+# 2. BOUCLIER ANTI-MOISSONNAGE & ENTRAÎNEMENT D'IA (AI SCRAPING / TRAINING)
+# Interdiction formelle d'aspiration des contenus, visuels, musiques et données
+# ------------------------------------------------------------------------------
+
+# OpenAI (modèles GPT, DALL-E, Sora)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+# Anthropic (modèles Claude)
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+# Google (entraînement Gemini / Vertex AI — n'affecte pas l'indexation Google Search)
+User-agent: Google-Extended
+Disallow: /
+
+# Common Crawl (corpus d'entraînement ouvert pour LLMs)
+User-agent: CCBot
+Disallow: /
+
+# ByteDance (TikTok / générateurs IA)
+User-agent: Bytespider
+Disallow: /
+
+# Meta (Llama, Meta AI)
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+# Apple (Apple Intelligence training)
+User-agent: Applebot-Extended
+Disallow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Disallow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Disallow: /
+
+# Scrapeurs de données et d'images
+User-agent: Diffbot
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+# ------------------------------------------------------------------------------
+# 3. PLAN DU SITE CANONIQUE
+# ------------------------------------------------------------------------------
 Sitemap: https://hervenanfang.art/sitemap.xml
+

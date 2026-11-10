@@ -82,7 +82,7 @@ export default function ArticleDetail() {
     path: `/journal/${slug ?? ''}`,
     type: 'article',
     image: article?.coverImage,
-    robots: article?.status === 'Publié' ? 'index, follow, max-image-preview:large' : 'noindex, follow',
+    robots: article?.status === 'Publié' ? 'index, follow, max-image-preview:large, noai, noimageai' : 'noindex, follow',
     jsonLd: article
       ? [
           personSchema,
