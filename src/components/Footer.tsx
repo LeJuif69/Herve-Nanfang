@@ -62,7 +62,7 @@ export default function Footer() {
             <ul className="mt-5 space-y-2.5">
               <li>
                 <Link
-                  to="/contact?sujet=booking#booking"
+                  to="/reservation?type=booking"
                   className="text-sm text-ivory/75 transition-colors hover:text-gold"
                 >
                   Réserver une prestation musicale
@@ -70,7 +70,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to="/contact?sujet=formation#formation"
+                  to="/reservation?type=formation"
                   className="text-sm text-ivory/75 transition-colors hover:text-gold"
                 >
                   Organiser une formation
@@ -78,7 +78,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to="/contact?sujet=conference#conference"
+                  to="/reservation?type=conference"
                   className="text-sm text-ivory/75 transition-colors hover:text-gold"
                 >
                   Inviter en conférence
@@ -86,7 +86,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to="/contact?sujet=conseil#conseil"
+                  to="/reservation?type=conseil"
                   className="text-sm text-ivory/75 transition-colors hover:text-gold"
                 >
                   Demander un accompagnement

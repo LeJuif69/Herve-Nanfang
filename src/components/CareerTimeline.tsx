@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-export type TimelineCategory = 'all' | 'live' | 'sound' | 'pedagogy' | 'musicology' | 'ai'
+type TimelineCategory = 'all' | 'live' | 'sound' | 'pedagogy' | 'musicology' | 'ai'
 
-export interface TimelineMilestone {
+interface TimelineMilestone {
   id: string
   period: string
   year: number
@@ -20,7 +20,7 @@ export interface TimelineMilestone {
   }
 }
 
-export const TIMELINE_MILESTONES: TimelineMilestone[] = [
+const TIMELINE_MILESTONES: TimelineMilestone[] = [
   {
     id: 'm-2007',
     period: '2007',

@@ -49,7 +49,7 @@ export const PROJECT_FAMILIES: ProjectFamily[] = [
           "Composition, arrangement, prise de son et mixage pour des projets d'artistes, des institutions et des contenus audiovisuels.",
         points: ['Composition & arrangement sur mesure', 'Ingénierie sonore & mixage hybride', 'Direction de production & musique à l’image'],
         status: 'Actif',
-        to: '/services#studio',
+        to: '/services#production',
         discipline: 'Production musicale',
       },
       {

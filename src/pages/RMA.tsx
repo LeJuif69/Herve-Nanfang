@@ -89,7 +89,7 @@ const ACADEMY_ARCHITECTURE = [
     title: 'MAO & Studio',
     subtitle: 'Production & Enregistrement',
     desc: 'Initiation et perfectionnement aux séquenceurs (DAW), à la prise de son et à la gestion d’un home studio.',
-    to: '/services#studio',
+    to: '/services#production',
   },
   {
     num: '05',
@@ -327,7 +327,7 @@ export default function RMA() {
                   )}
                 </div>
                 <div className="mt-8 border-t border-white/5 pt-5">
-                  <ArrowLink to="/contact#formation">Demander ce programme</ArrowLink>
+                  <ArrowLink to="/reservation?type=formation">Demander ce programme</ArrowLink>
                 </div>
               </SpotlightCard>
             </Reveal>
@@ -417,8 +417,8 @@ export default function RMA() {
                 </p>
               </div>
               <div className="mt-8 space-y-4">
-                <Btn to="/contact#formation" variant="gold" className="w-full text-center justify-center">
-                  Ouvrir le formulaire
+                <Btn to="/reservation?type=formation" variant="gold" className="w-full text-center justify-center">
+                  Ouvrir le formulaire de réservation
                 </Btn>
                 <a
                   href={`mailto:${SITE.emailRma}`}
@@ -590,7 +590,7 @@ export default function RMA() {
         eyebrow="A Laiz Academy • Transmission"
         title="Créer un parcours de formation solide"
         text="Pour une école, un centre culturel, un organisme de formation ou un projet d'accompagnement pédagogique, A Laiz Academy propose des dispositifs sur mesure adaptés à chaque contexte."
-        primary={{ label: 'Échanger avec A Laiz Academy', to: '/contact#formation' }}
+        primary={{ label: 'Échanger avec A Laiz Academy', to: '/reservation?type=formation' }}
         secondary={{ label: 'Voir les services', to: '/services' }}
       />
     </>

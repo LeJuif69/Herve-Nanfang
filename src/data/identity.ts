@@ -522,6 +522,7 @@ export const MASTER_IDENTITY = {
     { plateforme: 'LinkedIn', href: 'https://www.linkedin.com/in/herve-nanfang-317bb2b1/', verifie: true },
     { plateforme: 'Facebook', href: 'https://www.facebook.com/herve.nanfang.officiel/', verifie: true },
     { plateforme: 'YouTube', href: 'https://www.youtube.com/@herve_nanfang', verifie: true },
+    { plateforme: 'Instagram', href: 'https://www.instagram.com/alaizopays/', verifie: true },
     { plateforme: 'Threads', href: 'https://www.threads.com/@alaizopays', verifie: true },
     { plateforme: 'TikTok', href: 'https://www.tiktok.com/@hervey.nanfang', verifie: true },
     { plateforme: 'MusicBrainz', href: 'https://musicbrainz.org/artist/bfd29b75-e867-4ece-99c7-8a250126de57', verifie: false },

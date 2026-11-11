@@ -33,9 +33,9 @@ export default function PromoBanner() {
 
   // Définition des campagnes
   let badge = 'OFFRE SPÉCIALE'
-  let text = 'Sessions d’Audition & Diagnostic — Racines Musicales Academy® (RMA)'
+  let text = 'Sessions d’Audition & Diagnostic — A Laiz Academy'
   let ctaText = 'Réserver mon audition'
-  let ctaLink = '/rma?utm_source=site&utm_medium=promo_banner&utm_campaign=audition_rma#audition'
+  let ctaLink = '/rma?utm_source=site&utm_medium=promo_banner&utm_campaign=audition_alaiz_academy#audition'
   let promoImg = '/images/cours-isma-synthese-1241.webp'
 
   if (campaign === 'pianobariste') {

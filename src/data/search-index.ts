@@ -33,6 +33,16 @@ export function buildSearchIndex(): SearchItem[] {
   const items: SearchItem[] = []
 
   // 1. Pages et Piliers majeurs
+  items.push({
+    id: 'nav-reservation',
+    title: 'Réservation & Demande d’intervention',
+    subtitle: 'Prestation live · Formation · Conférence · Accompagnement IA',
+    category: 'navigation',
+    categoryLabel: 'Conversion directe',
+    to: '/reservation',
+    keywords: ['réserver', 'reservation', 'booking', 'devis', 'conférence', 'formation', 'intervention'],
+  })
+
   NAV_PRIMARY.forEach((nav) => {
     items.push({
       id: `nav-${nav.to}`,
@@ -208,11 +218,11 @@ export function buildSearchIndex(): SearchItem[] {
     },
     {
       id: 'proj-booking',
-      title: 'Booking & Contact Le Pianobariste',
+      title: 'Réservation & Booking Le Pianobariste',
       subtitle: 'Demande de prestation événementielle ou privée',
       category: 'navigation',
       categoryLabel: 'Contact & Booking',
-      to: '/contact#booking',
+      to: '/reservation?type=booking',
       keywords: [
         'booking',
         'contact',

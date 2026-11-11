@@ -36,9 +36,9 @@ export const PillarConversionCta: React.FC<PillarConversionCtaProps> = ({
       description:
         'Un répertoire de plus de 300 standards du jazz, de la chanson internationale et de l’afro-soul revisités avec une élégance feutrée. Une performance acoustique vivante, subtile et calibrée pour sublimer votre soirée.',
       primaryLabel: 'Demander un devis & vérifier les disponibilités',
-      primaryTo: '/contact#booking',
+      primaryTo: '/reservation?type=booking',
       secondaryLabel: 'Découvrir le répertoire live',
-      secondaryTo: '/pianobariste',
+      secondaryTo: '/musique#pianobariste',
       whatsappPrompt: `Bonjour Hervé, j’ai lu votre article "${articleTitle || 'Piano-bar'}" et je souhaite vérifier vos disponibilités pour une prestation live / gala.`,
       highlights: [
         'Répertoire éclectique & sur mesure',
@@ -70,9 +70,9 @@ export const PillarConversionCta: React.FC<PillarConversionCtaProps> = ({
       description:
         'Hervé Nanfang met son savoir-faire d’ingénierie audio, sa chaîne hybride (analogique & numérique) et sa rigueur acoustique au service de la signature sonore de votre projet musical ou audiovisuel.',
       primaryLabel: 'Échanger sur votre projet de production',
-      primaryTo: '/contact#collaboration',
-      secondaryLabel: 'Découvrir l’approche studio',
-      secondaryTo: '/ingenieur-du-son',
+      primaryTo: '/reservation?type=conseil',
+      secondaryLabel: 'Découvrir les services studio',
+      secondaryTo: '/services',
       whatsappPrompt: `Bonjour Hervé, je souhaite vous consulter pour un projet de mixage / mastering / acoustique suite à la lecture de votre article technique "${articleTitle || 'Ingénierie'}".`,
       highlights: [
         'Traitement acoustique et clarté fréquentielle',
@@ -104,9 +104,9 @@ export const PillarConversionCta: React.FC<PillarConversionCtaProps> = ({
       description:
         'Une grille de lecture musicologique rigoureuse pour décrypter les polyrythmies africaines, leur transmission moderne et la valorisation du patrimoine immatériel.',
       primaryLabel: 'Organiser une conférence ou masterclass',
-      primaryTo: '/contact#conference',
-      secondaryLabel: 'Consulter le parcours académique',
-      secondaryTo: '/musicologue',
+      primaryTo: '/reservation?type=conference',
+      secondaryLabel: 'Explorer Culture & Recherche',
+      secondaryTo: '/culture-recherche',
       whatsappPrompt: `Bonjour Hervé, nous souhaitons vous inviter pour une conférence / masterclass suite à votre article musicologique "${articleTitle || 'Patrimoine'}".`,
       highlights: [
         'Démonstrations au clavier en direct',
@@ -122,7 +122,7 @@ export const PillarConversionCta: React.FC<PillarConversionCtaProps> = ({
       description:
         'Bénéficiez de l’expertise de Hervé Nanfang pour moderniser votre production, protéger votre catalogue et concevoir une stratégie multicanale pérenne.',
       primaryLabel: 'Réserver un diagnostic stratégique',
-      primaryTo: '/contact#conseil',
+      primaryTo: '/reservation?type=conseil',
       secondaryLabel: 'Explorer les systèmes créatifs',
       secondaryTo: '/ia-technologie',
       whatsappPrompt: `Bonjour Hervé, je souhaite échanger sur une mission de conseil / stratégie créative et IA suite à la lecture de votre article "${articleTitle || 'Stratégie'}".`,

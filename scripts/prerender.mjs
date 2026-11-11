@@ -35,6 +35,7 @@ const staticRoutes = [
   '/conferences',
   '/presse',
   '/videos',
+  '/reservation',
   '/contact',
   '/mentions-legales',
   '/confidentialite',

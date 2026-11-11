@@ -175,6 +175,7 @@ Tél. / WhatsApp : +237 694 72 34 92 · +237 682 18 02 66
 | **LinkedIn** | `https://www.linkedin.com/in/herve-nanfang-317bb2b1/` | Profil professionnel officiel Hervé Nanfang (`sameAs`) | **Vérifié** |
 | **Facebook** | `https://www.facebook.com/herve.nanfang.officiel/` | Page officielle Hervé Nanfang (`sameAs`) | **Vérifié** |
 | **YouTube** | `https://www.youtube.com/@herve_nanfang` | Chaîne officielle Hervé Nanfang (`sameAs`) | **Vérifié** |
+| **Instagram** | `https://www.instagram.com/alaizopays/` | Profil Instagram officiel associé à l'univers `@alaizopays` (`sameAs`) | **Vérifié** |
 | **TikTok** | `https://www.tiktok.com/@hervey.nanfang` | Compte officiel TikTok (`sameAs`) | **Vérifié** |
 | **Threads** | `https://www.threads.com/@alaizopays` | Profil social associé à l'univers `@alaizopays` (`sameAs`) | **Vérifié** |
 | **Wikidata** | `https://www.wikidata.org/wiki/Q141905233` | Entité de référence encyclopédique (`sameAs`) | **Vérifié** |

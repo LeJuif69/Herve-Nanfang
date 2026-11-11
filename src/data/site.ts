@@ -68,7 +68,7 @@ export const NAV_SECONDARY: NavItem[] = [
   { label: 'Conférences', to: '/conferences' },
   { label: 'Culture & Patrimoine', to: '/culture-recherche' },
   { label: 'Presse & EPK', to: '/presse' },
-  { label: 'Booking', to: '/contact#booking' },
+  { label: 'Réservation', to: '/reservation' },
 ]
 
 /* ------------------------------------------------------------------ */

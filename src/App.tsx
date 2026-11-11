@@ -49,6 +49,7 @@ const ArticleDetail = lazy(() => import('./pages/ArticleDetail'))
 const Conferences = lazy(() => import('./pages/Conferences'))
 const Press = lazy(() => import('./pages/Press'))
 const Contact = lazy(() => import('./pages/Contact'))
+const Reservation = lazy(() => import('./pages/Reservation'))
 const Legal = lazy(() => import('./pages/Legal'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 const Admin = lazy(() => import('./pages/Admin'))
@@ -76,6 +77,7 @@ export default function App() {
               <Route path="/conferences" element={<Conferences />} />
               <Route path="/presse" element={<Press />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/reservation" element={<Reservation />} />
               <Route path="/videos" element={<Videos />} />
               <Route path="/mentions-legales" element={<Legal kind="mentions" />} />
               <Route path="/confidentialite" element={<Legal kind="confidentialite" />} />

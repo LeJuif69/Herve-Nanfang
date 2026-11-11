@@ -68,9 +68,9 @@ export default function Music() {
   })
 
   useSeo({
-    title: 'Le Pianobariste™ — Piano-Bar Live, Pianiste Chanteur & Concerts | Hervé Nanfang',
+    title: 'Le Pianobariste™ — Pianiste Live & Piano-Bar au Cameroun | Hervé Nanfang',
     description:
-      'Le Pianobariste™ : pianiste-chanteur live au Cameroun depuis 2007 (solo, duo, live band, piano-bar). Répertoire de 440+ titres, concerts d’ambiance, réceptions diplomatiques et événements privés.',
+      'Le Pianobariste™ (Hervé Nanfang) : pianiste-chanteur live au Cameroun. Prestations piano-bar, jazz lounge, réceptions diplomatiques, mariages et soirées de prestige. Répertoire de 440+ titres (solo, duo, live band).',
     path: '/musique',
     jsonLd: [
       personSchema,
@@ -114,7 +114,14 @@ export default function Music() {
       <PageHero
         breadcrumb="Musique"
         eyebrow="Créer · Le Pianobariste™"
-        title="La musique comme langage, métier et présence"
+        title={
+          <>
+            La musique comme langage, métier et présence
+            <span className="mt-3 block font-sans text-xl font-normal tracking-normal text-gold/85 sm:text-2xl">
+              Prestations piano-bar live, réceptions & concerts de prestige
+            </span>
+          </>
+        }
         lead="De la scène au studio, en passant par l’image et le spectacle : une pratique musicale construite sur la scène depuis 2007, avec une exigence constante de précision acoustique et de justesse émotionnelle."
       >
         <div className="grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
@@ -166,7 +173,7 @@ export default function Music() {
             </Body>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Btn to="/contact#booking" variant="gold">
+              <Btn to="/reservation?type=booking" variant="gold">
                 Réserver une date
               </Btn>
               <button
@@ -464,7 +471,7 @@ export default function Music() {
                 </div>
 
                 <div className="mt-8 border-t border-white/10 pt-4">
-                  <ArrowLink to="/contact#booking">Demander les disponibilités</ArrowLink>
+                  <ArrowLink to="/reservation?type=booking">Demander les disponibilités</ArrowLink>
                 </div>
               </SpotlightCard>
             </Reveal>
@@ -526,7 +533,7 @@ export default function Music() {
                     </p>
                   </div>
                   <div className="flex flex-col gap-3 md:items-end">
-                    <Btn to="/contact?formula=lounge#booking" variant="gold" className="w-full md:w-auto text-center justify-center">
+                    <Btn to="/reservation?type=booking&formula=lounge" variant="gold" className="w-full md:w-auto text-center justify-center">
                       Réserver la formule Lounge →
                     </Btn>
                     <span className="text-[0.65rem] text-ivory/40">Claviers autonomes Yamaha PSR-SX600 / PSR-SX920 inclus · Piano à queue sur demande</span>
@@ -546,7 +553,7 @@ export default function Music() {
                     </p>
                   </div>
                   <div className="flex flex-col gap-3 md:items-end">
-                    <Btn to="/contact?formula=prestige#booking" variant="gold" className="w-full md:w-auto text-center justify-center">
+                    <Btn to="/reservation?type=booking&formula=prestige" variant="gold" className="w-full md:w-auto text-center justify-center">
                       Réserver la formule Prestige →
                     </Btn>
                     <span className="text-[0.65rem] text-ivory/40">Solo ou Duo Voix-Piano · Sonorisation autonome de proximité incluse</span>
@@ -566,7 +573,7 @@ export default function Music() {
                     </p>
                   </div>
                   <div className="flex flex-col gap-3 md:items-end">
-                    <Btn to="/contact?formula=liveband#booking" variant="gold" className="w-full md:w-auto text-center justify-center">
+                    <Btn to="/reservation?type=booking&formula=liveband" variant="gold" className="w-full md:w-auto text-center justify-center">
                       Réserver le Live Band →
                     </Btn>
                     <span className="text-[0.65rem] text-ivory/40">Fiche technique & rider complets fournis · Déplacement Cameroun & international</span>
@@ -884,7 +891,7 @@ export default function Music() {
         eyebrow="Booking Direct"
         title="Réserver une prestation live"
         text="Palaces, lounges, réceptions privées, cocktails de prestige ou galas : formule solo, duo ou formation complète adaptée à votre événement."
-        primary={{ label: 'Réserver une prestation live', to: '/contact#booking' }}
+        primary={{ label: 'Réserver une prestation live', to: '/reservation?type=booking' }}
         secondary={{ label: 'Voir les conférences', to: '/conferences' }}
       />
 

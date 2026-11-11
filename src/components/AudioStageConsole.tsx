@@ -1,6 +1,6 @@
 import { useAudio } from '../lib/audio-context'
 
-export interface MoodPreset {
+interface MoodPreset {
   id: string
   label: string
   icon: string
@@ -10,7 +10,7 @@ export interface MoodPreset {
   context: string
 }
 
-export const MOOD_PRESETS: MoodPreset[] = [
+const MOOD_PRESETS: MoodPreset[] = [
   {
     id: 'lounge',
     label: 'Palace & Lounge Feutré',

@@ -146,7 +146,7 @@ const PUBLICATIONS: PedagogicalResource[] = [
     ],
     availability: 'Supports destinés aux enseignements universitaires et communications scientifiques ; plans d’intervention transmissibles sur demande institutionnelle.',
     ctaLabel: 'Solliciter une intervention ou un plan de cours',
-    ctaTo: '/contact#formation',
+    ctaTo: '/reservation?type=conference',
   },
   {
     t: 'Les Zikos — Manuel pédagogique (68 pages)',
@@ -160,7 +160,7 @@ const PUBLICATIONS: PedagogicalResource[] = [
     ],
     availability: 'Ouvrage en cours de restructuration éditoriale et graphique pour publication officielle (non commercialisé à ce stade).',
     ctaLabel: 'Être informé de la parution ou demander une présentation',
-    ctaTo: '/contact#formation',
+    ctaTo: '/reservation?type=formation',
   },
   {
     t: 'Tswefap — Système d’écriture & patrimoine Batoufam',
@@ -229,16 +229,16 @@ const PERMIS_PALIERS = [
 
 export default function Pedagogy() {
   useSeo({
-    title: 'Pédagogie & Formation | Hervé Nanfang — A Laiz Academy',
+    title: 'Pédagogie Musicale & Méthode Pratique | Hervé Nanfang — Permis de Jouer™',
     description:
-      "Enseignement supérieur, conception de curricula, musicologie africaine, A Laiz Academy et méthode Permis de Jouer™ : la pédagogie musicale d'Hervé Nanfang.",
+      "Apprentissage du piano moderne, méthode sans solfège bloquant, manuel Les Zikos® et référentiel Permis de Jouer™ : la pédagogie musicale pratique d'Hervé Nanfang.",
     path: '/pedagogie',
     jsonLd: [
       personSchema,
       courseSchema(
         'Formation musicale et MAO',
         "Parcours de formation musicale structuré, incluant l'éducation musicale, la MAO et la conception pédagogique.",
-        'A Laiz Academy',
+        'Hervé Nanfang',
       ),
       permisDeJouerProgramSchema(),
       creativeWorkSchema(
@@ -554,7 +554,7 @@ export default function Pedagogy() {
             [
               'methode-permis-de-jouer-pedagogie-musicale',
               'traduire-tradition-orale-au-clavier-rythmes-camerounais',
-              'transmission-orale-archive',
+              'enseigner-la-musique-sans-enfermer-eleve',
             ].includes(a.slug),
           ).map((article, i) => (
             <Reveal key={article.slug} delay={i * 80}>
@@ -608,7 +608,7 @@ export default function Pedagogy() {
               <Btn to="/conferences" variant="gold">
                 Voir les conférences
               </Btn>
-              <Btn to="/contact#formation" variant="ghost">
+              <Btn to="/reservation?type=formation" variant="ghost">
                 Demander une intervention
               </Btn>
             </div>
@@ -620,7 +620,7 @@ export default function Pedagogy() {
         eyebrow="Écoles, institutions, enseignants"
         title="Structurer une offre de formation musicale"
         text="Conception de curriculum, formation d'équipes pédagogiques, mise en place d'un système de progression ou rédaction de supports : chaque contexte est analysé, chaque dispositif est conçu sur mesure."
-        primary={{ label: 'Demander un accompagnement', to: '/contact#formation' }}
+        primary={{ label: 'Demander un accompagnement', to: '/reservation?type=formation' }}
         secondary={{ label: 'Voir les conférences', to: '/conferences' }}
       />
     </>

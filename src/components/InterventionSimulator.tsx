@@ -252,7 +252,7 @@ ${selectedConference.techRequirements}
 
           <div className="mt-6 pt-4 border-t border-white/10 space-y-3">
             <Link
-              to={`/contact?subject=conference&theme=${encodeURIComponent(selectedConference.title)}&format=${encodeURIComponent(selectedFormat.label)}#conference`}
+              to={`/reservation?type=conference&theme=${encodeURIComponent(selectedConference.title)}&format=${encodeURIComponent(selectedFormat.label)}`}
               className="btn btn-gold w-full text-center py-3 text-xs uppercase tracking-wider font-bold block"
             >
               Finaliser la demande de réservation ↗

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export interface PalierDetail {
+interface PalierDetail {
   id: string
   code: string
   couleur: string
@@ -14,7 +14,7 @@ export interface PalierDetail {
   epreuveValidation: string
 }
 
-export const PALIERS_DATA: PalierDetail[] = [
+const PALIERS_DATA: PalierDetail[] = [
   {
     id: 'palier-a',
     code: 'Permis A',

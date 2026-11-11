@@ -262,8 +262,14 @@ export default function Header() {
             </button>
 
             <Link
+              to="/reservation"
+              className="hidden border border-gold bg-gold/10 px-4 py-2.5 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-gold transition-colors hover:bg-gold hover:text-ink md:inline-block"
+            >
+              Réserver
+            </Link>
+            <Link
               to="/contact"
-              className="hidden border border-gold/60 px-5 py-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-gold transition-colors hover:bg-gold hover:text-ink md:inline-block"
+              className="hidden border border-white/20 px-4 py-2.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-ivory/80 transition-colors hover:border-gold/60 hover:text-gold lg:inline-block"
             >
               Contact
             </Link>

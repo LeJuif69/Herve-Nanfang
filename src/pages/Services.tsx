@@ -103,6 +103,7 @@ export default function Services() {
       {/* ======================== OFFRES DÉTAILLÉES ======================== */}
       {SERVICE_OFFERINGS.map((offering, oi) => (
         <Section key={offering.id} id={offering.id} tone={oi % 2 === 0 ? 'dark' : 'ink'}>
+          {offering.id === 'production' && <span id="studio" className="-mt-24 block h-0 w-0 opacity-0 pointer-events-none" aria-hidden="true" />}
           <Reveal>
             <div className="flex flex-wrap items-center gap-4">
               <span className="font-display text-4xl text-gold/60">{offering.icon}</span>
@@ -351,7 +352,7 @@ export default function Services() {
                 {SITE.emailRma}
               </a>
               <div className="mt-6">
-                <ArrowLink to="/contact#formation">Ouvrir le formulaire de demande</ArrowLink>
+                <ArrowLink to="/reservation?type=formation">Ouvrir le configurateur de réservation</ArrowLink>
               </div>
             </div>
           </Reveal>
@@ -424,7 +425,7 @@ export default function Services() {
         eyebrow="Parcours sur mesure"
         title="Choisir le bon format pour votre projet"
         text="École, institution, lieu de diffusion, artiste ou entreprise créative : la meilleure réponse commence par une demande précise."
-        primary={{ label: 'Demander un devis', to: '/contact#formation' }}
+        primary={{ label: 'Demander un devis', to: '/reservation' }}
         secondary={{ label: 'Voir les conférences', to: '/conferences' }}
       />
     </>

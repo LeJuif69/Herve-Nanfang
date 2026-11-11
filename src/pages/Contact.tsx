@@ -239,8 +239,9 @@ export default function Contact() {
   useEffect(() => {
     let currentRoute = 'booking'
     const params = new URLSearchParams(location.search)
-    const sujet = params.get('sujet')?.toLowerCase()
+    const sujet = (params.get('sujet') || params.get('subject') || params.get('type'))?.toLowerCase()
     const formula = params.get('formula')?.toLowerCase()
+    const formatParam = params.get('format')
     const themeParam = params.get('theme')
     const hash = location.hash.replace('#', '').toLowerCase()
 
@@ -258,7 +259,7 @@ export default function Contact() {
     setForm((f) => ({
       ...f,
       route: currentRoute,
-      desiredFormat: formulaLabel || f.desiredFormat,
+      desiredFormat: formulaLabel || formatParam || f.desiredFormat,
       conferenceTheme: themeParam || f.conferenceTheme,
       message:
         formulaLabel && !f.message

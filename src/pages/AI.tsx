@@ -171,25 +171,25 @@ const FORMATS = [
     t: 'Conférence « Le musicien augmenté »',
     d: '45 à 60 minutes. Poser le cadre, montrer des cas concrets, ouvrir le débat.',
     audience: 'Écoles, conservatoires, universités, festivals, institutions culturelles',
-    to: '/contact#conference',
+    to: '/reservation?type=conference',
   },
   {
     t: 'Masterclass pratique',
     d: '2 à 3 heures. Les participants travaillent sur leurs propres matériaux musicaux.',
     audience: 'Musiciens, étudiants avancés, ensembles, collectifs',
-    to: '/contact#formation',
+    to: '/reservation?type=formation',
   },
   {
     t: 'Formation longue Musicien Augmenté™',
     d: 'Plusieurs sessions, avec progression structurée et évaluation.',
     audience: 'Écoles de musique, centres de formation, équipes pédagogiques',
-    to: '/contact#formation',
+    to: '/reservation?type=formation',
   },
   {
     t: 'Accompagnement de structure',
     d: 'Diagnostic, feuille de route, mise en œuvre et transfert de compétences.',
     audience: 'Institutions, entreprises créatives, organisations culturelles',
-    to: '/contact#conseil',
+    to: '/reservation?type=conseil',
   },
 ]
 
@@ -267,7 +267,7 @@ export default function AI() {
         </div>
 
         <div className="mt-10 flex flex-wrap items-center gap-4">
-          <Btn to="/contact#formation" variant="gold">
+          <Btn to="/reservation?type=formation" variant="gold">
             Demander une formation
           </Btn>
           <Btn to="/conferences" variant="ghost">
@@ -672,10 +672,10 @@ export default function AI() {
               </p>
             </div>
             <div className="flex flex-col gap-4 md:items-end">
-              <Btn to="/contact#formation" variant="gold">
+              <Btn to="/reservation?type=formation" variant="gold">
                 Demander une formation
               </Btn>
-              <Btn to="/contact#conference" variant="ghost">
+              <Btn to="/reservation?type=conference" variant="ghost">
                 Inviter Hervé Nanfang à intervenir
               </Btn>
               <Link
@@ -693,7 +693,7 @@ export default function AI() {
         eyebrow="IA · Musique · Pédagogie · Culture"
         title="Parlons de votre réalité avant de parler d’outils"
         text="Chaque intervention commence par une question : quel est votre métier, et qu’est-ce qui vous coûte du temps aujourd’hui ?"
-        primary={{ label: 'Demander une formation', to: '/contact#formation' }}
+        primary={{ label: 'Demander une formation', to: '/reservation?type=formation' }}
         secondary={{ label: 'Voir toutes les conférences', to: '/conferences' }}
       />
     </>

@@ -1,6 +1,6 @@
 # Audit éditorial et technique — hervenanfang.art
 
-*Généré le 08/11/2026 par `npm run audit`.*
+*Généré le 11/11/2026 par `npm run audit`.*
 
 Cet audit analyse la **source** du site : il est reproductible après chaque modification.
 
@@ -8,13 +8,13 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 
 | Contrôle | Résultat |
 |---|---|
-| Pages analysées | 18 |
+| Pages analysées | 19 |
 | Titres SEO hors cible | 0 |
-| Titres tronqués dans Google (> 60 car.) | 1 |
-| Descriptions hors cible | 1 |
+| Titres tronqués dans Google (> 60 car.) | 4 |
+| Descriptions hors cible | 3 |
 | Pages sans H1 unique | 0 |
 | Liens internes cassés | 0 |
-| Images sans `alt` | 0 sur 12 |
+| Images sans `alt` | 0 sur 13 |
 | Routes absentes du sitemap | 0 |
 | URL du sitemap sans route | 0 |
 | Éléments factuels à confirmer | 1 |
@@ -30,20 +30,23 @@ Cet audit analyse la **source** du site : il est reproductible après chaque mod
 | `Conferences` | Conférences IA, Musique & Culture | Hervé Nanfang | 49 | Six conférences et masterclasses pour universités, écoles et instituti… | 157 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service, EducationEvent |
 | `Contact` | Contact | Hervé Nanfang — Prestation, Formation, Conférence & Conseil ✂️ tronqué dans Google | 69 | Prestation live Le Pianobariste™, formation A Laiz Academy, conférence… | 146 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
 | `Culture` | Musicologie & Musiques Africaines | Hervé Nanfang | 49 | Musicologie africaine, patrimoine sonore, Tswefap Batoufam et transmis… | 157 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, CreativeWork / Book |
-| `Home` | Hervé Nanfang | Musicien, Musicologue & Musicien Augmenté | 57 | Hervé Nanfang, artiste-musicien camerounais : Piano-Bar, composition, … | 153 | 1 (balise <h1>) | Person, WebSite, Organization, MusicGroup, Service, Course |
+| `Home` | Hervé Nanfang — Le Pianobariste™ | Piano-Bar Live, Musicologie & IA ✂️ tronqué dans Google | 67 | Hervé Nanfang — Le Pianobariste™ : prestations piano-bar live, chant, … ⚠️ | 191 | 1 (balise <h1>) | Person, WebSite, Organization, MusicGroup, Service, Course |
 | `Journal` | Journal Musicologie, Piano, MAO & IA | Hervé Nanfang | 52 | Le Journal d’Hervé Nanfang : musicologie africaine, piano-bar, méthode… | 163 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Article |
 | `Legal` | Mentions légales | Hervé Nanfang (valeur dynamique) | 32 | Informations légales du site d'Hervé Nanfang : éditeur, hébergeur, pro… | 128 | 1 (PageHero (h1 interne)) | BreadcrumbList |
-| `Music` | Piano-Bar Live & Musique Cameroun | Hervé Nanfang | 49 | Pianiste-chanteur live au Cameroun depuis 2007 (Le Pianobariste™) : pi… | 152 | 1 (PageHero (h1 interne)) | Person, MusicGroup, BreadcrumbList, Service, Event, CreativeWork / Book |
+| `Music` | Le Pianobariste™ — Pianiste Live & Piano-Bar au Cameroun | Hervé Nanfang ✂️ tronqué dans Google | 72 | Le Pianobariste™ (Hervé Nanfang) : pianiste-chanteur live au Cameroun.… ⚠️ | 215 | 1 (PageHero (h1 interne)) | Person, MusicGroup, BreadcrumbList, Service, Event, CreativeWork / Book |
 | `NotFound` | Page introuvable | Hervé Nanfang | 32 | La page demandée n’existe pas ou a été déplacée. Accédez aux rubriques… | 156 | 1 (Display as="h1") | — |
-| `Pedagogy` | Pédagogie & Formation | Hervé Nanfang — A Laiz Academy | 54 | Enseignement supérieur, conception de curricula, musicologie africaine… | 155 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Course, CreativeWork / Book |
+| `Pedagogy` | Pédagogie Musicale & Méthode Pratique | Hervé Nanfang — Permis de Jouer™ ✂️ tronqué dans Google | 72 | Apprentissage du piano moderne, méthode sans solfège bloquant, manuel … | 162 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Course, CreativeWork / Book |
 | `Press` | Presse & Médias | Hervé Nanfang — Espace officiel & EPK | 55 | EPK (Electronic Press Kit) et espace officiel de presse d’Hervé Nanfan… ⚠️ | 189 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList |
 | `Projects` | Projets & Univers Créatif | Hervé Nanfang — A Laiz Ô Pays | 57 | Projets musicaux et pédagogiques de Hervé Nanfang : A Laiz Ô Pays, Le … | 149 | 1 (PageHero (h1 interne)) | Person, Organization, BreadcrumbList, CreativeWork / Book |
+| `Reservation` | Réservation & Demande d’intervention | Hervé Nanfang | 52 | Réserver une prestation live Le Pianobariste™, organiser une formation… | 161 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
 | `RMA` | A Laiz Academy | École de Musique, Piano & MAO Cameroun | 55 | A Laiz Academy (ex-Racines Musicales Academy — RMA) à Yaoundé et en li… | 160 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service, Course |
 | `Services` | Services : Piano Live, Studio MAO & Conseil | Hervé Nanfang | 59 | Piano live Le Pianobariste™, production musicale, stratégie de marque,… | 156 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, Service |
 | `Videos` | Vidéos Piano-Bar Live & Concerts | Hervé Nanfang | 48 | Découvrez les performances live, reprises musicales, sessions Piano-Ba… | 147 | 1 (PageHero (h1 interne)) | Person, BreadcrumbList, CreativeWork / Book |
 
 ## 3. Corrections à apporter
 
+- **Home** — description trop longue (191 caractères, cible ≤ 165).
+- **Music** — description trop longue (215 caractères, cible ≤ 165).
 - **Press** — description trop longue (189 caractères, cible ≤ 165).
 
 ## 4. Liens internes

@@ -24,6 +24,7 @@ const STATIC_URLS = [
   '/conferences',
   '/presse',
   '/videos',
+  '/reservation',
   '/contact',
   '/mentions-legales',
   '/confidentialite',

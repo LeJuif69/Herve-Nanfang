@@ -98,7 +98,7 @@ export const SERVICE_OFFERINGS: ServiceOffering[] = [
       "Confirmation par contrat de prestation d'artiste ou bon de commande institutionnel.",
     ],
     contactLabel: "Demander un devis live",
-    contactTo: "/contact#booking",
+    contactTo: "/reservation?type=booking",
   },
   {
     id: "production",
@@ -157,7 +157,7 @@ export const SERVICE_OFFERINGS: ServiceOffering[] = [
       "Les sessions de révision supplémentaires au-delà de 2 cycles sont facturées au temps.",
     ],
     contactLabel: "Demander une production",
-    contactTo: "/contact#collaboration",
+    contactTo: "/reservation?type=conseil",
   },
   {
     id: "conferences",
@@ -354,7 +354,7 @@ export const SERVICE_OFFERINGS: ServiceOffering[] = [
       },
     ],
     contactLabel: "Demander un accompagnement",
-    contactTo: "/contact#conseil",
+    contactTo: "/reservation?type=conseil",
   },
 ]
 

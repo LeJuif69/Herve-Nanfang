@@ -204,10 +204,10 @@ export default function Conferences() {
               </Lead>
             </div>
             <div className="flex flex-wrap gap-4 md:justify-end">
-              <Btn to="/contact#conference" variant="gold">
+              <Btn to="/reservation?type=conference" variant="gold">
                 Proposer une date
               </Btn>
-              <Btn to="/contact#formation" variant="ghost">
+              <Btn to="/reservation?type=formation" variant="ghost">
                 Demander une masterclass
               </Btn>
             </div>
@@ -232,9 +232,9 @@ export default function Conferences() {
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             {ARTICLES.filter((a) =>
               [
-                'le-musicien-augmente',
-                'apres-la-mao-l-ia',
-                'enseigner-la-musique-a-l-ere-de-l-ia',
+                'musicien-augmente-definition',
+                'apres-la-mao-lia',
+                'enseigner-la-musique-sans-enfermer-eleve',
               ].includes(a.slug),
             ).map((article, i) => (
               <Reveal key={article.slug} delay={i * 70}>
@@ -267,7 +267,7 @@ export default function Conferences() {
         eyebrow="Organisateurs"
         title="Inviter Hervé Nanfang"
         text="Indiquez la structure, le public visé, la date envisagée et le thème pressenti : vous recevrez une proposition adaptée, avec les modalités techniques et financières."
-        primary={{ label: 'Inviter Hervé Nanfang à intervenir', to: '/contact#conference' }}
+        primary={{ label: 'Inviter Hervé Nanfang à intervenir', to: '/reservation?type=conference' }}
         secondary={{ label: 'Voir les projets', to: '/projets' }}
       />
     </>

@@ -7,9 +7,9 @@ import { MASTER_IDENTITY } from '../data/identity'
 import { SITE } from '../data/site'
 import { trackContactMethodClick, trackEpkDownload } from '../lib/ad-pixels'
 
-export type BioFormat = 'express' | 'courte' | 'moyenne' | 'longue' | 'reference'
+type BioFormat = 'express' | 'courte' | 'moyenne' | 'longue' | 'reference'
 
-export interface BioOption {
+interface BioOption {
   id: BioFormat
   label: string
   targetWords: string
@@ -17,7 +17,7 @@ export interface BioOption {
   text: string
 }
 
-export interface PressVisual {
+interface PressVisual {
   id: string
   title: string
   category: 'portrait' | 'scene' | 'affiche' | 'logo'
@@ -31,7 +31,7 @@ export interface PressVisual {
   recommendedUsage: string
 }
 
-export const PRESS_VISUALS: PressVisual[] = [
+const PRESS_VISUALS: PressVisual[] = [
   {
     id: 'vis-logo',
     title: 'Monogramme & Logo Officiel HN (Or brossé, Clavier & Étoile)',
@@ -108,7 +108,7 @@ export const PRESS_VISUALS: PressVisual[] = [
   },
 ]
 
-export const BIO_OPTIONS: BioOption[] = [
+const BIO_OPTIONS: BioOption[] = [
   {
     id: 'express',
     label: 'Bio express',
