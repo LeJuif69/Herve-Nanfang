@@ -70,7 +70,7 @@ export default function Music() {
   useSeo({
     title: 'Le Pianobariste™ — Pianiste Live & Piano-Bar au Cameroun | Hervé Nanfang',
     description:
-      'Le Pianobariste™ (Hervé Nanfang) : pianiste-chanteur live au Cameroun. Prestations piano-bar, jazz lounge, réceptions diplomatiques, mariages et soirées de prestige. Répertoire de 440+ titres (solo, duo, live band).',
+      'Le Pianobariste™ (Hervé Nanfang) : pianiste-chanteur live au Cameroun. Piano-bar, jazz lounge, réceptions et mariages. 440+ titres en solo, duo ou band.',
     path: '/musique',
     jsonLd: [
       personSchema,

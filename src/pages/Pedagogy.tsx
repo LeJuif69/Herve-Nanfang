@@ -231,7 +231,7 @@ export default function Pedagogy() {
   useSeo({
     title: 'Pédagogie Musicale & Méthode Pratique | Hervé Nanfang — Permis de Jouer™',
     description:
-      "Apprentissage du piano moderne, méthode sans solfège bloquant, manuel Les Zikos® et référentiel Permis de Jouer™ : la pédagogie musicale pratique d'Hervé Nanfang.",
+      "Piano moderne sans solfège bloquant, manuel Les Zikos® et référentiel Permis de Jouer™ : la pédagogie musicale pratique d'Hervé Nanfang.",
     path: '/pedagogie',
     jsonLd: [
       personSchema,

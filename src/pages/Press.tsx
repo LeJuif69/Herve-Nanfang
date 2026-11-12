@@ -184,7 +184,7 @@ export default function Press() {
   useSeo({
     title: 'Presse & Médias | Hervé Nanfang — Espace officiel & EPK',
     description:
-      'EPK (Electronic Press Kit) et espace officiel de presse d’Hervé Nanfang : présentation de référence, biographies multi-formats, photothèque HD, fiches techniques (riders) et contact direct.',
+      'EPK et espace presse officiel d’Hervé Nanfang : présentation, biographies, photothèque HD, fiches techniques (riders) et contact direct.',
     path: '/presse',
     jsonLd: [
       personSchema,

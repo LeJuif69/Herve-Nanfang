@@ -101,7 +101,7 @@ export const MASTER_IDENTITY = {
 
     /** Meta description — conforme au brief éditorial validé. */
     metaDescription:
-      'Hervé Nanfang — Le Pianobariste™ : prestations piano-bar live, chant, répertoire de 440+ titres, composition, pédagogie musicale (Permis de Jouer™) et Musicien Augmenté™ par l’IA au Cameroun.',
+      'Hervé Nanfang — Le Pianobariste™ : piano-bar live (440+ titres), composition, pédagogie Permis de Jouer™ et Musicien Augmenté™ par l’IA au Cameroun.',
 
     /**
      * DÉSAMBIGUÏSATION — affichée sur le site et exposée en Schema.org

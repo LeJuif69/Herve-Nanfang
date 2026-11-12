@@ -232,7 +232,7 @@ export default function Reservation() {
   useSeo({
     title: 'Réservation & Demande d’intervention | Hervé Nanfang',
     description:
-      'Réserver une prestation live Le Pianobariste™, organiser une formation A Laiz Academy, inviter une conférence Musicien Augmenté™ ou solliciter un accompagnement.',
+      'Réserver Le Pianobariste™ en live, organiser une formation A Laiz Academy, inviter une conférence Musicien Augmenté™ ou demander un accompagnement.',
     path: '/reservation',
     jsonLd: [
       personSchema,

@@ -35,7 +35,7 @@ export default function Journal() {
   useSeo({
     title: 'Journal Musicologie, Piano, MAO & IA | Hervé Nanfang',
     description:
-      'Le Journal d’Hervé Nanfang : musicologie africaine, piano-bar, méthode Permis de Jouer™, ingénierie sonore, cinéma africain, entrepreneuriat et Musicien Augmenté™.',
+      'Le Journal d’Hervé Nanfang : musicologie africaine, piano-bar, Permis de Jouer™, ingénierie sonore, cinéma, entrepreneuriat et Musicien Augmenté™.',
     path: '/journal',
     jsonLd: [
       personSchema,

@@ -184,7 +184,7 @@ export const ARTICLES: Article[] = [
     ],
     seoTitle: 'Après la MAO, l’IA : adopter l’IA sans perdre son identité',
     seoDescription:
-      'La MAO a redistribué les compétences, l’IA déplace le jugement esthétique. Méthode d’auteur en 5 étapes par Hervé Nanfang pour créer avec l’IA sans diluer sa signature.',
+      'La MAO a redistribué les compétences, l’IA déplace le jugement esthétique. Méthode en 5 étapes par Hervé Nanfang pour créer sans diluer sa signature.',
   },
   {
     slug: 'ia-va-t-elle-remplacer-les-musiciens',
@@ -926,7 +926,7 @@ export const ARTICLES: Article[] = [
     ],
     seoTitle: 'Musique à l’image et cinéma africain : composer l’invisible',
     seoDescription:
-      'Analyse musicologique de la musique à l’image par Hervé Nanfang : narration cinématographique, leçons d’Harry Potter et dramaturgie sonore dans le cinéma africain.',
+      'Analyse de la musique à l’image par Hervé Nanfang : narration cinématographique, leçons d’Harry Potter et dramaturgie sonore dans le cinéma africain.',
   },
   {
     slug: 'methode-permis-de-jouer-pedagogie-musicale',
@@ -1380,7 +1380,7 @@ export const ARTICLES: Article[] = [
     ],
     seoTitle: 'L’IA apprend de notre musique : qui rémunère les créateurs ?',
     seoDescription:
-      'Tribune de fond par Hervé Nanfang : leçons de GEMA c. Suno, mémoire algorithmique, Loi 2000/011 au Cameroun et souveraineté sur les patrimoines musicaux africains.',
+      'Tribune par Hervé Nanfang : leçons de GEMA c. Suno, mémoire algorithmique, Loi 2000/011 au Cameroun et souveraineté musicale africaine.',
   },
   {
     slug: 'le-bikutsi-au-dela-de-la-mesure',
@@ -1615,7 +1615,7 @@ export const ARTICLES: Article[] = [
     ],
     seoTitle: 'Documenter les traditions orales : méthode et éthique du chercheur',
     seoDescription:
-      'Guide méthodologique par Hervé Nanfang : captation de terrain, acoustique rurale, recueil du contexte rituel et éthique du consentement face aux traditions orales.',
+      'Guide par Hervé Nanfang : captation de terrain, acoustique rurale, recueil du contexte rituel et éthique du consentement face aux traditions orales.',
   },
   {
     slug: "apprendre-accompagner-chanson-clavier",
@@ -1772,7 +1772,7 @@ export const ARTICLES: Article[] = [
       "éducation artistique UNESCO"
 ],
     seoTitle: "Enseigner la musique sans enfermer l’élève : plaidoyer pédagogique",
-    seoDescription: "Plaidoyer pour une éducation musicale vivante et hybride par Hervé Nanfang : dialogue entre oralité africaine, rigueur harmonique et autonomie créative à la RMA.",
+    seoDescription: "Plaidoyer pour une éducation musicale hybride par Hervé Nanfang : dialogue entre oralité africaine, rigueur harmonique et autonomie créative à la RMA.",
   },
   {
     slug: "piano-bar-construire-progression-musicale",
@@ -2256,7 +2256,7 @@ export const ARTICLES: Article[] = [
       "1000 vrais fans Kevin Kelly musique"
 ],
     seoTitle: "Construire une marque artistique singulière à l’ère du streaming",
-    seoDescription: "Stratégie de marque pour musiciens par Hervé Nanfang : sortir de la dépendance aux algorithmes, souveraineté numérique et construction d’un actif culturel pérenne.",
+    seoDescription: "Stratégie de marque pour musiciens par Hervé Nanfang : sortir des algorithmes, souveraineté numérique et construction d’un actif culturel pérenne.",
   },
   {
     slug: "composer-pour-l-image-dramaturgie-cinema-africain",
@@ -2333,7 +2333,7 @@ export const ARTICLES: Article[] = [
       "Michel Chion audio-vision"
 ],
     seoTitle: "Composer pour l’image : dramaturgie sonore et cinéma africain",
-    seoDescription: "Guide de composition pour l’écran par Hervé Nanfang : dramaturgie des silences, orchestration d’instruments traditionnels africains et rapport avec le réalisateur.",
+    seoDescription: "Composition pour l’écran par Hervé Nanfang : dramaturgie des silences, orchestration d’instruments traditionnels africains et travail avec le réalisateur.",
   },
   {
     slug: "droit-auteur-ia-musique-cameroun-oapi",
@@ -2426,7 +2426,7 @@ export const ARTICLES: Article[] = [
       "clonage vocal statut juridique"
 ],
     seoTitle: "Droit d’auteur, IA et musique au Cameroun : Loi 2000/011 et OAPI",
-    seoDescription: "Analyse juridique par Hervé Nanfang : Loi 2000/011 camerounaise, Accord de Bangui (OAPI), statut du prompt, originalité et protection des patrimoines sonores face à l’IA.",
+    seoDescription: "Analyse juridique par Hervé Nanfang : Loi 2000/011, Accord de Bangui (OAPI), statut du prompt et protection des patrimoines sonores face à l’IA.",
   },
   {
     slug: 'traduire-tradition-orale-au-clavier-rythmes-camerounais',
