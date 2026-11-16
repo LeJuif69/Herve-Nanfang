@@ -3111,6 +3111,117 @@ export const ARTICLES: Article[] = [
     seoDescription:
       'Droits d’auteur, patrimoine sonore, emploi et IA : comment l’Afrique peut-elle maîtriser l’avenir de son industrie musicale ? Tribune par Hervé Nanfang.',
   },
+  {
+    slug: 'sonorisation-piano-bar-equilibre-voix-clavier',
+    num: '30',
+    category: 'Ingénierie du son & Studio',
+    title:
+      'Sonorisation Piano-Bar et scène intime : équilibrer clavier et voix sans larsen',
+    excerpt:
+      'Un piano-bar ne demande pas du volume : il exige de l’intimité, de la lisibilité et une marge de sécurité. Méthode de terrain pour équilibrer piano et voix sans larsen avec les Yamaha PSR-SX, une console MG16XU et un processeur dbx DriveRack.',
+    readingTime: '12 min',
+    status: 'Publié',
+    publishedAt: '2026-11-14',
+    updatedAt: '2026-11-14',
+    coverImage: '/images/sonorisation-piano-bar-compressed.jpg',
+    audience:
+      'Pianistes, chanteurs, duos acoustiques, régisseurs d’hôtels et ingénieurs du son opérant en piano-bar, réceptions d’entreprises et scènes intimes.',
+    linkedConcept: { label: 'Le Pianobariste™ & Scène', to: '/services#pianobariste' },
+    outline: [
+      'Introduction — L’intimité acoustique avant le volume',
+      '1. Commencer par la scène, pas par l’égaliseur',
+      '2. Une chaîne de gain saine : le vrai antidote au larsen',
+      '3. Faire de la place à la voix et au clavier',
+      '4. Gérer le larsen avec précision',
+      '5. Effets : soutenir l’émotion sans laver le texte',
+      '6. Une méthode de balance en dix minutes',
+      'Conclusion — La technique au service de la musicalité',
+    ],
+    body: [
+      {
+        heading: 'Introduction — L’intimité acoustique avant le volume',
+        paragraphs: [
+          'Un piano-bar ne demande pas seulement « du volume ». Il demande de l’intimité, de la lisibilité et une marge de sécurité. Le public doit entendre le texte, reconnaître l’harmonie et pouvoir continuer à converser sans que la musique devienne agressive.',
+          'La bonne sonorisation est donc celle qui paraît naturelle tout en restant stable : ni voix étouffée, ni clavier envahissant, ni sifflement imprévu au milieu d’un standard.',
+          'Voici une méthode de travail issue de la pratique de terrain à Yaoundé et Douala, applicable à un duo piano-voix ou à une prestation solo avec les claviers [Yamaha PSR-SX600 et PSR-SX920](/services#pianobariste), une console Yamaha MG16XU et, lorsque la configuration de la salle l’exige, un processeur d’enceintes dbx DriveRack 260.',
+        ],
+      },
+      {
+        heading: '1. Commencer par la scène, pas par l’égaliseur',
+        paragraphs: [
+          'La plupart des problèmes de larsen se créent avant même d’ouvrir la console. Dans une salle intime (restaurant, hall de palace ou salon privé), les enceintes de diffusion principale doivent impérativement être placées **en avant du plan des microphones** — légèrement avancées par rapport aux artistes et orientées vers l’auditoire.',
+          'Le microphone ne doit jamais regarder directement une enceinte ni son reflet spéculaire dans une grande baie vitrée, un mur dur carrelé ou un plafond bas.',
+          'Quelques repères simples de physique acoustique :\n- **Hauteur de diffusion** : Installez les enceintes sur pieds télescopiques à hauteur suffisante pour projeter au-dessus des premières tables, sans arroser directement le visage du chanteur.\n- **Écartement et couplage** : Écartez les enceintes pour créer une image stéréo naturelle, mais évitez de les coller dans les angles des murs : l’effet de coin y gonfle artificiellement l’énergie des basses fréquences de 6 à 9 dB.\n- **Discipline sur les retours** : Gardez les retours de scène à faible niveau. En formule piano-bar, ils sont souvent superflus si les musiciens entendent le champ direct réfléchi ; s’ils s’avèrent indispensables, placez-les strictement dans l’angle mort du microphone.\n- **Directivité du micro voix** : Choisissez un micro cardioïde ou supercardioïde adapté au timbre du chanteur. Avec un capteur cardioïde (ex. Shure SM58), l’atténuation maximale se situe exactement à l’arrière (180°). Avec un supercardioïde (ex. Shure Beta 58A), le point de réjection maximale se déplace sur les côtés (120° et 240°), tandis qu’un petit lobe de sensibilité réapparaît à 180°. La disposition du retour de bain de pied doit impérativement respecter cette géométrie sous peine d’amorcer un accrochage immédiat.',
+          'Le clavier arrangeur doit être positionné à hauteur confortable, sans masquer la cage thoracique ni contraindre l’artiste à chanter le cou tordu. Un pupitre métallique mal incliné ou un écran trop proche crée un écran acoustique qui réfléchit le son directement vers la capsule du micro.',
+        ],
+      },
+      {
+        heading: '2. Une chaîne de gain saine : le vrai antidote au larsen',
+        paragraphs: [
+          'Le larsen survient lorsque le signal capté par un microphone revient dans la capsule après amplification avec un gain de boucle supérieur à l’unité. Monter anarchiquement les faders ne résout rien : cela réduit la marge avant larsen (*gain-before-feedback*).',
+          'Sur la console Yamaha MG16XU, commencez avec les faders de tranche et le fader stéréo Master à leur repère nominal (0 dB), puis étalonnez la préamplification à l’aide du bouton PFL (Pre-Fader Listen) :\n1. Demandez au chanteur d’interpréter le passage le plus puissant de son tour de chant, à la distance exacte du microphone.\n2. Montez le potentiomètre de GAIN d’entrée jusqu’à ce que les crêtes du vumètre LED oscillent entre 0 et +3 dB, en veillant à ce que le voyant PEAK (+10 dB) ne s’allume jamais.\n3. Procédez au même étalonnage sur les voies d’entrée ligne stéréo accueillant le clavier.',
+          'Une fois cette structure de gain établie, équilibrez le mixage au moyen des faders. Cette rigueur garantit un rapport signal/bruit optimal, une réserve de dynamique (*headroom*) confortable et un repérage immédiat de la voie responsable en cas de début de boucle.',
+          'Pour les claviers arrangeurs [Yamaha PSR-SX600 et PSR-SX920](/services#pianobariste), évitez de régler le potentiomètre Master Volume à un niveau dérisoire : cela vous obligerait à sur-amplifier le préampli de la console, augmentant le souffle. À l’inverse, une sortie clavier poussée au maximum peut saturer les convertisseurs. Maintenez le volume de sortie de l’instrument aux trois quarts (70-75 % de sa course), puis laissez la console travailler sur une ligne symétrique.',
+        ],
+      },
+      {
+        heading: '3. Faire de la place à la voix et au clavier',
+        paragraphs: [
+          'Dans l’esthétique piano-bar, la voix porte la narration. Le clavier a pour mission d’installer l’harmonie et le groove, jamais d’écraser l’interprète. Avant d’envisager l’ajout d’effets flatteurs, la règle fondamentale de l’ingénieur du son consiste à soustraire ce qui encombre le spectre.',
+          'Sur la voie de la voix :\n- Enclenchez systématiquement le filtre passe-haut physique à 80 Hz (bouton HPF) présent sur la tranche de la MG16XU. Il nettoie instantanément les plosives (« P », « B »), les bruits de manipulation et les vibrations transmises par le pied de micro.\n- Si la voix semble confuse ou caverneuse, appliquez une atténuation modérée et à facteur Q moyen dans la zone bas-médium (entre 250 Hz et 450 Hz) plutôt que de couper sauvagement les graves.\n- Si les consonnes deviennent agressives, calmez légèrement la zone de présence (autour de 3 à 4 kHz) au lieu de brider l’ensemble des aigus.',
+          'Sur la voie du clavier arrangeur (PSR-SX) :\n- Filtrez ou atténuez les fréquences sous 100 Hz si l’acoustique de la salle tend à résonner, surtout lorsque les styles automatiques génèrent une ligne de basse chargée.\n- Les sonorités de piano à queue échantillonné, de nappes (*pads*) et de cordes concentrent une énergie considérable dans les médiums (entre 800 Hz et 2 kHz). Une atténuation douce de 2 à 3 dB dans ce créneau dégage miraculeusement l’espace fréquentiel nécessaire au chant, sans décharner le corps du clavier.',
+          'Règle d’or : Si le texte chanté devient inintelligible dès que le clavier entre en jeu, ne poussez pas le volume de la voix. Baissez ou égalisez d’abord l’instrument.',
+        ],
+      },
+      {
+        heading: '4. Gérer le larsen avec précision',
+        paragraphs: [
+          'Lorsqu’une fréquence entre en résonance, baisser précipitamment le master général dégrade l’équilibre de la prestation. La démarche professionnelle consiste à diagnostiquer la source : retour trop puissant, micro pointé vers une zone réfléchissante, gain de préampli disproportionné ou bosse d’égalisation inopportune.',
+          'Dans les configurations où le système intègre un processeur de diffusion [dbx DriveRack 260](/services#production), celui-ci apporte une assise technique précieuse :\n- Un filtrage actif et un alignement temporel adaptés aux enceintes.\n- Un égaliseur graphique de façade pour corriger les résonances stationnaires de la pièce.\n- L’algorithme AFS (Advanced Feedback Suppression) : doté de filtres coupe-bande (*notch*) extrêmement étroits (jusqu’à 1/80e d’octave), il neutralise les fréquences d’accrochage sans altérer le timbre musical.',
+          'Attention toutefois : un processeur numérique ne compense jamais un mauvais positionnement mécanique des transducteurs. L’Auto-EQ et les filtres anti-larsen doivent être manipulés avec modération. Si le processeur enclenche une dizaine d’encoches consécutives, le signal devient sourd et creux : cela signale une défaillance acoustique sur le plateau qui requiert un réajustement physique des enceintes.',
+          'Protocole de traque d’une fréquence instable en balance :\n1. Établissez les gains et faders à la dynamique nominale de prestation.\n2. Poussez graduellement le niveau d’écoute jusqu’aux prémices de l’accrochage acoustique.\n3. Isolez la fréquence incriminée au moyen d’un filtre notch paramétrique très serré.\n4. Appliquez l’atténuation minimale requise (souvent -3 dB suffisent).\n5. Recommencez le test en situation de jeu dynamique conjointe (chant et piano).',
+        ],
+      },
+      {
+        heading: '5. Effets : soutenir l’émotion sans laver le texte',
+        paragraphs: [
+          'La réverbération constitue l’écrin naturel du piano-bar, mais elle se transforme en piège redoutable dans les salles réverbérantes (sols en marbre, parois vitrées, hauts plafonds). Un temps de décroissance excessif noie les consonnes et rend la diction méconnaissable.',
+          'Sur la console Yamaha MG16XU, pilotez les effets via le départ auxiliaire (FX Send). Privilégiez une réverbération de type Vocal Plate ou Hall court, avec un temps de réverbération sensiblement plus court que ce qui semble flatteur au casque. Coupez régulièrement l’envoi d’effet pour vérifier le contraste : si l’intelligibilité des paroles s’effondre dès que la réverbération est active, réduisez sans hésiter le fader de retour FX Return.',
+          'Un retard léger (*delay*) synchronisé au tempo du morceau peut apporter du relief à une voix sur un refrain, à condition de rester un enrichissement discret et non une présence perturbatrice.',
+          'Attention enfin aux interactions : les arrangeurs Yamaha PSR-SX600 et PSR-SX920 intègrent leurs propres moteurs DSP d’effets internes de haute volée. Désactivez ou réduisez la réverbération interne du clavier si vous réinjectez du traitement au niveau de la console, sous peine d’accumuler des couches boueuses qui satureront l’espace stéréophonique.',
+        ],
+      },
+      {
+        heading: '6. Une méthode de balance en dix minutes',
+        paragraphs: [
+          'Pour les prestations où le temps d’installation est compté avant l’arrivée des convives, appliquez cette séquence chronométrée :\n1. **Écoute de référence (1 min)** : Diffusez un extrait musical connu et bien masterisé pour juger de la réponse acoustique globale de la salle.\n2. **Prise de voix sèche (2 min)** : Faites chanter l’artiste sans aucun effet, au niveau d’énergie réel du concert, et callez le gain PFL.\n3. **Égalisation vocale (2 min)** : Enclenchez le passe-haut 80 Hz, dégagez le bas-médium résonnant et validez la netteté des consonnes au fond de l’espace.\n4. **Intégration du clavier (2 min)** : Introduisez le piano seul, puis la section rythmique et basse de l’arrangeur. Égalisez soustractivement les médiums du clavier pour enchâsser la voix.\n5. **Dosage des effets (1 min)** : Ouvrez la réverbération avec mesure jusqu’à créer une profondeur chaleureuse qui préserve la netteté du texte.\n6. **Validation dynamique (1 min)** : Faites exécuter un passage pianissimo très doux, suivi d’un refrain fortissimo. Les deux doivent demeurer intelligibles sans distorsion ni amorce de larsen.\n7. **Tournée acoustique (1 min)** : Déplacez-vous physiquement dans la pièce, notamment à proximité des tables proches et le long des parois réfléchissantes.',
+        ],
+      },
+      {
+        heading: 'Conclusion — La technique au service de la musicalité',
+        paragraphs: [
+          'Une scène intime réussie ne cherche pas la démonstration de puissance acoustique. Elle cultive la proximité, le grain, la fidélité harmonique et la sérénité de l’interprète.',
+          'Lorsque l’implantation physique est rigoureuse, que la chaîne de gain est calibrée avec discipline et que l’égalisation aménage un espace respectueux entre la voix et le clavier, les outils matériels — console Yamaha MG16XU, processeur dbx DriveRack 260 et arrangeurs Yamaha PSR-SX — s’effacent au profit de l’émotion.',
+          'Le baromètre ultime d’une prestation réussie reste immuable : quand chaque convive perçoit distinctement les paroles, apprécie la richesse des accords de piano et savoure son dîner sans fatigue auditive, la sonorisation accomplit exactement son art.',
+        ],
+      },
+    ],
+    keywords: [
+      'sonorisation piano-bar',
+      'duo piano voix sonorisation',
+      'anti-larsen live',
+      'Yamaha MG16XU réglage',
+      'dbx DriveRack 260',
+      'Yamaha PSR-SX920',
+      'Yamaha PSR-SX600',
+      'gain staging concert',
+      'égalisation voix clavier',
+      'ingénierie du son Yaoundé',
+    ],
+    seoTitle: 'Sonorisation Piano-Bar : voix et clavier sans larsen',
+    seoDescription:
+      'Équilibrer clavier et voix sans larsen en piano-bar : méthode d’ingénieur du son pour Yamaha MG16XU, PSR-SX et dbx DriveRack en scène intime.',
+  },
 ]
 
 export const ARTICLE_CHAIN = [
