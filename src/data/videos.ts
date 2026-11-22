@@ -1,9 +1,9 @@
 export type VideoCategory =
-  | 'PIANO-BAR LIVE'
-  | 'REPRISES LIVE'
-  | 'LIVE SESSIONS'
-  | 'DUO HERVÉ & FLAVIE'
-  | 'SCÈNES & ÉVÉNEMENTS'
+  | 'Hôtels'
+  | 'Mariages'
+  | 'Entreprises'
+  | 'Concerts'
+  | 'Formation'
 
 export interface Video {
   id: string
@@ -12,6 +12,11 @@ export interface Video {
   youtubeId: string
   category: VideoCategory
   description: string
+  summary?: string
+  cta?: {
+    label: string
+    link: string
+  }
   originalArtist: string
   performedBy: string
   orientation: 'vertical' | 'horizontal'
@@ -21,6 +26,38 @@ export interface Video {
   publishedAt?: string
   featured?: boolean
 }
+
+export const CONVERSION_CATEGORIES: {
+  id: VideoCategory
+  label: string
+  desc: string
+}[] = [
+  {
+    id: 'Hôtels',
+    label: 'Hôtels & Palaces',
+    desc: 'Ambiance piano-bar élégante pour les salons, restaurants et espaces lounge.',
+  },
+  {
+    id: 'Mariages',
+    label: 'Mariages & Réceptions',
+    desc: 'Duo piano-voix pour les cocktails, cérémonies et dîners de célébration.',
+  },
+  {
+    id: 'Entreprises',
+    label: 'Entreprises & Galas',
+    desc: 'Direction musicale adaptée aux réceptions corporate et aux événements institutionnels.',
+  },
+  {
+    id: 'Concerts',
+    label: 'Concerts & Festivals',
+    desc: 'Captations live et reprises revisitées pour les scènes publiques et privées.',
+  },
+  {
+    id: 'Formation',
+    label: 'Formation & Masterclass',
+    desc: 'Transmission pédagogique du clavier, de l’écoute harmonique et des pratiques scéniques.',
+  },
+]
 
 export const videos: Video[] = [
   {
