@@ -1,5 +1,6 @@
 import { isSupabaseConfigured, supabase } from './supabase'
 import { adminAuth } from './admin-auth'
+import { addPublicMessage } from './public-message'
 import { ARTICLES, Article } from '../data/articles'
 import { PROJECT_FAMILIES } from '../data/projects'
 import { CONFERENCES } from '../data/conferences'
@@ -75,9 +76,8 @@ export function buildWebhookPayload(
 }
 
 /**
- * Transmet l'événement Webhook via le relais serveur sécurisé (`/api/webhook-relay`)
- * lorsqu'exécuté dans le navigateur afin d'éviter le crash HTTP 500 CORS de n8n Cloud,
- * ou appelle directement l'URL cible en environnement Node.js / test unitaire.
+ * Transmet l'événement Webhook via le relais serveur sécurisé dans le navigateur.
+ * L'appel direct est réservé aux environnements Node.js / test unitaire.
  */
 export async function dispatchWebhookEvent(
   targetUrl: string,
@@ -94,14 +94,13 @@ export async function dispatchWebhookEvent(
   if (useServerRelay) {
     try {
       const session = await adminAuth.getSession()
-      const adminAuthProof = session
-        ? {
-            email: session.user.email,
-            expiresAt: session.expiresAt,
-            sessionToken: session.sessionToken || '',
-            mode: session.mode,
-          }
-        : null
+      if (!session?.accessToken) {
+        return {
+          success: false,
+          status: 401,
+          error: 'Session Supabase administrateur absente ou expirée. Reconnectez-vous.',
+        }
+      }
 
       const relayRes = await fetch('/api/webhook-relay', {
         method: 'POST',
@@ -111,7 +110,7 @@ export async function dispatchWebhookEvent(
         body: JSON.stringify({
           targetUrl: effectiveUrl,
           secret: secret?.trim() || undefined,
-          adminAuth: adminAuthProof,
+          adminAuth: { accessToken: session.accessToken },
           payload,
         }),
       })
@@ -127,12 +126,22 @@ export async function dispatchWebhookEvent(
           }
         }
       }
-    } catch {
-      // Fallback en cas d'environnement de prévisualisation statique sans route /api
+
+      return {
+        success: false,
+        status: relayRes.status,
+        error: 'Réponse invalide du relais serveur Webhook.',
+      }
+    } catch (error) {
+      return {
+        success: false,
+        status: 502,
+        error: error instanceof Error ? error.message : 'Échec de communication avec le relais serveur.',
+      }
     }
   }
 
-  // Appel direct (environnement Node.js / tests unitaires ou fallback sans en-têtes déclenchant un preflight inutile)
+  // Appel direct réservé aux tests et aux environnements Node.js.
   try {
     const trimmedSecret = secret?.trim()
     const response = await fetch(effectiveUrl, {
@@ -1786,30 +1795,7 @@ export const adminStore = {
   async addIncomingMessage(
     msg: Omit<AdminMessage, 'id' | 'status' | 'createdAt'>,
   ): Promise<{ ok: true } | { ok: false; error: string }> {
-    if (!isSupabaseConfigured || !supabase) {
-      return { ok: false, error: 'Réception en ligne indisponible (base non configurée).' }
-    }
-    try {
-      const { error } = await supabase.from('messages').insert({
-        route: msg.route,
-        name: msg.name.trim(),
-        email: msg.email.trim(),
-        organization: msg.organization || null,
-        phone: msg.phone || null,
-        event_date: msg.eventDate || null,
-        place: msg.place || null,
-        body: msg.body.trim(),
-        status: 'nouveau',
-      })
-      if (error) {
-        console.warn('Supabase message insert error:', error)
-        return { ok: false, error: error.message }
-      }
-      return { ok: true }
-    } catch (err) {
-      console.warn('Supabase message insert error:', err)
-      return { ok: false, error: err instanceof Error ? err.message : 'Erreur réseau.' }
-    }
+    return addPublicMessage(msg)
   },
 
   async updateMessageStatus(

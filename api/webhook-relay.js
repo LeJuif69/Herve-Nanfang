@@ -1,25 +1,12 @@
-import crypto from 'node:crypto'
-
 const N8N_PRODUCTION_WEBHOOK_URL =
   'https://hervenanfang.app.n8n.cloud/webhook/a680fa6e-49a8-48d6-ac29-585120113415'
 const N8N_LEGACY_WEBHOOK_URL =
   'https://hervenanfang.app.n8n.cloud/webhook/publication-approved'
 
-const ALLOWED_ADMIN_EMAILS = new Set([
-  'nanfang.herve@gmail.com',
-  'hello@hervenanfang.art',
-  'contact@hervenanfang.art',
-  'contact@hervenanfang.com',
-  'racinesmusicalesacademy@gmail.com',
-])
-
 const recentIdempotencyCache = new Map()
 const IDEMPOTENCY_TTL_MS = 60 * 1000 // 60 secondes anti-rebond serveur
 const UPSTREAM_TIMEOUT_MS = 12000 // 12 secondes max
-
-function sha256Hex(input) {
-  return crypto.createHash('sha256').update(input, 'utf8').digest('hex')
-}
+const SUPABASE_AUTH_TIMEOUT_MS = 5000
 
 function resolveMigratedWebhookUrl(rawUrl) {
   const trimmed = typeof rawUrl === 'string' ? rawUrl.trim() : ''
@@ -53,45 +40,96 @@ function isAllowedTargetUrl(urlStr) {
   }
 }
 
-function verifyAdminSession(authPayload) {
+async function fetchSupabaseWithToken(url, accessToken, publishableKey) {
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), SUPABASE_AUTH_TIMEOUT_MS)
+
+  try {
+    return await fetch(url, {
+      headers: {
+        apikey: publishableKey,
+        Authorization: `Bearer ${accessToken}`,
+      },
+      signal: controller.signal,
+    })
+  } finally {
+    clearTimeout(timeoutId)
+  }
+}
+
+async function verifyAdminSession(authPayload) {
   if (!authPayload || typeof authPayload !== 'object') {
-    return { valid: false, reason: 'Session administrateur manquante.' }
+    return { valid: false, status: 401, reason: 'Session administrateur manquante.' }
   }
 
-  const email = String(authPayload.email || '').trim().toLowerCase()
-  const expiresAt = String(authPayload.expiresAt || '').trim()
-  const sessionToken = String(authPayload.sessionToken || '').trim()
-  const mode = String(authPayload.mode || 'local').trim()
-
-  const envAdminEmail = String(process.env.VITE_ADMIN_EMAIL || '').trim().toLowerCase()
-  const isEmailAuthorized =
-    ALLOWED_ADMIN_EMAILS.has(email) || (envAdminEmail && email === envAdminEmail)
-
-  if (!isEmailAuthorized) {
-    return { valid: false, reason: 'Adresse e-mail administrateur non autorisée.' }
+  const accessToken = String(authPayload.accessToken || '').trim()
+  if (!accessToken) {
+    return { valid: false, status: 401, reason: 'Jeton d’accès Supabase manquant.' }
   }
 
-  const expTime = Date.parse(expiresAt)
-  if (Number.isNaN(expTime) || expTime <= Date.now()) {
-    return { valid: false, reason: 'Session administrateur expirée.' }
-  }
-
-  if (mode === 'supabase') {
-    return { valid: true, email }
-  }
-
-  const effectiveKey = (
-    process.env.VITE_ADMIN_ACCESS_KEY ||
-    process.env.VITE_ADMIN_DEV_PASSWORD ||
-    'MasterHerveNanfang2026!'
+  const supabaseUrl = String(process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '')
+    .trim()
+    .replace(/\/+$/, '')
+  const publishableKey = String(
+    process.env.SUPABASE_PUBLISHABLE_KEY ||
+      process.env.SUPABASE_ANON_KEY ||
+      process.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
+      process.env.VITE_SUPABASE_ANON_KEY ||
+      '',
   ).trim()
 
-  const expectedToken = sha256Hex(`session:${email}:${expiresAt}:${effectiveKey}`)
-  if (!sessionToken || sessionToken !== expectedToken) {
-    return { valid: false, reason: 'Jeton de session administrateur invalide.' }
+  if (!supabaseUrl || !publishableKey) {
+    return {
+      valid: false,
+      status: 503,
+      reason: 'La vérification Supabase serveur n’est pas configurée.',
+    }
   }
 
-  return { valid: true, email }
+  try {
+    const userResponse = await fetchSupabaseWithToken(
+      `${supabaseUrl}/auth/v1/user`,
+      accessToken,
+      publishableKey,
+    )
+    if (userResponse.status === 401 || userResponse.status === 403) {
+      return { valid: false, status: 401, reason: 'Jeton Supabase invalide ou expiré.' }
+    }
+    if (!userResponse.ok) {
+      return { valid: false, status: 502, reason: 'Supabase Auth n’a pas pu vérifier le jeton.' }
+    }
+
+    const user = await userResponse.json()
+    if (!user || typeof user.id !== 'string' || !user.id) {
+      return { valid: false, status: 401, reason: 'Supabase Auth a retourné un utilisateur invalide.' }
+    }
+
+    const adminResponse = await fetchSupabaseWithToken(
+      `${supabaseUrl}/rest/v1/admin_users?select=user_id&user_id=eq.${encodeURIComponent(user.id)}&limit=1`,
+      accessToken,
+      publishableKey,
+    )
+    if (adminResponse.status === 401 || adminResponse.status === 403) {
+      return { valid: false, status: 403, reason: 'Accès refusé : compte absent de admin_users.' }
+    }
+    if (!adminResponse.ok) {
+      return { valid: false, status: 502, reason: 'Supabase n’a pas pu vérifier les droits administrateur.' }
+    }
+
+    const adminRows = await adminResponse.json()
+    if (!Array.isArray(adminRows) || !adminRows.some((row) => row?.user_id === user.id)) {
+      return { valid: false, status: 403, reason: 'Accès refusé : compte absent de admin_users.' }
+    }
+
+    return { valid: true, email: user.email }
+  } catch (error) {
+    console.error('[WEBHOOK RELAY] Échec de la vérification d’identité Supabase:', error)
+    return {
+      valid: false,
+      status: 502,
+      reason: 'Impossible de vérifier l’identité auprès de Supabase.',
+    }
+  }
 }
 
 function validateWebhookEventPayload(payload) {
@@ -160,11 +198,12 @@ export default async function handler(req, res) {
   }
 
   // 1. Vérification stricte de l'autorisation administrateur
-  const authCheck = verifyAdminSession(body.adminAuth)
+  const authCheck = await verifyAdminSession(body.adminAuth)
   if (!authCheck.valid) {
-    return res.status(401).json({
+    const status = authCheck.status || 401
+    return res.status(status).json({
       success: false,
-      status: 401,
+      status,
       error: `Non autorisé : ${authCheck.reason}`,
     })
   }

@@ -16,7 +16,7 @@ import {
   Stat,
 } from '../components/ui'
 import { CONTACT_ROUTES, SITE } from '../data/site'
-import { breadcrumbSchema, personSchema, serviceSchema } from '../lib/schema'
+import { breadcrumbSchema, localBusinessSchema, personSchema, serviceSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 import { formatAttributionTag } from '../lib/utm-tracker'
 import {
@@ -47,6 +47,7 @@ type FormState = {
   consultingGoal: string
   message: string
   consent: boolean
+  newsletterOptIn: boolean
   honey: string
 }
 
@@ -68,6 +69,7 @@ const EMPTY: FormState = {
   consultingGoal: '',
   message: '',
   consent: false,
+  newsletterOptIn: false,
   honey: '',
 }
 
@@ -276,6 +278,7 @@ export default function Contact() {
     path: '/contact',
     jsonLd: [
       personSchema,
+      localBusinessSchema,
       serviceSchema(
         'Booking, formation, conférences et accompagnement',
         'Prestations live Le Pianobariste™, formations A Laiz Academy, conférences institutionnelles et accompagnement Musicien Augmenté™.',
@@ -358,8 +361,8 @@ export default function Contact() {
     const rawMessage = `${contextHeader}${form.message.trim()}`
     const fullBody = tag ? `${tag}\n\n${rawMessage}` : rawMessage
 
-    const { adminStore } = await import('../lib/admin-store')
-    const res = await adminStore.addIncomingMessage({
+    const { addPublicMessage } = await import('../lib/public-message')
+    const res = await addPublicMessage({
       name: form.name,
       email: form.email,
       organization: form.organization || undefined,
@@ -369,6 +372,23 @@ export default function Contact() {
       place: form.place || undefined,
       body: fullBody,
     })
+
+    // Inscription marketing Brevo uniquement si l'utilisateur a expressément coché l'opt-in distinct
+    if (form.newsletterOptIn) {
+      fetch('/api/lead-magnet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim() || undefined,
+          segment: 'booking',
+          source: `contact_${form.route}`,
+          consentMarketing: true,
+        }),
+      }).catch((err) => console.warn('[brevo booking opt-in warning]', err))
+    }
+
     setSending(false)
     if (res.ok) {
       trackFormSubmitSuccess('contact_form', form.route)
@@ -1039,6 +1059,19 @@ export default function Contact() {
                     {errors.consent && (
                       <span className="mt-1 block text-xs text-crimson-2">{errors.consent}</span>
                     )}
+                  </span>
+                </label>
+
+                {/* Consentement marketing distinct et facultatif (RGPD / Brevo) */}
+                <label className="flex items-start gap-3 text-xs text-ivory/60 cursor-pointer pt-1">
+                  <input
+                    type="checkbox"
+                    className="mt-0.5 h-3.5 w-3.5 accent-[#c6a15b]"
+                    checked={form.newsletterOptIn}
+                    onChange={(e) => setForm({ ...form, newsletterOptIn: e.target.checked })}
+                  />
+                  <span>
+                    (Facultatif) Je souhaite également recevoir les carnets de recherche, analyses et actualités du <em>Musicien Augmenté™</em> (désinscription possible à tout moment).
                   </span>
                 </label>
 

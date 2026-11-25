@@ -98,20 +98,6 @@ export default defineConfig({
           if (id.includes('node_modules/react') || id.includes('node_modules/react-dom') || id.includes('node_modules/react-router')) {
             return 'vendor-react'
           }
-          if (id.includes('node_modules/@supabase')) {
-            return 'vendor-supabase'
-          }
-          if (id.includes('src/data/articles')) {
-            return 'articles-data'
-          }
-          if (
-            id.includes('src/lib/admin-store') ||
-            id.includes('src/lib/social-generator') ||
-            id.includes('src/lib/generated-uploads-media') ||
-            id.includes('src/lib/campaign-distribution')
-          ) {
-            return 'admin-store'
-          }
         },
       },
     },

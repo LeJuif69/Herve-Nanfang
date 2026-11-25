@@ -19,7 +19,7 @@ import {
   Tag,
 } from '../components/ui'
 
-import { ARTICLES } from '../data/articles'
+import { ARTICLE_SUMMARIES } from '../data/article-summaries'
 import { courseSchema, creativeWorkSchema, breadcrumbSchema, permisDeJouerProgramSchema, personSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 
@@ -550,7 +550,7 @@ export default function Pedagogy() {
         </Reveal>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {ARTICLES.filter((a) =>
+          {ARTICLE_SUMMARIES.filter((a) =>
             [
               'methode-permis-de-jouer-pedagogie-musicale',
               'traduire-tradition-orale-au-clavier-rythmes-camerounais',

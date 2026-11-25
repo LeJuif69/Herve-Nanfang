@@ -3357,49 +3357,7 @@ export const ARTICLE_CHAIN = [
   },
 ]
 
-/** Les 8 piliers éditoriaux de référence du Journal */
-export const JOURNAL_SERIES = [
-  {
-    num: '01',
-    title: 'Le Pianobariste',
-    text: 'Scène, présence, répertoire professionnel et performance live depuis 2007.',
-  },
-  {
-    num: '02',
-    title: 'Musicologie africaine',
-    text: 'Analyse des rythmes camerounais, oralité, organologie et ethnomusicologie.',
-  },
-  {
-    num: '03',
-    title: 'Pédagogie & Permis de Jouer™',
-    text: 'Apprentissage du clavier, accompagnement du chant et transmission au sein de A Laiz Academy.',
-  },
-  {
-    num: '04',
-    title: 'Ingénierie du son & Acoustique',
-    text: 'Prise de son, mixage, sonorisation de concert et traitement de studio.',
-  },
-  {
-    num: '05',
-    title: 'Composition & Musique à l’image',
-    text: 'Écriture orchestrale, dramaturgie sonore et bandes originales de films.',
-  },
-  {
-    num: '06',
-    title: 'Entrepreneuriat culturel',
-    text: 'Économie du live, tarification, devis, contrats et droits d’auteur.',
-  },
-  {
-    num: '07',
-    title: 'Marque & Communication',
-    text: 'Positionnement d’artiste, portfolio d’autorité et stratégie de diffusion.',
-  },
-  {
-    num: '08',
-    title: 'MAO & Musicien Augmenté™',
-    text: 'Production numérique, expérimentation avec l’IA et souveraineté créative.',
-  },
-]
+export { JOURNAL_SERIES } from './article-summaries'
 
 export type JournalEntry = {
   date: string

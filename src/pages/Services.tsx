@@ -15,7 +15,7 @@ import {
   Stat,
   Tag,
 } from '../components/ui'
-import { ARTICLES } from '../data/articles'
+import { ARTICLE_SUMMARIES } from '../data/article-summaries'
 import { SERVICE_COMMITMENTS, SERVICE_OFFERINGS } from '../data/services'
 import { SITE } from '../data/site'
 import { breadcrumbSchema, personSchema, serviceSchema } from '../lib/schema'
@@ -382,7 +382,7 @@ export default function Services() {
         </Reveal>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {ARTICLES.filter((a) =>
+          {ARTICLE_SUMMARIES.filter((a) =>
             [
               'musicien-marque-recit',
               'ia-droits-auteur-musique-africaine',

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { formatAttributionTag } from '../lib/utm-tracker'
 import { trackLeadConversion } from '../lib/ad-pixels'
 import { SITE } from '../data/site'
 
@@ -44,49 +43,45 @@ export const JournalLeadMagnet: React.FC<JournalLeadMagnetProps> = ({
 
     setSubmitting(true)
 
-    const tag = formatAttributionTag()
     const selectedInterestObj = INTERESTS.find((i) => i.id === interest)
     const interestLabel = selectedInterestObj ? selectedInterestObj.label : interest
 
-    const bodyContent = [
-      tag,
-      '==================================================',
-      'INSCRIPTION : LE JOURNAL PRIVÉ DU MUSICIEN AUGMENTÉ',
-      '==================================================',
-      `Nom complet : ${fullName.trim()}`,
-      `Email : ${email.trim()}`,
-      `Téléphone / WhatsApp : ${phone.trim() || 'Non renseigné'}`,
-      `Centre d'intérêt : ${interestLabel}`,
-      sourceArticle ? `Source d'inscription : ${sourceArticle}` : '',
-      'Demande : Réception de l’extrait officiel du manuel LES ZIKOS® (Tomes 1 & 2) et de la lettre privée bimensuelle.',
-    ]
-      .filter(Boolean)
-      .join('\n')
-
     try {
-      const { adminStore } = await import('../lib/admin-store')
-      const res = await adminStore.addIncomingMessage({
-        name: fullName.trim(),
-        email: email.trim(),
-        phone: phone.trim() || undefined,
-        route: 'lead_journal',
-        body: bodyContent,
-      })
-
-      if (res.ok) {
-        trackLeadConversion('newsletter_signup', {
+      // 1. Inscription Brevo & Envoi immédiat du livrable via /api/lead-magnet
+      const response = await fetch('/api/lead-magnet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: fullName.trim(),
+          email: email.trim(),
+          phone: phone.trim() || undefined,
           interest: interestLabel,
-          category: 'Lead Magnet Journal',
+          segment: 'journal',
           source: sourceArticle || 'journal_page',
-        })
-        setSubmitted(true)
-      } else {
-        // En cas d'erreur réseau, on permet toujours la conversion via WhatsApp
-        setSubmitted(true)
-      }
-    } catch (err) {
-      console.warn('Erreur soumission lead magnet, bascule WhatsApp:', err)
+          consentMarketing: true,
+        }),
+      })
+      if (!response.ok) throw new Error(`Inscription refusée (HTTP ${response.status}).`)
+
+      // 2. Suivi d'événement serveur GA4
+      await fetch('/api/track-event', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event: 'newsletter_signup',
+          params: { source: sourceArticle || 'journal_page', interest: interestLabel },
+        }),
+      }).catch(() => {})
+
+      trackLeadConversion('newsletter_signup', {
+        interest: interestLabel,
+        category: 'Lead Magnet Journal',
+        source: sourceArticle || 'journal_page',
+      })
       setSubmitted(true)
+    } catch (err) {
+      console.error('Erreur soumission lead magnet:', err)
+      setError('Inscription impossible pour le moment. Veuillez réessayer ou nous contacter par WhatsApp.')
     } finally {
       setSubmitting(false)
     }

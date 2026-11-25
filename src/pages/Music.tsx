@@ -33,7 +33,7 @@ import {
   type LivePerformance,
 } from '../data/music'
 import { AUDIO_PLAYLIST, type AudioTrack } from '../data/audio'
-import { ARTICLES } from '../data/articles'
+import { ARTICLE_SUMMARIES } from '../data/article-summaries'
 import { useAudio } from '../lib/audio-context'
 import { breadcrumbSchema, creativeWorkSchema, eventSchema, musicGroupSchema, personSchema, serviceSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
@@ -848,7 +848,7 @@ export default function Music() {
         </Reveal>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {ARTICLES.filter((a) =>
+          {ARTICLE_SUMMARIES.filter((a) =>
             [
               'fela-kuti-afrobeat-revolution-musicale-politique',
               'musique-a-l-image-cinema-africain',

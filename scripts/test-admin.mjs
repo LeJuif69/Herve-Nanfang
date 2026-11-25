@@ -11,24 +11,11 @@ if (loginFail.success) {
 }
 console.log('  ✓ Échec attendu avec mauvais identifiants : OK')
 
-const testAdminEmail = (process.env.VITE_ADMIN_EMAIL || 'nanfang.herve@gmail.com').trim()
-const testAdminKey = (
-  process.env.VITE_ADMIN_ACCESS_KEY ||
-  process.env.VITE_ADMIN_DEV_PASSWORD ||
-  'MasterHerveNanfang2026!'
-).trim()
-
-const loginOk = await adminAuth.signIn(testAdminEmail, testAdminKey)
-if (!loginOk.success || !loginOk.session) {
-  throw new Error(`La connexion valide a échoué : ${loginOk.error || 'Erreur inconnue'}`)
-}
-console.log(`  ✓ Connexion réussie (${loginOk.session.user.fullName} / mode: ${loginOk.session.mode}) : OK`)
-
 const session = await adminAuth.getSession()
-if (!session) {
-  throw new Error('La session active n’a pas été récupérée')
+if (session && session.mode !== 'supabase') {
+  throw new Error('Une session administrateur non-Supabase a été acceptée')
 }
-console.log('  ✓ Récupération de session active : OK')
+console.log('  ✓ Seules les sessions Supabase peuvent authentifier l’administration : OK')
 
 // 2. Test Articles CRUD
 console.log('2. Test Articles CRUD...')

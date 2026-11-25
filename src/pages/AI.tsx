@@ -17,7 +17,7 @@ import {
   Tag,
 } from '../components/ui'
 import { IDENTITY, MASTER_IDENTITY } from '../data/identity'
-import { ARTICLES } from '../data/articles'
+import { ARTICLE_SUMMARIES } from '../data/article-summaries'
 import { AUDIO_PLAYLIST } from '../data/audio'
 import { useAudio } from '../lib/audio-context'
 import {
@@ -242,7 +242,7 @@ export default function AI() {
   const { selectTrack, openPlayer } = useAudio()
   const iaTrack = AUDIO_PLAYLIST.find((t) => t.id === 'ia-musique-recherche') || AUDIO_PLAYLIST[3]
 
-  const piliers = ARTICLES
+  const piliers = ARTICLE_SUMMARIES
 
   return (
     <>

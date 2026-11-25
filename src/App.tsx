@@ -1,64 +1,69 @@
-import { lazy, Suspense, useEffect } from 'react'
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
-import Layout from './components/Layout'
-import Home from './pages/Home'
-import { AudioProvider } from './lib/audio-context'
-import { CommandMenuProvider } from './lib/command-menu-context'
+import React, { lazy, Suspense } from 'react';
+import CookieConsent from './components/CookieConsent';
+const CGU = lazy(() => import('./pages/CGU'));
 
-import { captureTrafficAttribution } from './lib/utm-tracker'
-import { initAdPixels } from './lib/ad-pixels'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import { AudioProvider } from './lib/audio-context';
+import { CommandMenuProvider } from './lib/command-menu-context';
+
+import { captureTrafficAttribution } from './lib/utm-tracker';
+import { initAdPixels } from './lib/ad-pixels';
 
 // Gestion de la compatibilité des URLs avec hash (#/admin), redirections d'alias et capture des UTM/pixels
 function HashAdminRedirect() {
-  const navigate = useNavigate()
-  const location = useLocation()
-  useEffect(() => {
-    captureTrafficAttribution()
-    initAdPixels()
+  const navigate = useNavigate();
+  const location = useLocation();
+  React.useEffect(() => {
+    captureTrafficAttribution();
+    initAdPixels();
     if (typeof window !== 'undefined') {
-      const hash = window.location.hash
+      const hash = window.location.hash;
       if (hash === '#/admin' || hash === '#admin' || hash.startsWith('#/admin')) {
-        navigate('/admin', { replace: true })
+        navigate('/admin', { replace: true });
       }
     }
-  }, [navigate])
+  }, [navigate]);
 
-  useEffect(() => {
-    const normalized = location.pathname.replace(/\/+$/, '').toLowerCase()
+  React.useEffect(() => {
+    const normalized = location.pathname.replace(/\\+$/, '').toLowerCase();
     if (normalized === '/a-laiz-academy' || normalized === '/racines-musicales-academy') {
-      navigate(`/rma${location.search}${location.hash}`, { replace: true })
+      navigate(`/rma${location.search}${location.hash}`, { replace: true });
     } else if (normalized === '/epk') {
-      navigate(`/presse${location.search}${location.hash}`, { replace: true })
+      navigate(`/presse${location.search}${location.hash}`, { replace: true });
     }
-  }, [location, navigate])
+  }, [location, navigate]);
 
-  return null
+  return null;
 }
 
 // Lazy load des pages secondaires
-const About = lazy(() => import('./pages/About'))
-const Music = lazy(() => import('./pages/Music'))
-const AI = lazy(() => import('./pages/AI'))
-const Pedagogy = lazy(() => import('./pages/Pedagogy'))
-const Services = lazy(() => import('./pages/Services'))
-const RMA = lazy(() => import('./pages/RMA'))
-const Culture = lazy(() => import('./pages/Culture'))
-const Projects = lazy(() => import('./pages/Projects'))
-const Journal = lazy(() => import('./pages/Journal'))
-const ArticleDetail = lazy(() => import('./pages/ArticleDetail'))
-const Conferences = lazy(() => import('./pages/Conferences'))
-const Press = lazy(() => import('./pages/Press'))
-const Contact = lazy(() => import('./pages/Contact'))
-const Reservation = lazy(() => import('./pages/Reservation'))
-const Legal = lazy(() => import('./pages/Legal'))
-const NotFound = lazy(() => import('./pages/NotFound'))
-const Admin = lazy(() => import('./pages/Admin'))
-const Videos = lazy(() => import('./pages/Videos'))
+const About = lazy(() => import('./pages/About'));
+const Music = lazy(() => import('./pages/Music'));
+const AI = lazy(() => import('./pages/AI'));
+const Pedagogy = lazy(() => import('./pages/Pedagogy'));
+const Services = lazy(() => import('./pages/Services'));
+const RMA = lazy(() => import('./pages/RMA'));
+const Culture = lazy(() => import('./pages/Culture'));
+const Projects = lazy(() => import('./pages/Projects'));
+const Journal = lazy(() => import('./pages/Journal'));
+const ArticleDetail = lazy(() => import('./pages/ArticleDetail'));
+const Conferences = lazy(() => import('./pages/Conferences'));
+const Press = lazy(() => import('./pages/Press'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Reservation = lazy(() => import('./pages/Reservation'));
+const Legal = lazy(() => import('./pages/Legal'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+const Admin = lazy(() => import('./pages/Admin'));
+const Videos = lazy(() => import('./pages/Videos'));
+const ThankYou = lazy(() => import('./pages/thank-you'));
 
 export default function App() {
   return (
     <Suspense fallback={<div className="min-h-screen bg-ink" />}>
       <HashAdminRedirect />
+      <CookieConsent />
       <AudioProvider>
         <CommandMenuProvider>
           <Routes>
@@ -79,8 +84,10 @@ export default function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/reservation" element={<Reservation />} />
               <Route path="/videos" element={<Videos />} />
+              <Route path="/thank-you" element={<ThankYou />} />
               <Route path="/mentions-legales" element={<Legal kind="mentions" />} />
               <Route path="/confidentialite" element={<Legal kind="confidentialite" />} />
+              <Route path="/cgu" element={<CGU />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="*" element={<NotFound />} />
             </Route>
@@ -88,5 +95,5 @@ export default function App() {
         </CommandMenuProvider>
       </AudioProvider>
     </Suspense>
-  )
+  );
 }

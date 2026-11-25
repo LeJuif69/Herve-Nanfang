@@ -16,7 +16,7 @@ import {
   Stat,
   Tag,
 } from '../components/ui'
-import { ARTICLES } from '../data/articles'
+import { ARTICLE_SUMMARIES } from '../data/article-summaries'
 import { CONFERENCES, CONFERENCE_AUDIENCES } from '../data/conferences'
 import { breadcrumbSchema, conferenceEducationEventSchema, personSchema, serviceSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
@@ -230,7 +230,7 @@ export default function Conferences() {
             </div>
           </Reveal>
           <div className="mt-8 grid gap-6 md:grid-cols-3">
-            {ARTICLES.filter((a) =>
+            {ARTICLE_SUMMARIES.filter((a) =>
               [
                 'musicien-augmente-definition',
                 'apres-la-mao-lia',

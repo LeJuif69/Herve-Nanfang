@@ -139,6 +139,7 @@ type ReservationForm = {
   conseilDomain: string
   message: string
   consent: boolean
+  newsletterOptIn: boolean
   honey: string
 }
 
@@ -161,6 +162,7 @@ const INITIAL_FORM: ReservationForm = {
   conseilDomain: 'Intégration IA & workflow Musicien Augmenté™',
   message: '',
   consent: false,
+  newsletterOptIn: false,
   honey: '',
 }
 
@@ -306,8 +308,8 @@ export default function Reservation() {
       .join('\n')
       .trim()
 
-    const { adminStore } = await import('../lib/admin-store')
-    const res = await adminStore.addIncomingMessage({
+    const { addPublicMessage } = await import('../lib/public-message')
+    const res = await addPublicMessage({
       name: form.name.trim(),
       email: form.email.trim(),
       organization: form.organization.trim() || undefined,
@@ -317,6 +319,22 @@ export default function Reservation() {
       place: form.place.trim() || undefined,
       body: bodyLines,
     })
+
+    // Inscription marketing Brevo uniquement si l'utilisateur a expressément coché l'opt-in distinct
+    if (form.newsletterOptIn) {
+      fetch('/api/lead-magnet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim() || undefined,
+          segment: 'booking',
+          source: `reservation_${form.track}`,
+          consentMarketing: true,
+        }),
+      }).catch((err) => console.warn('[brevo reservation opt-in warning]', err))
+    }
 
     setSending(false)
     if (!res.ok) {
@@ -803,6 +821,19 @@ export default function Reservation() {
                     </span>
                   </label>
                   {errors.consent && <p className="mt-1.5 text-xs text-red-400">{errors.consent}</p>}
+
+                  {/* Consentement marketing distinct et facultatif (RGPD / Brevo) */}
+                  <label className="mt-3 flex items-start gap-3 text-xs leading-relaxed text-ivory/60 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={form.newsletterOptIn}
+                      onChange={(e) => setForm((f) => ({ ...f, newsletterOptIn: e.target.checked }))}
+                      className="mt-0.5 h-3.5 w-3.5 accent-gold"
+                    />
+                    <span>
+                      (Facultatif) Je souhaite également recevoir les carnets de recherche, analyses et actualités du <em>Musicien Augmenté™</em> (désinscription possible à tout moment).
+                    </span>
+                  </label>
                 </div>
 
                 {sendError && (

@@ -1,10 +1,12 @@
 import { Link, useParams } from 'react-router-dom'
 import PageHero from '../components/PageHero'
-import AuthorSignature from '../components/AuthorSignature'
 import AdSenseUnit from '../components/AdSenseUnit'
 import ArticleShareBar from '../components/ArticleShareBar'
-import PillarConversionCta from '../components/PillarConversionCta'
 import JournalLeadMagnet from '../components/JournalLeadMagnet'
+import ArticleTOC from '../components/ArticleTOC'
+import ArticleAuthor from '../components/ArticleAuthor'
+import ArticleFAQ, { type FaqItem } from '../components/ArticleFAQ'
+import ArticleCTA from '../components/ArticleCTA'
 import {
   ArrowLink,
   Body,
@@ -19,7 +21,7 @@ import {
   Tag,
 } from '../components/ui'
 import { ARTICLE_CHAIN } from '../data/articles'
-import { articleSchema, breadcrumbSchema, personSchema } from '../lib/schema'
+import { articleSchema, breadcrumbSchema, faqSchema, personSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 import { useLiveArticle, useLiveArticles } from '../lib/useLiveArticles'
 import NotFound from './NotFound'
@@ -74,6 +76,35 @@ export default function ArticleDetail() {
   const article = useLiveArticle(slug)
   const allArticles = useLiveArticles()
 
+  const articleFaq: FaqItem[] = article
+    ? [
+        {
+          q: `Quel est l'axe central de l'analyse « ${article.title} » ?`,
+          a: article.excerpt,
+        },
+        {
+          q: `À quels professionnels et créateurs s'adresse cet article ?`,
+          a: article.audience,
+        },
+        {
+          q: `Comment prolonger cette réflexion avec Hervé Nanfang ?`,
+          a: `Vous pouvez explorer l'axe dédié ${article.linkedConcept.label} (${article.linkedConcept.to}) ou solliciter Hervé Nanfang pour une intervention, formation ou accompagnement stratégique via la page Réservation.`,
+        },
+      ]
+    : []
+
+  const tocItems = article
+    ? article.body
+      ? article.body.map((s) => ({
+          id: s.heading.trim().replace(/\s+/g, '-').toLowerCase(),
+          text: s.heading,
+        }))
+      : article.outline.map((s) => ({
+          id: s.trim().replace(/\s+/g, '-').toLowerCase(),
+          text: s,
+        }))
+    : []
+
   useSeo({
     title: article ? article.seoTitle : 'Article introuvable | Hervé Nanfang',
     description:
@@ -94,13 +125,14 @@ export default function ArticleDetail() {
             status: article.status,
             image: article.coverImage,
             datePublished: article.publishedAt || undefined,
-            dateModified: article.updatedAt || undefined,
+            dateModified: article.updatedAt || article.publishedAt || undefined,
           }),
           breadcrumbSchema([
             { name: 'Accueil', path: '/' },
             { name: 'Journal', path: '/journal' },
             { name: article.title, path: `/journal/${article.slug}` },
           ]),
+          faqSchema(articleFaq),
         ]
       : undefined,
   })
@@ -126,6 +158,16 @@ export default function ArticleDetail() {
           <span>Pilier {article.num}</span>
           <span>Lecture {article.readingTime}</span>
           <span>{article.category}</span>
+          {article.publishedAt && (
+            <span className="text-gold/90 font-medium">
+              Publié le <time dateTime={article.publishedAt}>{article.publishedAt}</time>
+            </span>
+          )}
+          {article.updatedAt && article.updatedAt !== article.publishedAt && (
+            <span className="text-ivory/60">
+              Mis à jour le <time dateTime={article.updatedAt}>{article.updatedAt}</time>
+            </span>
+          )}
         </div>
       </PageHero>
 
@@ -171,10 +213,16 @@ export default function ArticleDetail() {
               </figure>
             )}
 
+            {/* Sommaire dynamique de l'article */}
+            {tocItems.length > 0 && <ArticleTOC items={tocItems} />}
+
             {article.body ? (
               <article className="space-y-12">
                 {article.body.map((section) => (
-                  <section key={section.heading}>
+                  <section
+                    key={section.heading}
+                    id={section.heading.trim().replace(/\s+/g, '-').toLowerCase()}
+                  >
                     <h2 className="mb-5 font-display text-3xl leading-snug text-ivory md:text-4xl">
                       {section.heading}
                     </h2>
@@ -220,12 +268,11 @@ export default function ArticleDetail() {
               </>
             )}
 
-            {/* Bloc de conversion stratégique ciblé selon le pilier de l'article */}
-            <PillarConversionCta
-              category={article.category}
-              articleNum={article.num}
-              articleTitle={article.title}
-            />
+            {/* FAQ dynamique & structurée de l'article */}
+            {articleFaq.length > 0 && <ArticleFAQ items={articleFaq} />}
+
+            {/* CTA contextuel ciblé */}
+            <ArticleCTA category={article.category} articleTitle={article.title} />
 
             {/* Carte de diffusion et de partage sur les plateformes vérifiées */}
             <ArticleShareBar
@@ -244,8 +291,8 @@ export default function ArticleDetail() {
             {/* Encart publicitaire AdSense officiel */}
             <AdSenseUnit />
 
-            {/* Signature d'auteur officielle */}
-            <AuthorSignature />
+            {/* Carte d'auteur officielle */}
+            <ArticleAuthor />
 
             <div className="mt-12 border border-white/10 bg-ink-2 p-8">
               <Eyebrow>Angle éditorial</Eyebrow>

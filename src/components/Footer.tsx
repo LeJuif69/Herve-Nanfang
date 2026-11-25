@@ -16,6 +16,7 @@ const DERIVED_MARKS = [
 export default function Footer() {
   const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)
+  const [submissionError, setSubmissionError] = useState('')
 
   return (
     <footer className="relative border-t border-white/10 bg-ink pb-10 pt-16">
@@ -52,6 +53,7 @@ export default function Footer() {
                   <Link to={item.to} className="text-sm text-ivory/65 transition-colors hover:text-gold">
                     {item.label}
                   </Link>
+
                 </li>
               ))}
             </ul>
@@ -67,6 +69,7 @@ export default function Footer() {
                 >
                   Réserver une prestation musicale
                 </Link>
+
               </li>
               <li>
                 <Link
@@ -75,6 +78,7 @@ export default function Footer() {
                 >
                   Organiser une formation
                 </Link>
+
               </li>
               <li>
                 <Link
@@ -83,6 +87,7 @@ export default function Footer() {
                 >
                   Inviter en conférence
                 </Link>
+
               </li>
               <li>
                 <Link
@@ -91,6 +96,7 @@ export default function Footer() {
                 >
                   Demander un accompagnement
                 </Link>
+
               </li>
             </ul>
 
@@ -101,6 +107,7 @@ export default function Footer() {
                   <Link to={item.to} className="text-sm text-ivory/65 transition-colors hover:text-gold">
                     {item.label}
                   </Link>
+
                 </li>
               ))}
             </ul>
@@ -146,6 +153,7 @@ export default function Footer() {
               Dossier de presse & contact média →
             </Link>
 
+
             <p className="eyebrow mt-8 text-ivory/60">Profils officiels</p>
             <div className="mt-4">
               <SocialButtons />
@@ -183,18 +191,26 @@ export default function Footer() {
               e.preventDefault()
               const cleanEmail = email.trim()
               if (!cleanEmail) return
+              setSubmissionError('')
               try {
-                const { adminStore } = await import('../lib/admin-store')
-                await adminStore.addIncomingMessage({
-                  name: 'Abonné Lettre du Journal',
-                  email: cleanEmail,
-                  route: 'newsletter',
-                  body: `Inscription à la lettre d'information du Journal du Musicien Augmenté (${cleanEmail}).`,
+                const response = await fetch('/api/lead-magnet', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    name: 'Abonné Lettre du Journal',
+                    email: cleanEmail,
+                    segment: 'journal',
+                    source: 'footer_newsletter',
+                    consentMarketing: true,
+                  }),
                 })
+                if (!response.ok) throw new Error(`Inscription refusée (HTTP ${response.status}).`)
                 trackFormSubmitSuccess('newsletter_footer', 'newsletter')
                 trackLeadConversion('newsletter_signup', { category: 'Newsletter' })
-              } catch {
-                // Fallback silencieux vers WhatsApp si hors-ligne
+                setSent(true)
+              } catch (err) {
+                console.error('Échec inscription newsletter du pied de page:', err)
+                setSubmissionError('Inscription impossible pour le moment. Vous pouvez nous contacter par WhatsApp.')
               }
               const message = `Je souhaite m’inscrire à la lettre du Journal du Musicien Augmenté. Mon adresse email : ${cleanEmail}`
               window.open(
@@ -202,7 +218,6 @@ export default function Footer() {
                 '_blank',
                 'noopener,noreferrer',
               )
-              setSent(true)
             }}
           >
             <label className="sr-only" htmlFor="newsletter-email">
@@ -221,6 +236,7 @@ export default function Footer() {
               S’abonner à la lettre
             </button>
           </form>
+          {submissionError && <p role="alert" className="text-xs text-red-300 lg:col-start-2">{submissionError}</p>}
           {sent && (
             <p className="text-xs text-gold lg:col-start-2">
               Votre adresse e-mail a été enregistrée.
@@ -236,9 +252,11 @@ export default function Footer() {
             <Link to="/mentions-legales" className="hover:text-gold">
               Mentions légales
             </Link>
+
             <Link to="/confidentialite" className="hover:text-gold">
               Confidentialité
             </Link>
+
             <button
               type="button"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

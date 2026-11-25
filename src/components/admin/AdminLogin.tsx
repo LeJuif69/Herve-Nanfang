@@ -151,7 +151,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSignIn }) => {
             <p className="text-[0.68rem] text-ivory/45">
               Statut serveur :{' '}
               <span className={isSupabaseConfigured ? 'text-emerald-400 font-semibold' : 'text-amber-400 font-semibold'}>
-                {isSupabaseConfigured ? 'Supabase Auth Cloud actif' : 'Session Locale Sécurisée active'}
+                {isSupabaseConfigured ? 'Supabase Auth actif' : 'Supabase Auth non configuré'}
               </span>
             </p>
           </div>

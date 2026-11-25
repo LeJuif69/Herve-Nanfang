@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import type {
   AdminMedia,
   AdminSettings,
@@ -67,35 +67,10 @@ function readLightweightPublicState(): Partial<AdminState> {
 }
 
 /**
- * Hook qui écoute en temps réel les changements du store d'administration
- * (localStorage / Supabase) pour alimenter les pages publiques instantanément,
- * sans alourdir le bundle public initial avec les dépendances d'administration.
+ * Lit le snapshot public léger sans charger le store d'administration.
  */
 export function useAdminState(): Partial<AdminState> {
-  const [state, setState] = useState<Partial<AdminState>>(() => readLightweightPublicState())
-
-  useEffect(() => {
-    if (typeof localStorage === 'undefined') return
-    const hasAdminSessionOrStore =
-      Boolean(localStorage.getItem('hn_admin_store_v4')) ||
-      Boolean(localStorage.getItem('hn_admin_session_v1'))
-
-    if (!hasAdminSessionOrStore) return
-
-    let unsubscribe: (() => void) | undefined
-    let cancelled = false
-    import('./admin-store').then(({ adminStore }) => {
-      if (cancelled) return
-      unsubscribe = adminStore.subscribe((newState) => {
-        setState({ ...newState })
-      })
-    })
-    return () => {
-      cancelled = true
-      unsubscribe?.()
-    }
-  }, [])
-
+  const [state] = useState<Partial<AdminState>>(() => readLightweightPublicState())
   return state
 }
 

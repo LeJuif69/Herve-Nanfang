@@ -489,8 +489,8 @@ export interface AuthSession {
     fullName?: string
     role: 'admin'
   }
-  mode: 'supabase' | 'local' | 'emergency'
+  mode: 'supabase'
   expiresAt: string
-  sessionToken?: string
+  accessToken: string
 }
 

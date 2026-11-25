@@ -17,7 +17,7 @@ import {
   SpotlightCard,
   Stat,
 } from '../components/ui'
-import { ARTICLES } from '../data/articles'
+import { ARTICLE_SUMMARIES } from '../data/article-summaries'
 import { SITE } from '../data/site'
 import { TESTIMONIALS } from '../data/testimonials'
 import { breadcrumbSchema, courseSchema, permisDeJouerProgramSchema, personSchema, serviceSchema } from '../lib/schema'
@@ -548,7 +548,7 @@ export default function RMA() {
         </Reveal>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {ARTICLES.filter((a) =>
+          {ARTICLE_SUMMARIES.filter((a) =>
             [
               'methode-permis-de-jouer-pedagogie-musicale',
               'traduire-tradition-orale-au-clavier-rythmes-camerounais',

@@ -37,6 +37,7 @@ const staticRoutes = [
   '/videos',
   '/reservation',
   '/contact',
+  '/thank-you',
   '/mentions-legales',
   '/confidentialite',
 ]
@@ -62,6 +63,7 @@ function pageHead(seo, site, assetMap = {}) {
     `<link rel="canonical" href="${escapeHtml(canonical)}">`,
     `<link rel="alternate" hreflang="fr" href="${escapeHtml(canonical)}">`,
     `<link rel="alternate" hreflang="x-default" href="${escapeHtml(canonical)}">`,
+    `<link rel="alternate" type="application/rss+xml" title="Le Journal du Musicien Augmenté — Hervé Nanfang" href="${escapeHtml(site.url)}/journal/rss.xml">`,
   ]
 
   // Preload des polices latines critiques (Instrument Serif + Space Grotesk)

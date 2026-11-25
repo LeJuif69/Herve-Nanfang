@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import type { Video } from '../data/videos'
 import VideoSchema from './VideoSchema'
 
@@ -7,10 +8,18 @@ export default function VideoCard({ video }: { video: Video }) {
   const isVertical = video.orientation === 'vertical'
   const thumbUrl = video.thumbnail || `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`
   const embedUrl = `https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&rel=0`
-  const directLink = `https://www.youtube.com/shorts/${video.youtubeId}`
+  const directLink = `https://www.youtube.com/watch?v=${video.youtubeId}`
+
+  const ctaConfig = video.cta || {
+    label: 'Réserver cette formule →',
+    link: '/reservation?type=booking',
+  }
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-gold/25 bg-ink-2/70 backdrop-blur-md transition-all duration-500 hover:-translate-y-1.5 hover:border-gold hover:shadow-[0_15px_40px_rgba(198,161,91,0.2)]">
+    <article
+      data-testid="video-card"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-gold/25 bg-ink-2/70 backdrop-blur-md transition-all duration-500 hover:-translate-y-1.5 hover:border-gold hover:shadow-[0_15px_40px_rgba(198,161,91,0.2)]"
+    >
       <VideoSchema video={video} />
 
       {/* Zone du lecteur / Miniature */}
@@ -26,11 +35,16 @@ export default function VideoCard({ video }: { video: Video }) {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="h-full w-full border-0"
+            loading="lazy"
           />
         ) : (
           <div
             className="relative h-full w-full cursor-pointer"
             onClick={() => setIsPlaying(true)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && setIsPlaying(true)}
+            aria-label={`Lancer la lecture de ${video.title}`}
           >
             <img
               src={thumbUrl}
@@ -45,25 +59,21 @@ export default function VideoCard({ video }: { video: Video }) {
 
             {/* Bouton Play central */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <button
-                type="button"
-                aria-label={`Lancer la lecture de ${video.title}`}
-                className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-gold bg-ink/80 text-gold shadow-2xl backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-gold group-hover:text-ink"
-              >
+              <span className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-gold bg-ink/80 text-gold shadow-2xl backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-gold group-hover:text-ink">
                 <svg className="h-6 w-6 translate-x-0.5 fill-current" viewBox="0 0 24 24">
                   <polygon points="5 3 19 12 5 21 5 3" />
                 </svg>
-              </button>
+              </span>
             </div>
 
             {/* Badge format / catégorie */}
             <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[0.7rem] font-mono">
-              <span className="rounded-full bg-ink/80 px-2.5 py-1 text-gold border border-gold/30 backdrop-blur-sm">
+              <span className="rounded-full bg-ink/85 px-3 py-1 text-gold border border-gold/40 backdrop-blur-sm font-semibold uppercase tracking-wider">
                 {video.category}
               </span>
               {isVertical && (
                 <span className="rounded-full bg-crimson/90 px-2.5 py-1 text-white font-sans font-semibold">
-                  YouTube Short
+                  Short
                 </span>
               )}
             </div>
@@ -71,19 +81,22 @@ export default function VideoCard({ video }: { video: Video }) {
         )}
       </div>
 
-      {/* Contenu éditorial */}
+      {/* Contenu éditorial & conversion */}
       <div className="flex flex-1 flex-col p-5 md:p-6">
-        <div className="mb-2 flex items-center gap-2 text-xs font-mono text-gold/80">
-          <span>Artiste original :</span>
-          <span className="font-semibold text-ivory">{video.originalArtist}</span>
-        </div>
+        {video.originalArtist && (
+          <div className="mb-2 flex items-center gap-2 text-xs font-mono text-gold/80">
+            <span>Univers :</span>
+            <span className="font-semibold text-ivory">{video.originalArtist}</span>
+          </div>
+        )}
 
         <h3 className="font-serif text-xl font-medium leading-snug text-ivory transition-colors group-hover:text-gold md:text-2xl">
           {video.title}
         </h3>
 
+        {/* Résumé de conversion */}
         <p className="mt-3 text-sm leading-relaxed text-ivory/70 line-clamp-3">
-          {video.description}
+          {video.summary || video.description}
         </p>
 
         {video.tags && video.tags.length > 0 && (
@@ -99,16 +112,27 @@ export default function VideoCard({ video }: { video: Video }) {
           </div>
         )}
 
-        <div className="mt-auto pt-5 flex items-center justify-between border-t border-white/10 text-xs">
-          <span className="text-ivory/60">Interprété par {video.performedBy}</span>
+        {/* CTA Réservation Contextuel */}
+        <div className="mt-6 pt-4 border-t border-white/10">
+          <Link
+            to={ctaConfig.link}
+            className="inline-flex w-full items-center justify-center rounded-xl bg-gold px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-ink transition-all hover:bg-gold-2 hover:shadow-[0_0_20px_rgba(198,161,91,0.35)]"
+          >
+            {ctaConfig.label}
+          </Link>
+        </div>
+
+        {/* Footer métadonnées */}
+        <div className="mt-4 flex items-center justify-between text-xs text-ivory/50">
+          <span className="truncate max-w-[180px]">{video.performedBy}</span>
           <a
             href={directLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 font-medium text-gold hover:text-gold-2 hover:underline"
+            className="inline-flex items-center gap-1.5 font-medium text-gold hover:text-gold-2 hover:underline shrink-0"
           >
-            Sur YouTube
-            <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            YouTube
+            <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
               <polyline points="15 3 21 3 21 9" />
               <line x1="10" y1="14" x2="21" y2="3" />

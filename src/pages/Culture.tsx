@@ -14,7 +14,7 @@ import {
   Stat,
   Tag,
 } from '../components/ui'
-import { ARTICLES, JOURNAL_SERIES } from '../data/articles'
+import { ARTICLE_SUMMARIES, JOURNAL_SERIES } from '../data/article-summaries'
 import { breadcrumbSchema, creativeWorkSchema, personSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 
@@ -231,7 +231,7 @@ export default function Culture() {
             </h3>
           </Reveal>
           <div className="mt-8 grid gap-6 md:grid-cols-3">
-            {ARTICLES.filter((a) =>
+            {ARTICLE_SUMMARIES.filter((a) =>
               [
                 'souverainete-musicale-africaine-ia',
                 'le-bikutsi-au-dela-de-la-mesure',

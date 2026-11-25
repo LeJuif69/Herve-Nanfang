@@ -345,3 +345,82 @@ export const faqSchema = (items: { q: string; a: string }[]) => ({
     acceptedAnswer: { '@type': 'Answer', text: item.a },
   })),
 })
+
+export const localBusinessSchema: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': ['ProfessionalService', 'LocalBusiness'],
+  '@id': `${SITE.url}/#localbusiness`,
+  name: 'Hervé Nanfang — Le Pianobariste™ & Musicien Augmenté™',
+  alternateName: ['Le Pianobariste', 'A Laiz Academy'],
+  description:
+    'Prestations musicales live de prestige (piano-bar, galas, mariages, réceptions d’hôtels), enseignement musical structuré (A Laiz Academy, Permis de Jouer™), conférences et conseil en IA musicale.',
+  url: SITE.url,
+  telephone: SITE.phones[0].display,
+  email: SITE.emailContact,
+  image: [
+    `${SITE.url}/images/herve-nanfang-portrait-officiel.webp`,
+    `${SITE.url}/images/04-piano-bar-live.webp`,
+  ],
+  priceRange: '$$$',
+  currenciesAccepted: 'XAF, EUR, USD',
+  paymentAccepted: 'Virement bancaire, Mobile Money, Espèces',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Yaoundé',
+    addressLocality: 'Yaoundé',
+    addressRegion: 'Centre',
+    addressCountry: 'CM',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 3.848,
+    longitude: 11.5021,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '09:00',
+      closes: '20:00',
+    },
+  ],
+  areaServed: [
+    { '@type': 'Country', name: 'Cameroun' },
+    { '@type': 'AdministrativeArea', name: 'Afrique Centrale' },
+    { '@type': 'Continent', name: 'Afrique' },
+    { '@type': 'Place', name: 'International' },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Prestations et Services Professionnels',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Le Pianobariste™ — Prestations Piano-Bar Live',
+          description: 'Piano solo acoustique, duo piano-voix ou live band pour réceptions diplomatiques, hôtels et mariages.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'A Laiz Academy — Cursus & Méthode Permis de Jouer™',
+          description: 'Formation musicale par paliers N1 à N4, harmonie appliquée et autonomie scénique.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Musicien Augmenté™ — Conférences & Conseil IA Musicale',
+          description: 'Masterclasses et conférences d’hybridation entre MAO, IA générative et souveraineté musicale.',
+        },
+      },
+    ],
+  },
+  sameAs: SAME_AS,
+}
+
+export const professionalServiceSchema = localBusinessSchema

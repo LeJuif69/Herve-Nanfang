@@ -2,6 +2,7 @@ import { sha256 } from '../src/lib/sha256.js'
 import {
   adminStore,
   buildWebhookPayload,
+  dispatchWebhookEvent,
   N8N_LEGACY_WEBHOOK_URL,
   N8N_PRODUCTION_WEBHOOK_URL,
   resolveMigratedWebhookUrl,
@@ -256,7 +257,63 @@ try {
   globalThis.fetch = originalFetch
 }
 
+console.log('\n--- TEST 4D: Browser relay fails closed ---')
+const originalWindow = globalThis.window
+const originalGetSession = adminAuth.getSession
+const originalBrowserFetch = globalThis.fetch
+try {
+  globalThis.window = { location: { origin: 'https://hervenanfang.art' } }
+  const fetchCalls = []
+
+  adminAuth.getSession = async () => null
+  globalThis.fetch = async (url) => {
+    fetchCalls.push(String(url))
+    throw new Error('Direct webhook call must not happen without a session')
+  }
+  const noSessionResult = await dispatchWebhookEvent(
+    N8N_PRODUCTION_WEBHOOK_URL,
+    buildWebhookPayload(basePost, { isTest: true }),
+  )
+  if (noSessionResult.success || noSessionResult.status !== 401 || fetchCalls.length !== 0) {
+    throw new Error('Browser webhook dispatch must reject missing Supabase sessions without fetching')
+  }
+
+  adminAuth.getSession = async () => ({
+    user: { id: 'test-admin-user', email: 'admin@example.com', role: 'admin' },
+    mode: 'supabase',
+    expiresAt: new Date(Date.now() + 60_000).toISOString(),
+    accessToken: 'test-access-token',
+  })
+  globalThis.fetch = async (url) => {
+    fetchCalls.push(String(url))
+    throw new Error('relay unavailable')
+  }
+  const relayFailureResult = await dispatchWebhookEvent(
+    N8N_PRODUCTION_WEBHOOK_URL,
+    buildWebhookPayload(basePost, { isTest: true }),
+  )
+  if (
+    relayFailureResult.success ||
+    relayFailureResult.status !== 502 ||
+    fetchCalls.length !== 1 ||
+    fetchCalls[0] !== '/api/webhook-relay'
+  ) {
+    throw new Error('Browser dispatch must report relay failure without calling the webhook target directly')
+  }
+  console.log('✓ Browser dispatch requires Supabase Auth and never bypasses the server relay')
+} finally {
+  adminAuth.getSession = originalGetSession
+  globalThis.fetch = originalBrowserFetch
+  if (originalWindow === undefined) delete globalThis.window
+  else globalThis.window = originalWindow
+}
+
 console.log('\n--- TEST 5: Server-side Webhook Relay (/api/webhook-relay) ---')
+const originalSupabaseUrl = process.env.SUPABASE_URL
+const originalSupabaseKey = process.env.VITE_SUPABASE_PUBLISHABLE_KEY
+process.env.SUPABASE_URL = 'https://project.example.supabase.co'
+process.env.VITE_SUPABASE_PUBLISHABLE_KEY = 'test-publishable-key'
+
 function createMockRes() {
   return {
     statusCode: 200,
@@ -294,7 +351,7 @@ try {
       method: 'POST',
       body: {
         targetUrl: N8N_PRODUCTION_WEBHOOK_URL,
-        adminAuth: { email: 'hacker@evil.com', expiresAt: '2099-01-01T00:00:00Z', sessionToken: 'bad' },
+        adminAuth: { email: 'hacker@evil.com', expiresAt: '2099-01-01T00:00:00Z' },
         payload: { event: 'publication.approved', isTest: true, post: { id: 'p1', title: 'T' } },
       },
     },
@@ -304,16 +361,38 @@ try {
     throw new Error('Relay should reject unauthorized admin session with HTTP 401!')
   }
 
-  // 5C. Authenticate valid admin session and test valid relay + deduplication
-  const signInRes = await adminAuth.signIn('hello@hervenanfang.art', 'MasterHerveNanfang2026!')
-  if (!signInRes.success || !signInRes.session) {
-    throw new Error('Failed to sign in admin for relay test!')
+  // 5C. Verify the Supabase access token and admin_users membership before relaying.
+  const validAdminAuth = { accessToken: 'test-access-token' }
+  let upstreamCallCount = 0
+  let upstreamResponse = {
+    ok: true,
+    status: 200,
+    text: async () => JSON.stringify({ message: 'Workflow was started' }),
   }
-  const validAdminAuth = {
-    email: signInRes.session.user.email,
-    expiresAt: signInRes.session.expiresAt,
-    sessionToken: signInRes.session.sessionToken,
-    mode: signInRes.session.mode,
+  globalThis.fetch = async (url, options = {}) => {
+    const pathname = new URL(String(url)).pathname
+    if (pathname === '/auth/v1/user') {
+      if (options.headers?.Authorization !== 'Bearer test-access-token') {
+        throw new Error('Supabase Auth verification did not forward the access token')
+      }
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ id: 'test-admin-user', email: 'admin@example.com' }),
+      }
+    }
+    if (pathname === '/rest/v1/admin_users') {
+      if (options.headers?.Authorization !== 'Bearer test-access-token') {
+        throw new Error('Supabase admin membership verification did not forward the access token')
+      }
+      return {
+        ok: true,
+        status: 200,
+        json: async () => [{ user_id: 'test-admin-user' }],
+      }
+    }
+    upstreamCallCount++
+    return upstreamResponse
   }
 
   // Invalid payload check (400)
@@ -331,17 +410,6 @@ try {
   )
   if (resBadPayload.statusCode !== 400) {
     throw new Error('Relay should reject invalid payload with HTTP 400!')
-  }
-
-  // Mock upstream fetch for relay
-  let upstreamCallCount = 0
-  globalThis.fetch = async () => {
-    upstreamCallCount++
-    return {
-      ok: true,
-      status: 200,
-      text: async () => JSON.stringify({ message: 'Workflow was started' }),
-    }
   }
 
   const samplePost = {
@@ -378,7 +446,7 @@ try {
     resRelay1,
   )
   if (resRelay1.statusCode !== 200 || !resRelay1.body?.success || upstreamCallCount !== 1) {
-    throw new Error('Relay failed to forward valid authenticated request!')
+    throw new Error(`Relay failed to forward valid authenticated request: ${JSON.stringify(resRelay1.body)}`)
   }
 
   // Duplicate real approval within TTL should be deduplicated without calling upstream again
@@ -399,7 +467,7 @@ try {
   }
 
   // Test 404 inactive n8n workflow diagnostic message
-  globalThis.fetch = async () => ({
+  upstreamResponse = {
     ok: false,
     status: 404,
     text: async () =>
@@ -407,7 +475,7 @@ try {
         code: 404,
         message: 'The requested webhook "POST a680fa6e-49a8-48d6-ac29-585120113415" is not registered.',
       }),
-  })
+  }
   const resRelay404 = createMockRes()
   await webhookRelayHandler(
     {
@@ -424,10 +492,13 @@ try {
     throw new Error('Relay did not format 404 inactive n8n workflow diagnostic properly!')
   }
 
-  await adminAuth.signOut()
-  console.log('✓ Server-side Webhook Relay auth, validation, deduplication & 404 diagnostics PASSED')
+  console.log('✓ Server-side Webhook Relay Supabase auth, validation, deduplication & diagnostics PASSED')
 } finally {
   globalThis.fetch = originalFetch
+  if (originalSupabaseUrl === undefined) delete process.env.SUPABASE_URL
+  else process.env.SUPABASE_URL = originalSupabaseUrl
+  if (originalSupabaseKey === undefined) delete process.env.VITE_SUPABASE_PUBLISHABLE_KEY
+  else process.env.VITE_SUPABASE_PUBLISHABLE_KEY = originalSupabaseKey
 }
 
 console.log('\n--- ALL INTEGRITY TESTS PASSED SUCCESSFULLY ---')

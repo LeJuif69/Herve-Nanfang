@@ -18,7 +18,7 @@ import {
   Stat,
   Tag,
 } from '../components/ui'
-import { ARTICLES } from '../data/articles'
+import { ARTICLE_SUMMARIES } from '../data/article-summaries'
 import { PROJECT_FAMILIES } from '../data/projects'
 import { SITE } from '../data/site'
 import {
@@ -406,7 +406,7 @@ export default function Projects() {
         </Reveal>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {ARTICLES.filter((a) =>
+          {ARTICLE_SUMMARIES.filter((a) =>
             [
               'documenter-les-traditions-musicales-orales',
               'musicien-augmente-definition',

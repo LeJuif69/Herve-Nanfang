@@ -31,6 +31,7 @@
     <meta name="msvalidate.01" content="8DF80077ED9D232B63A6B2865557E400" />
     <meta name="p:domain_verify" content="67154518be397028f4e8d887c127754b" />
     <link rel="canonical" href="https://hervenanfang.art" />
+    <link rel="alternate" type="application/rss+xml" title="Le Journal du Musicien Augmenté — Hervé Nanfang" href="https://hervenanfang.art/journal/rss.xml" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -126,33 +127,44 @@
     </script>
     <meta name="prerender-head-end" content="true" />
 
-    <!-- Google Analytics 4 & AdSense — Chargement différé hors chemin critique LCP/TBT -->
+    <!-- Google Analytics & AdSense scripts are loaded conditionally according to user consent -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-DMHQK0ELNX');
+      function checkAndLoadThirdParty() {
+        try {
+          const stored = localStorage.getItem('hvnf_consent');
+          if (!stored) return;
+          const consent = JSON.parse(stored) || {};
 
-      (function() {
-        var loaded = false;
-        function loadThirdParty() {
-          if (loaded) return;
-          loaded = true;
-          var g = document.createElement('script');
-          g.async = true;
-          g.src = 'https://www.googletagmanager.com/gtag/js?id=G-DMHQK0ELNX';
-          document.head.appendChild(g);
+          if (consent.ga4 && !window._gaLoaded) {
+            window._gaLoaded = true;
+            const ga = document.createElement('script');
+            ga.async = true;
+            ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-DMHQK0ELNX';
+            document.head.appendChild(ga);
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-DMHQK0ELNX');
+          }
 
-          var a = document.createElement('script');
-          a.async = true;
-          a.crossOrigin = 'anonymous';
-          a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6623797864465522';
-          document.head.appendChild(a);
+          if (consent.ads && !window._adsLoaded) {
+            window._adsLoaded = true;
+            const ad = document.createElement('script');
+            ad.async = true;
+            ad.crossOrigin = 'anonymous';
+            ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6623797864465522';
+            document.head.appendChild(ad);
+          }
+        } catch (e) {
+          // Ignore localStorage parsing error
         }
-        ['scroll', 'pointerdown', 'mousemove', 'keydown', 'touchstart'].forEach(function(evt) {
-          window.addEventListener(evt, loadThirdParty, { once: true, passive: true });
-        });
-      })();
+      }
+
+      // Check immediately on load for returning visitors who already consented
+      checkAndLoadThirdParty();
+
+      // Listen for consent event if user grants consent during this session
+      window.addEventListener('consentGranted', checkAndLoadThirdParty);
     </script>
   </head>
   <body>

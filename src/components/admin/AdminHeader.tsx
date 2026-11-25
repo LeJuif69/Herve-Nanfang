@@ -67,7 +67,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
               isSupabaseConfigured ? 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'bg-amber-400'
             }`}
           />
-          <span>{isSupabaseConfigured ? 'Supabase Connecté' : 'Session Locale Sécurisée'}</span>
+          <span>{isSupabaseConfigured ? 'Supabase Auth actif' : 'Supabase Auth non configuré'}</span>
         </div>
 
         {/* View Public Site */}

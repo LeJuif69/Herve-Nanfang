@@ -19,7 +19,7 @@ import {
 } from '../components/ui'
 import { MASTER_IDENTITY } from '../data/identity'
 import { PILLARS } from '../data/site'
-import { ARTICLES } from '../data/articles'
+import { ARTICLE_SUMMARIES } from '../data/article-summaries'
 import { breadcrumbSchema, personSchema } from '../lib/schema'
 import { useSeo } from '../lib/seo'
 import CareerTimeline from '../components/CareerTimeline'
@@ -431,7 +431,7 @@ export default function About() {
         </Reveal>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {ARTICLES.filter((a) =>
+          {ARTICLE_SUMMARIES.filter((a) =>
             [
               'apres-la-mao-lia',
               'musicien-augmente-definition',

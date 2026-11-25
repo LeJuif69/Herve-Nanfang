@@ -54,8 +54,8 @@ ${musicalGoals || 'Non renseigné'}
       `Objectifs : ${musicalGoals || 'Non renseigné'}`,
     ].join('\n')
 
-    const { adminStore } = await import('../lib/admin-store')
-    const res = await adminStore.addIncomingMessage({
+    const { addPublicMessage } = await import('../lib/public-message')
+    const res = await addPublicMessage({
       name: fullName,
       email: email,
       phone: phone,

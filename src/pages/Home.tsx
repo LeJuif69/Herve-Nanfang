@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import liveScene from '../assets/live-scene-piano.webp'
 import HomeFeaturedVideos from '../components/HomeFeaturedVideos'
+import LeadMagnetForm from '../components/LeadMagnetForm'
 import SoundWaveCanvas from '../components/SoundWaveCanvas'
 import {
   ArrowLink,
@@ -923,6 +924,16 @@ export default function Home() {
       {/* VIDÉO LIVE & FORMATS SCÉNIQUES (EQUILIBRÉ)                               */}
       {/* ========================================================================= */}
       <HomeFeaturedVideos chapterNum="05" />
+      {/* Lead Magnet Section */}
+      <Section tone="dark" className="py-12" id="lead-magnet">
+        <Container>
+          <Eyebrow>Obtenez votre guide gratuit</Eyebrow>
+          <Display size="lg" className="mb-6">
+            Rejoignez notre newsletter et recevez le PDF "Lead Magnet" instantanément
+          </Display>
+          <LeadMagnetForm />
+        </Container>
+      </Section>
 
       {/* ========================================================================= */}
       {/* NIVEAU 3 : CONVERSION DIRECTE — 4 PARCOURS SUR /reservation              */}
