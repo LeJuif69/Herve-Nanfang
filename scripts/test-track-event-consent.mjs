@@ -13,8 +13,8 @@ function createResponse() {
     statusCode: 200,
     headers: {},
     body: undefined,
-    set(headers) {
-      Object.assign(this.headers, headers)
+    setHeader(name, value) {
+      this.headers[name] = value
       return this
     },
     status(code) {

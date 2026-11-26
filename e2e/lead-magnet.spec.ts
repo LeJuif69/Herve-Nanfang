@@ -97,7 +97,32 @@ test.describe('Lead Magnet Form', () => {
     )
     await fillAndSubmitForm(page)
     await expect(page.locator('[role="alert"]')).toBeVisible()
+    await expect(page.getByRole('link', { name: 'Poursuivre par WhatsApp' }))
+      .toHaveAttribute('href', /^https:\/\/wa\.me\/\d+\?text=/)
   })
+})
+
+test('propose WhatsApp si l’inscription du Journal échoue', async ({ page }) => {
+  await page.goto('/journal')
+  await page.getByRole('dialog', { name: 'Gestion des cookies' })
+    .getByRole('button', { name: 'Tout refuser' })
+    .click()
+  await page.route('/api/lead-magnet', (route) =>
+    route.fulfill({
+      status: 503,
+      contentType: 'application/json',
+      body: JSON.stringify({ error: 'Service unavailable' }),
+    }),
+  )
+
+  await page.fill('#lead-name', 'Test User')
+  await page.fill('#lead-email', 'test@example.com')
+  await page.getByRole('button', { name: /Recevoir.*Extrait Officiel/ }).click()
+
+  await expect(page.getByText('Inscription impossible pour le moment. Veuillez réessayer ou nous contacter par WhatsApp.'))
+    .toBeVisible()
+  await expect(page.getByRole('link', { name: 'Poursuivre la demande par WhatsApp' }))
+    .toHaveAttribute('href', /^https:\/\/wa\.me\/\d+\?text=/)
 })
 
 // ─────────────────────────────────────────────
