@@ -217,8 +217,24 @@ create table if not exists messages (
 create index if not exists messages_status_idx on messages (status, created_at desc);
 
 -- ---------------------------------------------------------------------------
--- 8. Lettre d'information
+-- 8. Leads et lettre d'information
 -- ---------------------------------------------------------------------------
+-- Les leads sont écrits uniquement par le relais serveur (service_role).
+-- Aucune lecture ni écriture publique/authentifiée n'est accordée.
+create table if not exists leads (
+  id                 uuid primary key default gen_random_uuid(),
+  email              text not null,
+  name               text not null,
+  phone              text,
+  segment            text not null,
+  source              text not null,
+  consent_marketing  boolean not null,
+  subscribed_brevo   boolean not null default false,
+  created_at         timestamptz not null default now()
+);
+
+create index if not exists leads_created_at_idx on leads (created_at desc);
+
 create table if not exists newsletter_subscribers (
   id            uuid primary key default gen_random_uuid(),
   email         text not null unique,
@@ -276,6 +292,7 @@ alter table events                enable row level security;
 alter table media                 enable row level security;
 alter table documents             enable row level security;
 alter table messages              enable row level security;
+alter table leads                 enable row level security;
 alter table newsletter_subscribers enable row level security;
 alter table redirects             enable row level security;
 
@@ -283,12 +300,13 @@ alter table redirects             enable row level security;
 -- Les politiques RLS ci-dessous décident quelles lignes sont accessibles.
 -- Les grants déterminent quelles opérations peuvent atteindre ces politiques.
 revoke all on table admin_users, site_settings, articles, projects, tracks,
-  videos, courses, talks, events, media, documents, messages,
+  videos, courses, talks, events, media, documents, messages, leads,
   newsletter_subscribers, redirects from anon, authenticated;
 
 grant select on table site_settings, articles, projects, tracks, videos,
   courses, talks, events, media, documents, redirects to anon;
 grant insert on table messages, newsletter_subscribers to anon;
+grant insert on table leads to service_role;
 
 grant select on table admin_users to authenticated;
 grant select, insert, update, delete on table site_settings, articles,

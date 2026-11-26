@@ -139,8 +139,19 @@ export const JournalLeadMagnet: React.FC<JournalLeadMagnetProps> = ({
 
             <form onSubmit={handleSubmit} className="mt-8 space-y-5">
               {error && (
-                <div className="rounded border border-red-500/40 bg-red-950/40 p-3 text-xs text-red-200">
-                  {error}
+                <div
+                  role="alert"
+                  className="rounded border border-red-500/40 bg-red-950/40 p-3 text-xs text-red-200"
+                >
+                  <p>{error}</p>
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-block font-semibold text-emerald-300 underline"
+                  >
+                    Poursuivre la demande par WhatsApp
+                  </a>
                 </div>
               )}
 

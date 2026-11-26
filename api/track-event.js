@@ -24,23 +24,26 @@ function corsHeaders(req) {
 
 export default async function handler(req, res) {
   const headers = corsHeaders(req)
+  for (const [name, value] of Object.entries(headers)) {
+    res.setHeader(name, value)
+  }
 
   // Preflight
   if (req.method === 'OPTIONS') {
-    return res.status(204).set(headers).end()
+    return res.status(204).end()
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).set(headers).json({ error: 'Method Not Allowed' })
+    return res.status(405).json({ error: 'Method Not Allowed' })
   }
 
   const { event, params, client_id, analyticsConsent } = req.body ?? {}
   if (!event || typeof event !== 'string') {
-    return res.status(400).set(headers).json({ error: 'Missing event name' })
+    return res.status(400).json({ error: 'Missing event name' })
   }
 
   if (analyticsConsent !== true) {
-    return res.status(200).set(headers).json({
+    return res.status(200).json({
       success: false,
       reason: 'Analytics consent not granted',
     })
@@ -52,7 +55,7 @@ export default async function handler(req, res) {
   if (!measurementId || !apiSecret) {
     console.warn('[track-event] GA4 credentials not configured — event dropped:', event)
     // Return 200 to avoid breaking the client
-    return res.status(200).set(headers).json({ success: false, reason: 'GA4 not configured' })
+    return res.status(200).json({ success: false, reason: 'GA4 not configured' })
   }
 
   const payload = {
@@ -79,12 +82,12 @@ export default async function handler(req, res) {
     if (!gaRes.ok) {
       const txt = await gaRes.text()
       console.error('[track-event] GA4 error:', txt)
-      return res.status(502).set(headers).json({ error: 'GA4 upstream error' })
+      return res.status(502).json({ error: 'GA4 upstream error' })
     }
 
-    return res.status(200).set(headers).json({ success: true, event })
+    return res.status(200).json({ success: true, event })
   } catch (err) {
     console.error('[track-event] Error:', err.message)
-    return res.status(500).set(headers).json({ error: 'Internal Server Error' })
+    return res.status(500).json({ error: 'Internal Server Error' })
   }
 }

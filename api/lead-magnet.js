@@ -99,7 +99,7 @@ async function subscribeBrevoContact({ email, name, phone, segment, source, apiK
   // Brevo renvoie 201 Created ou 204 No Content (si updateEnabled), ou 400 si déjà présent
   if (!contactRes.ok && contactRes.status !== 400) {
     const errText = await contactRes.text()
-    console.warn('[brevo] Contact creation warning:', contactRes.status, errText)
+    throw new Error(`Brevo contact creation error ${contactRes.status}: ${errText}`)
   }
 
   return { success: true, method: 'direct' }
@@ -173,14 +173,17 @@ async function sendViaResend(email, name, pdfUrl, apiKey) {
 
 export default async function handler(req, res) {
   const headers = corsHeaders(req)
+  for (const [name, value] of Object.entries(headers)) {
+    res.setHeader(name, value)
+  }
 
   // Preflight
   if (req.method === 'OPTIONS') {
-    return res.status(204).set(headers).end()
+    return res.status(204).end()
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).set(headers).json({ error: 'Method Not Allowed' })
+    return res.status(405).json({ error: 'Method Not Allowed' })
   }
 
   const {
@@ -193,10 +196,10 @@ export default async function handler(req, res) {
   } = req.body ?? {}
 
   if (!email || typeof email !== 'string' || !email.includes('@')) {
-    return res.status(400).set(headers).json({ error: 'Email invalide' })
+    return res.status(400).json({ error: 'Email invalide' })
   }
   if (!name || typeof name !== 'string' || name.trim().length < 2) {
-    return res.status(400).set(headers).json({ error: 'Nom invalide' })
+    return res.status(400).json({ error: 'Nom invalide' })
   }
 
   const baseUrl = process.env.VITE_SITE_URL || 'https://hervenanfang.art'
@@ -205,6 +208,7 @@ export default async function handler(req, res) {
   const resendKey = process.env.RESEND_API_KEY
 
   let subscribed = false
+  let savedToSupabase = false
 
   // 1. Inscription à la liste Brevo correspondante
   // Pour Booking : uniquement si consentement marketing explicite accordé
@@ -227,27 +231,12 @@ export default async function handler(req, res) {
     }
   }
 
-  // 2. Envoi transactionnel (remise du PDF pour le Journal)
-  if (segment === 'journal') {
-    try {
-      if (brevoKey) {
-        await sendLeadMagnetEmailBrevo(email.trim(), name.trim(), pdfUrl, brevoKey)
-      } else if (resendKey) {
-        await sendViaResend(email.trim(), name.trim(), pdfUrl, resendKey)
-      } else {
-        console.warn('[lead-magnet] Aucun fournisseur email configuré.')
-      }
-    } catch (err) {
-      console.error('[lead-magnet] Email delivery error:', err.message)
-    }
-  }
-
-  // 3. Sauvegarde de traçabilité Supabase (optionnelle)
+  // 2. Sauvegarde de traçabilité Supabase
   try {
     const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL
     const supabaseKey = process.env.SUPABASE_SERVICE_KEY
     if (supabaseUrl && supabaseKey) {
-      await fetch(`${supabaseUrl}/rest/v1/leads`, {
+      const supabaseRes = await fetch(`${supabaseUrl}/rest/v1/leads`, {
         method: 'POST',
         headers: {
           apikey: supabaseKey,
@@ -266,12 +255,42 @@ export default async function handler(req, res) {
           created_at: new Date().toISOString(),
         }),
       })
+      if (!supabaseRes.ok) {
+        const errText = await supabaseRes.text()
+        throw new Error(`Supabase lead save error ${supabaseRes.status}: ${errText}`)
+      }
+      savedToSupabase = true
     }
   } catch (err) {
     console.warn('[lead-magnet] Supabase save warning:', err.message)
   }
 
-  return res.status(200).set(headers).json({
+  if (!subscribed && !savedToSupabase) {
+    console.error('[lead-magnet] No lead storage provider accepted the submission.')
+    return res.status(503).json({
+      error: 'Le service de réception des demandes est momentanément indisponible.',
+    })
+  }
+
+  // 3. Envoi transactionnel (remise du PDF pour le Journal)
+  if (segment === 'journal') {
+    try {
+      if (brevoKey) {
+        await sendLeadMagnetEmailBrevo(email.trim(), name.trim(), pdfUrl, brevoKey)
+      } else if (resendKey) {
+        await sendViaResend(email.trim(), name.trim(), pdfUrl, resendKey)
+      } else {
+        throw new Error('No email delivery provider is configured.')
+      }
+    } catch (err) {
+      console.error('[lead-magnet] Email delivery error:', err.message)
+      return res.status(502).json({
+        error: 'Votre demande est enregistrée, mais le guide ne peut pas être envoyé pour le moment.',
+      })
+    }
+  }
+
+  return res.status(200).json({
     success: true,
     segment,
     subscribed,

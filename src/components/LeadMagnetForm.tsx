@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { hasAnalyticsConsent, trackGA4 } from "../lib/ga4";
+import { SITE } from "../data/site";
 
 export default function LeadMagnetForm() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const whatsappUrl = `https://wa.me/${SITE.phones[0].whatsapp}?text=${encodeURIComponent(
+    "Bonjour Hervé, je souhaite recevoir le Guide du Musicien Augmenté™.",
+  )}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -94,9 +98,19 @@ export default function LeadMagnetForm() {
         {status === "sending" ? "Envoi en cours…" : "Obtenir le PDF gratuitement →"}
       </button>
       {status === "error" && (
-        <p className="text-red-400 text-sm text-center" role="alert">
-          Une erreur s'est produite. Réessayez ou contactez-nous directement.
-        </p>
+        <div className="space-y-2 text-center" role="alert">
+          <p className="text-red-400 text-sm">
+            Nous n’avons pas pu confirmer votre demande. Réessayez ou poursuivez par WhatsApp.
+          </p>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-sm text-emerald-400 underline hover:text-emerald-300"
+          >
+            Poursuivre par WhatsApp
+          </a>
+        </div>
       )}
     </form>
   );
