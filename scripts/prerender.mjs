@@ -242,6 +242,21 @@ try {
     }
   }
 
+  const adminShell = injectHead(
+    template,
+    pageHead({
+      title: 'Administration | Hervé Nanfang',
+      description: 'Espace privé sécurisé — Hervé Nanfang.',
+      path: '/admin',
+      type: 'website',
+      image: '/og-image.jpg',
+      robots: 'noindex, nofollow',
+    }, SITE, assetMap),
+  )
+  const adminShellPath = outputPath('/admin')
+  await mkdir(dirname(adminShellPath), { recursive: true })
+  await writeFile(adminShellPath, adminShell, 'utf8')
+
   const notFound = await renderRoute(App, SeoContext, '/not-found')
   const notFoundMarkup = rewriteAssetUrls(notFound.markup)
   const notFoundHtml = injectHead(template, pageHead(notFound.seo, SITE, assetMap)).replace(

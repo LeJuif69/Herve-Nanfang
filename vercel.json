@@ -38,8 +38,8 @@
   "rewrites": [
     { "source": "/api/lead-magnet", "destination": "/api/lead-magnet.js" },
     { "source": "/api/track-event", "destination": "/api/track-event.js" },
-    { "source": "/admin", "destination": "/index.html" },
-    { "source": "/admin/(.*)", "destination": "/index.html" }
+    { "source": "/admin", "destination": "/admin/index.html" },
+    { "source": "/admin/(.*)", "destination": "/admin/index.html" }
   ],
   "headers": [
     {
