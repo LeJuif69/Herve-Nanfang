@@ -1,3 +1,5 @@
+import { ARTICLE_CURATION } from './article-curation'
+
 /**
  * Le Journal du Musicien Augmenté — série fondatrice « Après la MAO, l'IA »
  * ============================================================================
@@ -35,6 +37,7 @@ export type Article = {
   /** Dates vérifiées de publication et de mise à jour significative (ISO YYYY-MM-DD) */
   publishedAt?: string
   updatedAt?: string
+  relatedSlugs: string[]
   coverImage?: string
 }
 
@@ -58,7 +61,7 @@ export const CATEGORIES = [
   'Réflexions',
 ]
 
-export const ARTICLES: Article[] = [
+const ARTICLE_DATA: Omit<Article, 'relatedSlugs'>[] = [
   {
     slug: 'apres-la-mao-lia',
     num: '01',
@@ -3334,6 +3337,14 @@ export const ARTICLES: Article[] = [
     ],
   },
 ]
+
+export const ARTICLES: Article[] = ARTICLE_DATA.map((article) => {
+  const curation = ARTICLE_CURATION[article.slug]
+  return {
+    ...article,
+    relatedSlugs: curation?.relatedSlugs ?? [],
+  }
+})
 
 export const ARTICLE_CHAIN = [
   { num: '1', label: 'Hervé Nanfang', detail: 'Parcours, compétences et vision', to: '/a-propos' },

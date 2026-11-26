@@ -1,11 +1,12 @@
 import type { Article } from './articles'
+import { ARTICLE_CURATION } from './article-curation'
 
 export type ArticleSummary = Pick<
   Article,
-  'slug' | 'num' | 'category' | 'title' | 'excerpt' | 'readingTime' | 'status' | 'linkedConcept'
->
+  'slug' | 'num' | 'category' | 'title' | 'excerpt' | 'readingTime' | 'status' | 'linkedConcept' | 'publishedAt'
+> & Pick<Article, 'relatedSlugs'>
 
-export const ARTICLE_SUMMARIES: ArticleSummary[] = [
+const ARTICLE_SUMMARY_DATA: Omit<ArticleSummary, 'relatedSlugs'>[] = [
   {
     "slug": "apres-la-mao-lia",
     "num": "01",
@@ -157,6 +158,7 @@ export const ARTICLE_SUMMARIES: ArticleSummary[] = [
     "excerpt": "Droits d’auteur, mémoire algorithmique, données musicales et souveraineté culturelle africaine : tribune de fond par Hervé Nanfang sur les leçons de GEMA c. Suno, la Loi camerounaise 2000/011 et l’économie des archives sonores.",
     "readingTime": "12 min",
     "status": "Publié",
+    "publishedAt": "2026-11-04",
     "linkedConcept": {
       "label": "Musicien Augmenté™",
       "to": "/ia-technologie#musicien-augmente"
@@ -378,6 +380,7 @@ export const ARTICLE_SUMMARIES: ArticleSummary[] = [
     "excerpt": "Droits d’auteur, patrimoine sonore, économie créative et gouvernance technologique : tribune de fond par Hervé Nanfang sur la place de l’Afrique dans la nouvelle économie musicale mondiale et les perspectives du SIMA 2026 à Cotonou.",
     "readingTime": "16 min",
     "status": "Publié",
+    "publishedAt": "2026-11-10",
     "linkedConcept": {
       "label": "Musicien Augmenté™",
       "to": "/ia-technologie#musicien-augmente"
@@ -391,6 +394,7 @@ export const ARTICLE_SUMMARIES: ArticleSummary[] = [
     "excerpt": "Un piano-bar ne demande pas du volume : il exige de l’intimité, de la lisibilité et une marge de sécurité. Méthode de terrain pour équilibrer piano et voix sans larsen avec les Yamaha PSR-SX, une console MG16XU et un processeur dbx DriveRack.",
     "readingTime": "12 min",
     "status": "Publié",
+    "publishedAt": "2026-11-14",
     "linkedConcept": {
       "label": "Le Pianobariste™ & Scène",
       "to": "/services#pianobariste"
@@ -404,12 +408,21 @@ export const ARTICLE_SUMMARIES: ArticleSummary[] = [
     "excerpt": "Suno Visuals, musique générée par IA et transparence sur Deezer : analyse pratique des changements et des décisions à prendre pour les musiciens africains.",
     "readingTime": "9 min",
     "status": "Publié",
+    "publishedAt": "2026-11-22",
     "linkedConcept": {
       "label": "Musicien Augmenté™",
       "to": "/ia-technologie#musicien-augmente"
     }
   }
 ]
+
+export const ARTICLE_SUMMARIES: ArticleSummary[] = ARTICLE_SUMMARY_DATA.map((article) => {
+  const curation = ARTICLE_CURATION[article.slug]
+  return {
+    ...article,
+    relatedSlugs: curation?.relatedSlugs ?? [],
+  }
+})
 
 export const JOURNAL_SERIES = [
   {

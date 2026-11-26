@@ -133,7 +133,26 @@
         try {
           const stored = localStorage.getItem('hvnf_consent');
           if (!stored) return;
-          const consent = JSON.parse(stored) || {};
+          const consent = JSON.parse(stored);
+          if (typeof consent?.ga4 !== 'boolean' || typeof consent?.ads !== 'boolean') {
+            console.error('Préférences de cookies invalides; les scripts facultatifs restent désactivés.');
+            return;
+          }
+
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+          window.gtag('consent', 'default', {
+            analytics_storage: 'denied',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+          });
+          window.gtag('consent', 'update', {
+            analytics_storage: consent.ga4 ? 'granted' : 'denied',
+            ad_storage: consent.ads ? 'granted' : 'denied',
+            ad_user_data: consent.ads ? 'granted' : 'denied',
+            ad_personalization: consent.ads ? 'granted' : 'denied'
+          });
 
           if (consent.ga4 && !window._gaLoaded) {
             window._gaLoaded = true;
@@ -141,10 +160,8 @@
             ga.async = true;
             ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-DMHQK0ELNX';
             document.head.appendChild(ga);
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-DMHQK0ELNX');
+            window.gtag('js', new Date());
+            window.gtag('config', 'G-DMHQK0ELNX');
           }
 
           if (consent.ads && !window._adsLoaded) {
@@ -155,8 +172,8 @@
             ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6623797864465522';
             document.head.appendChild(ad);
           }
-        } catch (e) {
-          // Ignore localStorage parsing error
+        } catch (error) {
+          console.error('Impossible de lire les préférences de cookies; les scripts facultatifs restent désactivés.', error);
         }
       }
 
@@ -164,7 +181,7 @@
       checkAndLoadThirdParty();
 
       // Listen for consent event if user grants consent during this session
-      window.addEventListener('consentGranted', checkAndLoadThirdParty);
+      window.addEventListener('consentChanged', checkAndLoadThirdParty);
     </script>
   </head>
   <body>

@@ -42,7 +42,7 @@ async function getPublishedArticles() {
           title: titleMatch[1],
           excerpt: excerptMatch ? excerptMatch[1] : '',
           category: categoryMatch ? categoryMatch[1] : 'Musique & Technologie',
-          publishedAt: dateMatch ? dateMatch[1] : new Date().toISOString().split('T')[0],
+          publishedAt: dateMatch ? dateMatch[1] : undefined,
         })
       }
     }
@@ -61,13 +61,15 @@ function buildRssXml(articles) {
 
   const itemsXml = articles
     .map((a) => {
-      const pubDate = new Date(a.publishedAt).toUTCString()
+      const pubDate = a.publishedAt
+        ? `      <pubDate>${new Date(a.publishedAt).toUTCString()}</pubDate>\n`
+        : ''
       const url = `${SITE_URL}/journal/${a.slug}`
       return `    <item>
       <title>${escapeXml(a.title)}</title>
       <link>${url}</link>
       <guid isPermaLink="true">${url}</guid>
-      <pubDate>${pubDate}</pubDate>
+${pubDate.trimEnd()}
       <dc:creator>Hervé Nanfang</dc:creator>
       <category>${escapeXml(a.category)}</category>
       <description>${escapeXml(a.excerpt)}</description>

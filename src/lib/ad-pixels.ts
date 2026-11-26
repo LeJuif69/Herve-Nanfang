@@ -2,6 +2,7 @@
  * Module de suivi publicitaire & pixels de conversion
  * Supporte : Meta Pixel (Facebook & Instagram Ads) et Google Ads / Google Tag
  */
+import { hasAdsConsent, hasAnalyticsConsent } from './ga4'
 
 declare global {
   interface Window {
@@ -42,25 +43,31 @@ export function initAdPixels(): void {
 
   try {
     const settings = readStoredAdminSettings()
+    const adsConsent = hasAdsConsent()
+    const analyticsConsent = hasAnalyticsConsent()
+
+    if (window.fbq) window.fbq('consent', adsConsent ? 'grant' : 'revoke')
 
     // 1. Meta Pixel (Facebook / Instagram Ads)
     const metaPixelId =
       settings.metaPixelId?.trim() ||
       (import.meta.env.VITE_META_PIXEL_ID as string | undefined)?.trim()
 
-    if (metaPixelId && !metaPixelInitialized) {
+    if (adsConsent && metaPixelId && !metaPixelInitialized) {
       injectMetaPixel(metaPixelId)
       metaPixelInitialized = true
     }
 
     // 2. Google Ads / Tag
-    const googleAdsId =
-      settings.googleAdsId?.trim() ||
-      settings.googleAnalyticsId?.trim() ||
-      (import.meta.env.VITE_GOOGLE_ADS_ID as string | undefined)?.trim()
+    const googleAdsId = adsConsent
+      ? settings.googleAdsId?.trim() ||
+        (import.meta.env.VITE_GOOGLE_ADS_ID as string | undefined)?.trim()
+      : undefined
+    const googleAnalyticsId = analyticsConsent ? settings.googleAnalyticsId?.trim() : undefined
+    const googleTagId = googleAdsId || googleAnalyticsId
 
-    if (googleAdsId && !googleAdsInitialized) {
-      injectGoogleTag(googleAdsId)
+    if (googleTagId && !googleAdsInitialized) {
+      injectGoogleTag(googleTagId)
       googleAdsInitialized = true
     }
   } catch (err) {
@@ -116,6 +123,7 @@ function injectGoogleTag(tagId: string): void {
  */
 export function trackAdEvent(eventName: string, params: Record<string, unknown> = {}): void {
   if (typeof window === 'undefined') return
+  if (!hasAdsConsent()) return
 
   try {
     // Meta Pixel

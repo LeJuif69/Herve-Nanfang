@@ -139,7 +139,14 @@ export default function ArticleDetail() {
 
   if (!article) return <NotFound />
 
-  const others = allArticles.filter((a) => a.slug !== article.slug).slice(0, 3)
+  const articlesBySlug = new Map(allArticles.map((item) => [item.slug, item]))
+  const curatedRelated = (article.relatedSlugs ?? [])
+    .map((relatedSlug) => articlesBySlug.get(relatedSlug))
+    .filter((related): related is (typeof allArticles)[number] => Boolean(related && related.status === 'Publié'))
+  const others = (curatedRelated.length > 0
+    ? curatedRelated
+    : allArticles.filter((item) => item.slug !== article.slug && item.status === 'Publié')
+  ).slice(0, 3)
   const published = article.status === 'Publié'
 
   return (

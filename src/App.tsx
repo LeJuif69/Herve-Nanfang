@@ -16,14 +16,15 @@ function HashAdminRedirect() {
   const navigate = useNavigate();
   const location = useLocation();
   React.useEffect(() => {
+    if (typeof window === 'undefined') return;
     captureTrafficAttribution();
     initAdPixels();
-    if (typeof window !== 'undefined') {
-      const hash = window.location.hash;
-      if (hash === '#/admin' || hash === '#admin' || hash.startsWith('#/admin')) {
-        navigate('/admin', { replace: true });
-      }
+    window.addEventListener('consentChanged', initAdPixels);
+    const hash = window.location.hash;
+    if (hash === '#/admin' || hash === '#admin' || hash.startsWith('#/admin')) {
+      navigate('/admin', { replace: true });
     }
+    return () => window.removeEventListener('consentChanged', initAdPixels);
   }, [navigate]);
 
   React.useEffect(() => {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { trackLeadConversion } from '../lib/ad-pixels'
+import { hasAnalyticsConsent, trackGA4 } from '../lib/ga4'
 import { SITE } from '../data/site'
 
 interface JournalLeadMagnetProps {
@@ -63,15 +64,24 @@ export const JournalLeadMagnet: React.FC<JournalLeadMagnetProps> = ({
       })
       if (!response.ok) throw new Error(`Inscription refusée (HTTP ${response.status}).`)
 
-      // 2. Suivi d'événement serveur GA4
-      await fetch('/api/track-event', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          event: 'newsletter_signup',
-          params: { source: sourceArticle || 'journal_page', interest: interestLabel },
-        }),
-      }).catch(() => {})
+      // 2. Conversion analytics, only when the visitor opted in
+      if (hasAnalyticsConsent()) {
+        const params = { source: sourceArticle || 'journal_page', interest: interestLabel }
+        trackGA4('generate_lead', params)
+        try {
+          await fetch('/api/track-event', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              event: 'generate_lead',
+              params,
+              analyticsConsent: true,
+            }),
+          })
+        } catch (trackingError) {
+          console.warn('GA4 Measurement Protocol request failed:', trackingError)
+        }
+      }
 
       trackLeadConversion('newsletter_signup', {
         interest: interestLabel,

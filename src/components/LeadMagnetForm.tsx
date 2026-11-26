@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { trackGA4 } from "../lib/ga4";
+import { hasAnalyticsConsent, trackGA4 } from "../lib/ga4";
 
 export default function LeadMagnetForm() {
   const [email, setEmail] = useState("");
@@ -17,14 +17,22 @@ export default function LeadMagnetForm() {
       });
       if (!res.ok) throw new Error("Network error");
       setStatus("sent");
-      // GA4 client-side
-      trackGA4("newsletter_signup", { source: "lead-magnet-form" });
-      // GA4 server-side (Measurement Protocol)
-      await fetch("/api/track-event", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ event: "newsletter_signup", params: { source: "lead-magnet-form" } }),
-      });
+      if (hasAnalyticsConsent()) {
+        trackGA4("generate_lead", { source: "lead-magnet-form" });
+        try {
+          await fetch("/api/track-event", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              event: "generate_lead",
+              params: { source: "lead-magnet-form" },
+              analyticsConsent: true,
+            }),
+          });
+        } catch (trackingError) {
+          console.warn("GA4 Measurement Protocol request failed:", trackingError);
+        }
+      }
       setTimeout(() => (window.location.href = "/thank-you"), 800);
     } catch (err) {
       console.error(err);

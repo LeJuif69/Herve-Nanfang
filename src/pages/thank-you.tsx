@@ -1,5 +1,5 @@
 import { Btn, Container, Display, Eyebrow, Lead, Section } from '../components/ui'
-import { trackGA4 } from '../lib/ga4'
+import { hasAnalyticsConsent, trackGA4 } from '../lib/ga4'
 import { useSeo } from '../lib/seo'
 
 export default function ThankYou() {
@@ -19,12 +19,18 @@ export default function ThankYou() {
   })
 
   const handleDownload = () => {
+    if (!hasAnalyticsConsent()) return
+
     trackGA4('lead_magnet_download', { source: 'thank_you_page' })
-    fetch('/api/track-event', {
+    void fetch('/api/track-event', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ event: 'lead_magnet_download', params: { source: 'thank_you_page' } }),
-    }).catch(() => {})
+      body: JSON.stringify({
+        event: 'lead_magnet_download',
+        params: { source: 'thank_you_page' },
+        analyticsConsent: true,
+      }),
+    }).catch((error) => console.warn('GA4 Measurement Protocol request failed:', error))
   }
 
   return (

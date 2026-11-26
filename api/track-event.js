@@ -34,9 +34,16 @@ export default async function handler(req, res) {
     return res.status(405).set(headers).json({ error: 'Method Not Allowed' })
   }
 
-  const { event, params, client_id } = req.body ?? {}
+  const { event, params, client_id, analyticsConsent } = req.body ?? {}
   if (!event || typeof event !== 'string') {
     return res.status(400).set(headers).json({ error: 'Missing event name' })
+  }
+
+  if (analyticsConsent !== true) {
+    return res.status(200).set(headers).json({
+      success: false,
+      reason: 'Analytics consent not granted',
+    })
   }
 
   const measurementId = process.env.VITE_GA4_MEASUREMENT_ID

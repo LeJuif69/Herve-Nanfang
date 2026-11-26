@@ -5,6 +5,8 @@ import { IDENTITY } from '../data/identity'
 import { Container, Eyebrow, Rule } from './ui'
 import SocialButtons from './SocialButtons'
 import { trackFormSubmitSuccess, trackLeadConversion } from '../lib/ad-pixels'
+import { OPEN_COOKIE_SETTINGS_EVENT } from './CookieConsent'
+import { hasAnalyticsConsent, trackGA4 } from '../lib/ga4'
 
 const DERIVED_MARKS = [
   { name: 'A Laiz Ô Pays', role: 'Manifeste & philosophie culturelle fondatrice' },
@@ -207,6 +209,20 @@ export default function Footer() {
                 if (!response.ok) throw new Error(`Inscription refusée (HTTP ${response.status}).`)
                 trackFormSubmitSuccess('newsletter_footer', 'newsletter')
                 trackLeadConversion('newsletter_signup', { category: 'Newsletter' })
+                if (hasAnalyticsConsent()) {
+                  trackGA4('generate_lead', { source: 'footer_newsletter' })
+                  void fetch('/api/track-event', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      event: 'generate_lead',
+                      params: { source: 'footer_newsletter' },
+                      analyticsConsent: true,
+                    }),
+                  }).catch((trackingError) => {
+                    console.warn('GA4 Measurement Protocol request failed:', trackingError)
+                  })
+                }
                 setSent(true)
               } catch (err) {
                 console.error('Échec inscription newsletter du pied de page:', err)
@@ -256,6 +272,14 @@ export default function Footer() {
             <Link to="/confidentialite" className="hover:text-gold">
               Confidentialité
             </Link>
+
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event(OPEN_COOKIE_SETTINGS_EVENT))}
+              className="hover:text-gold"
+            >
+              Gérer les cookies
+            </button>
 
             <button
               type="button"

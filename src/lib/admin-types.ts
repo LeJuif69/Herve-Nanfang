@@ -64,6 +64,7 @@ export interface AdminArticle {
   coverPreset?: string
   coverAlt?: string
   linkedConcept: { label: string; to: string }
+  relatedSlugs?: string[]
   seoTitle: string
   seoDescription: string
   publishedAt?: string

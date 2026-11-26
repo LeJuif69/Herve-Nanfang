@@ -16,6 +16,9 @@ test.describe('Lead Magnet Form', () => {
   test.beforeEach(async ({ page }) => {
     // La section lead-magnet est sur la page d'accueil
     await page.goto('/')
+    await page.getByRole('dialog', { name: 'Gestion des cookies' })
+      .getByRole('button', { name: 'Tout refuser' })
+      .click()
     await page.waitForSelector('[data-testid="lead-magnet-form"]')
   })
 
@@ -49,12 +52,43 @@ test.describe('Lead Magnet Form', () => {
     await page.route('/api/lead-magnet', (route) =>
       route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ success: true }) })
     )
-    await page.route('/api/track-event', (route) =>
-      route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ success: true }) })
-    )
+    const trackedEvents: string[] = []
+    await page.route('/api/track-event', async (route) => {
+      trackedEvents.push(route.request().postDataJSON()?.event ?? '')
+      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ success: true }) })
+    })
     await fillAndSubmitForm(page)
     await page.waitForURL('**/thank-you', { timeout: 3000 })
     await expect(page).toHaveURL(/\/thank-you/)
+    expect(trackedEvents).toEqual([])
+  })
+
+  test('sends the GA4 lead conversion after analytics consent', async ({ page }) => {
+    await page.evaluate(() => {
+      localStorage.setItem('hvnf_consent', JSON.stringify({ ga4: true, ads: false }))
+    })
+    await page.route('https://www.googletagmanager.com/**', (route) =>
+      route.fulfill({ status: 200, body: '' }),
+    )
+    await page.route('/api/lead-magnet', (route) =>
+      route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ success: true }) }),
+    )
+
+    const trackedEvents: string[] = []
+    await page.route('/api/track-event', async (route) => {
+      trackedEvents.push(route.request().postDataJSON()?.event ?? '')
+      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ success: true }) })
+    })
+
+    await page.reload()
+    await fillAndSubmitForm(page)
+    await expect.poll(() => trackedEvents).toEqual(['generate_lead'])
+
+    const clientEventSent = await page.evaluate(() => {
+      const dataLayer = (window as Window & { dataLayer?: IArguments[] }).dataLayer ?? []
+      return dataLayer.some((call) => call[0] === 'event' && call[1] === 'generate_lead')
+    })
+    expect(clientEventSent).toBe(true)
   })
 
   test('affiche un message d\'erreur si l\'API échoue', async ({ page }) => {
@@ -130,6 +164,9 @@ test.describe('Page Thank You', () => {
   })
 
   test('le bouton déclenche l\'event lead_magnet_download', async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('hvnf_consent', JSON.stringify({ ga4: true, ads: false }))
+    })
     const trackRequests: string[] = []
     await page.route('/api/track-event', async (route) => {
       const body = route.request().postDataJSON()
