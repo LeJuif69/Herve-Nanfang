@@ -34,6 +34,7 @@
 - `npm run dev` : Démarrage serveur de développement local (`http://localhost:5173`)
 - `npm run preview` : Prévisualisation locale du bundle de production (`http://localhost:4173`)
 - `npm run typecheck` : Vérification des types TypeScript (`tsc --noEmit`)
+- `npm run test:health` : Tests unitaires de la sonde Supabase en lecture seule
 - `npm run audit` : Audit SEO et cohérence éditoriale (`py -3 scripts/audit.py`)
 - `npm run generate:sitemap` : Génération du plan de site sitemap.xml
 - `npm run submit:indexnow` : Soumission instantanée aux moteurs de recherche via IndexNow
@@ -48,6 +49,9 @@
 | `VITE_GOOGLE_SITE_VERIFICATION` | Vercel & `.env.local` | Validation Google Search Console |
 | `VITE_SUPABASE_URL` | Vercel & `.env.local` | Connexion base de données Supabase |
 | `VITE_SUPABASE_PUBLISHABLE_KEY` | Vercel & `.env.local` | Clé d'API publique Supabase |
+| `SUPABASE_URL` | Vercel Production | URL Supabase utilisée par les relais serveur |
+| `SUPABASE_SERVICE_KEY` | Vercel Production (Secret) | Clé serveur Supabase; ne jamais la préfixer par `VITE_` |
+| `HEALTHCHECK_TOKEN` | Vercel Production (Secret, 32 octets minimum) | Protège `/api/health`; envoyer en `Authorization: Bearer ...` |
 | `VITE_ANALYTICS_ID` | Vercel & `.env.local` (Optionnel) | Suivi d'audience et métriques |
 | `INDEXNOW_KEY` | Vercel & `.env.local` | Clé de signature IndexNow (serveur) |
 
@@ -68,5 +72,6 @@
 - **Contrôles Post-Déploiement** :
   1. Accès `/sitemap.xml` (15 URL valides).
   2. Balise `<meta name="msvalidate.01" content="...">` sur la page d'accueil `/`.
+  3. Appeler `/api/health` avec le jeton `HEALTHCHECK_TOKEN`; la sonde retourne uniquement l'état de connectivité, sans données ni compte de leads.
   3. Champ `disambiguatingDescription` présent dans le schéma JSON-LD `Person`.
 
